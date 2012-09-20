@@ -6,15 +6,10 @@ import java.util.*;
  * This class is used to test checkin's done by jsc15 (Jesse Chahal). I have
  * also added a few things to test out SVN keyword replacement for comments.
  * This could prove useful in the future when we begin actual development. 
- * <p>
- * Apparently there is an issue with Java libraries if you try to use a Linux machine
- * with the current project setup. If JRE location is changed to the correct location on a
- * Linux machine it will no longer work on Windows machines (at least thats the assumption I make).
- * So I assume that we all need to use the same OS to prevent this issue...
  * 
  * @author $Author$
  * @version $Revision$
- * @since $LastChangedDate$
+ * @since $Date$
  *
  */
 public class Jsc15 {
