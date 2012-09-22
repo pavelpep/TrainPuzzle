@@ -10,7 +10,7 @@ import java.util.*;
  * @author $Author$
  * @version $Revision$
  * @since $Date$
- *
+ * $Author$
  */
 public class Jsc15 {
 	/** Class attribute used for nothing */
