@@ -6,11 +6,12 @@
 package appWindows;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
 // The main menu for the Train Track Puzzle game
-class MainMenu extends Window{// implements ActionListener {
+class MainMenu extends Window implements ActionListener {
 	// Layout Manager
 	private GridBagConstraints c;
 	
@@ -84,15 +85,22 @@ class MainMenu extends Window{// implements ActionListener {
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		//c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10, 0, 20, 0);
+		c.insets = new Insets(40, 0, 20, 0);
 		this.add(exit, c);		
 		
 		//this.pack();
 		this.setVisible(true);
+		
+		// ActionListener for window elements
+		campaign.setActionCommand("campaign");
+		campaign.addActionListener(this);
 	}
 	
-	//public void actionPerformed(ActionEvent e) {
-				
-	//}
+	public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "campaign") {
+				WindowManager.getManager().setActiveWindow(new Profiles()); 
+				WindowManager.getManager().updateWindows();
+			}
+	}
 	
 }
