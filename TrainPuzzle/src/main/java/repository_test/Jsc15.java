@@ -1,7 +1,5 @@
 package repository_test;
 
-import java.util.*;
-
 /**
  * This class is used to test checkin's done by jsc15 (Jesse Chahal). I have
  * also added a few things to test out SVN keyword replacement for comments.
@@ -10,7 +8,6 @@ import java.util.*;
  * @author $Author$
  * @version $Revision$
  * @since $Date$
- * $Author$
  */
 public class Jsc15 {
 	/** Class attribute used for nothing */

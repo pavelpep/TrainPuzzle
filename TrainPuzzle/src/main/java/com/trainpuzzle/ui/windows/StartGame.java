@@ -4,7 +4,7 @@
  * Last Edited by: Joey Au-Yeung
  */
 
-package appWindows;
+package trainpuzzle.ui.windows;
 
 // Main Method to start the game... 
 public class StartGame {

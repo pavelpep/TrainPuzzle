@@ -4,7 +4,7 @@
  * Last Edited by: Joey Au-Yeung
  */
 
-package appWindows;
+package trainpuzzle.ui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
