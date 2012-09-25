@@ -19,7 +19,7 @@ class MainMenu extends Window implements ActionListener {
 	private JLabel title;
 	private JButton campaign;
 	private JButton levelSelect; // do we need this??
-	private JButton hiScores;
+	private JButton credits;
 	private JButton exit;
 	
 	// Constructor
@@ -27,7 +27,7 @@ class MainMenu extends Window implements ActionListener {
 		title = null;
 		campaign = null;
 		levelSelect = null;
-		hiScores = null;
+		credits = null;
 		exit = null;
 		
 		c = new GridBagConstraints();
@@ -39,7 +39,7 @@ class MainMenu extends Window implements ActionListener {
 	
 	public void Create() {	    
 		// Game title
-		title = new JLabel("Train Track Puzzle Game (do we have a better name...?)");
+		title = new JLabel("Train Track Puzzle Game");
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 2;
@@ -68,15 +68,15 @@ class MainMenu extends Window implements ActionListener {
 		c.insets = new Insets(10, 0, 10, 0);
 		this.add(levelSelect, c);
 		
-		// High Scores Button
-		hiScores = new JButton("High Scores");
+		// Credits
+		credits = new JButton("Credits");
 		c.gridx = 1;
 		c.gridy = 3;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
-		this.add(hiScores, c);
+		this.add(credits, c);
 		
 		// Exit Button
 		exit = new JButton("Exit");
@@ -102,15 +102,16 @@ class MainMenu extends Window implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand() == "campaign") {
-				WindowManager.getManager().setActiveWindow(new Profiles()); 
+		// Loads the campaign menu	
+		if (e.getActionCommand() == "campaign") {
+				WindowManager.getManager().setActiveWindow(new Campaign()); 
 				WindowManager.getManager().updateWindows();
 			}
+		// Exit Program
+		if (e.getActionCommand() == "exit") {
+			System.exit(0);
+		}
 			
-			if (e.getActionCommand() == "exit") {
-				System.exit(0);
-			}
-				
 	}
 	
 }

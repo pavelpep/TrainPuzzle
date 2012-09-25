@@ -13,7 +13,7 @@ import javax.swing.event.*;
 
 import java.util.*;
 
-class Profiles extends Window implements ActionListener, ListSelectionListener {
+class Campaign extends Window implements ActionListener, ListSelectionListener {
 	// Layout Manager
 	private GridBagConstraints c;
 	
@@ -27,7 +27,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 	private JButton back;
 		
 	// Constructor
-	public Profiles () {
+	public Campaign () {
 		profileList = null;
 		listModel = null;
 		title = null;
@@ -42,10 +42,8 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 		setLocationRelativeTo(null);
 		
 		listModel = new DefaultListModel();
-		listModel.addElement("Default Player");
-		listModel.addElement("Default Player");
-		listModel.addElement("Default Player");
-		listModel.addElement("Default Player");
+		listModel.addElement("Player1");
+		listModel.addElement("Player2");
 	}
 
 	public void Create() {
@@ -116,11 +114,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
 		
-	}
-
-
-
-	
+	}	
 	
 	
 }
