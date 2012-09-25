@@ -1,13 +1,14 @@
 package trainpuzzle.model.map;
 
 
-public class Tile {
+public abstract class Tile {
 
 private int elevation;
-	
+public String tileType;
+
 	public Tile() 
 	{
-		elevation = 0; //Initialise elevation
+
 	}
 	
 }
