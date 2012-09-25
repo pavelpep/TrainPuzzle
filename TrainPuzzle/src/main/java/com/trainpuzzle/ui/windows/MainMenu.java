@@ -44,7 +44,7 @@ class MainMenu extends Window implements ActionListener {
 		c.gridy = 0;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 10, 0, 10);
 		this.add(title, c);
 		
@@ -54,7 +54,7 @@ class MainMenu extends Window implements ActionListener {
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(30, 0, 10, 0);
 		this.add(campaign, c);
 		
@@ -64,7 +64,7 @@ class MainMenu extends Window implements ActionListener {
 		c.gridy = 2;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
 		this.add(levelSelect, c);
 		
@@ -74,7 +74,7 @@ class MainMenu extends Window implements ActionListener {
 		c.gridy = 3;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
 		this.add(hiScores, c);
 		
@@ -84,7 +84,7 @@ class MainMenu extends Window implements ActionListener {
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(40, 0, 20, 0);
 		this.add(exit, c);		
 		
@@ -94,6 +94,11 @@ class MainMenu extends Window implements ActionListener {
 		// ActionListener for window elements
 		campaign.setActionCommand("campaign");
 		campaign.addActionListener(this);
+		
+		exit.setActionCommand("exit");
+		exit.addActionListener(this);
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -101,6 +106,11 @@ class MainMenu extends Window implements ActionListener {
 				WindowManager.getManager().setActiveWindow(new Profiles()); 
 				WindowManager.getManager().updateWindows();
 			}
+			
+			if (e.getActionCommand() == "exit") {
+				System.exit(0);
+			}
+				
 	}
 	
 }
