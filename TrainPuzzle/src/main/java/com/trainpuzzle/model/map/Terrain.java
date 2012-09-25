@@ -1,7 +1,7 @@
 package trainpuzzle.model.map;
 
 
-public class Terrain {
+public abstract class Terrain {
 
 
 	
