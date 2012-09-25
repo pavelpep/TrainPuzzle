@@ -14,6 +14,8 @@ public class slw3 {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Shanna has checked in");
+		System.out.println("Updated");
+
 	}
 
 }
