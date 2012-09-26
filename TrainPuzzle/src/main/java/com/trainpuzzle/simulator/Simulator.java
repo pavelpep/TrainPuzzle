@@ -2,11 +2,21 @@ package com.trainpuzzle.simulator;
 
 
 public class Simulator {
-
-private int status;  // 0 = stop ; 1= go ; 2 = pause
+	/** 
+	 *  Constant stand for stop */
+	public final static int STOP = 0;
 	
-boolean isVictory;
-//private nexTrack;
+	/**
+	 * Constant stand for go/run*/
+	public final static int GO = 1;
+	
+	/** attribute to hold the current status of the train*/
+	private int status; 
+	
+	
+	private boolean isVictory(){
+		return true;
+	}
 
 	public void Pause()
 	{
