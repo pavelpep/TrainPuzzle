@@ -1,8 +1,3 @@
-/* Class Name: MainMenu.java
- * Date Created: September 21, 2012
- * Date Edited: September 21, 2012, 23:30
- * Last Edited by: Joey Au-Yeung
- */
 package com.trainpuzzle.ui.windows;
 
 import java.awt.*;

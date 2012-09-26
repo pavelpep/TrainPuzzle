@@ -1,9 +1,3 @@
-/* Class Name: Profiles.java
- * Date Created: September 22, 2012
- * Date Edited: September 22, 2012, 23:00
- * Last Edited by: Joey Au-Yeung
- */
-
 package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
