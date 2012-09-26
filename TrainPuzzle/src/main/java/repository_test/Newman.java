@@ -1,6 +1,10 @@
 package repository_test;
+/**
+ * 
+ * @author $Author: 
+ */
 
-public class Check_In_Newman {
+public class Newman {
 	private String message = "Newman has checked in!";
 
 	public String getName() 
