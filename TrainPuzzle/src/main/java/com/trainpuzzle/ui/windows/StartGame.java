@@ -21,7 +21,7 @@ public class StartGame {
 		        }
 		    }
 		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		    // Switch to default view
 		}		
 		WindowManager.getManager().setActiveWindow(new MainMenu());
 		WindowManager.getManager().updateWindows();

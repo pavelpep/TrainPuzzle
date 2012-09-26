@@ -16,19 +16,19 @@ class MainMenu extends Window implements ActionListener {
 	private GridBagConstraints c;
 	
 	// Window elements
-	private JLabel title;
-	private JButton campaign;
-	private JButton levelSelect; // do we need this??
-	private JButton credits;
-	private JButton exit;
+	private JLabel menuLabel;
+	private JButton continueButton;
+	private JButton profilesButton; 
+	private JButton creditsButton;
+	private JButton exitButton;
 	
 	// Constructor
 	public MainMenu() {
-		title = null;
-		campaign = null;
-		levelSelect = null;
-		credits = null;
-		exit = null;
+		menuLabel = null;
+		continueButton = null;
+		profilesButton = null;
+		creditsButton = null;
+		exitButton = null;
 		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -39,77 +39,85 @@ class MainMenu extends Window implements ActionListener {
 	
 	public void Create() {	    
 		// Game title
-		title = new JLabel("Train Track Puzzle Game");
+		menuLabel = new JLabel("Train Track Puzzle Game");
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 10, 0, 10);
-		this.add(title, c);
+		this.add(menuLabel, c);
 		
-		// Campaign Button
-		campaign = new JButton("Campaign");
+		// Continue Button
+		continueButton = new JButton("Continue Campaign");
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(30, 0, 10, 0);
-		this.add(campaign, c);
+		continueButton.setEnabled(false);
+		this.add(continueButton, c);
 		
-		// Level Select Button
-		levelSelect = new JButton("Level Select");
+		// Profile Button
+		profilesButton = new JButton("Add/Change User");
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
-		this.add(levelSelect, c);
+		this.add(profilesButton, c);
 		
-		// Credits
-		credits = new JButton("Credits");
+		// Credits Button
+		creditsButton = new JButton("Credits");
 		c.gridx = 1;
 		c.gridy = 3;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
-		this.add(credits, c);
+		creditsButton.setEnabled(false);
+		this.add(creditsButton, c);
 		
 		// Exit Button
-		exit = new JButton("Exit");
+		exitButton = new JButton("Exit");
 		c.gridx = 1;
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(40, 0, 20, 0);
-		this.add(exit, c);		
+		this.add(exitButton, c);		
 		
 		//this.pack();
 		this.setVisible(true);
 		
 		// ActionListener for window elements
-		campaign.setActionCommand("campaign");
-		campaign.addActionListener(this);
+		continueButton.setActionCommand("continue");
+		continueButton.addActionListener(this);
 		
-		exit.setActionCommand("exit");
-		exit.addActionListener(this);
+		exitButton.setActionCommand("exit");
+		exitButton.addActionListener(this);
 		
-		
+		profilesButton.setActionCommand("profiles");
+		profilesButton.addActionListener(this);
+				
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		// Loads the campaign menu	
-		if (e.getActionCommand() == "campaign") {
-				WindowManager.getManager().setActiveWindow(new Campaign()); 
+		// Loads the level select menu
+		if (e.getActionCommand() == "continue") {
+				WindowManager.getManager().setActiveWindow(new LevelSelect()); 
 				WindowManager.getManager().updateWindows();
 			}
 		// Exit Program
 		if (e.getActionCommand() == "exit") {
 			System.exit(0);
+		}
+		if (e.getActionCommand() == "profiles") {
+			WindowManager.getManager().setActiveWindow(new Profiles()); 
+			WindowManager.getManager().updateWindows();
 		}
 			
 	}
