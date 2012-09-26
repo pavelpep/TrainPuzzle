@@ -1,4 +1,4 @@
-package trainpuzzle.model.map;
+package com.trainpuzzle.model.map;
 
 
 public class Track {

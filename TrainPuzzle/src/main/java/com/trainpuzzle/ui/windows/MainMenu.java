@@ -3,7 +3,7 @@
  * Date Edited: September 21, 2012, 23:30
  * Last Edited by: Joey Au-Yeung
  */
-package trainpuzzle.ui.windows;
+package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
 import java.awt.event.*;

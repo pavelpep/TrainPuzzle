@@ -4,7 +4,7 @@
  * Last Edited by: Joey Au-Yeung
  */
 
-package trainpuzzle.ui.windows;
+package com.trainpuzzle.ui.windows;
 
 import javax.swing.UIManager;
 import javax.swing.UIManager.*;

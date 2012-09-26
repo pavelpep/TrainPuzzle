@@ -1,4 +1,4 @@
-package trainpuzzle.simulator;
+package com.trainpuzzle.simulator;
 
 
 public class Simulator {
