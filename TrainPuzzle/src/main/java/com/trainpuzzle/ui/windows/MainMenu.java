@@ -35,17 +35,21 @@ class MainMenu extends Window implements ActionListener {
 	public void Create() {	    
 		// Game title
 		menuLabel = new JLabel("Train Track Puzzle Game");
+		menuLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 28));
+		menuLabel.setForeground(Color.black);
 		c.gridx = 0;
 		c.gridy = 0;
-		c.gridwidth = 2;
+		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(10, 10, 0, 10);
 		this.add(menuLabel, c);
 		
 		// Continue Button
 		continueButton = new JButton("Continue Campaign");
-		c.gridx = 1;
+		continueButton.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 20));
+		continueButton.setBackground(Color.ORANGE);
+		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
@@ -56,7 +60,9 @@ class MainMenu extends Window implements ActionListener {
 		
 		// Profile Button
 		profilesButton = new JButton("Add/Change User");
-		c.gridx = 1;
+		profilesButton.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 20));
+		profilesButton.setBackground(Color.ORANGE);
+		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
@@ -66,7 +72,9 @@ class MainMenu extends Window implements ActionListener {
 		
 		// Credits Button
 		creditsButton = new JButton("Credits");
-		c.gridx = 1;
+		creditsButton.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 20));	
+		creditsButton.setBackground(Color.ORANGE);
+		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
@@ -77,7 +85,8 @@ class MainMenu extends Window implements ActionListener {
 		
 		// Exit Button
 		exitButton = new JButton("Exit");
-		c.gridx = 1;
+		exitButton.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 20));	
+		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;

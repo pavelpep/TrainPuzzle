@@ -43,6 +43,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 	public void Create() {
 		// Title
 		title = new JLabel("Choose Profile");
+		title.setFont(new Font("Arial", Font.BOLD, 20));
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridwidth = 2;
