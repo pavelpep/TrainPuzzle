@@ -12,6 +12,8 @@ public abstract class Tile {
 
 private int elevation;
 private String tileType;
+private Track track;
+private Obstacle obstacle;
 
 	public Tile() 
 	{
@@ -46,4 +48,24 @@ private String tileType;
 		this.tileType = tileType;
 	}
 	
+	/**
+	 * @return hasTrack returns whether 
+	 * there is a Track at this tile or not. 
+	 */
+	public boolean hasTrack() {
+		
+		if(track == null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public void putTrack() {
+		track = new Track();
+	}
+	
+	public void removeTrack() {
+		track = null ;
+	}
 }
