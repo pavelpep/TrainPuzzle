@@ -69,12 +69,19 @@ class LevelSelect extends Window implements ActionListener {
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 		
+		levelButton.setActionCommand("levelSelected");
+		levelButton.addActionListener(this);
+		
 		this.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "back") {
 			WindowManager.getManager().setActiveWindow(new MainMenu()); 
+			WindowManager.getManager().updateWindows();
+		}
+		if (e.getActionCommand() == "levelSelected") {
+			WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
 			WindowManager.getManager().updateWindows();
 		}
 		
