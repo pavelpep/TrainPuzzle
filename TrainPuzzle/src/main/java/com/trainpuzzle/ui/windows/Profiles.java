@@ -18,7 +18,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 	private JLabel title;
 	private JButton newProfile;
 	private JButton loadProfile;
-	private JButton back;
+	private JButton backButton;
 		
 	// Constructor
 	public Profiles() {
@@ -27,7 +27,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 		title = null;
 		newProfile = null;
 		loadProfile = null;
-		back = null;
+		backButton = null;
 		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -79,18 +79,18 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 		c.gridheight = 1;
 		this.add(newProfile, c);
 		
-		back = new JButton("Back");
+		backButton = new JButton("Back");
 		c.gridx = 1;
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(30, 0, 0, 0);
-		this.add(back, c);		
+		this.add(backButton, c);		
 		
 				// ActionListeners for window elements
-		back.setActionCommand("back");
-		back.addActionListener(this);
+		backButton.setActionCommand("back");
+		backButton.addActionListener(this);
 		
 		this.setVisible(true);
 		

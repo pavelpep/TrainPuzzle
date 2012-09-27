@@ -55,7 +55,7 @@ class MainMenu extends Window implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(30, 0, 10, 0);
-		continueButton.setEnabled(false);
+		continueButton.setEnabled(true);
 		this.add(continueButton, c);
 		
 		// Profile Button
@@ -68,6 +68,7 @@ class MainMenu extends Window implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(10, 0, 10, 0);
+		profilesButton.setEnabled(false);
 		this.add(profilesButton, c);
 		
 		// Credits Button
@@ -122,8 +123,7 @@ class MainMenu extends Window implements ActionListener {
 		if (e.getActionCommand() == "profiles") {
 			WindowManager.getManager().setActiveWindow(new Profiles()); 
 			WindowManager.getManager().updateWindows();
-		}
-			
+		}			
 	}
 	
 }
