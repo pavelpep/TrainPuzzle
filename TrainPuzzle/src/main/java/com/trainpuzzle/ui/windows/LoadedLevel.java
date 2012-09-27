@@ -14,6 +14,7 @@ class LoadedLevel extends Window implements ActionListener {
 	
 	// Window elements
 	private JLabel titleLabel;
+	private JButton backButton;
 	private JPanel mapPanel;
 	private JPanel toolbarPanel;
 	
@@ -53,7 +54,7 @@ class LoadedLevel extends Window implements ActionListener {
 		mapPanel.setPreferredSize(new Dimension(900, 600));
 		mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
 		mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		mapPanel.setBorder(mapTitle);		
+		mapPanel.setBorder(mapTitle);
 		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth = 60;
@@ -64,7 +65,7 @@ class LoadedLevel extends Window implements ActionListener {
 		this.add(mapPanel, c);
 		
 		toolbarPanel = new JPanel();
-		toolbarPanel.setPreferredSize(new Dimension(200, 600));
+		toolbarPanel.setPreferredSize(new Dimension(250, 600));
 		toolbarTitle = BorderFactory.createTitledBorder(loweredetched, "Track Pieces");
 		toolbarTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		toolbarPanel.setBorder(toolbarTitle);		
