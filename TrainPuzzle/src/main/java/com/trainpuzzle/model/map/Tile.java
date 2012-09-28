@@ -1,7 +1,7 @@
 package com.trainpuzzle.model.map;
 
 /**
- * The Tile class is essentially a super class which Tile type class's inherihit from.
+ * The Tile class is essentially a super class which Tile type class's inherit from.
  * 
  * @author $Author$
  * @version $Revision$
@@ -19,7 +19,7 @@ private Obstacle obstacle;
 	{
 		elevation = 0;
 		tileType = "grass";
-		putTrack();
+		
 	}
 
 	/**
