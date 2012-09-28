@@ -71,6 +71,13 @@ private Set<Connection> connections;
 		return;
 	}
 	
+	public void rotateTrack() {
+		for(Connection connection : connections){
+			
+		}
+		return;
+	}
+	
 	
 }
 
