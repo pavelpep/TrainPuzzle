@@ -17,7 +17,9 @@ private Obstacle obstacle;
 
 	public Tile() 
 	{
-
+		elevation = 0;
+		tileType = "grass";
+		putTrack();
 	}
 
 	/**
