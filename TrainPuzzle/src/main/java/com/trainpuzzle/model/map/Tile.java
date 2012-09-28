@@ -8,7 +8,7 @@ package com.trainpuzzle.model.map;
  * @since $Date$
  *
  */
-public abstract class Tile {
+public  class Tile {
 
 private int elevation;
 private String tileType;
