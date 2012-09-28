@@ -1,7 +1,7 @@
 package com.trainpuzzle.model.map;
 
 public class Connection {
-	/*
+
 	private Track.Heading compassHeading1;
 	private Track.Heading compassHeading2;
 	
@@ -20,16 +20,4 @@ public class Connection {
 	private boolean connectionIsValid(Track.Heading inputHeading1, Track.Heading inputHeading2) {
 		return true;
 	}
-	*/
-	
-public int heading1;public	int heading2;
-	
-	
-	public Connection(int entryHeading, int exitHeading ){
-		
-		heading1= entryHeading;
-		heading2 = exitHeading;
-	}
-	
-
 }
