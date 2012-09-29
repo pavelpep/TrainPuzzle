@@ -1,4 +1,4 @@
-package com.trainpuzzle.simulator;
+package com.trainpuzzle.controller;
 import com.trainpuzzle.model.map.*;
 /**
  * it is an object stores map and victory condition of the level.

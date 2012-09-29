@@ -1,4 +1,4 @@
-package com.trainpuzzle.simulator;
+package com.trainpuzzle.controller;
 /**
  * use for selecting the a level.
  * @author huachuandeng

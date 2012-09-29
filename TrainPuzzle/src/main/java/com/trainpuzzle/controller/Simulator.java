@@ -1,4 +1,4 @@
-package com.trainpuzzle.simulator;
+package com.trainpuzzle.controller;
 import com.trainpuzzle.model.map.*;
 /**
  * 
@@ -7,9 +7,12 @@ import com.trainpuzzle.model.map.*;
  */
 public class Simulator {
 	private Map map;
-	private Train trian;
+	private Train train;
 	Simulator(Level level){
-		
+		this.map = level.getMap();
+		this.train= new Train();
+		int[] startPoint= map.getStartPoint();
+		this.train.setLocation(startPoint[0],startPoint[1]);
 	}
 	/**
 	 * A function to check whether the user win the game
@@ -26,25 +29,15 @@ public class Simulator {
 	{
 		
 	}
-	
-	private void Stop()
-	{
+	public boolean goNextTrack(){
 		
+		return false;
+	}
+	public void setTrain(Train train){
+		this.train = train;
+	}
+	public Train getTrain(){
+		return this.train;
 	}
 
-	public Map getMap() {
-		return map;
-	}
-
-	public void setMap(Map map) {
-		this.map = map;
-	}
-
-	public Train getTrian() {
-		return trian;
-	}
-
-	public void setTrian(Train trian) {
-		this.trian = trian;
-	}
 }
