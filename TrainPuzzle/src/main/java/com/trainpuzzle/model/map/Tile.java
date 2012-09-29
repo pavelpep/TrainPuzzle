@@ -12,7 +12,6 @@ package com.trainpuzzle.model.map;
 public class Tile {
 
 private int elevation;
-private String tileType;
 private Track track;
 private Obstacle obstacle;
 private Landscape landscape;
