@@ -9,7 +9,7 @@ package com.trainpuzzle.model.map;
  */
 public class Train {
  
-	private int[] location;
+	private int[] location; 
 	
 	public Train() 
 	{

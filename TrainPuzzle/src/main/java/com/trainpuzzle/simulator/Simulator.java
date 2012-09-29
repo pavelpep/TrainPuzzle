@@ -1,6 +1,10 @@
 package com.trainpuzzle.simulator;
 import com.trainpuzzle.model.map.*;
-
+/**
+ * 
+ * @author huachuandeng
+ *
+ */
 public class Simulator {
 	private Map map;
 	private Train trian;
