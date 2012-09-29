@@ -19,9 +19,43 @@ public class Track {
 		WEST(7);					//    +------*------+
 									//   6       5       4
 		private int headingValue;
+		private static final int numberOfHeadings = 8;
 		
 		private Heading(int headingValue) {
 			this.headingValue = headingValue;
+		}
+		
+		public Heading opposite() {
+			final int oppositeIncrement = 4;
+			int oppositeValue = (headingValue + oppositeIncrement) % numberOfHeadings;
+			Heading oppositeHeading = null;
+			switch (oppositeValue) {
+				case 0:
+					oppositeHeading = NORTHWEST;
+					break;
+				case 1:
+					oppositeHeading = NORTH;
+					break;
+				case 2:
+					oppositeHeading = NORTHEAST;
+					break;
+				case 3:
+					oppositeHeading = EAST;
+					break;
+				case 4:
+					oppositeHeading = SOUTHEAST;
+					break;
+				case 5:
+					oppositeHeading = SOUTH;
+					break;
+				case 6:
+					oppositeHeading = SOUTHWEST;
+					break;
+				case 7:
+					oppositeHeading = WEST;
+					break;
+			}
+			return oppositeHeading;
 		}
 		
 		public int getValue() {
@@ -37,14 +71,14 @@ public class Track {
 		//System.out.println();
 		
 	}
-	public void addConnection(){
-		connections.add(new Connection(Heading.NORTH, Heading.SOUTH));
+	public void addConnection(Heading firstHeading, Heading secondHeading){
+		connections.add(new Connection(firstHeading, secondHeading));
 		return;
 	}
 	
 	public void rotateTrack() {
 		for(Connection connection : connections){
-			
+			connection.modifyConnection(connection.getHeadings()[0].opposite(), connection.getHeadings()[1].opposite());
 		}
 		return;
 	}
