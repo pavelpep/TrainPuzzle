@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class Track {
 
-	
 				          
 	public enum Heading {
 		NORTHWEST(0), 				//   0       1       2
