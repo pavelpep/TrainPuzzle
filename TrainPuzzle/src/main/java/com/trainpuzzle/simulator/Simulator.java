@@ -1,28 +1,23 @@
 package com.trainpuzzle.simulator;
-
+import com.trainpuzzle.model.map.*;
 
 public class Simulator {
-	/** 
-	 *  Constant stand for stop */
-	public final static int STOP = 0;
-	
+	private Map map;
+	private Train trian;
+	Simulator(Level level){
+		
+	}
 	/**
-	 * Constant stand for go/run*/
-	public final static int GO = 1;
-	
-	/** attribute to hold the current status of the train*/
-	private int status; 
-	
-	
+	 * A function to check whether the user win the game
+	 * @return a boolean to tell whether the train finish all requirements 
+	 */
 	private boolean isVictory(){
 		return true;
 	}
 
-	public void Pause()
-	{
-		
-	}
-
+	/**
+	 *  to simulate the turn run on map 
+	 */
 	public void Run() 
 	{
 		
@@ -31,5 +26,21 @@ public class Simulator {
 	private void Stop()
 	{
 		
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
+	public Train getTrian() {
+		return trian;
+	}
+
+	public void setTrian(Train trian) {
+		this.trian = trian;
 	}
 }

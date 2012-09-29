@@ -9,10 +9,28 @@ package com.trainpuzzle.model.map;
  */
 public class Train {
  
+	private int[] location;
 	
 	public Train() 
 	{
+		this.location = new int[2];
+		this.location[0] = 0;
+		this.location[1] = 0;
+	}
+	public Train(int latitude, int longitude){
+		this.location = new int[2];
+		this.location[0] = latitude;
+		this.location[1] = longitude;
+	}
+
+	public int[] getLocation() {
+		return location;
 		
+	}
+
+	public void setLocation(int latitude, int longitude ) {
+		this.location[0] = latitude;
+		this.location[1] = longitude;
 	}
 	
 }
