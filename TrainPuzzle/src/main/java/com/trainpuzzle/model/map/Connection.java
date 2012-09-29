@@ -9,6 +9,53 @@ public class Connection {
 		modifyConnection(inputHeading1, inputHeading2);
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((compassHeading1 == null) ? 0 : compassHeading1.hashCode() + compassHeading2.hashCode());
+		result = prime * result
+				+ ((compassHeading2 == null) ? 0 : compassHeading1.hashCode()+ compassHeading2.hashCode());
+		return result;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Connection other = (Connection) obj;
+		/*
+		if (compassHeading1 != other.compassHeading1) {
+			return false;
+		}
+		if (compassHeading2 != other.compassHeading2) {
+			return false;
+		}
+		
+		return true;
+		*/
+		
+		boolean headingsAreDirectlyEqual = ((compassHeading1 == other.compassHeading1) && (compassHeading2 == other.compassHeading2));
+		boolean headingsAreIndirectlyEqual = ((compassHeading1 == other.compassHeading2) && (compassHeading2 == other.compassHeading1));
+		
+		// this needs to be reorganized... I can barely read it myself
+		if ( !(headingsAreDirectlyEqual || headingsAreIndirectlyEqual) ) {
+			return false;
+		}
+		
+		return true;
+		
+	}
+
 	public void modifyConnection(Track.Heading inputHeading1, Track.Heading inputHeading2) {
 		if(connectionIsValid(inputHeading1, inputHeading2)) {
 			compassHeading1= inputHeading1;
