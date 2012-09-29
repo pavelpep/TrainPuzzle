@@ -79,6 +79,9 @@ public class Connection {
 	}
 	
 	private boolean connectionIsValid(Track.Heading inputHeading1, Track.Heading inputHeading2) {
+		if (inputHeading1 == inputHeading2) {
+			return false;
+		}
 		return true;
 	}
 	
