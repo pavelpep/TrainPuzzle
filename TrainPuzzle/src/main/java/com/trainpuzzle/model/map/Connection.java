@@ -17,7 +17,17 @@ public class Connection {
 		return;
 	}
 	
+	public int[] getHeadingValues() {
+		int connectionValues[] = new int[2];
+		connectionValues[0] = compassHeading1.getValue();
+		connectionValues[1] = compassHeading2.getValue();
+		return connectionValues;
+	}
+	
 	private boolean connectionIsValid(Track.Heading inputHeading1, Track.Heading inputHeading2) {
 		return true;
 	}
+	
+	//need to override equals and hashset
+	
 }
