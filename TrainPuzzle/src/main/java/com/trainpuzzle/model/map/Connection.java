@@ -24,6 +24,13 @@ public class Connection {
 		return connectionValues;
 	}
 	
+	public Track.Heading[] getHeadings() {
+		Track.Heading connectionHeadings[] = new Track.Heading[2];
+		connectionHeadings[0] = compassHeading1;
+		connectionHeadings[1] = compassHeading2;
+		return connectionHeadings;
+	}
+	
 	private boolean connectionIsValid(Track.Heading inputHeading1, Track.Heading inputHeading2) {
 		return true;
 	}
