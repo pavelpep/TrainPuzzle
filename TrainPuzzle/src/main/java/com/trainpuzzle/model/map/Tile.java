@@ -8,59 +8,27 @@ package com.trainpuzzle.model.map;
  * @since $Date$
  *
  */
-public  class Tile {
+
+public class Tile {
 
 private int elevation;
 private String tileType;
 private Track track;
 private Obstacle obstacle;
+private Landscape landscape;
+private Location location;
 
-	public Tile() 
-	{
+	public Tile() {	
 		elevation = 0;
-		tileType = "grass";
-		
+		landscape.setName("grass");
 	}
 
-	/**
-	 * @return the elevation
-	 */
 	public int getElevation() {
 		return elevation;
 	}
 
-	/**
-	 * @param elevation the elevation to set
-	 */
 	public void setElevation(int elevation) {
 		this.elevation = elevation;
-	}
-
-	/**
-	 * @return the tileType
-	 */
-	public String getTileType() {
-		return tileType;
-	}
-
-	/**
-	 * @param tileType the tileType to set
-	 */
-	public void setTileType(String tileType) {
-		this.tileType = tileType;
-	}
-	
-	/**
-	 * @return hasTrack returns whether 
-	 * there is a Track at this tile or not. 
-	 */
-	public boolean hasTrack() {
-		
-		if(track == null){
-			return false;
-		}else{
-			return true;
-		}
 	}
 	
 	public void putTrack() {
@@ -68,6 +36,24 @@ private Obstacle obstacle;
 	}
 	
 	public void removeTrack() {
-		track = null ;
+		track = null;
+	}
+
+	public boolean hasTrack() {
+		if(track == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	public boolean hasObstacle() {
+		if(obstacle == null) {
+			return false;
+		}
+		else {
+			return true;
+		}	
 	}
 }

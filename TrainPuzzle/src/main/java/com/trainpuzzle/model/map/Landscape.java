@@ -1,16 +1,26 @@
 package com.trainpuzzle.model.map;
 
 /**
- * Represents a tile that can have {@link Track} pieces placed on it
  * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
  *
  */
-public abstract class Landscape {
-	
+
+public class Landscape {
+
+private String name;
+
 	public Landscape() {
 		
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 }
