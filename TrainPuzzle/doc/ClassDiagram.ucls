@@ -2,7 +2,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.controller.Level" project="TrainPuzzle" 
     file="/TrainPuzzle/src/main/java/com/trainpuzzle/controller/Level.java" binary="false">    
-    <position x="-51" y="-24" width="115" height="127"/>    
+    <position x="108" y="308" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -10,7 +10,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.controller.LevelLoader" 
     project="TrainPuzzle" file="/TrainPuzzle/src/main/java/com/trainpuzzle/controller/LevelLoader.java" binary="false">    
-    <position x="104" y="-24" width="115" height="76"/>    
+    <position x="9" y="86" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -18,7 +18,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.controller.Clock" project="TrainPuzzle" 
     file="/TrainPuzzle/src/main/java/com/trainpuzzle/controller/Clock.java" binary="false">    
-    <position x="259" y="-24" width="115" height="76"/>    
+    <position x="775" y="230" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -26,7 +26,7 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.controller.Simulator" project="TrainPuzzle" 
     file="/TrainPuzzle/src/main/java/com/trainpuzzle/controller/Simulator.java" binary="false">    
-    <position x="414" y="-24" width="147" height="229"/>    
+    <position x="-54" y="609" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -34,7 +34,7 @@
   </class>  
   <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.controller.TrackBuilder" 
     project="TrainPuzzle" file="/TrainPuzzle/src/main/java/com/trainpuzzle/controller/TrackBuilder.java" binary="false">    
-    <position x="601" y="-24" width="180" height="161"/>    
+    <position x="439" y="196" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -42,7 +42,7 @@
   </class>  
   <enumeration id="6" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.model.map.Track.Heading" 
     project="TrainPuzzle" file="/TrainPuzzle/src/main/java/com/trainpuzzle/model/map/Track.java" binary="false">    
-    <position x="258" y="1311" width="141" height="297"/>    
+    <position x="329" y="1552" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -130,7 +130,7 @@
   </class>  
   <class id="17" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.ui.windows.MainMenu" project="TrainPuzzle" 
     file="/TrainPuzzle/src/main/java/com/trainpuzzle/ui/windows/MainMenu.java" binary="false">    
-    <position x="939" y="146" width="419" height="229"/>    
+    <position x="1186" y="61" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -146,7 +146,7 @@
   </class>  
   <class id="19" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.ui.windows.LoadedLevel" 
     project="TrainPuzzle" file="/TrainPuzzle/src/main/java/com/trainpuzzle/ui/windows/LoadedLevel.java" binary="false">    
-    <position x="1857" y="146" width="189" height="263"/>    
+    <position x="2045" y="306" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -154,7 +154,7 @@
   </class>  
   <class id="20" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.ui.windows.LevelSelect" 
     project="TrainPuzzle" file="/TrainPuzzle/src/main/java/com/trainpuzzle/ui/windows/LevelSelect.java" binary="false">    
-    <position x="1398" y="146" width="419" height="195"/>    
+    <position x="1637" y="320" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -162,7 +162,7 @@
   </class>  
   <class id="21" corner="BOTTOM_RIGHT" language="java" name="com.trainpuzzle.ui.windows.Profiles" project="TrainPuzzle" 
     file="/TrainPuzzle/src/main/java/com/trainpuzzle/ui/windows/Profiles.java" binary="false">    
-    <position x="2086" y="146" width="209" height="246"/>    
+    <position x="2062" y="3" width="-1" height="-1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
