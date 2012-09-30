@@ -39,22 +39,27 @@ class MainMenu extends Window implements ActionListener {
 	
 	public void Create() {	    
 		
+		//Game Title
 		this.initializeComponent(this.menuLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
 		this.menuLabel.setText("Train Track Puzzle Game");
 		this.add(this.menuLabel, this.gbConstraints);
 		
+		//Continue Button
 		this.initializeComponent(this.continueButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(30, 0, 10, 0), true);
 		this.continueButton.setText("Continue Campaign");
 		this.add(this.continueButton, this.gbConstraints);
 	
+		//Profiles Button
 		this.initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
 		this.profilesButton.setText("Add/Change User");
 		this.add(this.profilesButton, this.gbConstraints);
 		
+		//Credits Button
 		this.initializeComponent(this.creditsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 3, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
 		this.creditsButton.setText("Credits");
 		this.add(this.creditsButton, this.gbConstraints);
 		
+		//Exit Button
 		this.initializeComponent(this.exitButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 4, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 20, 0), true);
 		this.exitButton.setText("Exit");
 		this.add(this.exitButton, this.gbConstraints);
