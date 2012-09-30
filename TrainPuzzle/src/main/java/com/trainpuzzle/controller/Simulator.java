@@ -1,5 +1,7 @@
 package com.trainpuzzle.controller;
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.model.map.*;
@@ -76,22 +78,41 @@ public class Simulator {
 		return location;
 	}
 	//TODO change integer to static 
+	private boolean getNextHeading(Track track, Track.Heading heading){
+		heading = heading.opposite();
+		Set<Connection> connections = track.getConnections();
+		for(Connection connection : connections){
+			int[] directions = connection.getHeadingValues();
+			if(directions[0] == heading.getValue()){
+				heading = Track.Heading.getHeading(directions[1]);
+				this.train.setHeading(heading);
+				return true;
+			}
+			else if(directions[1] == heading.getValue()){
+				heading = Track.Heading.getHeading(directions[0]);
+				this.train.setHeading(heading);
+				return true;
+			}
+		}
+		return false;
+		
+	}
 	
 	/**
 	 * move the train to next tile according to its heading 
 	 * @return whether the train can go to next tile or not
 	 */
-	public boolean goNextTrack(){
+	public boolean go(){
 		int[] location = train.getLocation();
 		Track.Heading heading = train.getHeading();
 		int headingValue = heading.getValue();
 		location = getNextTrack(location,headingValue);
 		Tile tile = map.getTile (location[0],location[1]);
 		Track track = tile.getTrack();
-		if(tile.hasTrack()){
-			return true;
+		if(!tile.hasTrack()||!getNextHeading(track,heading)){
+			return false;
 		} 
-		return false;
+		return true;
 	}
 	
 	/*public void setTrain(Train train){
