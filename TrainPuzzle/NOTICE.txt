@@ -1,0 +1,3 @@
+ Use Object Aid for UML class diagram generation.
+ install from update site: http://www.objectaid.com/update 
+ *Only install the class diagram package, not sequence diagram
