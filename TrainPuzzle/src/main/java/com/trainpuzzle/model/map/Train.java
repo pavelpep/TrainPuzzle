@@ -1,5 +1,5 @@
 package com.trainpuzzle.model.map;
-import com.trainpuzzle.model.map.*;
+
 /**
  * 
  * @author $Author$
