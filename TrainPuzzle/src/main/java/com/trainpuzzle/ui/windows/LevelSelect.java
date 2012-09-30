@@ -10,62 +10,62 @@ import java.util.*;
 // Level selection for the campaign
 class LevelSelect extends Window implements ActionListener {
 	// Layout Manager
-	private GridBagConstraints c;
+	private GridBagConstraints gbConstraints;
 	
 	// Window elements
-	private JLabel titleLabel;
-	private JButton levelButton;
-	private JButton backButton;
+	private JLabel titleLabel = new JLabel();
+	private JButton levelButton = new JButton();
+	private JButton backButton = new JButton();
 	
 	// Constructor
 	public LevelSelect() {
-		titleLabel = null;
-		levelButton = null;
-		backButton = null;
+		//titleLabel = null;
+		//levelButton = null;
+		//backButton = null;
 		
-		c = new GridBagConstraints();
+		gbConstraints = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(640,480));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
 	
+
+	
+	//initializes a specific jComponent
+	private void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled){
+		jComponent.setFont(new Font("Arial", fontLayout, fontSize));
+		jComponent.setBackground(bgColor);
+		this.gbConstraints.gridx = gridX;
+		this.gbConstraints.gridy = gridY;
+		this.gbConstraints.gridwidth = gridWidth;
+		this.gbConstraints.gridheight = gridHeight;
+		this.gbConstraints.anchor = anchor;
+		this.gbConstraints.fill = fill;
+		this.gbConstraints.insets = inset;
+		jComponent.setEnabled(isEnabled);
+	}
+	
+	
 	public void Create() {	    
-		// Game title
-		titleLabel = new JLabel("Level Select");
-		titleLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 28));
-		titleLabel.setForeground(Color.black);
-		c.gridx = 0;
-		c.gridy = 0;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.NONE;
-		c.insets = new Insets(10, 10, 0, 10);
-		this.add(titleLabel, c);
 		
-		// Continue Button
-		levelButton = new JButton("Enter Test Level");
-		levelButton.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 20));
-		levelButton.setBackground(Color.GREEN);
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(30, 0, 10, 0);
-		levelButton.setEnabled(true);
-		this.add(levelButton, c);
+		//Level select title
+		this.initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		this.titleLabel.setText("Level Select");
+		this.add(this.titleLabel, this.gbConstraints);
 		
-		backButton = new JButton("Back");
-		c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.fill = GridBagConstraints.NONE;
-		c.insets = new Insets(50, 0, 0, 0);
-		this.add(backButton, c);		
 		
-				// ActionListeners for window elements
+		//Test level button
+		this.initializeComponent(this.levelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		this.levelButton.setText("Enter Test Level");
+		this.add(this.levelButton, this.gbConstraints);
+
+		//Back button
+		this.initializeComponent(this.backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		this.backButton.setText("Back");
+		this.add(this.backButton, this.gbConstraints);
+	
+		// ActionListeners for window elements
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 		
@@ -76,11 +76,12 @@ class LevelSelect extends Window implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "back") {
+		String action = e.getActionCommand();
+		if (action.equals("back")) {
 			WindowManager.getManager().setActiveWindow(new MainMenu()); 
 			WindowManager.getManager().updateWindows();
 		}
-		if (e.getActionCommand() == "levelSelected") {
+		if (action.equals("levelSelected")) {
 			WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
 			WindowManager.getManager().updateWindows();
 		}
