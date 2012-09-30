@@ -1,13 +1,16 @@
 package com.trainpuzzle.controller;
+import org.apache.log4j.Logger;
+
 import com.trainpuzzle.model.map.*;
 
 /**
  * 
  * @author $Author$
- * @version $Revision: 82 $
- * @since $Date: 2012-09-29 19:01:58 -0700 (Sat, 29 Sep 2012) $
+ * @version $Revision$
+ * @since $Date$
  */
 public class TrackBuilder {
+	private Logger logger = Logger.getLogger(TrackBuilder.class);
 	private Map map;
 	
 	TrackBuilder(Level level){
@@ -32,6 +35,7 @@ public class TrackBuilder {
 	public boolean placeTrack(Track track,int latitude,int longitude){
 		Tile tile = map.getTile(latitude, longitude);
 		if(tile.hasTrack()||tile.hasObstacle()){
+			logger.info("Track failed to be added to tile because there was an obstacle");
 			return false;
 		}
 		else{
@@ -50,10 +54,11 @@ public class TrackBuilder {
 	 */
 	public boolean removeTrack(int latitude, int longitude){
 		Tile tile = map.getTile(latitude, longitude);
-		if(!tile.hasTrack()||tile.hasObstacle()){
-		return false;
+		if(!tile.hasTrack()||tile.hasObstacle()) {
+			logger.info("Track failed to be removed because there is no track at the tile to remove");
+			return false;
 		}
-		else{
+		else {
 			tile.removeTrack();
 			//map.setTile(latitude,longitude);
 			return true;

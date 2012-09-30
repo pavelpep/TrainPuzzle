@@ -1,15 +1,25 @@
 package com.trainpuzzle.controller;
+
+import org.apache.log4j.Logger;
+
 import com.trainpuzzle.model.map.*;
+
 /**
  * 
- * @author huachuandeng
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
  *
  */
 public class Simulator {
-	public static final int Latitude = 0;
-	public static final int Longitude =1;
+	private Logger logger = Logger.getLogger(Simulator.class);
+	
+	public static final int LATITUDE = 0;
+	public static final int LONGITUDE = 1;
+	
 	private Map map;
 	private Train train;
+	
 	Simulator(TrackBuilder trackBuilder){
 		this.map = trackBuilder.getMap();
 		this.train= new Train();
@@ -35,32 +45,32 @@ public class Simulator {
 	private int[] getNextTrack(int[] location, int headingValue){
 		switch(headingValue){
 			case 0:
-				location[Latitude] = location[Latitude]-1;
-				location[Longitude] = location[Longitude]-1;
+				location[LATITUDE] = location[LATITUDE]-1;
+				location[LONGITUDE] = location[LONGITUDE]-1;
 				break;
 			case 1:
-				location[Longitude] = location[Longitude]-1;
+				location[LONGITUDE] = location[LONGITUDE]-1;
 				return location;
 			case 2:
-				location[Latitude] = location[Latitude]+1;
-				location[Longitude] = location[Longitude]-1;
+				location[LATITUDE] = location[LATITUDE]+1;
+				location[LONGITUDE] = location[LONGITUDE]-1;
 				break;
 			case 3:
-				location[Latitude] = location[Latitude]+1;
+				location[LATITUDE] = location[LATITUDE]+1;
 				break;
 			case 4:
-				location[Latitude] = location[Latitude]+1;
-				location[Longitude] = location[Longitude]+1;
+				location[LATITUDE] = location[LATITUDE]+1;
+				location[LONGITUDE] = location[LONGITUDE]+1;
 				break;
 			case 5:
-				location[Longitude] = location[1]+1;
+				location[LONGITUDE] = location[1]+1;
 				break;
 			case 6: 
-				location[Latitude] = location[Latitude]-1;
+				location[LATITUDE] = location[LATITUDE]-1;
 				location[1] = location[1]+1;
 				break;
 			case 7:
-				location [Latitude] = location[Latitude]-1;
+				location [LATITUDE] = location[LATITUDE]-1;
 				break;
 		}
 		return location;
@@ -73,16 +83,17 @@ public class Simulator {
 	 */
 	public boolean goNextTrack(){
 		int[] location = train.getLocation();
-		Track.Heading heading =train.getHeading();
-		int headingValue =heading.getValue();
+		Track.Heading heading = train.getHeading();
+		int headingValue = heading.getValue();
 		location = getNextTrack(location,headingValue);
 		Tile tile = map.getTile (location[0],location[1]);
-		Track track = tile.getTrack;
-		if(!tile.hasTrack()){
+		Track track = tile.getTrack();
+		if(tile.hasTrack()){
+			return true;
+		} 
 		return false;
-		}
-		
 	}
+	
 	/*public void setTrain(Train train){
 		this.train = train;
 	}*/

@@ -1,9 +1,13 @@
 package com.trainpuzzle.controller;
 import com.trainpuzzle.model.map.*;
+
 /**
- * it is an object stores map and victory condition of the level.
- * @author huachuandeng
- *
+ * Class generates {@link Map} based on victory condition, {@link Landscape} and
+ * {@link Obstacle}s of the level.
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
  */
 public class Level {
 	private Map map;
