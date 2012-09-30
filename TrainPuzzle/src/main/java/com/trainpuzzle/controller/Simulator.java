@@ -39,12 +39,12 @@ public class Simulator {
 	}
 	
 	/**
-	 * 
+	 * Get location that the train is heading
 	 * @param location train's current location
 	 * @param headingValue where train heading to
-	 * @return
+	 * @return an int array holdiing latitude and longitude for next tile the is going to
 	 */
-	private int[] getNextTrack(int[] location, int headingValue){
+	private int[] getNextTile(int[] location, int headingValue){
 		switch(headingValue){
 			case 0:
 				location[LATITUDE] = location[LATITUDE]-1;
@@ -78,6 +78,12 @@ public class Simulator {
 		return location;
 	}
 	//TODO change integer to static 
+	/**
+	 *  Get where the train heading in next track and change heading stored in train
+	 * @param track the track lay on the tile the train heading to 
+	 * @param heading direction the train heading now
+	 * @return whether the train get into the next track successfully or not 
+	 */
 	private boolean getNextHeading(Track track, Track.Heading heading){
 		heading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
@@ -99,14 +105,15 @@ public class Simulator {
 	}
 	
 	/**
-	 * move the train to next tile according to its heading 
-	 * @return whether the train can go to next tile or not
+	 * move the train to next tile according to its heading and change its heading, too
+	 * @return whether the train goes to next tile successfully or not
 	 */
 	public boolean go(){
 		int[] location = train.getLocation();
 		Track.Heading heading = train.getHeading();
 		int headingValue = heading.getValue();
-		location = getNextTrack(location,headingValue);
+		location = getNextTile(location,headingValue);
+		train.setLocation(location[0], location[1]);
 		Tile tile = map.getTile (location[0],location[1]);
 		Track track = tile.getTrack();
 		if(!tile.hasTrack()||!getNextHeading(track,heading)){
