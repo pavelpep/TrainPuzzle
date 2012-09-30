@@ -49,9 +49,9 @@ class LevelSelect extends Window implements ActionListener {
 		this.titleLabel.setText("Level Select");
 		this.add(this.titleLabel, this.gbConstraints);
 		
-		//Test level button
+		//Level 1 Button
 		this.initializeComponent(this.levelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
-		this.levelButton.setText("Enter Test Level");
+		this.levelButton.setText("Level 1");
 		this.add(this.levelButton, this.gbConstraints);
 
 		//Back button
