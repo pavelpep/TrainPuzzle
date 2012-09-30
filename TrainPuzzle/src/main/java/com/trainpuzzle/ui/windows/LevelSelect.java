@@ -19,10 +19,6 @@ class LevelSelect extends Window implements ActionListener {
 	
 	// Constructor
 	public LevelSelect() {
-		//titleLabel = null;
-		//levelButton = null;
-		//backButton = null;
-		
 		gbConstraints = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(640,480));
@@ -30,7 +26,6 @@ class LevelSelect extends Window implements ActionListener {
 		setLocationRelativeTo(null);	
 	}
 	
-
 	
 	//initializes a specific jComponent
 	private void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled){
@@ -54,7 +49,6 @@ class LevelSelect extends Window implements ActionListener {
 		this.titleLabel.setText("Level Select");
 		this.add(this.titleLabel, this.gbConstraints);
 		
-		
 		//Test level button
 		this.initializeComponent(this.levelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		this.levelButton.setText("Enter Test Level");
@@ -75,15 +69,17 @@ class LevelSelect extends Window implements ActionListener {
 		this.setVisible(true);
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		String action = e.getActionCommand();
-		if (action.equals("back")) {
-			WindowManager.getManager().setActiveWindow(new MainMenu()); 
-			WindowManager.getManager().updateWindows();
-		}
-		if (action.equals("levelSelected")) {
-			WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
-			WindowManager.getManager().updateWindows();
+	public void actionPerformed(ActionEvent event) {
+		String action = event.getActionCommand();
+		switch(action){
+			case("back"):
+				WindowManager.getManager().setActiveWindow(new MainMenu()); 
+				WindowManager.getManager().updateWindows();
+			break;
+			case("levelSelected"):
+				WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
+				WindowManager.getManager().updateWindows();
+			break;
 		}
 		
 	}
