@@ -31,14 +31,6 @@ public class Simulator {
 	}
 	
 	/**
-	 * A function to check whether the user win the game
-	 * @return a boolean to tell whether the train finish all requirements 
-	 */
-	private boolean isVictory(){
-		return true;
-	}
-	
-	/**
 	 * Get location that the train is heading
 	 * @param location train's current location
 	 * @param headingValue where train heading to
