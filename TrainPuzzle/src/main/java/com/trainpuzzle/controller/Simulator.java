@@ -44,38 +44,39 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holdiing latitude and longitude for next tile the is going to
 	 */
-	private int[] getNextTile(int[] location, int headingValue){
-		switch(headingValue){
-			case 0:		// NorthWest
-				location[LATITUDE] = location[LATITUDE]-1;
-				location[LONGITUDE] = location[LONGITUDE]-1;
-				break;
-			case 1:		// North
-				location[LONGITUDE] = location[LONGITUDE]-1;
-				return location;
-			case 2:		// NorthEast
-				location[LATITUDE] = location[LATITUDE]+1;
-				location[LONGITUDE] = location[LONGITUDE]-1;
-				break;
-			case 3:		// East
-				location[LATITUDE] = location[LATITUDE]+1;
-				break;
-			case 4:		// SouthEast
-				location[LATITUDE] = location[LATITUDE]+1;
-				location[LONGITUDE] = location[LONGITUDE]+1;
-				break;
-			case 5:		// South
-				location[LONGITUDE] = location[1]+1;
-				break;
-			case 6: 	// SouthWest
-				location[LATITUDE] = location[LATITUDE]-1;
-				location[1] = location[1]+1;
-				break;
-			case 7:		// West,
-				location [LATITUDE] = location[LATITUDE]-1;
-				break;
-		}
-		return location;
+	private int[] getNextTile(int[] location, Track.Heading heading){
+		switch(heading){
+		case NORTHWEST:
+			location[LATITUDE] = location[LATITUDE]-1;
+			location[LONGITUDE] = location[LONGITUDE]-1;
+			break;
+		case NORTH:
+			location[LONGITUDE] = location[LONGITUDE]-1;
+			return location;
+		case NORTHEAST:
+			location[LATITUDE] = location[LATITUDE]+1;
+			location[LONGITUDE] = location[LONGITUDE]-1;
+			break;
+		case EAST:
+			location[LATITUDE] = location[LATITUDE]+1;
+			break;
+		case SOUTHEAST:
+			location[LATITUDE] = location[LATITUDE]+1;
+			location[LONGITUDE] = location[LONGITUDE]+1;
+			break;
+		case SOUTH:
+			location[LONGITUDE] = location[1]+1;
+			break;
+		case SOUTHWEST: 
+			location[LATITUDE] = location[LATITUDE]-1;
+			location[1] = location[1]+1;
+			break;
+		case WEST:
+			location [LATITUDE] = location[LATITUDE]-1;
+			break;
+	}
+	return location;
+
 	}
 	//TODO change integer to static 
 	/**
@@ -111,8 +112,7 @@ public class Simulator {
 	public boolean go(){
 		int[] location = train.getLocation();
 		Track.Heading heading = train.getHeading();
-		int headingValue = heading.getValue();
-		location = getNextTile(location,headingValue);
+		location = getNextTile(location,heading);
 		train.setLocation(location[0], location[1]);
 		Tile tile = map.getTile (location[0],location[1]);
 		Track track = tile.getTrack();
