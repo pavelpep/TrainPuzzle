@@ -90,11 +90,12 @@ public class Track {
 	public void rotateTrack() {
 		final int rotateIncrement = 2;
 		for(Connection connection : connections){
-			int rotatedValue1 = (connection.getHeadingPair()[0].getValue() + rotateIncrement) % Track.Heading.numberOfHeadings;
-			int rotatedValue2 = (connection.getHeadingPair()[1].getValue() + rotateIncrement) % Track.Heading.numberOfHeadings;
-			Track.Heading rotatedHeading1 = Track.Heading.getHeading(rotatedValue1);
-			Track.Heading rotatedHeading2 = Track.Heading.getHeading(rotatedValue2);
-			connection.modifyConnection(rotatedHeading1,rotatedHeading2);
+			Track.Heading rotatedHeading[] = new Track.Heading[2];
+			for(int i = 0; i < 2; i++) {
+				int rotatedValue = (connection.getHeadingPair()[i].getValue() + rotateIncrement) % Track.Heading.numberOfHeadings;
+				rotatedHeading[i] = Track.Heading.getHeading(rotatedValue);
+			}
+			connection.modifyConnection(rotatedHeading[0],rotatedHeading[1]);
 		}
 		return;
 	}
