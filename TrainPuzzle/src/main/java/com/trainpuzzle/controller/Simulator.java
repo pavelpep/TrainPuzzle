@@ -16,8 +16,8 @@ import com.trainpuzzle.model.map.*;
 public class Simulator {
 	private Logger logger = Logger.getLogger(Simulator.class);
 	
-	public static final int LATITUDE = 0;
-	public static final int LONGITUDE = 1;
+	public static final int LATITUDE = 0;			// x axis 
+	public static final int LONGITUDE = 1;		// y axis
 	
 	private Map map;
 	private Train train;
@@ -46,32 +46,32 @@ public class Simulator {
 	 */
 	private int[] getNextTile(int[] location, int headingValue){
 		switch(headingValue){
-			case 0:
+			case 0:		// NorthWest
 				location[LATITUDE] = location[LATITUDE]-1;
 				location[LONGITUDE] = location[LONGITUDE]-1;
 				break;
-			case 1:
+			case 1:		// North
 				location[LONGITUDE] = location[LONGITUDE]-1;
 				return location;
-			case 2:
+			case 2:		// NorthEast
 				location[LATITUDE] = location[LATITUDE]+1;
 				location[LONGITUDE] = location[LONGITUDE]-1;
 				break;
-			case 3:
+			case 3:		// East
 				location[LATITUDE] = location[LATITUDE]+1;
 				break;
-			case 4:
+			case 4:		// SouthEast
 				location[LATITUDE] = location[LATITUDE]+1;
 				location[LONGITUDE] = location[LONGITUDE]+1;
 				break;
-			case 5:
+			case 5:		// South
 				location[LONGITUDE] = location[1]+1;
 				break;
-			case 6: 
+			case 6: 	// SouthWest
 				location[LATITUDE] = location[LATITUDE]-1;
 				location[1] = location[1]+1;
 				break;
-			case 7:
+			case 7:		// West,
 				location [LATITUDE] = location[LATITUDE]-1;
 				break;
 		}
