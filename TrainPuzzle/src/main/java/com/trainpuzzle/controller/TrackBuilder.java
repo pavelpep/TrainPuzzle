@@ -17,22 +17,22 @@ public class TrackBuilder {
 		return map;
 	}
 
-	public void setMap(Map map) {
+	/*public void setMap(Map map) {
 		this.map = map;
-	}
+	}*/
 	/**
 	 * this function add a track on tile on location (latitude,longitude)
 	 * @param track latitude longitude
 	 * @return 0 means fall to add a track on the tile, 1 means add a track successfully  
 	 */
-	public boolean addTrack(Track track,int latitude,int longitude){
+	public boolean placeTrack(Track track,int latitude,int longitude){
 		Tile tile = map.getTile(latitude, longitude);
 		if(tile.hasTrack()||tile.hasObstacle()){
 			return false;
 		}
 		else{
 			tile.setTrack(track);
-			map.setTile(tile,latitude,longitude);
+			//map.setTile(tile,latitude,longitude);
 			return true;
 		}
 		
@@ -43,14 +43,14 @@ public class TrackBuilder {
 	 * @param longitude
 	 * @return 0 means fall to remove a track on the tile, 1 means remove a track successfully
 	 */
-	public boolean deleteTrack(int latitude, int longitude){
+	public boolean removeTrack(int latitude, int longitude){
 		Tile tile = map.getTile(latitude, longitude);
 		if(!tile.hasTrack()||tile.hasObstacle()){
 		return false;
 		}
 		else{
 			tile.removeTrack();
-			map.setTile(tile,latitude,longitude);
+			//map.setTile(tile,latitude,longitude);
 			return true;
 		}
 	}

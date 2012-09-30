@@ -1,5 +1,5 @@
 package com.trainpuzzle.model.map;
-
+import com.trainpuzzle.model.map.*;
 /**
  * 
  * @author $Author$
@@ -10,7 +10,7 @@ package com.trainpuzzle.model.map;
 public class Train {
  
 	private int[] location; 
-	
+	private Track.Heading heading;
 	public Train() 
 	{
 		this.location = new int[2];
@@ -31,6 +31,12 @@ public class Train {
 	public void setLocation(int latitude, int longitude ) {
 		this.location[0] = latitude;
 		this.location[1] = longitude;
+	}
+	public Track.Heading getHeading() {
+		return heading;
+	}
+	public void setHeading(Track.Heading heading) {
+		this.heading = heading;
 	}
 	
 }
