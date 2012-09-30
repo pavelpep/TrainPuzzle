@@ -64,6 +64,10 @@ public class Connection {
 		return;
 	}
 	
+	public void rotateConnection() {
+		
+	}
+	
 	public int[] getHeadingValues() {
 		int connectionValues[] = new int[2];
 		connectionValues[0] = compassHeading1.getValue();
@@ -71,7 +75,7 @@ public class Connection {
 		return connectionValues;
 	}
 	
-	public Track.Heading[] getHeadings() {
+	public Track.Heading[] getHeadingPair() {
 		Track.Heading connectionHeadings[] = new Track.Heading[2];
 		connectionHeadings[0] = compassHeading1;
 		connectionHeadings[1] = compassHeading2;
