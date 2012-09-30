@@ -1,7 +1,7 @@
 package com.trainpuzzle.model.map;
 
 /**
- * The Tile class is essentially a super class which Tile type class's inherit from.
+ * The Tile class represents a square on the gameboard.
  * 
  * @author $Author$
  * @version $Revision$
@@ -11,17 +11,29 @@ package com.trainpuzzle.model.map;
 
 public class Tile {
 
+
 private int elevation;
 private Track track;
 private Obstacle obstacle;
 private Landscape landscape;
-private Location location;
+
+	/* 
+	 * **************
+	 * Constructors	*
+	 * **************
+	 */
 
 	public Tile() {	
 		elevation = 0;
 		landscape.setName("grass");
 	}
 
+	/*
+	 * *******************
+	 * Getters & Setters *
+	 * *******************
+	 */
+	
 	public int getElevation() {
 		return elevation;
 	}
@@ -30,12 +42,12 @@ private Location location;
 		this.elevation = elevation;
 	}
 	
-	public void putTrack() {
-		track = new Track();
+	public Track getTrack() {
+		return track;
 	}
-	
-	public void removeTrack() {
-		track = null;
+
+	public void setTrack(Track track) {
+		this.track = track;
 	}
 
 	public boolean hasTrack() {
