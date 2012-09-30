@@ -79,21 +79,17 @@ class MainMenu extends Window implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		// Loads the level select menu
-		String action = event.getActionCommand();
-		switch(action){
-			case("continue"):
-				WindowManager.getManager().setActiveWindow(new LevelSelect()); 
-				WindowManager.getManager().updateWindows();
-			break;
-			case("profiles"):
-				WindowManager.getManager().setActiveWindow(new Profiles()); 
-				WindowManager.getManager().updateWindows();
-			break;
-			// Exit Program
-			case("exit"):
+		if (event.getActionCommand() == "continue") {
+			WindowManager.getManager().setActiveWindow(new LevelSelect()); 
+			WindowManager.getManager().updateWindows();
+		}
+		if (event.getActionCommand() == "profiles") {
+			WindowManager.getManager().setActiveWindow(new Profiles()); 
+			WindowManager.getManager().updateWindows();
+		}
+		// Exit Program
+		if (event.getActionCommand() == "exit") {
 				System.exit(0);
-			break;
 		}
 	}
 	
