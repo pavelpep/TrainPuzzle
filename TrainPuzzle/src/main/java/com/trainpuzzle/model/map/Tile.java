@@ -49,7 +49,7 @@ private Landscape landscape;
 	public void setTrack(Track track) {
 		this.track = track;
 	}
-
+	
 	public boolean hasTrack() {
 		if(track == null) {
 			return false;
@@ -66,5 +66,9 @@ private Landscape landscape;
 		else {
 			return true;
 		}	
+	}
+	
+	public void removeTrack() {
+		track = null;
 	}
 }

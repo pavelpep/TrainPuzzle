@@ -44,4 +44,8 @@ private int[] startPoint;
 		this.startPoint = startPoint;
 	}
 	
+	public Tile getTile(int latitude, int longitude) {
+		return tiles[latitude][longitude];
+	}
+	
 }

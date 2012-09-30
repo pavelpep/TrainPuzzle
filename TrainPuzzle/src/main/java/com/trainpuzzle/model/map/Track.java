@@ -3,7 +3,12 @@ package com.trainpuzzle.model.map;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
+ */
 public class Track {
 
 	
