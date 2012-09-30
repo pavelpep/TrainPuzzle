@@ -16,7 +16,7 @@ class MainMenu extends Window implements ActionListener {
 	private JButton creditsButton = new JButton();
 	private JButton exitButton = new JButton();
 	
-	// Constructor
+	// Constructor /
 	public MainMenu() {		
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(640,480));
