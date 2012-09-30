@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Track {
 
+	
+	
 				          
 	public enum Heading {
 		NORTHWEST(0), 				//   0       1       2
@@ -73,6 +75,10 @@ public class Track {
 	public void addConnection(Heading firstHeading, Heading secondHeading){
 		connections.add(new Connection(firstHeading, secondHeading));
 		return;
+	}
+	
+	public Set<Connection> getConnections(){
+		return connections;
 	}
 	
 	public void rotateTrack() {
