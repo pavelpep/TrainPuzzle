@@ -1,5 +1,6 @@
 package com.trainpuzzle.controller;
 import org.apache.log4j.Logger;
+import com.trainpuzzle.model.level.*;
 
 import com.trainpuzzle.model.map.*;
 
