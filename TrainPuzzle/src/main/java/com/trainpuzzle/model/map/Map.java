@@ -20,11 +20,11 @@ public class Map {
 	}
 	
 	private void initializeTiles() {
-		int mapWidth = tiles.length;
-		int mapHeight = tiles[1].length;
+		int mapWidth = tiles.length - 1;
+		int mapHeight = tiles[1].length - 1;
 		
 		for(int i=0; i < mapWidth; i++) {
-			for(int j=0; j < mapWidth; j++) {
+			for(int j=0; j < mapHeight; j++) {
 				tiles[mapWidth][mapHeight] = new Tile();
 			}	
 		}

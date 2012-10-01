@@ -19,6 +19,7 @@ public class Tile {
 
 	public Tile() {	
 		elevation = 0;
+		landscape = new Landscape();
 		landscape.setName("grass");
 	}
 
