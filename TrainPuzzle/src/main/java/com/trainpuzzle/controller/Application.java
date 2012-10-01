@@ -29,6 +29,7 @@ public class Application {
 	public void runSimulation() {
 		modifiedLevel = trackBuilder.getLevel();
 		simulator = new Simulator(modifiedLevel);
+		simulator.go();
 	}
 	
 	public void placeTrack(Track track, int latitude, int longitude) {
