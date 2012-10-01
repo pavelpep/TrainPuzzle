@@ -20,7 +20,6 @@ public class Tile {
 	public Tile() {	
 		elevation = 0;
 		landscape = new Landscape();
-		landscape.setName("grass");
 	}
 
 // Getters and Setters
@@ -36,9 +35,13 @@ public class Tile {
 	public Track getTrack() {
 		return track;
 	}
-
+	
 	public void setTrack(Track track) {
 		this.track = track;
+	}
+	
+	public void removeTrack() {
+		track = null;
 	}
 	
 	public boolean hasTrack() {
@@ -50,6 +53,16 @@ public class Tile {
 		}
 	}
 	
+	public Landscape getLandscape() {
+		return landscape;
+	}
+	
+	public void setLandscape(String type) {
+		this.landscape.setType(type);
+	}
+
+	
+	
 	public boolean hasObstacle() {
 		if(obstacle == null) {
 			return false;
@@ -59,7 +72,4 @@ public class Tile {
 		}	
 	}
 	
-	public void removeTrack() {
-		track = null;
-	}
 }

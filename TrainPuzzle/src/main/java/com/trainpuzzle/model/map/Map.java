@@ -29,6 +29,11 @@ public class Map {
 			}	
 		}
 	}
+	public void addSomeWaterTiles() {
+	 tiles[10][10].setLandscape("water");
+	 tiles[5][5].setLandscape("water");
+	 tiles[2][2].setLandscape("water");
+	}
 	
 	public Tile getTile(int latitude, int longitude) {
 		return tiles[latitude][longitude];

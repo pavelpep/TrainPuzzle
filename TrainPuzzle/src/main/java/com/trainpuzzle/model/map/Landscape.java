@@ -10,17 +10,21 @@ package com.trainpuzzle.model.map;
 
 public class Landscape {
 
-	private String name;
+	private String type;
 
 	public Landscape() {
-		
+		this.type = "grass";
 	}
 	
-	public String getName() {
-		return name;
+	public Landscape(String type) {
+		this.type = type;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
 	}
 }
