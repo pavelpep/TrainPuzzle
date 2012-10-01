@@ -5,8 +5,10 @@ import com.trainpuzzle.model.level.*;
 
 /**
  * use for selecting the a level.
- * @author huachuandeng
- *
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
  */
 public class LevelLoader {
 	
@@ -31,7 +33,6 @@ public class LevelLoader {
 	public void generateMap() {
 		
 	}
-	
 	
 	/**
 	 * search for a possible way
