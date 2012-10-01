@@ -43,6 +43,9 @@ public class Level {
 		return this.startLocation;
 	}
 	
+	public Location getEndLocation() {
+		return this.endLocation;
+	}
 
 	private void createLevelOne() {
 		map = new Map();
