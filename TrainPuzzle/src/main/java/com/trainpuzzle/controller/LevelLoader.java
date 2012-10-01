@@ -20,7 +20,7 @@ public class LevelLoader {
 		}
 	}
 	
-	public Map getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 	
