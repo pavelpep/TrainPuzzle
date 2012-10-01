@@ -12,20 +12,19 @@ import com.trainpuzzle.model.map.*;
  */
 public class TrackBuilder {
 	private Logger logger = Logger.getLogger(TrackBuilder.class);
+	private Level level;
 	private Map map;
 	
 	TrackBuilder(Level level){
+		this.level = level;
 		this.map = level.getMap();
-		
 	}
 
-	public Map getMap() {
-		return map;
+	public Level getLevel() {
+		level.setMap(map);
+		return level;
 	}
-
-	/*public void setMap(Map map) {
-		this.map = map;
-	}*/
+	
 	
 	/**
 	 * This function add a track on tile on location (latitude,longitude)
