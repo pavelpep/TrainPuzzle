@@ -12,7 +12,7 @@ import com.trainpuzzle.model.map.*;
 public class Level {
 	private Map map;
 	private Condition startCondition;
-	private Condition victoryCondiction;
+	private Condition victoryCondition;
 	private int numberOfObstacles;
 	
 	public Level(int levelnumber){
