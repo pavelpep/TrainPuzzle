@@ -17,6 +17,7 @@ public class Map {
 	public Map() {
 		tiles = new Tile[60][40];
 		initializeTiles();
+		addSomeWaterTiles(); // for testing
 	}
 	
 	private void initializeTiles() {

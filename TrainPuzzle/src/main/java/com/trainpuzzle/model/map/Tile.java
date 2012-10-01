@@ -53,8 +53,8 @@ public class Tile {
 		}
 	}
 	
-	public Landscape getLandscape() {
-		return landscape;
+	public String getLandscape() {
+		return landscape.getType();
 	}
 	
 	public void setLandscape(String type) {
