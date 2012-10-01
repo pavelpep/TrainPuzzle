@@ -1,7 +1,7 @@
 package com.trainpuzzle.controller;
 
 import com.trainpuzzle.model.map.*;
-import com.trainpuzzle.controller.Level;
+import com.trainpuzzle.model.level.*;
 
 /**
  * use for selecting the a level.
