@@ -11,13 +11,11 @@ package com.trainpuzzle.model.map;
 public class Map {
 
 	private Tile[][] tiles;
-	private int[] startPoint;	
 
 //Initialize the map with 60x40 tiles
 
 	public Map() {
 		tiles = new Tile[60][40];
-		startPoint = new int[2];
 		initializeTiles();
 	}
 	
@@ -30,14 +28,6 @@ public class Map {
 				tiles[mapWidth][mapHeight] = new Tile();
 			}	
 		}
-	}
-	
-	public int[] getStartPoint() {
-		return startPoint;
-	}
-
-	public void setStartPoint(int[] startPoint) {
-		this.startPoint = startPoint;
 	}
 	
 	public Tile getTile(int latitude, int longitude) {
