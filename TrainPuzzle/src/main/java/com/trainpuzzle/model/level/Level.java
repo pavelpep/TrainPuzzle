@@ -1,4 +1,5 @@
 package com.trainpuzzle.model.level;
+
 import com.trainpuzzle.model.map.*;
 
 /**
@@ -11,12 +12,23 @@ import com.trainpuzzle.model.map.*;
  */
 public class Level {
 	private Map map;
-	private Condition startCondition;
-	private Condition victoryCondition;
-	private int numberOfObstacles;
+	private Location startLocation;
+	private Location endLocation;
+	//private Condition startCondition;
+	//private Condition victoryCondition;
+	//private int numberOfObstacles;
 	
-	public Level(int levelnumber){
+	
+	public Level(int levelNumber){
 		
+		switch(levelNumber) {
+			case 1:
+				createLevelOne();
+				break;
+			default:
+				createLevelOne(); //since we only have one level
+				break;
+		} 
 	}
 	
 	public Map getMap() {
@@ -25,6 +37,14 @@ public class Level {
 	
 	public void setMap(Map map) {
 		this.map = map;
+	}
+	
+
+	private void createLevelOne() {
+		map = new Map();
+		startLocation = new Location(10,10);
+		endLocation = new Location(10,30);
+		
 	}
 	
 }
