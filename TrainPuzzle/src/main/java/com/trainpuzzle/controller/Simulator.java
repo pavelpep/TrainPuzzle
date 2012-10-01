@@ -5,6 +5,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.model.map.*;
+import com.trainpuzzle.model.level.*;
 
 /**
  * 
@@ -22,11 +23,11 @@ public class Simulator {
 	private Map map;
 	private Train train;
 	
-	Simulator(TrackBuilder trackBuilder){
-		this.map = trackBuilder.getMap();
+	Simulator(Level level){
+		this.map = level.getMap();
 		this.train= new Train();
-		int[] startPoint= map.getStartPoint();
-		this.train.setLocation(startPoint[0],startPoint[1]);
+		Location startPoint = level.getStartLocation();
+		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());
 		this.train.setHeading(Track.Heading.EAST);
 	}
 	
@@ -36,35 +37,35 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holdiing latitude and longitude for next tile the is going to
 	 */
-	private int[] getNextTile(int[] location, Track.Heading heading){
+	private Location getNextTile(Location location, Track.Heading heading){
 		switch(heading){
 		case NORTHWEST:
-			location[LATITUDE] = location[LATITUDE]-1;
-			location[LONGITUDE] = location[LONGITUDE]-1;
+			location.setLatitude(location.getLatitude() - 1);
+			location.setLongitude(location.getLongitude() - 1);
 			break;
 		case NORTH:
-			location[LONGITUDE] = location[LONGITUDE]-1;
-			return location;
+			location.setLongitude(location.getLongitude() - 1);
+			break;
 		case NORTHEAST:
-			location[LATITUDE] = location[LATITUDE]+1;
-			location[LONGITUDE] = location[LONGITUDE]-1;
+			location.setLatitude(location.getLatitude() + 1);
+			location.setLongitude(location.getLongitude() - 1);
 			break;
 		case EAST:
-			location[LATITUDE] = location[LATITUDE]+1;
+			location.setLatitude(location.getLatitude() + 1);
 			break;
 		case SOUTHEAST:
-			location[LATITUDE] = location[LATITUDE]+1;
-			location[LONGITUDE] = location[LONGITUDE]+1;
+			location.setLatitude(location.getLatitude() + 1);
+			location.setLongitude(location.getLongitude() + 1);
 			break;
 		case SOUTH:
-			location[LONGITUDE] = location[1]+1;
+			location.setLongitude(location.getLongitude() + 1);
 			break;
 		case SOUTHWEST: 
-			location[LATITUDE] = location[LATITUDE]-1;
-			location[1] = location[1]+1;
+			location.setLatitude(location.getLatitude() - 1);
+			location.setLongitude(location.getLongitude() + 1);
 			break;
 		case WEST:
-			location [LATITUDE] = location[LATITUDE]-1;
+			location.setLatitude(location.getLatitude() - 1);
 			break;
 	}
 	return location;
@@ -102,11 +103,11 @@ public class Simulator {
 	 * @return whether the train goes to next tile successfully or not
 	 */
 	public boolean go(){
-		int[] location = train.getLocation();
+		Location location = train.getLocation();
 		Track.Heading heading = train.getHeading();
 		location = getNextTile(location,heading);
-		train.setLocation(location[0], location[1]);
-		Tile tile = map.getTile (location[0],location[1]);
+		train.setLocation(location.getLatitude(), location.getLongitude());
+		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
 		Track track = tile.getTrack();
 		if(!tile.hasTrack()||!getNextHeading(track,heading)){
 			return false;
