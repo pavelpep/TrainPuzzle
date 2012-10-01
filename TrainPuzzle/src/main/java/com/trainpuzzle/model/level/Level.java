@@ -1,4 +1,4 @@
-package com.trainpuzzle.controller;
+package com.trainpuzzle.model.level;
 import com.trainpuzzle.model.map.*;
 
 /**
