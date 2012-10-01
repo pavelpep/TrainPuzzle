@@ -13,6 +13,7 @@ public class LevelLoader {
 	private Level level;
 	
 	LevelLoader(int levelNumber) {
+		
 		level = new Level(levelNumber);
 		
 		if (!hasMap()) {
@@ -40,6 +41,6 @@ public class LevelLoader {
 	}
 	
 	private boolean hasMap() {
-		
+		return true;
 	}
 }

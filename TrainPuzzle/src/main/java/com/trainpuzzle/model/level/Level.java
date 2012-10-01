@@ -15,7 +15,7 @@ public class Level {
 	private Condition victoryCondiction;
 	private int numberOfObstacles;
 	
-	Level(int levelnumber){
+	public Level(int levelnumber){
 		
 	}
 	
