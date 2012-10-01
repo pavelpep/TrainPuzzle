@@ -9,6 +9,7 @@ import java.util.Set;
  * @version $Revision$
  * @since $Date$
  */
+
 public class Track {
 	
 	public enum Heading {
@@ -72,25 +73,25 @@ public class Track {
 
 	private Set<Connection> connections;
 	
-	public Track() 
-	{
+	public Track() {
 		connections = new HashSet<Connection>();
-		//System.out.println();
-		
 	}
-	public void addConnection(Heading firstHeading, Heading secondHeading){
+	
+	public void addConnection(Heading firstHeading, Heading secondHeading) {
 		connections.add(new Connection(firstHeading, secondHeading));
 		return;
 	}
 	
-	public Set<Connection> getConnections(){
+	public Set<Connection> getConnections() {
 		return connections;
 	}
 	
 	public void rotateTrack() {
 		final int rotateIncrement = 2;
-		for(Connection connection : connections){
+		
+		for(Connection connection : connections) {
 			Track.Heading rotatedHeading[] = new Track.Heading[2];
+			
 			for(int i = 0; i < 2; i++) {
 				int rotatedValue = (connection.getHeadingPair()[i].getValue() + rotateIncrement) % Track.Heading.numberOfHeadings;
 				rotatedHeading[i] = Track.Heading.getHeading(rotatedValue);
@@ -99,8 +100,6 @@ public class Track {
 		}
 		return;
 	}
-	
-	
 }
 
 

@@ -1,7 +1,6 @@
 package com.trainpuzzle.model.map;
 
 /**
- * The Tile class represents a square on the gameboard.
  * 
  * @author $Author$
  * @version $Revision$
@@ -11,28 +10,19 @@ package com.trainpuzzle.model.map;
 
 public class Tile {
 
+	private int elevation;
+	private Track track;
+	private Obstacle obstacle;
+	private Landscape landscape;
 
-private int elevation;
-private Track track;
-private Obstacle obstacle;
-private Landscape landscape;
-
-	/* 
-	 * **************
-	 * Constructors	*
-	 * **************
-	 */
+// Constructor
 
 	public Tile() {	
 		elevation = 0;
 		landscape.setName("grass");
 	}
 
-	/*
-	 * *******************
-	 * Getters & Setters *
-	 * *******************
-	 */
+// Getters and Setters
 	
 	public int getElevation() {
 		return elevation;

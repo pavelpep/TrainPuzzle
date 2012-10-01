@@ -10,7 +10,7 @@ package com.trainpuzzle.model.map;
 
 public class Landscape {
 
-private String name;
+	private String name;
 
 	public Landscape() {
 		
@@ -20,7 +20,7 @@ private String name;
 		return name;
 	}
 	
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 }

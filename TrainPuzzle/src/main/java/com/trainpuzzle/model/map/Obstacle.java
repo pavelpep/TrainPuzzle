@@ -10,8 +10,8 @@ package com.trainpuzzle.model.map;
 
 public class Obstacle {
 
-private String name;
-private String imgLocation;
+	private String name;
+	private String imgLocation;
 	
 	public Obstacle() {
 		setName("rock");
@@ -32,5 +32,4 @@ private String imgLocation;
 	public void setImgLocation(String imgLocation) {
 		this.imgLocation = imgLocation;
 	}
-	
 }
