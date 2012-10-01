@@ -1,5 +1,7 @@
 package com.trainpuzzle.ui.windows;
 
+import com.trainpuzzle.controller.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -17,6 +19,9 @@ class LevelSelect extends Window implements ActionListener {
 	private JButton levelButton = new JButton();
 	private JButton backButton = new JButton();
 	
+	private Application app;
+	int levelSelected = 0;
+	
 	// Constructor
 	public LevelSelect() {
 		gbConstraints = new GridBagConstraints();
@@ -25,7 +30,6 @@ class LevelSelect extends Window implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
-	
 	
 	//initializes a specific jComponent
 	private void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled){
@@ -63,7 +67,7 @@ class LevelSelect extends Window implements ActionListener {
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 		
-		levelButton.setActionCommand("levelSelected");
+		levelButton.setActionCommand("LEVEL_ONE");
 		levelButton.addActionListener(this);
 		
 		this.setVisible(true);
@@ -74,9 +78,12 @@ class LevelSelect extends Window implements ActionListener {
 				WindowManager.getManager().setActiveWindow(new MainMenu()); 
 				WindowManager.getManager().updateWindows();
 		}
-		if (event.getActionCommand() == "levelSelected") {
-				WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
-				WindowManager.getManager().updateWindows();
+		if (event.getActionCommand() == "LEVEL_ONE") {
+			levelSelected = 1;
+			app = new Application(levelSelected);
+			
+			WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
+			WindowManager.getManager().updateWindows();			
 		}
 		
 	}
