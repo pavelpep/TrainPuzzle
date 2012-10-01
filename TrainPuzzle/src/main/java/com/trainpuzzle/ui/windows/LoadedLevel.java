@@ -67,7 +67,7 @@ class LoadedLevel extends Window implements ActionListener {
 		
         for(int y=0; y<length; y++){
             for(int x=0; x<width; x++){
-            	grassTile[x][y]=new JLabel(new ImageIcon("grass_tile.jpg"));    
+            	grassTile[x][y]=new JLabel(new ImageIcon("grass.png"));    
             	trackTile[x][y]=new JLabel(new ImageIcon("track.png"));
             	trackTile[x][y].setOpaque(true);
             	                    
