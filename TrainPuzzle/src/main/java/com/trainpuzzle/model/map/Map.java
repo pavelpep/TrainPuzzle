@@ -13,27 +13,30 @@ public class Map {
 	private Tile[][] tiles;
 
 //Initialize the map with 60x40 tiles
-
+	private int mapWidth;
+	private int mapHeight;
+	
 	public Map() {
-		tiles = new Tile[60][40];
+		mapWidth = 15;
+		mapHeight = 20;
+		tiles = new Tile[mapWidth][mapHeight];
 		initializeTiles();
 		addSomeWaterTiles(); // for testing
 	}
 	
 	private void initializeTiles() {
-		int mapWidth = tiles.length - 1;
-		int mapHeight = tiles[1].length - 1;
-		
+			
 		for(int i=0; i < mapWidth; i++) {
 			for(int j=0; j < mapHeight; j++) {
-				tiles[mapWidth][mapHeight] = new Tile();
+				tiles[i][j] = new Tile();
 			}	
 		}
+		
 	}
-	public void addSomeWaterTiles() {
-	 tiles[10][10].setLandscape("water");
-	 tiles[5][5].setLandscape("water");
-	 tiles[2][2].setLandscape("water");
+	private void addSomeWaterTiles() {
+	 this.tiles[10][10].setLandscapeType("water");
+	 this.tiles[5][5].setLandscapeType("water");
+	 this.tiles[2][2].setLandscapeType("water");
 	}
 	
 	public Tile getTile(int latitude, int longitude) {

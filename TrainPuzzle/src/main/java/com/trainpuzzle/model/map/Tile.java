@@ -53,11 +53,11 @@ public class Tile {
 		}
 	}
 	
-	public String getLandscape() {
+	public String getLandscapeType() {
 		return landscape.getType();
 	}
 	
-	public void setLandscape(String type) {
+	public void setLandscapeType(String type) {
 		this.landscape.setType(type);
 	}
 

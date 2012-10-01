@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import com.trainpuzzle.model.level.Level;
+
 import java.util.*;
 
 // Level selection for the campaign
@@ -56,6 +58,8 @@ class LoadedLevel extends Window implements ActionListener {
 		this.add(titleLabel, c);
 		
 		// Map Panel
+		Level testLevel = new Level(1);
+		
 		mapPanel = new JLayeredPane();	
 		mapPanel.setLayout(new GridLayout(width, length));
 //		mapPanel.setPreferredSize(new Dimension(900, 600));
@@ -66,9 +70,12 @@ class LoadedLevel extends Window implements ActionListener {
 //		grassTile = new JLabel[width][length];
 //		trackTile = new JLabel[width][length];
 		
-        for(int y=0; y<length; y++){
-            for(int x=0; x<width; x++){
-            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));    
+        for(int y=0; y < width; y++){
+            for(int x=0; x < length; x++){
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "grass")
+            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "water")
+            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png")); 
             	//trackTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
             	//trackTile[x][y].setOpaque(true);
             	                    
