@@ -10,38 +10,17 @@ import com.trainpuzzle.model.level.*;
  * @version $Revision$
  * @since $Date$
  */
+
 public class LevelLoader {
 	
-	private Level level;
+
+	private Level levelLoaded;
 	
-	LevelLoader(int levelNumber) {
+
+	
+	public Level loadLevel(int levelNumber) {
+		levelLoaded = new Level(levelNumber);
 		
-		level = new Level(levelNumber);
-		
-		if (!hasMap()) {
-			generateMap();
-		}
-	}
-	
-	public Level getLevel() {
-		return level;
-	}
-	
-	/**
-	 * Generate a random map
-	 */
-	public void generateMap() {
-		
-	}
-	
-	/**
-	 * search for a possible way
-	 */
-	private boolean isValidMap() {
-		return true;
-	}
-	
-	private boolean hasMap() {
-		return true;
+		return levelLoaded;
 	}
 }
