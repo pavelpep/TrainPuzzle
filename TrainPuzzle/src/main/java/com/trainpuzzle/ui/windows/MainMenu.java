@@ -50,12 +50,12 @@ class MainMenu extends Window implements ActionListener {
 		this.add(this.continueButton, this.gbConstraints);
 	
 		//Profiles Button
-		this.initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
+		this.initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), false);
 		this.profilesButton.setText("Add/Change User");
 		this.add(this.profilesButton, this.gbConstraints);
 		
 		//Credits Button
-		this.initializeComponent(this.creditsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
+		this.initializeComponent(this.creditsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), false);
 		this.creditsButton.setText("Credits");
 		this.add(this.creditsButton, this.gbConstraints);
 		

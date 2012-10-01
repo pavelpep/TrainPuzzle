@@ -18,10 +18,11 @@ class LoadedLevel extends Window implements ActionListener {
 	private JButton backButton;
 	private JLayeredPane mapPanel;
 	private JPanel toolbarPanel;
-	private JLabel[][] grassTile;
-	private JLabel[][] trackTile;
-	int width = 40;
-	int length = 60;
+	private JLabel grassTile;
+	private JLabel trackTile;
+	
+	int width = 15;
+	int length = 20;
 	
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, toolbarTitle;
@@ -57,21 +58,21 @@ class LoadedLevel extends Window implements ActionListener {
 		// Map Panel
 		mapPanel = new JLayeredPane();	
 		mapPanel.setLayout(new GridLayout(width, length));
-		mapPanel.setPreferredSize(new Dimension(900, 600));
-		mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
-		mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		mapPanel.setBorder(mapTitle);
-		
-		grassTile = new JLabel[width][length];
-		trackTile = new JLabel[width][length];
+//		mapPanel.setPreferredSize(new Dimension(900, 600));
+//		mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
+//		mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+//		mapPanel.setBorder(mapTitle);
+//		
+//		grassTile = new JLabel[width][length];
+//		trackTile = new JLabel[width][length];
 		
         for(int y=0; y<length; y++){
             for(int x=0; x<width; x++){
-            	grassTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));    
+            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));    
             	//trackTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
             	//trackTile[x][y].setOpaque(true);
             	                    
-                    mapPanel.add(grassTile[x][y]); //adds button to grid
+                    mapPanel.add(grassTile); //adds button to grid
                     //mapPanel.add(trackTile[x][y]); //adds button to grid
             }
     }
