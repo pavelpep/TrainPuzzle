@@ -41,6 +41,6 @@ public class Application {
 	}
 	
 	public Map getTrackMap() {
-		return trackBuilder.getMap();
+		return modifiedLevel.getMap();
 	}
 }
