@@ -13,14 +13,16 @@ public class Level {
 	private Map map;
 	private Condition startCondition;
 	private Condition victoryCondiction;
-	private int numberOfObstacle;
+	private int numberOfObstacles;
 	
 	Level(int levelnumber){
 		
 	}
+	
 	public Map getMap() {
 		return map;
 	}
+	
 	public void setMap(Map map) {
 		this.map = map;
 	}

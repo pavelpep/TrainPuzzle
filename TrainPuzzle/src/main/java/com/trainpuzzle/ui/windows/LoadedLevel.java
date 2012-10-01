@@ -84,6 +84,7 @@ class LoadedLevel extends Window implements ActionListener {
 		//c.insets = new Insets(10, 10, 10, 10);
 		this.add(mapPanel, c);
 		
+		// Track Panel
 		toolbarPanel = new JPanel();
 		toolbarPanel.setPreferredSize(new Dimension(250, 600));
 		toolbarTitle = BorderFactory.createTitledBorder(loweredetched, "Track Pieces");
