@@ -10,28 +10,26 @@ package com.trainpuzzle.model.map;
 
 public class Train {
  
-	private int[] location; 
+	private Location location; 
 	private Track.Heading heading;
 	
 	public Train() {
-		this.location = new int[2];
-		this.location[0] = 0;
-		this.location[1] = 0;
+		this.location = new Location(0,0);
 	}
 	
 	public Train(int latitude, int longitude) {
-		this.location = new int[2];
-		this.location[0] = latitude;
-		this.location[1] = longitude;
+		
+		this.location = new Location(latitude,longitude);
+
 	}
 
-	public int[] getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
 	public void setLocation(int latitude, int longitude ) {
-		this.location[0] = latitude;
-		this.location[1] = longitude;
+		this.location.setLatitude(latitude);
+		this.location.setLongitude(longitude);
 	}
 	
 	public Track.Heading getHeading() {
