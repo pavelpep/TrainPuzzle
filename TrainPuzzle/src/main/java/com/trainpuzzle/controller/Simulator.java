@@ -35,7 +35,7 @@ public class Simulator {
 	 * Get location that the train is heading
 	 * @param location train's current location
 	 * @param headingValue where train heading to
-	 * @return an int array holdiing latitude and longitude for next tile the is going to
+	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
 	private Location getNextTile(Location location, Track.Heading heading){
 		switch(heading){

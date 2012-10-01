@@ -18,7 +18,7 @@ public class Map {
 	
 	public Map() {
 		mapWidth = 15;
-		mapHeight = 20;
+		mapHeight = 35;
 		tiles = new Tile[mapWidth][mapHeight];
 		initializeTiles();
 		addSomeWaterTiles(); // for testing
