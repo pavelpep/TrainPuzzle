@@ -57,10 +57,10 @@ class LoadedLevel extends Window implements ActionListener {
 		// Map Panel
 		mapPanel = new JLayeredPane();	
 		mapPanel.setLayout(new GridLayout(width, length));
-		//mapPanel.setPreferredSize(new Dimension(900, 600));
-		//mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
-		//mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		//mapPanel.setBorder(mapTitle);
+		mapPanel.setPreferredSize(new Dimension(900, 600));
+		mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
+		mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		mapPanel.setBorder(mapTitle);
 		
 		grassTile = new JLabel[width][length];
 		trackTile = new JLabel[width][length];
