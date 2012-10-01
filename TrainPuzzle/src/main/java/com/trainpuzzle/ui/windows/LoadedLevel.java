@@ -67,8 +67,8 @@ class LoadedLevel extends Window implements ActionListener {
 		
         for(int y=0; y<length; y++){
             for(int x=0; x<width; x++){
-            	grassTile[x][y]=new JLabel(new ImageIcon("grass.png"));    
-            	trackTile[x][y]=new JLabel(new ImageIcon("track.png"));
+            	grassTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));    
+            	trackTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
             	trackTile[x][y].setOpaque(true);
             	                    
                     mapPanel.add(grassTile[x][y]); //adds button to grid
