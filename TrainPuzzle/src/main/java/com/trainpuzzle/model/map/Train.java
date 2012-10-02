@@ -13,6 +13,8 @@ public class Train {
 	private Location location; 
 	private Track.Heading heading;
 	
+	/* Public Interface */
+	
 	public Train() {
 		this.location = new Location(0,0);
 	}
@@ -22,6 +24,8 @@ public class Train {
 		this.location = new Location(latitude,longitude);
 
 	}
+	
+	/*Getters and Setters */
 
 	public Location getLocation() {
 		return location;

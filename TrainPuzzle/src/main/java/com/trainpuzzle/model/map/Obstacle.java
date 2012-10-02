@@ -19,7 +19,7 @@ public class Obstacle {
 		setName("rock");
 	}
 	
-	/* Setters and Getters */
+	/* Getters and Setters  */
 
 	public String getName() {
 		return name;

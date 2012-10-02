@@ -73,17 +73,10 @@ public class Track {
 
 	private Set<Connection> connections;
 	
+	/* Public Interface */
+	
 	public Track() {
 		connections = new HashSet<Connection>();
-	}
-	
-	public void addConnection(Heading firstHeading, Heading secondHeading) {
-		connections.add(new Connection(firstHeading, secondHeading));
-		return;
-	}
-	
-	public Set<Connection> getConnections() {
-		return connections;
 	}
 	
 	public void rotateTrack() {
@@ -100,6 +93,18 @@ public class Track {
 		}
 		return;
 	}
+	
+	/* Getters and Setters */
+	
+	public void addConnection(Heading firstHeading, Heading secondHeading) {
+		connections.add(new Connection(firstHeading, secondHeading));
+		return;
+	}
+	
+	public Set<Connection> getConnections() {
+		return connections;
+	}
+	
 }
 
 
