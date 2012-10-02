@@ -22,11 +22,9 @@ public class Simulator {
 	
 	private Map map;
 	private Train train;
-	private Location endLocation;
 	
 	Simulator(Level level){
 		this.map = level.getMap();
-		this.endLocation = level.getEndLocation();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
 		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());

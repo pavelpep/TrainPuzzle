@@ -1,8 +1,13 @@
 package com.trainpuzzle.controller;
 
+import org.apache.log4j.Logger;
+
+import java.lang.Thread;
+
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.Map;
 import com.trainpuzzle.model.map.Track;
+import com.trainpuzzle.model.map.Location;
 
 /**
  * 
@@ -11,6 +16,7 @@ import com.trainpuzzle.model.map.Track;
  * @since $Date: 2012-09-30 00:53:30 -0700 (Sun, 30 Sep 2012) $
  */
 public class Application {
+	private Logger logger = Logger.getLogger(Application.class);
 	private LevelLoader levelLoader;
 	private TrackBuilder trackBuilder;
 	private Simulator simulator;
@@ -29,7 +35,26 @@ public class Application {
 	public void runSimulation() {
 		modifiedLevel = trackBuilder.getLevel();
 		simulator = new Simulator(modifiedLevel);
-		simulator.go();
+		move();
+	}
+	private boolean move() {
+		Location endPoint = loadedLevel.getEndLocation();
+		try {
+			Thread.sleep(1000);
+		while(simulator.go()) {
+			Thread.sleep(1000);
+			if(endPoint.equals(simulator.getTrain().getLocation())) {
+				logger.info("YOU WIN!!");
+				return true;
+			}
+			
+		}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getStackTrace());
+		}
+		logger.info("The train crash");
+		return false;
 	}
 	
 	public void placeTrack(Track track, int latitude, int longitude) {
