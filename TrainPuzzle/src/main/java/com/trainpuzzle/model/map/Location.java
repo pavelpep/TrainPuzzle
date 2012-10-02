@@ -25,4 +25,10 @@ public class Location {
 	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
+	public boolean equals(Location location){
+		if(this.latitude == location.getLatitude()&&this.longitude == location.getLongitude()){
+			return true;
+		}
+		return false;
+	}
 }

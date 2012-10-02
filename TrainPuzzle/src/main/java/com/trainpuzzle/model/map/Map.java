@@ -42,4 +42,10 @@ public class Map {
 	public Tile getTile(int latitude, int longitude) {
 		return tiles[latitude][longitude];
 	}
+	public int getMapWidth(){
+		return mapWidth;
+	}
+	public int getMapHeight(){
+		return mapHeight;
+	}
 }

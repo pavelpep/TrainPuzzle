@@ -22,9 +22,11 @@ public class Simulator {
 	
 	private Map map;
 	private Train train;
+	private Location endLocation;
 	
 	Simulator(Level level){
 		this.map = level.getMap();
+		this.endLocation = level.getEndLocation();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
 		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());
@@ -98,6 +100,14 @@ public class Simulator {
 		
 	}
 	
+	private boolean isOut(){
+		Location location = this.train.getLocation();
+		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()){
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * move the train to next tile according to its heading and change its heading, too
 	 * @return whether the train goes to next tile successfully or not
@@ -106,14 +116,15 @@ public class Simulator {
 		Location location = train.getLocation();
 		Track.Heading heading = train.getHeading();
 		location = getNextTile(location,heading);
-		train.setLocation(location.getLatitude(), location.getLongitude());
 		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
 		Track track = tile.getTrack();
-		if(!tile.hasTrack()||!getNextHeading(track,heading)){
+		if(!tile.hasTrack()||!getNextHeading(track,heading)||isOut()){
 			return false;
 		} 
+		train.setLocation(location.getLatitude(), location.getLongitude());
 		return true;
 	}
+	
 	
 	/*public void setTrain(Train train){
 		this.train = train;
