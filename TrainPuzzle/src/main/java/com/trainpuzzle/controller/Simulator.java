@@ -12,16 +12,15 @@ import com.trainpuzzle.model.level.*;
  * @author $Author$
  * @version $Revision$
  * @since $Date$
- *
  */
-public class Simulator {
-	private Logger logger = Logger.getLogger(Simulator.class);
-	
-	public static final int LATITUDE = 0;			// x axis 
-	public static final int LONGITUDE = 1;		// y axis
+public class Simulator {	
+	public static final int LATITUDE = 0;	 // x axis 
+	public static final int LONGITUDE = 1; // y axis
 	
 	private Map map;
 	private Train train;
+	
+	/* Public Interface */
 	
 	Simulator(Level level){
 		this.map = level.getMap();
@@ -32,48 +31,70 @@ public class Simulator {
 	}
 	
 	/**
+	 * Move the train to next tile according to its heading and change its heading, too
+	 * 
+	 * @return whether the train goes to next tile successfully or not
+	 */
+	public boolean go(){
+		Location location = train.getLocation();
+		Track.Heading heading = train.getHeading();
+		location = getNextTile(location,heading);
+		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
+		Track track = tile.getTrack();
+		if(!tile.hasTrack()||!getNextHeading(track,heading)||isOut()){
+			return false;
+		} 
+		train.setLocation(location.getLatitude(), location.getLongitude());
+		return true;
+	}
+	
+	/* Private Functions */
+	
+	/**
 	 * Get location that the train is heading
+	 * 
 	 * @param location train's current location
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
 	private Location getNextTile(Location location, Track.Heading heading){
-		switch(heading){
-		case NORTHWEST:
-			location.setLatitude(location.getLatitude() - 1);
-			location.setLongitude(location.getLongitude() - 1);
-			break;
-		case NORTH:
-			location.setLongitude(location.getLongitude() - 1);
-			break;
-		case NORTHEAST:
-			location.setLatitude(location.getLatitude() + 1);
-			location.setLongitude(location.getLongitude() - 1);
-			break;
-		case EAST:
-			location.setLatitude(location.getLatitude() + 1);
-			break;
-		case SOUTHEAST:
-			location.setLatitude(location.getLatitude() + 1);
-			location.setLongitude(location.getLongitude() + 1);
-			break;
-		case SOUTH:
-			location.setLongitude(location.getLongitude() + 1);
-			break;
-		case SOUTHWEST: 
-			location.setLatitude(location.getLatitude() - 1);
-			location.setLongitude(location.getLongitude() + 1);
-			break;
-		case WEST:
-			location.setLatitude(location.getLatitude() - 1);
-			break;
+		switch(heading) {
+			case NORTHWEST:
+				location.setLatitude(location.getLatitude() - 1);
+				location.setLongitude(location.getLongitude() - 1);
+				break;
+			case NORTH:
+				location.setLongitude(location.getLongitude() - 1);
+				break;
+			case NORTHEAST:
+				location.setLatitude(location.getLatitude() + 1);
+				location.setLongitude(location.getLongitude() - 1);
+				break;
+			case EAST:
+				location.setLatitude(location.getLatitude() + 1);
+				break;
+			case SOUTHEAST:
+				location.setLatitude(location.getLatitude() + 1);
+				location.setLongitude(location.getLongitude() + 1);
+				break;
+			case SOUTH:
+				location.setLongitude(location.getLongitude() + 1);
+				break;
+			case SOUTHWEST: 
+				location.setLatitude(location.getLatitude() - 1);
+				location.setLongitude(location.getLongitude() + 1);
+				break;
+			case WEST:
+				location.setLatitude(location.getLatitude() - 1);
+				break;
+		}
+		
+		return location;
 	}
-	return location;
-
-	}
-	//TODO change integer to static 
+	
 	/**
-	 *  Get where the train heading in next track and change heading stored in train
+	 * Get where the train heading in next track and change heading stored in train
+	 * 
 	 * @param track the track lay on the tile the train heading to 
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
@@ -106,27 +127,14 @@ public class Simulator {
 		return false;
 	}
 	
-	/**
-	 * move the train to next tile according to its heading and change its heading, too
-	 * @return whether the train goes to next tile successfully or not
-	 */
-	public boolean go(){
-		Location location = train.getLocation();
-		Track.Heading heading = train.getHeading();
-		location = getNextTile(location,heading);
-		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
-		Track track = tile.getTrack();
-		if(!tile.hasTrack()||!getNextHeading(track,heading)||isOut()){
-			return false;
-		} 
-		train.setLocation(location.getLatitude(), location.getLongitude());
-		return true;
-	}
+	/* Getters and Setters */
 	
-	
-	/*public void setTrain(Train train){
+/*
+	 public void setTrain(Train train){
 		this.train = train;
-	}*/
+	}
+*/
+	
 	public Train getTrain(){
 		return this.train;
 	}

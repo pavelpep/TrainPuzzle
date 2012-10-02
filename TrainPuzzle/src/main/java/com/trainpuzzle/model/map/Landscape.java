@@ -7,9 +7,7 @@ package com.trainpuzzle.model.map;
  * @since $Date$
  *
  */
-
 public class Landscape {
-
 	private String type;
 
 	public Landscape() {
