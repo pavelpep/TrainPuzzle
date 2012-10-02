@@ -16,6 +16,8 @@ public class Map {
 	private int mapWidth;
 	private int mapHeight;
 	
+	/* Public Interface */
+	
 	public Map() {
 		mapWidth = 100;
 		mapHeight = 100;
@@ -24,6 +26,8 @@ public class Map {
 		addSomeWaterTiles(); // for testing
 		addSomeTrackTiles(); // for testing
 	}
+	
+	/*Private Functions */
 	
 	private void initializeTiles() {
 			
@@ -45,6 +49,8 @@ public class Map {
 		 this.tiles[4][i].setTrack(new Track());
 		}
 	}
+	
+	/* Getters and Setters */
 	
 	public Tile getTile(int latitude, int longitude) {
 		return tiles[latitude][longitude];
