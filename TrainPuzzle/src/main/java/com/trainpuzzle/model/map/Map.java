@@ -48,4 +48,8 @@ public class Map {
 	public int getMapHeight(){
 		return mapHeight;
 	}
+	
+	public void setTile(Tile tile, int latitude, int longitude) {
+		tiles[latitude][longitude] = tile;
+	}
 }
