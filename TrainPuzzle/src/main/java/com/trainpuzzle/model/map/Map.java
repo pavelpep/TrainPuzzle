@@ -22,6 +22,7 @@ public class Map {
 		tiles = new Tile[mapWidth][mapHeight];
 		initializeTiles();
 		addSomeWaterTiles(); // for testing
+		addSomeTrackTiles(); // for testing
 	}
 	
 	private void initializeTiles() {
@@ -37,6 +38,12 @@ public class Map {
 	 this.tiles[10][10].setLandscapeType("water");
 	 this.tiles[5][5].setLandscapeType("water");
 	 this.tiles[2][3].setLandscapeType("water");
+	}
+	
+	private void addSomeTrackTiles() {
+		for(int i=0; i < 20; i++){
+		 this.tiles[4][i].setTrack(new Track());
+		}
 	}
 	
 	public Tile getTile(int latitude, int longitude) {
