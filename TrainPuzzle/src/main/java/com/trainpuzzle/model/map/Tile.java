@@ -15,14 +15,36 @@ public class Tile {
 	private Obstacle obstacle;
 	private Landscape landscape;
 
-// Constructor
+  /* Public Interface */
 
 	public Tile() {	
 		elevation = 0;
 		landscape = new Landscape();
 	}
 
-// Getters and Setters
+	public void removeTrack() {
+		track = null;
+	}
+	
+	public boolean hasTrack() {
+		if(track == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}	
+	
+	public boolean hasObstacle() {
+		if(obstacle == null) {
+			return false;
+		}
+		else {
+			return true;
+		}	
+	}
+	
+/* Getters and Setters */
 	
 	public int getElevation() {
 		return elevation;
@@ -40,18 +62,6 @@ public class Tile {
 		this.track = track;
 	}
 	
-	public void removeTrack() {
-		track = null;
-	}
-	
-	public boolean hasTrack() {
-		if(track == null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
 	
 	public String getLandscapeType() {
 		return landscape.getType();
@@ -59,17 +69,6 @@ public class Tile {
 	
 	public void setLandscapeType(String type) {
 		this.landscape.setType(type);
-	}
-
-	
-	
-	public boolean hasObstacle() {
-		if(obstacle == null) {
-			return false;
-		}
-		else {
-			return true;
-		}	
 	}
 	
 }

@@ -13,9 +13,13 @@ public class Obstacle {
 	private String name;
 	private String imgLocation;
 	
+	/* Public Interface */
+	
 	public Obstacle() {
 		setName("rock");
 	}
+	
+	/* Setters and Getters */
 
 	public String getName() {
 		return name;
