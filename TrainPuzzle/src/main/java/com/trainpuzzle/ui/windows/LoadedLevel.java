@@ -23,9 +23,9 @@ class LoadedLevel extends Window implements ActionListener {
 	private JLabel grassTile;
 	private JLabel trackTile;
 	
-	int width = 15;
-	int length = 20;
-	
+	int mapWidth = 20;
+	int mapHeight = 15;
+
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, toolbarTitle;
 	
@@ -61,35 +61,24 @@ class LoadedLevel extends Window implements ActionListener {
 		Level testLevel = new Level(1);
 		
 		mapPanel = new JLayeredPane();	
-		mapPanel.setLayout(new GridLayout(width, length));
-//		mapPanel.setPreferredSize(new Dimension(900, 600));
-//		mapTitle = BorderFactory.createTitledBorder(loweredbevel, "Map");
-//		mapTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-//		mapPanel.setBorder(mapTitle);
-//		
-//		grassTile = new JLabel[width][length];
-//		trackTile = new JLabel[width][length];
+		mapPanel.setLayout(new GridLayout(mapHeight, mapWidth));
 		
-        for(int y=0; y < width; y++){
-            for(int x=0; x < length; x++){
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "grass")
-            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "water")
-            	grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png")); 
-            	//trackTile[x][y]=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-            	//trackTile[x][y].setOpaque(true);
-            	                    
-                    mapPanel.add(grassTile); //adds button to grid
-                    //mapPanel.add(trackTile[x][y]); //adds button to grid
+        for(int y=0; y < mapHeight; y++){
+            for(int x=0; x < mapWidth; x++){
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "grass"){
+            		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
+            	}
+            	
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "water"){
+            		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
+            	}
+            	mapPanel.add(grassTile); //adds button to grid
             }
     }
 		c.gridx = 0;
 		c.gridy = 1;
-/*		c.gridwidth = 60;
-		c.gridheight = 40;*/
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.NONE;
-		//c.insets = new Insets(10, 10, 10, 10);
 		this.add(mapPanel, c);
 		
 		// Track Panel
@@ -104,11 +93,10 @@ class LoadedLevel extends Window implements ActionListener {
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 0, 0, 10);
 		this.add(toolbarPanel, c);
-		
-		//this.pack();
 		this.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
 	}
 }
