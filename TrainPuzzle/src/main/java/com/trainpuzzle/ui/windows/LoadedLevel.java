@@ -18,7 +18,7 @@ class LoadedLevel extends Window implements ActionListener {
 	// Window elements
 	private JLabel titleLabel;
 	private JButton backButton;
-	private JLayeredPane mapPanel;
+	private JPanel mapPanel;
 	private JPanel toolbarPanel;
 	private JLabel grassTile;
 	private JLabel trackTile;
@@ -60,11 +60,15 @@ class LoadedLevel extends Window implements ActionListener {
 		// Map Panel
 		Level testLevel = new Level(1);
 		
-		mapPanel = new JLayeredPane();	
+		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(mapHeight, mapWidth));
 		
         for(int y=0; y < mapHeight; y++){
             for(int x=0; x < mapWidth; x++){
+            	
+            	JLayeredPane mapTile = new JLayeredPane();
+            	mapTile.setPreferredSize(new Dimension(39, 39));
+            	
             	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "grass"){
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
             	}
@@ -72,7 +76,18 @@ class LoadedLevel extends Window implements ActionListener {
             	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "water"){
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
             	}
-            	mapPanel.add(grassTile); //adds button to grid
+            	
+            	grassTile.setBounds(0,0,39,39);
+            	
+            	mapTile.add(grassTile, new Integer(0));
+            	
+            	if(testLevel.getMap().getTile(y,x).hasTrack()){
+            		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+                	trackTile.setBounds(0,0,39,39);
+                	mapTile.add(trackTile, new Integer(1));
+            	}
+            	
+            	mapPanel.add(mapTile);
             }
     }
 		c.gridx = 0;
