@@ -18,6 +18,7 @@ public class Level {
 	//private Condition victoryCondition;
 	//private int numberOfObstacles;
 	
+	/* Public Interface */
 	
 	public Level(int levelNumber){
 		
@@ -30,6 +31,17 @@ public class Level {
 				break;
 		} 
 	}
+	
+	/* Private Functions */
+	
+	private void createLevelOne() {
+		map = new Map();
+		startLocation = new Location(10,10);
+		endLocation = new Location(10,30);
+		
+	}
+	
+	/* Setters and Getters */
 	
 	public Map getMap() {
 		return map;
@@ -47,11 +59,5 @@ public class Level {
 		return this.endLocation;
 	}
 
-	private void createLevelOne() {
-		map = new Map();
-		startLocation = new Location(10,10);
-		endLocation = new Location(10,30);
-		
-	}
 	
 }
