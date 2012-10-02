@@ -30,7 +30,7 @@ public class TrackBuilder {
 	 * This function add a track on tile on location (latitude,longitude)
 	 * 
 	 * @param track latitude longitude
-	 * @return 0 means fall to add a track on the tile, 1 means add a track successfully  
+	 * @return 0 means fail to add a track on the tile, 1 means add a track successfully  
 	 */
 	public boolean placeTrack(Track track,int latitude,int longitude){
 		Tile tile = map.getTile(latitude, longitude);
