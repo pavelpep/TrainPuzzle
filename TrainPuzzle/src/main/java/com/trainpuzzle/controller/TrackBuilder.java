@@ -60,7 +60,7 @@ public class TrackBuilder {
 		}
 		else {
 			tile.removeTrack();
-			map.setTile(latitude,longitude);
+			map.setTile(tile,latitude,longitude);
 			return true;
 		}
 	}
