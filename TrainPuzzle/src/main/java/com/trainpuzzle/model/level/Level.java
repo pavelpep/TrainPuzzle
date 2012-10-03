@@ -14,11 +14,10 @@ public class Level {
 	private Map map;
 	private Location startLocation;
 	private Location endLocation;
-	//private int numberOfObstacles;
 	
 	/* Public Interface */
 	
-	public Level(int levelNumber){
+	public Level(int levelNumber) {
 		
 		switch(levelNumber) {
 			case 1:
@@ -71,7 +70,5 @@ public class Level {
 	
 	public Location getEndLocation() {
 		return this.endLocation;
-	}
-
-	
+	}	
 }
