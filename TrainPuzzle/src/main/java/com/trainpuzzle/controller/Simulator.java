@@ -52,7 +52,7 @@ public class Simulator {
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
-		if(destination.equals(train.getLocation())){
+		if(destination.equals(train.getLocation())) {
 			return true;
 		}
 		return false;
@@ -112,26 +112,26 @@ public class Simulator {
 	private void getNextHeading(Track track, Track.CompassHeading heading) throws TrainCrashException {
 		heading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
-		for(Connection connection : connections){
+		for(Connection connection : connections) {
 			int[] directions = connection.getHeadingValues();
-			if(directions[0] == heading.getValue()){
+			if(directions[0] == heading.getValue()) {
 				heading = Track.CompassHeading.getCompassHeading(directions[1]);
 				this.train.setCompassHeading(heading);
 			}
-			else if(directions[1] == heading.getValue()){
+			else if(directions[1] == heading.getValue()) {
 				heading = Track.CompassHeading.getCompassHeading(directions[0]);
 				this.train.setCompassHeading(heading);
 			}
-			else{
+			else {
 				throw new TrainCrashException();
 			}
 		}
 		
 	}
 	
-	private boolean isOffTheMap(){
+	private boolean isOffTheMap() {
 		Location location = this.train.getLocation();
-		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()){
+		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()) {
 			return true;
 		}
 		return false;
@@ -141,12 +141,12 @@ public class Simulator {
 	/* Getters and Setters */
 	
 /*
-	 public void setTrain(Train train){
+	 public void setTrain(Train train) {
 		this.train = train;
 	}
 */
 	
-	public Train getTrain(){
+	public Train getTrain() {
 		return this.train;
 	}
 
