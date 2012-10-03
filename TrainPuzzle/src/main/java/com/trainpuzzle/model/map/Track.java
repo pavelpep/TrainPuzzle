@@ -77,6 +77,8 @@ public class Track {
 	
 	public Track() {
 		connections = new HashSet<Connection>();
+		Connection connection = new Connection(Track.CompassHeading.EAST, Track.CompassHeading.WEST);
+		connections.add(connection);
 	}
 	
 	public void rotateTrack() {
