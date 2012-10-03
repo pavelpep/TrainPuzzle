@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.model.map.Train;
+import com.trainpuzzle.model.map.Location;
 
 import java.util.*;
 
@@ -23,10 +25,12 @@ class LoadedLevel extends Window implements ActionListener {
 	private JLabel grassTile;
 	private JLabel trackTile;
 	
+	private Location previousTrainLocation;
+	
 	int mapWidth = 20;
 	int mapHeight = 15;
 	
-	private JLayeredPane[][] mapTiles = new JLayeredPane[mapWidth][mapHeight];
+	private JLayeredPane[][] mapTiles;
 	
 	
 
@@ -41,6 +45,8 @@ class LoadedLevel extends Window implements ActionListener {
 		mapPanel = null;
 		toolbarPanel = null;
 		
+		previousTrainLocation = new Location(0,0);
+		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
@@ -48,8 +54,23 @@ class LoadedLevel extends Window implements ActionListener {
 		setLocationRelativeTo(null);	
 	}
 	
-	public void DrawTrain() {
+	public void redrawTrain(Train train) {
+		
+		int previousLatitude = previousTrainLocation.getLatitude();
+		int previousLongitude = previousTrainLocation.getLongitude();
+		mapTiles[previousLatitude][previousLongitude].remove(2);
+		
+		JLabel trainTile;
+    	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
+    	trainTile.setBounds(0,0,40,40);
+        
+		Location trainLocation = train.getLocation();
 	
+		int latitude = trainLocation.getLatitude();
+		int longitude = trainLocation.getLongitude();
+		previousTrainLocation = trainLocation;
+		
+		mapTiles[latitude][longitude].add(trainTile, new Integer(2));
 	}
 	
 	public void Create() {	    
@@ -67,6 +88,8 @@ class LoadedLevel extends Window implements ActionListener {
 		
 		// Map Panel
 		Level testLevel = new Level(1);
+		
+		mapTiles = new JLayeredPane[mapWidth][mapHeight];
 		
 		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(mapHeight, mapWidth));
