@@ -37,11 +37,12 @@ public class Application {
 		loadedLevel = levelLoader.loadLevel(levelNumber);
 		trackBuilder = new TrackBuilder(loadedLevel);
 		this.uiLoadedLevel = uiLoadedLevel;
+		simulator = new Simulator(loadedLevel);
 	}
 	
 	public void runSimulation() {
-		loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
-		simulator = new Simulator(loadedLevelWithTrack);
+		//loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+		//simulator = new Simulator(loadedLevelWithTrack);
 		move();
 	}
 	
@@ -56,7 +57,7 @@ public class Application {
 		Location endPoint = loadedLevel.getEndLocation();
 		boolean isTrainNotCrash = true;
 		
-		while(!simulator.isVictoryConditionsSatisfied()&&isTrainNotCrash) {
+		//while(!simulator.isVictoryConditionsSatisfied()&&isTrainNotCrash) {
 			
 			uiLoadedLevel.redrawTrain(simulator.getTrain());
 			try {
@@ -73,7 +74,7 @@ public class Application {
 				uiLoadedLevel.redrawTrain(simulator.getTrain());
 				logger.info("Level has been cleared!");
 			} 
-		}
+		//}
 		
 		
 	}

@@ -90,7 +90,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		previousTrainLatitude = trainLocation.getLatitude();
 		previousTrainLongitude= trainLocation.getLongitude();
-		//mapPanel.revalidate();
+		mapPanel.repaint();
 	}
 	
 	public void Create() {	    
@@ -132,7 +132,7 @@ public class LoadedLevel extends Window implements ActionListener {
             	
             	mapTile.add(grassTile, new Integer(0));
             	
-            	if(testLevel.getMap().getTile(y,x).hasTrack()){
+            	if(testLevel.getMap().getTile(x,y).hasTrack()){
             		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
                 	trackTile.setBounds(0,0,40,40);
                 	mapTile.add(trackTile, new Integer(1));
@@ -162,7 +162,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 0, 0, 10);
 		
-		runButton = new JButton("Run the damn thing");
+		runButton = new JButton("Run 1 step");
 		toolbarPanel.add(runButton);
 		
 		runButton.setActionCommand("run");

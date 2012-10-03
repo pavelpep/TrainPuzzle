@@ -43,7 +43,7 @@ public class Map {
 	 */
 	private void addSomeTrackTiles() {
 		for(int i=0; i < 20; i++){
-		 this.tiles[4][i].setTrack(new Track());
+		 this.tiles[i][4].setTrack(new Track());
 		}
 	}
 	
