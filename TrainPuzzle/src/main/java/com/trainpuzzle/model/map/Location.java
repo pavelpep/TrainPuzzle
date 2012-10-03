@@ -13,12 +13,12 @@ public class Location {
 	}
 	
 	@Override
-	public boolean equals(Object object){
+	public boolean equals(Object object) {
 		if(object == null){
 			return false;
 		}
 		Location location = (Location) object;
-		if(this.latitude == location.getLatitude()&&this.longitude == location.getLongitude()){
+		if(this.latitude == location.getLatitude() && this.longitude == location.getLongitude()){
 			return true;
 		}
 		return false;
@@ -41,5 +41,4 @@ public class Location {
 	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
-
 }

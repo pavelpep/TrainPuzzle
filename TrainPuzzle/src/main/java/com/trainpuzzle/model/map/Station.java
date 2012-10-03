@@ -7,7 +7,7 @@ package com.trainpuzzle.model.map;
  * @since $Date$
  *
  */
-
+/*Future implementation */
 public class Station {
 	
 	public Station() {

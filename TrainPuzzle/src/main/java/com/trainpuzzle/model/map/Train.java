@@ -19,10 +19,8 @@ public class Train {
 		this.location = new Location(0,0);
 	}
 	
-	public Train(int latitude, int longitude) {
-		
+	public Train(int latitude, int longitude) {	
 		this.location = new Location(latitude,longitude);
-
 	}
 	
 	/*Getters and Setters */

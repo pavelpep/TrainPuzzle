@@ -23,7 +23,7 @@ public class Map {
 		mapHeight = 100;
 		tiles = new Tile[mapWidth][mapHeight];
 		initializeTiles();
-		addSomeTrackTiles(); // for testing
+		addSomeTrackTiles();
 	}
 	
 	/*Private Functions */
@@ -64,5 +64,4 @@ public class Map {
 	public int getMapHeight() {
 		return mapHeight;
 	}
-	
 }
