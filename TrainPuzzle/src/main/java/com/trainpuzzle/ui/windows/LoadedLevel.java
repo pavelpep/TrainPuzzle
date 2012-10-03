@@ -69,34 +69,29 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		//System.out.println("old location @ " + previousTrainLatitude + ", " + previousTrainLongitude);
 		
-
-		
 		JLabel trainTile;
     	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
     	trainTile.setBounds(0,0,40,40);
         
 		Location trainLocation = train.getLocation();
-		
-		
-	
 		int latitude = trainLocation.getLatitude();
 		int longitude = trainLocation.getLongitude();
 		
 		
 		mapTiles[latitude][longitude].add(trainTile, new Integer(2));
 		
-		try{
+		try {
 			mapTiles[previousTrainLatitude][previousTrainLongitude].remove(mapTiles[previousTrainLatitude][previousTrainLongitude].getComponentsInLayer(2)[0]);
 			//System.out.println("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 			
-		}catch(Exception e){
-			logger.error(e.getStackTrace());
+		} catch(Exception e){
+			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
 		previousTrainLatitude = trainLocation.getLatitude();
 		previousTrainLongitude= trainLocation.getLongitude();
-		revalidate();
+		repaint();
 	}
 	
 	public void Create() {	    
@@ -200,10 +195,14 @@ public class LoadedLevel extends Window implements ActionListener {
 		this.add(toolbarPanel, c);
 		this.setVisible(true);
 		
-
+		app.runSimulation();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		
+	}
+	
+	public void setApplication(Application app) {
+		this.app = app;
 	}
 }

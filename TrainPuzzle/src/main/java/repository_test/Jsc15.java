@@ -11,6 +11,7 @@ package repository_test;
  */
 public class Jsc15 {
 	/** Class attribute used for nothing */
+	@SuppressWarnings("unused")
 	private String testField;
 	
 	public Jsc15() {

@@ -59,7 +59,7 @@ public class Application {
 			
 			uiLoadedLevel.redrawTrain(simulator.getTrain());
 			try {
-				Thread.sleep(10);
+				Thread.sleep(100);
 				simulator.proceedNextTile();
 			} catch (TrainCrashException tce) {
 				//TODO: call UI drawRefresh with a fallen over train
