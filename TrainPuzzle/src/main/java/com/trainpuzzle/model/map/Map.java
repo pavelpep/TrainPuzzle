@@ -23,7 +23,6 @@ public class Map {
 		mapHeight = 100;
 		tiles = new Tile[mapWidth][mapHeight];
 		initializeTiles();
-		addSomeWaterTiles(); // for testing
 		addSomeTrackTiles(); // for testing
 	}
 	
@@ -38,12 +37,10 @@ public class Map {
 		}
 	}
 	
-	private void addSomeWaterTiles() {
-	 this.tiles[10][10].setLandscapeType("water");
-	 this.tiles[5][5].setLandscapeType("water");
-	 this.tiles[2][3].setLandscapeType("water");
-	}
-	
+	/**
+	 * Currently used to create some pre-generated track. This will be removed/modified in the future as we expect the
+	 * user to place the track on the map.
+	 */
 	private void addSomeTrackTiles() {
 		for(int i=0; i < 20; i++){
 		 this.tiles[4][i].setTrack(new Track());
@@ -56,6 +53,10 @@ public class Map {
 		return tiles[latitude][longitude];
 	}
 	
+	public void setTile(Tile tile, int latitude, int longitude) {
+		tiles[latitude][longitude] = tile;
+	}
+	
 	public int getMapWidth() {
 		return mapWidth;
 	}
@@ -64,7 +65,4 @@ public class Map {
 		return mapHeight;
 	}
 	
-	public void setTile(Tile tile, int latitude, int longitude) {
-		tiles[latitude][longitude] = tile;
-	}
 }

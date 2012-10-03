@@ -14,8 +14,6 @@ public class Level {
 	private Map map;
 	private Location startLocation;
 	private Location endLocation;
-	//private Condition startCondition;
-	//private Condition victoryCondition;
 	//private int numberOfObstacles;
 	
 	/* Public Interface */
@@ -36,9 +34,25 @@ public class Level {
 	
 	private void createLevelOne() {
 		map = new Map();
+		addSomeWaterTiles();
 		startLocation = new Location(0,4);
 		endLocation = new Location(19,4);
+	}
+	
+	private void addSomeWaterTiles() {
+		Tile tileToAddWater;
 		
+		tileToAddWater = map.getTile(10, 10);
+		tileToAddWater.setLandscapeType("water");
+		map.setTile(tileToAddWater, 10, 10);
+		
+		tileToAddWater = map.getTile(5, 5);
+		tileToAddWater.setLandscapeType("water");
+		map.setTile(tileToAddWater, 5, 5);
+		
+		tileToAddWater = map.getTile(2, 3);
+		tileToAddWater.setLandscapeType("water");
+		map.setTile(tileToAddWater, 2, 3);
 	}
 	
 	/* Setters and Getters */
