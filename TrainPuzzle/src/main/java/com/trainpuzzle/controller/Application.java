@@ -69,6 +69,7 @@ public class Application {
 				logger.error(ie.getMessage(), ie.fillInStackTrace());
 			}
 			if(endPoint.equals(simulator.getTrain().getLocation())) {
+				uiLoadedLevel.redrawTrain(simulator.getTrain());
 				logger.info("Level has been cleared!");
 			} 
 		}
