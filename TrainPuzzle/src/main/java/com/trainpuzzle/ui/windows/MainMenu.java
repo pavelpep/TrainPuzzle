@@ -89,7 +89,7 @@ class MainMenu extends Window implements ActionListener {
 		}
 		// Exit Program
 		if (event.getActionCommand() == "exit") {
-				System.exit(0);
+			System.exit(0);
 		}
 	}
 	

@@ -8,7 +8,9 @@ import javax.swing.*;
  */
 
 abstract class Window extends JFrame {
-	Window(){}
+	Window(){
+		
+	}
 	
 	// Creates the JFrame with elements
 	public abstract void Create();

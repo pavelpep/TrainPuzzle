@@ -32,7 +32,7 @@ class LevelSelect extends Window implements ActionListener {
 	}
 	
 	//initializes a specific jComponent
-	private void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled){
+	private void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled) {
 		jComponent.setFont(new Font("Arial", fontLayout, fontSize));
 		jComponent.setBackground(bgColor);
 		this.gbConstraints.gridx = gridX;
@@ -44,7 +44,6 @@ class LevelSelect extends Window implements ActionListener {
 		this.gbConstraints.insets = inset;
 		jComponent.setEnabled(isEnabled);
 	}
-	
 	
 	public void Create() {	    
 		
@@ -84,14 +83,10 @@ class LevelSelect extends Window implements ActionListener {
 			LoadedLevel loadedLevel = new LoadedLevel();
 			app = new Application(levelSelected, loadedLevel);
 			
-			loadedLevel.setApplication(app);
-			
-			
+			loadedLevel.setApplication(app);	
 			WindowManager.getManager().setActiveWindow(loadedLevel); 
 			WindowManager.getManager().updateWindows();	
 			
-			//app.runSimulation();
-		}
-		
+		}		
 	}
 }

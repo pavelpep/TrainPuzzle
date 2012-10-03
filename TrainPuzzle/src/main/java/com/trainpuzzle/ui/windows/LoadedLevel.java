@@ -65,10 +65,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		setLocationRelativeTo(null);	
 	}
 	
-	public void redrawTrain(Train train) {
-		
-		//System.out.println("old location @ " + previousTrainLatitude + ", " + previousTrainLongitude);
-		
+	public void redrawTrain(Train train) {		
 		JLabel trainTile;
     	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
     	trainTile.setBounds(0,0,40,40);
@@ -82,7 +79,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		try {
 			mapTiles[previousTrainLatitude][previousTrainLongitude].remove(mapTiles[previousTrainLatitude][previousTrainLongitude].getComponentsInLayer(2)[0]);
-			logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
+			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
 			logger.error(e.getMessage(), e.fillInStackTrace());
@@ -153,7 +150,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		// Track Panel
 		toolbarPanel = new JPanel();
 		toolbarPanel.setPreferredSize(new Dimension(250, 600));
-		toolbarTitle = BorderFactory.createTitledBorder(loweredetched, "Track Pieces");
+		toolbarTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
 		toolbarTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		toolbarPanel.setBorder(toolbarTitle);		
 		c.gridx = 200;
@@ -162,18 +159,14 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 0, 0, 10);
 		
-		runButton = new JButton("Run 1 step");
+		runButton = new JButton("Simulate");
 		toolbarPanel.add(runButton);
 		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
-		//app.runSimulation();
-		
 		this.add(toolbarPanel, c);
 		this.setVisible(true);
-		
-		
 	}
 	
 	/**
@@ -188,37 +181,25 @@ public class LoadedLevel extends Window implements ActionListener {
 		Train testTrain = new Train();
 		testTrain.setLocation(0, 4);
 		testTrain.setCompassHeading(Track.CompassHeading.EAST);
-		 for(int y=0; y < mapHeight; y++) {
-	            for(int x=0; x < mapWidth; x++) {
-	            	if(levelToSimulate.getMap().getTile(y,x).hasTrack()) {
-	            		redrawTrain(testSim.getTrain());
-	            		try {
+		for(int y=0; y < mapHeight; y++) {
+			for(int x=0; x < mapWidth; x++) {
+				if(levelToSimulate.getMap().getTile(y,x).hasTrack()) {
+					redrawTrain(testSim.getTrain());
+		        		try {
 							testSim.proceedNextTile();
 						} catch (TrainCrashException e) {
 							logger.error(e.getMessage(), e.fillInStackTrace());
 						}
-	            		logger.info("NEW location @ " + testSim.getTrain().getLocation().getLatitude() + ", " + testSim.getTrain().getLocation().getLongitude());
-	            	}
-	            }
-	        }
-	        
-		/*
-	            for(int x=0; x < mapWidth - 1; x++){
-	            	if(testLevel.getMap().getTile(4,x).hasTrack()){
-	            		mapTiles[x][4].remove(mapTiles[x][4].getComponentsInLayer(2)[0]);
-	            		
-	            		System.out.println(x + ", " + 4);
-	            	}
-	            }
-		*/
+		        		logger.info("NEW location @ " + testSim.getTrain().getLocation().getLatitude() + ", " + testSim.getTrain().getLocation().getLongitude());
+		        }
+			}
+		}
 	}
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			app.runSimulation();
-			//mapPanel.revalidate();
-		}
-	
+		}	
 	}
 	
 	public void setApplication(Application app) {
