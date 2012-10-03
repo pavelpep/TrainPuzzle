@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.Simulator;
+import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
@@ -43,8 +44,6 @@ public class LoadedLevel extends Window implements ActionListener {
 	
 	private Application app;
 	
-	
-
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, toolbarTitle;
 	
@@ -83,9 +82,8 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		try {
 			mapTiles[previousTrainLatitude][previousTrainLongitude].remove(mapTiles[previousTrainLatitude][previousTrainLongitude].getComponentsInLayer(2)[0]);
-			//System.out.println("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
+			logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
-			
 		} catch(Exception e){
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
@@ -150,37 +148,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.fill = GridBagConstraints.NONE;
 		this.add(mapPanel, c);
 		
-		
-		/*
-		Simulator testSim = new Simulator(testLevel);
-		testSim.getTrain().setLocation(0, 4);
-		
-		
-		Train testTrain = new Train();
-		testTrain.setLocation(0, 4);
-		testTrain.setCompassHeading(Track.CompassHeading.EAST);
-		 for(int y=0; y < mapHeight; y++){
-	            for(int x=0; x < mapWidth; x++){
-	            	if(testLevel.getMap().getTile(y,x).hasTrack()){
-	            		redrawTrain(testSim.getTrain());
-	            		testSim.proceedNextTile();
-	            		System.out.println("NEW location @ " + testSim.getTrain().getLocation().getLatitude() + ", " + testSim.getTrain().getLocation().getLongitude());
-	            	}
-	            }
-	        }
-	        
-	     */
-		/*
-	            for(int x=0; x < mapWidth - 1; x++){
-	            	if(testLevel.getMap().getTile(4,x).hasTrack()){
-	            		mapTiles[x][4].remove(mapTiles[x][4].getComponentsInLayer(2)[0]);
-	            		
-	            		System.out.println(x + ", " + 4);
-	            	}
-	            }
-		*/
-		 
-		 
+		//testSimulation(testLevel)
 		
 		// Track Panel
 		toolbarPanel = new JPanel();
@@ -206,6 +174,43 @@ public class LoadedLevel extends Window implements ActionListener {
 		this.setVisible(true);
 		
 		
+	}
+	
+	/**
+	 * Used for internal testing to see if a are simulating a level correctly. Avoid using Application and directly runs the simulator.
+	 * 
+	 * @param levelToSimulate
+	 */
+	private void testSimulation(Level levelToSimulate) {
+		Simulator testSim = new Simulator(levelToSimulate);
+		testSim.getTrain().setLocation(0, 4);
+		
+		Train testTrain = new Train();
+		testTrain.setLocation(0, 4);
+		testTrain.setCompassHeading(Track.CompassHeading.EAST);
+		 for(int y=0; y < mapHeight; y++) {
+	            for(int x=0; x < mapWidth; x++) {
+	            	if(levelToSimulate.getMap().getTile(y,x).hasTrack()) {
+	            		redrawTrain(testSim.getTrain());
+	            		try {
+							testSim.proceedNextTile();
+						} catch (TrainCrashException e) {
+							logger.error(e.getMessage(), e.fillInStackTrace());
+						}
+	            		logger.info("NEW location @ " + testSim.getTrain().getLocation().getLatitude() + ", " + testSim.getTrain().getLocation().getLongitude());
+	            	}
+	            }
+	        }
+	        
+		/*
+	            for(int x=0; x < mapWidth - 1; x++){
+	            	if(testLevel.getMap().getTile(4,x).hasTrack()){
+	            		mapTiles[x][4].remove(mapTiles[x][4].getComponentsInLayer(2)[0]);
+	            		
+	            		System.out.println(x + ", " + 4);
+	            	}
+	            }
+		*/
 	}
 
 	public void actionPerformed(ActionEvent event) {

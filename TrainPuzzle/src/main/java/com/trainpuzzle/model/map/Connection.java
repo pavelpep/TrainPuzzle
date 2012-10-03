@@ -1,7 +1,11 @@
 package com.trainpuzzle.model.map;
 
-import com.trainpuzzle.model.map.Track.CompassHeading;
-
+/**
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
+ */
 public class Connection {
 	private Track.CompassHeading compassHeading1;
 	private Track.CompassHeading compassHeading2;
@@ -39,6 +43,7 @@ public class Connection {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		
 		result = prime * result
 				+ ((compassHeading1 == null) ? 0 : compassHeading1.hashCode() + compassHeading2.hashCode());
 		result = prime * result

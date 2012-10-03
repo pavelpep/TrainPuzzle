@@ -9,7 +9,6 @@ import java.util.Set;
  * @version $Revision$
  * @since $Date$
  */
-
 public class Track {
 	
 	public enum CompassHeading {
