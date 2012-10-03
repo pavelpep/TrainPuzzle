@@ -12,11 +12,7 @@ import com.trainpuzzle.model.level.*;
  */
 
 public class LevelLoader {
-	
-
 	private Level levelLoaded;
-	
-
 	
 	public Level loadLevel(int levelNumber) {
 		levelLoaded = new Level(levelNumber);
