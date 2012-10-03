@@ -54,8 +54,9 @@ public class Application {
 	
 	private void move() {
 		Location endPoint = loadedLevel.getEndLocation();
+		boolean isTrainNotCrash = true;
 		
-		while(!simulator.isVictoryConditionsSatisfied()) {
+		while(!simulator.isVictoryConditionsSatisfied()&&isTrainNotCrash) {
 			
 			uiLoadedLevel.redrawTrain(simulator.getTrain());
 			try {
@@ -64,7 +65,7 @@ public class Application {
 			} catch (TrainCrashException tce) {
 				//TODO: call UI drawRefresh with a fallen over train
 				logger.error(tce.getMessage(), tce.fillInStackTrace());
-				
+				isTrainNotCrash = false;
 			} catch (InterruptedException ie) {
 				logger.error(ie.getMessage(), ie.fillInStackTrace());
 			}
