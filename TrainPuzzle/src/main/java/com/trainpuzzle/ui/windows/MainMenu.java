@@ -49,8 +49,8 @@ class MainMenu extends Window implements ActionListener {
 		this.continueButton.setText("Continue Campaign");
 		this.add(this.continueButton, this.gbConstraints);
 	
-		//Profiles Button
-		this.initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), false);
+		///Campaigns Button
+		this.initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
 		this.profilesButton.setText("Add/Change User");
 		this.add(this.profilesButton, this.gbConstraints);
 		
@@ -71,7 +71,7 @@ class MainMenu extends Window implements ActionListener {
 		this.continueButton.setActionCommand("continue");
 		this.continueButton.addActionListener(this);
 		
-		this.profilesButton.setActionCommand("profiles");
+		this.profilesButton.setActionCommand("campaigns");
 		this.profilesButton.addActionListener(this);
 				
 		this.exitButton.setActionCommand("exit");
@@ -83,8 +83,8 @@ class MainMenu extends Window implements ActionListener {
 			WindowManager.getManager().setActiveWindow(new LevelSelect()); 
 			WindowManager.getManager().updateWindows();
 		}
-		if (event.getActionCommand() == "profiles") {
-			WindowManager.getManager().setActiveWindow(new Profiles()); 
+		if (event.getActionCommand() == "campaigns") {
+			WindowManager.getManager().setActiveWindow(new Campaigns()); 
 			WindowManager.getManager().updateWindows();
 		}
 		// Exit Program

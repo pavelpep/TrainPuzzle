@@ -7,7 +7,7 @@ import javax.swing.event.*;
 
 import java.util.*;
 
-class Profiles extends Window implements ActionListener, ListSelectionListener {
+class Campaigns extends Window implements ActionListener, ListSelectionListener {
 	// Layout Manager
 	private GridBagConstraints c;
 	
@@ -21,7 +21,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 	private JButton backButton;
 		
 	// Constructor
-	public Profiles() {
+	public Campaigns() {
 		profileList = null;
 		listModel = null;
 		title = null;
@@ -42,7 +42,7 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 
 	public void Create() {
 		// Title
-		title = new JLabel("Choose Profile");
+		title = new JLabel("Choose Campaign");
 		title.setFont(new Font("Arial", Font.BOLD, 20));
 		c.gridx = 1;
 		c.gridy = 0;
@@ -65,14 +65,14 @@ class Profiles extends Window implements ActionListener, ListSelectionListener {
 		//this.add(profileList, c);
 		this.add(listScrollPane, c);
 		
-		loadProfile = new JButton("Load Profile");
+		loadProfile = new JButton("Load Campaign");
 		c.gridx = 1;
 		c.gridy = 3;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		this.add(loadProfile, c);
 		
-		newProfile = new JButton("New Profile");
+		newProfile = new JButton("New Campaign");
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 1;
