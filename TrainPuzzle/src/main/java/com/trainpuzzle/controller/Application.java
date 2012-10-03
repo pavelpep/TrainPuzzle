@@ -11,9 +11,9 @@ import com.trainpuzzle.model.map.Location;
 
 /**
  * 
- * @author $Author: jsc15 $
- * @version $Revision: 85 $
- * @since $Date: 2012-09-30 00:53:30 -0700 (Sun, 30 Sep 2012) $
+ * @author $Author$
+ * @version $Revision$
+ * @since $Date$
  */
 public class Application {
 	private Logger logger = Logger.getLogger(Application.class);
@@ -22,33 +22,44 @@ public class Application {
 	private Simulator simulator;
 	
 	private Level loadedLevel;
-	private Level modifiedLevel;
+	private Level loadedLevelWithTrack;
+	
+	/* Public Interface */
 	
 	public Application(int levelNumber) {
 		//todo change int to enum?
 		levelLoader = new LevelLoader();
 		loadedLevel = levelLoader.loadLevel(levelNumber);
 		trackBuilder = new TrackBuilder(loadedLevel);
-		modifiedLevel = trackBuilder.getLevel();
+		loadedLevelWithTrack = trackBuilder.getLevel();
 	}
 	
 	public void runSimulation() {
-		modifiedLevel = trackBuilder.getLevel();
-		simulator = new Simulator(modifiedLevel);
+		loadedLevelWithTrack = trackBuilder.getLevel();
+		simulator = new Simulator(loadedLevelWithTrack);
 		move();
 	}
+	
+	public void placeTrack(Track track, int latitude, int longitude) {
+		trackBuilder.placeTrack(track, latitude, longitude);
+		loadedLevelWithTrack = trackBuilder.getLevel();
+	}
+	
+	/* Private Functions */
+	
 	private boolean move() {
 		Location endPoint = loadedLevel.getEndLocation();
 		try {
-			Thread.sleep(1000);
-		while(simulator.go()) {
-			Thread.sleep(1000);
-			if(endPoint.equals(simulator.getTrain().getLocation())) {
-				logger.info("YOU WIN!!");
-				return true;
+			boolean canProceed = true;
+			while(canProceed) {
+				Thread.sleep(1000);
+				canProceed = simulator.proceedNextTile();
+				//TODO: call UI refresh method
+				if(endPoint.equals(simulator.getTrain().getLocation())) {
+					logger.info("YOU WIN!!");
+					return true;
+				}
 			}
-			
-		}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getStackTrace());
@@ -57,16 +68,16 @@ public class Application {
 		return false;
 	}
 	
-	public void placeTrack(Track track, int latitude, int longitude) {
-		trackBuilder.placeTrack(track, latitude, longitude);
-		modifiedLevel = trackBuilder.getLevel();
-	}
+	/* Getters and Setters */
 	
 	public Map getBlankMap() {
 		return loadedLevel.getMap();
 	}
 	
 	public Map getTrackMap() {
-		return modifiedLevel.getMap();
+		return loadedLevelWithTrack.getMap();
 	}
+	
+	
+	
 }
