@@ -67,27 +67,19 @@ public class Application {
 		
 	    ActionListener actionListener = new ActionListener() {
 	         public void actionPerformed(ActionEvent actionEvent) {
-	        	 try {
-	    				uiLoadedLevel.redrawTrain(simulator.getTrain());
-
-						simulator.proceedNextTile();
-	    				
-					
-					//uiLoadedLevel.repaint();
+	        	try {
+	    			uiLoadedLevel.redrawTrain(simulator.getTrain());
+					simulator.proceedNextTile();
 				} catch (TrainCrashException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	         }
-	       };
+	    };
 	       
-	       
-	       Timer t = new Timer(200, actionListener);
-	       t.start();
+	    Timer t = new Timer(200, actionListener);
+	    t.start();
 		     
-		     
-		     
-		    
 		/*
 		
 			uiLoadedLevel.redrawTrain(simulator.getTrain());
@@ -110,7 +102,6 @@ public class Application {
 			
 			*/
 		//}
-		
 		
 	}
 	
