@@ -88,7 +88,6 @@ class LevelSelect extends Window implements ActionListener {
 			
 			
 			WindowManager.getManager().setActiveWindow(loadedLevel); 
-			
 			WindowManager.getManager().updateWindows();	
 			
 			//app.runSimulation();

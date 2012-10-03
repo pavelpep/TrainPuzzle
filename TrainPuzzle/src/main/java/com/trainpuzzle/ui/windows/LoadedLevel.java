@@ -3,6 +3,7 @@ package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -24,7 +25,7 @@ public class LoadedLevel extends Window implements ActionListener {
 	
 	// Window elements
 	private JLabel titleLabel;
-	private JButton backButton;
+	private JButton runButton;
 	private JPanel mapPanel;
 	private JPanel toolbarPanel;
 	private JLabel grassTile;
@@ -74,9 +75,9 @@ public class LoadedLevel extends Window implements ActionListener {
     	trainTile.setBounds(0,0,40,40);
         
 		Location trainLocation = train.getLocation();
+		
 		int latitude = trainLocation.getLatitude();
 		int longitude = trainLocation.getLongitude();
-		
 		
 		mapTiles[latitude][longitude].add(trainTile, new Integer(2));
 		
@@ -91,7 +92,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		previousTrainLatitude = trainLocation.getLatitude();
 		previousTrainLongitude= trainLocation.getLongitude();
-		repaint();
+		//mapPanel.revalidate();
 	}
 	
 	public void Create() {	    
@@ -192,14 +193,27 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(0, 0, 0, 10);
+		
+		runButton = new JButton("Run the damn thing");
+		toolbarPanel.add(runButton);
+		
+		runButton.setActionCommand("run");
+		runButton.addActionListener(this);
+		
+		//app.runSimulation();
+		
 		this.add(toolbarPanel, c);
 		this.setVisible(true);
 		
-		app.runSimulation();
+		
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		
+	public void actionPerformed(ActionEvent event) {
+		if (event.getActionCommand() == "run") {
+			app.runSimulation();
+			//mapPanel.revalidate();
+		}
+	
 	}
 	
 	public void setApplication(Application app) {
