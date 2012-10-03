@@ -15,14 +15,11 @@ public class TrackBuilder {
 	private Level levelToAddTrack;
 	private Map map;
 	
-	TrackBuilder(Level levelToAddTrack){
+	/* Public Interface */
+	
+	TrackBuilder(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
 		this.map = levelToAddTrack.getMap();
-	}
-
-	public Level getLevelWithTrack() {
-		levelToAddTrack.setMap(map);
-		return levelToAddTrack;
 	}
 	
 	/**
@@ -31,9 +28,9 @@ public class TrackBuilder {
 	 * @param track latitude longitude
 	 * @return 0 means fail to add a track on the tile, 1 means add a track successfully  
 	 */
-	public boolean placeTrack(Track track,int latitude,int longitude){
+	public boolean placeTrack(Track track,int latitude,int longitude) {
 		Tile tile = map.getTile(latitude, longitude);
-		if(tile.hasTrack()||tile.hasObstacle()){
+		if(tile.hasTrack()||tile.hasObstacle()) {
 			logger.info("Track failed to be added to tile because there was an obstacle");
 			return false;
 		}
@@ -51,7 +48,7 @@ public class TrackBuilder {
 	 * @param longitude
 	 * @return 0 means fall to remove a track on the tile, 1 means remove a track successfully
 	 */
-	public boolean removeTrack(int latitude, int longitude){
+	public boolean removeTrack(int latitude, int longitude) {
 		Tile tile = map.getTile(latitude, longitude);
 		if(!tile.hasTrack()||tile.hasObstacle()) {
 			logger.info("Track failed to be removed because there is no track at the tile to remove");
@@ -62,5 +59,12 @@ public class TrackBuilder {
 			map.setTile(tile,latitude,longitude);
 			return true;
 		}
+	}
+	
+	/* Getters and Setters */
+	
+	public Level getLevelWithTrack() {
+		levelToAddTrack.setMap(map);
+		return levelToAddTrack;
 	}
 }
