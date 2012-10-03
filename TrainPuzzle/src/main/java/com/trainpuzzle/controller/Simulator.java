@@ -42,12 +42,14 @@ public class Simulator {
 		Track.CompassHeading heading = train.getCompassHeading();       
 		location = getNextTile(location,heading);
 		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
-		Track track = tile.getTrack();
 		
 		if(!tile.hasTrack()||isOffTheMap()) {
 			throw new TrainCrashException();
 		} 
-		getNextHeading(track,heading);
+		
+		Track track = tile.getTrack();
+		Track.CompassHeading nextHeading = getNextHeading(track,heading);
+		this.train.setCompassHeading(nextHeading);
 		train.setLocation(location.getLatitude(), location.getLongitude());
 	}
 	
@@ -103,30 +105,26 @@ public class Simulator {
 	}
 	
 	/**
-	 * Get where the train heading in next track and change heading stored in train
+	 * Get where the train heading in next track
 	 * 
 	 * @param track the track lay on the tile the train heading to 
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
 	 */
-	private void getNextHeading(Track track, Track.CompassHeading heading) throws TrainCrashException {
-		heading = heading.opposite();
+	private Track.CompassHeading getNextHeading(Track track, Track.CompassHeading heading) throws TrainCrashException {
+		Track.CompassHeading oppositeHeading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
-		for(Connection connection : connections) {
-			int[] directions = connection.getHeadingValues();
-			if(directions[0] == heading.getValue()) {
-				heading = Track.CompassHeading.getCompassHeading(directions[1]);
-				this.train.setCompassHeading(heading);
-			}
-			else if(directions[1] == heading.getValue()) {
-				heading = Track.CompassHeading.getCompassHeading(directions[0]);
-				this.train.setCompassHeading(heading);
-			}
-			else {
-				throw new TrainCrashException();
-			}
-		}
 		
+		for(Connection connection : connections) {
+			int[] headings = connection.getHeadingValues();
+			
+			if (headings[0] == oppositeHeading.getValue()) {
+				return Track.CompassHeading.getCompassHeading(headings[1]);
+			} else if (headings[1] == oppositeHeading.getValue()) {
+				return Track.CompassHeading.getCompassHeading(headings[0]);
+			}
+		}		
+		throw new TrainCrashException();
 	}
 	
 	private boolean isOffTheMap() {
@@ -136,7 +134,7 @@ public class Simulator {
 		}
 		return false;
 	}
-	
+
 	
 	/* Getters and Setters */
 	
