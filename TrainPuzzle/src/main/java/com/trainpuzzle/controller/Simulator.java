@@ -2,8 +2,6 @@ package com.trainpuzzle.controller;
 
 import java.util.Set;
 
-import org.apache.log4j.Logger;
-
 import com.trainpuzzle.model.map.*;
 import com.trainpuzzle.model.level.*;
 
@@ -15,8 +13,8 @@ import com.trainpuzzle.exception.TrainCrashException;
  * @since $Date$
  */
 public class Simulator {	
-	public static final int LATITUDE = 0;	 // x axis 
-	public static final int LONGITUDE = 1; // y axis
+	public static final int LATITUDE = 0;	 
+	public static final int LONGITUDE = 1; 
 	
 	private Map map;
 	private Train train;
@@ -138,14 +136,8 @@ public class Simulator {
 	
 	/* Getters and Setters */
 	
-/*
-	 public void setTrain(Train train) {
-		this.train = train;
-	}
-*/
 	
 	public Train getTrain() {
 		return this.train;
 	}
-
 }
