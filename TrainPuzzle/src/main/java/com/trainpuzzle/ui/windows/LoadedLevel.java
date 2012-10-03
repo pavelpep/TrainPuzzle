@@ -120,11 +120,11 @@ public class LoadedLevel extends Window implements ActionListener {
             	mapTile = new JLayeredPane();
             	mapTile.setPreferredSize(new Dimension(40, 40));
             	
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "grass"){
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
             	}
             	
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType() == "water"){
+            	if(testLevel.getMap().getTile(y,x).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
             	}
             	
@@ -148,7 +148,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.fill = GridBagConstraints.NONE;
 		this.add(mapPanel, c);
 		
-		//testSimulation(testLevel)
+		//testSimulation(testLevel);
 		
 		// Track Panel
 		toolbarPanel = new JPanel();

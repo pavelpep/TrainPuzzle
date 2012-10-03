@@ -12,13 +12,13 @@ public class Map {
 
 	private Tile[][] tiles;
 
-//Initialize the map with 60x40 tiles
 	private int mapWidth;
 	private int mapHeight;
 	
 	/* Public Interface */
 	
 	public Map() {
+		//Initialize the map with 60x40 tiles
 		mapWidth = 100;
 		mapHeight = 100;
 		tiles = new Tile[mapWidth][mapHeight];
