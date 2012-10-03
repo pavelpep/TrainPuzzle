@@ -27,7 +27,7 @@ public class Simulator {
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
 		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());
-		this.train.setHeading(Track.Heading.EAST);
+		this.train.setCompassHeading(Track.CompassHeading.EAST);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Simulator {
 	 */
 	public boolean go(){
 		Location location = train.getLocation();
-		Track.Heading heading = train.getHeading();
+		Track.CompassHeading heading = train.getCompassHeading();
 		location = getNextTile(location,heading);
 		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
 		Track track = tile.getTrack();
@@ -57,7 +57,7 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
-	private Location getNextTile(Location location, Track.Heading heading){
+	private Location getNextTile(Location location, Track.CompassHeading heading){
 		switch(heading) {
 			case NORTHWEST:
 				location.setLatitude(location.getLatitude() - 1);
@@ -99,19 +99,19 @@ public class Simulator {
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
 	 */
-	private boolean getNextHeading(Track track, Track.Heading heading){
+	private boolean getNextHeading(Track track, Track.CompassHeading heading){
 		heading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
 		for(Connection connection : connections){
 			int[] directions = connection.getHeadingValues();
 			if(directions[0] == heading.getValue()){
-				heading = Track.Heading.getHeading(directions[1]);
-				this.train.setHeading(heading);
+				heading = Track.CompassHeading.getCompassHeading(directions[1]);
+				this.train.setCompassHeading(heading);
 				return true;
 			}
 			else if(directions[1] == heading.getValue()){
-				heading = Track.Heading.getHeading(directions[0]);
-				this.train.setHeading(heading);
+				heading = Track.CompassHeading.getCompassHeading(directions[0]);
+				this.train.setCompassHeading(heading);
 				return true;
 			}
 		}
