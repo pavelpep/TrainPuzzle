@@ -22,7 +22,7 @@ public class Simulator {
 	
 	/* Public Interface */
 	
-	Simulator(Level level){
+	Simulator(Level level) {
 		this.map = level.getMap();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
@@ -35,12 +35,13 @@ public class Simulator {
 	 * 
 	 * @return whether the train goes to next tile successfully or not
 	 */
-	public boolean go(){
+	public boolean proceedNextTile() {
 		Location location = train.getLocation();
-		Track.CompassHeading heading = train.getCompassHeading();
+		Track.CompassHeading heading = train.getCompassHeading();       
 		location = getNextTile(location,heading);
 		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
 		Track track = tile.getTrack();
+		
 		if(!tile.hasTrack()||!getNextHeading(track,heading)||isOut()){
 			return false;
 		} 
@@ -57,7 +58,7 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
-	private Location getNextTile(Location location, Track.CompassHeading heading){
+	private Location getNextTile(Location location, Track.CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
 				location.setLatitude(location.getLatitude() - 1);
