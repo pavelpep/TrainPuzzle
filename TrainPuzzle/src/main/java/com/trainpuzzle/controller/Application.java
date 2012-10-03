@@ -2,7 +2,11 @@ package com.trainpuzzle.controller;
 
 import org.apache.log4j.Logger;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.Thread;
+
+import javax.swing.Timer;
 
 import com.trainpuzzle.ui.windows.LoadedLevel;
 
@@ -59,6 +63,33 @@ public class Application {
 		
 		//while(!simulator.isVictoryConditionsSatisfied()&&isTrainNotCrash) {
 			
+		//uiLoadedLevel.redrawTrain(simulator.getTrain());
+		
+	    ActionListener actionListener = new ActionListener() {
+	         public void actionPerformed(ActionEvent actionEvent) {
+	        	 try {
+	    				uiLoadedLevel.redrawTrain(simulator.getTrain());
+
+						simulator.proceedNextTile();
+	    				
+					
+					//uiLoadedLevel.repaint();
+				} catch (TrainCrashException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	         }
+	       };
+	       
+	       
+	       Timer t = new Timer(200, actionListener);
+	       t.start();
+		     
+		     
+		     
+		    
+		/*
+		
 			uiLoadedLevel.redrawTrain(simulator.getTrain());
 			try {
 				Thread.sleep(100);
@@ -67,13 +98,17 @@ public class Application {
 				//TODO: call UI drawRefresh with a fallen over train
 				logger.error(tce.getMessage(), tce.fillInStackTrace());
 				isTrainNotCrash = false;
+				 t.stop();
 			} catch (InterruptedException ie) {
 				logger.error(ie.getMessage(), ie.fillInStackTrace());
 			}
 			if(endPoint.equals(simulator.getTrain().getLocation())) {
 				uiLoadedLevel.redrawTrain(simulator.getTrain());
 				logger.info("Level has been cleared!");
+				 t.stop();
 			} 
+			
+			*/
 		//}
 		
 		
