@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.trainpuzzle.model.map.*;
 import com.trainpuzzle.model.level.*;
 
+import com.trainpuzzle.exception.TrainCrashException;
 /**
  * 
  * @author $Author$
@@ -35,18 +36,18 @@ public class Simulator {
 	 * 
 	 * @return whether the train goes to next tile successfully or not
 	 */
-	public boolean proceedNextTile() {
+	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
 		Track.CompassHeading heading = train.getCompassHeading();       
 		location = getNextTile(location,heading);
 		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
 		Track track = tile.getTrack();
 		
-		if(!tile.hasTrack()||!getNextHeading(track,heading)||isOut()){
-			return false;
+		if(!tile.hasTrack()||isOffTheMap()) {
+			throw new TrainCrashException();
 		} 
+		getNextHeading(track,heading);
 		train.setLocation(location.getLatitude(), location.getLongitude());
-		return true;
 	}
 	
 	/* Private Functions */
@@ -100,7 +101,7 @@ public class Simulator {
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
 	 */
-	private boolean getNextHeading(Track track, Track.CompassHeading heading){
+	private void getNextHeading(Track track, Track.CompassHeading heading) throws TrainCrashException {
 		heading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
 		for(Connection connection : connections){
@@ -108,25 +109,26 @@ public class Simulator {
 			if(directions[0] == heading.getValue()){
 				heading = Track.CompassHeading.getCompassHeading(directions[1]);
 				this.train.setCompassHeading(heading);
-				return true;
 			}
 			else if(directions[1] == heading.getValue()){
 				heading = Track.CompassHeading.getCompassHeading(directions[0]);
 				this.train.setCompassHeading(heading);
-				return true;
+			}
+			else{
+				throw new TrainCrashException();
 			}
 		}
-		return false;
 		
 	}
 	
-	private boolean isOut(){
+	private boolean isOffTheMap(){
 		Location location = this.train.getLocation();
 		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()){
 			return true;
 		}
 		return false;
 	}
+	
 	
 	/* Getters and Setters */
 	
