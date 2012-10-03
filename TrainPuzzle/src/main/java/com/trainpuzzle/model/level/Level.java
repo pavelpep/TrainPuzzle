@@ -36,8 +36,8 @@ public class Level {
 	
 	private void createLevelOne() {
 		map = new Map();
-		startLocation = new Location(10,10);
-		endLocation = new Location(10,30);
+		startLocation = new Location(0,4);
+		endLocation = new Location(19,4);
 		
 	}
 	

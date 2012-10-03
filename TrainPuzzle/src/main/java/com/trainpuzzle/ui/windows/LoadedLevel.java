@@ -8,6 +8,7 @@ import javax.swing.border.*;
 
 import org.apache.log4j.Logger;
 
+import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.Train;
@@ -38,6 +39,8 @@ public class LoadedLevel extends Window implements ActionListener {
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
+	
+	private Application app;
 	
 	
 
@@ -93,7 +96,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		
 		previousTrainLatitude = trainLocation.getLatitude();
 		previousTrainLongitude= trainLocation.getLongitude();
-		
+		revalidate();
 	}
 	
 	public void Create() {	    
@@ -196,6 +199,8 @@ public class LoadedLevel extends Window implements ActionListener {
 		c.insets = new Insets(0, 0, 0, 10);
 		this.add(toolbarPanel, c);
 		this.setVisible(true);
+		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -23,7 +23,7 @@ public class Simulator {
 	private Location destination;
 	/* Public Interface */
 	
-	Simulator(Level level) {
+	public Simulator(Level level) {
 		this.map = level.getMap();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();

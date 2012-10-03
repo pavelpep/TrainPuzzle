@@ -80,10 +80,18 @@ class LevelSelect extends Window implements ActionListener {
 		}
 		if (event.getActionCommand() == "LEVEL_ONE") {
 			levelSelected = 1;
-			app = new Application(levelSelected);
 			
-			WindowManager.getManager().setActiveWindow(new LoadedLevel()); 
-			WindowManager.getManager().updateWindows();			
+			LoadedLevel loadedLevel = new LoadedLevel();
+			app = new Application(levelSelected, loadedLevel);
+			
+			
+			
+			
+			WindowManager.getManager().setActiveWindow(loadedLevel); 
+			
+			WindowManager.getManager().updateWindows();	
+			
+			app.runSimulation();
 		}
 		
 	}
