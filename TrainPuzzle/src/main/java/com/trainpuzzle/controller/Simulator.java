@@ -20,13 +20,14 @@ public class Simulator {
 	
 	private Map map;
 	private Train train;
-	
+	private Location destination;
 	/* Public Interface */
 	
 	Simulator(Level level) {
 		this.map = level.getMap();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
+		this.destination =level.getEndLocation();
 		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());
 		this.train.setCompassHeading(Track.CompassHeading.EAST);
 	}
@@ -48,6 +49,13 @@ public class Simulator {
 		} 
 		getNextHeading(track,heading);
 		train.setLocation(location.getLatitude(), location.getLongitude());
+	}
+	
+	public boolean isVictoryConditionsSatisfied() {
+		if(destination.equals(train.getLocation())){
+			return true;
+		}
+		return false;
 	}
 	
 	/* Private Functions */
