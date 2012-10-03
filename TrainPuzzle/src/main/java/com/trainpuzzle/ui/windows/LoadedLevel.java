@@ -13,7 +13,7 @@ import com.trainpuzzle.model.map.Location;
 import java.util.*;
 
 // Level selection for the campaign
-class LoadedLevel extends Window implements ActionListener {
+public class LoadedLevel extends Window implements ActionListener {
 	// Layout Manager
 	private GridBagConstraints c;
 	
