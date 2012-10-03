@@ -4,6 +4,9 @@ import org.apache.log4j.Logger;
 
 import java.lang.Thread;
 
+import com.trainpuzzle.ui.windows.LoadedLevel;
+
+import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.Map;
 import com.trainpuzzle.model.map.Track;
@@ -31,41 +34,43 @@ public class Application {
 		levelLoader = new LevelLoader();
 		loadedLevel = levelLoader.loadLevel(levelNumber);
 		trackBuilder = new TrackBuilder(loadedLevel);
-		loadedLevelWithTrack = trackBuilder.getLevel();
 	}
 	
 	public void runSimulation() {
-		loadedLevelWithTrack = trackBuilder.getLevel();
+		loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
 		simulator = new Simulator(loadedLevelWithTrack);
 		move();
 	}
 	
 	public void placeTrack(Track track, int latitude, int longitude) {
 		trackBuilder.placeTrack(track, latitude, longitude);
-		loadedLevelWithTrack = trackBuilder.getLevel();
+		loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
 	}
 	
 	/* Private Functions */
 	
-	private boolean move() {
+	private void move() {
 		Location endPoint = loadedLevel.getEndLocation();
-		try {
-			boolean canProceed = true;
-			while(canProceed) {
+		
+		while(!simulator.isVictoryConditionsSatisfied()) {
+			LoadedLevel.redrawTrain(simulator.getTrain());
+			
+			try {
 				Thread.sleep(1000);
-				canProceed = simulator.proceedNextTile();
-				//TODO: call UI refresh method
-				if(endPoint.equals(simulator.getTrain().getLocation())) {
-					logger.info("YOU WIN!!");
-					return true;
-				}
+				simulator.proceedNextTile();
+			} catch (TrainCrashException tce) {
+				//TODO: call UI drawRefresh with a fallen over train
+				logger.error(tce.getStackTrace());
+			} catch (InterruptedException ie) {
+				logger.error(ie.getMessage(), ie.fillInStackTrace());
 			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			logger.error(e.getStackTrace());
+			
+			if(endPoint.equals(simulator.getTrain().getLocation())) {
+				logger.info("Level has been cleared!");
+			} 
 		}
-		logger.info("The train crash");
-		return false;
+		
+		
 	}
 	
 	/* Getters and Setters */
