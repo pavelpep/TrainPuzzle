@@ -11,7 +11,7 @@ package com.trainpuzzle.model.map;
 public class Train {
  
 	private Location location; 
-	private Track.Heading heading;
+	private Track.CompassHeading heading;
 	
 	/* Public Interface */
 	
@@ -36,11 +36,11 @@ public class Train {
 		this.location.setLongitude(longitude);
 	}
 	
-	public Track.Heading getHeading() {
+	public Track.CompassHeading getCompassHeading() {
 		return heading;
 	}
 	
-	public void setHeading(Track.Heading heading) {
+	public void setCompassHeading(Track.CompassHeading heading) {
 		this.heading = heading;
 	}
 }

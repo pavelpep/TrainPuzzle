@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class Track {
 	
-	public enum Heading {
+	public enum CompassHeading {
 		NORTHWEST(0), 				//   0       1       2
 		NORTH(1), 					//    +------*------+   
 		NORTHEAST(2),  				//    |             |
@@ -23,14 +23,14 @@ public class Track {
 		WEST(7);					//    +------*------+
 									//   6       5       4
 		private int headingValue;
-		private static final int numberOfHeadings = 8;
+		private static final int numberOfCompassHeadings = 8;
 		
-		private Heading(int headingValue) {
+		private CompassHeading(int headingValue) {
 			this.headingValue = headingValue;
 		}
 		
-		public static Heading getHeading(int headingValue) {
-			Heading headingResult = null;
+		public static CompassHeading getCompassHeading(int headingValue) {
+			CompassHeading headingResult = null;
 			switch (headingValue) {
 				case 0:
 					headingResult = NORTHWEST;
@@ -60,10 +60,10 @@ public class Track {
 			return headingResult;
 		}
 		
-		public Heading opposite() {
+		public CompassHeading opposite() {
 			final int oppositeIncrement = 4;
-			int oppositeValue = (headingValue + oppositeIncrement) % numberOfHeadings;
-			return getHeading(oppositeValue);
+			int oppositeValue = (headingValue + oppositeIncrement) % numberOfCompassHeadings;
+			return getCompassHeading(oppositeValue);
 		}
 		
 		public int getValue() {
@@ -83,21 +83,21 @@ public class Track {
 		final int rotateIncrement = 2;
 		
 		for(Connection connection : connections) {
-			Track.Heading rotatedHeading[] = new Track.Heading[2];
+			Track.CompassHeading rotatedCompassHeading[] = new Track.CompassHeading[2];
 			
 			for(int i = 0; i < 2; i++) {
-				int rotatedValue = (connection.getHeadingPair()[i].getValue() + rotateIncrement) % Track.Heading.numberOfHeadings;
-				rotatedHeading[i] = Track.Heading.getHeading(rotatedValue);
+				int rotatedValue = (connection.getCompassHeadingPair()[i].getValue() + rotateIncrement) % Track.CompassHeading.numberOfCompassHeadings;
+				rotatedCompassHeading[i] = Track.CompassHeading.getCompassHeading(rotatedValue);
 			}
-			connection.modifyConnection(rotatedHeading[0],rotatedHeading[1]);
+			connection.modifyConnection(rotatedCompassHeading[0],rotatedCompassHeading[1]);
 		}
 		return;
 	}
 	
 	/* Getters and Setters */
 	
-	public void addConnection(Heading firstHeading, Heading secondHeading) {
-		connections.add(new Connection(firstHeading, secondHeading));
+	public void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
+		connections.add(new Connection(firstCompassHeading, secondCompassHeading));
 		return;
 	}
 	
