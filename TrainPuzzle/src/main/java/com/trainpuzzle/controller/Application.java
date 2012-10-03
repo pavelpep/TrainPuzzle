@@ -24,6 +24,7 @@ import com.trainpuzzle.model.map.Location;
  */
 public class Application {
 	private Logger logger = Logger.getLogger(Application.class);
+	
 	private LevelLoader levelLoader;
 	private TrackBuilder trackBuilder;
 	private Simulator simulator;
@@ -36,7 +37,6 @@ public class Application {
 	/* Public Interface */
 	
 	public Application(int levelNumber, LoadedLevel uiLoadedLevel) {
-		//todo change int to enum?
 		levelLoader = new LevelLoader();
 		loadedLevel = levelLoader.loadLevel(levelNumber);
 		trackBuilder = new TrackBuilder(loadedLevel);
@@ -45,8 +45,6 @@ public class Application {
 	}
 	
 	public void runSimulation() {
-		//loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
-		//simulator = new Simulator(loadedLevelWithTrack);
 		move();
 	}
 	
@@ -61,48 +59,19 @@ public class Application {
 		Location endPoint = loadedLevel.getEndLocation();
 		boolean isTrainNotCrash = true;
 		
-		//while(!simulator.isVictoryConditionsSatisfied()&&isTrainNotCrash) {
-			
-		//uiLoadedLevel.redrawTrain(simulator.getTrain());
-		
 	    ActionListener actionListener = new ActionListener() {
 	         public void actionPerformed(ActionEvent actionEvent) {
 	        	try {
 	    			uiLoadedLevel.redrawTrain(simulator.getTrain());
 					simulator.proceedNextTile();
 				} catch (TrainCrashException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	         }
 	    };
 	       
 	    Timer t = new Timer(200, actionListener);
-	    t.start();
-		     
-		/*
-		
-			uiLoadedLevel.redrawTrain(simulator.getTrain());
-			try {
-				Thread.sleep(100);
-				simulator.proceedNextTile();
-			} catch (TrainCrashException tce) {
-				//TODO: call UI drawRefresh with a fallen over train
-				logger.error(tce.getMessage(), tce.fillInStackTrace());
-				isTrainNotCrash = false;
-				 t.stop();
-			} catch (InterruptedException ie) {
-				logger.error(ie.getMessage(), ie.fillInStackTrace());
-			}
-			if(endPoint.equals(simulator.getTrain().getLocation())) {
-				uiLoadedLevel.redrawTrain(simulator.getTrain());
-				logger.info("Level has been cleared!");
-				 t.stop();
-			} 
-			
-			*/
-		//}
-		
+	    t.start();		
 	}
 	
 	/* Getters and Setters */
@@ -114,7 +83,4 @@ public class Application {
 	public Map getTrackMap() {
 		return loadedLevelWithTrack.getMap();
 	}
-	
-	
-	
 }
