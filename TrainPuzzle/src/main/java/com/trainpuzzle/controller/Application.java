@@ -59,19 +59,25 @@ public class Application {
 		Location endPoint = loadedLevel.getEndLocation();
 		boolean isTrainNotCrash = true;
 		
-	    ActionListener actionListener = new ActionListener() {
+	    ActionListener actionListener;
+	    Timer t;
+	    
+	    actionListener = new ActionListener() {
 	         public void actionPerformed(ActionEvent actionEvent) {
 	        	try {
 	    			uiLoadedLevel.redrawTrain(simulator.getTrain());
 					simulator.proceedNextTile();
+					//TODO conditions for the stop
+					((Timer)actionEvent.getSource()).stop();
 				} catch (TrainCrashException e) {
 					e.printStackTrace();
 				}
 	         }
 	    };
 	       
-	    Timer t = new Timer(200, actionListener);
-	    t.start();		
+	    t = new Timer(200, actionListener);
+	    t.start();	
+	    
 	}
 	
 	/* Getters and Setters */
