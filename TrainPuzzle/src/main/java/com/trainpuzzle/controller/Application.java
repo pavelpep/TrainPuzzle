@@ -45,7 +45,26 @@ public class Application {
 	}
 	
 	public void runSimulation() {
-		move();
+		Location endPoint = loadedLevel.getEndLocation();
+		boolean isTrainNotCrash = true;
+		
+	    ActionListener actionListener;
+	    Timer t;
+	    
+	    uiLoadedLevel.redrawTrain(simulator.getTrain());
+	    
+	    actionListener = new ActionListener() {
+	         public void actionPerformed(ActionEvent actionEvent) {
+	        	move();
+	 			uiLoadedLevel.redrawTrain(simulator.getTrain());
+	 			//TODO conditions for the stop
+	        	if(simulator.isVictoryConditionsSatisfied()){
+	        		((Timer)actionEvent.getSource()).stop();
+	        	}
+	         }
+	    };
+	    t = new Timer(200, actionListener);
+	    t.start();	
 	}
 	
 	public void placeTrack(Track track, int latitude, int longitude) {
@@ -56,28 +75,12 @@ public class Application {
 	/* Private Functions */
 	
 	private void move() {
-		Location endPoint = loadedLevel.getEndLocation();
-		boolean isTrainNotCrash = true;
 		
-	    ActionListener actionListener;
-	    Timer t;
-	    
-	    actionListener = new ActionListener() {
-	         public void actionPerformed(ActionEvent actionEvent) {
-	        	try {
-	    			uiLoadedLevel.redrawTrain(simulator.getTrain());
-					simulator.proceedNextTile();
-					//TODO conditions for the stop
-					((Timer)actionEvent.getSource()).stop();
-				} catch (TrainCrashException e) {
-					e.printStackTrace();
-				}
-	         }
-	    };
-	       
-	    t = new Timer(200, actionListener);
-	    t.start();	
-	    
+    	try {
+			simulator.proceedNextTile();
+		} catch (TrainCrashException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Getters and Setters */
