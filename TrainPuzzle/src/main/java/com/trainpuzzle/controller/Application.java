@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Thread;
 
 import javax.swing.Timer;
 
@@ -57,7 +56,6 @@ public class Application {
 	         public void actionPerformed(ActionEvent actionEvent) {
 	        	move();
 	 			uiLoadedLevel.redrawTrain(simulator.getTrain());
-	 			//TODO conditions for the stop
 	        	if(simulator.isVictoryConditionsSatisfied()){
 	        		((Timer)actionEvent.getSource()).stop();
 	        	}
