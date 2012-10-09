@@ -34,8 +34,8 @@ public class Level {
 	private void createLevelOne() {
 		map = new Map();
 		addSomeWaterTiles();
-		startLocation = new Location(0,4);
-		endLocation = new Location(19,4);
+		startLocation = new Location(4,0);
+		endLocation = new Location(4,19);
 	}
 	
 	private void addSomeWaterTiles() {

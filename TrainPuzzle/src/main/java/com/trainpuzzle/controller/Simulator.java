@@ -129,7 +129,7 @@ public class Simulator {
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		if(location.getRow() >= map.getMapHeight() || location.getColumn() >= map.getMapWidth()) {
+		if(location.getRow() >= map.getNumberOfRows() || location.getColumn() >= map.getNumberOfColumns()) {
 			return true;
 		}
 		return false;

@@ -33,11 +33,11 @@ public class LoadedLevel extends Window implements ActionListener {
 	private JLabel trackTile;
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
 	
-	private int previousTrainLatitude;
-	private int previousTrainLongitude;
+	private int previousTrainRow;
+	private int previousTrainColumn;
 	
-	int mapWidth = 20;
-	int mapHeight = 15;
+	int numberOfRows = 15;
+	int numberOfColumns = 20;
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
@@ -55,8 +55,8 @@ public class LoadedLevel extends Window implements ActionListener {
 		mapPanel = null;
 		toolbarPanel = null;
 		
-		previousTrainLatitude = 0;
-		previousTrainLongitude = 0;
+		previousTrainRow = 0;
+		previousTrainColumn = 0;
 		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -72,21 +72,21 @@ public class LoadedLevel extends Window implements ActionListener {
         
 		Location trainLocation = train.getLocation();
 		
-		int latitude = trainLocation.getLatitude();
-		int longitude = trainLocation.getLongitude();
+		int row = trainLocation.getRow();
+		int column = trainLocation.getColumn();
 		
-		mapTiles[latitude][longitude].add(trainTile, new Integer(2));
+		mapTiles[row][column].add(trainTile, new Integer(2));
 		
 		try {
-			mapTiles[previousTrainLatitude][previousTrainLongitude].remove(mapTiles[previousTrainLatitude][previousTrainLongitude].getComponentsInLayer(2)[0]);
+			mapTiles[previousTrainRow][previousTrainColumn].remove(mapTiles[previousTrainRow][previousTrainColumn].getComponentsInLayer(2)[0]);
 			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		previousTrainLatitude = trainLocation.getLatitude();
-		previousTrainLongitude= trainLocation.getLongitude();
+		previousTrainRow = trainLocation.getRow();
+		previousTrainColumn= trainLocation.getColumn();
 		mapPanel.repaint();
 	}
 	
@@ -106,22 +106,22 @@ public class LoadedLevel extends Window implements ActionListener {
 		// Map Panel
 		Level testLevel = new Level(1);
 		
-		mapTiles = new JLayeredPane[mapWidth][mapHeight];
+		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
 		
 		mapPanel = new JPanel();	
-		mapPanel.setLayout(new GridLayout(mapHeight, mapWidth));
+		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		
-        for(int y=0; y < mapHeight; y++){
-            for(int x=0; x < mapWidth; x++){
+        for(int r = 0; r < numberOfRows; r++){
+            for(int c = 0; c < numberOfColumns; c++){
             	
             	mapTile = new JLayeredPane();
             	mapTile.setPreferredSize(new Dimension(40, 40));
             	
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType().equals("grass")) {
+            	if(testLevel.getMap().getTile(r,c).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
             	}
             	
-            	if(testLevel.getMap().getTile(y,x).getLandscapeType().equals("water")) {
+            	if(testLevel.getMap().getTile(r,c).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
             	}
             	
@@ -129,14 +129,14 @@ public class LoadedLevel extends Window implements ActionListener {
             	
             	mapTile.add(grassTile, new Integer(0));
             	
-            	if(testLevel.getMap().getTile(x,y).hasTrack()){
+            	if(testLevel.getMap().getTile(r,c).hasTrack()){
             		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
                 	trackTile.setBounds(0,0,40,40);
                 	mapTile.add(trackTile, new Integer(1));
             	}
             	
             	mapPanel.add(mapTile);
-            	mapTiles[x][y] = mapTile;
+            	mapTiles[r][c] = mapTile;
             }
         }
 		c.gridx = 0;
@@ -181,16 +181,16 @@ public class LoadedLevel extends Window implements ActionListener {
 		Train testTrain = new Train();
 		testTrain.setLocation(0, 4);
 		testTrain.setCompassHeading(Track.CompassHeading.EAST);
-		for(int y=0; y < mapHeight; y++) {
-			for(int x=0; x < mapWidth; x++) {
-				if(levelToSimulate.getMap().getTile(y,x).hasTrack()) {
+		for(int r = 0; r < numberOfRows; r++) {
+			for(int c = 0; c < numberOfColumns; c++) {
+				if(levelToSimulate.getMap().getTile(r,c).hasTrack()) {
 					redrawTrain(testSim.getTrain());
 		        		try {
 							testSim.proceedNextTile();
 						} catch (TrainCrashException e) {
 							logger.error(e.getMessage(), e.fillInStackTrace());
 						}
-		        		logger.info("NEW location @ " + testSim.getTrain().getLocation().getLatitude() + ", " + testSim.getTrain().getLocation().getLongitude());
+		        		logger.info("NEW location @ " + testSim.getTrain().getLocation().getRow() + ", " + testSim.getTrain().getLocation().getColumn());
 		        }
 			}
 		}
