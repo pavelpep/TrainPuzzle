@@ -26,7 +26,7 @@ public class Simulator {
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
 		this.destination =level.getEndLocation();
-		this.train.setLocation(startPoint.getLatitude(),startPoint.getLongitude());
+		this.train.setLocation(startPoint.getRow(),startPoint.getColumn());
 		this.train.setCompassHeading(Track.CompassHeading.EAST);
 	}
 	
@@ -43,7 +43,7 @@ public class Simulator {
 			throw new TrainCrashException();
 		}
 		
-		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
+		Tile tile = map.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack()) {
 			throw new TrainCrashException();
 		} 
@@ -51,7 +51,7 @@ public class Simulator {
 		Track track = tile.getTrack();
 		Track.CompassHeading nextHeading = getNextHeading(track,heading);
 		this.train.setCompassHeading(nextHeading);
-		train.setLocation(location.getLatitude(), location.getLongitude());
+		train.setLocation(location.getRow(), location.getColumn());
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
@@ -73,32 +73,32 @@ public class Simulator {
 	private Location getNextTile(Location location, Track.CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
-				location.setLatitude(location.getLatitude() - 1);
-				location.setLongitude(location.getLongitude() - 1);
+				location.setRow(location.getRow() - 1);
+				location.setColumn(location.getColumn() - 1);
 				break;
 			case NORTH:
-				location.setLongitude(location.getLongitude() - 1);
+				location.setRow(location.getRow() - 1);
 				break;
 			case NORTHEAST:
-				location.setLatitude(location.getLatitude() + 1);
-				location.setLongitude(location.getLongitude() - 1);
+				location.setRow(location.getRow() - 1);
+				location.setColumn(location.getColumn() + 1);
 				break;
 			case EAST:
-				location.setLatitude(location.getLatitude() + 1);
+				location.setColumn(location.getColumn() + 1);
 				break;
 			case SOUTHEAST:
-				location.setLatitude(location.getLatitude() + 1);
-				location.setLongitude(location.getLongitude() + 1);
+				location.setRow(location.getRow() + 1);
+				location.setColumn(location.getColumn() + 1);
 				break;
 			case SOUTH:
-				location.setLongitude(location.getLongitude() + 1);
+				location.setRow(location.getRow() + 1);
 				break;
 			case SOUTHWEST: 
-				location.setLatitude(location.getLatitude() - 1);
-				location.setLongitude(location.getLongitude() + 1);
+				location.setRow(location.getRow() + 1);
+				location.setColumn(location.getColumn() - 1);
 				break;
 			case WEST:
-				location.setLatitude(location.getLatitude() - 1);
+				location.setColumn(location.getColumn() - 1);
 				break;
 		}
 		
@@ -129,7 +129,7 @@ public class Simulator {
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()) {
+		if(location.getRow() >= map.getMapHeight() || location.getColumn() >= map.getMapWidth()) {
 			return true;
 		}
 		return false;
