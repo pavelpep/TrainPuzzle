@@ -104,17 +104,17 @@ public class LoadedLevel extends Window implements ActionListener {
 		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		
-        for(int r = 0; r < numberOfRows; r++){
-            for(int c = 0; c < numberOfColumns; c++){
+        for(int row = 0; row < numberOfRows; row++){
+            for(int column = 0; column < numberOfColumns; column++){
             	
             	mapTile = new JLayeredPane();
             	mapTile.setPreferredSize(new Dimension(40, 40));
             	
-            	if(testLevel.getMap().getTile(r,c).getLandscapeType().equals("grass")) {
+            	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
             	}
             	
-            	if(testLevel.getMap().getTile(r,c).getLandscapeType().equals("water")) {
+            	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
             	}
             	
@@ -122,14 +122,14 @@ public class LoadedLevel extends Window implements ActionListener {
             	
             	mapTile.add(grassTile, new Integer(0));
             	
-            	if(testLevel.getMap().getTile(r,c).hasTrack()){
+            	if(testLevel.getMap().getTile(row, column).hasTrack()){
             		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
                 	trackTile.setBounds(0,0,40,40);
                 	mapTile.add(trackTile, new Integer(1));
             	}
             	
             	mapPanel.add(mapTile);
-            	mapTiles[r][c] = mapTile;
+            	mapTiles[row][column] = mapTile;
             }
         }
         
@@ -168,9 +168,9 @@ public class LoadedLevel extends Window implements ActionListener {
 		Train testTrain = new Train();
 		testTrain.setLocation(0, 4);
 		testTrain.setCompassHeading(Track.CompassHeading.EAST);
-		for(int r = 0; r < numberOfRows; r++) {
-			for(int c = 0; c < numberOfColumns; c++) {
-				if(levelToSimulate.getMap().getTile(r,c).hasTrack()) {
+		for(int row = 0; row < numberOfRows; row++) {
+			for(int column = 0; column < numberOfColumns; column++) {
+				if(levelToSimulate.getMap().getTile(row,column).hasTrack()) {
 					redrawTrain(testSim.getTrain());
 		        		try {
 							testSim.proceedNextTile();
