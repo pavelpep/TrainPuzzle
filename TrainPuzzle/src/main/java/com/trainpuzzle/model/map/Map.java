@@ -12,16 +12,16 @@ public class Map {
 
 	private Tile[][] tiles;
 
-	private int mapWidth;
-	private int mapHeight;
+	private int numberOfRows; //height
+	private int numberOfColumns; //width
 	
 	/* Public Interface */
 	
 	public Map() {
 		//Initialize the map with 60x40 tiles
-		mapWidth = 100;
-		mapHeight = 100;
-		tiles = new Tile[mapWidth][mapHeight];
+		numberOfRows = 100;
+		numberOfColumns = 100;
+		tiles = new Tile[numberOfRows][numberOfColumns];
 		initializeTiles();
 		addSomeTrackTiles();
 	}
@@ -30,9 +30,9 @@ public class Map {
 	
 	private void initializeTiles() {
 			
-		for(int w=0; w < mapWidth; w++) {
-			for(int h=0; h < mapHeight; h++) {
-				tiles[w][h] = new Tile();
+		for(int r=0; r < numberOfRows; r++) {
+			for(int c=0; c < numberOfColumns; c++) {
+				tiles[r][c] = new Tile();
 			}	
 		}
 	}
@@ -42,26 +42,27 @@ public class Map {
 	 * user to place the track on the map.
 	 */
 	private void addSomeTrackTiles() {
-		for(int i=0; i < 20; i++){
-		 this.tiles[i][4].setTrack(new Track());
+		
+		for(int c=0; c < 20; c++){
+		 this.tiles[4][c].setTrack(new Track());
 		}
 	}
 	
 	/* Getters and Setters */
 	
-	public Tile getTile(int latitude, int longitude) {
-		return tiles[latitude][longitude];
+	public Tile getTile(int row, int column) {
+		return tiles[row][column];
 	}
 	
-	public void setTile(Tile tile, int latitude, int longitude) {
-		tiles[latitude][longitude] = tile;
+	public void setTile(Tile tile, int row, int column) {
+		tiles[row][column] = tile;
 	}
 	
-	public int getMapWidth() {
-		return mapWidth;
+	public int getNumberOfColumns() {
+		return numberOfColumns;
 	}
 	
-	public int getMapHeight() {
-		return mapHeight;
+	public int getNumberOfRows() {
+		return numberOfRows;
 	}
 }
