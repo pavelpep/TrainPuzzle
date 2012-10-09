@@ -63,7 +63,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		setLocationRelativeTo(null);	
 	}
 	
-/*	public void redrawTrain(Train train) {		
+	public void redrawTrain(Train train) {		
 		JLabel trainTile;
     	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
     	trainTile.setBounds(0,0,40,40);
@@ -86,7 +86,7 @@ public class LoadedLevel extends Window implements ActionListener {
 		previousTrainRow = trainLocation.getRow();
 		previousTrainColumn= trainLocation.getColumn();
 		mapPanel.repaint();
-	}*/
+	}
 	
 	public void Create() {
 		
@@ -161,7 +161,7 @@ public class LoadedLevel extends Window implements ActionListener {
 	 * 
 	 * @param levelToSimulate
 	 */
-/*	private void testSimulation(Level levelToSimulate) {
+	private void testSimulation(Level levelToSimulate) {
 		Simulator testSim = new Simulator(levelToSimulate);
 		testSim.getTrain().setLocation(0, 4);
 		
@@ -182,7 +182,7 @@ public class LoadedLevel extends Window implements ActionListener {
 			}
 		}
 	}
-*/
+
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			app.runSimulation();
