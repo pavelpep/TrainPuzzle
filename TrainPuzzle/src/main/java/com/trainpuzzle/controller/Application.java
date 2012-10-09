@@ -24,8 +24,8 @@ import com.trainpuzzle.model.map.Location;
 public class Application {
 	private Logger logger = Logger.getLogger(Application.class);
 	
-	private LevelLoader levelLoader;
-	private TrackBuilder trackBuilder;
+	private CampaignManager levelLoader;
+	private TrackPlacer trackBuilder;
 	private Simulator simulator;
 	
 	private Level loadedLevel;
@@ -38,9 +38,9 @@ public class Application {
 	/* Public Interface */
 	
 	public Application(int levelNumber, LoadedLevel uiLoadedLevel) {
-		levelLoader = new LevelLoader();
+		levelLoader = new CampaignManager();
 		loadedLevel = levelLoader.loadLevel(levelNumber);
-		trackBuilder = new TrackBuilder(loadedLevel);
+		trackBuilder = new TrackPlacer(loadedLevel);
 		this.uiLoadedLevel = uiLoadedLevel;
 		simulator = new Simulator(loadedLevel);
 	}

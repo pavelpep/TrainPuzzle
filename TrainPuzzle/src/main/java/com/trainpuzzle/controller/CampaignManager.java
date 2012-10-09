@@ -11,7 +11,7 @@ import com.trainpuzzle.model.level.*;
  * @since $Date$
  */
 
-public class LevelLoader {
+public class CampaignManager {
 	private Level levelLoaded;
 	
 	public Level loadLevel(int levelNumber) {

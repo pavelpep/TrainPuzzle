@@ -10,14 +10,14 @@ import com.trainpuzzle.model.map.*;
  * @version $Revision$
  * @since $Date$
  */
-public class TrackBuilder {
-	private Logger logger = Logger.getLogger(TrackBuilder.class);
+public class TrackPlacer {
+	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
 	private Map map;
 	
 	/* Public Interface */
 	
-	TrackBuilder(Level levelToAddTrack) {
+	TrackPlacer(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
 		this.map = levelToAddTrack.getMap();
 	}
