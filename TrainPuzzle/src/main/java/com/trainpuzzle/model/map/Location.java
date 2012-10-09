@@ -2,14 +2,14 @@ package com.trainpuzzle.model.map;
 
 public class Location {
 	
-	private int latitude;
-	private int longitude;
+	private int row;
+	private int column;
 	
 	/* Public Interface */
 	
-	public Location(int latitude, int longitude) {
-		this.latitude = latitude;
-		this.longitude = longitude;
+	public Location(int row, int column) {
+		this.row = row;
+		this.column = column;
 	}
 	
 	@Override
@@ -18,7 +18,7 @@ public class Location {
 			return false;
 		}
 		Location location = (Location) object;
-		if(this.latitude == location.getLatitude() && this.longitude == location.getLongitude()){
+		if(this.row == location.getRow() && this.column == location.getColumn()){
 			return true;
 		}
 		return false;
@@ -26,19 +26,19 @@ public class Location {
 
 	/* Getters and Setters */
 	
-	public int getLatitude() {
-		return latitude;
+	public int getRow() {
+		return row;
 	}
 
-	public void setLatitude(int latitude) {
-		this.latitude = latitude;
+	public void setRow(int row) {
+		this.row = row;
 	}
 
-	public int getLongitude() {
-		return longitude;
+	public int getColumn() {
+		return column;
 	}
 
-	public void setLongitude(int longitude) {
-		this.longitude = longitude;
+	public void setColumn(int column) {
+		this.column = column;
 	}
 }
