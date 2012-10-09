@@ -25,12 +25,12 @@ public class LoadedLevel extends Window implements ActionListener {
 	private GridBagConstraints c;
 	
 	// Window elements
-	private JLabel titleLabel;
-	private JButton runButton;
-	private JPanel mapPanel;
-	private JPanel toolbarPanel;
-	private JLabel grassTile;
-	private JLabel trackTile;
+	private JLabel titleLabel = new JLabel();
+	private JButton runButton = new JButton();
+	private JPanel mapPanel = new JPanel();
+	private JPanel sidePanel = new JPanel();
+	private JLabel grassTile = new JLabel();
+	private JLabel trackTile = new JLabel();
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
 	
 	private int previousTrainRow;
@@ -45,27 +45,25 @@ public class LoadedLevel extends Window implements ActionListener {
 	private Application app;
 	
 	Border loweredbevel, loweredetched;
-	TitledBorder mapTitle, toolbarTitle;
+	TitledBorder mapTitle, sidePanelTitle;
 	
 	// Constructor
 	public LoadedLevel() {
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		titleLabel = null;
-		mapPanel = null;
-		toolbarPanel = null;
 		
 		previousTrainRow = 0;
 		previousTrainColumn = 0;
 		
 		c = new GridBagConstraints();
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
 	
-	public void redrawTrain(Train train) {		
+/*	public void redrawTrain(Train train) {		
 		JLabel trainTile;
     	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
     	trainTile.setBounds(0,0,40,40);
@@ -88,20 +86,15 @@ public class LoadedLevel extends Window implements ActionListener {
 		previousTrainRow = trainLocation.getRow();
 		previousTrainColumn= trainLocation.getColumn();
 		mapPanel.repaint();
-	}
+	}*/
 	
-	public void Create() {	    
+	public void Create() {
+		
+		
 		// Game title
-		titleLabel = new JLabel("Level 1");
-		titleLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 28));
-		titleLabel.setForeground(Color.black);
-		c.gridx = 0;
-		c.gridy = 0;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.NONE;
-		c.insets = new Insets(10, 10, 0, 10);
-		this.add(titleLabel, c);
+		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		this.titleLabel.setText("Level 1");
+		this.add(this.titleLabel, gbConstraints);
 		
 		// Map Panel
 		Level testLevel = new Level(1);
@@ -139,33 +132,27 @@ public class LoadedLevel extends Window implements ActionListener {
             	mapTiles[r][c] = mapTile;
             }
         }
-		c.gridx = 0;
-		c.gridy = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.NONE;
-		this.add(mapPanel, c);
+        
+        initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+        this.add(this.mapPanel, gbConstraints);
 		
 		//testSimulation(testLevel);
 		
-		// Track Panel
-		toolbarPanel = new JPanel();
-		toolbarPanel.setPreferredSize(new Dimension(250, 600));
-		toolbarTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
-		toolbarTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		toolbarPanel.setBorder(toolbarTitle);		
-		c.gridx = 200;
-		c.gridy = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.fill = GridBagConstraints.NONE;
-		c.insets = new Insets(0, 0, 0, 10);
+		// Track Panel 
+        sidePanel.setPreferredSize(new Dimension(250, 600));
+        sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
+        sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		sidePanel.setBorder(sidePanelTitle);		
 		
 		runButton = new JButton("Simulate");
-		toolbarPanel.add(runButton);
+		sidePanel.add(runButton);
 		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
-		this.add(toolbarPanel, c);
+		initializeComponent(this.sidePanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 200, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 10), true);
+		this.add(sidePanel, gbConstraints);
+		
 		this.setVisible(true);
 	}
 	
@@ -174,7 +161,7 @@ public class LoadedLevel extends Window implements ActionListener {
 	 * 
 	 * @param levelToSimulate
 	 */
-	private void testSimulation(Level levelToSimulate) {
+/*	private void testSimulation(Level levelToSimulate) {
 		Simulator testSim = new Simulator(levelToSimulate);
 		testSim.getTrain().setLocation(0, 4);
 		
@@ -195,7 +182,7 @@ public class LoadedLevel extends Window implements ActionListener {
 			}
 		}
 	}
-
+*/
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			app.runSimulation();
