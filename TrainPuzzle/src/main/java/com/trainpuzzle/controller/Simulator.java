@@ -39,9 +39,12 @@ public class Simulator {
 		Location location = train.getLocation();
 		Track.CompassHeading heading = train.getCompassHeading();       
 		location = getNextTile(location,heading);
-		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
+		if(isOffTheMap(location)) {
+			throw new TrainCrashException();
+		}
 		
-		if(!tile.hasTrack()||isOffTheMap()) {
+		Tile tile = map.getTile(location.getLatitude(), location.getLongitude());
+		if(!tile.hasTrack()) {
 			throw new TrainCrashException();
 		} 
 		
@@ -125,8 +128,7 @@ public class Simulator {
 		throw new TrainCrashException();
 	}
 	
-	private boolean isOffTheMap() {
-		Location location = this.train.getLocation();
+	private boolean isOffTheMap(Location location) {
 		if(location.getLatitude() >= map.getMapWidth()||location.getLongitude() >= map.getMapHeight()) {
 			return true;
 		}
