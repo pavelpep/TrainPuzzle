@@ -19,8 +19,8 @@ public class Train {
 		this.location = new Location(0,0);
 	}
 	
-	public Train(int latitude, int longitude) {	
-		this.location = new Location(latitude,longitude);
+	public Train(int row, int column) {	
+		this.location = new Location(row,column);
 	}
 	
 	/*Getters and Setters */
@@ -29,9 +29,9 @@ public class Train {
 		return location;
 	}
 
-	public void setLocation(int latitude, int longitude ) {
-		this.location.setLatitude(latitude);
-		this.location.setLongitude(longitude);
+	public void setLocation(int row, int column ) {
+		this.location.setRow(row);
+		this.location.setColumn(column);
 	}
 	
 	public Track.CompassHeading getCompassHeading() {
