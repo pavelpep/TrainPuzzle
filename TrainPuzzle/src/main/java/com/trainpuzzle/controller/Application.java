@@ -33,6 +33,8 @@ public class Application {
 	
 	private LoadedLevel uiLoadedLevel;
 	
+	private boolean isTrainNotCrash;
+	
 	/* Public Interface */
 	
 	public Application(int levelNumber, LoadedLevel uiLoadedLevel) {
@@ -45,8 +47,7 @@ public class Application {
 	
 	public void runSimulation() {
 		Location endPoint = loadedLevel.getEndLocation();
-		boolean isTrainNotCrash = true;
-		
+		isTrainNotCrash = true;
 	    ActionListener actionListener;
 	    Timer t;
 	    
@@ -56,7 +57,7 @@ public class Application {
 	         public void actionPerformed(ActionEvent actionEvent) {
 	        	move();
 	 			uiLoadedLevel.redrawTrain(simulator.getTrain());
-	        	if(simulator.isVictoryConditionsSatisfied()){
+	        	if(simulator.isVictoryConditionsSatisfied() || !isTrainNotCrash){
 	        		((Timer)actionEvent.getSource()).stop();
 	        	}
 	         }
@@ -78,6 +79,7 @@ public class Application {
 			simulator.proceedNextTile();
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
+			isTrainNotCrash = false;
 		}
 	}
 	
