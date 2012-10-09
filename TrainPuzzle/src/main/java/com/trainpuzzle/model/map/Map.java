@@ -30,9 +30,9 @@ public class Map {
 	
 	private void initializeTiles() {
 			
-		for(int r=0; r < numberOfRows; r++) {
-			for(int c=0; c < numberOfColumns; c++) {
-				tiles[r][c] = new Tile();
+		for(int row = 0; row < numberOfRows; row++) {
+			for(int column = 0; column < numberOfColumns; column++) {
+				tiles[row][column] = new Tile();
 			}	
 		}
 	}
@@ -43,8 +43,8 @@ public class Map {
 	 */
 	private void addSomeTrackTiles() {
 		
-		for(int c=0; c < 20; c++){
-		 this.tiles[4][c].setTrack(new Track());
+		for(int column = 0; column < 20; column++){
+		 this.tiles[4][column].setTrack(new Track());
 		}
 	}
 	
