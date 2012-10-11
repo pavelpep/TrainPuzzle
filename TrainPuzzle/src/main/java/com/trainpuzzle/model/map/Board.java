@@ -8,16 +8,15 @@ package com.trainpuzzle.model.map;
  *
  */
 
-public class Map {
+public class Board {
 
 	private Tile[][] tiles;
-
 	private int numberOfRows; //height
 	private int numberOfColumns; //width
 	
 	/* Public Interface */
 	
-	public Map() {
+	public Board() {
 		//Initialize the map with 60x40 tiles
 		numberOfRows = 100;
 		numberOfColumns = 100;

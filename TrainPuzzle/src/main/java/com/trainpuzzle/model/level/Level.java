@@ -3,7 +3,7 @@ package com.trainpuzzle.model.level;
 import com.trainpuzzle.model.map.*;
 
 /**
- * Class generates {@link Map} based on victory condition, {@link Landscape} and
+ * Class generates {@link Board} based on victory condition, {@link Landscape} and
  * {@link Obstacle}s of the level.
  * 
  * @author $Author$
@@ -11,7 +11,7 @@ import com.trainpuzzle.model.map.*;
  * @since $Date$
  */
 public class Level {
-	private Map map;
+	private Board map;
 	private Location startLocation;
 	private Location endLocation;
 	
@@ -32,7 +32,7 @@ public class Level {
 	/* Private Functions */
 	
 	private void createLevelOne() {
-		map = new Map();
+		map = new Board();
 		addSomeWaterTiles();
 		startLocation = new Location(4,0);
 		endLocation = new Location(4,19);
@@ -56,11 +56,11 @@ public class Level {
 	
 	/* Setters and Getters */
 	
-	public Map getMap() {
+	public Board getMap() {
 		return map;
 	}
 	
-	public void setMap(Map map) {
+	public void setMap(Board map) {
 		this.map = map;
 	}
 	

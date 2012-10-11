@@ -16,7 +16,7 @@ public class Simulator {
 	public static final int LATITUDE = 0;	 
 	public static final int LONGITUDE = 1; 
 	
-	private Map map;
+	private Board map;
 	private Train train;
 	private Location destination;
 	/* Public Interface */
@@ -27,7 +27,7 @@ public class Simulator {
 		Location startPoint = level.getStartLocation();
 		this.destination =level.getEndLocation();
 		this.train.setLocation(startPoint.getRow(),startPoint.getColumn());
-		this.train.setCompassHeading(Track.CompassHeading.EAST);
+		this.train.setCompassHeading(CompassHeading.EAST);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Simulator {
 	 */
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
-		Track.CompassHeading heading = train.getCompassHeading();       
+		CompassHeading heading = train.getCompassHeading();       
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
@@ -49,7 +49,7 @@ public class Simulator {
 		} 
 		
 		Track track = tile.getTrack();
-		Track.CompassHeading nextHeading = getNextHeading(track,heading);
+		CompassHeading nextHeading = getNextHeading(track,heading);
 		this.train.setCompassHeading(nextHeading);
 		train.setLocation(location.getRow(), location.getColumn());
 	}
@@ -70,7 +70,7 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
-	private Location getNextTile(Location location, Track.CompassHeading heading) {
+	private Location getNextTile(Location location, CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
 				location.setRow(location.getRow() - 1);
@@ -112,17 +112,17 @@ public class Simulator {
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
 	 */
-	private Track.CompassHeading getNextHeading(Track track, Track.CompassHeading heading) throws TrainCrashException {
-		Track.CompassHeading oppositeHeading = heading.opposite();
+	private CompassHeading getNextHeading(Track track, CompassHeading heading) throws TrainCrashException {
+		CompassHeading oppositeHeading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
 		
 		for(Connection connection : connections) {
 			int[] headings = connection.getHeadingValues();
 			
 			if (headings[0] == oppositeHeading.getValue()) {
-				return Track.CompassHeading.getCompassHeading(headings[1]);
+				return CompassHeading.getCompassHeading(headings[1]);
 			} else if (headings[1] == oppositeHeading.getValue()) {
-				return Track.CompassHeading.getCompassHeading(headings[0]);
+				return CompassHeading.getCompassHeading(headings[0]);
 			}
 		}		
 		throw new TrainCrashException();

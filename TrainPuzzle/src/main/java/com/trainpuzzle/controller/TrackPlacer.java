@@ -13,7 +13,7 @@ import com.trainpuzzle.model.map.*;
 public class TrackPlacer {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
-	private Map map;
+	private Board map;
 	
 	/* Public Interface */
 	

@@ -7,12 +7,13 @@ package com.trainpuzzle.model.map;
  * @since $Date$
  */
 public class Connection {
-	private Track.CompassHeading compassHeading1;
-	private Track.CompassHeading compassHeading2;
+	//TODO: Write comment of why it's not set to null
+	private CompassHeading compassHeading1 = CompassHeading.NORTHEAST;
+	private CompassHeading compassHeading2 = CompassHeading.NORTHWEST;
 	
 	/* Public Interface */
 	
-	public Connection(Track.CompassHeading compassHeading1, Track.CompassHeading compassHeading2) {
+	public Connection(CompassHeading compassHeading1, CompassHeading compassHeading2) {
 		modifyConnection(compassHeading1, compassHeading2);
 	}
 	
@@ -23,14 +24,14 @@ public class Connection {
 		return connectionValues;
 	}
 	
-	public Track.CompassHeading[] getCompassHeadingPair() {
-		Track.CompassHeading connectionHeadings[] = new Track.CompassHeading[2];
+	public CompassHeading[] getCompassHeadingPair() {
+		CompassHeading connectionHeadings[] = new CompassHeading[2];
 		connectionHeadings[0] = compassHeading1;
 		connectionHeadings[1] = compassHeading2;
 		return connectionHeadings;
 	}
 	
-	public void modifyConnection(Track.CompassHeading inputHeading1, Track.CompassHeading inputHeading2) {
+	public void modifyConnection(CompassHeading inputHeading1, CompassHeading inputHeading2) {
 		if(connectionIsValid(inputHeading1, inputHeading2)) {
 			compassHeading1= inputHeading1;
 			compassHeading2 = inputHeading2;
@@ -41,14 +42,7 @@ public class Connection {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		
-		result = prime * result
-				+ ((compassHeading1 == null) ? 0 : compassHeading1.hashCode() + compassHeading2.hashCode());
-		result = prime * result
-				+ ((compassHeading2 == null) ? 0 : compassHeading1.hashCode() + compassHeading2.hashCode());
-		return result;
+		return compassHeading1.hashCode() * compassHeading2.hashCode();
 	}
 	
 	@Override
@@ -62,23 +56,20 @@ public class Connection {
 		if (getClass() != object.getClass()) {
 			return false;
 		}
-		Connection otherConnection = (Connection) object;
+		Connection other = (Connection) object;
 		
-		boolean headingsAreDirectlyEqual = ((compassHeading1 == otherConnection.compassHeading1) && (compassHeading2 == otherConnection.compassHeading2));
-		boolean headingsAreIndirectlyEqual = ((compassHeading1 == otherConnection.compassHeading2) && (compassHeading2 == otherConnection.compassHeading1));
+		boolean headingsAreDirectlyEqual   = ((compassHeading1 == other.compassHeading1) && (compassHeading2 == other.compassHeading2));
+		boolean headingsAreIndirectlyEqual = ((compassHeading1 == other.compassHeading2) && (compassHeading2 == other.compassHeading1));
 		
-		if ( !(headingsAreDirectlyEqual || headingsAreIndirectlyEqual) ) {
-			return false;
-		}
-		return true;
+		return headingsAreDirectlyEqual || headingsAreIndirectlyEqual;
 	}
-	
-	/* Private Functions */
-	
-	private boolean connectionIsValid(Track.CompassHeading inputHeading1, Track.CompassHeading inputHeading2) {
-		if (inputHeading1 == inputHeading2) {
-			return false;
-		}
-		return true;
+		
+	private boolean connectionIsValid(CompassHeading inputHeading1, CompassHeading inputHeading2) {
+		return inputHeading1 != inputHeading2;
+	}
+
+	void rotate90Degrees() {
+		compassHeading1.clockwise90Degrees();
+		compassHeading2.clockwise90Degrees();
 	}	
 }

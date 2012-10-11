@@ -11,7 +11,7 @@ import com.trainpuzzle.ui.windows.LoadedLevel;
 
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.map.Map;
+import com.trainpuzzle.model.map.Board;
 import com.trainpuzzle.model.map.Track;
 import com.trainpuzzle.model.map.Location;
 
@@ -85,11 +85,11 @@ public class Application {
 	
 	/* Getters and Setters */
 	
-	public Map getBlankMap() {
+	public Board getBlankMap() {
 		return loadedLevel.getMap();
 	}
 	
-	public Map getTrackMap() {
+	public Board getTrackMap() {
 		return loadedLevelWithTrack.getMap();
 	}
 }
