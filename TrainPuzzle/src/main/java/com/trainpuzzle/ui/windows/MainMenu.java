@@ -71,7 +71,7 @@ class MainMenu extends Window implements ActionListener {
 			WindowManager.getManager().setActiveWindow(new LevelSelect()); 
 			WindowManager.getManager().updateWindows();
 		} else if (action == "campaigns") {
-			WindowManager.getManager().setActiveWindow(new Campaigns()); 
+			WindowManager.getManager().setActiveWindow(new CampaignsMenu()); 
 			WindowManager.getManager().updateWindows();
 		} else if (action == "exit") {
 			// Exit program
