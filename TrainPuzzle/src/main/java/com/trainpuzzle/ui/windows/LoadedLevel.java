@@ -1,5 +1,5 @@
 package com.trainpuzzle.ui.windows;
-
+import com.trainpuzzle.observe.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,10 +17,10 @@ import com.trainpuzzle.model.map.CompassHeading;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
 
-import java.util.*;
+
 
 // Level selection for the campaign
-public class LoadedLevel extends Window implements ActionListener {
+public class LoadedLevel extends Window implements ActionListener, Observer {
 	// Layout Manager
 	private GridBagConstraints c;
 	
@@ -41,7 +41,6 @@ public class LoadedLevel extends Window implements ActionListener {
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
-	
 	private Application app;
 	
 	Border loweredbevel, loweredetched;
@@ -61,6 +60,10 @@ public class LoadedLevel extends Window implements ActionListener {
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
+	}
+	
+	public void notifyChange(){
+		
 	}
 	
 	public void redrawTrain(Train train) {		
