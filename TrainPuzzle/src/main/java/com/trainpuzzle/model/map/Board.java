@@ -1,5 +1,9 @@
 package com.trainpuzzle.model.map;
 
+import java.util.LinkedList;
+import java.util.List;
+import com.trainpuzzle.observe.*;
+
 /**
  * 
  * @author $Author$
@@ -8,11 +12,12 @@ package com.trainpuzzle.model.map;
  *
  */
 
-public class Board {
+public class Board implements Observable{
 
 	private Tile[][] tiles;
 	private int numberOfRows; //height
 	private int numberOfColumns; //width
+	private List<Observer> observerList;
 	
 	/* Public Interface */
 	
@@ -23,9 +28,19 @@ public class Board {
 		tiles = new Tile[numberOfRows][numberOfColumns];
 		initializeTiles();
 		addSomeTrackTiles();
+		observerList = new LinkedList<Observer>();
+	}
+	
+	public void register(Observer observer){
+		
+	}
+	public void notifyAllObservers(){
+		
 	}
 	
 	/*Private Functions */
+	
+
 	
 	private void initializeTiles() {
 			
