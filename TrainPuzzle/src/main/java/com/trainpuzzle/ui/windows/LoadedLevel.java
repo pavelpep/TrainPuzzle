@@ -21,17 +21,16 @@ import com.trainpuzzle.model.map.Location;
 
 // Level selection for the campaign
 public class LoadedLevel extends Window implements ActionListener, Observer {
-	// Layout Manager
-	private GridBagConstraints c;
 	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
 	private JButton runButton = new JButton();
-	private JLabel dragTile = new JLabel();
 	private JPanel mapPanel = new JPanel();
 	private JPanel sidePanel = new JPanel();
 	private JLabel grassTile = new JLabel();
 	private JLabel trackTile = new JLabel();
+	private JLabel tempTrack = new JLabel();
+	private JLayeredPane draggableTile = new JLayeredPane();
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
 	
 	MouseListener mouseListener = new TileMouseAdapter();
@@ -44,7 +43,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
-	private JLayeredPane setOfTracks;
+	
 	private Application app;
 	
 	Border loweredbevel, loweredetched;
@@ -57,9 +56,8 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		previousTrainRow = 0;
 		previousTrainColumn = 0;
-		
-		c = new GridBagConstraints();
-		setBackground(Color.LIGHT_GRAY);
+
+		//setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,13 +117,13 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
-            		grassTile.addMouseListener(mouseListener);
-            		grassTile.setTransferHandler(new TransferHandler("icon"));
+//            		grassTile.addMouseListener(mouseListener);
+           		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
-            		grassTile.addMouseListener(mouseListener);
+//            		grassTile.addMouseListener(mouseListener);
             		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
@@ -149,24 +147,33 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		//testSimulation(testLevel);
 		
-        setOfTracks = new JLayeredPane();
 		// Track Panel 
         sidePanel.setPreferredSize(new Dimension(250, 600));
+        sidePanel.setLayout(new GridLayout(10, 2));
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		sidePanel.setBorder(sidePanelTitle);		
+		sidePanel.setBorder(sidePanelTitle);	
+		
+    	draggableTile = new JLayeredPane();
+    	draggableTile.setPreferredSize(new Dimension(40, 40));
 		
 		runButton = new JButton("Simulate");
-		//setOfTracks.add(runButton);
 		sidePanel.add(runButton);
 		
-		setOfTracks = new JLayeredPane();
+		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+		trackTile.setBounds(0,0,40,40);
+		trackTile.addMouseListener(mouseListener);
+		trackTile.setTransferHandler(new TransferHandler("icon"));
+		//draggableTile.add(trackTile, new Integer(1));
 		
-		//setOfTracks.add(runButton, new Integer(1));
-		dragTile = new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-		dragTile.addMouseListener(mouseListener);
-		dragTile.setTransferHandler(new TransferHandler("icon"));
-		sidePanel.add(dragTile);
+		tempTrack=new JLabel(new ImageIcon("src/main/resources/images/tempTrack.png"));
+		tempTrack.setBounds(0,0,40,40);
+		tempTrack.addMouseListener(mouseListener);
+		tempTrack.setTransferHandler(new TransferHandler("icon"));
+		//draggableTile.add(tempTrack, new Integer(1));
+		
+		sidePanel.add(trackTile);
+		sidePanel.add(tempTrack);
 		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
