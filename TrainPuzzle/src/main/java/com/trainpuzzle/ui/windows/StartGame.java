@@ -11,17 +11,17 @@ public class StartGame {
 		BasicConfigurator.configure();
 		
 		// Loads Main Menu upon start
-//		try {
-//		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-//		        if ("Nimbus".equals(info.getName())) {
-//		            UIManager.setLookAndFeel(info.getClassName());
-//		            break;
-//		        }
-//		    }
-//		} catch (Exception e) {
-//		    // Switch to default view
-//		}		
-		WindowManager.getManager().setActiveWindow(new MainMenu());
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // Switch to default view
+		}		
+		WindowManager.getManager().setActiveWindow(new LevelSelect());
 		WindowManager.getManager().updateWindows();
 	}
 }
