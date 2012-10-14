@@ -27,11 +27,14 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	// Window elements
 	private JLabel titleLabel = new JLabel();
 	private JButton runButton = new JButton();
+	private JLabel dragTile = new JLabel();
 	private JPanel mapPanel = new JPanel();
 	private JPanel sidePanel = new JPanel();
 	private JLabel grassTile = new JLabel();
 	private JLabel trackTile = new JLabel();
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
+	
+	MouseListener mouseListener = new TileMouseAdapter();
 	
 	private int previousTrainRow;
 	private int previousTrainColumn;
@@ -41,6 +44,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
+	private JLayeredPane setOfTracks;
 	private Application app;
 	
 	Border loweredbevel, loweredetched;
@@ -115,10 +119,14 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
+            		grassTile.addMouseListener(mouseListener);
+            		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
+            		grassTile.addMouseListener(mouseListener);
+            		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
             	grassTile.setBounds(0,0,40,40);
@@ -141,6 +149,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		//testSimulation(testLevel);
 		
+        setOfTracks = new JLayeredPane();
 		// Track Panel 
         sidePanel.setPreferredSize(new Dimension(250, 600));
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
@@ -148,7 +157,16 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		sidePanel.setBorder(sidePanelTitle);		
 		
 		runButton = new JButton("Simulate");
+		//setOfTracks.add(runButton);
 		sidePanel.add(runButton);
+		
+		setOfTracks = new JLayeredPane();
+		
+		//setOfTracks.add(runButton, new Integer(1));
+		dragTile = new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+		dragTile.addMouseListener(mouseListener);
+		dragTile.setTransferHandler(new TransferHandler("icon"));
+		sidePanel.add(dragTile);
 		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
