@@ -10,7 +10,8 @@ import javax.swing.*;
 import java.util.*;
 
 // Level selection for the campaign
-class LevelSelect extends Window implements ActionListener {
+public class LevelSelect extends Window implements ActionListener {
+	private CampaignManager campaignManager;
 	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
@@ -24,7 +25,17 @@ class LevelSelect extends Window implements ActionListener {
 	public LevelSelect() {
 		gbConstraints = new GridBagConstraints();
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(640,480));
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);	
+	}
+	
+	public LevelSelect(CampaignManager campaignManager) {
+		this.campaignManager = campaignManager;
+		
+		gbConstraints = new GridBagConstraints();
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
@@ -60,13 +71,12 @@ class LevelSelect extends Window implements ActionListener {
 		String action = event.getActionCommand();
 		
 		if (action == "back") {
-				WindowManager.getManager().setActiveWindow(new MainMenu()); 
+				WindowManager.getManager().setActiveWindow(new MainMenu(campaignManager)); 
 				WindowManager.getManager().updateWindows();
 		} else if (action == "LEVEL_ONE") {
 			levelSelected = 1;
 			
 			LoadedLevel loadedLevel = new LoadedLevel();
-			app = new Application(levelSelected, loadedLevel);
 			
 			loadedLevel.setApplication(app);	
 			WindowManager.getManager().setActiveWindow(loadedLevel); 

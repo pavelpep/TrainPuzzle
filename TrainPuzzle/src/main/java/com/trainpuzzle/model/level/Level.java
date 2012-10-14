@@ -2,14 +2,7 @@ package com.trainpuzzle.model.level;
 
 import com.trainpuzzle.model.map.*;
 
-/**
- * Class generates {@link Board} based on victory condition, {@link Landscape} and
- * {@link Obstacle}s of the level.
- * 
- * @author $Author$
- * @version $Revision$
- * @since $Date$
- */
+
 public class Level {
 	private Board map;
 	private Location startLocation;

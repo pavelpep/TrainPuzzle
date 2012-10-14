@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-// The main menu for the Train Track Puzzle game
-class MainMenu extends Window implements ActionListener {
+import com.trainpuzzle.controller.CampaignManager;
+
+
+public class MainMenu extends Window implements ActionListener {	
+	CampaignManager campaignManager;
 	
 	// Window elements
 	private JLabel menuLabel = new JLabel();
@@ -17,11 +20,17 @@ class MainMenu extends Window implements ActionListener {
 	// Constructor
 	public MainMenu() {		
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(640,480));
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);		
 	}
-
+	
+	public MainMenu(CampaignManager campaignManager) {		
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);		
+	}
 	
 	public void Create() {	    
 		
@@ -37,7 +46,7 @@ class MainMenu extends Window implements ActionListener {
 	
 		/// Campaigns Button
 		initializeComponent(this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
-		this.profilesButton.setText("Add/Change User");
+		this.profilesButton.setText("Add/Change Campaign");
 		this.add(this.profilesButton, gbConstraints);
 			
 		// Credits Button
@@ -68,10 +77,10 @@ class MainMenu extends Window implements ActionListener {
 		String action = event.getActionCommand();
 		
 		if (action == "continue") {
-			WindowManager.getManager().setActiveWindow(new LevelSelect()); 
+			WindowManager.getManager().setActiveWindow(new LevelSelect(campaignManager)); 
 			WindowManager.getManager().updateWindows();
 		} else if (action == "campaigns") {
-			WindowManager.getManager().setActiveWindow(new CampaignsMenu()); 
+			WindowManager.getManager().setActiveWindow(new CampaignsMenu(campaignManager)); 
 			WindowManager.getManager().updateWindows();
 		} else if (action == "exit") {
 			// Exit program

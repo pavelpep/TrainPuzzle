@@ -1,47 +1,35 @@
 package com.trainpuzzle.model.map;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+
 import com.trainpuzzle.observe.*;
 
-/**
- * 
- * @author $Author$
- * @version $Revision$
- * @since $Date$
- *
- */
 
-public class Board implements Observable{
+public class Board implements Observable {
 
 	private Tile[][] tiles;
-	private int numberOfRows; //height
-	private int numberOfColumns; //width
-	private List<Observer> observerList;
-	
-	/* Public Interface */
+	private int numberOfRows = 100;; //height
+	private int numberOfColumns = 100;; //width
+	//private List<Observer> observerList = new LinkedList<Observer>();;
+	private Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
-		//Initialize the map with 60x40 tiles
-		numberOfRows = 100;
-		numberOfColumns = 100;
 		tiles = new Tile[numberOfRows][numberOfColumns];
 		initializeTiles();
 		addSomeTrackTiles();
-		observerList = new LinkedList<Observer>();
 	}
 	
 	public void register(Observer observer){
-		
+		observerList.add(observer);
 	}
+	
 	public void notifyAllObservers(){
-		
+		for(Observer observer : observerList) {
+			observer.notifyChange();
+		}
 	}
-	
-	/*Private Functions */
-	
-
-	
+		
 	private void initializeTiles() {
 			
 		for(int row = 0; row < numberOfRows; row++) {
@@ -61,8 +49,6 @@ public class Board implements Observable{
 		 this.tiles[4][column].setTrack(new Track());
 		}
 	}
-	
-	/* Getters and Setters */
 	
 	public Tile getTile(int row, int column) {
 		return tiles[row][column];

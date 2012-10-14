@@ -13,7 +13,7 @@ import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.map.CompassHeading;
+import com.trainpuzzle.model.map.Heading;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
 
@@ -188,7 +188,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		Train testTrain = new Train();
 		testTrain.setLocation(0, 4);
-		testTrain.setCompassHeading(CompassHeading.EAST);
+		testTrain.setHeading(Heading.EAST);
 		for(int row = 0; row < numberOfRows; row++) {
 			for(int column = 0; column < numberOfColumns; column++) {
 				if(levelToSimulate.getMap().getTile(row,column).hasTrack()) {

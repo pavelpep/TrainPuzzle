@@ -5,33 +5,45 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import com.trainpuzzle.controller.CampaignManager;
+
 import java.util.*;
 
 class CampaignsMenu extends Window implements ActionListener, ListSelectionListener {
+	CampaignManager campaignManager;
+	
 	// Layout Manager
 	private GridBagConstraints c;
 	
 	// Window elements	
-	private JList profileList;
-	private DefaultListModel listModel;
+	private JList profileList = null;
+	private DefaultListModel listModel = null;
 	
-	private JLabel title;
-	private JButton newProfile;
-	private JButton loadProfile;
-	private JButton backButton;
+	private JLabel title = null;
+	private JButton newProfile = null;
+	private JButton loadProfile = null;
+	private JButton backButton = null;
 		
 	// Constructor
 	public CampaignsMenu() {
-		profileList = null;
-		listModel = null;
-		title = null;
-		newProfile = null;
-		loadProfile = null;
-		backButton = null;
 		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(640,480));
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+		listModel = new DefaultListModel();
+		listModel.addElement("Player1");
+		listModel.addElement("Player2");
+	}
+	
+public CampaignsMenu(CampaignManager campaignManager) {
+		this.campaignManager = campaignManager;
+				
+		c = new GridBagConstraints();
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		

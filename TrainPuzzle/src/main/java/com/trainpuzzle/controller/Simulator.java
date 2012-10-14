@@ -4,14 +4,10 @@ import java.util.Set;
 
 import com.trainpuzzle.model.map.*;
 import com.trainpuzzle.model.level.*;
+import static com.trainpuzzle.model.map.Heading.*;
 
 import com.trainpuzzle.exception.TrainCrashException;
-/**
- * 
- * @author $Author$
- * @version $Revision$
- * @since $Date$
- */
+
 public class Simulator {	
 	public static final int LATITUDE = 0;	 
 	public static final int LONGITUDE = 1; 
@@ -19,7 +15,7 @@ public class Simulator {
 	private Board map;
 	private Train train;
 	private Location destination;
-	/* Public Interface */
+	
 	
 	public Simulator(Level level) {
 		this.map = level.getMap();
@@ -27,7 +23,7 @@ public class Simulator {
 		Location startPoint = level.getStartLocation();
 		this.destination =level.getEndLocation();
 		this.train.setLocation(startPoint.getRow(),startPoint.getColumn());
-		this.train.setCompassHeading(CompassHeading.EAST);
+		this.train.setHeading(EAST);
 	}
 	
 	/**
@@ -37,7 +33,7 @@ public class Simulator {
 	 */
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
-		CompassHeading heading = train.getCompassHeading();       
+		Heading heading = train.getHeading();
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
@@ -49,8 +45,8 @@ public class Simulator {
 		} 
 		
 		Track track = tile.getTrack();
-		CompassHeading nextHeading = getNextHeading(track,heading);
-		this.train.setCompassHeading(nextHeading);
+		Heading nextHeading = getNextHeading(track,heading);
+		this.train.setHeading(nextHeading);
 		train.setLocation(location.getRow(), location.getColumn());
 	}
 	
@@ -61,8 +57,6 @@ public class Simulator {
 		return false;
 	}
 	
-	/* Private Functions */
-	
 	/**
 	 * Get location that the train is heading
 	 * 
@@ -70,7 +64,7 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
-	private Location getNextTile(Location location, CompassHeading heading) {
+	private Location getNextTile(Location location, Heading heading) {
 		switch(heading) {
 			case NORTHWEST:
 				location.setRow(location.getRow() - 1);
@@ -112,17 +106,17 @@ public class Simulator {
 	 * @param heading direction the train heading now
 	 * @return whether the train get into the next track successfully or not 
 	 */
-	private CompassHeading getNextHeading(Track track, CompassHeading heading) throws TrainCrashException {
-		CompassHeading oppositeHeading = heading.opposite();
+	private Heading getNextHeading(Track track, Heading heading) throws TrainCrashException {
+		Heading oppositeHeading = heading.opposite();
 		Set<Connection> connections = track.getConnections();
 		
 		for(Connection connection : connections) {
 			int[] headings = connection.getHeadingValues();
 			
 			if (headings[0] == oppositeHeading.getValue()) {
-				return CompassHeading.getCompassHeading(headings[1]);
+				return Heading.getHeading(headings[1]);
 			} else if (headings[1] == oppositeHeading.getValue()) {
-				return CompassHeading.getCompassHeading(headings[0]);
+				return Heading.getHeading(headings[0]);
 			}
 		}		
 		throw new TrainCrashException();
@@ -133,11 +127,7 @@ public class Simulator {
 			return true;
 		}
 		return false;
-	}
-
-	
-	/* Getters and Setters */
-	
+	}	
 	
 	public Train getTrain() {
 		return this.train;

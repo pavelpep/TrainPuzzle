@@ -14,7 +14,7 @@ import javax.swing.*;
  * Only ONE Window Manager can exist at any time during the program.
  */
 
-class WindowManager {
+public class WindowManager {
 	// Fields
 	private static WindowManager manager;
 	

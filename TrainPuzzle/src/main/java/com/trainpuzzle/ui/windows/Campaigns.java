@@ -5,33 +5,29 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import com.trainpuzzle.controller.CampaignManager;
+
 import java.util.*;
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
+	CampaignManager campaignManager;
 	// Layout Manager
 	private GridBagConstraints c;
 	
 	// Window elements	
 	private JList profileList;
-	private DefaultListModel listModel;
+	private DefaultListModel listModel = null;
 	
-	private JLabel title;
-	private JButton newProfile;
-	private JButton loadProfile;
-	private JButton backButton;
-		
+	private JLabel title = null;
+	private JButton newProfile = null;;
+	private JButton loadProfile = null;
+	private JButton backButton = null;
+	
 	// Constructor
 	public Campaigns() {
-		profileList = null;
-		listModel = null;
-		title = null;
-		newProfile = null;
-		loadProfile = null;
-		backButton = null;
-		
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(640,480));
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
@@ -39,7 +35,21 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		listModel.addElement("Player1");
 		listModel.addElement("Player2");
 	}
-
+	
+	public Campaigns(CampaignManager campaignManager) {
+		this.campaignManager = campaignManager;
+		
+		c = new GridBagConstraints();
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+		listModel = new DefaultListModel();
+		listModel.addElement("Player1");
+		listModel.addElement("Player2");
+	}
+	
 	public void Create() {
 		// Title
 		title = new JLabel("Choose Campaign");
@@ -88,7 +98,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		c.insets = new Insets(30, 0, 0, 0);
 		this.add(backButton, c);		
 		
-				// ActionListeners for window elements
+		// ActionListeners for window elements
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 		
@@ -101,7 +111,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 			WindowManager.getManager().setActiveWindow(new MainMenu()); 
 			WindowManager.getManager().updateWindows();
 		}
-		
 	}
 
 	public void valueChanged(ListSelectionEvent arg0) {

@@ -4,12 +4,7 @@ import org.apache.log4j.Logger;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.*;
 
-/**
- * 
- * @author $Author$
- * @version $Revision$
- * @since $Date$
- */
+
 public class TrackPlacer {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;

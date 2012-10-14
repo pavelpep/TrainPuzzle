@@ -11,7 +11,9 @@ import javax.swing.*;
 abstract class Window extends JFrame {
 	// Layout Manager
 	protected GridBagConstraints gbConstraints = new GridBagConstraints();
-			
+	protected static final int DEFAULT_WIDTH = 640;
+	protected static final int DEFAULT_HEIGHT = 480;
+	
 	Window() {}
 	
 	// Creates the JFrame with elements

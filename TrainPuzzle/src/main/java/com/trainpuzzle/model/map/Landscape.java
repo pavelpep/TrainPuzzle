@@ -1,12 +1,6 @@
 package com.trainpuzzle.model.map;
 
-/**
- * 
- * @author $Author$
- * @version $Revision$
- * @since $Date$
- *
- */
+
 public class Landscape {
 	private String type;
 
