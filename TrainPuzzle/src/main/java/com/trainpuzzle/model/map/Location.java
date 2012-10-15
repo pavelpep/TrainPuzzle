@@ -18,10 +18,7 @@ public class Location {
 			return false;
 		}
 		Location location = (Location) object;
-		if(this.row == location.getRow() && this.column == location.getColumn()){
-			return true;
-		}
-		return false;
+		return this.row == location.getRow() && this.column == location.getColumn();
 	}
 
 	/* Getters and Setters */
