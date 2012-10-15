@@ -23,13 +23,12 @@ public class VictoryCondition {
 		}
 	}
 	
-	public void removePassedLocation(Location currentLocation) {
-		if(currentLocation != null){
-			for(Location location : this.locationsMustGoThrough){
-				if(location.equals(currentLocation)){
-					this.locationsMustGoThrough.remove(location);
-					break;
-				}
+	public void removePassedLocation(Train train) {
+		Location currentLocation = train.getLocation();
+		for(Location location : this.locationsMustGoThrough){
+			if(location.equals(currentLocation)){
+				this.locationsMustGoThrough.remove(location);
+				break;
 			}
 		}
 	}
