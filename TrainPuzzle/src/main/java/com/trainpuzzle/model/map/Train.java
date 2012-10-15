@@ -1,10 +1,15 @@
 package com.trainpuzzle.model.map;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
-public class Train {
+public class Train implements Observable{
  
 	private Location location; 
 	private Heading heading;
+	Set<Observer> observerList = new HashSet<Observer>();
 	
 	/* Public Interface */
 	
@@ -14,6 +19,18 @@ public class Train {
 	
 	public Train(int row, int column) {	
 		this.location = new Location(row,column);
+	}
+	
+	public void register(Observer observer) {
+		observerList.add(observer);
+		
+	}
+
+	public void notifyAllObservers() {
+		for(Observer observer : observerList){
+			observer.notifyChange();
+		}
+		
 	}
 	
 	/*Getters and Setters */
