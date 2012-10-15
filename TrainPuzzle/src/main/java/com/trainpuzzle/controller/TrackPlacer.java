@@ -27,12 +27,11 @@ public class TrackPlacer {
 	public void placeTrack(Track track,int latitude,int longitude) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(latitude, longitude);
 		if(tile.hasTrack()||tile.hasObstacle()) {
-			//logger.info("Track failed to be added to tile because there was an obstacle");
-			throw new CannotPlaceTrackException();
+			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track or an obstacle");
 		}
 		else{
 			tile.setTrack(track);
-			map.setTile(tile,latitude,longitude);
+			// map.setTile(tile,latitude,longitude); // can be removed because of passing by reference
 		}
 		
 	}
@@ -45,19 +44,18 @@ public class TrackPlacer {
 	public void removeTrack(int latitude, int longitude) throws CannotRemoveTrackException{
 		Tile tile = map.getTile(latitude, longitude);
 		if(!tile.hasTrack()||tile.hasObstacle()) {
-			//logger.info("Track failed to be removed because there is no track at the tile to remove");
-			throw new CannotRemoveTrackException();
+			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
 		}
 		else {
 			tile.removeTrack();
-			map.setTile(tile,latitude,longitude);
+			//map.setTile(tile,latitude,longitude); // can be removed because of passing by reference
 		}
 	}
 	
 	/* Getters and Setters */
 	
 	public Level getLevelWithTrack() {
-		levelToAddTrack.setMap(map);
+		//levelToAddTrack.setMap(map); // can be removed because of passing by reference
 		return levelToAddTrack;
 	}
 }
