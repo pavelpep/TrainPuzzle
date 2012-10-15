@@ -97,13 +97,25 @@ public class Application {
 	}
 	
 	public void placeTrack(Track track, int latitude, int longitude) {
-		trackBuilder.placeTrack(track, latitude, longitude);
-		loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+		try {
+			trackBuilder.placeTrack(track, latitude, longitude);
+			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+	}
+	
+	public void removeTrack(int latitude, int longitude) {
+		try {
+			trackBuilder.removeTrack(latitude, longitude);
+			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e.fillInStackTrace());
+		}
 	}
 	
 	
 	private void move() {
-		
     	try {
 			simulator.proceedNextTile();
 		} catch (TrainCrashException e) {

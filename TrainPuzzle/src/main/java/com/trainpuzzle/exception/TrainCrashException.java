@@ -1,7 +1,6 @@
 package com.trainpuzzle.exception;
 
 public class TrainCrashException extends Exception {
-
 	public TrainCrashException() {
 		
 	}
