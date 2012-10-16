@@ -17,6 +17,18 @@ public class Track {
 		connections.add(connection);
 	}
 	
+	public Track(Connection connection) {
+		connections = new HashSet<Connection>();
+		connections.add(connection);
+	}
+	
+	public Track(Connection connection1, Connection connection2) {
+		connections = new HashSet<Connection>();
+		connections.add(connection1);
+		connections.add(connection2);
+	}
+	
+	
 	public void rotateTrack() {		
 		for(Connection connection : connections) {
 			connection.rotate90Degrees();
