@@ -126,7 +126,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		mapTiles[row][column].add(trainLayer, new Integer(2));
 		
 		try {
-			mapTiles[previousTrainRow][previousTrainColumn].remove(mapTiles[previousTrainRow][previousTrainColumn].getComponentsInLayer(2)[0]);
+			mapTiles[previousTrainRow][previousTrainColumn].remove(mapTiles[previousTrainRow][previousTrainColumn].getComponentsInLayer(trainLayerIndex)[0]);
 			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
