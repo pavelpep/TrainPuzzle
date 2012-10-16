@@ -12,7 +12,7 @@ public class VictoryCondition {
 		endPoint = new Location(10,10);
 	}
 	
-	VictoryCondition(Location endPoint) {
+	public VictoryCondition(Location endPoint) {
 		this.endPoint = endPoint;
 	}
 	
