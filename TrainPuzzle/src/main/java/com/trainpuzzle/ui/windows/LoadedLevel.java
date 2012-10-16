@@ -89,7 +89,11 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	}
 	
 	private void modifyLandscape(int row, int column) {
-		mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
+		try {
+			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
+		} catch(Exception e){
+			logger.error(e.getMessage(), e.fillInStackTrace());
+		}
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
 			landscapeLayer=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
@@ -104,7 +108,11 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	}
 	
 	private void modifyTrack(int row, int column) {
-		mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
+		try {
+			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
+		} catch(Exception e){
+			logger.error(e.getMessage(), e.fillInStackTrace());
+		}
 		if(level.getMap().getTile(row, column).hasTrack()){
 			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
 			trackLayer.setBounds(0,0,40,40);
