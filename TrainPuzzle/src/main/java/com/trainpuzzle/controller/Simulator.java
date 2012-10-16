@@ -8,10 +8,7 @@ import static com.trainpuzzle.model.map.Heading.*;
 
 import com.trainpuzzle.exception.TrainCrashException;
 
-public class Simulator {	
-	public static final int LATITUDE = 0;	 
-	public static final int LONGITUDE = 1; 
-	
+public class Simulator {
 	private Board map;
 	private Train train;
 	private Location destination;

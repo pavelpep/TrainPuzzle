@@ -96,18 +96,18 @@ public class Application {
 	    t.start();	
 	}
 	
-	public void placeTrack(Track track, int latitude, int longitude) {
+	public void placeTrack(Track track, int row, int column) {
 		try {
-			trackBuilder.placeTrack(track, latitude, longitude);
+			trackBuilder.placeTrack(track, row, column);
 			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 	}
 	
-	public void removeTrack(int latitude, int longitude) {
+	public void removeTrack(int row, int column) {
 		try {
-			trackBuilder.removeTrack(latitude, longitude);
+			trackBuilder.removeTrack(row, column);
 			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());

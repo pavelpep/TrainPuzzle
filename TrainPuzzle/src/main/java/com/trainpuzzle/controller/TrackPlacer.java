@@ -12,47 +12,32 @@ public class TrackPlacer {
 	private Level levelToAddTrack;
 	private Board map;
 	
-	/* Public Interface */
-	
 	TrackPlacer(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
 		this.map = levelToAddTrack.getMap();
 	}
-	
-	/**
-	 * This function add a track on tile on location (latitude,longitude)
-	 * 
-	 * @param track latitude longitude 
-	 */
-	public void placeTrack(Track track,int latitude,int longitude) throws CannotPlaceTrackException{
-		Tile tile = map.getTile(latitude, longitude);
+
+	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
+		Tile tile = map.getTile(row, column);
 		if(tile.hasTrack()||tile.hasObstacle()) {
 			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track or an obstacle");
 		}
 		else{
 			tile.setTrack(track);
-			// map.setTile(tile,latitude,longitude); // can be removed because of passing by reference
+			// map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
-		
 	}
-	/**
-	 * this  function remove a track on tile on location(latitude,longitude)
-	 * 
-	 * @param latitude
-	 * @param longitude
-	 */
-	public void removeTrack(int latitude, int longitude) throws CannotRemoveTrackException{
-		Tile tile = map.getTile(latitude, longitude);
+
+	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
+		Tile tile = map.getTile(row, column);
 		if(!tile.hasTrack()||tile.hasObstacle()) {
 			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
 		}
 		else {
 			tile.removeTrack();
-			//map.setTile(tile,latitude,longitude); // can be removed because of passing by reference
+			//map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
 	}
-	
-	/* Getters and Setters */
 	
 	public Level getLevelWithTrack() {
 		//levelToAddTrack.setMap(map); // can be removed because of passing by reference
