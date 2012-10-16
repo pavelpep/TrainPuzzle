@@ -6,12 +6,14 @@ import com.trainpuzzle.model.map.*;
 public class VictoryCondition {
 	public static final Location NOENDPOINT= new Location(-1,-1); 
 	private Location endPoint;
-	private LinkedList<Location> locationsMustGoThrough;
+	private LinkedList<Location> locationsMustGoThrough = new LinkedList<Location>();
 	
 	VictoryCondition() {
 		endPoint = new Location(10,10);
-		this.locationsMustGoThrough =new LinkedList<Location>();
-		this.locationsMustGoThrough.add(endPoint);
+	}
+	
+	VictoryCondition(Location endPoint) {
+		this.endPoint = endPoint;
 	}
 	
 	VictoryCondition(Location endPoint,Location[] locationsMustGoThrough) {
