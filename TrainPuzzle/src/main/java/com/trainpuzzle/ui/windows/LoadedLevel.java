@@ -117,13 +117,13 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
-//            		grassTile.addMouseListener(mouseListener);
+            		//grassTile.addMouseListener(mouseListener);
            		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
             	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("water")) {
             		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
-//            		grassTile.addMouseListener(mouseListener);
+            		//grassTile.addMouseListener(mouseListener);	
             		grassTile.setTransferHandler(new TransferHandler("icon"));
             	}
             	
@@ -136,7 +136,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
                 	trackTile.setBounds(0,0,40,40);
                 	mapTile.add(trackTile, new Integer(1));
             	}
-            	
+            	mapTile.addMouseListener(mouseListener); 
             	mapPanel.add(mapTile);
             	mapTiles[row][column] = mapTile;
             }
