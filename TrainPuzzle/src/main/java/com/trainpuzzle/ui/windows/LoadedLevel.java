@@ -69,6 +69,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	}
 	
 	public void notifyChange(){
+		redrawTiles();
 	}
 	
 	public void redrawTiles(){
