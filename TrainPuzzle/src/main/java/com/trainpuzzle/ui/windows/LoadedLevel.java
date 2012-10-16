@@ -36,8 +36,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	
 	MouseListener mouseListener = new TileMouseAdapter();
 	
-	private int previousTrainRow;
-	private int previousTrainColumn;
+	Location previousTrainLocation;
 	
 	int numberOfRows = 15;
 	int numberOfColumns = 20;
@@ -60,8 +59,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		
-		previousTrainRow = 0;
-		previousTrainColumn = 0;
+		previousTrainLocation = new Location(0,0);
 
 		//setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridBagLayout());
@@ -86,6 +84,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 				}
             }
         }
+        mapPanel.repaint();
 	}
 	
 	private void modifyLandscape(int row, int column) {
@@ -127,27 +126,23 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
     	trainLayer.setBounds(0,0,40,40);
         
 		Location trainLocation = train.getLocation();
-		
 		int row = trainLocation.getRow();
 		int column = trainLocation.getColumn();
+		int previousRow = previousTrainLocation.getRow();
+		int previousColumn = previousTrainLocation.getColumn();
 		
-		mapTiles[row][column].add(trainLayer, new Integer(2));
+		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
 		
 		try {
-			mapTiles[previousTrainRow][previousTrainColumn].remove(mapTiles[previousTrainRow][previousTrainColumn].getComponentsInLayer(trainLayerIndex)[0]);
+			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
 			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		previousTrainRow = trainLocation.getRow();
-		previousTrainColumn= trainLocation.getColumn();
+		previousTrainLocation = trainLocation;
 		
-		mapPanel.repaint();
-	}
-	
-	public void redraw(){
 		mapPanel.repaint();
 	}
 	
