@@ -45,10 +45,7 @@ public class Connection {
 		if (this == object) {
 			return true;
 		}
-		if (object == null) {
-			return false;
-		}
-		if (getClass() != object.getClass()) {
+		if ((object == null) || (getClass() != object.getClass())) {
 			return false;
 		}
 		Connection other = (Connection) object;
