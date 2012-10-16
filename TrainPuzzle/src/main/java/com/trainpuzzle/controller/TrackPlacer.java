@@ -24,6 +24,7 @@ public class TrackPlacer {
 		}
 		else{
 			tile.setTrack(track);
+			map.notifyAllObservers();
 			// map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
 	}
@@ -35,6 +36,7 @@ public class TrackPlacer {
 		}
 		else {
 			tile.removeTrack();
+			map.notifyAllObservers();
 			//map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
 	}

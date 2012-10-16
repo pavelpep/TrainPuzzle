@@ -44,7 +44,6 @@ public class Application {
 		
 		application.createMainMenu();
 	}
-
 	
 	public Application() {
 	}
@@ -100,6 +99,7 @@ public class Application {
 		try {
 			trackBuilder.placeTrack(track, row, column);
 			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+			
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
@@ -113,7 +113,6 @@ public class Application {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 	}
-	
 	
 	private void move() {
     	try {
@@ -137,6 +136,4 @@ public class Application {
 	public Board getTrackMap() {
 		return loadedLevelWithTrack.getMap();
 	}
-	
-
 }
