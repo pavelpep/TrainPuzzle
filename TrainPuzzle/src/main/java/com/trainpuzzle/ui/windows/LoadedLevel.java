@@ -14,6 +14,7 @@ import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.Heading;
+import com.trainpuzzle.model.map.Tile;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
 
@@ -27,8 +28,8 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	private JButton runButton = new JButton();
 	private JPanel mapPanel = new JPanel();
 	private JPanel sidePanel = new JPanel();
-	private JLabel grassTile = new JLabel();
-	private JLabel trackTile = new JLabel();
+	private JLabel landscapeLayer = new JLabel();
+	private JLabel trackLayer = new JLabel();
 	private JLabel tempTrack = new JLabel();
 	private JLayeredPane draggableTile = new JLayeredPane();
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
@@ -41,10 +42,15 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	int numberOfRows = 15;
 	int numberOfColumns = 20;
 	
+	private final int landscapeLayerIndex = 0;
+	private final int trackLayerIndex = 1;
+	private final int trainLayerIndex = 2;
+	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
 	
 	private Application app;
+	private Level level;
 	
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, sidePanelTitle;
@@ -65,20 +71,59 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	}
 	
 	public void notifyChange(){
-		
 	}
 	
-	public void redrawTrain(Train train) {		
-		JLabel trainTile;
-    	trainTile = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
-    	trainTile.setBounds(0,0,40,40);
+	public void redrawTiles(){
+        for(int row = 0; row < numberOfRows; row++){
+            for(int column = 0; column < numberOfColumns; column++){
+				try {
+					modifyLandscape(row, column);
+	            	modifyTrack(row, column);
+					//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
+		        	
+				} catch(Exception e){
+					logger.error(e.getMessage(), e.fillInStackTrace());
+				}
+            }
+        }
+	}
+	
+	private void modifyLandscape(int row, int column) {
+		mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
+		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
+			landscapeLayer=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));
+			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
+		}
+		
+		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
+			landscapeLayer=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
+			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
+		}
+		landscapeLayer.setBounds(0,0,40,40);
+		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
+	}
+	
+	private void modifyTrack(int row, int column) {
+		mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
+		if(level.getMap().getTile(row, column).hasTrack()){
+			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+			trackLayer.setBounds(0,0,40,40);
+			mapTile.add(trackLayer, new Integer(trackLayerIndex));
+		}
+	}
+	
+	public void redrawTrain(Train train) {
+		
+		JLabel trainLayer;
+    	trainLayer = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
+    	trainLayer.setBounds(0,0,40,40);
         
 		Location trainLocation = train.getLocation();
 		
 		int row = trainLocation.getRow();
 		int column = trainLocation.getColumn();
 		
-		mapTiles[row][column].add(trainTile, new Integer(2));
+		mapTiles[row][column].add(trainLayer, new Integer(2));
 		
 		try {
 			mapTiles[previousTrainRow][previousTrainColumn].remove(mapTiles[previousTrainRow][previousTrainColumn].getComponentsInLayer(2)[0]);
@@ -90,11 +135,16 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		previousTrainRow = trainLocation.getRow();
 		previousTrainColumn= trainLocation.getColumn();
+		
+		mapPanel.repaint();
+	}
+	
+	public void redraw(){
 		mapPanel.repaint();
 	}
 	
 	public void Create() {
-		
+	
 		
 		// Game title
 		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
@@ -102,43 +152,26 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		this.add(this.titleLabel, gbConstraints);
 		
 		// Map Panel
-		Level testLevel = new Level(1);
+		level = new Level(1);
 		
 		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
 		
 		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		
+		
         for(int row = 0; row < numberOfRows; row++){
             for(int column = 0; column < numberOfColumns; column++){
-            	
-            	mapTile = new JLayeredPane();
-            	mapTile.setPreferredSize(new Dimension(40, 40));
-            	
-            	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
-            		grassTile=new JLabel(new ImageIcon("src/main/resources/images/grass.png")); 
-            		//grassTile.addMouseListener(mouseListener);
-           		grassTile.setTransferHandler(new TransferHandler("icon"));
-            	}
-            	
-            	if(testLevel.getMap().getTile(row, column).getLandscapeType().equals("water")) {
-            		grassTile=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
-            		//grassTile.addMouseListener(mouseListener);	
-            		grassTile.setTransferHandler(new TransferHandler("icon"));
-            	}
-            	
-            	grassTile.setBounds(0,0,40,40);
-            	
-            	mapTile.add(grassTile, new Integer(0));
-            	
-            	if(testLevel.getMap().getTile(row, column).hasTrack()){
-            		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-                	trackTile.setBounds(0,0,40,40);
-                	mapTile.add(trackTile, new Integer(1));
-            	}
-            	mapTile.addMouseListener(mouseListener); 
+        		mapTile = new JLayeredPane();
+        		mapTile.setPreferredSize(new Dimension(40, 40));
+        		
+				modifyLandscape(row, column);
+            	modifyTrack(row, column);
+        		
+				mapTile.addMouseListener(mouseListener); 
             	mapPanel.add(mapTile);
             	mapTiles[row][column] = mapTile;
+            	
             }
         }
         
@@ -160,10 +193,10 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		runButton = new JButton("Simulate");
 		sidePanel.add(runButton);
 		
-		trackTile=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-		trackTile.setBounds(0,0,40,40);
-		trackTile.addMouseListener(mouseListener);
-		trackTile.setTransferHandler(new TransferHandler("icon"));
+		trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+		trackLayer.setBounds(0,0,40,40);
+		trackLayer.addMouseListener(mouseListener);
+		trackLayer.setTransferHandler(new TransferHandler("icon"));
 		//draggableTile.add(trackTile, new Integer(1));
 		
 		tempTrack=new JLabel(new ImageIcon("src/main/resources/images/tempTrack.png"));
@@ -172,7 +205,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		tempTrack.setTransferHandler(new TransferHandler("icon"));
 		//draggableTile.add(tempTrack, new Integer(1));
 		
-		sidePanel.add(trackTile);
+		sidePanel.add(trackLayer);
 		sidePanel.add(tempTrack);
 		
 		runButton.setActionCommand("run");
@@ -183,6 +216,10 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		
 		this.setVisible(true);
 	}
+
+
+
+
 	
 	/**
 	 * Used for internal testing to see if a are simulating a level correctly. Avoid using Application and directly runs the simulator.
