@@ -11,14 +11,14 @@ import com.trainpuzzle.exception.TrainCrashException;
 public class Simulator {
 	private Board map;
 	private Train train;
-	private Location destination;
+	private VictoryCondition victoryCondition;
 	
 	
 	public Simulator(Level level) {
 		this.map = level.getMap();
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
-		this.destination =level.getEndLocation();
+		this.victoryCondition = new VictoryCondition(level.getEndLocation());
 		this.train.setLocation(startPoint.getRow(),startPoint.getColumn());
 		this.train.setHeading(EAST);
 	}
@@ -45,13 +45,11 @@ public class Simulator {
 		Heading nextHeading = getNextHeading(track,heading);
 		this.train.setHeading(nextHeading);
 		train.setLocation(location.getRow(), location.getColumn());
+		victoryCondition.removePassedLocation(train);
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
-		if(destination.equals(train.getLocation())) {
-			return true;
-		}
-		return false;
+		return this.victoryCondition.isVictoryConditionSatisfied(train);
 	}
 	
 	/**
