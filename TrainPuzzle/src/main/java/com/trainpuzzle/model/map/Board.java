@@ -17,7 +17,6 @@ public class Board implements Observable {
 	public Board() {
 		tiles = new Tile[numberOfRows][numberOfColumns];
 		initializeTiles();
-		addSomeTrackTiles();
 	}
 	
 	public void register(Observer observer){
@@ -43,20 +42,17 @@ public class Board implements Observable {
 	 * Currently used to create some pre-generated track. This will be removed/modified in the future as we expect the
 	 * user to place the track on the map.
 	 */
-	private void addSomeTrackTiles() {
-		
-		for(int column = 0; column < 20; column++){
-		 this.tiles[4][column].setTrack(new Track());
-		}
-	}
+
 	
 	public Tile getTile(int row, int column) {
 		return tiles[row][column];
 	}
 	
+	/*//this replaces tiles instead of modifying. Not needed.
 	public void setTile(Tile tile, int row, int column) {
 		tiles[row][column] = tile;
 	}
+	*/
 	
 	public int getNumberOfColumns() {
 		return numberOfColumns;
