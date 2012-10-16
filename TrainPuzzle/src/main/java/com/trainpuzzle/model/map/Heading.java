@@ -1,23 +1,22 @@
 package com.trainpuzzle.model.map;
 
 public enum Heading {
-	NORTHWEST(0), 				//   0       1       2
-	NORTH(1), 					//    +------*------+   
-	NORTHEAST(2),  				//    |             |
-	EAST(3),      				//    |             |
-	SOUTHEAST(4), 				//  7 *     TILE    * 3
-	SOUTH(5),					//    |             |
-	SOUTHWEST(6),				//    |             |
-	WEST(7);					//    +------*------+
+	NORTHWEST, 				//   0       1       2
+	NORTH, 					//    +------*------+   
+	NORTHEAST,  				//    |             |
+	EAST,      				//    |             |
+	SOUTHEAST, 				//  7 *     TILE    * 3
+	SOUTH,					//    |             |
+	SOUTHWEST,				//    |             |
+	WEST;					//    +------*------+
 								//   6       5       4
-	private int headingValue;
-	static final int numberOfHeadings = 8; //rename to capitals
+	private int headingValue = ordinal();
+	static final int NUMBEROFHEADINGS = values().length; //rename to capitals
 	private final int OPPOSITE_ROTATION = 4;
 	private final int CLOCKWISE_90DEGREES = 2;
 	private final int COUNTERCLOCKWISE_90DEGREES = 6;
 
-	private Heading(int headingValue) {
-		this.headingValue = headingValue;
+	private Heading() {
 	}
 	
 	public static Heading getHeading(int headingValue) {
@@ -45,7 +44,7 @@ public enum Heading {
 	
 	
 	private Heading rotate(int amount) {
-		int oppositeValue = (headingValue + amount) % numberOfHeadings;
+		int oppositeValue = (headingValue + amount) % NUMBEROFHEADINGS;
 		return getHeading(oppositeValue);
 	}
 	
