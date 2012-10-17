@@ -10,6 +10,7 @@ import javax.swing.border.*;
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.controller.Application;
+import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
@@ -23,7 +24,7 @@ import com.trainpuzzle.controller.TrackPlacer;
 
 
 // Level selection for the campaign
-public class LoadedLevel extends Window implements ActionListener, Observer {
+public class LoadedLevelScreen extends Window implements ActionListener, Observer {
 	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
@@ -34,7 +35,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	private JLabel trackLayer = new JLabel();
 	private JLabel tempTrack = new JLabel();
 	private JLayeredPane draggableTile = new JLayeredPane();
-	private Logger logger = Logger.getLogger(LoadedLevel.class);
+	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
 	MouseListener mouseListener;
 	
@@ -50,37 +51,25 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
 	
-	private Application app;
+	private GameController gameController;
 	private Level level;
 	
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, sidePanelTitle;
 	
 	// Constructor
-	public LoadedLevel() {
+	public LoadedLevelScreen(GameController gameController) {
+		this.gameController = gameController;
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		
-		previousTrainLocation = new Location(0,0);
 
 		//setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
-	}
-	
-	public LoadedLevel(TrackPlacer trackPlacer) {
-		this.mouseListener = new TileMouseAdapter(trackPlacer);
-		loweredbevel = BorderFactory.createLoweredBevelBorder();
-		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		
-
-		//setBackground(Color.LIGHT_GRAY);
-		setLayout(new GridBagLayout());
-		setSize(new Dimension(1280,720));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		previousTrainLocation = new Location(0,0);
 	}
 	
 	public void notifyChange(){
@@ -162,9 +151,8 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		mapPanel.repaint();
 	}
 	
-	public void Create() {
+	public void create() {
 	
-		
 		// Game title
 		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
 		this.titleLabel.setText("Level 1");
@@ -178,6 +166,8 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		
+		//System.out.println(gameController.toString());
+
 		
         for(int row = 0; row < numberOfRows; row++){
             for(int column = 0; column < numberOfColumns; column++){
@@ -193,6 +183,10 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
             	
             }
         }
+        
+		System.out.println(gameController.getSimulator().getTrain().getHeading());
+		Train train = gameController.getSimulator().getTrain();
+		redrawTrain(train);
         
         initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
         this.add(this.mapPanel, gbConstraints);
@@ -269,11 +263,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
-			app.runSimulation();
+			gameController.runSimulation();
 		}	
-	}
-	
-	public void setApplication(Application app) {
-		this.app = app;
 	}
 }

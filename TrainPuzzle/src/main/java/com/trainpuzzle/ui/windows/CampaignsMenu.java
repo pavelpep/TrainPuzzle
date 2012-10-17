@@ -52,7 +52,7 @@ public CampaignsMenu(CampaignManager campaignManager) {
 		listModel.addElement("Player2");
 	}
 
-	public void Create() {
+	public void create() {
 		// Title
 		title = new JLabel("Choose Campaign");
 		title.setFont(new Font("Arial", Font.BOLD, 20));

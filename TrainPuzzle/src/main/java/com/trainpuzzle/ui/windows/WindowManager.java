@@ -72,7 +72,7 @@ public class WindowManager {
 				previousWindow.dispose();
 			}
 			previousWindow = activeWindow;
-			activeWindow.Create();
+			activeWindow.create();
 			
 			isWindowChanged = false;
 		}

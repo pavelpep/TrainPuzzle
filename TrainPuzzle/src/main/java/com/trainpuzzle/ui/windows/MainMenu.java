@@ -4,10 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.CampaignManager;
+import com.trainpuzzle.controller.GameController;
 
 
-public class MainMenu extends Window implements ActionListener {	
+public class MainMenu extends Window implements ActionListener {
+	GameController gameController;
 	CampaignManager campaignManager;
 	
 	// Window elements
@@ -25,14 +28,15 @@ public class MainMenu extends Window implements ActionListener {
 		setLocationRelativeTo(null);		
 	}
 	
-	public MainMenu(CampaignManager campaignManager) {		
+	public MainMenu(GameController gameController) {	
+		this.gameController = gameController;
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);		
 	}
 	
-	public void Create() {	    
+	public void create() {	    
 		
 		// Game Title
 		initializeComponent(this.menuLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
@@ -77,7 +81,7 @@ public class MainMenu extends Window implements ActionListener {
 		String action = event.getActionCommand();
 		
 		if (action == "continue") {
-			WindowManager.getManager().setActiveWindow(new LevelSelect(campaignManager)); 
+			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
 			WindowManager.getManager().updateWindows();
 		} else if (action == "campaigns") {
 			WindowManager.getManager().setActiveWindow(new CampaignsMenu(campaignManager)); 
