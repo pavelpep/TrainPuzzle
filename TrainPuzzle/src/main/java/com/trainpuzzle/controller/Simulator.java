@@ -31,8 +31,6 @@ public class Simulator {
 		Location location = train.getLocation();
 		Heading heading = train.getHeading();
 		
-		System.out.println(train.getHeading());
-		
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
