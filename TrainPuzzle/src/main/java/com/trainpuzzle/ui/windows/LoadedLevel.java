@@ -18,6 +18,8 @@ import com.trainpuzzle.model.map.Tile;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
 
+import com.trainpuzzle.controller.TrackPlacer;
+
 
 
 // Level selection for the campaign
@@ -34,7 +36,7 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 	private JLayeredPane draggableTile = new JLayeredPane();
 	private Logger logger = Logger.getLogger(LoadedLevel.class);
 	
-	MouseListener mouseListener = new TileMouseAdapter();
+	MouseListener mouseListener;
 	
 	Location previousTrainLocation;
 	
@@ -66,6 +68,19 @@ public class LoadedLevel extends Window implements ActionListener, Observer {
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
+	}
+	
+	public LoadedLevel(TrackPlacer trackPlacer) {
+		this.mouseListener = new TileMouseAdapter(trackPlacer);
+		loweredbevel = BorderFactory.createLoweredBevelBorder();
+		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+		
+
+		//setBackground(Color.LIGHT_GRAY);
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(1280,720));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 	}
 	
 	public void notifyChange(){
