@@ -239,10 +239,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	 */
 	private void testSimulation(Level levelToSimulate) {
 		Simulator testSim = new Simulator(levelToSimulate);
-		testSim.getTrain().setLocation(0, 4);
+		Location location = new Location(0, 4);
+		testSim.getTrain().setLocation(location);
 		
 		Train testTrain = new Train();
-		testTrain.setLocation(0, 4);
+		testTrain.setLocation(location);
 		testTrain.setHeading(Heading.EAST);
 		for(int row = 0; row < numberOfRows; row++) {
 			for(int column = 0; column < numberOfColumns; column++) {

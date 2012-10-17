@@ -19,7 +19,7 @@ public class Simulator {
 		this.train= new Train();
 		Location startPoint = level.getStartLocation();
 		this.victoryCondition = new VictoryCondition(level.getEndLocation());
-		this.train.setLocation(startPoint.getRow(),startPoint.getColumn());
+		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
 	}
 	
@@ -32,6 +32,7 @@ public class Simulator {
 		Location location = train.getLocation();
 		Heading heading = train.getHeading();
 		
+		System.out.println(train.getHeading());
 		
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
@@ -44,9 +45,10 @@ public class Simulator {
 		} 
 		
 		Track track = tile.getTrack();
-		//System.out.println(track.getConnections().;
+		
 		Heading nextHeading = getNextHeading(track,heading);
 		this.train.setHeading(nextHeading);
+		//this.train.setLocation(location);
 		victoryCondition.removePassedLocation(train);
 	}
 	
