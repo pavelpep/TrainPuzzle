@@ -3,6 +3,9 @@ import com.trainpuzzle.observe.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -56,7 +59,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private final ImageIcon GRASSIMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	private final ImageIcon WATERIMAGE = new ImageIcon("src/main/resources/images/water.png");
-	private final ImageIcon TRAINIMAGE = new ImageIcon("src/main/resources/images/train.png");
+	private final ImageIcon TRAINIMAGE = new RotatedImageIcon("src/main/resources/images/train.png", 0);
 	
 	
 	private JLayeredPane mapTile;
