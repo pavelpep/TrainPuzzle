@@ -31,8 +31,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JButton runButton = new JButton();
 	private JPanel mapPanel = new JPanel();
 	private JPanel sidePanel = new JPanel();
-	private JLabel landscapeLayer = new JLabel();
-	private JLabel trackLayer = new JLabel();
+	
 	private JLabel tempTrack = new JLabel();
 	private JLayeredPane draggableTile = new JLayeredPane();
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
@@ -47,9 +46,18 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	int numberOfRows = 15;
 	int numberOfColumns = 20;
 	
+	private JLabel landscapeLayer = new JLabel();
+	private JLabel trackLayer = new JLabel();
+	private JLabel trainLayer = new JLabel();
+	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
+	
+	private final ImageIcon GRASSIMAGE = new ImageIcon("src/main/resources/images/grass.png");
+	private final ImageIcon WATERIMAGE = new ImageIcon("src/main/resources/images/water.png");
+	private final ImageIcon TRAINIMAGE = new ImageIcon("src/main/resources/images/train.png");
+	
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
@@ -103,12 +111,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
-			landscapeLayer=new JLabel(new ImageIcon("src/main/resources/images/grass.png"));
+			landscapeLayer=new JLabel(GRASSIMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
-			landscapeLayer=new JLabel(new ImageIcon("src/main/resources/images/water.png"));
+			landscapeLayer=new JLabel(WATERIMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		landscapeLayer.setBounds(0,0,40,40);
@@ -145,8 +153,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		int row = trainLocation.getRow();
 		int column = trainLocation.getColumn();
 		
-		JLabel trainLayer;
-    	trainLayer = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
+		
+		
+    	trainLayer = new JLabel(TRAINIMAGE);
     	trainLayer.setBounds(0,0,40,40);
 		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
 		
