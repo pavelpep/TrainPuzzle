@@ -222,13 +222,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.add(runButton);
 		
 		trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-		trackLayer.setBounds(0,0,40,40);
+		trackLayer.setBounds(40,40,40,40);
 		trackLayer.addMouseListener(mouseListener);
 		trackLayer.setTransferHandler(new TransferHandler("icon"));
 		//draggableTile.add(trackTile, new Integer(1));
 		
 		tempTrack=new JLabel(new ImageIcon("src/main/resources/images/tempTrack.png"));
-		tempTrack.setBounds(0,0,40,40);
+		tempTrack.setBounds(40,40,40,40);
 		tempTrack.addMouseListener(mouseListener);
 		tempTrack.setTransferHandler(new TransferHandler("icon"));
 		//draggableTile.add(tempTrack, new Integer(1));
