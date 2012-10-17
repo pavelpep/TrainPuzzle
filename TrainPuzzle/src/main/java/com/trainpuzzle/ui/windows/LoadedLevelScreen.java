@@ -141,13 +141,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		previousRow = trainLocation.getRow();
 		previousColumn = trainLocation.getColumn();
 
-		
 		trainLocation = train.getLocation();
 		int row = trainLocation.getRow();
 		int column = trainLocation.getColumn();
-		
-		System.out.println(previousRow + " " + previousColumn + " " + row + " " + column);
-		
 		
 		JLabel trainLayer;
     	trainLayer = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
