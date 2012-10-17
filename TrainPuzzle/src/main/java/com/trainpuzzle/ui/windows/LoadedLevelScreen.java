@@ -59,7 +59,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private final ImageIcon GRASSIMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	private final ImageIcon WATERIMAGE = new ImageIcon("src/main/resources/images/water.png");
-	private final ImageIcon TRAINIMAGE = new RotatedImageIcon("src/main/resources/images/train.png", 0);
+	
 	
 	
 	private JLayeredPane mapTile;
@@ -157,8 +157,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		int column = trainLocation.getColumn();
 		
 		
-		
-    	trainLayer = new JLabel(TRAINIMAGE);
+		int rotation = train.getHeading().getValue() - 3; //we should make train image point NORTHWEST to begin
+		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
+    	trainLayer = new JLabel(trainImage);
     	trainLayer.setBounds(0,0,40,40);
 		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
 		
