@@ -2,7 +2,10 @@ package com.trainpuzzle.model.map;
 
 import java.util.HashSet;
 import java.util.Set;
-import static com.trainpuzzle.model.map.Heading.*;
+
+import com.trainpuzzle.exception.TrainCrashException;
+
+import static com.trainpuzzle.model.map.CompassHeading.*;
 
 
 public class Track {
@@ -37,13 +40,36 @@ public class Track {
 	
 	/* Getters and Setters */
 	
-	public void addConnection(Heading firstCompassHeading, Heading secondCompassHeading) {
+	public void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
 		connections.add(new Connection(firstCompassHeading, secondCompassHeading));
 		return;
 	}
 	
 	public Set<Connection> getConnections() {
 		return connections;
+	}
+
+	/**
+	 * Get where the train heading in next track
+	 * 
+	 * @param inboundHeading direction the train heading now
+	 * @return whether the train get into the next track successfully or not 
+	 */
+
+	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
+		CompassHeading oppositeHeading = inboundHeading.opposite();
+		// Set<Connection> connections = getConnections();
+		
+		for(Connection connection : connections) {
+			int[] headings = connection.getHeadingValues();
+			
+			if (headings[0] == oppositeHeading.getValue()) {
+				return CompassHeading.getHeading(headings[1]);
+			} else if (headings[1] == oppositeHeading.getValue()) {
+				return CompassHeading.getHeading(headings[0]);
+			}
+		}		
+		throw new TrainCrashException();
 	}
 }
 

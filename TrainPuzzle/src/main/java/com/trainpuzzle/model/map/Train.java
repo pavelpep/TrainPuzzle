@@ -8,7 +8,7 @@ import com.trainpuzzle.observe.Observer;
 public class Train implements Observable{
  
 	private Location location; 
-	private Heading heading;
+	private CompassHeading heading;
 	Set<Observer> observerList = new HashSet<Observer>();
 	
 	/* Public Interface */
@@ -47,11 +47,11 @@ public class Train implements Observable{
 		
 	}
 	
-	public Heading getHeading() {
+	public CompassHeading getHeading() {
 		return heading;
 	}
 	
-	public void setHeading(Heading heading) {
+	public void setHeading(CompassHeading heading) {
 		this.heading = heading;
 		notifyAllObservers();
 	}

@@ -3,12 +3,12 @@ package com.trainpuzzle.model.map;
 
 public class Connection {
 	//TODO: Write comment of why it's not set to null
-	private Heading compassHeading1 = Heading.NORTHEAST;
-	private Heading compassHeading2 = Heading.NORTHWEST;
+	private CompassHeading compassHeading1 = CompassHeading.NORTHEAST;
+	private CompassHeading compassHeading2 = CompassHeading.NORTHWEST;
 	
 	/* Public Interface */
 	
-	public Connection(Heading compassHeading1, Heading compassHeading2) {
+	public Connection(CompassHeading compassHeading1, CompassHeading compassHeading2) {
 		modifyConnection(compassHeading1, compassHeading2);
 	}
 	
@@ -19,14 +19,14 @@ public class Connection {
 		return connectionValues;
 	}
 	
-	public Heading[] getCompassHeadingPair() {
-		Heading connectionHeadings[] = new Heading[2];
+	public CompassHeading[] getCompassHeadingPair() {
+		CompassHeading connectionHeadings[] = new CompassHeading[2];
 		connectionHeadings[0] = compassHeading1;
 		connectionHeadings[1] = compassHeading2;
 		return connectionHeadings;
 	}
 	
-	public void modifyConnection(Heading inputHeading1, Heading inputHeading2) {
+	public void modifyConnection(CompassHeading inputHeading1, CompassHeading inputHeading2) {
 		if(connectionIsValid(inputHeading1, inputHeading2)) {
 			compassHeading1= inputHeading1;
 			compassHeading2 = inputHeading2;
@@ -56,12 +56,12 @@ public class Connection {
 		return headingsAreDirectlyEqual || headingsAreIndirectlyEqual;
 	}
 		
-	private boolean connectionIsValid(Heading inputHeading1, Heading inputHeading2) {
+	private boolean connectionIsValid(CompassHeading inputHeading1, CompassHeading inputHeading2) {
 		return inputHeading1 != inputHeading2;
 	}
 
 	void rotate90Degrees() {
-		compassHeading1.clockwise90Degrees();
-		compassHeading2.clockwise90Degrees();
+		compassHeading1.rotate90DegreesClockwise();
+		compassHeading2.rotate90DegreesClockwise();
 	}	
 }

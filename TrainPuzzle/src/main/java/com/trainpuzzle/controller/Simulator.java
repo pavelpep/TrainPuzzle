@@ -1,10 +1,9 @@
 package com.trainpuzzle.controller;
 
-import java.util.Set;
 
 import com.trainpuzzle.model.map.*;
 import com.trainpuzzle.model.level.*;
-import static com.trainpuzzle.model.map.Heading.*;
+import static com.trainpuzzle.model.map.CompassHeading.*;
 
 import com.trainpuzzle.exception.TrainCrashException;
 
@@ -29,7 +28,7 @@ public class Simulator {
 	 */
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
-		Heading heading = train.getHeading();
+		CompassHeading heading = train.getHeading();
 		
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
@@ -43,7 +42,7 @@ public class Simulator {
 		
 		Track track = tile.getTrack();
 		
-		Heading nextHeading = getNextHeading(track,heading);
+		CompassHeading nextHeading = track.getOutboundHeading(heading);
 		this.train.setHeading(nextHeading);
 		//this.train.setLocation(location);
 		victoryCondition.removePassedLocation(train);
@@ -60,7 +59,7 @@ public class Simulator {
 	 * @param headingValue where train heading to
 	 * @return an int array holding latitude and longitude for next tile the is going to
 	 */
-	private Location getNextTile(Location location, Heading heading) {
+	private Location getNextTile(Location location, CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
 				location.setRow(location.getRow() - 1);
@@ -93,29 +92,6 @@ public class Simulator {
 		}
 		
 		return location;
-	}
-	
-	/**
-	 * Get where the train heading in next track
-	 * 
-	 * @param track the track lay on the tile the train heading to 
-	 * @param heading direction the train heading now
-	 * @return whether the train get into the next track successfully or not 
-	 */
-	private Heading getNextHeading(Track track, Heading heading) throws TrainCrashException {
-		Heading oppositeHeading = heading.opposite();
-		Set<Connection> connections = track.getConnections();
-		
-		for(Connection connection : connections) {
-			int[] headings = connection.getHeadingValues();
-			
-			if (headings[0] == oppositeHeading.getValue()) {
-				return Heading.getHeading(headings[1]);
-			} else if (headings[1] == oppositeHeading.getValue()) {
-				return Heading.getHeading(headings[0]);
-			}
-		}		
-		throw new TrainCrashException();
 	}
 	
 	private boolean isOffTheMap(Location location) {
