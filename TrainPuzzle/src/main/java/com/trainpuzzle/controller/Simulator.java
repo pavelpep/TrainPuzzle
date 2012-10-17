@@ -31,6 +31,8 @@ public class Simulator {
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
 		Heading heading = train.getHeading();
+		
+		
 		location = getNextTile(location,heading);
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
@@ -42,9 +44,9 @@ public class Simulator {
 		} 
 		
 		Track track = tile.getTrack();
+		//System.out.println(track.getConnections().;
 		Heading nextHeading = getNextHeading(track,heading);
 		this.train.setHeading(nextHeading);
-		train.setLocation(location.getRow(), location.getColumn());
 		victoryCondition.removePassedLocation(train);
 	}
 	

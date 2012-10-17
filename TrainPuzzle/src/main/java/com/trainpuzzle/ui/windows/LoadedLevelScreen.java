@@ -165,9 +165,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		mapPanel = new JPanel();	
 		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
-		
-		//System.out.println(gameController.toString());
-
+	
 		
         for(int row = 0; row < numberOfRows; row++){
             for(int column = 0; column < numberOfColumns; column++){
@@ -184,7 +182,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
             }
         }
         
-		System.out.println(gameController.getSimulator().getTrain().getHeading());
+		
 		Train train = gameController.getSimulator().getTrain();
 		redrawTrain(train);
         
