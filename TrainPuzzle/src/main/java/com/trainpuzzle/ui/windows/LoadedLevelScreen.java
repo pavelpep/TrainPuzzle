@@ -40,6 +40,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	MouseListener mouseListener;
 	
 	Location previousTrainLocation;
+	Location trainLocation;
 	
 	int numberOfRows = 15;
 	int numberOfColumns = 20;
@@ -53,6 +54,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private GameController gameController;
 	private Level level;
+	private Train train;
 	
 	Border loweredbevel, loweredetched;
 	TitledBorder mapTitle, sidePanelTitle;
@@ -73,7 +75,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	public void notifyChange(){
-		redrawTiles();
+		redrawTrain(train);
 	}
 	
 	public void redrawTiles(){
@@ -125,19 +127,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	public void redrawTrain(Train train) {
-		
-		JLabel trainLayer;
-    	trainLayer = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
-    	trainLayer.setBounds(0,0,40,40);
-        
-		Location trainLocation = train.getLocation();
-		int row = trainLocation.getRow();
-		int column = trainLocation.getColumn();
-		int previousRow = previousTrainLocation.getRow();
-		int previousColumn = previousTrainLocation.getColumn();
-		
-		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
-		
+		int previousRow = trainLocation.getRow();
+		int previousColumn = trainLocation.getColumn();
 		try {
 			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
 			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
@@ -146,7 +137,18 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		previousTrainLocation = trainLocation;
+		trainLocation = train.getLocation();
+		int row = trainLocation.getRow();
+		int column = trainLocation.getColumn();
+		
+		System.out.println("NEW " + row + " " + column + " PREVIOUS " + previousRow + " " + previousColumn);
+		
+		JLabel trainLayer;
+    	trainLayer = new JLabel(new ImageIcon("src/main/resources/images/train.png"));
+    	trainLayer.setBounds(0,0,40,40);
+		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
+		
+
 		
 		mapPanel.repaint();
 	}
@@ -183,7 +185,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         }
         
 		
-		Train train = gameController.getSimulator().getTrain();
+		train = gameController.getSimulator().getTrain();
+		train.register(this);
+		trainLocation = train.getLocation();
 		redrawTrain(train);
         
         initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);

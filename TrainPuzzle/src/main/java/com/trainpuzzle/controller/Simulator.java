@@ -16,11 +16,10 @@ public class Simulator {
 	
 	public Simulator(Level level) {
 		this.map = level.getMap();
-		this.train= new Train();
 		Location startPoint = level.getStartLocation();
-		this.victoryCondition = new VictoryCondition(level.getEndLocation());
-		this.train.setLocation(startPoint);
+		this.train = new Train(startPoint);
 		this.train.setHeading(EAST);
+		this.victoryCondition = new VictoryCondition(level.getEndLocation());
 	}
 	
 	/**

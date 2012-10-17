@@ -14,23 +14,21 @@ public class Train implements Observable{
 	/* Public Interface */
 	
 	public Train() {
-		this.location = new Location(0,0);
+		setLocation(new Location(0,0));
 	}
 	
-	public Train(int row, int column) {	
-		this.location = new Location(row,column);
+	public Train(Location location) {	
+		setLocation(location);
 	}
 	
-	public void register(Observer observer) {
+	public void register(Observer observer){
 		observerList.add(observer);
-		
 	}
-
-	public void notifyAllObservers() {
-		for(Observer observer : observerList){
+	
+	public void notifyAllObservers(){
+		for(Observer observer : observerList) {
 			observer.notifyChange();
 		}
-		
 	}
 	
 	/*Getters and Setters */
@@ -46,6 +44,7 @@ public class Train implements Observable{
 */
 	public void setLocation(Location location) {
 		this.location = location;
+		
 	}
 	
 	public Heading getHeading() {
@@ -54,5 +53,6 @@ public class Train implements Observable{
 	
 	public void setHeading(Heading heading) {
 		this.heading = heading;
+		notifyAllObservers();
 	}
 }
