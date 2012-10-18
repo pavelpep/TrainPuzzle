@@ -18,6 +18,7 @@ import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.CompassHeading;
+import com.trainpuzzle.model.map.Connection;
 import com.trainpuzzle.model.map.Tile;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
@@ -133,7 +134,47 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).hasTrack()){
-			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
+
+			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/straight_track.png"));
+			
+			// IN PROGRESS. JUST EXAMPLES RIGHT NOW
+			
+			Connection straightConnection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
+			Connection diagonalConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+			Connection diagonal2Connection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+			
+			Connection leftCurveConnection = new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST);
+			Connection leftCurve2Connection = new Connection(CompassHeading.WEST, CompassHeading.NORTHEAST);
+			
+			Connection rightCurveConnection = new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST);
+			Connection rightCurve2Connection = new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST);
+
+			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
+				if(connection.equals(diagonalConnection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 0));
+				}
+				if(connection.equals(diagonal2Connection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 2));
+				}
+				if(connection.equals(straightConnection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 3));
+				}
+				if(connection.equals(leftCurve2Connection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 2));
+				}
+				if(connection.equals(leftCurveConnection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 6));
+				}
+				
+				
+				if(connection.equals(rightCurve2Connection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 6));
+				}
+				if(connection.equals(rightCurveConnection)){
+					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 2));
+				}
+			}
+			
 			trackLayer.setBounds(0,0,40,40);
 			mapTile.add(trackLayer, new Integer(trackLayerIndex));
 		}
