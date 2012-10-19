@@ -56,17 +56,11 @@ public class Track {
 	 */
 
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
-		CompassHeading oppositeHeading = inboundHeading.opposite();
-		// Set<Connection> connections = getConnections();
-		
 		for(Connection connection : connections) {
-			CompassHeading[] headings = connection.getCompassHeadingPair();
-			
-			if (headings[0] == oppositeHeading) {
-				return headings[1];
-			} else if (headings[1] == oppositeHeading) {
-				return headings[0];
+			if(connection.isInboundHeading(inboundHeading)) {
+				return connection.outboundorInbound(inboundHeading);
 			}
+			
 		}		
 		throw new TrainCrashException();
 	}
