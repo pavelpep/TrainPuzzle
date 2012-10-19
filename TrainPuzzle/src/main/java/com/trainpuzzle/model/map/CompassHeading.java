@@ -15,18 +15,15 @@ public enum CompassHeading {
 	private static final int CLOCKWISE_90DEGREES = 2;
 	private static final int COUNTERCLOCKWISE_90DEGREES = 6;
 	
+	private static final int CLOCKWISE_45DEGREES = 1;
+	private static final int COUNTERCLOCKWISE_45DEGREES = 7;
+	
 	//TODO Remove redundant variables.
 	//Removed empty constructor
 	
 	public static CompassHeading getHeading(int headingValue) {
-		for(CompassHeading heading: values()) {
-			int index = heading.ordinal();
-			if (index == headingValue) {
-				return heading;
-			}
-		}
 		//TODO: Write exception case for when the parameter value is > 7 or < 0
-		return NORTHWEST;
+		return values()[headingValue];
 	}
 	
 	public CompassHeading opposite() {
@@ -41,9 +38,17 @@ public enum CompassHeading {
 		return rotate(COUNTERCLOCKWISE_90DEGREES);
 	}
 	
+	public CompassHeading rotate45DegreesClockwise() {
+		return rotate(CLOCKWISE_45DEGREES);
+	}
+	
+	public CompassHeading rotate45DegreesCounterClockwise() {
+		return rotate(COUNTERCLOCKWISE_45DEGREES);
+	}
+	
 	private CompassHeading rotate(int amount) {
-		int oppositeValue = (ordinal() + amount) % values().length;
-		return getHeading(oppositeValue);
+		int rotatedHeading = (ordinal() + amount) % values().length;
+		return getHeading(rotatedHeading);
 	}
 	
 	/* depreciated with ordinal()
