@@ -112,7 +112,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
 		} catch(Exception e){
-			logger.error(e.getMessage(), e.fillInStackTrace());
+			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
 			landscapeLayer=new JLabel(GRASSIMAGE);
@@ -131,56 +131,57 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
 		} catch(Exception e){
-			logger.error(e.getMessage(), e.fillInStackTrace());
+			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).hasTrack()){
 
-			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/straight_track.png"));
+			//trackLayer=new JLabel(new ImageIcon("src/main/resources/images/straight_track.png"));
 			
 			// IN PROGRESS. JUST EXAMPLES RIGHT NOW
 
-			Connection straight = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-			Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
-			Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
-			
-			Connection ewConnection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
-			Connection nwseConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-			Connection neswConnection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
-			
-			Connection sweConnection = new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST);
-			Connection newConnection = new Connection(CompassHeading.WEST, CompassHeading.NORTHEAST);
-			
-			Connection sewConnection = new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST);
-			Connection nweConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST);
-
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
-				if(connection.equals(nwseConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 0));
+				Connection diagonal = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+				Connection straight = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+				
+				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
+				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
+				
+				for(int i = 0; i < 2; i++){
+					if(connection.equals(straight)){
+						//System.out.println("rotated to " + straight.getCompassHeadingPair()[0] + straight.getCompassHeadingPair()[1]);
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2 + 1));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					straight.rotate90Degrees();
+					
+					if(connection.equals(diagonal)){
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					diagonal.rotate90Degrees();
 				}
-				if(connection.equals(neswConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 2));
-				}
-				if(connection.equals(ewConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 3));
-				}
-				if(connection.equals(newConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 2));
-				}
-				if(connection.equals(sweConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 6));
+					
+				for(int i = 0; i < 4; i++){	
+					if(connection.equals(curveLeft)){
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", i));
+
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					curveLeft.rotate45Degrees();
+					if(connection.equals(curveRight)){
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", i));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					curveRight.rotate45Degrees();
 				}
 				
 				
-				if(connection.equals(nweConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 6));
-				}
-				if(connection.equals(sewConnection)){
-					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 2));
-				}
 			}
 			
-			trackLayer.setBounds(0,0,40,40);
-			mapTile.add(trackLayer, new Integer(trackLayerIndex));
 		}
 	}
 	
@@ -191,7 +192,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
-			logger.error(e.getMessage(), e.fillInStackTrace());
+			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
 		previousRow = trainLocation.getRow();
@@ -202,7 +203,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		int column = trainLocation.getColumn();
 		
 		
-		int rotation = train.getHeading().getValue() - 3; //we should make train image point NORTHWEST to begin
+		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
 		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
     	trainLayer = new JLabel(trainImage);
     	trainLayer.setBounds(0,0,40,40);
