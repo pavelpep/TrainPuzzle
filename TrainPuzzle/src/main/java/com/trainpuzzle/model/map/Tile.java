@@ -7,6 +7,7 @@ public class Tile {
 	private Track track;
 	private Obstacle obstacle;
 	private Landscape landscape;
+	private Station station;
 
   /* Public Interface */
 
@@ -20,21 +21,15 @@ public class Tile {
 	}
 	
 	public boolean hasTrack() {
-		if(track == null) {
-			return false;
-		}
-		else {
-			return true;
-		}
+		return (track != null);
 	}	
 	
 	public boolean hasObstacle() {
-		if(obstacle == null) {
-			return false;
-		}
-		else {
-			return true;
-		}	
+		return (obstacle != null);
+	}
+	
+	public boolean hasStation() {
+		return (station != null);
 	}
 	
 /* Getters and Setters */
@@ -62,6 +57,14 @@ public class Tile {
 	
 	public void setLandscapeType(String type) {
 		this.landscape.setType(type);
+	}
+	
+	public Station getStation() {
+		return station;
+	}
+	
+	public void setStation(Station station) {
+		this.station = station;
 	}
 	
 }
