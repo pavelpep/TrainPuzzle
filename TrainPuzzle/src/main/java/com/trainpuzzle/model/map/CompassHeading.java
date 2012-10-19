@@ -13,9 +13,8 @@ public enum CompassHeading {
 	
 	private static final int OPPOSITE_ROTATION = 4;
 	private static final int CLOCKWISE_90DEGREES = 2;
-	private static final int COUNTERCLOCKWISE_90DEGREES = 6; 
-	//final private int headingValue = ordinal(); 
-	static final int NUMBEROFHEADINGS = values().length; 
+	private static final int COUNTERCLOCKWISE_90DEGREES = 6;
+	
 	//TODO Remove redundant variables.
 	//Removed empty constructor
 	
@@ -43,11 +42,13 @@ public enum CompassHeading {
 	}
 	
 	private CompassHeading rotate(int amount) {
-		int oppositeValue = (ordinal() + amount) % NUMBEROFHEADINGS;
+		int oppositeValue = (ordinal() + amount) % values().length;
 		return getHeading(oppositeValue);
 	}
 	
+	/* depreciated with ordinal()
 	public int getValue() {
 		return ordinal();
 	}
+	*/
 }
