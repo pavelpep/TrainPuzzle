@@ -51,9 +51,9 @@ public enum CompassHeading {
 		return getHeading(rotatedHeading);
 	}
 	
-	/* depreciated with ordinal()
+	// depreciated with ordinal()
 	public int getValue() {
 		return ordinal();
 	}
-	*/
+	
 }
