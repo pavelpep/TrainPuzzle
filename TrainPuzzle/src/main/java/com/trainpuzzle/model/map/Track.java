@@ -50,10 +50,10 @@ public class Track {
 	}
 
 	/**
-	 * Get where the train heading in next track
+	 * Get the outboundHeading
 	 * 
-	 * @param inboundHeading direction the train heading now
-	 * @return whether the train get into the next track successfully or not 
+	 * @param inboundHeading is direction in which the train is heading now
+	 * @return outboundHeading  
 	 */
 
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
