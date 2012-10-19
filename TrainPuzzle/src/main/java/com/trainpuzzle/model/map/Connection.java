@@ -9,30 +9,15 @@ public class Connection {
 	/* Public Interface */
 	
 	public Connection(CompassHeading compassHeading1, CompassHeading compassHeading2) {
-		modifyConnection(compassHeading1, compassHeading2);
+		this.compassHeading1= compassHeading1;
+		this.compassHeading2 = compassHeading2;
 	}
-	
-	/* depreciated?
-	public int[] getHeadingValues() {
-		int connectionValues[] = new int[2];
-		connectionValues[0] = compassHeading1.getValue();
-		connectionValues[1] = compassHeading2.getValue();
-		return connectionValues;
-	}
-	 */
 	
 	public CompassHeading[] getCompassHeadingPair() {
 		CompassHeading connectionHeadings[] = new CompassHeading[2];
 		connectionHeadings[0] = compassHeading1;
 		connectionHeadings[1] = compassHeading2;
 		return connectionHeadings;
-	}
-	
-	public void modifyConnection(CompassHeading inputHeading1, CompassHeading inputHeading2) {
-		if(connectionIsValid(inputHeading1, inputHeading2)) {
-			compassHeading1= inputHeading1;
-			compassHeading2 = inputHeading2;
-		}
 	}
 	
 	//TODO: possibly will need a rotateConnection() method in the future
@@ -58,12 +43,15 @@ public class Connection {
 		return headingsAreDirectlyEqual || headingsAreIndirectlyEqual;
 	}
 		
-	private boolean connectionIsValid(CompassHeading inputHeading1, CompassHeading inputHeading2) {
-		return inputHeading1 != inputHeading2;
+
+	
+	public void rotate45Degrees() {
+		compassHeading1 = compassHeading1.rotate45DegreesClockwise();
+		compassHeading2 = compassHeading2.rotate45DegreesClockwise();
 	}
 
-	void rotate90Degrees() {
-		compassHeading1.rotate90DegreesClockwise();
-		compassHeading2.rotate90DegreesClockwise();
+	public void rotate90Degrees() {
+		compassHeading1 = compassHeading1.rotate90DegreesClockwise();
+		compassHeading2 = compassHeading2.rotate90DegreesClockwise();
 	}	
 }
