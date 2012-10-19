@@ -150,24 +150,28 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 				
 				for(int i = 0; i < 4; i++){	
+					String imageURL = null;
 					if(connection.equals(diagonal)){
-						trackLayer=new JLabel(new RotatedImageIcon(DIAGONAL_TRACK_IMAGE, i));
+						imageURL = DIAGONAL_TRACK_IMAGE;
+						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					if(connection.equals(curveLeft)){
+						imageURL = CURVE_LEFT_TRACK_IMAGE;
+						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					if(connection.equals(curveRight)){
+						imageURL = CURVE_RIGHT_TRACK_IMAGE;
+						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					diagonal.rotate45Degrees();
-					if(connection.equals(curveLeft)){
-						trackLayer=new JLabel(new RotatedImageIcon(CURVE_LEFT_TRACK_IMAGE, i));
-						trackLayer.setBounds(0,0,40,40);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
-					curveLeft.rotate45Degrees();
-					if(connection.equals(curveRight)){
-						trackLayer=new JLabel(new RotatedImageIcon(CURVE_RIGHT_TRACK_IMAGE, i));
-						trackLayer.setBounds(0,0,40,40);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
 					curveRight.rotate45Degrees();
+					curveLeft.rotate45Degrees();
 				}
 				
 				
