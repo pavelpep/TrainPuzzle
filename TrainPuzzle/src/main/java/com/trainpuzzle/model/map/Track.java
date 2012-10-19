@@ -61,12 +61,12 @@ public class Track {
 		// Set<Connection> connections = getConnections();
 		
 		for(Connection connection : connections) {
-			int[] headings = connection.getHeadingValues();
+			CompassHeading[] headings = connection.getHeadingValues();
 			
-			if (headings[0] == oppositeHeading.getValue()) {
-				return CompassHeading.getHeading(headings[1]);
-			} else if (headings[1] == oppositeHeading.getValue()) {
-				return CompassHeading.getHeading(headings[0]);
+			if (headings[0] == oppositeHeading) {
+				return headings[1];
+			} else if (headings[1] == oppositeHeading) {
+				return headings[0];
 			}
 		}		
 		throw new TrainCrashException();

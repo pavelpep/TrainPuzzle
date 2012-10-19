@@ -12,10 +12,10 @@ public class Connection {
 		modifyConnection(compassHeading1, compassHeading2);
 	}
 	
-	public int[] getHeadingValues() {
-		int connectionValues[] = new int[2];
-		connectionValues[0] = compassHeading1.getValue();
-		connectionValues[1] = compassHeading2.getValue();
+	public CompassHeading[] getHeadingValues() {
+		CompassHeading connectionValues[] = new CompassHeading[2];
+		connectionValues[0] = compassHeading1;
+		connectionValues[1] = compassHeading2;
 		return connectionValues;
 	}
 	

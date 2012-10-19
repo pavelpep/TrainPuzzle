@@ -138,39 +138,43 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			trackLayer=new JLabel(new ImageIcon("src/main/resources/images/straight_track.png"));
 			
 			// IN PROGRESS. JUST EXAMPLES RIGHT NOW
+
+			Connection straight = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+			Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
+			Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 			
-			Connection straightConnection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
-			Connection diagonalConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-			Connection diagonal2Connection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+			Connection ewConnection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
+			Connection nwseConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+			Connection neswConnection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
 			
-			Connection leftCurveConnection = new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST);
-			Connection leftCurve2Connection = new Connection(CompassHeading.WEST, CompassHeading.NORTHEAST);
+			Connection sweConnection = new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST);
+			Connection newConnection = new Connection(CompassHeading.WEST, CompassHeading.NORTHEAST);
 			
-			Connection rightCurveConnection = new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST);
-			Connection rightCurve2Connection = new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST);
+			Connection sewConnection = new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST);
+			Connection nweConnection = new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST);
 
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
-				if(connection.equals(diagonalConnection)){
+				if(connection.equals(nwseConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 0));
 				}
-				if(connection.equals(diagonal2Connection)){
+				if(connection.equals(neswConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 2));
 				}
-				if(connection.equals(straightConnection)){
+				if(connection.equals(ewConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", 3));
 				}
-				if(connection.equals(leftCurve2Connection)){
+				if(connection.equals(newConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 2));
 				}
-				if(connection.equals(leftCurveConnection)){
+				if(connection.equals(sweConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", 6));
 				}
 				
 				
-				if(connection.equals(rightCurve2Connection)){
+				if(connection.equals(nweConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 6));
 				}
-				if(connection.equals(rightCurveConnection)){
+				if(connection.equals(sewConnection)){
 					trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", 2));
 				}
 			}
