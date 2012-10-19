@@ -22,6 +22,21 @@ public class Connection {
 	
 	//TODO: possibly will need a rotateConnection() method in the future
 	
+	public boolean isInboundHeading(CompassHeading inbound) {
+		CompassHeading outbound = inbound.opposite();
+		return outbound == compassHeading1 || outbound == compassHeading2; 
+	}
+	
+	public CompassHeading outboundorInbound(CompassHeading inbound) {
+		CompassHeading outbound = inbound.opposite();
+		if(outbound == compassHeading1) {
+			return compassHeading2;
+		}
+		else {
+			return compassHeading1;
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return compassHeading1.hashCode() * compassHeading2.hashCode();
