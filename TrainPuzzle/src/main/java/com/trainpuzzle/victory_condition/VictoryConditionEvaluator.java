@@ -1,4 +1,4 @@
-package com.trainpuzzle.victoryCondition;
+package com.trainpuzzle.victory_condition;
 
 public class VictoryConditionEvaluator {
 
