@@ -31,7 +31,6 @@ public class Track {
 		connections.add(connection2);
 	}
 	
-	
 	public void rotateTrack() {		
 		for(Connection connection : connections) {
 			connection.rotate90Degrees();
@@ -61,7 +60,7 @@ public class Track {
 		// Set<Connection> connections = getConnections();
 		
 		for(Connection connection : connections) {
-			CompassHeading[] headings = connection.getHeadingValues();
+			CompassHeading[] headings = connection.getCompassHeadingPair();
 			
 			if (headings[0] == oppositeHeading) {
 				return headings[1];
