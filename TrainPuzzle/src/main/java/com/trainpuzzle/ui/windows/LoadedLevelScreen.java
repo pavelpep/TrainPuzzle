@@ -32,12 +32,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
-	private JButton runButton = new JButton();
+	private JLabel selectedTrackLabel = new JLabel();
+	private JLabel selectedTrackImage = new JLabel();
 	private JPanel mapPanel = new JPanel();
-	private JPanel sidePanel = new JPanel();
+	private JPanel trackPanel = new JPanel();
+	private JPanel selectedTrackPanel = new JPanel();
 	
-	private JLabel tempTrack = new JLabel();
-	private JLayeredPane draggableTile = new JLayeredPane();
+	private JButton runButton = new JButton();
+	private JButton rotateLeftButton = new JButton();
+	private JButton rotateRightButton = new JButton();
+
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
 	MouseListener mouseListener;
@@ -59,16 +63,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
-	
+
 	private final ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	private final ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
 	private final ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
 	
-	private final String DIAGONAL_TRACK_IMAGE = "src/main/resources/images/diagonal_track.png";
-	private final String CURVE_LEFT_TRACK_IMAGE = "src/main/resources/images/curve_left_track.png";
-	private final String CURVE_RIGHT_TRACK_IMAGE = "src/main/resources/images/curve_right_track.png";
-	
-	
+	private final ImageIcon STRAIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/straight_track.png");
+	private final ImageIcon DIAGONALTRACK_IMAGE = new ImageIcon("src/main/resources/images/diagonal_track.png");
+	private final ImageIcon CURVELEFTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_left_track.png");
+	private final ImageIcon CURVERIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_right_track.png");	
 	
 	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
@@ -86,7 +89,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 
-		//setBackground(Color.LIGHT_GRAY);
+        this.selectedTrackImage.setPreferredSize(new Dimension(100,100));
+        this.selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+        this.rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+        this.rotateRightButton.setPreferredSize(new Dimension(100, 50));
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,34 +165,43 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if(level.getMap().getTile(row, column).hasTrack()){
 
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
-				
 				Connection diagonal = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+				Connection straight = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+				
 				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
 				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 				
-				for(int i = 0; i < 4; i++){	
-					String imageURL = null;
+				for(int i = 0; i < 2; i++){
+					if(connection.equals(straight)){
+						//System.out.println("rotated to " + straight.getCompassHeadingPair()[0] + straight.getCompassHeadingPair()[1]);
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2 + 1));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					straight.rotate90Degrees();
+					
 					if(connection.equals(diagonal)){
-						imageURL = DIAGONAL_TRACK_IMAGE;
-						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
+					diagonal.rotate90Degrees();
+				}
+					
+				for(int i = 0; i < 4; i++){	
 					if(connection.equals(curveLeft)){
-						imageURL = CURVE_LEFT_TRACK_IMAGE;
-						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", i));
+
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
-					if(connection.equals(curveRight)){
-						imageURL = CURVE_RIGHT_TRACK_IMAGE;
-						trackLayer=new JLabel(new RotatedImageIcon(imageURL, i));
-						trackLayer.setBounds(0,0,40,40);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
-					diagonal.rotate45Degrees();
-					curveRight.rotate45Degrees();
 					curveLeft.rotate45Degrees();
+					if(connection.equals(curveRight)){
+						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", i));
+						trackLayer.setBounds(0,0,40,40);
+						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					}
+					curveRight.rotate45Degrees();
 				}
 				
 				
@@ -264,44 +279,58 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		//testSimulation(testLevel);
 		
 		// Track Panel 
-        sidePanel.setPreferredSize(new Dimension(250, 600));
-        sidePanel.setLayout(new GridLayout(10, 2));
-        sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Action");
-        sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		sidePanel.setBorder(sidePanelTitle);	
+		initializeComponent(this.trackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 300, 10), true);
+		this.add(trackPanel, gbConstraints);
 		
-    	draggableTile = new JLayeredPane();
-    	draggableTile.setPreferredSize(new Dimension(40, 40));
+		trackPanel.setPreferredSize(new Dimension(250, 300));
+        sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track");
+        sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		trackPanel.setBorder(sidePanelTitle);
+	
+		JButton straightTrack = new JButton(STRAIGHTTRACK_IMAGE);
+		straightTrack.setPreferredSize(new Dimension(80,80));
+		straightTrack.setBounds(0, 0, 40, 40);
+		straightTrack.setActionCommand("straightTrack");
+		straightTrack.addActionListener(this);
+		trackPanel.add(straightTrack);
+		
+		JButton diagonalTrack = new JButton(DIAGONALTRACK_IMAGE);
+		diagonalTrack.setBounds(0, 0, 40, 40);
+		diagonalTrack.setPreferredSize(new Dimension(80,80));
+		diagonalTrack.setActionCommand("diagonalTrack");
+		diagonalTrack.addActionListener(this);
+		trackPanel.add(diagonalTrack);
+		
+		JButton curveleftTrack = new JButton(CURVELEFTTRACK_IMAGE);
+		curveleftTrack.setBounds(0, 0, 40, 40);
+		curveleftTrack.setPreferredSize(new Dimension(80,80));
+		curveleftTrack.setActionCommand("curveleftTrack");
+		curveleftTrack.addActionListener(this);
+		trackPanel.add(curveleftTrack);
+		
+		JButton curverightTrack = new JButton(CURVERIGHTTRACK_IMAGE);
+		curverightTrack.setBounds(0, 0, 40, 40);
+		curverightTrack.setPreferredSize(new Dimension(80,80));
+		curverightTrack.setActionCommand("curverightTrack");
+		curverightTrack.addActionListener(this);
+		trackPanel.add(curverightTrack);
 		
 		runButton = new JButton("Simulate");
-		sidePanel.add(runButton);
-		
-		trackLayer=new JLabel(new ImageIcon("src/main/resources/images/track.png"));
-		trackLayer.setBounds(40,40,40,40);
-		trackLayer.addMouseListener(mouseListener);
-		trackLayer.setTransferHandler(new TransferHandler("icon"));
-		//draggableTile.add(trackTile, new Integer(1));
-		
-		tempTrack=new JLabel(new ImageIcon("src/main/resources/images/tempTrack.png"));
-		tempTrack.setBounds(40,40,40,40);
-		tempTrack.addMouseListener(mouseListener);
-		tempTrack.setTransferHandler(new TransferHandler("icon"));
-		//draggableTile.add(tempTrack, new Integer(1));
-		
-		sidePanel.add(trackLayer);
-		sidePanel.add(tempTrack);
-		
+		trackPanel.add(runButton);		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
-		initializeComponent(this.sidePanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 200, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 10), true);
-		this.add(sidePanel, gbConstraints);
+		// Selected Track Panel 
+		initializeComponent(this.selectedTrackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(300, 0, 0, 10), true);
+		this.add(selectedTrackPanel, gbConstraints);
 		
-		this.setVisible(true);
+		selectedTrackPanel.setPreferredSize(new Dimension(250, 300));
+        sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Currently Selected Track");
+        sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+        selectedTrackPanel.setBorder(sidePanelTitle);
+
+        this.setVisible(true);
 	}
-
-
-
 
 	
 	/**
@@ -338,5 +367,89 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "run") {
 			gameController.runSimulation();
 		}	
+		
+		if (event.getActionCommand() == "straightTrack") {
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = new JLabel(STRAIGHTTRACK_IMAGE);
+			selectedTrackLabel = new JLabel("Straight Track");
+	        rotateLeftButton = new JButton("Rotate Left");
+	        rotateRightButton = new JButton("Rotate Right");        
+
+	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
+	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+	        
+	        selectedTrackPanel.add(selectedTrackImage);
+	        selectedTrackPanel.add(selectedTrackLabel);
+	        selectedTrackPanel.add(rotateLeftButton);
+	        selectedTrackPanel.add(rotateRightButton);
+			this.setVisible(true);
+			selectedTrackPanel.repaint();
+		}
+		
+		if (event.getActionCommand() == "diagonalTrack") {
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = new JLabel(DIAGONALTRACK_IMAGE);
+			selectedTrackLabel = new JLabel("Diagonal Track");
+	        rotateLeftButton = new JButton("Rotate Left");
+	        rotateRightButton = new JButton("Rotate Right");        
+
+	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
+	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+	        
+	        selectedTrackPanel.add(selectedTrackImage);
+	        selectedTrackPanel.add(selectedTrackLabel);
+	        selectedTrackPanel.add(rotateLeftButton);
+	        selectedTrackPanel.add(rotateRightButton);
+			this.setVisible(true);
+			selectedTrackPanel.repaint();
+		}
+		
+		if (event.getActionCommand() == "curveleftTrack") {
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = new JLabel(CURVELEFTTRACK_IMAGE);
+			selectedTrackLabel = new JLabel("Curve Left Track");
+	        rotateLeftButton = new JButton("Rotate Left");
+	        rotateRightButton = new JButton("Rotate Right");        
+
+	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
+	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+	        
+	        selectedTrackPanel.add(selectedTrackImage);
+	        selectedTrackPanel.add(selectedTrackLabel);
+	        selectedTrackPanel.add(rotateLeftButton);
+	        selectedTrackPanel.add(rotateRightButton);
+			this.setVisible(true);
+			selectedTrackPanel.repaint();
+		}
+		
+		if (event.getActionCommand() == "curverightTrack") {
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = new JLabel(CURVERIGHTTRACK_IMAGE);
+			selectedTrackLabel = new JLabel("Curve Right Track");
+	        rotateLeftButton = new JButton("Rotate Left");
+	        rotateRightButton = new JButton("Rotate Right");        
+
+	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
+	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+	        
+	        selectedTrackPanel.add(selectedTrackImage);
+	        selectedTrackPanel.add(selectedTrackLabel);
+	        selectedTrackPanel.add(rotateLeftButton);
+	        selectedTrackPanel.add(rotateRightButton);
+			this.setVisible(true);
+			selectedTrackPanel.repaint();
+		}
+		
+		
+		
+		
 	}
 }

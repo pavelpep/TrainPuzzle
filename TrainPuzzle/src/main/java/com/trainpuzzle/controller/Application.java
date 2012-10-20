@@ -43,7 +43,7 @@ public class Application {
 	public void createMainMenu(GameController gameController) {
 		/*
 		assert campaignManager != null : "campaignManager not set";
-		
+		*/
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -55,7 +55,7 @@ public class Application {
 		    //TODO: Switch to default view
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
-		*/
+		
 		
 		
 		LevelSelect levelSelect = new LevelSelect(gameController);
