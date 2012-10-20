@@ -1,21 +1,15 @@
 package com.trainpuzzle.victory_condition;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public abstract class VictoryCondition {
 	protected boolean conditionSatisfied;
 	protected boolean conditionCanBeSatisfed;
 	protected VictoryCondition leftChild;
 	protected VictoryCondition rightChild;
-	protected List<String> eventIDsOfLeftSubtree;
-	protected List<String> eventIDsOfRightSubtree;
+	protected VictoryCondition Parent;
 	
 	public VictoryCondition() {
 		this.conditionSatisfied =false;
 		this.conditionCanBeSatisfed = true;
-		this.eventIDsOfLeftSubtree = new LinkedList<String>();
-		this.eventIDsOfRightSubtree = new LinkedList<String>();
 	}
 	public boolean isSatisfied() {
 		return this.conditionSatisfied;
@@ -27,43 +21,28 @@ public abstract class VictoryCondition {
 		return rightChild.isSatisfied();
 	}
 	
-	public List<String> getEventIDsOfLeftSubtree() {
-		return eventIDsOfLeftSubtree;
-	}
-	public List<String> getEventIDsOfRightSubtree() {
-		return eventIDsOfRightSubtree;
-	}
 	public void setLeftChild(VictoryCondition leftChild) {
 		this.leftChild = leftChild;
-		if(leftChild.getClass() ==LeafVictoryCondition.class) {
-			appendEventIDFromLeaf(eventIDsOfLeftSubtree,leftChild);
-		}
-		else {
-			appendEventIDFromOther(eventIDsOfLeftSubtree,leftChild);
-		}
+		this.leftChild.setParent(this);
 		
 	}
 	public void setRightChild(VictoryCondition rightChild) {
 		this.rightChild = rightChild;
-		if(leftChild.getClass() ==LeafVictoryCondition.class) {
-			appendEventIDFromLeaf(eventIDsOfRightSubtree,rightChild);
-		}
-		else {
-			appendEventIDFromOther(eventIDsOfRightSubtree,rightChild);
-		}
+		this.rightChild.setParent(this);
 	}
-	public abstract void checkEvent(Event event);
-	
-	private void appendEventIDFromLeaf(List<String> EventIDs,VictoryCondition victoryCondition) {
-		LeafVictoryCondition leaf = (LeafVictoryCondition)victoryCondition;
-		EventIDs.add(leaf.getEventID());
+	public void setParent(VictoryCondition parent) {
+		Parent = parent;
 	}
 	
-	private void appendEventIDFromOther(List<String> EventIDs,VictoryCondition victoryCondition) {
-		List<String> leftEventIDs = victoryCondition.getEventIDsOfLeftSubtree();
-		List<String> rightEventIDs = victoryCondition.getEventIDsOfRightSubtree();
-		EventIDs.addAll(leftEventIDs);
-		EventIDs.addAll(rightEventIDs);
+	public VictoryCondition getLeftChild() {
+		return leftChild;
 	}
+	public VictoryCondition getRightChild() {
+		return rightChild;
+	}
+	public abstract void checkCoditionSatisfaction();
+	
+	
+	
 	
 }

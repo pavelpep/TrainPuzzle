@@ -6,13 +6,22 @@ public class LeafVictoryCondition extends VictoryCondition{
 	public LeafVictoryCondition(Event event) {
 		this.event = event;
 	}
-	public String getEventID() {
-		return event.geteventID();
+	
+	public Event getEvent() {
+		return event;
 	}
-	public void checkEvent(Event event) {
-		if(this.event.equals(event)) {
-			this.conditionSatisfied = true;
+	
+	public boolean checkEvent(Event event) {
+		return this.event.equals(event);
+	}
+	public void eventClear() {
+		this.conditionSatisfied = true;
+		if(this.Parent != this){
+			this.Parent.checkCoditionSatisfaction();
 		}
+	}
+	public void checkCoditionSatisfaction() {
+		
 	}
 	
 
