@@ -5,8 +5,12 @@ import com.trainpuzzle.model.map.Station;
 public class Event {
 	private int time;
 	private Station station;
+	private String eventID;
 	
-	public Event(int time, Station station) {
+	
+	
+	public Event(int time, Station station, String eventID) {
+		this.eventID = eventID;
 		this.time = time;
 		this.station = station;
 	}
@@ -25,6 +29,13 @@ public class Event {
 	
 	public void setStation(Station station) {
 		this.station = station;
+	}
+	public String geteventID() {
+		return eventID;
+	}
+
+	public void seteventID(String eventID) {
+		this.eventID = eventID;
 	}
 	
 }
