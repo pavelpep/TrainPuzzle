@@ -366,6 +366,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			gameController.runSimulation();
+			
 		}	
 		
 		if (event.getActionCommand() == "straightTrack") {
