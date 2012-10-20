@@ -5,7 +5,7 @@ public abstract class VictoryCondition {
 	protected boolean conditionCanBeSatisfed;
 	protected VictoryCondition leftChild;
 	protected VictoryCondition rightChild;
-	protected VictoryCondition Parent;
+	protected VictoryCondition parent;
 	
 	public VictoryCondition() {
 		this.conditionSatisfied =false;
@@ -31,7 +31,7 @@ public abstract class VictoryCondition {
 		this.rightChild.setParent(this);
 	}
 	public void setParent(VictoryCondition parent) {
-		Parent = parent;
+		this.parent = parent;
 	}
 	
 	public VictoryCondition getLeftChild() {

@@ -16,8 +16,8 @@ public class LeafVictoryCondition extends VictoryCondition{
 	}
 	public void eventClear() {
 		this.conditionSatisfied = true;
-		if(this.Parent != this){
-			this.Parent.checkCoditionSatisfaction();
+		if(this.parent != this){
+			this.parent.checkCoditionSatisfaction();
 		}
 	}
 	public void checkCoditionSatisfaction() {
