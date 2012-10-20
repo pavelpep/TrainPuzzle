@@ -7,7 +7,6 @@ public class Event {
 	private Station station;
 	
 	public Event(int time, Station station) {
-		super();
 		this.time = time;
 		this.station = station;
 	}
