@@ -37,5 +37,21 @@ public class Event {
 	public void seteventID(String eventID) {
 		this.eventID = eventID;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Event other = (Event) obj;
+		 return eventID.equals(other.eventID);
+	}
+	
 	
 }
