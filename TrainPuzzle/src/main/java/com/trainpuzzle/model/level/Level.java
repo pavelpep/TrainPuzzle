@@ -28,6 +28,7 @@ public class Level {
 		map = new Board();
 		addSomeWaterTiles();
 		addSomeTrackTiles();
+		addSomeObstacles();
 		startLocation = new Location(4,0);
 		endLocation = new Location(4,19);
 	}
@@ -40,12 +41,11 @@ public class Level {
 		
 	}
 	
+	private void addSomeObstacles() {
+		map.getTile(7, 7).setObstacle(new Obstacle());
+	}
+	
 	private void addSomeTrackTiles() {
-		/*
-		for(int column = 0; column < 20; column++){
-			map.getTile(4,column).setTrack(new Track());
-		}
-		*/
 		
 		map.getTile(4,0).setTrack(new Track());
 		map.getTile(4,1).setTrack(new Track());
