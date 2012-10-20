@@ -7,11 +7,14 @@ public class AndVictoryCondition extends VictoryCondition{
 		if(this.leftChild != null && this.rightChild !=null) {
 			this.conditionSatisfied = (leftChild.isSatisfied() && rightChild.isSatisfied());
 		}
-		else if (leftChild == null) {
+		else if (leftChild != null) {
+			conditionSatisfied = leftChild.isSatisfied();
+		}
+		else if (rightChild != null) {
 			conditionSatisfied = rightChild.isSatisfied();
 		}
-		else if (rightChild == null) {
-			conditionSatisfied = leftChild.isSatisfied();
+		else {
+			conditionSatisfied = false;
 		}
 		if(parent != this) {
 			parent.checkCoditionSatisfaction();
