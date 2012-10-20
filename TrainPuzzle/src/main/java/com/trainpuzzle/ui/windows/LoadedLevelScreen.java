@@ -53,13 +53,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JLabel landscapeLayer = new JLabel();
 	private JLabel trackLayer = new JLabel();
 	private JLabel trainLayer = new JLabel();
+	private JLabel obstacleLayer = new JLabel();
 	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
+	private final int obstacleLayerIndex = 3;
 	
-	private final ImageIcon GRASSIMAGE = new ImageIcon("src/main/resources/images/grass.png");
-	private final ImageIcon WATERIMAGE = new ImageIcon("src/main/resources/images/water.png");
+	private final ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
+	private final ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
+	private final ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
 	
 	private final String DIAGONAL_TRACK_IMAGE = "src/main/resources/images/diagonal_track.png";
 	private final String CURVE_LEFT_TRACK_IMAGE = "src/main/resources/images/curve_left_track.png";
@@ -102,10 +105,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				try {
 					modifyLandscape(row, column);
 	            	modifyTrack(row, column);
-					//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
+	            	//modifyObstacles(row, column);
 		        	
 				} catch(Exception e){
-					logger.error(e.getMessage(), e.fillInStackTrace());
+					//logger.error(e.getMessage(), e.fillInStackTrace());
 				}
             }
         }
@@ -119,16 +122,32 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
-			landscapeLayer=new JLabel(GRASSIMAGE);
+			landscapeLayer=new JLabel(GRASS_IMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
-			landscapeLayer=new JLabel(WATERIMAGE);
+			landscapeLayer=new JLabel(WATER_IMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		landscapeLayer.setBounds(0,0,40,40);
 		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
+	}
+	
+	private void modifyObstacles(int row, int column) {
+		try {
+			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(obstacleLayerIndex)[0]);
+		} catch(Exception e){
+			//logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+		
+		if(level.getMap().getTile(row, column).hasObstacle()) {
+			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+			obstacleLayer=new JLabel(ROCK_IMAGE);
+			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
+		}
+		obstacleLayer.setBounds(0,0,40,40);
+		mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 	}
 	
 	private void modifyTrack(int row, int column) {
@@ -138,10 +157,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		if(level.getMap().getTile(row, column).hasTrack()){
-
-			//trackLayer=new JLabel(new ImageIcon("src/main/resources/images/straight_track.png"));
-			
-			// IN PROGRESS. JUST EXAMPLES RIGHT NOW
 
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
 				
@@ -184,7 +199,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
 		try {
 			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
-			//logger.info("removing @ " + previousTrainLatitude + ", " + previousTrainLongitude);
         	
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
@@ -196,7 +210,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		trainLocation = train.getLocation();
 		int row = trainLocation.getRow();
 		int column = trainLocation.getColumn();
-		
 		
 		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
 		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
@@ -227,7 +240,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
             for(int column = 0; column < numberOfColumns; column++){
         		mapTile = new JLayeredPane();
         		mapTile.setPreferredSize(new Dimension(40, 40));
-        		
+
+            	modifyObstacles(row, column);
 				modifyLandscape(row, column);
             	modifyTrack(row, column);
         		
@@ -295,6 +309,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	 * 
 	 * @param levelToSimulate
 	 */
+	/*
 	private void testSimulation(Level levelToSimulate) {
 		Simulator testSim = new Simulator(levelToSimulate);
 		Location location = new Location(0, 4);
@@ -317,7 +332,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			}
 		}
 	}
-
+	*/
+	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			gameController.runSimulation();
