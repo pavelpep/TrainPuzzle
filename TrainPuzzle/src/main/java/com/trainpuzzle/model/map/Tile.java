@@ -70,6 +70,12 @@ public class Tile {
 		this.station = station;
 	}
 
-
+	public void setObstacle(Obstacle obstacle) {
+		this.obstacle = obstacle;
+	}
+	
+	public String getObstacleType() {
+		return obstacle.getName();
+	}
 	
 }
