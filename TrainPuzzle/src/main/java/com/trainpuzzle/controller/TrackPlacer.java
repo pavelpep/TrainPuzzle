@@ -3,6 +3,7 @@ import org.apache.log4j.Logger;
 
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
+import com.trainpuzzle.exception.CannotRotateException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.*;
 
@@ -31,14 +32,28 @@ public class TrackPlacer {
 
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
 		Tile tile = map.getTile(row, column);
-		if(!tile.hasTrack()||tile.hasObstacle()) {
-			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
-		}
-		else {
+		if(tile.hasTrack()) {			
 			tile.removeTrack();
 			map.notifyAllObservers();
 			//map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
+		else {
+			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
+		}
+	}
+	
+	
+	public void rotateTrack(int row, int column) throws CannotRotateException{
+		Tile tile = map.getTile(row, column);
+		
+		if(tile.hasTrack()) {
+			tile.rotateTrack(); // TODO
+			map.notifyAllObservers();
+			//map.setTile(tile,row,column); // can be removed because of passing by reference		
+		}
+		else {
+			throw new CannotRotateException("No track to be rotated on this tile");
+		}		
 	}
 	
 	public Level getLevelWithTrack() {

@@ -50,6 +50,9 @@ public class Tile {
 		this.track = track;
 	}
 	
+	public void rotateTrack() {
+		this.track.rotateTrack();
+	}
 	
 	public String getLandscapeType() {
 		return landscape.getType();
@@ -66,5 +69,7 @@ public class Tile {
 	public void setStation(Station station) {
 		this.station = station;
 	}
+
+
 	
 }
