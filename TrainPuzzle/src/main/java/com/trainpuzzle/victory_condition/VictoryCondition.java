@@ -3,6 +3,8 @@ package com.trainpuzzle.victory_condition;
 public abstract class VictoryCondition {
 	protected boolean conditionSatisfied;
 	protected boolean conditionCanBeSatisfed;
+	protected boolean not;
+	public static final boolean NOT = true;
 	protected VictoryCondition leftChild;
 	protected VictoryCondition rightChild;
 	protected VictoryCondition parent;
@@ -10,8 +12,17 @@ public abstract class VictoryCondition {
 	public VictoryCondition() {
 		this.conditionSatisfied =false;
 		this.conditionCanBeSatisfed = true;
+		not = false;
+	}
+	public VictoryCondition(final boolean not) {
+		this.conditionSatisfied =false;
+		this.conditionCanBeSatisfed = true;
+		this.not = not;
 	}
 	public boolean isSatisfied() {
+		if (not) {
+			return !this.conditionSatisfied;
+		}
 		return this.conditionSatisfied;
 	}
 	private boolean isLeftSatisfied() {

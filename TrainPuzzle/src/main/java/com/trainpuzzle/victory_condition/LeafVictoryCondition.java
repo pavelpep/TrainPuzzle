@@ -4,6 +4,11 @@ public class LeafVictoryCondition extends VictoryCondition{
 	private Event event;
 	
 	public LeafVictoryCondition(Event event) {
+		super();
+		this.event = event;
+	}
+	public LeafVictoryCondition(Event event, final boolean not) {
+		super(not);
 		this.event = event;
 	}
 	
