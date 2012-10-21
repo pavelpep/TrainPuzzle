@@ -1,5 +1,5 @@
 package com.trainpuzzle.observe;
 
 public interface Observer {
-	public void notifyChange();
+	public void notifyChange(Object object);
 }
