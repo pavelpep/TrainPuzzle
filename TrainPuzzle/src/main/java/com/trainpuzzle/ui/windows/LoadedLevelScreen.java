@@ -44,7 +44,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
-	MouseListener mouseListener;
+	MouseListener mouseListener = new TileMouseAdapter();
 	
 	Location previousTrainLocation;
 	int previousRow;
