@@ -176,9 +176,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 					break;
 			}
 			stationLayer.setTransferHandler(new TransferHandler("icon"));
-		}
-		stationLayer.setBounds(0,0,40,40);
-		mapTile.add(stationLayer, new Integer(stationLayerIndex));		
+			stationLayer.setBounds(0,0,40,40);
+			mapTile.add(stationLayer, new Integer(stationLayerIndex));	
+		}	
 	}
 	
 	private void modifyObstacles(int row, int column) {
@@ -199,9 +199,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 					break;
 			}
 			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
+			obstacleLayer.setBounds(0,0,40,40);
+			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 		}
-		obstacleLayer.setBounds(0,0,40,40);
-		mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 	}
 	
 	private void modifyTrack(int row, int column) {
