@@ -3,12 +3,18 @@ package com.trainpuzzle.ui.windows;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
 public class RotatedImageIcon extends ImageIcon {
 	
 	int multiplesOf45Degrees;
+	
+	public RotatedImageIcon(Image image, int multiplesOf45Degrees) {
+		super.setImage(image);
+		this.multiplesOf45Degrees = multiplesOf45Degrees;
+	}
 	
 	public RotatedImageIcon(String filename, int multiplesOf45Degrees) {
 		super(filename);
