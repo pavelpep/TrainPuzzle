@@ -59,16 +59,21 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JLabel trackLayer = new JLabel();
 	private JLabel trainLayer = new JLabel();
 	private JLabel obstacleLayer = new JLabel();
+	private JLabel stationLayer = new JLabel();
 	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
+	private final int stationLayerIndex = 4;
 
 	private final ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	private final ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
 	private final ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
 	private final ImageIcon TREES_IMAGE = new ImageIcon("src/main/resources/images/trees.png");
+	
+	private final ImageIcon REDSTATION_FRONT_IMAGE = new ImageIcon("src/main/resources/images/redStation_Front.png");
+	private final ImageIcon GREENSTATION_FRONT_IMAGE = new ImageIcon("src/main/resources/images/greenStation_Front.png");
 	
 	private final ImageIcon STRAIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/straight_track.png");
 	private final ImageIcon DIAGONALTRACK_IMAGE = new ImageIcon("src/main/resources/images/diagonal_track.png");
@@ -147,6 +152,35 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		landscapeLayer.setBounds(0,0,40,40);
 		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
+	}
+	
+	private void modifyStations(int row, int column){
+		try {
+			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(stationLayerIndex)[0]);
+		} catch(Exception e){
+			//logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+		
+		if(level.getMap().getTile(row, column).hasStation()) {
+			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+			switch(level.getMap().getTile(row, column).getStationType()){
+				case RED_FRONT:
+					stationLayer = new JLabel(REDSTATION_FRONT_IMAGE);
+					break;
+				case GREEN_FRONT:
+					stationLayer = new JLabel(GREENSTATION_FRONT_IMAGE);
+					break;
+				case RED_BACK:
+					
+					break;
+				case GREEN_BACK:
+					
+					break;
+			}
+			stationLayer.setTransferHandler(new TransferHandler("icon"));
+		}
+		stationLayer.setBounds(0,0,40,40);
+		mapTile.add(stationLayer, new Integer(stationLayerIndex));		
 	}
 	
 	private void modifyObstacles(int row, int column) {
@@ -275,6 +309,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
             	modifyObstacles(row, column);
 				modifyLandscape(row, column);
             	modifyTrack(row, column);
+            	modifyStations(row, column);
         		
 				mapTile.addMouseListener(mouseListener); 
             	mapPanel.add(mapTile);

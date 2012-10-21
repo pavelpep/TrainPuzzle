@@ -69,6 +69,10 @@ public class Tile {
 	public void setStation(Station station) {
 		this.station = station;
 	}
+	
+	public Station.StationType getStationType() {
+		return station.getType();
+	}
 
 	public void setObstacle(Obstacle obstacle) {
 		this.obstacle = obstacle;

@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.map;
 
+import com.trainpuzzle.model.map.Obstacle.ObstacleType;
+
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
  * Station is treated as a obstacle (tracks cannot be built on it)
@@ -10,6 +12,15 @@ package com.trainpuzzle.model.map;
  */
 
 public class Station {
+	
+	public enum StationType {
+		RED_FRONT,
+		RED_BACK,
+		GREEN_BACK,
+		GREEN_FRONT;
+	}
+	
+	private StationType stationType;
 	private Location stationLocation;
 	private StationTrackPosition trackPosition;
 	private Track track;
@@ -17,7 +28,8 @@ public class Station {
 	
 	/* Public Interface */
 	
-	public Station(Location location, StationTrackPosition trackPosition) {	
+	public Station(StationType station, Location location, StationTrackPosition trackPosition) {	
+		this.stationType = station;
 		this.stationLocation = location;
 		this.trackPosition = trackPosition;
 		this.track = createTrack();
@@ -26,6 +38,15 @@ public class Station {
 	
 	/*Getters and Setters */
 
+	public StationType getType() {
+		return this.stationType;
+	}
+
+	public void setType(StationType station) {
+		this.stationType = station;
+	}
+	
+	
 	public Location getLocation() {
 		return stationLocation;
 	}
