@@ -17,8 +17,10 @@ public class LevelGenerator {
     private Level level;
     private Location startLocation;
     private Location endLocation;
+    private Economy economy;
 
     public LevelGenerator() {
+    	
     }
     
     public Level createLevelOne() {
@@ -29,7 +31,8 @@ public class LevelGenerator {
 		addSomeObstacles();
 		this.startLocation = new Location(4,0);
 		this.endLocation = new Location(4,19);
-    	this.level = new Level(1, this.map, this.startLocation, this.endLocation);
+		this.economy = new Economy();
+    	this.level = new Level(1, this.map, this.startLocation, this.endLocation, this.economy);
     	return this.level;
 	}
 	
