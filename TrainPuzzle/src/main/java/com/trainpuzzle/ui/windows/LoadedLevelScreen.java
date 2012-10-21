@@ -17,6 +17,7 @@ import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.model.map.Board;
 import com.trainpuzzle.model.map.CompassHeading;
 import com.trainpuzzle.model.map.Connection;
 import com.trainpuzzle.model.map.Obstacle;
@@ -51,9 +52,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	int previousRow;
 	int previousColumn;
 	Location trainLocation;
-	
-	int numberOfRows = 15;
-	int numberOfColumns = 20;
 	
 	private JLabel landscapeLayer = new JLabel();
 	private JLabel trackLayer = new JLabel();
@@ -113,8 +111,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	public void redrawTiles(){
-        for(int row = 0; row < numberOfRows; row++){
-            for(int column = 0; column < numberOfColumns; column++){
+        for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
+            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
 				try {
 					modifyLandscape(row, column);
 	            	modifyTrack(row, column);
@@ -293,16 +291,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.add(this.titleLabel, gbConstraints);
 		
 		// Map Panel
-		level = new Level(1);
+		//level = new Level(1);
+		level = this.gameController.getLevel();
 		
-		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
+		mapTiles = new JLayeredPane[Board.NUMBER_OF_ROWS][Board.NUMBER_OF_COLUMNS];
 		
 		mapPanel = new JPanel();	
-		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
+		mapPanel.setLayout(new GridLayout(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS));
 	
 		
-        for(int row = 0; row < numberOfRows; row++){
-            for(int column = 0; column < numberOfColumns; column++){
+        for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
+            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
         		mapTile = new JLayeredPane();
         		mapTile.setPreferredSize(new Dimension(40, 40));
 

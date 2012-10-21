@@ -104,4 +104,8 @@ public class GameController {
 	public Board getTrackMap() {
 		return loadedLevelWithTrack.getMap();
 	}
+	
+	public Level getLevel() {
+		return this.level;
+	}
 }
