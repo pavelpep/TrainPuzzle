@@ -117,7 +117,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			redrawTrain(train);
 		}
 		else if(object instanceof Tile){
-			redrawTiles();
+			for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
+	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
+	            	if(object.equals(level.getMap().getTile(row, column)))
+	            		redrawTile(row, column);
+	            }
+			}
 		}
 		
 	}
