@@ -95,7 +95,7 @@ public class Simulator {
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		if(location.getRow() >= map.getNumberOfRows() || location.getColumn() >= map.getNumberOfColumns()) {
+		if(location.getRow() >= Board.NUMBER_OF_ROWS || location.getColumn() >= Board.NUMBER_OF_COLUMNS) {
 			return true;
 		}
 		return false;
