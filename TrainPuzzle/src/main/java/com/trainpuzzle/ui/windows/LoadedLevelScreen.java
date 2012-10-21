@@ -52,11 +52,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	int previousColumn;
 	Location trainLocation;
 	
-	private JLabel landscapeLayer = new JLabel();
-	private JLabel trackLayer = new JLabel();
-	private JLabel trainLayer = new JLabel();
-	private JLabel obstacleLayer = new JLabel();
-	private JLabel stationLayer = new JLabel();
 	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
@@ -77,7 +72,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private final ImageIcon CURVELEFTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_left_track.png");
 	private final ImageIcon CURVERIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_right_track.png");	
 	
-	private JLayeredPane mapTile;
 	private JLayeredPane[][] mapTiles;
 	
 	private GameController gameController;
@@ -89,6 +83,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
+		
+
 		
 		this.gameController = gameController;
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
@@ -106,18 +102,27 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		previousTrainLocation = new Location(0,0);
 		mouseListener = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
 		
-		gameController.getLevel().getMap().register(this);
+		
+		level = this.gameController.getLevel();
+		level.getMap().register(this);
+		
+		// Game title
+		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		this.titleLabel.setText("Level 1");
+		this.add(this.titleLabel, gbConstraints);
+		
 	}
 	
 	public void notifyChange(){
-		drawTrain(train);
+		redrawTrain(train);
 		redrawTiles();
 	}
 	
-	public void redrawTiles(){
+	public void  redrawTiles(){
+
 		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
 	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-	        		mapTile = mapTiles[row][column];
+	        		//mapTile = mapTiles[row][column];
 	            	drawObstacle(row, column);
 					drawLandscape(row, column);
 	            	drawTrack(row, column);
@@ -127,6 +132,36 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         mapPanel.repaint();
 	}
 	
+	private void redrawTrain(Train train) {
+		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
+		try {
+			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
+        	
+		} catch(Exception e){
+			//logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+		
+		previousRow = trainLocation.getRow();
+		previousColumn = trainLocation.getColumn();
+
+		trainLocation = train.getLocation();
+		int row = trainLocation.getRow();
+		int column = trainLocation.getColumn();
+		
+		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
+		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
+    	JLabel trainLayer = new JLabel(trainImage);
+    	trainLayer.setBounds(0,0,40,40);
+		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
+		
+		mapPanel.repaint();
+	}
+	
+    private void redrawTrackPanel(){
+
+        // TODO: redrawTrackPanel();		
+	}
+    
 	private void drawLandscape(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
@@ -134,6 +169,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
+		JLabel landscapeLayer = new JLabel();
 		switch(level.getMap().getTile(row, column).getLandscapeType()) {
 		case GRASS:
 			landscapeLayer=new JLabel(GRASS_IMAGE);
@@ -150,7 +186,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		landscapeLayer.setBounds(0,0,40,40);
-		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
+		mapTiles[row][column].add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
 	
 	private void drawStation(int row, int column){
@@ -159,9 +195,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
-		
+		JLayeredPane mapTile = mapTiles[row][column];
 		if(level.getMap().getTile(row, column).hasStation()) {
 			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+			JLabel stationLayer = new JLabel();
 			switch(level.getMap().getTile(row, column).getStationType()){
 				case RED_FRONT:
 					stationLayer = new JLabel(REDSTATION_FRONT_IMAGE);
@@ -188,9 +225,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
-		
+		JLayeredPane mapTile = mapTiles[row][column];
 		if(level.getMap().getTile(row, column).hasObstacle()) {
 			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+			JLabel obstacleLayer = new JLabel();
 			switch(level.getMap().getTile(row, column).getObstacleType()){
 				case ROCK:
 					obstacleLayer = new JLabel(ROCK_IMAGE);
@@ -211,6 +249,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
+		JLayeredPane mapTile = mapTiles[row][column];
 		if(level.getMap().getTile(row, column).hasTrack()){
 
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
@@ -219,7 +258,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
 				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 				
-				
+				JLabel trackLayer = new JLabel();
 				for(int i = 0; i < 2; i++){
 					if(connection.equals(straight)){
 						trackLayer=new JLabel(new RotatedImageIcon(DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
@@ -257,76 +296,31 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	
-	public void drawTrain(Train train) {
-		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
-		try {
-			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
-        	
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
-		
-		previousRow = trainLocation.getRow();
-		previousColumn = trainLocation.getColumn();
 
-		trainLocation = train.getLocation();
-		int row = trainLocation.getRow();
-		int column = trainLocation.getColumn();
-		
-		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
-		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
-    	trainLayer = new JLabel(trainImage);
-    	trainLayer.setBounds(0,0,40,40);
-		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
-		
-		mapPanel.repaint();
-	}
-	
 	public void create() {
 	
-		// Game title
-		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		this.titleLabel.setText("Level 1");
-		this.add(this.titleLabel, gbConstraints);
 		
-		// Map Panel
-		//level = new Level(1);
-		level = this.gameController.getLevel();
 		
-		mapTiles = new JLayeredPane[Board.NUMBER_OF_ROWS][Board.NUMBER_OF_COLUMNS];
-		
-		mapPanel = new JPanel();	
-		mapPanel.setLayout(new GridLayout(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS));
-	
-		
-        for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
-            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-        		mapTile = new JLayeredPane();
-        		mapTile.setPreferredSize(new Dimension(40, 40));
 
-            	drawObstacle(row, column);
-				drawLandscape(row, column);
-            	drawTrack(row, column);
-            	drawStation(row, column);
-        		
-				mapTile.addMouseListener(mouseListener); 
-            	mapPanel.add(mapTile);
-            	mapTiles[row][column] = mapTile;
-            	
-            }
-        }
+	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
+        redrawTiles();
         
+		initializeTrain();
+		redrawTrain(train);
+
+		initializeTrackPanel();
+        redrawTrackPanel();
 		
+        this.setVisible(true);
+	}
+
+	private void initializeTrain() {
 		train = gameController.getSimulator().getTrain();
 		train.register(this);
 		trainLocation = train.getLocation();
-		drawTrain(train);
-        
-        initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
-        this.add(this.mapPanel, gbConstraints);
-		
-		//testSimulation(testLevel);
-		
+	}
+
+	private void initializeTrackPanel() {
 		// Track Panel 
 		initializeComponent(this.trackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 300, 10), true);
 		this.add(trackPanel, gbConstraints);
@@ -377,8 +371,34 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Currently Selected Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
         selectedTrackPanel.setBorder(sidePanelTitle);
+	}
+	
 
-        this.setVisible(true);
+	
+	private void initializeMapPanel(int numberOfRows, int numberOfColumns) {
+		
+		mapPanel = new JPanel();	
+		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
+		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
+		
+		// Initialize Map Panel
+        for(int row = 0; row < numberOfRows; row++){
+            for(int column = 0; column < numberOfColumns; column++){
+        		
+            	//initializes tile
+            	JLayeredPane mapTile = new JLayeredPane();
+        		mapTile.setPreferredSize(new Dimension(40, 40));
+        		mapTiles[row][column] = mapTile;
+        		  		
+            	//add mouse clicky thing to tile
+				mapTile.addMouseListener(mouseListener); 
+				
+				//add tile to map panel
+            	mapPanel.add(mapTile);
+            }
+        }
+        initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+        this.add(this.mapPanel, gbConstraints);
 	}
 
 	
