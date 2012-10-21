@@ -25,7 +25,7 @@ public class Board implements Observable {
 	
 	public void notifyAllObservers(){
 		for(Observer observer : observerList) {
-			observer.notifyChange();
+			observer.notifyChange(this);
 		}
 	}
 		
