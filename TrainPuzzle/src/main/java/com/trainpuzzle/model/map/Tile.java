@@ -1,23 +1,42 @@
 package com.trainpuzzle.model.map;
 
+import java.util.HashSet;
+import java.util.Set;
 
-public class Tile {
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
+
+
+public class Tile implements Observable {
 
 	private int elevation;
 	private Track track;
 	private Obstacle obstacle;
 	private Landscape landscape;
 	private Station station;
+	
+	private Set<Observer> observerList = new HashSet<Observer>();
 
   /* Public Interface */
 
-	public Tile() {	
+	public Tile(){	
 		elevation = 0;
 		landscape = new Landscape(Landscape.LandscapeType.GRASS);
+	}
+	
+	public void register(Observer observer){
+		observerList.add(observer);
+	}
+	
+	public void notifyAllObservers(){
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
 	}
 
 	public void removeTrack() {
 		track = null;
+		notifyAllObservers();
 	}
 	
 	public boolean hasTrack() {
@@ -40,6 +59,7 @@ public class Tile {
 
 	public void setElevation(int elevation) {
 		this.elevation = elevation;
+		notifyAllObservers();
 	}
 	
 	public Track getTrack() {
@@ -48,10 +68,12 @@ public class Tile {
 	
 	public void setTrack(Track track) {
 		this.track = track;
+		notifyAllObservers();
 	}
 	
 	public void rotateTrack() {
 		this.track.rotateTrack();
+		notifyAllObservers();
 	}
 	
 	public Landscape.LandscapeType getLandscapeType() {
@@ -60,6 +82,7 @@ public class Tile {
 	
 	public void setLandscapeType(Landscape.LandscapeType type) {
 		this.landscape.setType(type);
+		notifyAllObservers();
 	}
 	
 	public Station getStation() {
@@ -68,6 +91,7 @@ public class Tile {
 	
 	public void setStation(Station station) {
 		this.station = station;
+		notifyAllObservers();
 	}
 	
 	public Station.StationType getStationType() {
@@ -76,6 +100,7 @@ public class Tile {
 
 	public void setObstacle(Obstacle obstacle) {
 		this.obstacle = obstacle;
+		notifyAllObservers();
 	}
 	
 	public Obstacle.ObstacleType getObstacleType() {
