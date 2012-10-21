@@ -1,6 +1,8 @@
 package com.trainpuzzle.controller;
 
 
+import javax.swing.JOptionPane;
+
 import com.trainpuzzle.model.map.*;
 import com.trainpuzzle.model.level.*;
 import static com.trainpuzzle.model.map.CompassHeading.*;
@@ -36,7 +38,9 @@ public class Simulator {
 		}
 		
 		Tile tile = map.getTile(location.getRow(), location.getColumn());
-		if(!tile.hasTrack()) {
+		if(!tile.hasTrack() || tile.hasObstacle()) {
+			// TODO: Better way to inform user train crashed
+			JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		} 
 		

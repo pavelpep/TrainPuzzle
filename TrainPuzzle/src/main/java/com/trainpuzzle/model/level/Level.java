@@ -43,6 +43,7 @@ public class Level {
 	
 	private void addSomeObstacles() {
 		map.getTile(7, 7).setObstacle(new Obstacle());
+		map.getTile(7, 8).setObstacle(new Obstacle());
 	}
 	
 	private void addSomeTrackTiles() {
