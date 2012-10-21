@@ -110,7 +110,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	public void notifyChange(){
-		redrawTrain(train);
+		drawTrain(train);
 		redrawTiles();
 	}
 	
@@ -118,16 +118,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
 	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
 	        		mapTile = mapTiles[row][column];
-	            	modifyObstacles(row, column);
-					modifyLandscape(row, column);
-	            	modifyTrack(row, column);
-	            	modifyStations(row, column);
+	            	drawObstacle(row, column);
+					drawLandscape(row, column);
+	            	drawTrack(row, column);
+	            	drawStation(row, column);
 	            }
 	        }
         mapPanel.repaint();
 	}
 	
-	private void modifyLandscape(int row, int column) {
+	private void drawLandscape(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
 		} catch(Exception e){
@@ -153,7 +153,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
 	
-	private void modifyStations(int row, int column){
+	private void drawStation(int row, int column){
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(stationLayerIndex)[0]);
 		} catch(Exception e){
@@ -182,7 +182,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}	
 	}
 	
-	private void modifyObstacles(int row, int column) {
+	private void drawObstacle(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(obstacleLayerIndex)[0]);
 		} catch(Exception e){
@@ -205,7 +205,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	
-	private void modifyTrack(int row, int column) {
+	private void drawTrack(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
 		} catch(Exception e){
@@ -257,7 +257,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	
-	public void redrawTrain(Train train) {
+	public void drawTrain(Train train) {
 		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
 		try {
 			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
@@ -304,10 +304,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         		mapTile = new JLayeredPane();
         		mapTile.setPreferredSize(new Dimension(40, 40));
 
-            	modifyObstacles(row, column);
-				modifyLandscape(row, column);
-            	modifyTrack(row, column);
-            	modifyStations(row, column);
+            	drawObstacle(row, column);
+				drawLandscape(row, column);
+            	drawTrack(row, column);
+            	drawStation(row, column);
         		
 				mapTile.addMouseListener(mouseListener); 
             	mapPanel.add(mapTile);
@@ -320,7 +320,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		train = gameController.getSimulator().getTrain();
 		train.register(this);
 		trainLocation = train.getLocation();
-		redrawTrain(train);
+		drawTrain(train);
         
         initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
         this.add(this.mapPanel, gbConstraints);
