@@ -215,21 +215,20 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
 				Connection diagonal = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
 				Connection straight = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-				
 				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
 				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 				
+				
 				for(int i = 0; i < 2; i++){
 					if(connection.equals(straight)){
-						//System.out.println("rotated to " + straight.getCompassHeadingPair()[0] + straight.getCompassHeadingPair()[1]);
-						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2 + 1));
+						trackLayer=new JLabel(new RotatedImageIcon(DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					straight.rotate90Degrees();
 					
 					if(connection.equals(diagonal)){
-						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/diagonal_track.png", i * 2));
+						trackLayer=new JLabel(new RotatedImageIcon(DIAGONALTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
@@ -238,18 +237,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 					
 				for(int i = 0; i < 4; i++){	
 					if(connection.equals(curveLeft)){
-						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_left_track.png", i));
-
+						trackLayer=new JLabel(new RotatedImageIcon(CURVELEFTTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
-					curveLeft.rotate45Degrees();
+					curveLeft.rotate90Degrees();
 					if(connection.equals(curveRight)){
-						trackLayer=new JLabel(new RotatedImageIcon("src/main/resources/images/curve_right_track.png", i));
+						trackLayer=new JLabel(new RotatedImageIcon(CURVERIGHTTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
-					curveRight.rotate45Degrees();
+					curveRight.rotate90Degrees();
 				}
 				
 				
