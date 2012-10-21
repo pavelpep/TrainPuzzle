@@ -22,6 +22,7 @@ import com.trainpuzzle.model.map.CompassHeading;
 import com.trainpuzzle.model.map.Connection;
 import com.trainpuzzle.model.map.Obstacle;
 import com.trainpuzzle.model.map.Tile;
+import com.trainpuzzle.model.map.Track;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
 
@@ -34,18 +35,20 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
+
+	private JPanel mapPanel = new JPanel();
+	
+	private JPanel trackPanel = new JPanel();
+	
+	private JPanel selectedTrackPanel = new JPanel();
 	private JLabel selectedTrackLabel = new JLabel();
 	private JLabel selectedTrackImage = new JLabel();
-	private JPanel mapPanel = new JPanel();
-	private JPanel trackPanel = new JPanel();
-	private JPanel selectedTrackPanel = new JPanel();
-	private JButton runButton = new JButton();
-	private JButton rotateLeftButton = new JButton();
-	private JButton rotateRightButton = new JButton();
+
+
 
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
-	MouseListener mouseListener;
+	TileMouseAdapter mouseAdapter;
 	
 	Location previousTrainLocation;
 	int previousRow;
@@ -90,17 +93,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 
-        this.selectedTrackImage.setPreferredSize(new Dimension(100,100));
-        this.selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-        this.rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-        this.rotateRightButton.setPreferredSize(new Dimension(100, 50));
+
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 		
 		previousTrainLocation = new Location(0,0);
-		mouseListener = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
 		
 		
 		level = this.gameController.getLevel();
@@ -370,12 +370,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		curverightTrack.addActionListener(this);
 		trackPanel.add(curverightTrack);
 		
+		//initialize run button
+		JButton runButton = new JButton();
 		runButton = new JButton("Simulate");
 		trackPanel.add(runButton);		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
-		// Selected Track Panel 
+		//Initialize Selected Track Panel 
 		initializeComponent(this.selectedTrackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(300, 0, 0, 10), true);
 		this.add(selectedTrackPanel, gbConstraints);
 		
@@ -383,6 +385,26 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Currently Selected Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
         selectedTrackPanel.setBorder(sidePanelTitle);
+        
+        //initialize selected track image and label
+    	//JLabel selectedTrackLabel = new JLabel();
+    	//JLabel selectedTrackImage = new JLabel();
+        selectedTrackImage.setPreferredSize(new Dimension(100,100));
+        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
+        
+        selectedTrackPanel.add(selectedTrackImage);
+        selectedTrackPanel.add(selectedTrackLabel);
+        
+        //initialize rotate buttons
+    	JButton rotateLeftButton = new JButton("Rotate Left");
+    	JButton rotateRightButton = new JButton("Rotate Right");        
+        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
+        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+        
+        selectedTrackPanel.add(rotateLeftButton);
+        selectedTrackPanel.add(rotateRightButton);
+         
+
 	}
 	
 
@@ -405,7 +427,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
             	//add mouse clicky thing to tile
             	level.getMap().getTile(row, column).register(this);
-				mapTile.addMouseListener(mouseListener); 
+				mapTile.addMouseListener(mouseAdapter); 
 				
 				//add tile to map panel
             	mapPanel.add(mapTile);
@@ -453,83 +475,91 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}	
 		
 		if (event.getActionCommand() == "straightTrack") {
-			selectedTrackPanel.removeAll();
+			
+			selectedTrackPanel.remove(selectedTrackImage);
+			selectedTrackPanel.remove(selectedTrackLabel);	
+			
 			selectedTrackImage = new JLabel(STRAIGHTTRACK_IMAGE);
-			selectedTrackLabel = new JLabel("Straight Track");
-	        rotateLeftButton = new JButton("Rotate Left");
-	        rotateRightButton = new JButton("Rotate Right");        
-
+			selectedTrackLabel = new JLabel("Straight Track");  
+			
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+
 	        
 	        selectedTrackPanel.add(selectedTrackImage);
 	        selectedTrackPanel.add(selectedTrackLabel);
-	        selectedTrackPanel.add(rotateLeftButton);
-	        selectedTrackPanel.add(rotateRightButton);
+	        selectedTrackPanel.repaint();
+	        
 			this.setVisible(true);
-			selectedTrackPanel.repaint();
+			
+			//Create and set new connection on mouseAdapter
+			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
+			Track track = new Track(connection);
+			mouseAdapter.setTrack(track);
 		}
 		
 		if (event.getActionCommand() == "diagonalTrack") {
-			selectedTrackPanel.removeAll();
+
+			selectedTrackPanel.remove(selectedTrackImage);
+			selectedTrackPanel.remove(selectedTrackLabel);	
 			selectedTrackImage = new JLabel(DIAGONALTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Diagonal Track");
-	        rotateLeftButton = new JButton("Rotate Left");
-	        rotateRightButton = new JButton("Rotate Right");        
-
+			
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
+
 	        
 	        selectedTrackPanel.add(selectedTrackImage);
 	        selectedTrackPanel.add(selectedTrackLabel);
-	        selectedTrackPanel.add(rotateLeftButton);
-	        selectedTrackPanel.add(rotateRightButton);
+	        selectedTrackPanel.repaint();
+	        
 			this.setVisible(true);
-			selectedTrackPanel.repaint();
+			
+			//Create and set new connection on mouseAdapter
+			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
+			Track track = new Track(connection);
+			mouseAdapter.setTrack(track);
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
-			selectedTrackPanel.removeAll();
+			selectedTrackPanel.remove(selectedTrackImage);
+			selectedTrackPanel.remove(selectedTrackLabel);	
 			selectedTrackImage = new JLabel(CURVELEFTTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Curve Left Track");
-	        rotateLeftButton = new JButton("Rotate Left");
-	        rotateRightButton = new JButton("Rotate Right");        
-
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
-	        
+
 	        selectedTrackPanel.add(selectedTrackImage);
 	        selectedTrackPanel.add(selectedTrackLabel);
-	        selectedTrackPanel.add(rotateLeftButton);
-	        selectedTrackPanel.add(rotateRightButton);
+	        selectedTrackPanel.repaint();
+	        
 			this.setVisible(true);
-			selectedTrackPanel.repaint();
+			
+			//Create and set new connection on mouseAdapter
+			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
+			Track track = new Track(connection);
+			mouseAdapter.setTrack(track);
+	        
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
-			selectedTrackPanel.removeAll();
+			selectedTrackPanel.remove(selectedTrackImage);
+			selectedTrackPanel.remove(selectedTrackLabel);	
 			selectedTrackImage = new JLabel(CURVERIGHTTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Curve Right Track");
-	        rotateLeftButton = new JButton("Rotate Left");
-	        rotateRightButton = new JButton("Rotate Right");        
-
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-	        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-	        rotateRightButton.setPreferredSize(new Dimension(100, 50));
 	        
 	        selectedTrackPanel.add(selectedTrackImage);
 	        selectedTrackPanel.add(selectedTrackLabel);
-	        selectedTrackPanel.add(rotateLeftButton);
-	        selectedTrackPanel.add(rotateRightButton);
+	        selectedTrackPanel.repaint();
+	        
 			this.setVisible(true);
-			selectedTrackPanel.repaint();
+			
+			//Create and set new connection on mouseAdapter
+			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
+			Track track = new Track(connection);
+			mouseAdapter.setTrack(track);
 		}
 		
 		
