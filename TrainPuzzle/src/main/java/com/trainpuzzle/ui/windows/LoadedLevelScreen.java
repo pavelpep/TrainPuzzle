@@ -122,7 +122,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
 	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-	        		//mapTile = mapTiles[row][column];
 	            	drawObstacle(row, column);
 					drawLandscape(row, column);
 	            	drawTrack(row, column);
@@ -132,6 +131,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         mapPanel.repaint();
 	}
 	
+    private void redrawTile(int row, int column){
+    	   drawObstacle(row, column);
+		   drawLandscape(row, column);
+	       drawTrack(row, column);
+	       drawStation(row, column);		
+	}
+    
 	private void redrawTrain(Train train) {
 		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
 		try {
@@ -299,9 +305,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	public void create() {
 	
-		
-		
-
 	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
         redrawTiles();
         
