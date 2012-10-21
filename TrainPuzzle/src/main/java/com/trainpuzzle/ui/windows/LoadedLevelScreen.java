@@ -104,7 +104,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		
 		level = this.gameController.getLevel();
-		level.getMap().register(this);
 		
 		// Game title
 		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
@@ -113,9 +112,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 	}
 	
-	public void notifyChange(){
-		redrawTrain(train);
-		redrawTiles();
+	public void notifyChange(Object object){
+		if(object instanceof Train){
+			redrawTrain(train);
+		}
+		else if(object instanceof Tile){
+			redrawTiles();
+		}
+		
 	}
 	
 	public void  redrawTiles(){
@@ -389,11 +393,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
             for(int column = 0; column < numberOfColumns; column++){
         		
             	//initializes tile
+            	
             	JLayeredPane mapTile = new JLayeredPane();
         		mapTile.setPreferredSize(new Dimension(40, 40));
         		mapTiles[row][column] = mapTile;
-        		  		
+
             	//add mouse clicky thing to tile
+            	level.getMap().getTile(row, column).register(this);
 				mapTile.addMouseListener(mouseListener); 
 				
 				//add tile to map panel
