@@ -28,6 +28,7 @@ class TileMouseAdapter extends MouseAdapter {
                 JComponent c = (JComponent) e.getSource();
                 int row = c.getY()/40;
                 int column = c.getX()/40;
+                
                 try {
                 	trackPlacer.placeTrack(track, row, column);
                 }catch(CannotPlaceTrackException ex) {
