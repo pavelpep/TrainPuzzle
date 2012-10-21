@@ -13,7 +13,7 @@ public class TrackPlacer {
 	private Level levelToAddTrack;
 	private Board map;
 	
-	TrackPlacer(Level levelToAddTrack) {
+	public TrackPlacer(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
 		this.map = levelToAddTrack.getMap();
 	}
