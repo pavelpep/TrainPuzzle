@@ -39,14 +39,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel mapPanel = new JPanel();
 	private JPanel trackPanel = new JPanel();
 	private JPanel selectedTrackPanel = new JPanel();
-	
 	private JButton runButton = new JButton();
 	private JButton rotateLeftButton = new JButton();
 	private JButton rotateRightButton = new JButton();
 
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
-	MouseListener mouseListener = new TileMouseAdapter();
+	MouseListener mouseListener;
 	
 	Location previousTrainLocation;
 	int previousRow;
@@ -90,6 +89,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
+		
 		this.gameController = gameController;
 		loweredbevel = BorderFactory.createLoweredBevelBorder();
 		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
@@ -104,25 +104,26 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		setLocationRelativeTo(null);	
 		
 		previousTrainLocation = new Location(0,0);
+		mouseListener = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		
+		gameController.getLevel().getMap().register(this);
 	}
 	
 	public void notifyChange(){
 		redrawTrain(train);
+		redrawTiles();
 	}
 	
 	public void redrawTiles(){
-        for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
-            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-				try {
+		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
+	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
+	        		mapTile = mapTiles[row][column];
+	            	modifyObstacles(row, column);
 					modifyLandscape(row, column);
 	            	modifyTrack(row, column);
-	            	//modifyObstacles(row, column);
-		        	
-				} catch(Exception e){
-					//logger.error(e.getMessage(), e.fillInStackTrace());
-				}
-            }
-        }
+	            	modifyStations(row, column);
+	            }
+	        }
         mapPanel.repaint();
 	}
 	
