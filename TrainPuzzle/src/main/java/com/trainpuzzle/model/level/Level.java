@@ -3,7 +3,7 @@ package com.trainpuzzle.model.level;
 import com.trainpuzzle.model.map.*;
 
 public class Level {
-	private Board map;
+	private Board board;
 	private Location startLocation;
 	private Location endLocation;
 	private int levelNumber;
@@ -14,9 +14,9 @@ public class Level {
 		this.levelNumber = levelNumber;
 	}
 	
-	public Level(int levelNumber, Board map, Location startLocation, Location endLocation) {
+	public Level(int levelNumber, Board board, Location startLocation, Location endLocation) {
 		this.levelNumber = levelNumber;
-		this.map = map;
+		this.board = board;
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
 	}
@@ -24,11 +24,11 @@ public class Level {
 	/* Setters and Getters */
 	
 	public Board getMap() {
-		return map;
+		return board;
 	}
 	
-	public void setMap(Board map) {
-		this.map = map;
+	public void setMap(Board board) {
+		this.board = board;
 	}
 	
 	public Location getStartLocation() {
