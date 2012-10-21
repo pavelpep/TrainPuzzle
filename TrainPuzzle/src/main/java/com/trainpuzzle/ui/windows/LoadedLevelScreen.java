@@ -129,10 +129,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
-		if(level.getMap().getTile(row, column).getLandscapeType().equals("grass")) {
+		
+		switch(level.getMap().getTile(row, column).getLandscapeType()) {
+		case GRASS:
 			landscapeLayer=new JLabel(GRASS_IMAGE);
-			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
+			break;
+		case WATER:
+			landscapeLayer=new JLabel(WATER_IMAGE);
+			break;
 		}
+		
+		landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
 			landscapeLayer=new JLabel(WATER_IMAGE);

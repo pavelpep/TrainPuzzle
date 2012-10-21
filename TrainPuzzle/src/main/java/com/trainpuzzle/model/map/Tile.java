@@ -13,7 +13,7 @@ public class Tile {
 
 	public Tile() {	
 		elevation = 0;
-		landscape = new Landscape();
+		landscape = new Landscape(Landscape.LandscapeType.GRASS);
 	}
 
 	public void removeTrack() {
@@ -54,11 +54,11 @@ public class Tile {
 		this.track.rotateTrack();
 	}
 	
-	public String getLandscapeType() {
+	public Landscape.LandscapeType getLandscapeType() {
 		return landscape.getType();
 	}
 	
-	public void setLandscapeType(String type) {
+	public void setLandscapeType(Landscape.LandscapeType type) {
 		this.landscape.setType(type);
 	}
 	

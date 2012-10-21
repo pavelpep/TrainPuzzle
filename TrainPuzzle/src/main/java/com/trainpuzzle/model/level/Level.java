@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level;
 
 import com.trainpuzzle.model.map.*;
+import com.trainpuzzle.model.map.Landscape.LandscapeType;
 
 
 public class Level {
@@ -35,15 +36,16 @@ public class Level {
 	
 	private void addSomeWaterTiles() {
 		
-		map.getTile(10, 10).setLandscapeType("water");
-		map.getTile(5, 5).setLandscapeType("water");
-		map.getTile(2, 3).setLandscapeType("water");
+		map.getTile(10, 10).setLandscapeType(LandscapeType.WATER);
+		map.getTile(5, 5).setLandscapeType(LandscapeType.WATER);
+		map.getTile(2, 3).setLandscapeType(LandscapeType.WATER);
 		
 	}
 	
 	private void addSomeObstacles() {
-		map.getTile(7, 7).setObstacle(new Obstacle());
-		map.getTile(7, 8).setObstacle(new Obstacle());
+		// BUGBUG random obstacle not being set to right tile 
+		map.getTile(7, 7).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		map.getTile(7, 8).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
 	}
 	
 	private void addSomeTrackTiles() {

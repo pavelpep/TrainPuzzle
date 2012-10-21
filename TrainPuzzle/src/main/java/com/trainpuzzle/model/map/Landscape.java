@@ -1,22 +1,46 @@
 package com.trainpuzzle.model.map;
 
-
 public class Landscape {
-	private String type;
+	
+	public enum LandscapeType {
+		GRASS,
+		WATER
+	}
+	
+	private LandscapeType landscape;
+	private String imgLocation;
 
-	public Landscape() {
-		this.type = "grass";
+	public Landscape(LandscapeType type) {
+		this.landscape = type;
+		
+		switch(this.landscape) {
+		case GRASS:
+			this.imgLocation = "src/main/resources/images/grass.png";
+			break;
+		case WATER:
+			this.imgLocation = "src/main/resources/images/water.png";
+			break;
+		default:
+			this.imgLocation = "src/main/resources/images/grass.png";
+		}
 	}
 	
-	public Landscape(String type) {
-		this.type = type;
+	/* Getters and Setters  */	
+
+	public LandscapeType getType() {
+		return this.landscape;
 	}
 	
-	public String getType() {
-		return type;
+	public void setType(LandscapeType landscape) {
+		this.landscape = landscape;
 	}
 	
-	public void setType(String type) {
-		this.type = type;
+	public String getImgLocation() {
+		return this.imgLocation;
 	}
+
+	public void setImgLocation(String imgLocation) {
+		this.imgLocation = imgLocation;
+	}
+	
 }
