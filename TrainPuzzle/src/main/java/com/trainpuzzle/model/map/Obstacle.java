@@ -3,27 +3,43 @@ package com.trainpuzzle.model.map;
 
 public class Obstacle {
 
-	private String name;
+	public enum ObstacleType{
+		ROCK,
+		TREES
+	}
+	
+	private ObstacleType obstacle;
 	private String imgLocation;
 	
 	/* Public Interface */
 	
-	public Obstacle() {
-		setName("rock");
+	public Obstacle(ObstacleType type) {
+		this.obstacle = type;
+		
+		switch(this.obstacle) {
+		case ROCK:
+			this.imgLocation = "src/main/resources/images/rock.png";
+			break;
+		case TREES:
+			this.imgLocation = "src/main/resources/images/trees.png";	
+			break;
+		default:
+			this.imgLocation = "src/main/resources/images/rock.png";
+		}
 	}
 	
 	/* Getters and Setters  */
 
-	public String getName() {
-		return name;
+	public ObstacleType getType() {
+		return this.obstacle;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(ObstacleType obstacle) {
+		this.obstacle = obstacle;
 	}
 
 	public String getImgLocation() {
-		return imgLocation;
+		return this.imgLocation;
 	}
 
 	public void setImgLocation(String imgLocation) {

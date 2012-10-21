@@ -74,8 +74,8 @@ public class Tile {
 		this.obstacle = obstacle;
 	}
 	
-	public String getObstacleType() {
-		return obstacle.getName();
+	public Obstacle.ObstacleType getObstacleType() {
+		return obstacle.getType();
 	}
 	
 }

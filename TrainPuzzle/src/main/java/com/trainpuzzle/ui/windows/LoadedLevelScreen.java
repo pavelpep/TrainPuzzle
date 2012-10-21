@@ -19,6 +19,7 @@ import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.map.CompassHeading;
 import com.trainpuzzle.model.map.Connection;
+import com.trainpuzzle.model.map.Obstacle;
 import com.trainpuzzle.model.map.Tile;
 import com.trainpuzzle.model.map.Train;
 import com.trainpuzzle.model.map.Location;
@@ -67,6 +68,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private final ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	private final ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
 	private final ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
+	private final ImageIcon TREES_IMAGE = new ImageIcon("src/main/resources/images/trees.png");
 	
 	private final ImageIcon STRAIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/straight_track.png");
 	private final ImageIcon DIAGONALTRACK_IMAGE = new ImageIcon("src/main/resources/images/diagonal_track.png");
@@ -149,7 +151,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if(level.getMap().getTile(row, column).hasObstacle()) {
 			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
-			obstacleLayer=new JLabel(ROCK_IMAGE);
+			switch(level.getMap().getTile(row, column).getObstacleType()){
+				case ROCK:
+					obstacleLayer = new JLabel(ROCK_IMAGE);
+					break;
+				case TREES:
+					obstacleLayer = new JLabel(TREES_IMAGE);
+					break;
+			}
 			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		obstacleLayer.setBounds(0,0,40,40);
