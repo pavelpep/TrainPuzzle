@@ -27,6 +27,9 @@ public class Track {
 		for(Connection connection : trackToCopy.getConnections()) {
 			addConnection(connection.getCompassHeadingPair()[0], connection.getCompassHeadingPair()[1]);
 		}
+		if(trackToCopy.isUnremovable()){
+			setUnremoveable();
+		}
 	}
 	
 	public Track(Connection connection) {
@@ -67,6 +70,10 @@ public class Track {
 	
 	public boolean isRemovable(){
 		return removable;
+	}
+	
+	public boolean isUnremovable(){
+		return !removable;
 	}
 
 	/**
