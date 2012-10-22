@@ -26,7 +26,7 @@ public class Station {
 	
 	private StationType stationType;
 	private Location stationLocation;
-	private StationTrackPosition trackPosition;
+	private CompassHeading entranceFacing;
 	private Track track;
 	private Obstacle stationBuilding;
 	
@@ -34,10 +34,10 @@ public class Station {
 	
 	/* Public Interface */
 	
-	public Station(StationType station, Location location, StationTrackPosition trackPosition) {	
+	public Station(StationType station, Location location, CompassHeading trackPosition) {	
 		this.stationType = station;
 		this.stationLocation = location;
-		this.trackPosition = trackPosition;
+		this.entranceFacing = trackPosition;
 		this.track = createTrack();
 		this.stationBuilding=new Obstacle(STATION);
 		
@@ -61,7 +61,7 @@ public class Station {
 	
 	private Track createTrack() {
 		Connection connection;
-		switch(trackPosition) {
+		switch(entranceFacing) {
 			case EAST:
 			case WEST:
 				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
@@ -85,7 +85,7 @@ public class Station {
 		int stationRow = stationLocation.getRow();
 		int stationColumn = stationLocation.getColumn();
 		
-		switch(trackPosition) {
+		switch(entranceFacing) {
 			case EAST:
 				trackLocation = new Location(stationRow + 1, stationColumn);
 				break;

@@ -32,7 +32,7 @@ public class Level {
 		Station placeholderStation = new Station(
 							StationType.GREEN_FRONT, 
 							endLocation, 
-							StationTrackPosition.NORTH);
+							CompassHeading.NORTH);
 		
 		setVictoryConditions(new LeafVictoryCondition(
 						new Event(

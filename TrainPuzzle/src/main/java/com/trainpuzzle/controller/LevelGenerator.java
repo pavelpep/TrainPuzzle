@@ -87,7 +87,7 @@ class LevelGenerator {
 		//TODO: ensure endStation is correct, also add another station in between
 		//possibly need to add start location to victory conditions
 		
-		Event endStation = new Event(1, new Station(StationType.RED_FRONT, endLocation, StationTrackPosition.NORTH));
+		Event endStation = new Event(1, new Station(StationType.RED_FRONT, endLocation, CompassHeading.NORTH));
 		
 		victoryConditions.addChild(new LeafVictoryCondition(endStation));
 		
@@ -95,8 +95,8 @@ class LevelGenerator {
 	}
 	
 	private void addStationTiles(Board board) {
-		board.getTile(6, 8).setStation(new Station(StationType.GREEN_FRONT, new Location(6,8), StationTrackPosition.SOUTH));
-		board.getTile(4, 3).setStation(new Station(StationType.RED_FRONT, new Location(4,3), StationTrackPosition.SOUTH));
+		board.getTile(6, 8).setStation(new Station(StationType.GREEN_FRONT, new Location(6,8), CompassHeading.SOUTH));
+		board.getTile(4, 3).setStation(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
 	}
 	
 	private void addSomeWaterTiles(Board board) {
