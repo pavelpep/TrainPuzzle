@@ -11,6 +11,7 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 public class Track {
 	
 	private Set<Connection> connections;
+	private boolean removable = true;
 	
 	/* Public Interface */
 	
@@ -58,6 +59,14 @@ public class Track {
 	
 	private void removeConnections(){
 		connections.removeAll(connections);
+	}
+	
+	public void setUnremoveable(){
+		removable = false;
+	}
+	
+	public boolean isRemovable(){
+		return removable;
 	}
 
 	/**

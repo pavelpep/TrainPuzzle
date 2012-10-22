@@ -43,7 +43,8 @@ public class TrackPlacer {
 		if(tile.hasStationTrack(location)) {
 			logger.warn("CannotRemoveTrackException was thrown");
 			throw new CannotRemoveTrackException("Track failed to be removed because this is a station track");
-		} else if(tile.hasTrack()) {			
+		}
+		else if(tile.hasTrack() && tile.getTrack().isRemovable()) {			
 			tile.removeTrack();
 			map.notifyAllObservers();
 			//map.setTile(tile,row,column); // can be removed because of passing by reference
