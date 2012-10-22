@@ -110,6 +110,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.titleLabel.setText("Level 1");
 		this.add(this.titleLabel, gbConstraints);
 		
+	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
+        redrawTiles();
+        
+		initializeTrain();
+		redrawTrain(train);
+
+		initializeTrackPanel();
+        redrawTrackPanel();
+		
 	}
 	
 	public void notifyChange(Object object){
@@ -313,16 +322,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 
 	public void create() {
-	
-	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
-        redrawTiles();
-        
-		initializeTrain();
-		redrawTrain(train);
-
-		initializeTrackPanel();
-        redrawTrackPanel();
-		
         this.setVisible(true);
 	}
 
