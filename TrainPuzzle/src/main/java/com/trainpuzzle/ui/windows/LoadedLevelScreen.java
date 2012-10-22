@@ -411,9 +411,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	private void redrawSelectedTrackPanel() {
 		selectedTrackPanel.removeAll();
-		JButton rotateButton = new JButton(selectedTrackImage);
+		JLabel selectedTrackContainer = new JLabel(selectedTrackImage);
+		JButton rotateButton = new JButton();
+		rotateButton.add(selectedTrackContainer);
 		rotateButton.setBounds(0, 0, 40, 40);
-		rotateButton.setPreferredSize(new Dimension(40, 40));
+		rotateButton.setPreferredSize(new Dimension(100, 100));
+		rotateButton.setMargin(new Insets(0, 15, 0, 0));
 		rotateButton.setActionCommand("rotateTrack");
 		rotateButton.addActionListener(this);
 		selectedTrackPanel.add(rotateButton);
