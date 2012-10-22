@@ -12,13 +12,14 @@ public class OrVictoryCondition implements VictoryCondition {
 		for(VictoryCondition child : childConditions) {
 			if(child.isSatisfied()) {
 				conditionSatisfied = true;
+				break;
 			}
 		}
 	}
 
 	@Override
 	public boolean isSatisfied() {
-		checkChildrenSatisfied();
+		//checkChildrenSatisfied();
 		return conditionSatisfied;
 	}
 	
@@ -31,6 +32,7 @@ public class OrVictoryCondition implements VictoryCondition {
 		for(VictoryCondition child : childConditions) {
 			child.processEvent(event);
 		}
+		checkChildrenSatisfied();
 	}
 	
 	@Override
