@@ -13,11 +13,6 @@ import java.util.*;
 public class LevelSelect extends Window implements ActionListener {
 	private GameController gameController;
 	
-	// Window elements
-	private JLabel titleLabel = new JLabel();
-	private JButton levelButton = new JButton();
-	private JButton backButton = new JButton();
-	
 	
 	int levelSelected = 0;
 	
@@ -42,26 +37,38 @@ public class LevelSelect extends Window implements ActionListener {
 	public void create() {	    
 		
 		// Level select title
-		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		this.titleLabel.setText("Level Select");
-		this.add(this.titleLabel, gbConstraints);
+		JLabel titleLabel = new JLabel();
+		initializeComponent(titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		titleLabel.setText("Level Select");
+		this.add(titleLabel, gbConstraints);
 		
 		// Level 1 Button
-		initializeComponent(this.levelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
-		this.levelButton.setText("Level 1");
-		this.add(this.levelButton, gbConstraints);
-
+	    JButton levelOneButton = new JButton();
+		initializeComponent(levelOneButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		levelOneButton.setText("Level 1");
+		this.add(levelOneButton, gbConstraints);
+		levelOneButton.setActionCommand("LEVEL_ONE");
+		levelOneButton.addActionListener(this);
+		
+		// Level 2 Button
+		JButton levelTwoButton = new JButton();
+		initializeComponent(levelTwoButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		levelTwoButton.setText("Level 2");
+		this.add(levelTwoButton, gbConstraints);
+		levelTwoButton.setActionCommand("LEVEL_TWO");
+		levelTwoButton.addActionListener(this);
+		
 		// Back button
-		initializeComponent(this.backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
-		this.backButton.setText("Back");
-		this.add(this.backButton, gbConstraints);
-	
-		// ActionListeners for window elements
+		JButton backButton = new JButton();
+		initializeComponent(backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		backButton.setText("Back");
+		this.add(backButton, gbConstraints);
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
+
+
 		
-		levelButton.setActionCommand("LEVEL_ONE");
-		levelButton.addActionListener(this);
+
 		
 		this.setVisible(true);
 	}
@@ -80,5 +87,13 @@ public class LevelSelect extends Window implements ActionListener {
 			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
 			WindowManager.getManager().updateWindows();	
 		}		
+		 else if (action == "LEVEL_TWO") {
+			levelSelected = 2;
+					
+			gameController.startGame(levelSelected);
+			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
+			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
+			WindowManager.getManager().updateWindows();	
+		}	
 	}
 }

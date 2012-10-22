@@ -88,7 +88,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		// Game title
 		JLabel titleLabel = new JLabel();
 		initializeComponent(titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		titleLabel.setText("Level 1");
+		titleLabel.setText("Level " + level.getLevelNumber());
 		this.add(titleLabel, gbConstraints);
 		
 	    initializeMapPanel(level.getBoard().NUMBER_OF_ROWS, level.getBoard().NUMBER_OF_COLUMNS);

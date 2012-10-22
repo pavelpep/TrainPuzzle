@@ -12,7 +12,14 @@ public class CampaignManager {
 	}
 	
 	public Level loadLevel(int levelNumber) {
-		this.levelLoaded = levelGenerator.createLevelOne();
+		if(levelNumber == 1){
+			this.levelLoaded = levelGenerator.createLevelOne();
+		}else if(levelNumber == 2){
+			this.levelLoaded = levelGenerator.createLevelTwo();
+		}else{
+			//if some weird level number is given, return level 1 just in case 
+			this.levelLoaded = levelGenerator.createLevelOne();
+		}
 		return this.levelLoaded;
 	}
 }

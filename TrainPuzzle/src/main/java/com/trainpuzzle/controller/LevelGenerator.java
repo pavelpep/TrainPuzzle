@@ -38,18 +38,32 @@ class LevelGenerator {
         Location endLocation = new Location(4,19);
         Economy economy = new Economy();
         
-		initializeBoard(board);
+		addStationTiles(board);
+		addSomeWaterTiles(board);
+		addSomeTrackTiles(board);
+		addSomeObstacles(board);
 		
     	level = new Level(1, board, startLocation, endLocation, economy);
     	setVictoryConditions(level, endLocation);
     	return level;
 	}
+    
+    public Level createLevelTwo() {
+    	Level level;
+    	Board board = new Board();
+        Location startLocation = new Location(4,4);
+        Location endLocation = new Location(4,19);
+        Economy economy = new Economy();
+       		
+		
+    	level = new Level(2, board, startLocation, endLocation, economy);
+    	setVictoryConditions(level, endLocation);
+    	return level;
+	}
 
 	private void initializeBoard(Board board) {
-		addStationTiles(board);
-		addSomeWaterTiles(board);
-		addSomeTrackTiles(board);
-		addSomeObstacles(board);
+       //TODO: add any initialization if necessary
+	   // but i'm pretty sure board initializes itself
 	}
 	
 	private void setVictoryConditions(Level level, Location endLocation) {
@@ -76,7 +90,7 @@ class LevelGenerator {
 	}
 	
 	private void addSomeObstacles(Board board) {
-		//FIXME: random obstacle not being set to right tile 
+		
 		board.getTile(7, 7).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
 		board.getTile(7, 8).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
 	}
