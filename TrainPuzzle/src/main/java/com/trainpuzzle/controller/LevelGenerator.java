@@ -34,8 +34,16 @@ class LevelGenerator {
     public Level createLevelOne() {
     	Level level;
     	Board board = new Board();
+    	
         Location startLocation = new Location(4,0);
+		Track startingTrack = new Track();
+		startingTrack.setUnremoveable();
+		board.getTile(startLocation).setTrack(startingTrack);
+		
         Location endLocation = new Location(4,19);
+        Track endingTrack = new Track();
+        endingTrack.setUnremoveable();
+		board.getTile(endLocation).setTrack(endingTrack);
         Economy economy = new Economy();
         
 		addStationTiles(board);
@@ -52,7 +60,15 @@ class LevelGenerator {
     	Level level;
     	Board board = new Board();
         Location startLocation = new Location(4,4);
+        Track startingTrack = new Track();
+		startingTrack.setUnremoveable();
+		board.getTile(startLocation).setTrack(startingTrack);
+		
         Location endLocation = new Location(4,19);
+        Track endingTrack = new Track();
+        endingTrack.setUnremoveable();
+		board.getTile(endLocation).setTrack(endingTrack);
+		
         Economy economy = new Economy();
        		
 		
@@ -96,10 +112,7 @@ class LevelGenerator {
 	}
 	
 	private void addSomeTrackTiles(Board board) {
-		Track startingTrack = new Track();
-		startingTrack.setUnremoveable();
-		
-		board.getTile(4,0).setTrack(startingTrack);
+
 		board.getTile(4,1).setTrack(new Track());
 		board.getTile(4,2).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
 		board.getTile(5,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
@@ -118,7 +131,6 @@ class LevelGenerator {
 		board.getTile(4,16).setTrack(new Track());
 		board.getTile(4,17).setTrack(new Track());
 		board.getTile(4,18).setTrack(new Track());
-		board.getTile(4,19).setTrack(new Track());
 	}
 	 
 	
