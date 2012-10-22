@@ -33,22 +33,24 @@ import com.trainpuzzle.controller.TrackPlacer;
 // Level selection for the campaign
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
 	
+	
+	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
+	
+	
 	// Window elements
 	private JLabel titleLabel = new JLabel();
 
-	private JPanel mapPanel = new JPanel();
 	
-	private JPanel trackPanel = new JPanel();
+	//Map Panel
+	private final int landscapeLayerIndex = 0;
+	private final int trackLayerIndex = 1;
+	private final int trainLayerIndex = 2;
+	private final int obstacleLayerIndex = 3;
+	private final int stationLayerIndex = 4;
 	
-	private JPanel selectedTrackPanel = new JPanel();
-	private JLabel selectedTrackLabel = new JLabel();
-	private JLabel selectedTrackImage = new JLabel();
-
-
-
-	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
-	
+	private JLayeredPane[][] mapTiles;
 	TileMouseAdapter mouseAdapter;
+	JPanel mapPanel = new JPanel();
 	
 	Location previousTrainLocation;
 	int previousRow;
@@ -56,15 +58,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	Location trainLocation;
 	
 	
-	private final int landscapeLayerIndex = 0;
-	private final int trackLayerIndex = 1;
-	private final int trainLayerIndex = 2;
-	private final int obstacleLayerIndex = 3;
-	private final int stationLayerIndex = 4;
+	
+	//Track Panel
+	private JPanel trackPanel = new JPanel();
+	
+	
+	//SelectedTrack Panel
+	private JPanel selectedTrackPanel = new JPanel();
+	private JLabel selectedTrackLabel = new JLabel();
+	private JLabel selectedTrackImage = new JLabel();
 
-	
-	private JLayeredPane[][] mapTiles;
-	
 	private GameController gameController;
 	private Level level;
 	private Train train;
@@ -109,7 +112,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 	}
 	
-	public void notifyChange(Object object){
+    public void notifyChange(Object object){
 		if(object instanceof Train){
 			redrawTrain(train);
 		}
@@ -123,7 +126,41 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 	}
-	
+
+    //Map Panel
+	private void initializeMapPanel(int numberOfRows, int numberOfColumns) {
+		
+		mapPanel = new JPanel();	
+		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
+		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
+		
+		// Initialize Map Panel
+        for(int row = 0; row < numberOfRows; row++){
+            for(int column = 0; column < numberOfColumns; column++){
+        		
+            	//initializes tile
+            	
+            	JLayeredPane mapTile = new JLayeredPane();
+        		mapTile.setPreferredSize(new Dimension(40, 40));
+        		mapTiles[row][column] = mapTile;
+
+            	//add mouse clicky thing to tile
+            	level.getMap().getTile(row, column).register(this);
+				mapTile.addMouseListener(mouseAdapter); 
+				
+				//add tile to map panel
+            	mapPanel.add(mapTile);
+            }
+        }
+        initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+        this.add(this.mapPanel, gbConstraints);
+	}
+	private void initializeTrain() {
+		train = gameController.getSimulator().getTrain();
+		train.register(this);
+		trainLocation = train.getLocation();
+	}
+
 	public void  redrawTiles(){
 
 		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
@@ -169,11 +206,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		mapPanel.repaint();
 	}
 	
-    private void redrawTrackPanel(){
 
-        // TODO: redrawTrackPanel();		
-	}
-    
 	private void drawLandscape(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
@@ -310,16 +343,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 
-	public void create() {
-        this.setVisible(true);
-	}
-
-	private void initializeTrain() {
-		train = gameController.getSimulator().getTrain();
-		train.register(this);
-		trainLocation = train.getLocation();
-	}
-
+	//Track Panel
 	private void initializeTrackPanel() {
 		// Track Panel 
 		initializeComponent(this.trackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 300, 10), true);
@@ -395,35 +419,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	}
 	
+    private void redrawTrackPanel(){
 
-	
-	private void initializeMapPanel(int numberOfRows, int numberOfColumns) {
-		
-		mapPanel = new JPanel();	
-		mapPanel.setLayout(new GridLayout(numberOfRows, numberOfColumns));
-		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
-		
-		// Initialize Map Panel
-        for(int row = 0; row < numberOfRows; row++){
-            for(int column = 0; column < numberOfColumns; column++){
-        		
-            	//initializes tile
-            	
-            	JLayeredPane mapTile = new JLayeredPane();
-        		mapTile.setPreferredSize(new Dimension(40, 40));
-        		mapTiles[row][column] = mapTile;
-
-            	//add mouse clicky thing to tile
-            	level.getMap().getTile(row, column).register(this);
-				mapTile.addMouseListener(mouseAdapter); 
-				
-				//add tile to map panel
-            	mapPanel.add(mapTile);
-            }
-        }
-        initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
-        this.add(this.mapPanel, gbConstraints);
+        // TODO: redrawTrackPanel();		
 	}
+    
 
 	
 	/**
@@ -455,6 +455,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	*/
+
+	//TODO: this method seems pretty useless remove?
+	public void create() {
+        this.setVisible(true);
+	}
+
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
