@@ -64,6 +64,9 @@ class LevelGenerator {
 		startingTrack.setUnremoveable();
 		board.getTile(startLocation).setTrack(startingTrack);
 		
+		
+		addTrackLoop(board);
+				
         Location endLocation = new Location(4,19);
         Track endingTrack = new Track();
         endingTrack.setUnremoveable();
@@ -111,9 +114,37 @@ class LevelGenerator {
 		board.getTile(7, 8).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
 	}
 	
+	private void addTrackLoop(Board board) {
+
+		board.getTile(4,4).setTrack(new Track());
+		board.getTile(4,5).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
+		board.getTile(4,6).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
+		board.getTile(4,7).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
+		board.getTile(4,8).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
+		board.getTile(4,9).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
+		board.getTile(4,10).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
+		board.getTile(5,11).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH)));
+		board.getTile(6,11).setTrack(new Track(new Connection(CompassHeading.SOUTH, CompassHeading.NORTH)));
+		board.getTile(7,11).setTrack(new Track(new Connection(CompassHeading.SOUTH, CompassHeading.NORTH)));
+		board.getTile(8,11).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.NORTH)));
+		board.getTile(9,10).setTrack(new Track(new Connection(CompassHeading.NORTHEAST, CompassHeading.WEST)));
+		board.getTile(9,9).setTrack(new Track());
+		board.getTile(9,8).setTrack(new Track());
+		board.getTile(9,7).setTrack(new Track());
+		board.getTile(9,6).setTrack(new Track());
+		board.getTile(9,5).setTrack(new Track());
+		board.getTile(9,4).setTrack(new Track());
+		board.getTile(9,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST)));
+		board.getTile(8,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTHEAST)));
+		board.getTile(7,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTH)));
+		board.getTile(6,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTH)));
+		board.getTile(5,2).setTrack(new Track(new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH)));
+		board.getTile(4,3).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST)));
+	}
+	
 	private void addSomeTrackTiles(Board board) {
 
-		board.getTile(4,1).setTrack(new Track());
+		board.getTile(4,4).setTrack(new Track());
 		board.getTile(4,2).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
 		board.getTile(5,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
 		board.getTile(6,4).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
