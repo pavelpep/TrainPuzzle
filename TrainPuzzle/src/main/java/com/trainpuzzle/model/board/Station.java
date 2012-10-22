@@ -72,6 +72,7 @@ public class Station {
 				connection = new Connection(CompassHeading.WEST, CompassHeading.EAST);
 		}
 		Track track = new Track(connection);
+		track.setUnremoveable();
 		return track;
 	}
 	
