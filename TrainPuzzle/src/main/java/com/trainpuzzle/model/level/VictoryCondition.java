@@ -1,8 +1,13 @@
 package com.trainpuzzle.model.level;
 import java.util.LinkedList;
 
-import com.trainpuzzle.model.map.*;
-/* Future Implementation */
+import com.trainpuzzle.model.board.*;
+
+/**
+ * 
+ * @deprecated this class has been replaced with 
+ */
+@Deprecated
 public class VictoryCondition {
 	public static final Location NOENDPOINT= new Location(-1,-1); 
 	private Location endPoint;
@@ -34,6 +39,7 @@ public class VictoryCondition {
 			}
 		}
 	}
+	
 	public boolean isVictoryConditionSatisfied(Train train) {
 		if(endPoint.equals(NOENDPOINT)){
 			return locationsMustGoThrough.isEmpty();

@@ -4,7 +4,7 @@ import com.trainpuzzle.exception.CannotPlaceTrackException;
 
 import com.trainpuzzle.controller.TrackPlacer;
 
-import com.trainpuzzle.model.map.Track;
+import com.trainpuzzle.model.board.Track;
 
 import java.awt.*;
 import javax.swing.*;

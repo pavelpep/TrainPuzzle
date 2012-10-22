@@ -1,4 +1,4 @@
-package com.trainpuzzle.model.map;
+package com.trainpuzzle.model.board;
 
 
 public class Connection {

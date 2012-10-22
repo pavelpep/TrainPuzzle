@@ -1,31 +1,28 @@
-package com.trainpuzzle.victory_condition;
+package com.trainpuzzle.model.level.victory_condition;
 
-import java.util.LinkedList;
-import java.util.List;
 
-public class VictoryConditionEvaluator {
+public class VictoryConditionEvaluator implements VictoryCondition {
 	private VictoryCondition root;
-	private boolean isSatisfied = false;
-	private List<LeafVictoryCondition> leaves;
+	
+	
 	public VictoryConditionEvaluator(VictoryCondition root) {
-		root.setParent(root);
 		this.root = root;
-		leaves = new LinkedList<LeafVictoryCondition>();
-		checkOutLeaves(this.root);
+//		checkOutLeaves(this.root);
 	}
 	
 	public boolean isSatisfied() {
-		return isSatisfied;
+		return root.isSatisfied();
 	}
-	
+/*		
 	public void eventHappened(Event event) {
 		for(LeafVictoryCondition leaf : leaves) {
 				if(leaf.checkEvent(event)) {
 					leaf.eventClear();
 				}
 		}
-		isSatisfied = root.isSatisfied();
+		conditionSatisified = root.isSatisfied();
 	}
+
 	private void checkOutLeaves(VictoryCondition victoryCondition) {
 		VictoryCondition leftChild = victoryCondition.getLeftChild();
 		VictoryCondition rightChild = victoryCondition.getRightChild();
@@ -39,6 +36,16 @@ public class VictoryConditionEvaluator {
 		if( rightChild != null) {
 			checkOutLeaves(rightChild);
 		}
+	}
+*/
+	@Override
+	public void processEvent(Event event) {
+		root.processEvent(event);
+	}
+
+	@Override
+	public void resetEvents() {
+		root.resetEvents();
 	}
 	
 }

@@ -3,9 +3,10 @@ package com.trainpuzzle.controller;
 
 import javax.swing.JOptionPane;
 
-import com.trainpuzzle.model.map.*;
+import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.level.*;
-import static com.trainpuzzle.model.map.CompassHeading.*;
+
+import static com.trainpuzzle.model.board.CompassHeading.*;
 
 import com.trainpuzzle.exception.TrainCrashException;
 

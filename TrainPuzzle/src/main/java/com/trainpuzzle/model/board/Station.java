@@ -1,6 +1,6 @@
-package com.trainpuzzle.model.map;
+package com.trainpuzzle.model.board;
 
-import com.trainpuzzle.model.map.Obstacle.ObstacleType;
+import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).

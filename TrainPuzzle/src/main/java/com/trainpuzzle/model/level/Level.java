@@ -1,6 +1,6 @@
 package com.trainpuzzle.model.level;
 
-import com.trainpuzzle.model.map.*;
+import com.trainpuzzle.model.board.*;
 
 public class Level {
 	private int levelNumber;
@@ -24,9 +24,11 @@ public class Level {
 		this.economy = economy;
 	}
 	
-	/* Setters and Getters */
-	
-
+	/* 
+	 * **********************
+	 * Getters & Setters	*
+	 * **********************
+	 */
 	
 	public Board getMap() {
 		return board;

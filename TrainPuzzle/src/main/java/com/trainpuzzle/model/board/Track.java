@@ -1,11 +1,11 @@
-package com.trainpuzzle.model.map;
+package com.trainpuzzle.model.board;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import com.trainpuzzle.exception.TrainCrashException;
 
-import static com.trainpuzzle.model.map.CompassHeading.*;
+import static com.trainpuzzle.model.board.CompassHeading.*;
 
 
 public class Track {

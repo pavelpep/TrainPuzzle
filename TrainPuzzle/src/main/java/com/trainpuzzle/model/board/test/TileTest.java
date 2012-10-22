@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.map.test;
+package com.trainpuzzle.model.board.test;
 
 import junit.framework.TestCase;
 
-public class ConnectionTest extends TestCase {
+public class TileTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,35 +12,43 @@ public class ConnectionTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testHashCode() {
+	public void testTile() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testConnection() {
+	public void testRemoveTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetCompassHeadingPair() {
+	public void testHasTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testIsInboundHeading() {
+	public void testHasObstacle() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testOutboundorInbound() {
+	public void testGetElevation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject() {
+	public void testSetElevation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testRotate45Degrees() {
+	public void testGetTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testRotate90Degrees() {
+	public void testSetTrack() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetLandscapeType() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetLandscapeType() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -52,7 +60,11 @@ public class ConnectionTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject1() {
+	public void testHashCode() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testEquals() {
 		fail("Not yet implemented"); // TODO
 	}
 

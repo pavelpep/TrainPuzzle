@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.map.test;
+package com.trainpuzzle.model.board.test;
 
 import junit.framework.TestCase;
 
-public class LocationTest extends TestCase {
+public class TrainTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,27 +12,35 @@ public class LocationTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testLocation() {
+	public void testTrain() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject() {
+	public void testTrainLocation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetRow() {
+	public void testRegister() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetRow() {
+	public void testNotifyAllObservers() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetColumn() {
+	public void testGetLocation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetColumn() {
+	public void testSetLocation() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetHeading() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetHeading() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -48,7 +56,7 @@ public class LocationTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject1() {
+	public void testEquals() {
 		fail("Not yet implemented"); // TODO
 	}
 

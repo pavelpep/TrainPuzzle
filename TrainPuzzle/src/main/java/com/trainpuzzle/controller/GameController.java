@@ -8,9 +8,9 @@ import javax.swing.Timer;
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.exception.TrainCrashException;
+import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.map.Board;
-import com.trainpuzzle.model.map.Track;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 
 public class GameController {

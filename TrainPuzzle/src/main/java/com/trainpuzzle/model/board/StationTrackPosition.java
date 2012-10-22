@@ -1,4 +1,4 @@
-package com.trainpuzzle.model.map;
+package com.trainpuzzle.model.board;
 
 /**
  * This indicates where the station track is.

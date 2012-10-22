@@ -16,10 +16,10 @@ import com.trainpuzzle.ui.windows.MainMenu;
 import com.trainpuzzle.ui.windows.WindowManager;
 
 import com.trainpuzzle.exception.TrainCrashException;
+import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.Location;
+import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.map.Board;
-import com.trainpuzzle.model.map.Track;
-import com.trainpuzzle.model.map.Location;
 
 
 public class Application {

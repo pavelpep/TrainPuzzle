@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.map.test;
+package com.trainpuzzle.model.board.test;
 
 import junit.framework.TestCase;
 
-public class LandscapeTest extends TestCase {
+public class LocationTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,19 +12,27 @@ public class LandscapeTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testLandscape() {
+	public void testLocation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testLandscapeString() {
+	public void testEqualsObject() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetType() {
+	public void testGetRow() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetType() {
+	public void testSetRow() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetColumn() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetColumn() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -40,7 +48,7 @@ public class LandscapeTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEquals() {
+	public void testEqualsObject1() {
 		fail("Not yet implemented"); // TODO
 	}
 
