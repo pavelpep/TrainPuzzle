@@ -11,13 +11,13 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Simulator {
-	private Board map;
+	private Board board;
 	private Train train;
 	private VictoryConditionOld victoryConditionOld;
 	
 	
 	public Simulator(Level level) {
-		this.map = level.getBoard();
+		this.board = level.getBoard();
 		Location startPoint = level.getStartLocation();
 		this.train = new Train(startPoint);
 		this.train.setHeading(EAST);
@@ -38,7 +38,7 @@ public class Simulator {
 			throw new TrainCrashException();
 		}
 		
-		Tile tile = map.getTile(location.getRow(), location.getColumn());
+		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle() || tile.hasStation(location)) {
 			// TODO: Better way to inform user train crashed
 			JOptionPane.showMessageDialog(null, "The train has crashed!");
@@ -105,7 +105,7 @@ public class Simulator {
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		if(location.getRow() >= Board.NUMBER_OF_ROWS || location.getColumn() >= Board.NUMBER_OF_COLUMNS) {
+		if(location.getRow() >= board.NUMBER_OF_ROWS || location.getColumn() >= board.NUMBER_OF_COLUMNS) {
 			return true;
 		}
 		return false;

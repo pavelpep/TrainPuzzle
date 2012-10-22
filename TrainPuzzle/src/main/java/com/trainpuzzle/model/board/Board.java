@@ -8,8 +8,8 @@ import com.trainpuzzle.observe.*;
 
 public class Board implements Observable {
 
-	public static final int NUMBER_OF_ROWS = 15;
-	public static final int NUMBER_OF_COLUMNS = 20;
+	public final int NUMBER_OF_ROWS = 15;
+	public final int NUMBER_OF_COLUMNS = 20;
 	private Tile[][] tiles;
 	//private List<Observer> observerList = new LinkedList<Observer>();;
 	private Set<Observer> observerList = new HashSet<Observer>();

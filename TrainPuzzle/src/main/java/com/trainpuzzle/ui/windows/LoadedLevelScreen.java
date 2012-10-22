@@ -36,26 +36,28 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
+	private GameController gameController;
+	private Level level;
+	private Train train;
 	
 	// Window elements
-	private JLabel titleLabel = new JLabel();
+	
 
 	
-	//Map Panel
+	//Map Panel	
+	TitledBorder mapTitle;
+	JPanel mapPanel = new JPanel();
+	private JLayeredPane[][] mapTiles;
+	TileMouseAdapter mouseAdapter;
+	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
 	private final int stationLayerIndex = 4;
 	
-	private JLayeredPane[][] mapTiles;
-	TileMouseAdapter mouseAdapter;
-	JPanel mapPanel = new JPanel();
-	
-	Location previousTrainLocation;
-	int previousRow;
-	int previousColumn;
-	Location trainLocation;
+	Location previousTrainLocation = new Location(0,0);
+	Location trainLocation = new Location(0,0);
 	
 	
 	
@@ -67,40 +69,29 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel selectedTrackPanel = new JPanel();
 	private RotatedImageIcon selectedTrackImage;
     private Track selectedTrack;
-	private GameController gameController;
-	private Level level;
-	private Train train;
-	
-	Border loweredbevel, loweredetched;
-	TitledBorder mapTitle, sidePanelTitle;
+    
 	
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
-		
-
-		
+		//Connect to application
 		this.gameController = gameController;
-		loweredbevel = BorderFactory.createLoweredBevelBorder();
-		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-
-
+		this.level = this.gameController.getLevel();
+		this.train = gameController.getSimulator().getTrain();
+		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		
+		//Window Layout
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(1280,720));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 		
-		previousTrainLocation = new Location(0,0);
-		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
-		
-		
-		level = this.gameController.getLevel();
-		
 		// Game title
-		initializeComponent(this.titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		this.titleLabel.setText("Level 1");
-		this.add(this.titleLabel, gbConstraints);
+		JLabel titleLabel = new JLabel();
+		initializeComponent(titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		titleLabel.setText("Level 1");
+		this.add(titleLabel, gbConstraints);
 		
-	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
+	    initializeMapPanel(level.getBoard().NUMBER_OF_ROWS, level.getBoard().NUMBER_OF_COLUMNS);
 
 		initializeTrackPanel();
         
@@ -113,8 +104,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			redrawTrain(train);
 		}
 		else if(object instanceof Tile){
-			for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
-	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
+			for(int row = 0; row < level.getBoard().NUMBER_OF_ROWS; row++){
+	            for(int column = 0; column < level.getBoard().NUMBER_OF_COLUMNS; column++){
 	            	if(object.equals(level.getBoard().getTile(row, column)))
 	            		redrawTile(row, column);
 	            }
@@ -298,8 +289,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void  redrawTiles(){
 
-		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
-	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
+		  for(int row = 0; row < level.getBoard().NUMBER_OF_ROWS; row++){
+	            for(int column = 0; column < level.getBoard().NUMBER_OF_COLUMNS; column++){
 	            	drawObstacle(row, column);
 					drawLandscape(row, column);
 	            	drawTrack(row, column);
@@ -317,13 +308,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
     
     
 	private void initializeTrain() {
-		train = gameController.getSimulator().getTrain();
 		train.register(this);
 		trainLocation = train.getLocation();
 		redrawTrain(train);
 	}
 	private void redrawTrain(Train train) {
-		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
+		
+		int previousRow = previousTrainLocation.getRow();
+		int previousColumn = previousTrainLocation.getColumn();
 		try {
 			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
         	
@@ -331,8 +323,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		previousRow = trainLocation.getRow();
-		previousColumn = trainLocation.getColumn();
+		previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
+
 
 		trainLocation = train.getLocation();
 		int row = trainLocation.getRow();
@@ -366,6 +358,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void redrawTrackPanel(){
 
 		trackPanel.setPreferredSize(new Dimension(250, 300));
+		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+		TitledBorder sidePanelTitle;
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		trackPanel.setBorder(sidePanelTitle);
@@ -407,6 +401,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.add(selectedTrackPanel, gbConstraints);
 		
 		selectedTrackPanel.setPreferredSize(new Dimension(250, 300));
+		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+		TitledBorder sidePanelTitle;
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Currently Selected Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
         selectedTrackPanel.setBorder(sidePanelTitle);
