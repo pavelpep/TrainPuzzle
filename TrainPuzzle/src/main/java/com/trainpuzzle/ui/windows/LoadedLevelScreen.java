@@ -429,16 +429,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if (event.getActionCommand() == "straightTrack") {
 			
-			selectedTrackPanel.removeAll();
+			
 			selectedTrackImage = new RotatedImageIcon(TrackIcons.STRAIGHTTRACK_IMAGE.getImage());
 			
-			JButton rotateButton = new JButton(selectedTrackImage);
-		   	rotateButton.setBounds(0, 0, 40, 40);
-	        rotateButton.setPreferredSize(new Dimension(40, 40));
-	        rotateButton.setActionCommand("rotateTrack");
-	        rotateButton.addActionListener(this);
-	        selectedTrackPanel.add(rotateButton);
-	        selectedTrackPanel.repaint();
+			spawnRotateButton();
 	        
 			this.setVisible(true);
 			
@@ -450,16 +444,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if (event.getActionCommand() == "diagonalTrack") {
 
-			selectedTrackPanel.removeAll();
-			selectedTrackImage = new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage());
 			
-			JButton rotateButton = new JButton(selectedTrackImage);
-		   	rotateButton.setBounds(0, 0, 40, 40);
-	        rotateButton.setPreferredSize(new Dimension(40, 40));
-	        rotateButton.setActionCommand("rotateTrack");
-	        rotateButton.addActionListener(this);
-	        selectedTrackPanel.add(rotateButton);
-	        selectedTrackPanel.repaint();
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage());
+			spawnRotateButton();
 	        
 			this.setVisible(true);
 			
@@ -470,16 +457,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
-			selectedTrackPanel.removeAll();
+			
 			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVELEFTTRACK_IMAGE.getImage());
 			
-			JButton rotateButton = new JButton(selectedTrackImage);
-		   	rotateButton.setBounds(0, 0, 40, 40);
-	        rotateButton.setPreferredSize(new Dimension(40, 40));
-	        rotateButton.setActionCommand("rotateTrack");
-	        rotateButton.addActionListener(this);
-	        selectedTrackPanel.add(rotateButton);
-	        selectedTrackPanel.repaint();
+			spawnRotateButton();
 	        
 			this.setVisible(true);
 			
@@ -491,16 +472,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
-			selectedTrackPanel.removeAll();
+			
 			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVERIGHTTRACK_IMAGE.getImage());
 			
-			JButton rotateButton = new JButton(selectedTrackImage);
-		   	rotateButton.setBounds(0, 0, 40, 40);
-	        rotateButton.setPreferredSize(new Dimension(40, 40));
-	        rotateButton.setActionCommand("rotateTrack");
-	        rotateButton.addActionListener(this);
-	        selectedTrackPanel.add(rotateButton);
-	        selectedTrackPanel.repaint();
+			spawnRotateButton();
 	        
 			this.setVisible(true);
 			
@@ -512,15 +487,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if (event.getActionCommand() == "rotateTrack") {
 			
-			selectedTrackPanel.removeAll();
 			selectedTrackImage.rotate90DegreesClockwise();
-			JButton rotateButton = new JButton(selectedTrackImage);
-	    	rotateButton.setBounds(0, 0, 40, 40);
-	        rotateButton.setPreferredSize(new Dimension(40, 40));
-	        rotateButton.setActionCommand("rotateTrack");
-	        rotateButton.addActionListener(this);
-			selectedTrackPanel.add(rotateButton);
-	        selectedTrackPanel.repaint();
+			
+			spawnRotateButton();
 	        
 			this.setVisible(true);
 			
@@ -532,5 +501,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		
+	}
+
+	private void spawnRotateButton() {
+		selectedTrackPanel.removeAll();
+		JButton rotateButton = new JButton(selectedTrackImage);
+		rotateButton.setBounds(0, 0, 40, 40);
+		rotateButton.setPreferredSize(new Dimension(40, 40));
+		rotateButton.setActionCommand("rotateTrack");
+		rotateButton.addActionListener(this);
+		selectedTrackPanel.add(rotateButton);
+		selectedTrackPanel.repaint();
 	}
 }
