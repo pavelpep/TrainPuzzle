@@ -98,11 +98,11 @@ public class GameController {
 	}
 	
 	public Board getBlankMap() {
-		return level.getMap();
+		return level.getBoard();
 	}
 	
 	public Board getTrackMap() {
-		return loadedLevelWithTrack.getMap();
+		return loadedLevelWithTrack.getBoard();
 	}
 	
 	public Level getLevel() {

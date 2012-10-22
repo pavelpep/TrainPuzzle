@@ -23,9 +23,9 @@ public class VictoryConditionEvaluator implements VictoryCondition {
 		conditionSatisified = root.isSatisfied();
 	}
 
-	private void checkOutLeaves(VictoryCondition victoryCondition) {
-		VictoryCondition leftChild = victoryCondition.getLeftChild();
-		VictoryCondition rightChild = victoryCondition.getRightChild();
+	private void checkOutLeaves(VictoryConditionOld victoryCondition) {
+		VictoryConditionOld leftChild = victoryCondition.getLeftChild();
+		VictoryConditionOld rightChild = victoryCondition.getRightChild();
 		if( leftChild != null) {
 			checkOutLeaves(leftChild);
 		}

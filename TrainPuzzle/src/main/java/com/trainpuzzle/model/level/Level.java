@@ -1,19 +1,22 @@
 package com.trainpuzzle.model.level;
 
 import com.trainpuzzle.model.board.*;
+import com.trainpuzzle.model.board.Obstacle.ObstacleType;
+import com.trainpuzzle.model.board.Station.StationType;
+import com.trainpuzzle.model.level.victory_condition.*;
 
 public class Level {
-	private int levelNumber;
-	private Board board;
-	private Location startLocation;
-	private Location endLocation;
-	private Economy economy;
+	private int levelNumber = 1;
+	private Board board = new Board();
+	private Location startLocation = new Location(0,0);
+	private Location endLocation = new Location(0,1);
+	private VictoryConditionEvaluator victoryConditions;
+	private Economy economy = new Economy();
 	
-	
-	/* Public Interface */
-	
+		
 	public Level(int levelNumber) {
 		this.levelNumber = levelNumber;
+		initializeEmptyVictoryConditions();
 	}
 	
 	public Level(int levelNumber, Board board, Location startLocation, Location endLocation, Economy economy) {
@@ -21,7 +24,20 @@ public class Level {
 		this.board = board;
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
+		initializeEmptyVictoryConditions();
 		this.economy = economy;
+	}
+	
+	private void initializeEmptyVictoryConditions() {
+		Station placeholderStation = new Station(
+							StationType.GREEN_FRONT, 
+							endLocation, 
+							StationTrackPosition.NORTH);
+		
+		setVictoryConditions(new LeafVictoryCondition(
+						new Event(
+								1, 
+								placeholderStation)));
 	}
 	
 	/* 
@@ -30,11 +46,11 @@ public class Level {
 	 * **********************
 	 */
 	
-	public Board getMap() {
+	public Board getBoard() {
 		return board;
 	}
 	
-	public void setMap(Board board) {
+	public void setBoard(Board board) {
 		this.board = board;
 	}
 	
@@ -54,6 +70,14 @@ public class Level {
 		this.levelNumber = levelNumber;
 	}
 	
+	public VictoryCondition getVictoryConditions() {
+		return victoryConditions;
+	}
+
+	public void setVictoryConditions(VictoryCondition victoryConditions) {
+		this.victoryConditions = new VictoryConditionEvaluator(victoryConditions);
+	}
+
 	public Economy getEconomy() {
 		return economy;
 	}

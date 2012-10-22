@@ -1,4 +1,5 @@
 package com.trainpuzzle.controller;
+
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.exception.CannotPlaceTrackException;
@@ -15,12 +16,13 @@ public class TrackPlacer {
 	
 	public TrackPlacer(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
-		this.map = levelToAddTrack.getMap();
+		this.map = levelToAddTrack.getBoard();
 	}
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
 		if(tile.hasTrack()||tile.hasObstacle()||tile.hasStationOrStationTrack()) {
+			logger.warn("CannotPlaceTrackException was thrown");
 			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track or an obstacle");
 		}
 		else{
@@ -38,6 +40,7 @@ public class TrackPlacer {
 			//map.setTile(tile,row,column); // can be removed because of passing by reference
 		}
 		else {
+			logger.warn("CannotRemoveTrackException was thrown");
 			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
 		}
 	}
@@ -52,6 +55,7 @@ public class TrackPlacer {
 			//map.setTile(tile,row,column); // can be removed because of passing by reference		
 		}
 		else {
+			logger.warn("CannotRotateException was thrown");
 			throw new CannotRotateException("No track to be rotated on this tile");
 		}		
 	}

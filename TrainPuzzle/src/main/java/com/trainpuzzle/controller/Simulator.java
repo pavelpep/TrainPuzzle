@@ -13,15 +13,15 @@ import com.trainpuzzle.exception.TrainCrashException;
 public class Simulator {
 	private Board map;
 	private Train train;
-	private VictoryCondition victoryCondition;
+	private VictoryConditionOld victoryConditionOld;
 	
 	
 	public Simulator(Level level) {
-		this.map = level.getMap();
+		this.map = level.getBoard();
 		Location startPoint = level.getStartLocation();
 		this.train = new Train(startPoint);
 		this.train.setHeading(EAST);
-		this.victoryCondition = new VictoryCondition(level.getEndLocation());
+		this.victoryConditionOld = new VictoryConditionOld(level.getEndLocation());
 	}
 	
 	/**
@@ -50,11 +50,11 @@ public class Simulator {
 		CompassHeading nextHeading = track.getOutboundHeading(heading);
 		this.train.setHeading(nextHeading);
 		//this.train.setLocation(location);
-		victoryCondition.removePassedLocation(train);
+		victoryConditionOld.removePassedLocation(train);
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
-		return this.victoryCondition.isVictoryConditionSatisfied(train);
+		return this.victoryConditionOld.isVictoryConditionSatisfied(train);
 	}
 	
 	/**

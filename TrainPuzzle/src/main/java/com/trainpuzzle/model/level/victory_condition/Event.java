@@ -59,7 +59,7 @@ public class Event {
 	}
 	
 	private boolean compareEvent(Event event) {
-		
+		//TODO: ensure that equals method handles time correctly for VictoryConditionEvaluator
 		if(time == event.getTime()) {
 			if(station.equals(event.getStation())) {
 //				if(eventId.equals(event.getEventId())) {
