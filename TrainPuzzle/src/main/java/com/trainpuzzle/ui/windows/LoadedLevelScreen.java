@@ -485,6 +485,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "rotateTrack") {	
+			selectedTrack = new Track(selectedTrack);
 			//rotate track and set on  mouseAdapter
 			selectedTrack.rotateTrack();
 			mouseAdapter.setTrack(selectedTrack);
