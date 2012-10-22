@@ -25,7 +25,7 @@ import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.level.Level;
-
+import com.trainpuzzle.infrastructure.TrackIcons;
 import com.trainpuzzle.controller.TrackPlacer;
 
 
@@ -62,18 +62,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private final int obstacleLayerIndex = 3;
 	private final int stationLayerIndex = 4;
 
-	private final ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
-	private final ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
-	private final ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
-	private final ImageIcon TREES_IMAGE = new ImageIcon("src/main/resources/images/trees.png");
-	
-	private final ImageIcon REDSTATION_FRONT_IMAGE = new ImageIcon("src/main/resources/images/redStation_Front.png");
-	private final ImageIcon GREENSTATION_FRONT_IMAGE = new ImageIcon("src/main/resources/images/greenStation_Front.png");
-	
-	private final ImageIcon STRAIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/straight_track.png");
-	private final ImageIcon DIAGONALTRACK_IMAGE = new ImageIcon("src/main/resources/images/diagonal_track.png");
-	private final ImageIcon CURVELEFTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_left_track.png");
-	private final ImageIcon CURVERIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_right_track.png");	
 	
 	private JLayeredPane[][] mapTiles;
 	
@@ -196,17 +184,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JLabel landscapeLayer = new JLabel();
 		switch(level.getMap().getTile(row, column).getLandscapeType()) {
 		case GRASS:
-			landscapeLayer=new JLabel(GRASS_IMAGE);
+			landscapeLayer=new JLabel(TrackIcons.GRASS_IMAGE);
 			break;
 		case WATER:
-			landscapeLayer=new JLabel(WATER_IMAGE);
+			landscapeLayer=new JLabel(TrackIcons.WATER_IMAGE);
 			break;
 		}
 		
 		landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		
 		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
-			landscapeLayer=new JLabel(WATER_IMAGE);
+			landscapeLayer=new JLabel(TrackIcons.WATER_IMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
 		landscapeLayer.setBounds(0,0,40,40);
@@ -226,10 +214,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			JLabel stationLayer = new JLabel();
 			switch(level.getMap().getTile(row, column).getStationType()){
 				case RED_FRONT:
-					stationLayer = new JLabel(REDSTATION_FRONT_IMAGE);
+					stationLayer = new JLabel(TrackIcons.REDSTATION_FRONT_IMAGE);
 					break;
 				case GREEN_FRONT:
-					stationLayer = new JLabel(GREENSTATION_FRONT_IMAGE);
+					stationLayer = new JLabel(TrackIcons.GREENSTATION_FRONT_IMAGE);
 					break;
 				case RED_BACK:
 					
@@ -256,10 +244,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			JLabel obstacleLayer = new JLabel();
 			switch(level.getMap().getTile(row, column).getObstacleType()){
 				case ROCK:
-					obstacleLayer = new JLabel(ROCK_IMAGE);
+					obstacleLayer = new JLabel(TrackIcons.ROCK_IMAGE);
 					break;
 				case TREES:
-					obstacleLayer = new JLabel(TREES_IMAGE);
+					obstacleLayer = new JLabel(TrackIcons.TREES_IMAGE);
 					break;
 			}
 			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
@@ -286,14 +274,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				JLabel trackLayer = new JLabel();
 				for(int i = 0; i < 2; i++){
 					if(connection.equals(straight)){
-						trackLayer=new JLabel(new RotatedImageIcon(DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
+						trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					straight.rotate90Degrees();
 					
 					if(connection.equals(diagonal)){
-						trackLayer=new JLabel(new RotatedImageIcon(DIAGONALTRACK_IMAGE.getImage(), i * 2));
+						trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
@@ -302,13 +290,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 					
 				for(int i = 0; i < 4; i++){	
 					if(connection.equals(curveLeft)){
-						trackLayer=new JLabel(new RotatedImageIcon(CURVELEFTTRACK_IMAGE.getImage(), i * 2));
+						trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.CURVELEFTTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					curveLeft.rotate90Degrees();
 					if(connection.equals(curveRight)){
-						trackLayer=new JLabel(new RotatedImageIcon(CURVERIGHTTRACK_IMAGE.getImage(), i * 2));
+						trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.CURVERIGHTTRACK_IMAGE.getImage(), i * 2));
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
@@ -342,28 +330,28 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		trackPanel.setBorder(sidePanelTitle);
 	
-		JButton straightTrack = new JButton(STRAIGHTTRACK_IMAGE);
+		JButton straightTrack = new JButton(TrackIcons.STRAIGHTTRACK_IMAGE);
 		straightTrack.setPreferredSize(new Dimension(80,80));
 		straightTrack.setBounds(0, 0, 40, 40);
 		straightTrack.setActionCommand("straightTrack");
 		straightTrack.addActionListener(this);
 		trackPanel.add(straightTrack);
 		
-		JButton diagonalTrack = new JButton(DIAGONALTRACK_IMAGE);
+		JButton diagonalTrack = new JButton(TrackIcons.DIAGONALTRACK_IMAGE);
 		diagonalTrack.setBounds(0, 0, 40, 40);
 		diagonalTrack.setPreferredSize(new Dimension(80,80));
 		diagonalTrack.setActionCommand("diagonalTrack");
 		diagonalTrack.addActionListener(this);
 		trackPanel.add(diagonalTrack);
 		
-		JButton curveleftTrack = new JButton(CURVELEFTTRACK_IMAGE);
+		JButton curveleftTrack = new JButton(TrackIcons.CURVELEFTTRACK_IMAGE);
 		curveleftTrack.setBounds(0, 0, 40, 40);
 		curveleftTrack.setPreferredSize(new Dimension(80,80));
 		curveleftTrack.setActionCommand("curveleftTrack");
 		curveleftTrack.addActionListener(this);
 		trackPanel.add(curveleftTrack);
 		
-		JButton curverightTrack = new JButton(CURVERIGHTTRACK_IMAGE);
+		JButton curverightTrack = new JButton(TrackIcons.CURVERIGHTTRACK_IMAGE);
 		curverightTrack.setBounds(0, 0, 40, 40);
 		curverightTrack.setPreferredSize(new Dimension(80,80));
 		curverightTrack.setActionCommand("curverightTrack");
@@ -479,7 +467,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			selectedTrackPanel.remove(selectedTrackImage);
 			selectedTrackPanel.remove(selectedTrackLabel);	
 			
-			selectedTrackImage = new JLabel(STRAIGHTTRACK_IMAGE);
+			selectedTrackImage = new JLabel(TrackIcons.STRAIGHTTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Straight Track");  
 			
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
@@ -502,7 +490,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 			selectedTrackPanel.remove(selectedTrackImage);
 			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(DIAGONALTRACK_IMAGE);
+			selectedTrackImage = new JLabel(TrackIcons.DIAGONALTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Diagonal Track");
 			
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
@@ -524,7 +512,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "curveleftTrack") {
 			selectedTrackPanel.remove(selectedTrackImage);
 			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(CURVELEFTTRACK_IMAGE);
+			selectedTrackImage = new JLabel(TrackIcons.CURVELEFTTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Curve Left Track");
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
@@ -545,7 +533,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "curverightTrack") {
 			selectedTrackPanel.remove(selectedTrackImage);
 			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(CURVERIGHTTRACK_IMAGE);
+			selectedTrackImage = new JLabel(TrackIcons.CURVERIGHTTRACK_IMAGE);
 			selectedTrackLabel = new JLabel("Curve Right Track");
 	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
 	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
