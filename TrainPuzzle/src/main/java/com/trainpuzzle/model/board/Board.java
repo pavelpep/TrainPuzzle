@@ -48,6 +48,10 @@ public class Board implements Observable {
 		return tiles[row][column];
 	}
 	
+	public Tile getTile(Location location) {
+		return tiles[location.getRow()][location.getColumn()];
+	}
+	
 	/*//this replaces tiles instead of modifying. Not needed.
 	public void setTile(Tile tile, int row, int column) {
 		tiles[row][column] = tile;
