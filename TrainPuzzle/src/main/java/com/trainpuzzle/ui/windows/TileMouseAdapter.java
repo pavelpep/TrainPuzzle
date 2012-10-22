@@ -1,6 +1,7 @@
 package com.trainpuzzle.ui.windows;
 
 import com.trainpuzzle.exception.CannotPlaceTrackException;
+import com.trainpuzzle.exception.CannotRemoveTrackException;
 
 import com.trainpuzzle.controller.TrackPlacer;
 
@@ -26,19 +27,31 @@ class TileMouseAdapter extends MouseAdapter {
 		
 		public void  mousePressed(MouseEvent e) {
                 JComponent c = (JComponent) e.getSource();
+                if (e.getButton() == MouseEvent.BUTTON1){
+                	
+                }
                 int row = c.getY()/40;
                 int column = c.getX()/40;
                 
-                try {
-                	trackPlacer.placeTrack(track, row, column);
-                }catch(CannotPlaceTrackException ex) {
-                	System.out.println(ex.getMessage());
+                if (e.getButton() == MouseEvent.BUTTON1){
+	                try {
+	                	trackPlacer.placeTrack(track, row, column);
+	                }catch(CannotPlaceTrackException ex) {
+	                	System.out.println(ex.getMessage());
+	                }
+                }else if(e.getButton() == MouseEvent.BUTTON3){
+	                try {
+	                	trackPlacer.removeTrack(row, column);
+	                }catch(CannotRemoveTrackException ex) {
+	                	System.out.println(ex.getMessage());
+	                }
                 }
               //TransferHandler handler = c.getTransferHandler();
                 //handler.exportAsDrag(c, e, TransferHandler.COPY);
                 //System.out.println(row+ " , " +column);
                 //return position;
         }
+		
 		
 		public TrackPlacer getTrackPlacer(){
 			return trackPlacer;
