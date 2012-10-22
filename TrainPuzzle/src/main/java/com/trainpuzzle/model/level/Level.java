@@ -70,9 +70,7 @@ public class Level {
 		this.levelNumber = levelNumber;
 	}
 	
-	public VictoryCondition getVictoryConditions() {
-		return victoryConditions;
-	}
+
 
 	public void setVictoryConditions(VictoryCondition victoryConditions) {
 		this.victoryConditions = new VictoryConditionEvaluator(victoryConditions);

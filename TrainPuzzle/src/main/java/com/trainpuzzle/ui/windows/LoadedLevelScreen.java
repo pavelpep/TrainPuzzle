@@ -119,7 +119,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		else if(object instanceof Tile){
 			for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
 	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-	            	if(object.equals(level.getMap().getTile(row, column)))
+	            	if(object.equals(level.getBoard().getTile(row, column)))
 	            		redrawTile(row, column);
 	            }
 			}
@@ -145,7 +145,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         		mapTiles[row][column] = mapTile;
 
             	//add mouse clicky thing to tile
-            	level.getMap().getTile(row, column).register(this);
+            	level.getBoard().getTile(row, column).register(this);
 				mapTile.addMouseListener(mouseAdapter); 
 				
 				//add tile to map panel
@@ -215,7 +215,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		JLabel landscapeLayer = new JLabel();
-		switch(level.getMap().getTile(row, column).getLandscapeType()) {
+		switch(level.getBoard().getTile(row, column).getLandscapeType()) {
 		case GRASS:
 			landscapeLayer=new JLabel(TrackIcons.GRASS_IMAGE);
 			break;
@@ -226,7 +226,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		
-		if(level.getMap().getTile(row, column).getLandscapeType().equals("water")) {
+		if(level.getBoard().getTile(row, column).getLandscapeType().equals("water")) {
 			landscapeLayer=new JLabel(TrackIcons.WATER_IMAGE);
 			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
@@ -242,10 +242,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		JLayeredPane mapTile = mapTiles[row][column];
 		Location location = new Location(row, column);
-		if(level.getMap().getTile(row, column).hasStation(location)) {
-			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+		if(level.getBoard().getTile(row, column).hasStation(location)) {
+			//System.out.println(level.getBoard().getTile(row, column).hasObstacle() + " " + row + " "+  column);
 			JLabel stationLayer = new JLabel();
-			switch(level.getMap().getTile(row, column).getStationType()){
+			switch(level.getBoard().getTile(row, column).getStationType()){
 				case RED_FRONT:
 					stationLayer = new JLabel(TrackIcons.REDSTATION_FRONT_IMAGE);
 					break;
@@ -272,10 +272,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		JLayeredPane mapTile = mapTiles[row][column];
-		if(level.getMap().getTile(row, column).hasObstacle()) {
-			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
+		if(level.getBoard().getTile(row, column).hasObstacle()) {
+			//System.out.println(level.getBoard().getTile(row, column).hasObstacle() + " " + row + " "+  column);
 			JLabel obstacleLayer = new JLabel();
-			switch(level.getMap().getTile(row, column).getObstacleType()){
+			switch(level.getBoard().getTile(row, column).getObstacleType()){
 				case ROCK:
 					obstacleLayer = new JLabel(TrackIcons.ROCK_IMAGE);
 					break;
@@ -296,9 +296,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		JLayeredPane mapTile = mapTiles[row][column];
-		if(level.getMap().getTile(row, column).hasTrack()){
+		if(level.getBoard().getTile(row, column).hasTrack()){
 
-			for(Connection connection:level.getMap().getTile(row, column).getTrack().getConnections()){
+			for(Connection connection:level.getBoard().getTile(row, column).getTrack().getConnections()){
 				Connection diagonal = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
 				Connection straight = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
@@ -423,38 +423,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
         // TODO: redrawTrackPanel();		
 	}
-    
-
-	
-	/**
-	 * Used for internal testing to see if a are simulating a level correctly. Avoid using Application and directly runs the simulator.
-	 * 
-	 * @param levelToSimulate
-	 */
-	/*
-	private void testSimulation(Level levelToSimulate) {
-		Simulator testSim = new Simulator(levelToSimulate);
-		Location location = new Location(0, 4);
-		testSim.getTrain().setLocation(location);
-		
-		Train testTrain = new Train();
-		testTrain.setLocation(location);
-		testTrain.setHeading(CompassHeading.EAST);
-		for(int row = 0; row < numberOfRows; row++) {
-			for(int column = 0; column < numberOfColumns; column++) {
-				if(levelToSimulate.getMap().getTile(row,column).hasTrack()) {
-					redrawTrain(testSim.getTrain());
-		        		try {
-							testSim.proceedNextTile();
-						} catch (TrainCrashException e) {
-							logger.error(e.getMessage(), e.fillInStackTrace());
-						}
-		        		logger.info("NEW location @ " + testSim.getTrain().getLocation().getRow() + ", " + testSim.getTrain().getLocation().getColumn());
-		        }
-			}
-		}
-	}
-	*/
+  
 
 	//TODO: this method seems pretty useless remove?
 	public void create() {
