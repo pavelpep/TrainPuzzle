@@ -101,13 +101,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.add(this.titleLabel, gbConstraints);
 		
 	    initializeMapPanel(Board.NUMBER_OF_ROWS, Board.NUMBER_OF_COLUMNS);
-        redrawTiles();
-        
-		initializeTrain();
-		redrawTrain(train);
 
 		initializeTrackPanel();
-        redrawTrackPanel();
+        
+        initializeSelectedTrackPanel();
 		
 	}
 	
@@ -151,60 +148,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
             	mapPanel.add(mapTile);
             }
         }
+        
+
+		
         initializeComponent(this.mapPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
         this.add(this.mapPanel, gbConstraints);
-	}
-	private void initializeTrain() {
-		train = gameController.getSimulator().getTrain();
-		train.register(this);
-		trainLocation = train.getLocation();
-	}
-
-	public void  redrawTiles(){
-
-		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
-	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
-	            	drawObstacle(row, column);
-					drawLandscape(row, column);
-	            	drawTrack(row, column);
-	            	drawStation(row, column);
-	            }
-	        }
-        mapPanel.repaint();
-	}
-	
-    private void redrawTile(int row, int column){
-    	   drawObstacle(row, column);
-		   drawLandscape(row, column);
-	       drawTrack(row, column);
-	       drawStation(row, column);		
-	}
-    
-	private void redrawTrain(Train train) {
-		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
-		try {
-			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
-        	
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
+        
+        redrawTiles();
+        
+		initializeTrain();
 		
-		previousRow = trainLocation.getRow();
-		previousColumn = trainLocation.getColumn();
-
-		trainLocation = train.getLocation();
-		int row = trainLocation.getRow();
-		int column = trainLocation.getColumn();
-		
-		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
-		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
-    	JLabel trainLayer = new JLabel(trainImage);
-    	trainLayer.setBounds(0,0,40,40);
-		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
-		
-		mapPanel.repaint();
 	}
-	
 
 	private void drawLandscape(int row, int column) {
 		try {
@@ -232,7 +186,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		landscapeLayer.setBounds(0,0,40,40);
 		mapTiles[row][column].add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
-	
 	private void drawStation(int row, int column){
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(stationLayerIndex)[0]);
@@ -263,7 +216,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			mapTile.add(stationLayer, new Integer(stationLayerIndex));	
 		}	
 	}
-	
 	private void drawObstacle(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(obstacleLayerIndex)[0]);
@@ -287,7 +239,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 		}
 	}
-	
 	private void drawTrack(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
@@ -341,13 +292,75 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	
+	public void  redrawTiles(){
 
+		  for(int row = 0; row < Board.NUMBER_OF_ROWS; row++){
+	            for(int column = 0; column < Board.NUMBER_OF_COLUMNS; column++){
+	            	drawObstacle(row, column);
+					drawLandscape(row, column);
+	            	drawTrack(row, column);
+	            	drawStation(row, column);
+	            }
+	        }
+        mapPanel.repaint();
+	}
+    private void redrawTile(int row, int column){
+    	   drawObstacle(row, column);
+		   drawLandscape(row, column);
+	       drawTrack(row, column);
+	       drawStation(row, column);		
+	}
+    
+    
+	private void initializeTrain() {
+		train = gameController.getSimulator().getTrain();
+		train.register(this);
+		trainLocation = train.getLocation();
+		redrawTrain(train);
+	}
+	private void redrawTrain(Train train) {
+		//previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
+		try {
+			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
+        	
+		} catch(Exception e){
+			//logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+		
+		previousRow = trainLocation.getRow();
+		previousColumn = trainLocation.getColumn();
+
+		trainLocation = train.getLocation();
+		int row = trainLocation.getRow();
+		int column = trainLocation.getColumn();
+		
+		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
+		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
+    	JLabel trainLayer = new JLabel(trainImage);
+    	trainLayer.setBounds(0,0,40,40);
+		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
+		
+		mapPanel.repaint();
+	}
+	
 	//Track Panel
 	private void initializeTrackPanel() {
 		// Track Panel 
 		initializeComponent(this.trackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 300, 10), true);
 		this.add(trackPanel, gbConstraints);
 		
+		redrawTrackPanel();
+		
+		//initialize run button
+		JButton runButton = new JButton();
+		runButton = new JButton("Simulate");
+		trackPanel.add(runButton);		
+		runButton.setActionCommand("run");
+		runButton.addActionListener(this);
+		
+	}
+	private void redrawTrackPanel(){
+
 		trackPanel.setPreferredSize(new Dimension(250, 300));
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
@@ -380,14 +393,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		curverightTrack.setActionCommand("curverightTrack");
 		curverightTrack.addActionListener(this);
 		trackPanel.add(curverightTrack);
-		
-		//initialize run button
-		JButton runButton = new JButton();
-		runButton = new JButton("Simulate");
-		trackPanel.add(runButton);		
-		runButton.setActionCommand("run");
-		runButton.addActionListener(this);
-		
+				
+    }
+	
+	//Selected Track Panel 
+	private void initializeSelectedTrackPanel() {
 		//Initialize Selected Track Panel 
 		initializeComponent(this.selectedTrackPanel, Font.CENTER_BASELINE, 0, Color.GRAY, 100, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(300, 0, 0, 10), true);
 		this.add(selectedTrackPanel, gbConstraints);
@@ -397,22 +407,21 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
         selectedTrackPanel.setBorder(sidePanelTitle);
               
-        //initialize rotate button
-    	JButton rotateButton = new JButton();
-    	rotateButton.setBounds(0, 0, 40, 40);
-        rotateButton.setPreferredSize(new Dimension(40, 40));
-        rotateButton.setActionCommand("rotateTrack");
-        rotateButton.addActionListener(this);
-        selectedTrackPanel.add(rotateButton);
-        
-		
-
+        redrawSelectedTrackPanel();
 	}
-	
-    private void redrawTrackPanel(){
-
-        // TODO: redrawTrackPanel();		
+	private void redrawSelectedTrackPanel() {
+		selectedTrackPanel.removeAll();
+		JButton rotateButton = new JButton(selectedTrackImage);
+		rotateButton.setBounds(0, 0, 40, 40);
+		rotateButton.setPreferredSize(new Dimension(40, 40));
+		rotateButton.setActionCommand("rotateTrack");
+		rotateButton.addActionListener(this);
+		selectedTrackPanel.add(rotateButton);
+		selectedTrackPanel.repaint();
+		this.setVisible(true);
 	}
+
+ 
   
 
 	//TODO: this method seems pretty useless remove?
@@ -428,89 +437,59 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}	
 		
 		if (event.getActionCommand() == "straightTrack") {
-			
-			
-			selectedTrackImage = new RotatedImageIcon(TrackIcons.STRAIGHTTRACK_IMAGE.getImage());
-			
-			spawnRotateButton();
-	        
-			this.setVisible(true);
-			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
 			selectedTrack = new Track(connection);
 			mouseAdapter.setTrack(selectedTrack);
+			
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.STRAIGHTTRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
 		}
 		
 		if (event.getActionCommand() == "diagonalTrack") {
-
-			
-			selectedTrackImage = new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage());
-			spawnRotateButton();
-	        
-			this.setVisible(true);
-			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
 			selectedTrack = new Track(connection);
 			mouseAdapter.setTrack(selectedTrack);
+			
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
-			
-			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVELEFTTRACK_IMAGE.getImage());
-			
-			spawnRotateButton();
-	        
-			this.setVisible(true);
-			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
 			selectedTrack = new Track(connection);
 			mouseAdapter.setTrack(selectedTrack);
-	        
+			
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVELEFTTRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
-			
-			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVERIGHTTRACK_IMAGE.getImage());
-			
-			spawnRotateButton();
-	        
-			this.setVisible(true);
 			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
 			selectedTrack = new Track(connection);
 			mouseAdapter.setTrack(selectedTrack);
+			
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVERIGHTTRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
 		}
 		
-		if (event.getActionCommand() == "rotateTrack") {
-			
-			selectedTrackImage.rotate90DegreesClockwise();
-			
-			spawnRotateButton();
-	        
-			this.setVisible(true);
-			
+		if (event.getActionCommand() == "rotateTrack") {	
 			//rotate track and set on  mouseAdapter
 			selectedTrack.rotateTrack();
 			mouseAdapter.setTrack(selectedTrack);
-			this.setVisible(true);
 			
+			selectedTrackImage.rotate90DegreesClockwise();
+			
+			redrawSelectedTrackPanel();
 		}
-		
-		
 	}
 
-	private void spawnRotateButton() {
-		selectedTrackPanel.removeAll();
-		JButton rotateButton = new JButton(selectedTrackImage);
-		rotateButton.setBounds(0, 0, 40, 40);
-		rotateButton.setPreferredSize(new Dimension(40, 40));
-		rotateButton.setActionCommand("rotateTrack");
-		rotateButton.addActionListener(this);
-		selectedTrackPanel.add(rotateButton);
-		selectedTrackPanel.repaint();
-	}
 }
