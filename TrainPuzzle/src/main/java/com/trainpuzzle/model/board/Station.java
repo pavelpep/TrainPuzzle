@@ -1,6 +1,6 @@
 package com.trainpuzzle.model.board;
 
-import com.trainpuzzle.model.board.Obstacle.ObstacleType;
+import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
@@ -16,14 +16,20 @@ public class Station {
 	public enum StationType {
 		RED_FRONT,
 		RED_BACK,
+		RED_LEFT,
+		RED_RIGHT,
 		GREEN_BACK,
-		GREEN_FRONT;
+		GREEN_FRONT,
+		GREEN_LEFT,
+		GREEN_RIGHT;
 	}
 	
 	private StationType stationType;
 	private Location stationLocation;
 	private StationTrackPosition trackPosition;
 	private Track track;
+	private Obstacle stationBuilding;
+	
 	
 	
 	/* Public Interface */
@@ -33,6 +39,7 @@ public class Station {
 		this.stationLocation = location;
 		this.trackPosition = trackPosition;
 		this.track = createTrack();
+		this.stationBuilding=new Obstacle(STATION);
 		
 	}
 	

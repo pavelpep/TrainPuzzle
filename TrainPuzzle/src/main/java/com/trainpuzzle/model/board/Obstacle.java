@@ -5,7 +5,8 @@ public class Obstacle {
 
 	public enum ObstacleType{
 		ROCK,
-		TREES
+		TREES,
+		STATION
 	}
 	
 	private ObstacleType obstacle;
