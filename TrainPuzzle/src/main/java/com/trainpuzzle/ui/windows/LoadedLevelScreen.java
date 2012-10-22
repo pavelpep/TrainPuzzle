@@ -210,6 +210,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				case GREEN_BACK:
 					
 					break;
+			default:
+				break;
 			}
 			stationLayer.setTransferHandler(new TransferHandler("icon"));
 			stationLayer.setBounds(0,0,40,40);
@@ -233,6 +235,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				case TREES:
 					obstacleLayer = new JLabel(TrackIcons.TREES_IMAGE);
 					break;
+			default:
+				break;
 			}
 			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
 			obstacleLayer.setBounds(0,0,40,40);
