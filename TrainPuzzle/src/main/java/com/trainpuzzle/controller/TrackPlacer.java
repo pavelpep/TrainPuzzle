@@ -21,11 +21,16 @@ public class TrackPlacer {
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
-		if(tile.hasTrack()||tile.hasObstacle()||tile.hasStationOrStationTrack()) {
+		if(tile.hasTrack()) {
 			logger.warn("CannotPlaceTrackException was thrown");
-			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track or an obstacle");
-		}
-		else{
+			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track");
+		} else if (tile.hasObstacle()) {
+			logger.warn("CannotPlaceTrackException was thrown");
+			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was an obstacle");
+		} else if (tile.hasStationBuildingOrStationTrack()) {
+			logger.warn("CannotPlaceTrackException was thrown");
+			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a station building or station track");
+		} else{
 			tile.setTrack(track);
 			map.notifyAllObservers();
 			// map.setTile(tile,row,column); // can be removed because of passing by reference
@@ -34,7 +39,11 @@ public class TrackPlacer {
 
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
 		Tile tile = map.getTile(row, column);
-		if(tile.hasTrack()) {			
+		Location location = new Location(row, column);
+		if(tile.hasStationTrack(location)) {
+			logger.warn("CannotRemoveTrackException was thrown");
+			throw new CannotRemoveTrackException("Track failed to be removed because this is a station track");
+		} else if(tile.hasTrack()) {			
 			tile.removeTrack();
 			map.notifyAllObservers();
 			//map.setTile(tile,row,column); // can be removed because of passing by reference

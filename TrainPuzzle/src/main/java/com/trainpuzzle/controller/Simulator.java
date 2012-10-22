@@ -45,8 +45,13 @@ public class Simulator {
 			throw new TrainCrashException();
 		} 
 		
-		Track track = tile.getTrack();
-		
+		Track track;
+		if(tile.hasStationTrack(location)){
+			track = tile.getStation().getTrack();
+		} else {
+			track = tile.getTrack();
+		}
+			
 		CompassHeading nextHeading = track.getOutboundHeading(heading);
 		this.train.setHeading(nextHeading);
 		//this.train.setLocation(location);

@@ -47,7 +47,7 @@ public class Tile implements Observable {
 		return (obstacle != null);
 	}
 	
-	public boolean hasStationOrStationTrack() {
+	public boolean hasStationBuildingOrStationTrack() {
 		return (station != null);
 	}
 	
