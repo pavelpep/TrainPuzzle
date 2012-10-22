@@ -20,7 +20,7 @@ public class TrackPlacer {
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
-		if(tile.hasTrack()||tile.hasObstacle()) {
+		if(tile.hasTrack()||tile.hasObstacle()||tile.hasStationOrStationTrack()) {
 			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track or an obstacle");
 		}
 		else{

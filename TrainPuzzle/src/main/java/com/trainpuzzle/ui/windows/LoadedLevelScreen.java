@@ -220,7 +220,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		JLayeredPane mapTile = mapTiles[row][column];
-		if(level.getMap().getTile(row, column).hasStation()) {
+		Location location = new Location(row, column);
+		if(level.getMap().getTile(row, column).hasStation(location)) {
 			//System.out.println(level.getMap().getTile(row, column).hasObstacle() + " " + row + " "+  column);
 			JLabel stationLayer = new JLabel();
 			switch(level.getMap().getTile(row, column).getStationType()){

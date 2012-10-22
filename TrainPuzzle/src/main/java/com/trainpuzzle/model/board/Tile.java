@@ -47,9 +47,18 @@ public class Tile implements Observable {
 		return (obstacle != null);
 	}
 	
-	public boolean hasStation() {
+	public boolean hasStationOrStationTrack() {
 		return (station != null);
 	}
+	
+	public boolean hasStation(Location location) {
+		return (station != null) && !getStation().isStationTrack(location);
+	}
+	
+	public boolean hasStationTrack(Location location) {
+		return (station != null) && getStation().isStationTrack(location);
+	}
+	
 	
 /* Getters and Setters */
 	
