@@ -65,9 +65,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	//SelectedTrack Panel
 	private JPanel selectedTrackPanel = new JPanel();
-	private JLabel selectedTrackLabel = new JLabel();
-	private JLabel selectedTrackImage = new JLabel();
-
+	private ImageIcon selectedTrackImage;
+    private Track selectedTrack;
 	private GameController gameController;
 	private Level level;
 	private Train train;
@@ -397,25 +396,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
         sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Currently Selected Track");
         sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
         selectedTrackPanel.setBorder(sidePanelTitle);
+              
+        //initialize rotate button
+    	JButton rotateButton = new JButton();
+    	rotateButton.setBounds(0, 0, 40, 40);
+        rotateButton.setPreferredSize(new Dimension(40, 40));
+        rotateButton.setActionCommand("rotateTrack");
+        rotateButton.addActionListener(this);
+        selectedTrackPanel.add(rotateButton);
         
-        //initialize selected track image and label
-    	//JLabel selectedTrackLabel = new JLabel();
-    	//JLabel selectedTrackImage = new JLabel();
-        selectedTrackImage.setPreferredSize(new Dimension(100,100));
-        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-        
-        selectedTrackPanel.add(selectedTrackImage);
-        selectedTrackPanel.add(selectedTrackLabel);
-        
-        //initialize rotate buttons
-    	JButton rotateLeftButton = new JButton("Rotate Left");
-    	JButton rotateRightButton = new JButton("Rotate Right");        
-        rotateLeftButton.setPreferredSize(new Dimension(100, 50));
-        rotateRightButton.setPreferredSize(new Dimension(100, 50));
-        
-        selectedTrackPanel.add(rotateLeftButton);
-        selectedTrackPanel.add(rotateRightButton);
-         
+		
 
 	}
 	
@@ -439,41 +429,36 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if (event.getActionCommand() == "straightTrack") {
 			
-			selectedTrackPanel.remove(selectedTrackImage);
-			selectedTrackPanel.remove(selectedTrackLabel);	
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = TrackIcons.STRAIGHTTRACK_IMAGE;
 			
-			selectedTrackImage = new JLabel(TrackIcons.STRAIGHTTRACK_IMAGE);
-			selectedTrackLabel = new JLabel("Straight Track");  
-			
-	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
-	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-
-	        
-	        selectedTrackPanel.add(selectedTrackImage);
-	        selectedTrackPanel.add(selectedTrackLabel);
+			JButton rotateButton = new JButton(selectedTrackImage);
+		   	rotateButton.setBounds(0, 0, 40, 40);
+	        rotateButton.setPreferredSize(new Dimension(40, 40));
+	        rotateButton.setActionCommand("rotateTrack");
+	        rotateButton.addActionListener(this);
+	        selectedTrackPanel.add(rotateButton);
 	        selectedTrackPanel.repaint();
 	        
 			this.setVisible(true);
 			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
-			Track track = new Track(connection);
-			mouseAdapter.setTrack(track);
+			selectedTrack = new Track(connection);
+			mouseAdapter.setTrack(selectedTrack);
 		}
 		
 		if (event.getActionCommand() == "diagonalTrack") {
 
-			selectedTrackPanel.remove(selectedTrackImage);
-			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(TrackIcons.DIAGONALTRACK_IMAGE);
-			selectedTrackLabel = new JLabel("Diagonal Track");
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = TrackIcons.DIAGONALTRACK_IMAGE;
 			
-	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
-	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-
-	        
-	        selectedTrackPanel.add(selectedTrackImage);
-	        selectedTrackPanel.add(selectedTrackLabel);
+			JButton rotateButton = new JButton(selectedTrackImage);
+		   	rotateButton.setBounds(0, 0, 40, 40);
+	        rotateButton.setPreferredSize(new Dimension(40, 40));
+	        rotateButton.setActionCommand("rotateTrack");
+	        rotateButton.addActionListener(this);
+	        selectedTrackPanel.add(rotateButton);
 	        selectedTrackPanel.repaint();
 	        
 			this.setVisible(true);
@@ -485,15 +470,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
-			selectedTrackPanel.remove(selectedTrackImage);
-			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(TrackIcons.CURVELEFTTRACK_IMAGE);
-			selectedTrackLabel = new JLabel("Curve Left Track");
-	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
-	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-
-	        selectedTrackPanel.add(selectedTrackImage);
-	        selectedTrackPanel.add(selectedTrackLabel);
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = TrackIcons.CURVELEFTTRACK_IMAGE;
+			
+			JButton rotateButton = new JButton(selectedTrackImage);
+		   	rotateButton.setBounds(0, 0, 40, 40);
+	        rotateButton.setPreferredSize(new Dimension(40, 40));
+	        rotateButton.setActionCommand("rotateTrack");
+	        rotateButton.addActionListener(this);
+	        selectedTrackPanel.add(rotateButton);
 	        selectedTrackPanel.repaint();
 	        
 			this.setVisible(true);
@@ -506,15 +491,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
-			selectedTrackPanel.remove(selectedTrackImage);
-			selectedTrackPanel.remove(selectedTrackLabel);	
-			selectedTrackImage = new JLabel(TrackIcons.CURVERIGHTTRACK_IMAGE);
-			selectedTrackLabel = new JLabel("Curve Right Track");
-	        selectedTrackImage.setPreferredSize(new Dimension(100,100));
-	        selectedTrackLabel.setPreferredSize(new Dimension(100,100));
-	        
-	        selectedTrackPanel.add(selectedTrackImage);
-	        selectedTrackPanel.add(selectedTrackLabel);
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = TrackIcons.CURVERIGHTTRACK_IMAGE;
+			
+			JButton rotateButton = new JButton(selectedTrackImage);
+		   	rotateButton.setBounds(0, 0, 40, 40);
+	        rotateButton.setPreferredSize(new Dimension(40, 40));
+	        rotateButton.setActionCommand("rotateTrack");
+	        rotateButton.addActionListener(this);
+	        selectedTrackPanel.add(rotateButton);
 	        selectedTrackPanel.repaint();
 	        
 			this.setVisible(true);
@@ -525,7 +510,26 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			mouseAdapter.setTrack(track);
 		}
 		
-		
+		if (event.getActionCommand() == "rotateTrack") {
+			
+			selectedTrackPanel.removeAll();
+			selectedTrackImage = new RotatedImageIcon(selectedTrackImage.getImage(), 2);
+			JButton rotateButton = new JButton(selectedTrackImage);
+	    	rotateButton.setBounds(0, 0, 40, 40);
+	        rotateButton.setPreferredSize(new Dimension(40, 40));
+	        rotateButton.setActionCommand("rotateTrack");
+	        rotateButton.addActionListener(this);
+			selectedTrackPanel.add(rotateButton);
+	        selectedTrackPanel.repaint();
+	        
+			this.setVisible(true);
+			
+			//rotate track and set on  mouseAdapter
+			selectedTrack.rotateTrack();
+			mouseAdapter.setTrack(selectedTrack);
+			this.setVisible(true);
+			
+		}
 		
 		
 	}
