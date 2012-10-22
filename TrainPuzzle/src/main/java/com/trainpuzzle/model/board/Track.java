@@ -20,6 +20,14 @@ public class Track {
 		connections.add(connection);
 	}
 	
+	public Track(Track trackToCopy) {
+		connections = new HashSet<Connection>();
+		removeConnections();
+		for(Connection connection : trackToCopy.getConnections()) {
+			addConnection(connection.getCompassHeadingPair()[0], connection.getCompassHeadingPair()[1]);
+		}
+	}
+	
 	public Track(Connection connection) {
 		connections = new HashSet<Connection>();
 		connections.add(connection);
@@ -47,6 +55,10 @@ public class Track {
 	public Set<Connection> getConnections() {
 		return connections;
 	}
+	
+	private void removeConnections(){
+		connections.removeAll(connections);
+	}
 
 	/**
 	 * Get the outboundHeading
@@ -64,5 +76,6 @@ public class Track {
 		}		
 		throw new TrainCrashException();
 	}
+	
+	
 }
-
