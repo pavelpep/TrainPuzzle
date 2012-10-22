@@ -65,7 +65,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	//SelectedTrack Panel
 	private JPanel selectedTrackPanel = new JPanel();
-	private ImageIcon selectedTrackImage;
+	private RotatedImageIcon selectedTrackImage;
     private Track selectedTrack;
 	private GameController gameController;
 	private Level level;
@@ -430,7 +430,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "straightTrack") {
 			
 			selectedTrackPanel.removeAll();
-			selectedTrackImage = TrackIcons.STRAIGHTTRACK_IMAGE;
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.STRAIGHTTRACK_IMAGE.getImage());
 			
 			JButton rotateButton = new JButton(selectedTrackImage);
 		   	rotateButton.setBounds(0, 0, 40, 40);
@@ -451,7 +451,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "diagonalTrack") {
 
 			selectedTrackPanel.removeAll();
-			selectedTrackImage = TrackIcons.DIAGONALTRACK_IMAGE;
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage());
 			
 			JButton rotateButton = new JButton(selectedTrackImage);
 		   	rotateButton.setBounds(0, 0, 40, 40);
@@ -465,13 +465,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
-			Track track = new Track(connection);
-			mouseAdapter.setTrack(track);
+			selectedTrack = new Track(connection);
+			mouseAdapter.setTrack(selectedTrack);
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
 			selectedTrackPanel.removeAll();
-			selectedTrackImage = TrackIcons.CURVELEFTTRACK_IMAGE;
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVELEFTTRACK_IMAGE.getImage());
 			
 			JButton rotateButton = new JButton(selectedTrackImage);
 		   	rotateButton.setBounds(0, 0, 40, 40);
@@ -485,14 +485,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
-			Track track = new Track(connection);
-			mouseAdapter.setTrack(track);
+			selectedTrack = new Track(connection);
+			mouseAdapter.setTrack(selectedTrack);
 	        
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
 			selectedTrackPanel.removeAll();
-			selectedTrackImage = TrackIcons.CURVERIGHTTRACK_IMAGE;
+			selectedTrackImage = new RotatedImageIcon(TrackIcons.CURVERIGHTTRACK_IMAGE.getImage());
 			
 			JButton rotateButton = new JButton(selectedTrackImage);
 		   	rotateButton.setBounds(0, 0, 40, 40);
@@ -506,14 +506,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
-			Track track = new Track(connection);
-			mouseAdapter.setTrack(track);
+			selectedTrack = new Track(connection);
+			mouseAdapter.setTrack(selectedTrack);
 		}
 		
 		if (event.getActionCommand() == "rotateTrack") {
 			
 			selectedTrackPanel.removeAll();
-			selectedTrackImage = new RotatedImageIcon(selectedTrackImage.getImage(), 2);
+			selectedTrackImage.rotate90DegreesClockwise();
 			JButton rotateButton = new JButton(selectedTrackImage);
 	    	rotateButton.setBounds(0, 0, 40, 40);
 	        rotateButton.setPreferredSize(new Dimension(40, 40));

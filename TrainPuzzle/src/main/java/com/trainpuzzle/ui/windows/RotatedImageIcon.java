@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 public class RotatedImageIcon extends ImageIcon {
 	
-	int multiplesOf45Degrees;
+	int multiplesOf45Degrees = 0;
 	
 	public RotatedImageIcon(String filename) {
 		this(filename, 0);
@@ -21,7 +21,7 @@ public class RotatedImageIcon extends ImageIcon {
 	
 	public RotatedImageIcon(Image image, int multiplesOf45Degrees) {
 		super.setImage(image);
-		this.multiplesOf45Degrees = multiplesOf45Degrees;
+		this.multiplesOf45Degrees =  multiplesOf45Degrees;
 	}
 	
 	public RotatedImageIcon(String filename, int multiplesOf45Degrees) {
