@@ -44,7 +44,7 @@ public class Train implements Observable{
 */
 	public void setLocation(Location location) {
 		this.location = location;
-		
+		notifyAllObservers();
 	}
 	
 	public CompassHeading getHeading() {

@@ -11,17 +11,25 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Simulator {
+	private Level level;
 	private Board board;
 	private Train train;
 	private VictoryConditionOld victoryConditionOld;
 	
 	
 	public Simulator(Level level) {
-		this.board = level.getBoard();
-		Location startPoint = level.getStartLocation();
-		this.train = new Train(startPoint);
+		this.level = level;
+		this.board = this.level.getBoard();
+		this.train = new Train();
+
+		initializeSimulator();
+	}
+
+	private void initializeSimulator() {
+		Location startPoint = new Location(this.level.getStartLocation());
+		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
-		this.victoryConditionOld = new VictoryConditionOld(level.getEndLocation());
+		this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
 	}
 	
 	/**
@@ -113,5 +121,9 @@ public class Simulator {
 	
 	public Train getTrain() {
 		return this.train;
+	}
+
+	public void reset() {
+		initializeSimulator();
 	}
 }

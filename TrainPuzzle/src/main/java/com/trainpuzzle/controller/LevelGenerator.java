@@ -144,7 +144,7 @@ class LevelGenerator {
 	
 	private void addSomeTrackTiles(Board board) {
 
-		board.getTile(4,4).setTrack(new Track());
+		board.getTile(4,1).setTrack(new Track());
 		board.getTile(4,2).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
 		board.getTile(5,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
 		board.getTile(6,4).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));

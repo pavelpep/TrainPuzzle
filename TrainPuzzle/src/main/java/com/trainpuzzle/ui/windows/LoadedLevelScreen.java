@@ -57,7 +57,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private final int stationLayerIndex = 4;
 	
 	Location previousTrainLocation = new Location(0,0);
-	Location trainLocation = new Location(0,0);
+
 	
 	
 	
@@ -309,7 +309,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
     
 	private void initializeTrain() {
 		train.register(this);
-		trainLocation = train.getLocation();
 		redrawTrain(train);
 	}
 	private void redrawTrain(Train train) {
@@ -323,12 +322,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		previousTrainLocation = new Location(trainLocation.getRow(),trainLocation.getColumn());
+		previousTrainLocation = new Location(train.getLocation());
 
-
-		trainLocation = train.getLocation();
-		int row = trainLocation.getRow();
-		int column = trainLocation.getColumn();
+		int row = train.getLocation().getRow();
+		int column = train.getLocation().getColumn();
 		
 		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
 		ImageIcon trainImage = new RotatedImageIcon("src/main/resources/images/train.png", rotation);
@@ -353,6 +350,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		trackPanel.add(runButton);		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
+		
+		//initialize run button
+		JButton resetButton = new JButton();
+		resetButton = new JButton("Reset");
+		trackPanel.add(resetButton);		
+		resetButton.setActionCommand("reset");
+		resetButton.addActionListener(this);
 		
 	}
 	private void redrawTrackPanel(){
@@ -438,6 +442,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			gameController.runSimulation();
 			
 		}	
+		if (event.getActionCommand() == "reset") {
+			gameController.resetSimulation();
+			
+		}	
+		
 		
 		if (event.getActionCommand() == "straightTrack") {
 			//Create and set new connection on mouseAdapter

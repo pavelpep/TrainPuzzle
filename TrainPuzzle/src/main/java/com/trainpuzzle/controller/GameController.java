@@ -17,8 +17,9 @@ public class GameController {
 	private Logger logger = Logger.getLogger(Application.class);
 	
 	private CampaignManager campaignManager;
-	private TrackPlacer trackBuilder;
+	private TrackPlacer trackPlacer;
 	private Simulator simulator;
+	Timer timer;
 	
 	
 	private Level level;
@@ -33,7 +34,7 @@ public class GameController {
 	public void startGame(int levelNumber){
 		campaignManager = new CampaignManager();
 		level = campaignManager.loadLevel(levelNumber);
-		trackBuilder = new TrackPlacer(level);
+		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 		
 		System.out.println(simulator.getTrain().getHeading());
@@ -46,7 +47,7 @@ public class GameController {
 	public void runSimulation() {
 		isTrainNotCrash = true;
 	    ActionListener actionListener;
-	    Timer t;
+	    
 	    
 	    //uiLoadedLevel.redrawTrain(simulator.getTrain());
 	    
@@ -59,14 +60,20 @@ public class GameController {
 	        	}
 	         }
 	    };
-	    t = new Timer(200, actionListener);
-	    t.start();
+	    timer = new Timer(200, actionListener);
+	    timer.start();
 	}
 	
+	public void resetSimulation() {
+		timer.stop();
+		isTrainNotCrash = true;
+	    simulator.reset();
+	    
+	}
 	public void placeTrack(Track track, int row, int column) {
 		try {
-			trackBuilder.placeTrack(track, row, column);
-			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+			trackPlacer.placeTrack(track, row, column);
+			loadedLevelWithTrack = trackPlacer.getLevelWithTrack();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
@@ -75,8 +82,8 @@ public class GameController {
 	
 	public void removeTrack(int row, int column) {
 		try {
-			trackBuilder.removeTrack(row, column);
-			loadedLevelWithTrack = trackBuilder.getLevelWithTrack();
+			trackPlacer.removeTrack(row, column);
+			loadedLevelWithTrack = trackPlacer.getLevelWithTrack();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
