@@ -34,10 +34,10 @@ public class Station {
 	
 	/* Public Interface */
 	
-	public Station(StationType station, Location location, CompassHeading trackPosition) {	
+	public Station(StationType station, Location location, CompassHeading entranceFacing) {	
 		this.stationType = station;
 		this.stationLocation = location;
-		this.entranceFacing = trackPosition;
+		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
 		this.stationBuilding=new Obstacle(STATION);
 		
