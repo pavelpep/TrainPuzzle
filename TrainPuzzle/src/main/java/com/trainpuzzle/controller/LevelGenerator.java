@@ -45,7 +45,7 @@ class LevelGenerator {
 		board.getTile(endLocation).setTrack(endingTrack);
         Economy economy = new Economy();
         
-		addStationOnTiles(board);
+		generateTwoStations(board);
 		addSomeWaterTiles(board);
 		addSomeTrackTiles(board);
 		addSomeObstacles(board);
@@ -96,9 +96,17 @@ class LevelGenerator {
 		level.setVictoryConditions(victoryConditions);
 	}
 	
-	private void addStationOnTiles(Board board) {
-		Location tempLocation = new Location (8,4);
-		Station station=new Station(StationType.GREEN_FRONT, tempLocation, CompassHeading.SOUTH);
+	private void generateTwoStations(Board board){
+		Location location= new Location(8,4);
+		addStationOnTile(board, StationType.GREEN_FRONT, location, CompassHeading.SOUTH);
+	
+		location= new Location(8,14);
+		addStationOnTile(board, StationType.GREEN_FRONT, location, CompassHeading.SOUTH);
+	}
+	
+	private void addStationOnTile(Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
+		Location tempLocation = location;
+		Station station=new Station(stationType, tempLocation, entranceFacing);
 		Tile tempTile = board.getTile(tempLocation);
 		tempTile.setStationBuilding(station);
 		
