@@ -255,7 +255,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				JLabel trackLayer = new JLabel();
 				for(int i = 0; i < 2; i++){
 					if(connection.equals(straight)){
-						trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
+						if(level.getBoard().getTile(row, column).getTrack().isUnremovable()){
+							trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.STRAIGHTTRACKPERMANENT_IMAGE.getImage(), i * 2 + 2));
+						}
+						else{
+							trackLayer=new JLabel(new RotatedImageIcon(TrackIcons.DIAGONALTRACK_IMAGE.getImage(), i * 2 + 1));
+						}
 						trackLayer.setBounds(0,0,40,40);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
