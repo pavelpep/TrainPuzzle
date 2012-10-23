@@ -101,7 +101,7 @@ class LevelGenerator {
 		addStationOnTile(board, StationType.GREEN_FRONT, location, CompassHeading.SOUTH);
 	
 		location= new Location(8,14);
-		addStationOnTile(board, StationType.GREEN_FRONT, location, CompassHeading.EAST);
+		addStationOnTile(board, StationType.RED_FRONT, location, CompassHeading.EAST);
 	}
 	
 	private void addStationOnTile(Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
