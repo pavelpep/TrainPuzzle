@@ -97,18 +97,17 @@ class LevelGenerator {
 	}
 	
 	private void addStationOnTiles(Board board) {
-		Location templocation = new Location (8,4);
-		Station station=new Station(StationType.GREEN_FRONT, templocation, CompassHeading.SOUTH);
-		Tile tempTile = board.getTile(templocation);
+		Location tempLocation = new Location (8,4);
+		Station station=new Station(StationType.GREEN_FRONT, tempLocation, CompassHeading.SOUTH);
+		Tile tempTile = board.getTile(tempLocation);
 		tempTile.setStationBuilding(station);
 		
-		templocation = station.getTrackLocation();
-		tempTile = board.getTile(templocation);
-		Track track=station.getTrack();
-		tempTile.setTrack(track);
+		tempLocation = station.getTrackLocation();
+		tempTile = board.getTile(tempLocation);
+		tempTile.setStationTrack(station);
 		
 		
-		board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
+		//board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
 	}
 	
 	private void addSomeWaterTiles(Board board) {

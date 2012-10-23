@@ -100,8 +100,15 @@ public class Tile implements Observable {
 	
 	public void setStationBuilding(Station station) {
 		this.station = station;
+		this.obstacle = station.getBuilding();
 		notifyAllObservers();
 	}
+	
+	public void setStationTrack(Station station) {
+		//this.station = station;
+		this.track = station.getTrack();
+		notifyAllObservers();
+	}	
 	
 	public Station.StationType getStationType() {
 		return station.getType();
