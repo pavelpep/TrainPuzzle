@@ -98,7 +98,7 @@ public class Tile implements Observable {
 		return station;
 	}
 	
-	public void setStation(Station station) {
+	public void setStationBuilding(Station station) {
 		this.station = station;
 		notifyAllObservers();
 	}
