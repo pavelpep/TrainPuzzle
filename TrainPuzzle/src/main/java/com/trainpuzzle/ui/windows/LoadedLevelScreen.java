@@ -177,38 +177,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		landscapeLayer.setBounds(0,0,40,40);
 		mapTiles[row][column].add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
-	private void drawStation(int row, int column){
-		try {
-			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(stationLayerIndex)[0]);
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
-		JLayeredPane mapTile = mapTiles[row][column];
-		Location location = new Location(row, column);
-		if(level.getBoard().getTile(row, column).hasStation(location)) {
-			//System.out.println(level.getBoard().getTile(row, column).hasObstacle() + " " + row + " "+  column);
-			JLabel stationLayer = new JLabel();
-			switch(level.getBoard().getTile(row, column).getStationType()){
-				case RED_FRONT:
-					stationLayer = new JLabel(TrackIcons.REDSTATION_FRONT_IMAGE);
-					break;
-				case GREEN_FRONT:
-					stationLayer = new JLabel(TrackIcons.GREENSTATION_FRONT_IMAGE);
-					break;
-				case RED_BACK:
-					
-					break;
-				case GREEN_BACK:
-					
-					break;
-			default:
-				break;
-			}
-			stationLayer.setTransferHandler(new TransferHandler("icon"));
-			stationLayer.setBounds(0,0,40,40);
-			mapTile.add(stationLayer, new Integer(stationLayerIndex));	
-		}	
-	}
 	private void drawObstacle(int row, int column) {
 		try {
 			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(obstacleLayerIndex)[0]);
@@ -314,7 +282,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
     	   drawObstacle(row, column);
 		   drawLandscape(row, column);
 	       drawTrack(row, column);
-	       drawStation(row, column);		
+		
 	}
     
     

@@ -30,7 +30,7 @@ public class Level {
 	
 	private void initializeEmptyVictoryConditions() {
 		Station placeholderStation = new Station(
-							StationType.GREEN_FRONT, 
+							StationType.GREEN, 
 							endLocation, 
 							CompassHeading.NORTH);
 		

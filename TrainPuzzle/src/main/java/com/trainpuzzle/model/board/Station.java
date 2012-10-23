@@ -14,14 +14,8 @@ import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 public class Station {
 	
 	public enum StationType {
-		RED_FRONT,
-		RED_BACK,
-		RED_LEFT,
-		RED_RIGHT,
-		GREEN_BACK,
-		GREEN_FRONT,
-		GREEN_LEFT,
-		GREEN_RIGHT;
+		RED,
+		GREEN;
 	}
 	
 	private StationType stationType;
@@ -82,10 +76,10 @@ public class Station {
 	private Obstacle createObstacle(StationType stationType){
 		Obstacle tempObstacle;
 		switch(stationType) {
-			case RED_FRONT:
+			case RED:
 				tempObstacle = new Obstacle(RED_STATION_BUILDING);
 				break;
-			case GREEN_FRONT:
+			case GREEN:
 				tempObstacle = new Obstacle(GREEN_STATION_BUILDING);
 				break;
 			default:
