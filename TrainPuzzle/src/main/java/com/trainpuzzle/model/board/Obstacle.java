@@ -6,7 +6,8 @@ public class Obstacle {
 	public enum ObstacleType{
 		ROCK,
 		TREES,
-		STATION_BUILDING
+		GREEN_STATION_BUILDING,
+		RED_STATION_BUILDING
 	}
 	
 	private ObstacleType obstacle;
@@ -24,9 +25,12 @@ public class Obstacle {
 		case TREES:
 			this.imgLocation = "src/main/resources/images/trees.png";	
 			break;
-		case STATION_BUILDING:
+		case GREEN_STATION_BUILDING:
 			this.imgLocation = "src/main/resources/images/greenStation_Front.png";
 			break;
+		case RED_STATION_BUILDING:
+			this.imgLocation = "src/main/resources/images/redStation_Front.png";
+			break;			
 		default:
 			this.imgLocation = "src/main/resources/images/rock.png";
 		}

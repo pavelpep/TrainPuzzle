@@ -39,7 +39,7 @@ public class Station {
 		this.stationLocation = location;
 		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
-		this.stationBuilding=new Obstacle(STATION_BUILDING);
+		this.stationBuilding=new Obstacle(GREEN_STATION_BUILDING);
 		
 	}
 	
