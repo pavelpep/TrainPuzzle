@@ -1,6 +1,6 @@
 package com.trainpuzzle.controller;
 
-import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
@@ -97,9 +97,17 @@ class LevelGenerator {
 	}
 	
 	private void addStationOnTiles(Board board) {
-		Location location = new Location (8,4);
-		Station station=new Station(StationType.GREEN_FRONT, location, CompassHeading.SOUTH);
-		board.getTile(location).setStationBuilding(station);
+		Location templocation = new Location (8,4);
+		Station station=new Station(StationType.GREEN_FRONT, templocation, CompassHeading.SOUTH);
+		Tile tempTile = board.getTile(templocation);
+		tempTile.setStationBuilding(station);
+		
+		templocation = station.getTrackLocation();
+		tempTile = board.getTile(templocation);
+		Track track=station.getTrack();
+		tempTile.setTrack(track);
+		
+		
 		board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
 	}
 	

@@ -88,17 +88,17 @@ public class Station {
 		
 		switch(entranceFacing) {
 			case EAST:
-				trackLocation = new Location(stationRow + 1, stationColumn);
-				break;
-			case SOUTH:
 				trackLocation = new Location(stationRow, stationColumn + 1);
 				break;
+			case SOUTH:
+				trackLocation = new Location(stationRow + 1, stationColumn);
+				break;
 			case WEST:
-				trackLocation = new Location(stationRow - 1, stationColumn);
+				trackLocation = new Location(stationRow, stationColumn -1);
 				break;
 			case NORTH:
 			default:	// on default, set as NORTH
-				trackLocation = new Location(stationRow, stationColumn - 1);	
+				trackLocation = new Location(stationRow - 1, stationColumn);	
 		}
 		return trackLocation;
 	}
