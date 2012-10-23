@@ -63,6 +63,8 @@ public class Station {
 		Connection connection;
 		switch(entranceFacing) {
 			case EAST:
+				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+				break;
 			case WEST:
 				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 				break;
