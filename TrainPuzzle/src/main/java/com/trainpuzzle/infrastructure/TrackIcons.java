@@ -16,6 +16,6 @@ public final class TrackIcons {
 	public final static ImageIcon CURVELEFTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_left_track.png");
 	public final static ImageIcon CURVERIGHTTRACK_IMAGE = new ImageIcon("src/main/resources/images/curve_right_track.png");	
 	
-	public final static ImageIcon STRAIGHTTRACKPERMANENT_IMAGE = new ImageIcon("src/main/resources/images/straight_trackBW.png");
+	public final static ImageIcon STRAIGHTTRACKPERMANENT_IMAGE = new ImageIcon("src/main/resources/images/permanent_track.png");
 	
 }
