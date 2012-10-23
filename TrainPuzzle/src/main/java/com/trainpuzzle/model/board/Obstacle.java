@@ -24,6 +24,9 @@ public class Obstacle {
 		case TREES:
 			this.imgLocation = "src/main/resources/images/trees.png";	
 			break;
+		case STATION_BUILDING:
+			this.imgLocation = "src/main/resources/images/greenStation_Front.png";
+			break;
 		default:
 			this.imgLocation = "src/main/resources/images/rock.png";
 		}

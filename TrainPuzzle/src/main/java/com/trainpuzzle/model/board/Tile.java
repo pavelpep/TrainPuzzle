@@ -105,7 +105,7 @@ public class Tile implements Observable {
 	}
 	
 	public void setStationTrack(Station station) {
-		//this.station = station;
+		this.station = station;
 		this.track = station.getTrack();
 		notifyAllObservers();
 	}	

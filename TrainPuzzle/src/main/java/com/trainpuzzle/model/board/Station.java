@@ -5,7 +5,7 @@ import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
  * Station is treated as an obstacle (tracks cannot be built on it)
- * Station track is treated as a normal track (train can pass through it) but it activate the loading action
+ * Station track is treated as a special track (Station Track - train can pass through it) but it activate the loading action
  * Station track is always a piece of straight track:
  *   if track is at the north or south of the station, it is placed horizontally
  *   else if track is at the east or west of the station, it is placed vertically
