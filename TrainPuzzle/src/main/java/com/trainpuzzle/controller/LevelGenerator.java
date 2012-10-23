@@ -105,14 +105,9 @@ class LevelGenerator {
 	}
 	
 	private void addStationOnTile(Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
-		Location tempLocation = location;
-		Station station=new Station(stationType, tempLocation, entranceFacing);
-		Tile tempTile = board.getTile(tempLocation);
-		tempTile.setStationBuilding(station);
-		
-		tempLocation = station.getTrackLocation();
-		tempTile = board.getTile(tempLocation);
-		tempTile.setStationTrack(station);
+		Station station=new Station(stationType, location, entranceFacing);
+		board.getTile(location).setStationBuilding(station);
+		board.getTile(station.getTrackLocation()).setStationTrack(station.getTrack());
 		
 		
 		//board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
