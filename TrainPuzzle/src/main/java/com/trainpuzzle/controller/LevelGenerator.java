@@ -6,7 +6,6 @@ import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Obstacle;
 import com.trainpuzzle.model.board.Station;
-import com.trainpuzzle.model.board.StationTrackPosition;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.board.Station.StationType;
