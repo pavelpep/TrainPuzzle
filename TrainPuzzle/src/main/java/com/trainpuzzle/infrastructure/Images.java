@@ -2,7 +2,7 @@ package com.trainpuzzle.infrastructure;
 
 import javax.swing.ImageIcon;
 
-public final class TrackIcons {
+public final class Images {
 	public final static ImageIcon GRASS_IMAGE = new ImageIcon("src/main/resources/images/grass.png");
 	public final static ImageIcon WATER_IMAGE = new ImageIcon("src/main/resources/images/water.png");
 	public final static ImageIcon ROCK_IMAGE = new ImageIcon("src/main/resources/images/rock.png");
