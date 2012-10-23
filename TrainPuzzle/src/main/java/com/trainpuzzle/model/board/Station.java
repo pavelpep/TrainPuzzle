@@ -24,8 +24,6 @@ public class Station {
 	private Track track;
 	private Obstacle stationBuilding;
 	
-	
-	
 	/* Public Interface */
 	
 	public Station(StationType station, Location location, CompassHeading entranceFacing) {	
@@ -77,13 +75,13 @@ public class Station {
 		Obstacle tempObstacle;
 		switch(stationType) {
 			case RED:
-				tempObstacle = new Obstacle(RED_STATION_BUILDING);
+				tempObstacle = new Obstacle(RED_STATION);
 				break;
 			case GREEN:
-				tempObstacle = new Obstacle(GREEN_STATION_BUILDING);
+				tempObstacle = new Obstacle(GREEN_STATION);
 				break;
 			default:
-				tempObstacle = new Obstacle(RED_STATION_BUILDING);
+				tempObstacle = new Obstacle(RED_STATION);
 				break;
 		}
 		return tempObstacle;

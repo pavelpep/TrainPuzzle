@@ -19,7 +19,6 @@ public enum CompassHeading {
 	private static final int COUNTERCLOCKWISE_45DEGREES = 7;
 	
 	//TODO Remove redundant variables.
-	//Removed empty constructor
 	
 	public static CompassHeading getHeading(int headingValue) {
 		//TODO: Write exception case for when the parameter value is > 7 or < 0

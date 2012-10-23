@@ -29,15 +29,8 @@ public class Level {
 	}
 	
 	private void initializeEmptyVictoryConditions() {
-		Station placeholderStation = new Station(
-							StationType.GREEN, 
-							endLocation, 
-							CompassHeading.NORTH);
-		
-		setVictoryConditions(new LeafVictoryCondition(
-						new Event(
-								1, 
-								placeholderStation,"passEndStation")));
+		Station placeholderStation = new Station(StationType.GREEN, endLocation, CompassHeading.NORTH);
+		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation)));
 	}
 	
 	/* 
@@ -70,8 +63,6 @@ public class Level {
 		this.levelNumber = levelNumber;
 	}
 	
-
-
 	public void setVictoryConditions(VictoryCondition victoryConditions) {
 		this.victoryConditions = new VictoryConditionEvaluator(victoryConditions);
 	}

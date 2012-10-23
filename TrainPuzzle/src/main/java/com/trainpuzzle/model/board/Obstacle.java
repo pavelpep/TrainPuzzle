@@ -1,13 +1,14 @@
 package com.trainpuzzle.model.board;
 
+import com.trainpuzzle.infrastructure.Images;
 
 public class Obstacle {
 
 	public enum ObstacleType{
 		ROCK,
 		TREES,
-		GREEN_STATION_BUILDING,
-		RED_STATION_BUILDING
+		GREEN_STATION,
+		RED_STATION
 	}
 	
 	private ObstacleType obstacle;
@@ -20,19 +21,19 @@ public class Obstacle {
 		
 		switch(this.obstacle) {
 		case ROCK:
-			this.imgLocation = "src/main/resources/images/rock.png";
+			this.imgLocation = Images.ROCK;
 			break;
 		case TREES:
-			this.imgLocation = "src/main/resources/images/trees.png";	
+			this.imgLocation = Images.TREES;
 			break;
-		case GREEN_STATION_BUILDING:
-			this.imgLocation = "src/main/resources/images/greenStation_Front.png";
+		case GREEN_STATION:
+			this.imgLocation = Images.GREEN_STATION;
 			break;
-		case RED_STATION_BUILDING:
-			this.imgLocation = "src/main/resources/images/redStation_Front.png";
+		case RED_STATION:
+			this.imgLocation = Images.RED_STATION;
 			break;			
 		default:
-			this.imgLocation = "src/main/resources/images/rock.png";
+			this.imgLocation = Images.ROCK;
 		}
 	}
 	

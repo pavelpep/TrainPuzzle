@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.board;
 
+import com.trainpuzzle.infrastructure.Images;
+
 public class Landscape {
 	
 	public enum LandscapeType {
@@ -15,13 +17,16 @@ public class Landscape {
 		
 		switch(this.landscape) {
 		case GRASS:
-			this.imgLocation = "src/main/resources/images/grass.png";
+			//this.imgLocation = "src/main/resources/images/grass.png";
+			this.imgLocation = Images.GRASS;
 			break;
 		case WATER:
-			this.imgLocation = "src/main/resources/images/water.png";
+			//this.imgLocation = "src/main/resources/images/water.png";
+			this.imgLocation = Images.WATER;
 			break;
 		default:
-			this.imgLocation = "src/main/resources/images/grass.png";
+			//this.imgLocation = "src/main/resources/images/grass.png";
+			this.imgLocation = Images.GRASS;
 		}
 	}
 	
