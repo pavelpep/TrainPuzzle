@@ -89,7 +89,7 @@ class LevelGenerator {
 		//TODO: ensure endStation is correct, also add another station in between
 		//possibly need to add start location to victory conditions
 		
-		Event endStation = new Event(1, new Station(StationType.RED, endLocation, CompassHeading.NORTH));
+		Event endStation = new Event(1, new Station(StationType.GREEN, endLocation, CompassHeading.NORTH),"passEndStation");
 		
 		victoryConditions.addChild(new LeafVictoryCondition(endStation));
 		

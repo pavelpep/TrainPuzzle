@@ -37,7 +37,7 @@ public class Level {
 		setVictoryConditions(new LeafVictoryCondition(
 						new Event(
 								1, 
-								placeholderStation)));
+								placeholderStation,"passEndStation")));
 	}
 	
 	/* 

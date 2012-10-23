@@ -5,19 +5,17 @@ import com.trainpuzzle.model.board.Station;
 public class Event {
 	private int time;
 	private Station station;
-//	private String eventId;
+	public static final int NOTIMELIMIT = -1;
+	private String eventName;
 	
-	public Event(int time, Station station) {
+	
+
+	public Event(int time, Station station, String eventName) {
+		this.eventName = eventName;
 		this.time = time;
 		this.station = station;
 	}
-/*	
-	public Event(int time, Station station, String eventId) {
-		this.eventID = eventId;
-		this.time = time;
-		this.station = station;
-	}
-*/	
+	
 	public int getTime() {
 		return time;
 	}
@@ -34,15 +32,15 @@ public class Event {
 		this.station = station;
 	}
 
-/*
-	public String getEventId() {
-		return eventId;
+
+	public String getEventName() {
+		return eventName;
 	}
 
-	public void setEventId(String eventId) {
-		this.eventId = eventId;
+	public void setEventId(String eventName) {
+		this.eventName = eventName;
 	}
-*/
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -59,15 +57,11 @@ public class Event {
 	}
 	
 	private boolean compareEvent(Event event) {
+		boolean timeIssue = time == NOTIMELIMIT || event.getTime() < time;
 		//TODO: ensure that equals method handles time correctly for VictoryConditionEvaluator
-		if(time == event.getTime()) {
-			if(station.equals(event.getStation())) {
-//				if(eventId.equals(event.getEventId())) {
-					return true;
-//				}
-			}
-		}
-		return false;
+		return timeIssue && eventName.equals(event.getEventName());
+			
+		
 	}
 	
 }

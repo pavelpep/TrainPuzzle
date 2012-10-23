@@ -19,7 +19,7 @@ public class OrVictoryCondition implements VictoryCondition {
 
 	@Override
 	public boolean isSatisfied() {
-		//checkChildrenSatisfied();
+		checkChildrenSatisfied();
 		return conditionSatisfied;
 	}
 	
@@ -32,7 +32,6 @@ public class OrVictoryCondition implements VictoryCondition {
 		for(VictoryCondition child : childConditions) {
 			child.processEvent(event);
 		}
-		checkChildrenSatisfied();
 	}
 	
 	@Override
