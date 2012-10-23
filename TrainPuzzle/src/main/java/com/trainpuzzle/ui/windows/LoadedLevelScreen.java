@@ -226,9 +226,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				case TREES:
 					obstacleLayer = new JLabel(TrackIcons.TREES_IMAGE);
 					break;
-				case STATION_BUILDING:
+				case GREEN_STATION_BUILDING:
 					obstacleLayer = new JLabel(TrackIcons.GREENSTATION_FRONT_IMAGE);
 					break;
+				case RED_STATION_BUILDING:
+					obstacleLayer = new JLabel(TrackIcons.REDSTATION_FRONT_IMAGE);
+					break;				
 			default:
 				break;
 			}
