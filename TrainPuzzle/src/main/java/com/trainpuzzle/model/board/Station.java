@@ -39,7 +39,7 @@ public class Station {
 		this.stationLocation = location;
 		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
-		this.stationBuilding=new Obstacle(GREEN_STATION_BUILDING);
+		this.stationBuilding=createObstacle(stationType);
 		
 	}
 	
@@ -78,6 +78,23 @@ public class Station {
 		track.setBeStationTrack();
 		return track;
 	}
+	
+	private Obstacle createObstacle(StationType stationType){
+		Obstacle tempObstacle;
+		switch(stationType) {
+			case RED_FRONT:
+				tempObstacle = new Obstacle(RED_STATION_BUILDING);
+				break;
+			case GREEN_FRONT:
+				tempObstacle = new Obstacle(GREEN_STATION_BUILDING);
+				break;
+			default:
+				tempObstacle = new Obstacle(RED_STATION_BUILDING);
+				break;
+		}
+		return tempObstacle;
+	}
+
 	
 	public Location getStationLocation() {
 		return stationLocation;
