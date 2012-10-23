@@ -11,6 +11,7 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 public class Track {
 	
 	private Set<Connection> connections;
+	private boolean isStationTrack=false;
 	private boolean removable = true;
 	
 	/* Public Interface */
@@ -75,6 +76,15 @@ public class Track {
 	public boolean isUnremovable(){
 		return !removable;
 	}
+	
+	public void setBeStationTrack(){
+		isStationTrack=true;
+	}
+	
+	public boolean isStationTrack(){
+		return isStationTrack;
+	}
+
 
 	/**
 	 * Get the outboundHeading

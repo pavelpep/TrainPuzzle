@@ -73,6 +73,7 @@ public class Station {
 		}
 		Track track = new Track(connection);
 		track.setUnremoveable();
+		track.setBeStationTrack();
 		return track;
 	}
 	
