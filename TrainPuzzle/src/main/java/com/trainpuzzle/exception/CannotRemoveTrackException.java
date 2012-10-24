@@ -1,6 +1,7 @@
 package com.trainpuzzle.exception;
 
-public class CannotRemoveTrackException extends Exception{
+public class CannotRemoveTrackException extends Exception {
+	
 	public CannotRemoveTrackException() {
 		super("Cannot remove track");
 	}
@@ -8,5 +9,4 @@ public class CannotRemoveTrackException extends Exception{
 	public CannotRemoveTrackException(String message) {
 		super(message);
 	}
-
 }
