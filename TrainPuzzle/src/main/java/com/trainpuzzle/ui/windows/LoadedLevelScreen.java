@@ -274,7 +274,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	private void drawTrack(int row, int column) {
 		try {
-			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(trackLayerIndex)[0]);
+			Component[] components = mapTiles[row][column].getComponentsInLayer(trackLayerIndex);
+			for(Component component: components){
+			mapTiles[row][column].remove(component);
+			}
 		} catch(Exception e){
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
