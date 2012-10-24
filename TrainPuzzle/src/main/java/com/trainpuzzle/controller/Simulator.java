@@ -170,6 +170,7 @@ public class Simulator {
 	public void reset() {
 		timer.stop();
 		initializeSimulator();
+		this.victoryConditionEvaluator.resetEvents();
 	}
 	
 	public void run() {
