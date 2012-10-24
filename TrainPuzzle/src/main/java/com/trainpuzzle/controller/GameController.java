@@ -26,13 +26,13 @@ public class GameController{
 	private CampaignManager campaignManager;
 	private TrackPlacer trackPlacer;
 	private Simulator simulator;
-	Timer timer;
+	
 	
 	
 	private Level level;
 	private Level loadedLevelWithTrack;
 	
-	private boolean trainCrashed = false;
+	
 	
 	public GameController(){
 		
@@ -52,26 +52,11 @@ public class GameController{
 	}
 
 	public void runSimulation() {
-	    ActionListener actionListener;
-	    //uiLoadedLevel.redrawTrain(simulator.getTrain());
-	    actionListener = new ActionListener() {
-	         public void actionPerformed(ActionEvent actionEvent) {
-	        	move();
-	 			//uiLoadedLevel.redrawTrain(simulator.getTrain());
-	        	if(simulator.isVictoryConditionsSatisfied() || trainCrashed) {
-	        		((Timer)actionEvent.getSource()).stop();
-	        	}
-	         }
-	    };
-	    timer = new Timer(200, actionListener);
-	    timer.start();
+		simulator.run();
 	}
 	
 	public void resetSimulation() {
-		timer.stop();
-		trainCrashed = false;
 	    simulator.reset();
-	    
 	}
 	public void placeTrack(Track track, int row, int column) {
 		try {
@@ -98,16 +83,7 @@ public class GameController{
 		}
 	}
 	
-	private void move() {
-    	try {
-			simulator.proceedNextTile();
-		} catch (TrainCrashException e) {
-			e.printStackTrace();
-			trainCrashed = true;
-			//JOptionPane.showMessageDialog(null, "The train has crashed!");
-			
-		}
-	}
+
 	
 	/* Getters and Setters */
 	
@@ -127,8 +103,6 @@ public class GameController{
 		return this.level;
 	}
 
-	public boolean isTrainCrashed() {
-		return trainCrashed;
-	}
+
 	
 }

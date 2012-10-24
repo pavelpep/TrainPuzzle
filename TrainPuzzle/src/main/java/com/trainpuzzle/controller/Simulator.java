@@ -1,7 +1,11 @@
 package com.trainpuzzle.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.level.*;
@@ -17,6 +21,20 @@ public class Simulator {
 	private VictoryConditionOld victoryConditionOld;
 	
 	
+	private boolean isRunning = false;
+	private boolean trainCrashed = false;
+	private ActionListener actionListener = new ActionListener() {
+         public void actionPerformed(ActionEvent actionEvent) {
+        	move();
+ 			//uiLoadedLevel.redrawTrain(simulator.getTrain());
+        	if(isVictoryConditionsSatisfied() || trainCrashed) {
+        		((Timer)actionEvent.getSource()).stop();
+        	}
+         }
+    };
+    
+    private Timer timer = new Timer(200, actionListener);
+    
 	public Simulator(Level level) {
 		this.level = level;
 		this.board = this.level.getBoard();
@@ -30,6 +48,8 @@ public class Simulator {
 		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
 		this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
+		isRunning = false;
+		trainCrashed = false;
 	}
 	
 	/**
@@ -37,6 +57,18 @@ public class Simulator {
 	 * 
 	 * @return whether the train goes to next tile successfully or not
 	 */
+	
+	private void move() {
+    	try {
+			proceedNextTile();
+		} catch (TrainCrashException e) {
+			e.printStackTrace();
+			trainCrashed = true;
+			//JOptionPane.showMessageDialog(null, "The train has crashed!");
+			
+		}
+	}
+	
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
 		CompassHeading heading = train.getHeading();
@@ -115,11 +147,21 @@ public class Simulator {
 		return false;
 	}	
 	
+	public boolean isTrainCrashed() {
+		return trainCrashed;
+	}
+	
 	public Train getTrain() {
 		return this.train;
 	}
 
 	public void reset() {
+		timer.stop();
 		initializeSimulator();
+	}
+	
+	public void run() {
+		    timer.start();
+		
 	}
 }
