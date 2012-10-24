@@ -11,7 +11,7 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 public class Track {
 	
 	private Set<Connection> connections;
-	private boolean isStationTrack=false;
+	private boolean isStationTrack = false;
 	private boolean removable = true;
 	
 	/* Public Interface */

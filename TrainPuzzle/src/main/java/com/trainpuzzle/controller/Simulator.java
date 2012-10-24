@@ -47,14 +47,14 @@ public class Simulator {
 		}
 		
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
-		if(!tile.hasTrack() || tile.hasObstacle() || tile.hasStation(location)) {
+		if(!tile.hasTrack() || tile.hasObstacle() || tile.hasStationBuilding()) {
 			// TODO: Better way to inform user train crashed
 			JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		} 
 		
 		Track track;
-		if(tile.hasStationTrack(location)){
+		if(tile.hasStationTrack()){
 			track = tile.getStation().getTrack();
 		} else {
 			track = tile.getTrack();

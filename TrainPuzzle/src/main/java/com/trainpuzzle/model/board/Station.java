@@ -121,12 +121,4 @@ public class Station {
 	public Obstacle getBuilding() {
 		return stationBuilding;
 	}
-	
-
-	/**
-	 * Pass in a location and return true if it is the same as the track location
-	 */
-	public boolean isStationTrack(Location location) {
-		return (getTrackLocation() == location);
-	}
 }

@@ -21,40 +21,38 @@ public class TrackPlacer {
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
-		if(tile.hasTrack()) {
-			logger.warn("CannotPlaceTrackException was thrown");
-			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a track");
+		String errorMessage = "";
+		if (tile.hasTrack()) {
+			errorMessage = "Track failed to be placed to tile because there was a track";
 		} else if (tile.hasObstacle()) {
-			logger.warn("CannotPlaceTrackException was thrown");
-			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was an obstacle");
-		} else if (tile.hasStationBuildingOrStationTrack()) {
-			logger.warn("CannotPlaceTrackException was thrown");
-			throw new CannotPlaceTrackException("Track failed to be placed to tile because there was a station building or station track");
+			errorMessage = "Track failed to be placed to tile because there was an obstacle";
 		} else{
 			tile.setTrack(track);
 			map.notifyAllObservers();
-			// map.setTile(tile,row,column); // can be removed because of passing by reference
+			return;
 		}
+		logger.warn("CannotPlaceTrackException was thrown");
+		throw new CannotPlaceTrackException(errorMessage);
 	}
 
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
 		Tile tile = map.getTile(row, column);
-		Location location = new Location(row, column);
-		if(tile.hasStationTrack(location)) {
-			logger.warn("CannotRemoveTrackException was thrown");
-			throw new CannotRemoveTrackException("Track failed to be removed because this is a station track");
+		String errorMessage = "";
+		if(tile.hasTrack()) {			
+			if (tile.getTrack().isRemovable()) {
+				tile.removeTrack();
+				map.notifyAllObservers();
+				return;
+			} else {
+				errorMessage = "Track failed to be removed because there was an unremovable track";
+			}
+		} else {
+			errorMessage = "Track failed to be removed because there is no track at the tile to remove";
 		}
-		else if(tile.hasTrack() && tile.getTrack().isRemovable()) {			
-			tile.removeTrack();
-			map.notifyAllObservers();
-			//map.setTile(tile,row,column); // can be removed because of passing by reference
-		}
-		else {
-			logger.warn("CannotRemoveTrackException was thrown");
-			throw new CannotRemoveTrackException("Track failed to be removed because there is no track at the tile to remove");
-		}
+		logger.warn("CannotRemoveTrackException was thrown");
+		throw new CannotRemoveTrackException(errorMessage);
+
 	}
-	
 	
 	public void rotateTrack(int row, int column) throws CannotRotateException{
 		Tile tile = map.getTile(row, column);
