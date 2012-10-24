@@ -425,6 +425,20 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		curverightTrack.setActionCommand("curverightTrack");
 		curverightTrack.addActionListener(this);
 		trackPanel.add(curverightTrack);
+		
+		JButton intersectionTrack = new JButton(Images.INTERSECTION_TRACK_IMAGE);
+		intersectionTrack.setBounds(0, 0, 40, 40);
+		intersectionTrack.setPreferredSize(new Dimension(80,80));
+		intersectionTrack.setActionCommand("intersectionTrack");
+		intersectionTrack.addActionListener(this);
+		trackPanel.add(intersectionTrack);
+		
+		JButton diagonalIntersectionTrack = new JButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE);
+		diagonalIntersectionTrack.setBounds(0, 0, 40, 40);
+		diagonalIntersectionTrack.setPreferredSize(new Dimension(80,80));
+		diagonalIntersectionTrack.setActionCommand("diagonalIntersectionTrack");
+		diagonalIntersectionTrack.addActionListener(this);
+		trackPanel.add(diagonalIntersectionTrack);
 				
 	}
 	
@@ -516,6 +530,30 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
+		}
+		
+		if (event.getActionCommand() == "intersectionTrack") {
+			//Create and set new track on mouseAdapter
+			selectedTrack = new Track();
+			selectedTrack.addConnection(CompassHeading.NORTH,CompassHeading.SOUTH);
+			selectedTrack.addConnection(CompassHeading.WEST,CompassHeading.EAST);
+			mouseAdapter.setTrack(selectedTrack);
+			
+			selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK_IMAGE.getImage());
+			
+			redrawSelectedTrackPanel();
+		}
+		
+		if (event.getActionCommand() == "diagonalIntersectionTrack") {
+			//Create and set new track on mouseAdapter
+			selectedTrack = new Track();
+			selectedTrack.addConnection(CompassHeading.NORTHEAST,CompassHeading.SOUTHWEST);
+			selectedTrack.addConnection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
+			mouseAdapter.setTrack(selectedTrack);
+			
+			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE.getImage());
 			
 			redrawSelectedTrackPanel();
 		}

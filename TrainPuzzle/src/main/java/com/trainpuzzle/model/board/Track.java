@@ -18,8 +18,6 @@ public class Track {
 	
 	public Track() {
 		connections = new HashSet<Connection>();
-		Connection connection = new Connection(EAST, WEST);
-		connections.add(connection);
 	}
 	
 	public Track(Track trackToCopy) {
@@ -52,10 +50,15 @@ public class Track {
 	
 	/* Getters and Setters */
 	
+	public void addConnection(Connection connection) {
+		connections.add(connection);
+		
+	}
+	
 	public void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
 		connections.add(new Connection(firstCompassHeading, secondCompassHeading));
-		return;
 	}
+	
 	
 	public Set<Connection> getConnections() {
 		return connections;

@@ -5,6 +5,8 @@ import com.trainpuzzle.exception.CannotRemoveTrackException;
 
 import com.trainpuzzle.controller.TrackPlacer;
 
+import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Track;
 
 import java.awt.*;
@@ -22,7 +24,7 @@ class TileMouseAdapter extends MouseAdapter {
 		TileMouseAdapter(TrackPlacer trackPlacer) {
 			super();
 			this.trackPlacer = trackPlacer;
-			track = new Track();
+			track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
 		}
 		
 		public void  mousePressed(MouseEvent e) {
