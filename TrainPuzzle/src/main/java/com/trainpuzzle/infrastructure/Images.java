@@ -5,6 +5,9 @@ import javax.swing.ImageIcon;
 public final class Images {
 	
 	//String type
+	
+	public final static String TRAIN = "src/main/resources/images/train.png";
+	
 	//Landscape and obstacles
 	public final static String GRASS = "src/main/resources/images/grass2.png";
 	public final static String WATER = "src/main/resources/images/water2.png";
@@ -25,6 +28,9 @@ public final class Images {
 	public final static String DIAGONAL_INTERSECTION_TRACK = "src/main/resources/images/diagonal_intersection_track.png";
 
 	//ImageIcon type
+	
+	public final static ImageIcon TRAIN_IMAGE = new ImageIcon(TRAIN);
+	
 	//Landscape and obstacles
 	public final static ImageIcon GRASS_IMAGE = new ImageIcon(GRASS);
 	public final static ImageIcon WATER_IMAGE = new ImageIcon(WATER);
