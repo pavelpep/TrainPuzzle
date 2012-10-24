@@ -34,11 +34,13 @@ public class LeafVictoryCondition implements VictoryCondition {
 
 	@Override
 	public void processEvent(Event event) {
-		if(!hasTimeLimit) {
-			conditionSatisfied = condition.equals(event);
-		}
-		else {
-			conditionSatisfied = (event.getTime() <= timeLimit) && condition.equals(event);
+		if (!conditionSatisfied) {
+			if(!hasTimeLimit) {
+				conditionSatisfied = condition.equals(event);
+			}
+			else {
+				conditionSatisfied = (event.getTime() <= timeLimit) && condition.equals(event);
+			}
 		}
 	}
 	

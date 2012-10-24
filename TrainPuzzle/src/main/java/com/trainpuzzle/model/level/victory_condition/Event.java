@@ -9,10 +9,10 @@ public class Event {
 	
 	
 
-	public Event(int time, Station station, String eventName) {
-		this.eventName = eventName;
+	public Event(int time, Station station) {
 		this.time = time;
 		this.station = station;
+		this.createSationName();
 	}
 	
 	
@@ -54,6 +54,11 @@ public class Event {
 		}
 		Event other = (Event) obj;
 		return compareEvent(other);
+	}
+	private void createSationName(){
+		int row = station.getStationLocation().getRow();
+		int column = station.getStationLocation().getColumn();
+		eventName = "pass station at (" + row +"," + column +")";
 	}
 	
 	private boolean compareEvent(Event event) {
