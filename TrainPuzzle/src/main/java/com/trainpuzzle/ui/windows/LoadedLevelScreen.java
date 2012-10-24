@@ -15,6 +15,8 @@ import org.apache.log4j.Logger;
 import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
+import com.trainpuzzle.exception.CannotPlaceTrackException;
+import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -69,7 +71,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Track selectedTrack;
 	
 	private JPanel sidePanel = new JPanel();
-	private JPanel messageBox = new JPanel();
+	private JPanel gameControlBox = new JPanel();
+	JLabel messageBox =  new JLabel("<html></html>");
 	
 	
 	// Constructor
@@ -104,7 +107,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, Color.LIGHT_GRAY, 1, 0, 1, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
-		initializeMessageBox();
+		initializeGameControlBox();
 		initializeTrackPanel();
 		initializeSelectedTrackPanel();
 		
@@ -112,6 +115,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	public void notifyChange(Object object){
+
 		if(object instanceof Train){
 			redrawTrain(train);
 		}
@@ -123,23 +127,54 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				}
 			}
 		}
-		
+
+		else if(object instanceof CannotRemoveTrackException){
+			messageBox.setForeground(Color.RED);
+			messageBox.setText("<html><p>Cannot remove track</p></html>");
+		}
+		else if(object instanceof CannotPlaceTrackException){
+			messageBox.setForeground(Color.RED);
+			messageBox.setText("<html><p>Cannot place track</p></html>");
+		}
+		else if(object instanceof TrainCrashException){
+			messageBox.setForeground(Color.RED);
+			messageBox.setText("<html><p>Train has crashed</p><p>Please reset and try again</p></html>");
+		}
 	}
 
-	private void initializeMessageBox() {
-		addComponent(sidePanel, this.messageBox, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		messageBox.setPreferredSize(new Dimension(200, 50));
+	private void initializeGameControlBox() {
+
+		addComponent(sidePanel, this.gameControlBox, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		gameControlBox.setPreferredSize(new Dimension(200, 150));
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder sidePanelTitle;
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "MESSAGE");
+		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		messageBox.setBorder(sidePanelTitle);
+		gameControlBox.setBorder(sidePanelTitle);
+		
+		//initialize run button
+		JButton runButton = new JButton();
+		runButton = new JButton("Simulate");
+		gameControlBox.add(runButton);		
+		runButton.setActionCommand("run");
+		runButton.addActionListener(this);
+		
+		//initialize run button
+		JButton resetButton = new JButton();
+		resetButton = new JButton("Reset");
+		gameControlBox.add(resetButton);		
+		resetButton.setActionCommand("reset");
+		resetButton.addActionListener(this);
+		
+		
+		//messageBox =  new JLabel("<html>First line and maybe second line</html>");
+		messageBox.setHorizontalAlignment(JLabel.CENTER);
+		Font font = messageBox.getFont();
+		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
+		messageBox.setForeground(Color.BLACK);
+		gameControlBox.add(messageBox);
+		
 			  
-		redrawMessageBox();
-	}
-	private void redrawMessageBox() {
-		messageBox.removeAll();
-		messageBox.repaint();
 	}
 	
 	
@@ -360,20 +395,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		redrawTrackPanel();
 		
-		//initialize run button
-		JButton runButton = new JButton();
-		runButton = new JButton("Simulate");
-		trackPanel.add(runButton);		
-		runButton.setActionCommand("run");
-		runButton.addActionListener(this);
-		
-		//initialize run button
-		JButton resetButton = new JButton();
-		resetButton = new JButton("Reset");
-		trackPanel.add(resetButton);		
-		resetButton.setActionCommand("reset");
-		resetButton.addActionListener(this);
-		
 	}
 	private void redrawTrackPanel(){
 	
@@ -447,7 +468,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
 			gameController.runSimulation();
-			
 		}	
 		if (event.getActionCommand() == "reset") {
 			gameController.resetSimulation();

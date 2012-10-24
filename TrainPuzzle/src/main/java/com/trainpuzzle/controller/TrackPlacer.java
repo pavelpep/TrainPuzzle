@@ -1,5 +1,8 @@
 package com.trainpuzzle.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.exception.CannotPlaceTrackException;
@@ -8,9 +11,11 @@ import com.trainpuzzle.exception.CannotRotateException;
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
 
-public class TrackPlacer {
+public class TrackPlacer{
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
 	private Board map;
@@ -78,4 +83,5 @@ public class TrackPlacer {
 		//levelToAddTrack.setMap(map); // can be removed because of passing by reference
 		return levelToAddTrack;
 	}
+	
 }

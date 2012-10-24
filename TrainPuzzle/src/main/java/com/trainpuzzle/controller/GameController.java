@@ -16,11 +16,10 @@ import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 
-public class GameController implements Observable{
+public class GameController{
 	private Logger logger = Logger.getLogger(Application.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
@@ -33,7 +32,7 @@ public class GameController implements Observable{
 	private Level level;
 	private Level loadedLevelWithTrack;
 	
-	private boolean trainCrashed;
+	private boolean trainCrashed = false;
 	
 	public GameController(){
 		
@@ -53,12 +52,8 @@ public class GameController implements Observable{
 	}
 
 	public void runSimulation() {
-		trainCrashed = false;
 	    ActionListener actionListener;
-	    
-	    
 	    //uiLoadedLevel.redrawTrain(simulator.getTrain());
-	    
 	    actionListener = new ActionListener() {
 	         public void actionPerformed(ActionEvent actionEvent) {
 	        	move();
@@ -110,9 +105,6 @@ public class GameController implements Observable{
 			e.printStackTrace();
 			trainCrashed = true;
 			//JOptionPane.showMessageDialog(null, "The train has crashed!");
-			for(Observer observer : observerList) {
-				observer.notifyChange(e);
-			}
 			
 		}
 	}
@@ -134,15 +126,9 @@ public class GameController implements Observable{
 	public Level getLevel() {
 		return this.level;
 	}
-	
-	public void register(Observer observer){
-		observerList.add(observer);
-	}
-	
-	public void notifyAllObservers(){
-		for(Observer observer : observerList) {
-			observer.notifyChange(this);
-		}
+
+	public boolean isTrainCrashed() {
+		return trainCrashed;
 	}
 	
 }
