@@ -107,6 +107,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
+		
+		//initialize 1x button
+		JButton backToLevelSelect = new JButton();
+		backToLevelSelect = new JButton("Back to Level Select");
+		sidePanel.add(backToLevelSelect);		
+		backToLevelSelect.setActionCommand("backToLevelSelect");
+		backToLevelSelect.addActionListener(this);
+		
 		initializeGameControlBox();
 		initializeTrackPanel();
 		initializeSelectedTrackPanel();
@@ -503,6 +511,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	
 	public void actionPerformed(ActionEvent event) {
+		if (event.getActionCommand() == "backToLevelSelect") {
+			//TODO change to not need to create previous window
+			LevelSelect levelSelect = new LevelSelect();
+			WindowManager.getManager().setActiveWindow(levelSelect); 
+			WindowManager.getManager().updateWindows();	
+		}		
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
 		}	
