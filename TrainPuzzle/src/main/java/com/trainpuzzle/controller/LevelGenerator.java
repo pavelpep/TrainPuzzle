@@ -120,15 +120,37 @@ class LevelGenerator {
 	}
 	
 	private void addSomeWaterTiles(Board board) {
-		board.getTile(10, 10).setLandscapeType(LandscapeType.WATER);
-		board.getTile(5, 5).setLandscapeType(LandscapeType.WATER);
-		board.getTile(2, 3).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(11, 0).setLandscapeType(LandscapeType.WATER);
+		board.getTile(11, 1).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(11, 2).setLandscapeType(LandscapeType.WATER);
+		board.getTile(12, 0).setLandscapeType(LandscapeType.WATER);
+		board.getTile(12, 1).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(12, 2).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(12, 3).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(13, 0).setLandscapeType(LandscapeType.WATER);
+		board.getTile(13, 1).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(13, 2).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(13, 3).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(13, 4).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(14, 0).setLandscapeType(LandscapeType.WATER);
+		board.getTile(14, 1).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(14, 2).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(14, 3).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(14, 4).setLandscapeType(LandscapeType.WATER);	
+		board.getTile(14, 5).setLandscapeType(LandscapeType.WATER);	
 	}
 	
 	private void addSomeObstacles(Board board) {
-		
-		board.getTile(7, 7).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(7, 8).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
+		board.getTile(10, 0).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		board.getTile(10, 1).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));	
+		board.getTile(10, 2).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));	
+		board.getTile(11, 3).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		board.getTile(12, 4).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		board.getTile(13, 5).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		board.getTile(14, 6).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
+		board.getTile(4, 10).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
+		board.getTile(5, 10).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
+		board.getTile(5, 11).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
 	}
 	
 	private void addTrackLoop(Board board) {
