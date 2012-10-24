@@ -2,7 +2,8 @@ package com.trainpuzzle.model.level.victory_condition;
 
 import com.trainpuzzle.model.board.Station;
 
-public class Event {
+public class Event implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	private int time;
 	private Station station;
 	private String eventName;

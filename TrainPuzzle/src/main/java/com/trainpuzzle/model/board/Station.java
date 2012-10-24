@@ -11,8 +11,10 @@ import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
  *   else if track is at the east or west of the station, it is placed vertically
  */
 
-public class Station {
+public class Station implements java.io.Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	public enum StationType {
 		RED,
 		GREEN;

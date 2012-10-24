@@ -5,7 +5,10 @@ import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.victory_condition.*;
 
-public class Level {
+public class Level implements java.io.Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int levelNumber = 1;
 	private Board board = new Board();
 	private Location startLocation = new Location(0,0);

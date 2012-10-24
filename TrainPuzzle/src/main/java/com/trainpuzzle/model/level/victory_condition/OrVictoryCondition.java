@@ -3,7 +3,8 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrVictoryCondition implements VictoryCondition {
+public class OrVictoryCondition implements VictoryCondition, java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
 	private boolean conditionSatisfied = false;
 	

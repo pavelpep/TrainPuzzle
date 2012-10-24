@@ -88,4 +88,12 @@ public class GameController{
 	public Level getLevel() {
 		return this.level;
 	}
+
+	public void saveCurrentLevel(){
+		System.out.println(level.getLevelNumber());
+		campaignManager.saveLevel();
+	}
+	
 }
+
+

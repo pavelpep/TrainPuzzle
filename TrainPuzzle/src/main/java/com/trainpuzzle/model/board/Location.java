@@ -1,6 +1,8 @@
 package com.trainpuzzle.model.board;
 
-public class Location {
+public class Location implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private int row;
 	private int column;

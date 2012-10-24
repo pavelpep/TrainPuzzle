@@ -6,13 +6,16 @@ import java.util.HashSet;
 import com.trainpuzzle.observe.*;
 
 
-public class Board implements Observable {
+public class Board implements Observable, java.io.Serializable {
 
+
+	private static final long serialVersionUID = 1L;
+	
 	public final int NUMBER_OF_ROWS = 15;
 	public final int NUMBER_OF_COLUMNS = 20;
 	private Tile[][] tiles;
 	//private List<Observer> observerList = new LinkedList<Observer>();;
-	private Set<Observer> observerList = new HashSet<Observer>();
+	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
 		tiles = new Tile[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];

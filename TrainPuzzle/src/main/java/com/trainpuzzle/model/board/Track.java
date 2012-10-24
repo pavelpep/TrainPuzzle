@@ -8,7 +8,9 @@ import com.trainpuzzle.exception.TrainCrashException;
 import static com.trainpuzzle.model.board.CompassHeading.*;
 
 
-public class Track {
+public class Track implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Set<Connection> connections;
 	private boolean isStationTrack = false;

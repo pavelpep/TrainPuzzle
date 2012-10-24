@@ -7,15 +7,16 @@ import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
 
-public class Tile implements Observable {
-
+public class Tile implements Observable, java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int elevation;
 	private Track track;
 	private Obstacle obstacle;
 	private Landscape landscape;
 	private Station station;
 	
-	private Set<Observer> observerList = new HashSet<Observer>();
+	private transient Set<Observer> observerList = new HashSet<Observer>();
 
   /* Public Interface */
 

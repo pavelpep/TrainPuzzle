@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
-public class LeafVictoryCondition implements VictoryCondition {
+public class LeafVictoryCondition implements VictoryCondition, java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	public static final boolean HASTIMELIMIT = true;
 	private Event condition;
 	private boolean conditionSatisfied = false;

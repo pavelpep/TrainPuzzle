@@ -2,7 +2,9 @@ package com.trainpuzzle.model.board;
 
 import com.trainpuzzle.infrastructure.Images;
 
-public class Obstacle {
+public class Obstacle implements java.io.Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	public enum ObstacleType{
 		ROCK,

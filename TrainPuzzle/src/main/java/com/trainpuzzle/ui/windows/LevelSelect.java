@@ -56,9 +56,16 @@ public class LevelSelect extends Window implements ActionListener {
 		levelTwoButton.setActionCommand("LEVEL_TWO");
 		levelTwoButton.addActionListener(this);
 		
+		// Load Button
+		JButton loadButton = new JButton();
+		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		loadButton.setText("Load Level");
+		loadButton.setActionCommand("LOAD");
+		loadButton.addActionListener(this);
+		
 		// Back button
 		JButton backButton = new JButton();
-		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
 		backButton.setText("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
@@ -91,6 +98,15 @@ public class LevelSelect extends Window implements ActionListener {
 			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
 			WindowManager.getManager().updateWindows();	
 		}
+		
+		 else if (action == "LOAD") {
+			levelSelected = 3;
+					
+			gameController.startGame(levelSelected);
+			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
+			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
+			WindowManager.getManager().updateWindows();	
+		}	
 		WindowManager.getManager().setPreviousWindow(this);
 	}
 }

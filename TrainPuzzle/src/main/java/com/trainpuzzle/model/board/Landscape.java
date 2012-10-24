@@ -2,8 +2,10 @@ package com.trainpuzzle.model.board;
 
 import com.trainpuzzle.infrastructure.Images;
 
-public class Landscape {
+public class Landscape implements java.io.Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	public enum LandscapeType {
 		GRASS,
 		WATER

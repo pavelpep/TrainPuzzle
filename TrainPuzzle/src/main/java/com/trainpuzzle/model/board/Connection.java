@@ -1,7 +1,10 @@
 package com.trainpuzzle.model.board;
 
 
-public class Connection {
+public class Connection implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	//TODO: Write comment of why it's not set to null
 	private CompassHeading compassHeading1 = CompassHeading.NORTHEAST;
 	private CompassHeading compassHeading2 = CompassHeading.NORTHWEST;
