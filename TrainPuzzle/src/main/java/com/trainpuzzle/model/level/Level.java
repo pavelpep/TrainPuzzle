@@ -30,7 +30,7 @@ public class Level {
 	
 	private void initializeEmptyVictoryConditions() {
 		Station placeholderStation = new Station(StationType.GREEN, endLocation, CompassHeading.NORTH);
-		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation)));
+		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation,"")));
 	}
 	
 	/* 
