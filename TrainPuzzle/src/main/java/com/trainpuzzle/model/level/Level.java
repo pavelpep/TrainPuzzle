@@ -18,6 +18,14 @@ public class Level {
 		this.levelNumber = levelNumber;
 		initializeEmptyVictoryConditions();
 	}
+
+	public Level(int levelNumber, Board board, Location startLocation, Economy economy) {
+		this.levelNumber = levelNumber;
+		this.board = board;
+		this.startLocation = startLocation;
+		initializeEmptyVictoryConditions();
+		this.economy = economy;
+	}
 	
 	public Level(int levelNumber, Board board, Location startLocation, Location endLocation, Economy economy) {
 		this.levelNumber = levelNumber;

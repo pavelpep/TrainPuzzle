@@ -19,21 +19,14 @@ import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
 class LevelGenerator {
 
-    
-
     public LevelGenerator() {
     }
-    
-    /*
-     * **********************************
-     * Hard coded functions for Level 1	*
-     * **********************************
-     */
     
     public Level createLevelOne() {
     	Level level;
     	Board board = new Board();
-    	
+        Economy economy = new Economy();
+
         Location startLocation = new Location(4,0);
 		Track startingTrack = new Track();
 		startingTrack.setUnremoveable();
@@ -43,9 +36,8 @@ class LevelGenerator {
         Track endingTrack = new Track();
         endingTrack.setUnremoveable();
 		board.getTile(endLocation).setTrack(endingTrack);
-        Economy economy = new Economy();
         
-		generateTwoStations(board);
+		addStations(board);
 		addSomeWaterTiles(board);
 		addSomeTrackTiles(board);
 		addSomeObstacles(board);
@@ -58,30 +50,19 @@ class LevelGenerator {
     public Level createLevelTwo() {
     	Level level;
     	Board board = new Board();
+        Economy economy = new Economy();
+
         Location startLocation = new Location(4,4);
         Track startingTrack = new Track();
 		startingTrack.setUnremoveable();
 		board.getTile(startLocation).setTrack(startingTrack);
 		
-		
+		addStations(board);
 		addTrackLoop(board);
-				
-        Location endLocation = new Location(4,19);
-        Track endingTrack = new Track();
-        endingTrack.setUnremoveable();
-		board.getTile(endLocation).setTrack(endingTrack);
-		
-        Economy economy = new Economy();
-       		
-		
-    	level = new Level(2, board, startLocation, endLocation, economy);
-    	setVictoryConditions(level, endLocation);
+		       				
+    	level = new Level(2, board, startLocation, economy);
+    	//setVictoryConditions(level, 0);
     	return level;
-	}
-
-	private void initializeBoard(Board board) {
-       //TODO: add any initialization if necessary
-	   // but i'm pretty sure board initializes itself
 	}
 	
 	private void setVictoryConditions(Level level, Location endLocation) {
@@ -96,26 +77,24 @@ class LevelGenerator {
 		level.setVictoryConditions(victoryConditions);
 	}
 	
-	private void generateTwoStations(Board board){
-		Location location= new Location(8,4);
+	private void addStations(Board board){
+		Location location= new Location(5,7);
 		addStationOnTile(board, StationType.GREEN, location, CompassHeading.SOUTH);
 	
-		location= new Location(8,14);
-		addStationOnTile(board, StationType.RED, location, CompassHeading.EAST);
+		location= new Location(10,12);
+		addStationOnTile(board, StationType.RED, location, CompassHeading.SOUTH);
 		
-		location= new Location(8,18);
-		addStationOnTile(board, StationType.RED, location, CompassHeading.NORTH);
+		location= new Location(2,14);
+		addStationOnTile(board, StationType.GREEN, location, CompassHeading.SOUTH);
 		
-		location= new Location(10,16);
-		addStationOnTile(board, StationType.GREEN, location, CompassHeading.WEST);
+		location= new Location(8,16);
+		addStationOnTile(board, StationType.RED, location, CompassHeading.SOUTH);
 	}
 	
 	private void addStationOnTile(Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
-		Station station=new Station(stationType, location, entranceFacing);
+		Station station = new Station(stationType, location, entranceFacing);
 		board.getTile(location).setStationBuilding(station);
 		board.getTile(station.getTrackLocation()).setStationTrack(station);
-		
-		
 		//board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
 	}
 	
@@ -149,12 +128,11 @@ class LevelGenerator {
 		board.getTile(13, 5).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
 		board.getTile(14, 6).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
 		board.getTile(4, 10).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
-		board.getTile(5, 10).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
-		board.getTile(5, 11).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
+		board.getTile(2, 3).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
+		board.getTile(9, 18).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
 	}
 	
 	private void addTrackLoop(Board board) {
-
 		board.getTile(4,4).setTrack(new Track());
 		board.getTile(4,5).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
 		board.getTile(4,6).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
@@ -182,7 +160,6 @@ class LevelGenerator {
 	}
 	
 	private void addSomeTrackTiles(Board board) {
-
 		board.getTile(4,1).setTrack(new Track());
 		board.getTile(4,2).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
 		board.getTile(5,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
@@ -202,7 +179,4 @@ class LevelGenerator {
 		board.getTile(4,17).setTrack(new Track());
 		board.getTile(4,18).setTrack(new Track());
 	}
-	 
-	
-    
 }
