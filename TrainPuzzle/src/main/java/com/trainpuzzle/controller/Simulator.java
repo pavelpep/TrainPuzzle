@@ -47,22 +47,18 @@ public class Simulator {
 		}
 		
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
-		if(!tile.hasTrack() || tile.hasObstacle() || tile.hasStationBuilding()) {
+		if(!tile.hasTrack() || tile.hasObstacle()) {
 			// TODO: Better way to inform user train crashed
 			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
-		} 
-		
-		Track track;
-		if(tile.hasStationTrack()){
-			track = tile.getStation().getTrack();
-		} else {
-			track = tile.getTrack();
 		}
-			
+		
+		Track track = tile.getTrack();
 		CompassHeading nextHeading = track.getOutboundHeading(heading);
+		if (tile.hasStationTrack()) {
+			// TODO: create an event or something
+		}
 		this.train.setHeading(nextHeading);
-		//this.train.setLocation(location);
 		victoryConditionOld.removePassedLocation(train);
 	}
 	

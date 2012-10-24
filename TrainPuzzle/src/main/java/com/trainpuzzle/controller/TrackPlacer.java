@@ -21,11 +21,12 @@ public class TrackPlacer {
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
-		String errorMessage = "";
+		String errorMessage = "Track failed to be placed to tile because ";
+		
 		if (tile.hasTrack()) {
-			errorMessage = "Track failed to be placed to tile because there was a track";
+			errorMessage += "there was a track";
 		} else if (tile.hasObstacle()) {
-			errorMessage = "Track failed to be placed to tile because there was an obstacle";
+			errorMessage += "there was an obstacle";
 		} else{
 			tile.setTrack(track);
 			map.notifyAllObservers();
@@ -37,21 +38,21 @@ public class TrackPlacer {
 
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
 		Tile tile = map.getTile(row, column);
-		String errorMessage = "";
+		String errorMessage = "Track failed to be removed because ";
+		
 		if(tile.hasTrack()) {			
 			if (tile.getTrack().isRemovable()) {
 				tile.removeTrack();
 				map.notifyAllObservers();
 				return;
 			} else {
-				errorMessage = "Track failed to be removed because there was an unremovable track";
+				errorMessage += "there was an unremovable track";
 			}
 		} else {
-			errorMessage = "Track failed to be removed because there is no track at the tile to remove";
+			errorMessage += "there was no track at the tile to remove";
 		}
 		logger.warn("CannotRemoveTrackException was thrown");
 		throw new CannotRemoveTrackException(errorMessage);
-
 	}
 	
 	public void rotateTrack(int row, int column) throws CannotRotateException{

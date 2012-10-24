@@ -98,10 +98,7 @@ public class Track {
 			if(connection.isInboundHeading(inboundHeading)) {
 				return connection.outboundorInbound(inboundHeading);
 			}
-			
-		}		
+		}
 		throw new TrainCrashException();
 	}
-	
-	
 }

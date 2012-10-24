@@ -26,9 +26,9 @@ public class Station {
 	
 	/* Public Interface */
 	
-	public Station(StationType station, Location location, CompassHeading entranceFacing) {	
+	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {	
 		this.stationType = station;
-		this.stationLocation = location;
+		this.stationLocation = stationLocation;
 		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
 		this.stationBuilding=createObstacle(stationType);
@@ -44,12 +44,6 @@ public class Station {
 	public void setType(StationType station) {
 		this.stationType = station;
 	}
-	
-	
-	public Location getLocation() {
-		return stationLocation;
-	}
-	
 	
 	private Track createTrack() {
 		Connection connection;
