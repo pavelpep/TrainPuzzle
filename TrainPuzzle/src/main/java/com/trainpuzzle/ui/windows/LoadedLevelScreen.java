@@ -87,7 +87,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(this.getBackground());
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(1024, 700));
 
@@ -100,12 +100,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 		
 		mapPanel.setPreferredSize(new Dimension(800, 600));
-		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
 		initializeMap(level.getBoard().NUMBER_OF_ROWS, level.getBoard().NUMBER_OF_COLUMNS);
 		
 		sidePanel.setPreferredSize(new Dimension(200, 600));
-		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, Color.LIGHT_GRAY, 1, 0, 1, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
 		initializeGameControlBox();
 		initializeTrackPanel();
@@ -144,7 +144,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private void initializeGameControlBox() {
 
-		addComponent(sidePanel, this.gameControlBox, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.gameControlBox, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		gameControlBox.setPreferredSize(new Dimension(200, 150));
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder sidePanelTitle;
@@ -200,7 +200,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	//Map Panel
 	private void initializeMap(int numberOfRows, int numberOfColumns) {
-		addComponent(this, this.map, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+		addComponent(this, this.map, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
 		//mapPanel.setPreferredSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
 		map.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		map.setSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
@@ -406,7 +406,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void initializeTrackPanel() {
 		// Track Panel 
 		
-		addComponent(sidePanel, this.trackPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.trackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
 		trackPanel.setPreferredSize(new Dimension(200, 300));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
@@ -468,7 +468,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	//Selected Track Panel 
 	private void initializeSelectedTrackPanel() {
 		//Initialize Selected Track Panel 
-		addComponent(sidePanel, this.selectedTrackPanel, Font.CENTER_BASELINE, 0, Color.LIGHT_GRAY, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.selectedTrackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		//selectedTrackPanel.setPreferredSize(new Dimension(150, 150));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
