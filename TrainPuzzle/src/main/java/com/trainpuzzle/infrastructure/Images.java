@@ -6,8 +6,8 @@ public final class Images {
 	
 
 	//String type
-	public final static String GRASS = "src/main/resources/images/grass.png";
-	public final static String WATER = "src/main/resources/images/water.png";
+	public final static String GRASS = "src/main/resources/images/grass2.png";
+	public final static String WATER = "src/main/resources/images/water2.png";
 	public final static String ROCK = "src/main/resources/images/rock.png";
 	public final static String TREES = "src/main/resources/images/trees.png";
 	
