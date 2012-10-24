@@ -27,20 +27,19 @@ class LevelGenerator {
 		startingTrack.setUnremoveable();
 		board.getTile(startLocation).setTrack(startingTrack);
 		
-        Location endLocation = new Location(4,19);
-        Track endingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
-        endingTrack.setUnremoveable();
-		board.getTile(endLocation).setTrack(endingTrack);
+       // Location endLocation = new Location(4,19);
+        //Track endingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
+        //endingTrack.setUnremoveable();
+		//board.getTile(endLocation).setTrack(endingTrack);
         
-		addStations(board);
+        AndVictoryCondition root =new AndVictoryCondition();
+		addStations(board,root);
 		addSomeWaterTiles(board);
 		addSomeTrackTiles(board);
 		addSomeObstacles(board);
 		
-		VictoryCondition victoryCondition = new LeafVictoryCondition(new Event(10000, new Station(Station.StationType.RED, new Location(1,1),CompassHeading.EAST), "visit"));
-
-    	level = new Level(1, board, startLocation, victoryCondition, economy);
-    	setVictoryConditions(level, endLocation);
+    	level = new Level(1, board, startLocation, root, economy);
+    	//setVictoryConditions(level, endLocation);
     	return level;
 	}
     
@@ -48,22 +47,21 @@ class LevelGenerator {
     	Level level;
     	Board board = new Board();
         Economy economy = new Economy();
-        VictoryCondition victoryCondition = new LeafVictoryCondition(new Event(10000, new Station(Station.StationType.RED, new Location(1,1),CompassHeading.EAST), "visit"));
 
         Location startLocation = new Location(4,4);
         Track startingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
 		startingTrack.setUnremoveable();
 		board.getTile(startLocation).setTrack(startingTrack);
 		
-		addStations(board);
-		addTrackLoop(board);
-		       				
-    	level = new Level(2, board, startLocation,victoryCondition, economy);
+		AndVictoryCondition root =new AndVictoryCondition(); 
+		addStations(board,root);
+		addTrackLoop(board);     				
+    	level = new Level(2, board, startLocation,root, economy);
     	//setVictoryConditions(level, 0);
     	return level;
 	}
 	
-	private void setVictoryConditions(Level level, Location endLocation) {
+	/*private void setVictoryConditions(Level level, Location endLocation) {
 		AndVictoryCondition victoryConditions = new AndVictoryCondition();
 		//TODO: ensure endStation is correct, also add another station in between
 		//possibly need to add start location to victory conditions
@@ -73,26 +71,30 @@ class LevelGenerator {
 		victoryConditions.addChild(new LeafVictoryCondition(endStation));
 		
 		level.setVictoryConditions(victoryConditions);
-	}
+	}*/
 	
-	private void addStations(Board board){
+	private void addStations(Board board,AndVictoryCondition root){
 		Location location= new Location(5,7);
-		addStationOnTile(board, StationType.GREEN, location, CompassHeading.SOUTH);
+		addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
 	
 		location= new Location(10,12);
-		addStationOnTile(board, StationType.RED, location, CompassHeading.SOUTH);
+		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
 		
-		location= new Location(2,14);
-		addStationOnTile(board, StationType.GREEN, location, CompassHeading.SOUTH);
+		//location= new Location(2,14);
+		//addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
 		
 		location= new Location(8,16);
-		addStationOnTile(board, StationType.RED, location, CompassHeading.SOUTH);
+		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
 	}
 	
-	private void addStationOnTile(Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
+	private void addStationOnTile(AndVictoryCondition root, Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
 		Station station = new Station(stationType, location, entranceFacing);
 		board.getTile(location).setStationBuilding(station);
 		board.getTile(station.getTrackLocation()).setStationTrack(station);
+		
+		Event event = new Event(100,station);
+		LeafVictoryCondition leaf = new LeafVictoryCondition(event);
+		root.addChild(leaf);
 		//board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
 	}
 	
