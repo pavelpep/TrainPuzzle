@@ -26,17 +26,16 @@ public class TrackPlacer {
 		
 		if (tile.hasTrack()) {
 			errorMessage += "there was already a track";
-		} else if (tile.hasObstacle()) {
+		} 
+		else if (tile.hasObstacle()) {
 			errorMessage += "there was an obstacle";
-		} else if (tile.hasLandscape()) {
-			if(tile.getLandscapeType() == LandscapeType.WATER) {
-				errorMessage += "landscape type is water";
-			}
+		} 
+		else if (tile.getLandscapeType() == LandscapeType.WATER) {
+			errorMessage += "landscape type is water";
 		}
-		else{
+		else {
 			tile.setTrack(track);
 			map.notifyAllObservers();
-			return;
 		}
 		logger.warn("CannotPlaceTrackException was thrown");
 		throw new CannotPlaceTrackException(errorMessage);
