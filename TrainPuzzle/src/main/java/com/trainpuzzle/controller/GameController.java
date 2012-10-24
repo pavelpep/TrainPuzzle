@@ -50,11 +50,18 @@ public class GameController{
 	public Simulator getSimulator(){
 		return simulator;
 	}
-
+	 	
+	/**
+	 * 
+	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.run()}
+	 */
 	public void runSimulation() {
 		simulator.run();
 	}
-	
+	/**
+	 * 
+	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.reset()}
+	 */
 	public void resetSimulation() {
 	    simulator.reset();
 	}

@@ -161,7 +161,10 @@ public class Simulator {
 	}
 	
 	public void run() {
-		    timer.start();
-		
+		    timer.start();	
 	}
+	
+	public void setTickInterval(int tickIntervalInMillis) {
+	    timer.setDelay(tickIntervalInMillis);
+    }
 }

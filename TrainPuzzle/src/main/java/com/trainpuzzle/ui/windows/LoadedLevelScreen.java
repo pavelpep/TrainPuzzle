@@ -159,13 +159,33 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
-		//initialize run button
+		//initialize reset button
 		JButton resetButton = new JButton();
 		resetButton = new JButton("Reset");
 		gameControlBox.add(resetButton);		
 		resetButton.setActionCommand("reset");
 		resetButton.addActionListener(this);
 		
+		//initialize 1x button
+		JButton speed1XButton = new JButton();
+		speed1XButton = new JButton("1x");
+		gameControlBox.add(speed1XButton);		
+		speed1XButton.setActionCommand("tick200");
+		speed1XButton.addActionListener(this);
+		
+		//initialize 2x button
+		JButton speed2XButton = new JButton();
+		speed2XButton = new JButton("2x");
+		gameControlBox.add(speed2XButton);		
+		speed2XButton.setActionCommand("tick100");
+		speed2XButton.addActionListener(this);
+		
+		//initialize 5x button
+		JButton speed4XButton = new JButton();
+		speed4XButton = new JButton("4x");
+		gameControlBox.add(speed4XButton);		
+		speed4XButton.setActionCommand("tick50");
+		speed4XButton.addActionListener(this);
 		
 		//messageBox =  new JLabel("<html>First line and maybe second line</html>");
 		messageBox.setHorizontalAlignment(JLabel.CENTER);
@@ -484,14 +504,23 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "run") {
-			gameController.runSimulation();
+			gameController.getSimulator().run();
 		}	
 		if (event.getActionCommand() == "reset") {
-			gameController.resetSimulation();
+			gameController.getSimulator().reset();
 			
 		}	
+		if (event.getActionCommand() == "tick200") {
+			gameController.getSimulator().setTickInterval(200);
+		}
 		
-		
+		if (event.getActionCommand() == "tick100") {
+			gameController.getSimulator().setTickInterval(100);
+		}
+
+		if (event.getActionCommand() == "tick50") {
+			gameController.getSimulator().setTickInterval(50);
+		}
 		if (event.getActionCommand() == "straightTrack") {
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
