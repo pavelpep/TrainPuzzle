@@ -277,7 +277,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		JLayeredPane mapTile = mapTiles[row][column];
 		if(level.getBoard().getTile(row, column).hasObstacle()) {
-			//System.out.println(level.getBoard().getTile(row, column).hasObstacle() + " " + row + " "+  column);
 			JLabel obstacleLayer = new JLabel();
 			switch(level.getBoard().getTile(row, column).getObstacleType()){
 				case ROCK:

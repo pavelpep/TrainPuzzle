@@ -43,8 +43,6 @@ public class GameController{
 		level = campaignManager.loadLevel(levelNumber);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
-		
-		System.out.println(simulator.getTrain().getHeading());
 	}
 	
 	public Simulator getSimulator(){

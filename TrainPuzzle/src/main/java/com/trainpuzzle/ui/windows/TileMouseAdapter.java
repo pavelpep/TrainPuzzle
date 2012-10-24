@@ -39,12 +39,14 @@ class TileMouseAdapter extends MouseAdapter {
 	                try {
 	                	trackPlacer.placeTrack(track, row, column);
 	                }catch(CannotPlaceTrackException ex) {
+	                	//TODO remove system.out and send to UI
 	                	System.out.println(ex.getMessage());
 	                }
                 }else if(e.getButton() == MouseEvent.BUTTON3){
 	                try {
 	                	trackPlacer.removeTrack(row, column);
 	                }catch(CannotRemoveTrackException ex) {
+	                	//TODO remove system.out and send to UI
 	                	System.out.println(ex.getMessage());
 	                }
                 }
