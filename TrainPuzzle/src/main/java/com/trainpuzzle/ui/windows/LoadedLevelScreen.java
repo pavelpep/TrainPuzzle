@@ -512,11 +512,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
-			//TODO change to not need to create previous window
-			LevelSelect levelSelect = new LevelSelect();
-			WindowManager.getManager().setActiveWindow(levelSelect); 
+			WindowManager.getManager().setActiveWindow(WindowManager.getManager().getPreviousWindow()); 
 			WindowManager.getManager().updateWindows();	
-		}		
+			WindowManager.getManager().setPreviousWindow(this);
+		}
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
 		}	

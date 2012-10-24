@@ -72,7 +72,6 @@ public class LevelSelect extends Window implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
-		
 		if (action == "back") {
 				WindowManager.getManager().setActiveWindow(new MainMenu(gameController)); 
 				WindowManager.getManager().updateWindows();
@@ -91,6 +90,7 @@ public class LevelSelect extends Window implements ActionListener {
 			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
 			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
 			WindowManager.getManager().updateWindows();	
-		}	
+		}
+		WindowManager.getManager().setPreviousWindow(this);
 	}
 }

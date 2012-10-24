@@ -41,21 +41,20 @@ public class WindowManager {
 		return activeWindow;
 	}
 	
-	public Window setActiveWindow(Window window) {
+	public void setActiveWindow(Window window) {
 		if (activeWindow != window) {
 			activeWindow = window;
 			isWindowChanged = true;
 		}
-		return activeWindow;
 	}
 	
 	public Window getPreviousWindow() {
 		return previousWindow;
 	}
 	
-	public Window setPreviousWindow(Window window) {
+	public void setPreviousWindow(Window window) {
 		previousWindow = window;
-		return previousWindow;
+		window.setVisible(false);
 	}
 	
 	public boolean getIsWindowChanged() {
