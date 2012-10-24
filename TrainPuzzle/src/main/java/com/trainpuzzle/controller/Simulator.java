@@ -9,6 +9,8 @@ import javax.swing.Timer;
 
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.level.*;
+import com.trainpuzzle.model.level.victory_condition.Event;
+import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
 import static com.trainpuzzle.model.board.CompassHeading.*;
 
@@ -18,6 +20,7 @@ public class Simulator {
 	private Level level;
 	private Board board;
 	private Train train;
+	private VictoryConditionEvaluator victoryConditionEvaluator;
 	private VictoryConditionOld victoryConditionOld;
 	
 	
@@ -47,7 +50,8 @@ public class Simulator {
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
-		this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
+		//this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
+		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
 		isRunning = false;
 		trainCrashed = false;
 	}
@@ -88,14 +92,16 @@ public class Simulator {
 		Track track = tile.getTrack();
 		CompassHeading nextHeading = track.getOutboundHeading(heading);
 		if (tile.hasStationTrack()) {
-			// TODO: create an event or something
+			Station station = tile.getStation();
+			passStation(station);
 		}
 		this.train.setHeading(nextHeading);
-		victoryConditionOld.removePassedLocation(train);
+		//victoryConditionOld.removePassedLocation(train);
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
-		return this.victoryConditionOld.isVictoryConditionSatisfied(train);
+		return this.victoryConditionEvaluator.isSatisfied();
+		//return this.victoryConditionOld.isVictoryConditionSatisfied(train);
 	}
 	
 	/**
@@ -146,6 +152,12 @@ public class Simulator {
 		}
 		return false;
 	}	
+	
+	private void passStation(Station station) {
+		String name = "pass station "+station.hashCode();
+		Event event = new Event(100, station, name);
+		this.victoryConditionEvaluator.processEvent(event);
+	}
 	
 	public boolean isTrainCrashed() {
 		return trainCrashed;
