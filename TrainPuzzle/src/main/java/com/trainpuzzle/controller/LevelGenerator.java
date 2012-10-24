@@ -1,12 +1,6 @@
 package com.trainpuzzle.controller;
 
 import com.trainpuzzle.model.board.*;
-import com.trainpuzzle.model.board.CompassHeading;
-import com.trainpuzzle.model.board.Connection;
-import com.trainpuzzle.model.board.Location;
-import com.trainpuzzle.model.board.Obstacle;
-import com.trainpuzzle.model.board.Station;
-import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
@@ -14,6 +8,7 @@ import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
@@ -42,7 +37,9 @@ class LevelGenerator {
 		addSomeTrackTiles(board);
 		addSomeObstacles(board);
 		
-    	level = new Level(1, board, startLocation, endLocation, economy);
+		VictoryCondition victoryCondition = new LeafVictoryCondition(new Event(10000, new Station(Station.StationType.RED, new Location(1,1),CompassHeading.EAST), "visit"));
+
+    	level = new Level(1, board, startLocation, victoryCondition, economy);
     	setVictoryConditions(level, endLocation);
     	return level;
 	}
@@ -51,6 +48,7 @@ class LevelGenerator {
     	Level level;
     	Board board = new Board();
         Economy economy = new Economy();
+        VictoryCondition victoryCondition = new LeafVictoryCondition(new Event(10000, new Station(Station.StationType.RED, new Location(1,1),CompassHeading.EAST), "visit"));
 
         Location startLocation = new Location(4,4);
         Track startingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
@@ -60,7 +58,7 @@ class LevelGenerator {
 		addStations(board);
 		addTrackLoop(board);
 		       				
-    	level = new Level(2, board, startLocation, economy);
+    	level = new Level(2, board, startLocation,victoryCondition, economy);
     	//setVictoryConditions(level, 0);
     	return level;
 	}
