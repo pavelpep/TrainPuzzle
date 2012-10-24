@@ -11,8 +11,8 @@ import javax.swing.*;
 abstract class Window extends JFrame {
 	// Layout Manager
 	protected GridBagConstraints gbConstraints = new GridBagConstraints();
-	protected static final int DEFAULT_WIDTH = 640;
-	protected static final int DEFAULT_HEIGHT = 480;
+	protected static final int DEFAULT_WIDTH = 1028;
+	protected static final int DEFAULT_HEIGHT = 768;
 	
 	Window() {}
 	
@@ -20,16 +20,19 @@ abstract class Window extends JFrame {
 	public abstract void create();
 	
 	// Initializes a specific jComponent
-	protected void initializeComponent(JComponent jComponent, int fontLayout, int fontSize, Color bgColor,
-			int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled) {
+	protected void addComponent(Container container, JComponent jComponent, int fontLayout, int fontSize,
+			Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled) {
 		jComponent.setFont(new Font("Arial", fontLayout, fontSize));
 		jComponent.setBackground(bgColor);
 		this.gbConstraints.gridx = gridX;
 		this.gbConstraints.gridy = gridY;
 		this.gbConstraints.gridwidth = gridWidth;
+		this.gbConstraints.gridheight = gridHeight;
 		this.gbConstraints.anchor = anchor;
 		this.gbConstraints.fill = fill;
 		this.gbConstraints.insets = inset;
 		jComponent.setEnabled(isEnabled);
+		//jComponent.setBorder(BorderFactory.createMatteBorder(1, 5, 1, 1, Color.red));
+		container.add(jComponent, gbConstraints);
 	}
 }

@@ -38,31 +38,28 @@ public class LevelSelect extends Window implements ActionListener {
 		
 		// Level select title
 		JLabel titleLabel = new JLabel();
-		initializeComponent(titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		addComponent(this, titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
 		titleLabel.setText("Level Select");
 		this.add(titleLabel, gbConstraints);
 		
 		// Level 1 Button
 	    JButton levelOneButton = new JButton();
-		initializeComponent(levelOneButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, levelOneButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		levelOneButton.setText("Level 1");
-		this.add(levelOneButton, gbConstraints);
 		levelOneButton.setActionCommand("LEVEL_ONE");
 		levelOneButton.addActionListener(this);
 		
 		// Level 2 Button
 		JButton levelTwoButton = new JButton();
-		initializeComponent(levelTwoButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, levelTwoButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		levelTwoButton.setText("Level 2");
-		this.add(levelTwoButton, gbConstraints);
 		levelTwoButton.setActionCommand("LEVEL_TWO");
 		levelTwoButton.addActionListener(this);
 		
 		// Back button
 		JButton backButton = new JButton();
-		initializeComponent(backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
 		backButton.setText("Back");
-		this.add(backButton, gbConstraints);
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 
