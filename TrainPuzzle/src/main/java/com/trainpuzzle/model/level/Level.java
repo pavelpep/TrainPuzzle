@@ -9,8 +9,7 @@ public class Level {
 	private int levelNumber = 1;
 	private Board board = new Board();
 	private Location startLocation = new Location(0,0);
-	private Location endLocation = new Location(0,1);
-	private VictoryConditionEvaluator victoryConditions;
+	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
 	
 		
@@ -31,13 +30,12 @@ public class Level {
 		this.levelNumber = levelNumber;
 		this.board = board;
 		this.startLocation = startLocation;
-		this.endLocation = endLocation;
 		initializeEmptyVictoryConditions();
 		this.economy = economy;
 	}
 	
 	private void initializeEmptyVictoryConditions() {
-		Station placeholderStation = new Station(StationType.GREEN, endLocation, CompassHeading.NORTH);
+		Station placeholderStation = new Station(StationType.GREEN, startLocation, CompassHeading.NORTH);
 		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation,"")));
 	}
 	
@@ -58,10 +56,7 @@ public class Level {
 	public Location getStartLocation() {
 		return this.startLocation;
 	}
-	
-	public Location getEndLocation() {
-		return this.endLocation;
-	}	
+		
 	
 	public int getLevelNumber() {
 		return this.levelNumber;
@@ -72,9 +67,13 @@ public class Level {
 	}
 	
 	public void setVictoryConditions(VictoryCondition victoryConditions) {
-		this.victoryConditions = new VictoryConditionEvaluator(victoryConditions);
+		this.victoryConditions = victoryConditions;
 	}
-
+	
+	public VictoryCondition getVictoryConditions() {
+		return victoryConditions;
+	}
+	
 	public Economy getEconomy() {
 		return economy;
 	}
