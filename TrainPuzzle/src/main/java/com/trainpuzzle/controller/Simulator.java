@@ -155,7 +155,7 @@ public class Simulator {
 	
 	private void passStation(Station station) {
 		String name = "pass station "+station.hashCode();
-		Event event = new Event(100, station, name);
+		Event event = new Event(100, station);
 		this.victoryConditionEvaluator.processEvent(event);
 	}
 	
