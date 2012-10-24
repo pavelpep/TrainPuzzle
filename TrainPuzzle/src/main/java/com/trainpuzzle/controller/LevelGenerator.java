@@ -26,7 +26,7 @@ class LevelGenerator {
     
     /*
      * **********************************
-     * Hardcoded functions for Level 1	*
+     * Hard coded functions for Level 1	*
      * **********************************
      */
     

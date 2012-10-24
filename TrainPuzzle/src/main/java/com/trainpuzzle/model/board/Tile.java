@@ -43,6 +43,10 @@ public class Tile implements Observable {
 		return (track != null);
 	}	
 	
+	public boolean hasLandscape() {
+		return (landscape != null);
+	}
+	
 	public boolean hasObstacle() {
 		return (obstacle != null);
 	}

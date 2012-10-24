@@ -6,6 +6,7 @@ import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotRotateException;
 import com.trainpuzzle.model.board.*;
+import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.level.Level;
 
 
@@ -21,13 +22,18 @@ public class TrackPlacer {
 
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
 		Tile tile = map.getTile(row, column);
-		String errorMessage = "Track failed to be placed to tile because ";
+		String errorMessage = "Failed to place track on a tile because ";
 		
 		if (tile.hasTrack()) {
-			errorMessage += "there was a track";
+			errorMessage += "there was already a track";
 		} else if (tile.hasObstacle()) {
 			errorMessage += "there was an obstacle";
-		} else{
+		} else if (tile.hasLandscape()) {
+			if(tile.getLandscapeType() == LandscapeType.WATER) {
+				errorMessage += "landscape type is water";
+			}
+		}
+		else{
 			tile.setTrack(track);
 			map.notifyAllObservers();
 			return;
