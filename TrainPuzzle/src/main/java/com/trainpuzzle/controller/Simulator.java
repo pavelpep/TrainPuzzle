@@ -49,7 +49,7 @@ public class Simulator {
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle() || tile.hasStationBuilding()) {
 			// TODO: Better way to inform user train crashed
-			JOptionPane.showMessageDialog(null, "The train has crashed!");
+			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		} 
 		
