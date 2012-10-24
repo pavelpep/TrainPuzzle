@@ -3,17 +3,12 @@ package com.trainpuzzle.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
-
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.level.*;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
-
 import static com.trainpuzzle.model.board.CompassHeading.*;
-
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Simulator {
@@ -69,7 +64,6 @@ public class Simulator {
 			e.printStackTrace();
 			trainCrashed = true;
 			//JOptionPane.showMessageDialog(null, "The train has crashed!");
-			
 		}
 	}
 	
@@ -104,13 +98,6 @@ public class Simulator {
 		//return this.victoryConditionOld.isVictoryConditionSatisfied(train);
 	}
 	
-	/**
-	 * Get location that the train is heading
-	 * 
-	 * @param location train's current location
-	 * @param headingValue where train heading to
-	 * @return an int array holding latitude and longitude for next tile the is going to
-	 */
 	private Location getNextTile(Location location, CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
@@ -142,19 +129,15 @@ public class Simulator {
 				location.setColumn(location.getColumn() - 1);
 				break;
 		}
-		
 		return location;
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		if(location.getRow() >= board.NUMBER_OF_ROWS || location.getColumn() >= board.NUMBER_OF_COLUMNS) {
-			return true;
-		}
-		return false;
+		return (location.getRow() >= board.NUMBER_OF_ROWS || location.getColumn() >= board.NUMBER_OF_COLUMNS);
 	}	
 	
 	private void passStation(Station station) {
-		String name = "pass station "+station.hashCode();
+		//String name = "pass station "+station.hashCode();
 		Event event = new Event(100, station);
 		this.victoryConditionEvaluator.processEvent(event);
 	}
@@ -174,7 +157,7 @@ public class Simulator {
 	}
 	
 	public void run() {
-		    timer.start();	
+		timer.start();	
 	}
 	
 	public void setTickInterval(int tickIntervalInMillis) {

@@ -1,21 +1,15 @@
 package com.trainpuzzle.controller;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
-
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotRotateException;
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.observe.Observable;
-import com.trainpuzzle.observe.Observer;
 
-
-public class TrackPlacer{
+public class TrackPlacer {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
 	private Board map;
@@ -25,7 +19,7 @@ public class TrackPlacer{
 		this.map = levelToAddTrack.getBoard();
 	}
 
-	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException{
+	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException {
 		Tile tile = map.getTile(row, column);
 		String errorMessage = "Failed to place track on a tile because ";
 		
@@ -46,7 +40,7 @@ public class TrackPlacer{
 		throw new CannotPlaceTrackException(errorMessage);
 	}
 
-	public void removeTrack(int row, int column) throws CannotRemoveTrackException{
+	public void removeTrack(int row, int column) throws CannotRemoveTrackException {
 		Tile tile = map.getTile(row, column);
 		String errorMessage = "Track failed to be removed because ";
 		
@@ -54,24 +48,24 @@ public class TrackPlacer{
 			if (tile.getTrack().isRemovable()) {
 				tile.removeTrack();
 				map.notifyAllObservers();
-				return;
-			} else {
+			} 
+			else {
 				errorMessage += "there was an unremovable track";
 			}
-		} else {
+		} 
+		else {
 			errorMessage += "there was no track at the tile to remove";
 		}
 		logger.warn("CannotRemoveTrackException was thrown");
 		throw new CannotRemoveTrackException(errorMessage);
 	}
 	
-	public void rotateTrack(int row, int column) throws CannotRotateException{
+	public void rotateTrack(int row, int column) throws CannotRotateException {
 		Tile tile = map.getTile(row, column);
 		
 		if(tile.hasTrack()) {
-			tile.rotateTrack(); // TODO
+			tile.rotateTrack();
 			map.notifyAllObservers();
-			//map.setTile(tile,row,column); // can be removed because of passing by reference		
 		}
 		else {
 			logger.warn("CannotRotateException was thrown");
@@ -80,8 +74,6 @@ public class TrackPlacer{
 	}
 	
 	public Level getLevelWithTrack() {
-		//levelToAddTrack.setMap(map); // can be removed because of passing by reference
 		return levelToAddTrack;
-	}
-	
+	}	
 }

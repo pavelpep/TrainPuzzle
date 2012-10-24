@@ -1,51 +1,33 @@
 package com.trainpuzzle.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
-
 import org.apache.log4j.Logger;
-
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
-import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.Observer;
-import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 
 public class GameController{
+	
 	private Logger logger = Logger.getLogger(Application.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
-	
 	private CampaignManager campaignManager;
 	private TrackPlacer trackPlacer;
 	private Simulator simulator;
-	
-	
-	
 	private Level level;
 	private Level loadedLevelWithTrack;
-	
-	
-	
-	public GameController(){
-		
-	}
-	
-	public void startGame(int levelNumber){
+
+	public void startGame(int levelNumber) {
 		campaignManager = new CampaignManager();
 		level = campaignManager.loadLevel(levelNumber);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
 	
-	public Simulator getSimulator(){
+	public Simulator getSimulator() {
 		return simulator;
 	}
 	 	
@@ -63,6 +45,7 @@ public class GameController{
 	public void resetSimulation() {
 	    simulator.reset();
 	}
+	
 	public void placeTrack(Track track, int row, int column) {
 		try {
 			trackPlacer.placeTrack(track, row, column);
@@ -88,8 +71,6 @@ public class GameController{
 		}
 	}
 	
-
-	
 	/* Getters and Setters */
 	
 	public CampaignManager getCampaignManager() {
@@ -107,7 +88,4 @@ public class GameController{
 	public Level getLevel() {
 		return this.level;
 	}
-
-
-	
 }

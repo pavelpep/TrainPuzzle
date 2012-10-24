@@ -13,9 +13,6 @@ import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
 class LevelGenerator {
-
-    public LevelGenerator() {
-    }
     
     public Level createLevelOne() {
     	Level level;
@@ -27,7 +24,7 @@ class LevelGenerator {
 		startingTrack.setUnremoveable();
 		board.getTile(startLocation).setTrack(startingTrack);
 		
-       // Location endLocation = new Location(4,19);
+        //Location endLocation = new Location(4,19);
         //Track endingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
         //endingTrack.setUnremoveable();
 		//board.getTile(endLocation).setTrack(endingTrack);
@@ -61,18 +58,6 @@ class LevelGenerator {
     	return level;
 	}
 	
-	/*private void setVictoryConditions(Level level, Location endLocation) {
-		AndVictoryCondition victoryConditions = new AndVictoryCondition();
-		//TODO: ensure endStation is correct, also add another station in between
-		//possibly need to add start location to victory conditions
-		
-		Event endStation = new Event(1, new Station(StationType.GREEN, endLocation, CompassHeading.NORTH),"passEndStation");
-		
-		victoryConditions.addChild(new LeafVictoryCondition(endStation));
-		
-		level.setVictoryConditions(victoryConditions);
-	}*/
-	
 	private void addStations(Board board,AndVictoryCondition root){
 		Location location= new Location(5,7);
 		addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
@@ -80,8 +65,8 @@ class LevelGenerator {
 		location= new Location(10,12);
 		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
 		
-		//location= new Location(2,14);
-		//addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
+		location= new Location(2,14);
+		addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
 		
 		location= new Location(8,16);
 		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
@@ -179,4 +164,18 @@ class LevelGenerator {
 		board.getTile(4,17).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
 		board.getTile(4,18).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
 	}
+
+	/*
+	private void setVictoryConditions(Level level, Location endLocation) {
+	AndVictoryCondition victoryConditions = new AndVictoryCondition();
+	//TODO: ensure endStation is correct, also add another station in between
+	//possibly need to add start location to victory conditions
+	
+	Event endStation = new Event(1, new Station(StationType.GREEN, endLocation, CompassHeading.NORTH),"passEndStation");
+	
+	victoryConditions.addChild(new LeafVictoryCondition(endStation));
+	
+	level.setVictoryConditions(victoryConditions);
+	}
+	*/
 }
