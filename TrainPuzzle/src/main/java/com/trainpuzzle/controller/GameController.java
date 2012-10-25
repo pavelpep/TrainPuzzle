@@ -1,5 +1,6 @@
 package com.trainpuzzle.controller;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
@@ -23,6 +24,12 @@ public class GameController{
 	public void startGame(int levelNumber) {
 		campaignManager = new CampaignManager();
 		level = campaignManager.loadLevel(levelNumber);
+		trackPlacer = new TrackPlacer(level);
+		simulator = new Simulator(level);
+	}
+	public void startGame(File levelFile) {
+		campaignManager = new CampaignManager();
+		level = campaignManager.loadLevel(levelFile);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
@@ -89,8 +96,8 @@ public class GameController{
 		return this.level;
 	}
 
-	public void saveCurrentLevel(){
-		campaignManager.saveLevel();
+	public void saveCurrentLevel(File file){
+		campaignManager.saveLevel(file);
 	}
 	
 }

@@ -4,8 +4,10 @@ import com.trainpuzzle.controller.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.util.*;
 
@@ -100,13 +102,27 @@ public class LevelSelect extends Window implements ActionListener {
 		}
 		
 		 else if (action == "LOAD") {
-			levelSelected = 3;
-					
-			gameController.startGame(levelSelected);
-			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
-			WindowManager.getManager().updateWindows();	
+			File levelFile = openFile();
+			if(levelFile != null){	
+				gameController.startGame(levelFile);
+				LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
+				WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
+				WindowManager.getManager().updateWindows();	
+			}
 		}	
 		WindowManager.getManager().setPreviousWindow(this);
+	}
+	
+	
+	private File openFile(){
+		JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	        "XML Encoded Level", "xml");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showOpenDialog(this);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	return chooser.getSelectedFile();
+	    }
+		return null;
 	}
 }

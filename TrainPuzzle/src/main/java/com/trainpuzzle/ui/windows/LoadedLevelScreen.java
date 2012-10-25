@@ -6,9 +6,11 @@ import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
 
@@ -530,7 +532,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			gameController.getSimulator().setTickInterval(50);
 		}
 		if (event.getActionCommand() == "save") {
-			gameController.saveCurrentLevel();
+			File saveLevelFile = saveFileDialog();
+			if(saveLevelFile != null){
+				gameController.saveCurrentLevel(saveLevelFile);
+			}
 		}
 		if (event.getActionCommand() == "straightTrack") {
 			//Create and set new connection on mouseAdapter
@@ -613,4 +618,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 
+	private File saveFileDialog(){
+		JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	        "XML Encoded Level", "xml");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showSaveDialog(this);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	return chooser.getSelectedFile();
+	    }
+		return null;
+	}
 }

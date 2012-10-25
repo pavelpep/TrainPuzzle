@@ -2,11 +2,17 @@ package com.trainpuzzle.controller;
 
 import java.awt.FileDialog;
 import java.awt.Frame;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.thoughtworks.xstream.*;
 
@@ -27,8 +33,8 @@ public class CampaignManager {
 		}else if(levelNumber == 2){
 			this.levelLoaded = levelGenerator.createLevelTwo();
 		}else{
-			//if some weird level number is given, then load level from file 
-			 loadLevel();
+			 //just in case
+			 this.levelLoaded = levelGenerator.createLevelOne();
 		}
 		return this.levelLoaded;
 	}
@@ -40,67 +46,35 @@ public class CampaignManager {
 	   * Write the compressed, serialized data to a file with a FileOutputStream.
 	   * Don't forget to flush and close the stream.
 	   */
-	  public void saveLevel() {
-	    // Create a file dialog to query the user for a filename.
-	    FileDialog f = new FileDialog(new Frame(), "Save Level", FileDialog.SAVE);
-	    f.show();                        // Display the dialog and block.
-	    String filename = f.getFile();   // Get the user's response
-	    if (filename != null) {          // If user didn't click "Cancel".
+	  public void saveLevel(File file) {	  
 	      try {
-	        // Create the necessary output streams to save the scribble.
-	        FileOutputStream fos = new FileOutputStream(filename); 
-								// Save to file
-
-	        ObjectOutputStream out = new ObjectOutputStream(fos); 
-								// Save objects
+	        // Create the necessary output streams to save the level.
+	        PrintStream out = new PrintStream(file);
 	        XStream xstream = new XStream();
-	        String xml = xstream.toXML(levelLoaded);
+	        xstream.toXML(levelLoaded, out);
 	        
-	        out.writeObject(xml);      	// Write the entire Level 
-	        out.flush();                 		// Always flush the output.
-	        out.close();                 		// And close the stream.
-	        System.out.println("wrote to file: " + filename);
+	        System.out.println("wrote to file: " + file.getAbsoluteFile());
 	      }
 	      // Print out exceptions.  We should really display them in a dialog...
 	      catch (IOException e) { System.out.println(e); }
-	    }
+	    
 	  }
-
-	  /**
-	   * Prompt for a filename, and load a scribble from that file.
-	   * Read compressed, serialized data with a FileInputStream.
-	   * Uncompress that data with a GZIPInputStream.
-	   * Deserialize the vector of lines with a ObjectInputStream.
-	   * Replace current data with new data, and redraw everything.
-	   */
-	  
-	  public void loadLevel() {
+ 
+	  public Level loadLevel(File file) {
 		  
 		Level loadedLevel = new Level(3);
-	    // Create a file dialog to query the user for a filename.
-	    FileDialog f = new FileDialog(new Frame(), "Load Level", FileDialog.LOAD);
-	    f.show();                         // Display the dialog and block.
-	    String filename = f.getFile();    // Get the user's response
-	    if (filename != null) {           // If user didn't click "Cancel".
+		
 	      try {
-	        // Create necessary input streams
-	        FileInputStream fis = new FileInputStream(filename); // Read from file
-	        ObjectInputStream in = new ObjectInputStream(fis);  // Read objects
-	        // Read in an object.  It should be a vector of scribbles
 	        XStream xstream = new XStream();
-	        String xml = (String)in.readObject(); 
-	        
-	        loadedLevel = (Level)xstream.fromXML(xml);
-	        in.close();                    // Close the stream.
+	        loadedLevel = (Level)xstream.fromXML(file);
 	        this.levelLoaded = loadedLevel;
-	        System.out.println("loaded from file: " + filename);
-	        
+	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
 	        
 	      }
 	      // Print out exceptions.  We should really display them in a dialog...
 	      catch (Exception e) { System.out.println(e); }
-	    }
-	    
+	     
+	      return this.levelLoaded;
 	  }
 }
 
