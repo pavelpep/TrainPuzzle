@@ -10,6 +10,7 @@ import com.trainpuzzle.observe.Observer;
 public class Tile implements Observable, java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
 	private int elevation;
 	private Track track;
 	private Obstacle obstacle;
@@ -26,6 +27,9 @@ public class Tile implements Observable, java.io.Serializable {
 	}
 	
 	public void register(Observer observer){
+      if(observerList == null){
+    	  observerList = new HashSet<Observer>();
+      }
 		observerList.add(observer);
 	}
 	

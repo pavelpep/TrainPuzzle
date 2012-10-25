@@ -33,8 +33,9 @@ import com.trainpuzzle.controller.TrackPlacer;
 
 // Level selection for the campaign
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
-	
-	
+
+	private static final long serialVersionUID = 1L;
+
 	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
 	
 	private GameController gameController;

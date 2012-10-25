@@ -7,9 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Vector;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
+
+import com.thoughtworks.xstream.*;
 
 import com.trainpuzzle.model.level.*;
 
@@ -28,8 +27,8 @@ public class CampaignManager {
 		}else if(levelNumber == 2){
 			this.levelLoaded = levelGenerator.createLevelTwo();
 		}else{
-			//if some weird level number is given, return level 1 just in case 
-			 load();
+			//if some weird level number is given, then load level from file 
+			 this.levelLoaded = load();
 		}
 		return this.levelLoaded;
 	}
@@ -51,14 +50,16 @@ public class CampaignManager {
 	        // Create the necessary output streams to save the scribble.
 	        FileOutputStream fos = new FileOutputStream(filename); 
 								// Save to file
-	        GZIPOutputStream gzos = new GZIPOutputStream(fos);     
-								// Compressed
-	        ObjectOutputStream out = new ObjectOutputStream(gzos); 
+
+	        ObjectOutputStream out = new ObjectOutputStream(fos); 
 								// Save objects
-	        out.writeObject(levelLoaded);      	// Write the entire Level 
+	        XStream xstream = new XStream();
+	        String xml = xstream.toXML(levelLoaded);
+	        
+	        out.writeObject(xml);      	// Write the entire Level 
 	        out.flush();                 		// Always flush the output.
 	        out.close();                 		// And close the stream.
-	        System.out.println("done writing to file");
+	        System.out.println("wrote to file: " + filename);
 	      }
 	      // Print out exceptions.  We should really display them in a dialog...
 	      catch (IOException e) { System.out.println(e); }
@@ -73,7 +74,7 @@ public class CampaignManager {
 	   * Replace current data with new data, and redraw everything.
 	   */
 	  
-	  public void load() {
+	  public Level load() {
 		  
 		Level loadedLevel = new Level(3);
 	    // Create a file dialog to query the user for a filename.
@@ -84,19 +85,22 @@ public class CampaignManager {
 	      try {
 	        // Create necessary input streams
 	        FileInputStream fis = new FileInputStream(filename); // Read from file
-	        GZIPInputStream gzis = new GZIPInputStream(fis);     // Uncompress
-	        ObjectInputStream in = new ObjectInputStream(gzis);  // Read objects
+	        ObjectInputStream in = new ObjectInputStream(fis);  // Read objects
 	        // Read in an object.  It should be a vector of scribbles
-	        loadedLevel = (Level)in.readObject();
+	        XStream xstream = new XStream();
+	        String xml = (String)in.readObject(); 
+	        
+	        loadedLevel = (Level)xstream.fromXML(xml);
 	        in.close();                    // Close the stream.
-	        this.levelLoaded = loadedLevel;
-	    
+	        System.out.println("loaded from file: " + filename);
+	        
+	        
 	      }
 	      // Print out exceptions.  We should really display them in a dialog...
 	      catch (Exception e) { System.out.println(e); }
 	    }
 	    
-	    
+	    return loadedLevel;
 	  }
 }
 

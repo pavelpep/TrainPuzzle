@@ -90,7 +90,6 @@ public class GameController{
 	}
 
 	public void saveCurrentLevel(){
-		System.out.println(level.getLevelNumber());
 		campaignManager.saveLevel();
 	}
 	

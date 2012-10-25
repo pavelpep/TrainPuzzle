@@ -14,7 +14,7 @@ public class Board implements Observable, java.io.Serializable {
 	public final int NUMBER_OF_ROWS = 15;
 	public final int NUMBER_OF_COLUMNS = 20;
 	private Tile[][] tiles;
-	//private List<Observer> observerList = new LinkedList<Observer>();;
+	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
@@ -23,6 +23,9 @@ public class Board implements Observable, java.io.Serializable {
 	}
 	
 	public void register(Observer observer){
+	   if(observerList == null){
+		   observerList = new HashSet<Observer>();
+	   }
 		observerList.add(observer);
 	}
 	
