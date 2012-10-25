@@ -28,7 +28,7 @@ public class CampaignManager {
 			this.levelLoaded = levelGenerator.createLevelTwo();
 		}else{
 			//if some weird level number is given, then load level from file 
-			 this.levelLoaded = load();
+			 loadLevel();
 		}
 		return this.levelLoaded;
 	}
@@ -74,7 +74,7 @@ public class CampaignManager {
 	   * Replace current data with new data, and redraw everything.
 	   */
 	  
-	  public Level load() {
+	  public void loadLevel() {
 		  
 		Level loadedLevel = new Level(3);
 	    // Create a file dialog to query the user for a filename.
@@ -92,6 +92,7 @@ public class CampaignManager {
 	        
 	        loadedLevel = (Level)xstream.fromXML(xml);
 	        in.close();                    // Close the stream.
+	        this.levelLoaded = loadedLevel;
 	        System.out.println("loaded from file: " + filename);
 	        
 	        
@@ -100,7 +101,6 @@ public class CampaignManager {
 	      catch (Exception e) { System.out.println(e); }
 	    }
 	    
-	    return loadedLevel;
 	  }
 }
 

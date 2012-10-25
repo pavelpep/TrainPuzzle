@@ -235,7 +235,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			}
 		}
 		
-		
+		level.getBoard().register(this);
 		
 		redrawTiles();
 		
