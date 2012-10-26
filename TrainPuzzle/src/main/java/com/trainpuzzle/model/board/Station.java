@@ -28,13 +28,18 @@ public class Station implements java.io.Serializable {
 	
 	/* Public Interface */
 	
-	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {	
+	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
+		assert(isOddNumber(entranceFacing.getValue()));	// entrance value should be an odd number (North, East, South, or West)
+		
 		this.stationType = station;
 		this.stationLocation = stationLocation;
 		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
 		this.stationBuilding=createObstacle(stationType);
-		
+	}
+	
+	private boolean isOddNumber(int value) {
+		return (value % 2 == 1);
 	}
 	
 	/*Getters and Setters */
@@ -51,8 +56,6 @@ public class Station implements java.io.Serializable {
 		Connection connection;
 		switch(entranceFacing) {
 			case EAST:
-				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-				break;
 			case WEST:
 				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 				break;
@@ -70,12 +73,10 @@ public class Station implements java.io.Serializable {
 	private Obstacle createObstacle(StationType stationType){
 		Obstacle tempObstacle;
 		switch(stationType) {
-			case RED:
-				tempObstacle = new Obstacle(RED_STATION);
-				break;
 			case GREEN:
 				tempObstacle = new Obstacle(GREEN_STATION);
 				break;
+			case RED:
 			default:
 				tempObstacle = new Obstacle(RED_STATION);
 				break;
