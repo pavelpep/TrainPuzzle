@@ -35,6 +35,7 @@ public class TrackPlacer {
 		else {
 			tile.setTrack(track);
 			map.notifyAllObservers();
+			return;
 		}
 		logger.warn("CannotPlaceTrackException was thrown");
 		throw new CannotPlaceTrackException(errorMessage);
@@ -48,6 +49,7 @@ public class TrackPlacer {
 			if (tile.getTrack().isRemovable()) {
 				tile.removeTrack();
 				map.notifyAllObservers();
+				return;
 			} 
 			else {
 				errorMessage += "there was an unremovable track";
