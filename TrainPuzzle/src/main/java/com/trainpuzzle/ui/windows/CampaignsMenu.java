@@ -18,11 +18,13 @@ class CampaignsMenu extends Window implements ActionListener, ListSelectionListe
 	// Window elements	
 	private JList profileList = null;
 	private DefaultListModel listModel = null;
+	private String profileName = null;
 	
 	private JLabel title = null;
 	private JButton newProfile = null;
 	private JButton loadProfile = null;
 	private JButton backButton = null;
+	private JButton deleteProfile = null;
 		
 	// Constructor
 	public CampaignsMenu() {
@@ -34,8 +36,6 @@ class CampaignsMenu extends Window implements ActionListener, ListSelectionListe
 		setLocationRelativeTo(null);
 		
 		listModel = new DefaultListModel();
-		listModel.addElement("Player1");
-		listModel.addElement("Player2");
 	}
 	
 public CampaignsMenu(CampaignManager campaignManager) {
@@ -48,8 +48,6 @@ public CampaignsMenu(CampaignManager campaignManager) {
 		setLocationRelativeTo(null);
 		
 		listModel = new DefaultListModel();
-		listModel.addElement("Player1");
-		listModel.addElement("Player2");
 	}
 
 	public void create() {
@@ -91,16 +89,32 @@ public CampaignsMenu(CampaignManager campaignManager) {
 		c.gridheight = 1;
 		this.add(newProfile, c);
 		
-		backButton = new JButton("Back");
+		deleteProfile = new JButton("Delete Campaign");
 		c.gridx = 1;
 		c.gridy = 4;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		this.add(deleteProfile, c);
+		
+		backButton = new JButton("Back");
+		c.gridx = 1;
+		c.gridy = 5;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.fill = GridBagConstraints.NONE;
 		c.insets = new Insets(30, 0, 0, 0);
 		this.add(backButton, c);		
 		
-				// ActionListeners for window elements
+		// ActionListeners for window elements
+		loadProfile.setActionCommand("loadProfile");
+		loadProfile.addActionListener(this);
+		
+		deleteProfile.setActionCommand("deleteProfile");
+		deleteProfile.addActionListener(this);
+		
+		newProfile.setActionCommand("newProfile");
+		newProfile.addActionListener(this);
+		
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 		
@@ -109,6 +123,26 @@ public CampaignsMenu(CampaignManager campaignManager) {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand() == "newProfile") {
+			profileName = JOptionPane.showInputDialog("Please enter your name:");
+			if (profileName == null || profileName.isEmpty() || !profileName.matches(".*\\w.*")) {
+			JOptionPane.showMessageDialog(null, "You must enter a name");
+			} 
+			else {
+			listModel.addElement(profileName);
+			}
+		}
+	
+		if (e.getActionCommand() == "loadProfile") {
+			profileName = (String) profileList.getSelectedValue();	
+		}
+		
+		if (e.getActionCommand() == "deleteProfile") {
+			profileName = (String) profileList.getSelectedValue();
+			listModel.removeElement(profileName);
+			
+		}
+		
 		if (e.getActionCommand() == "back") {
 			WindowManager.getManager().setActiveWindow(new MainMenu()); 
 			WindowManager.getManager().updateWindows();
