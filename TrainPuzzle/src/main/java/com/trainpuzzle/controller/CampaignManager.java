@@ -32,6 +32,8 @@ public class CampaignManager {
 			this.levelLoaded = levelGenerator.createLevelOne();
 		}else if(levelNumber == 2){
 			this.levelLoaded = levelGenerator.createLevelTwo();
+		}else if(levelNumber == 3){
+			this.levelLoaded = levelGenerator.createLevelThree();
 		}else{
 			 //just in case
 			 this.levelLoaded = levelGenerator.createLevelOne();

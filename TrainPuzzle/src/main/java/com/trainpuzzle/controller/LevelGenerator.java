@@ -163,4 +163,21 @@ class LevelGenerator {
 
 	    	return new Level(2, this.board, startLocation, this.root, this.economy);
 		}
+	    
+	    public Level createLevelThree() {
+	    	this.board = new Board(10, 10);
+	        this.economy = new Economy();
+	        this.root = new AndVictoryCondition();
+	        
+	        Location startLocation = new Location(0,0);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+			
+	        ArrayList<Station> stations = new ArrayList<Station>();
+	        stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
+	        stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));
+
+	        setStations(stations);
+	        
+	    	return new Level(3, this.board, startLocation, this.root, this.economy);
+		}
 }

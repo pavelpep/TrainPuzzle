@@ -58,24 +58,27 @@ public class LevelSelect extends Window implements ActionListener {
 		levelTwoButton.setActionCommand("LEVEL_TWO");
 		levelTwoButton.addActionListener(this);
 		
+		// Level 3 Button
+		JButton levelThreeButton = new JButton();
+		addComponent(this, levelThreeButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		levelThreeButton.setText("Level 3");
+		levelThreeButton.setActionCommand("LEVEL_THREE");
+		levelThreeButton.addActionListener(this);
+		
 		// Load Button
 		JButton loadButton = new JButton();
-		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		loadButton.setText("Load Level");
 		loadButton.setActionCommand("LOAD");
 		loadButton.addActionListener(this);
 		
 		// Back button
 		JButton backButton = new JButton();
-		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
 		backButton.setText("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
 
-
-		
-
-		
 		this.setVisible(true);
 	}
 
@@ -100,7 +103,14 @@ public class LevelSelect extends Window implements ActionListener {
 			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
 			WindowManager.getManager().updateWindows();	
 		}
-		
+		 else if (action == "LEVEL_THREE") {
+			levelSelected = 3;
+					
+			gameController.startGame(levelSelected);
+			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
+			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
+			WindowManager.getManager().updateWindows();	
+		}		
 		 else if (action == "LOAD") {
 			File levelFile = openFile();
 			if(levelFile != null){	

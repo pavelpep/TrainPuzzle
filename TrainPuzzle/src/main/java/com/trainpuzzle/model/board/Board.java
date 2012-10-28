@@ -11,13 +11,20 @@ public class Board implements Observable, java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public final int NUMBER_OF_ROWS = 15;
-	public final int NUMBER_OF_COLUMNS = 20;
+	public int NUMBER_OF_ROWS = 15;
+	public int NUMBER_OF_COLUMNS = 20;
 	private Tile[][] tiles;
 	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
+		tiles = new Tile[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+		initializeTiles();
+	}
+	
+	public Board(int numRows, int numColumns) {
+		NUMBER_OF_ROWS = numRows;
+		NUMBER_OF_COLUMNS = numColumns;
 		tiles = new Tile[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
 		initializeTiles();
 	}
