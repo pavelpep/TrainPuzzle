@@ -1,168 +1,52 @@
 package com.trainpuzzle.controller;
 
+import java.util.ArrayList;
+
 import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
+import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
+
 
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
 class LevelGenerator {
+	private Board board;
+	private AndVictoryCondition root;
+	private Economy economy;
     
-    public Level createLevelOne() {
-    	Level level;
-    	Board board = new Board();
-        Economy economy = new Economy();
-
-        Location startLocation = new Location(4,0);
-		Track startingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
+	private void setStartLocation(Location location, CompassHeading compassHeading1, CompassHeading compassHeading2) {
+		Track startingTrack = new Track(new Connection(compassHeading1, compassHeading2));
 		startingTrack.setUnremoveable();
-		board.getTile(startLocation).setTrack(startingTrack);
-		
-        //Location endLocation = new Location(4,19);
-        //Track endingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
-        //endingTrack.setUnremoveable();
-		//board.getTile(endLocation).setTrack(endingTrack);
-        
-        AndVictoryCondition root =new AndVictoryCondition();
-		addStations(board,root);
-		addSomeWaterTiles(board);
-		addSomeTrackTiles(board);
-		addSomeObstacles(board);
-		
-    	level = new Level(1, board, startLocation, root, economy);
-    	//setVictoryConditions(level, endLocation);
-    	return level;
+		this.board.getTile(location).setTrack(startingTrack);
 	}
-    
-    public Level createLevelTwo() {
-    	Level level;
-    	Board board = new Board();
-        Economy economy = new Economy();
-
-        Location startLocation = new Location(4,4);
-        Track startingTrack = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
-		startingTrack.setUnremoveable();
-		board.getTile(startLocation).setTrack(startingTrack);
-		
-		AndVictoryCondition root =new AndVictoryCondition(); 
-		addStations(board,root);
-		addTrackLoop(board);     				
-    	level = new Level(2, board, startLocation,root, economy);
-    	//setVictoryConditions(level, 0);
-    	return level;
+    	
+	private void setStations(ArrayList<Station> stations) {
+		for (Station station : stations) {
+			board.getTile(station.getStationLocation()).setStationBuilding(station);
+			board.getTile(station.getTrackLocation()).setStationTrack(station);
+			
+			// adds station victory condition 
+			Event event = new Event(100,station); 
+			LeafVictoryCondition leaf = new LeafVictoryCondition(event);
+			root.addChild(leaf);
+		}
+	}
+ 	
+	private void setLandscapes(ArrayList<Location> locations, LandscapeType landscapeType) {
+		for (Location currentLocation : locations) {
+			this.board.getTile(currentLocation).setLandscapeType(landscapeType);
+		}
 	}
 	
-	private void addStations(Board board,AndVictoryCondition root){
-		Location location= new Location(5,7);
-		addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
-	
-		location= new Location(10,12);
-		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
-		
-		location= new Location(2,14);
-		addStationOnTile(root, board, StationType.GREEN, location, CompassHeading.SOUTH);
-		
-		location= new Location(8,16);
-		addStationOnTile(root, board, StationType.RED, location, CompassHeading.SOUTH);
-	}
-	
-	private void addStationOnTile(AndVictoryCondition root, Board board, StationType stationType, Location location, CompassHeading entranceFacing ) {
-		Station station = new Station(stationType, location, entranceFacing);
-		board.getTile(location).setStationBuilding(station);
-		board.getTile(station.getTrackLocation()).setStationTrack(station);
-		
-		Event event = new Event(100,station);
-		LeafVictoryCondition leaf = new LeafVictoryCondition(event);
-		root.addChild(leaf);
-		//board.getTile(4, 3).setStationBuilding(new Station(StationType.RED_FRONT, new Location(4,3), CompassHeading.SOUTH));
-	}
-	
-	private void addSomeWaterTiles(Board board) {
-		board.getTile(11, 0).setLandscapeType(LandscapeType.WATER);
-		board.getTile(11, 1).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(11, 2).setLandscapeType(LandscapeType.WATER);
-		board.getTile(12, 0).setLandscapeType(LandscapeType.WATER);
-		board.getTile(12, 1).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(12, 2).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(12, 3).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(13, 0).setLandscapeType(LandscapeType.WATER);
-		board.getTile(13, 1).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(13, 2).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(13, 3).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(13, 4).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(14, 0).setLandscapeType(LandscapeType.WATER);
-		board.getTile(14, 1).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(14, 2).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(14, 3).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(14, 4).setLandscapeType(LandscapeType.WATER);	
-		board.getTile(14, 5).setLandscapeType(LandscapeType.WATER);	
-	}
-	
-	private void addSomeObstacles(Board board) {
-		board.getTile(10, 0).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(10, 1).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));	
-		board.getTile(10, 2).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));	
-		board.getTile(11, 3).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(12, 4).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(13, 5).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(14, 6).setObstacle(new Obstacle(Obstacle.ObstacleType.TREES));
-		board.getTile(4, 10).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
-		board.getTile(2, 3).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
-		board.getTile(9, 18).setObstacle(new Obstacle(Obstacle.ObstacleType.ROCK));
-	}
-	
-	private void addTrackLoop(Board board) {
-		board.getTile(4,4).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,5).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(4,6).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(4,7).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(4,8).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(4,9).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(4,10).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
-		board.getTile(5,11).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH)));
-		board.getTile(6,11).setTrack(new Track(new Connection(CompassHeading.SOUTH, CompassHeading.NORTH)));
-		board.getTile(7,11).setTrack(new Track(new Connection(CompassHeading.SOUTH, CompassHeading.NORTH)));
-		board.getTile(8,11).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.NORTH)));
-		board.getTile(9,10).setTrack(new Track(new Connection(CompassHeading.NORTHEAST, CompassHeading.WEST)));
-		board.getTile(9,9).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,8).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,7).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,6).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,5).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,4).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(9,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST)));
-		board.getTile(8,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTHEAST)));
-		board.getTile(7,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTH)));
-		board.getTile(6,2).setTrack(new Track(new Connection(CompassHeading.NORTH, CompassHeading.SOUTH)));
-		board.getTile(5,2).setTrack(new Track(new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH)));
-		board.getTile(4,3).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST)));
-	}
-	
-	private void addSomeTrackTiles(Board board) {
-		board.getTile(4,1).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,2).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.SOUTHEAST)));
-		board.getTile(5,3).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
-		board.getTile(6,4).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST)));
-		board.getTile(7,5).setTrack(new Track(new Connection(CompassHeading.NORTHWEST, CompassHeading.EAST)));
-		board.getTile(7,6).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(7,7).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(7,8).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(7,9).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.EAST)));
-		board.getTile(7,10).setTrack(new Track(new Connection(CompassHeading.WEST, CompassHeading.NORTHEAST)));
-		board.getTile(6,11).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.NORTHEAST)));
-		board.getTile(5,12).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.NORTHEAST)));
-		board.getTile(4,13).setTrack(new Track(new Connection(CompassHeading.SOUTHWEST, CompassHeading.EAST)));
-		board.getTile(4,14).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,15).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,16).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,17).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
-		board.getTile(4,18).setTrack(new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST)));
+	private void setObstacles(ArrayList<Location> locations, ObstacleType obstacleType) {
+		for (Location currentLocation : locations) {
+			this.board.getTile(currentLocation).setObstacle(new Obstacle(obstacleType));
+		}
 	}
 
 	/*
@@ -178,4 +62,107 @@ class LevelGenerator {
 	level.setVictoryConditions(victoryConditions);
 	}
 	*/
+	
+	   public Level createLevelOne() {
+	    	this.board = new Board();
+	        this.economy = new Economy();
+	        this.root = new AndVictoryCondition();
+
+	        Location startLocation = new Location(4,0);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+			
+	        ArrayList<Station> stations = new ArrayList<Station>();
+	        stations.add(new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST));
+	        stations.add(new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH));
+	        setStations(stations);
+	        
+	        ArrayList<Location> waterLocations = new ArrayList<Location>();
+	        waterLocations.add(new Location(14,0));
+	        waterLocations.add(new Location(14,1));
+	        waterLocations.add(new Location(14,2));
+	        waterLocations.add(new Location(14,3));
+	        waterLocations.add(new Location(14,4));
+	        waterLocations.add(new Location(14,5));
+	        waterLocations.add(new Location(13,0));
+	        waterLocations.add(new Location(13,1));
+	        waterLocations.add(new Location(13,2));
+	        waterLocations.add(new Location(13,3));
+	        waterLocations.add(new Location(13,4));
+	        waterLocations.add(new Location(12,0));
+	        waterLocations.add(new Location(12,1));
+	        waterLocations.add(new Location(12,2));
+	        waterLocations.add(new Location(12,3));
+	        waterLocations.add(new Location(11,0));
+	        waterLocations.add(new Location(11,1));
+	        waterLocations.add(new Location(11,2));
+	        setLandscapes(waterLocations, LandscapeType.WATER);
+	        
+	        ArrayList<Location> treeLocations = new ArrayList<Location>();
+	        treeLocations.add(new Location(10, 0));
+	        treeLocations.add(new Location(10, 1));
+	        treeLocations.add(new Location(10, 2));
+	        treeLocations.add(new Location(10, 3));
+	        treeLocations.add(new Location(11, 3));
+	        treeLocations.add(new Location(11, 4));
+	        treeLocations.add(new Location(12, 4));
+	        treeLocations.add(new Location(12, 5));
+	        treeLocations.add(new Location(13, 5));
+	        treeLocations.add(new Location(13, 6));
+	        treeLocations.add(new Location(14, 6));
+	        setObstacles(treeLocations, ObstacleType.TREES);
+
+	    	return new Level(1, this.board, startLocation, this.root, this.economy);
+		}
+		
+	    public Level createLevelTwo() {
+	    	this.board = new Board();
+	        this.economy = new Economy();
+	        this.root = new AndVictoryCondition();
+
+	        Location startLocation = new Location(4,4);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+			
+	        ArrayList<Station> stations = new ArrayList<Station>();
+	        stations.add(new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST));
+	        stations.add(new Station(StationType.RED, new Location(2, 8), CompassHeading.SOUTH));
+	        stations.add(new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST));
+	        setStations(stations);
+	        
+	        ArrayList<Location> waterLocations = new ArrayList<Location>();
+	        waterLocations.add(new Location(0,5));
+	        waterLocations.add(new Location(0,6));
+	        waterLocations.add(new Location(0,7));
+	        waterLocations.add(new Location(0,8));
+	        waterLocations.add(new Location(0,9));
+	        waterLocations.add(new Location(0,10));
+	        waterLocations.add(new Location(1,5));
+	        waterLocations.add(new Location(1,6));
+	        waterLocations.add(new Location(1,7));
+	        waterLocations.add(new Location(1,8));
+	        waterLocations.add(new Location(1,9));
+	        waterLocations.add(new Location(9,12));
+	        waterLocations.add(new Location(9,13));
+	        waterLocations.add(new Location(9,14));
+	        waterLocations.add(new Location(10,12));
+	        waterLocations.add(new Location(10,13));
+	        waterLocations.add(new Location(10,14));
+	        waterLocations.add(new Location(10,15));
+	        setLandscapes(waterLocations, LandscapeType.WATER);
+	        
+	        ArrayList<Location> treeLocations = new ArrayList<Location>();
+	        treeLocations.add(new Location(5, 13));
+	        treeLocations.add(new Location(2, 1));
+	        treeLocations.add(new Location(6, 9));
+	        treeLocations.add(new Location(8, 3));
+	        treeLocations.add(new Location(3, 13));
+	        treeLocations.add(new Location(6, 10));
+	        treeLocations.add(new Location(2, 6));
+	        treeLocations.add(new Location(1, 13));
+	        treeLocations.add(new Location(13, 10));
+	        treeLocations.add(new Location(6, 13));
+	        treeLocations.add(new Location(4, 10));
+	        setObstacles(treeLocations, ObstacleType.TREES);
+
+	    	return new Level(2, this.board, startLocation, this.root, this.economy);
+		}
 }
