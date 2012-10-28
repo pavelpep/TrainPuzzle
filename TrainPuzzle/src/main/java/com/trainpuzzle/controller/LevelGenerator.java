@@ -43,6 +43,18 @@ class LevelGenerator {
 		}
 	}
 	
+	private void setLandscapeByRow(int row, int columnStart, int columnEnd, LandscapeType landscapeType) {
+		for (int i = columnStart; i <= columnEnd; i++){
+			this.board.getTile(row, i).setLandscapeType(landscapeType);
+		}
+	}
+	
+	private void setLandscapeByColumn(int rowStart, int rowEnd, int column, LandscapeType landscapeType) {
+		for (int i = rowStart; i <= rowEnd; i++){
+			this.board.getTile(i, column).setLandscapeType(landscapeType);
+		}
+	}
+	
 	private void setObstacles(ArrayList<Location> locations, ObstacleType obstacleType) {
 		for (Location currentLocation : locations) {
 			this.board.getTile(currentLocation).setObstacle(new Obstacle(obstacleType));
@@ -76,26 +88,12 @@ class LevelGenerator {
 	        stations.add(new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH));
 	        setStations(stations);
 	        
-	        ArrayList<Location> waterLocations = new ArrayList<Location>();
-	        waterLocations.add(new Location(14,0));
-	        waterLocations.add(new Location(14,1));
-	        waterLocations.add(new Location(14,2));
-	        waterLocations.add(new Location(14,3));
-	        waterLocations.add(new Location(14,4));
-	        waterLocations.add(new Location(14,5));
-	        waterLocations.add(new Location(13,0));
-	        waterLocations.add(new Location(13,1));
-	        waterLocations.add(new Location(13,2));
-	        waterLocations.add(new Location(13,3));
-	        waterLocations.add(new Location(13,4));
-	        waterLocations.add(new Location(12,0));
-	        waterLocations.add(new Location(12,1));
-	        waterLocations.add(new Location(12,2));
-	        waterLocations.add(new Location(12,3));
-	        waterLocations.add(new Location(11,0));
-	        waterLocations.add(new Location(11,1));
-	        waterLocations.add(new Location(11,2));
-	        setLandscapes(waterLocations, LandscapeType.WATER);
+	        setLandscapeByRow(14, 0, 5, LandscapeType.WATER);
+	        setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
+	        setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
+	        setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
+	        setLandscapeByColumn(4, 7, 18, LandscapeType.WATER);
+	        setLandscapeByColumn(3, 8, 19, LandscapeType.WATER);
 	        
 	        ArrayList<Location> treeLocations = new ArrayList<Location>();
 	        treeLocations.add(new Location(10, 0));
