@@ -1,13 +1,19 @@
 package com.trainpuzzle.controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-import com.trainpuzzle.model.board.*;
-import com.trainpuzzle.model.level.*;
+import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Location;
+import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Tile;
+import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.model.board.Train;
+import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
+
 import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 
@@ -16,22 +22,12 @@ public class Simulator {
 	private Board board;
 	private Train train;
 	private VictoryConditionEvaluator victoryConditionEvaluator;
-	private VictoryConditionOld victoryConditionOld;
 	
-	
-	private boolean isRunning = false;
 	private boolean trainCrashed = false;
-	private ActionListener actionListener = new ActionListener() {
-         public void actionPerformed(ActionEvent actionEvent) {
-        	move();
- 			//uiLoadedLevel.redrawTrain(simulator.getTrain());
-        	if(isVictoryConditionsSatisfied() || trainCrashed) {
-        		((Timer)actionEvent.getSource()).stop();
-        	}
-         }
-    };
+    private boolean isRunning = false;
     
-    private Timer timer = new Timer(200, actionListener);
+    private Timer timer = new Timer();
+    private int tickInterval = 200;
     
 	public Simulator(Level level) {
 		this.level = level;
@@ -47,7 +43,6 @@ public class Simulator {
 		this.train.setHeading(EAST);
 		//this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
-		isRunning = false;
 		trainCrashed = false;
 	}
 	
@@ -149,18 +144,40 @@ public class Simulator {
 	public Train getTrain() {
 		return this.train;
 	}
-
+	
+    
 	public void reset() {
-		timer.stop();
+		timer.cancel();
+		isRunning = false;
 		initializeSimulator();
 		this.victoryConditionEvaluator.resetEvents();
 	}
 	
 	public void run() {
-		timer.start();	
+		timer.cancel();
+		timer = new Timer();
+		
+		TimerTask timerTask = new TimerTask() {
+	 		
+			public void run() {
+	        	move();
+	 			
+	        	if(isVictoryConditionsSatisfied() || trainCrashed) {
+	        		this.cancel();
+	        		isRunning = false;
+	        	}
+			}
+	    };
+	    
+		timer.schedule(timerTask, 0, tickInterval);
+		isRunning = true;
 	}
 	
 	public void setTickInterval(int tickIntervalInMillis) {
-	    timer.setDelay(tickIntervalInMillis);
-    }
+	    this.tickInterval = tickIntervalInMillis;
+	    if(isRunning){
+	    	run();
+	    }
+	}
+    
 }
