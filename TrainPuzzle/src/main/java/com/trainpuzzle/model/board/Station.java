@@ -53,16 +53,19 @@ public class Station implements java.io.Serializable {
 	}
 	
 	private Track createTrack() {
-		Connection connection;
+		Connection connection = null;
 		switch(entranceFacing) {
-			case EAST:
+			case EAST:	// FALLTHROUGH
 			case WEST:
 				connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 				break;
-			case NORTH:
+			case NORTH:	// FALLTHROUGH
 			case SOUTH:
-			default:	// on default, set as NORTH or SOUTH
-				connection = new Connection(CompassHeading.WEST, CompassHeading.EAST);
+				connection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
+				break;
+			default:
+				assert(1==0): "Error while handling unacceptable values for entranceFacing";
+				
 		}
 		Track track = new Track(connection);
 		track.setUnremoveable();
@@ -71,15 +74,16 @@ public class Station implements java.io.Serializable {
 	}
 	
 	private Obstacle createObstacle(StationType stationType){
-		Obstacle tempObstacle;
+		Obstacle tempObstacle = null;
 		switch(stationType) {
 			case GREEN:
 				tempObstacle = new Obstacle(GREEN_STATION);
 				break;
 			case RED:
-			default:
 				tempObstacle = new Obstacle(RED_STATION);
 				break;
+			default:
+				assert(1==0): "Error while handling unacceptable values for stationType";
 		}
 		return tempObstacle;
 	}
@@ -90,7 +94,7 @@ public class Station implements java.io.Serializable {
 	}
 	
 	public Location getTrackLocation() {
-		Location trackLocation;
+		Location trackLocation = null;
 		int stationRow = stationLocation.getRow();
 		int stationColumn = stationLocation.getColumn();
 		
@@ -105,8 +109,10 @@ public class Station implements java.io.Serializable {
 				trackLocation = new Location(stationRow, stationColumn -1);
 				break;
 			case NORTH:
-			default:	// on default, set as NORTH
-				trackLocation = new Location(stationRow - 1, stationColumn);	
+				trackLocation = new Location(stationRow - 1, stationColumn);
+				break;
+			default:
+				assert(1==0): "Error while handling unacceptable values for entranceFacing";
 		}
 		return trackLocation;
 	}
