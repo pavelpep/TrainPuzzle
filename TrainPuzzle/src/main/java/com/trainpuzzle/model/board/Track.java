@@ -82,8 +82,8 @@ public class Track implements java.io.Serializable{
 		return !removable;
 	}
 	
-	public void setBeStationTrack(){
-		isStationTrack=true;
+	public void setToBeStationTrack(){
+		isStationTrack = true;
 	}
 	
 	public boolean isStationTrack(){

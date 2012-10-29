@@ -69,7 +69,7 @@ public class Station implements java.io.Serializable {
 		}
 		Track track = new Track(connection);
 		track.setUnremoveable();
-		track.setBeStationTrack();
+		track.setToBeStationTrack();
 		return track;
 	}
 	
