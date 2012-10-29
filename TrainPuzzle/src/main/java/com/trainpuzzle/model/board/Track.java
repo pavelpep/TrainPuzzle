@@ -12,7 +12,7 @@ public class Track implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Set<Connection> connections;
+	protected Set<Connection> connections;
 	private boolean isStationTrack = false;
 	private boolean removable = true;
 	
@@ -85,6 +85,7 @@ public class Track implements java.io.Serializable{
 	public void setToBeStationTrack(){
 		isStationTrack = true;
 	}
+	
 	
 	public boolean isStationTrack(){
 		return isStationTrack;
