@@ -27,7 +27,10 @@ public class Simulator {
     private boolean isRunning = false;
     
     private Timer timer = new Timer();
-    private int tickInterval = 200;
+    private final int defaultTickInterval = 200;
+    private final int tickIntervalLowerBound = 50;
+    private final int tickIntervalUpperBound = 1000;
+    private int tickInterval = defaultTickInterval;
     
 	public Simulator(Level level) {
 		this.level = level;
@@ -52,7 +55,7 @@ public class Simulator {
 	 * @return whether the train goes to next tile successfully or not
 	 */
 	
-	private void move() {
+	public void move() {
     	try {
 			proceedNextTile();
 		} catch (TrainCrashException e) {
@@ -153,6 +156,11 @@ public class Simulator {
 		this.victoryConditionEvaluator.resetEvents();
 	}
 	
+	public void stop() {
+		timer.cancel();
+		isRunning = false;
+	}
+	
 	public void run() {
 		timer.cancel();
 		timer = new Timer();
@@ -178,6 +186,22 @@ public class Simulator {
 	    if(isRunning){
 	    	run();
 	    }
+	}
+	
+	public int getTickInterval() {
+		return tickInterval;
+	}
+	
+	public int getDefaultTickInterval() {
+		return defaultTickInterval;
+	}
+	
+	public int getTickIntervalLowerBound() {
+		return tickIntervalLowerBound;
+	}
+	
+	public int getTickIntervalUpperBound() {
+		return tickIntervalUpperBound;
 	}
     
 }

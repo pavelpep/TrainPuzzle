@@ -60,6 +60,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	Location previousTrainLocation = new Location(0,0);
 	
+	private JButton runButton = new JButton("Simulate");
+	private JButton pauseButton = new JButton("Pause");
+	
 	//Track Panel
 	private JPanel trackPanel = new JPanel();
 	
@@ -327,43 +330,51 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		gameControlBox.setBorder(sidePanelTitle);
 		
 		//initialize run button
-		JButton runButton = new JButton();
 		runButton = new JButton("Simulate");
 		gameControlBox.add(runButton);		
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
+		//initialize pause button
+		pauseButton = new JButton("Pause");
+		gameControlBox.add(pauseButton);		
+		pauseButton.setActionCommand("pause");
+		pauseButton.addActionListener(this);
+		pauseButton.setVisible(false);
+		
 		//initialize reset button
-		JButton resetButton = new JButton();
-		resetButton = new JButton("Reset");
+		JButton resetButton = new JButton("Reset Position");
 		gameControlBox.add(resetButton);		
 		resetButton.setActionCommand("reset");
 		resetButton.addActionListener(this);
 		
-		//initialize 1x button
-		JButton speed1XButton = new JButton();
-		speed1XButton = new JButton("1x");
-		gameControlBox.add(speed1XButton);		
-		speed1XButton.setActionCommand("tick200");
-		speed1XButton.addActionListener(this);
+		//initialize reset button
+		JButton removeAllTracksButton = new JButton("Remove All Tracks");
+		gameControlBox.add(removeAllTracksButton);		
+		resetButton.setActionCommand("removeAllTracks");
+		resetButton.addActionListener(this);
 		
-		//initialize 2x button
-		JButton speed2XButton = new JButton();
-		speed2XButton = new JButton("2x");
-		gameControlBox.add(speed2XButton);		
-		speed2XButton.setActionCommand("tick100");
-		speed2XButton.addActionListener(this);
+		//initialize speed decrease button
+		JButton speedDecreaseButton = new JButton("«");
+		gameControlBox.add(speedDecreaseButton);		
+		speedDecreaseButton.setActionCommand("tickDecrease");
+		speedDecreaseButton.addActionListener(this);
 		
-		//initialize 5x button
-		JButton speed4XButton = new JButton();
-		speed4XButton = new JButton("4x");
-		gameControlBox.add(speed4XButton);		
-		speed4XButton.setActionCommand("tick50");
-		speed4XButton.addActionListener(this);
+		//initialize single step button
+		JButton singleStepButton = new JButton(">");
+		gameControlBox.add(singleStepButton);		
+		singleStepButton.setActionCommand("tickOnce");
+		singleStepButton.addActionListener(this);
+				
+		
+		//initialize speed decrease button
+		JButton speedIncreaseButton = new JButton("»");
+		gameControlBox.add(speedIncreaseButton);		
+		speedIncreaseButton.setActionCommand("tickIncrease");
+		speedIncreaseButton.addActionListener(this);
 		
 		//initialize Save button
-		JButton saveButton = new JButton();
-		saveButton = new JButton("Save Level");
+		JButton saveButton = new JButton("Save Level");
 		gameControlBox.add(saveButton);		
 		saveButton.setActionCommand("save");
 		saveButton.addActionListener(this);
@@ -492,23 +503,39 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
+			runButton.setVisible(false);
+			pauseButton.setVisible(true);
+			
+		}
+		if (event.getActionCommand() == "pause") {
+			gameController.getSimulator().stop();
+			runButton.setVisible(true);
+			pauseButton.setVisible(false);
 		}	
 		if (event.getActionCommand() == "reset") {
 			gameController.getSimulator().reset();
 			
 		}	
-		if (event.getActionCommand() == "tick200") {
-			gameController.getSimulator().setTickInterval(200);
+		if (event.getActionCommand() == "tickDecrease") {
+			int decreasedValue = gameController.getSimulator().getTickInterval() * 2;
+			int upperBound = gameController.getSimulator().getTickIntervalUpperBound();
+			if(decreasedValue <= upperBound){
+				gameController.getSimulator().setTickInterval(decreasedValue);
+			}
 		}
 		
-		if (event.getActionCommand() == "tick100") {
-			gameController.getSimulator().setTickInterval(100);
-		}
-
-		if (event.getActionCommand() == "tick50") {
-			gameController.getSimulator().setTickInterval(50);
+		if (event.getActionCommand() == "tickOnce") {
+			gameController.getSimulator().move();
 		}
 		
+		if (event.getActionCommand() == "tickIncrease") {
+			int increasedValue = gameController.getSimulator().getTickInterval() / 2;
+			int lowerBound = gameController.getSimulator().getTickIntervalLowerBound();
+			if(increasedValue >= lowerBound){
+				gameController.getSimulator().setTickInterval(increasedValue);
+			}
+			
+		}
 		
 		if (event.getActionCommand() == "save") {
 			File saveLevelFile = saveFileDialog();
