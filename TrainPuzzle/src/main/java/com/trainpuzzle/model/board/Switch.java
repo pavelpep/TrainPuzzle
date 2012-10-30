@@ -7,16 +7,27 @@ public class Switch extends Track{
 	
 	Switch(Connection connection1, Connection connection2) {
 		super(connection1, connection2);
+		isSwitch = true;
 		goToFirstConnection();
 	}
 	
 	private void goToFirstConnection() {
-		connectionsIterator = super.connections.iterator();
-		if (connectionsIterator.hasNext()) {
+		connectionsIterator = connections.iterator();
+		if(connectionsIterator.hasNext()) {
 			current = connectionsIterator.next();
 		} else {
-			// TODO: throw an assertion or exception while there should be 2 connections in the set
+			// TODO: throw an assertion or exception while there should be 2 connections (more than one connection) in the connection set
 		}
+	}
+	
+	private boolean isValidSwitch() {
+		//CompassHeading[] compassHeadingPair
+		
+		for(Connection connection : connections) {
+			
+		}
+		
+		return true;
 	}
 	
 	public Connection getCurrentConnection() {
@@ -24,7 +35,7 @@ public class Switch extends Track{
 	}
 	
 	public void switchConnection() {
-		if (connectionsIterator.hasNext()) {
+		if(connectionsIterator.hasNext()) {
 			current = connectionsIterator.next();
 		} else {
 			goToFirstConnection();

@@ -5,8 +5,10 @@ import java.util.TimerTask;
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
@@ -82,8 +84,21 @@ public class Simulator {
 		}
 		
 		Track track = tile.getTrack();
-		CompassHeading nextHeading = track.getOutboundHeading(heading);
-		if (tile.hasStationTrack()) {
+		CompassHeading nextHeading;
+		if(track.isSwitch()) {
+			Connection current = ((Switch) track).getCurrentConnection();
+			if(current.isInboundHeading(heading)) {
+				nextHeading = current.outboundorInbound(heading);
+			} else {
+				// look for the other connection(s) and get next heading
+				nextHeading = track.getOutboundHeading(heading);
+			}
+			((Switch) track).switchConnection();
+		} else {
+			nextHeading = track.getOutboundHeading(heading);
+		}
+		
+		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
 		}

@@ -12,9 +12,12 @@ public class Track implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	protected Set<Connection> connections;
 	private boolean isStationTrack = false;
 	private boolean removable = true;
+	
+	protected boolean isSwitch = false;
+	protected Set<Connection> connections;
+	
 	
 	/* Public Interface */
 	
@@ -89,6 +92,10 @@ public class Track implements java.io.Serializable{
 	
 	public boolean isStationTrack(){
 		return isStationTrack;
+	}
+	
+	public boolean isSwitch(){
+		return isSwitch;
 	}
 
 
