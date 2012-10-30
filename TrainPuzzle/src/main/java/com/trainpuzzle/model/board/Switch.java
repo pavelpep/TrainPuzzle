@@ -1,6 +1,8 @@
 package com.trainpuzzle.model.board;
 import java.util.Iterator;
 
+import com.trainpuzzle.exception.TrainCrashException;
+
 public class Switch extends Track{
 	private Iterator<Connection> connectionsIterator;
 	private Connection current;
@@ -32,6 +34,12 @@ public class Switch extends Track{
 	
 	public Connection getCurrentConnection() {
 		return current;
+	}
+	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
+		if(current.isInboundHeading(inboundHeading)) {
+			return current.outboundorInbound(inboundHeading);
+		}
+		throw new TrainCrashException();
 	}
 	
 	public void switchConnection() {
