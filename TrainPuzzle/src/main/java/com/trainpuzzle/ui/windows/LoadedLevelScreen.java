@@ -14,20 +14,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
 
-import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.TrainCrashException;
-import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
-import com.trainpuzzle.model.board.Location;
-import com.trainpuzzle.model.board.Obstacle;
-import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
-import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.controller.TrackPlacer;
@@ -293,17 +286,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		selectedTrackPanel.repaint();
 		this.setVisible(true);
 	}
-	
-
- 
-  
 
 	//TODO: this method seems pretty useless remove?
 	public void create() {
 		this.setVisible(true);
 	}
-	
-
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {

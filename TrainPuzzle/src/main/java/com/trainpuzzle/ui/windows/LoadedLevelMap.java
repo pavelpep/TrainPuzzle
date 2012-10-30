@@ -2,10 +2,7 @@ package com.trainpuzzle.ui.windows;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
-import javax.swing.border.TitledBorder;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
