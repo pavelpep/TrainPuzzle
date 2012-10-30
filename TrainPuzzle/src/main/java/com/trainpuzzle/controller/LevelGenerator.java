@@ -196,6 +196,24 @@ class LevelGenerator {
 	        ArrayList<Station> stations = new ArrayList<Station>();
 	        stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
 	        stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));
+	        
+	        setObstaclesByRow(2, 4, 6, ObstacleType.TREES);
+
+	        setObstaclesByRow(3, 4, 9, ObstacleType.TREES);
+	        setObstaclesByColumn(4, 5, 2, ObstacleType.TREES);
+	        setObstaclesByColumn(4, 5, 3, ObstacleType.TREES);
+	        
+	        ArrayList<Location> rockLocations = new ArrayList<Location>();
+	        rockLocations.add(new Location(4, 5));
+	        rockLocations.add(new Location(3, 2));
+	        setObstacles(rockLocations, ObstacleType.ROCK);
+	        
+	        setLandscapeByColumn(1, 4, 0, LandscapeType.WATER);
+	        setLandscapeByColumn(1, 2, 1, LandscapeType.WATER);
+	        setLandscapeByColumn(7, 7, 3, LandscapeType.WATER);
+	        setLandscapeByColumn(7, 8, 4, LandscapeType.WATER);
+	        setLandscapeByColumn(4, 8, 8, LandscapeType.WATER);
+	        setLandscapeByColumn(4, 8, 9, LandscapeType.WATER);
 
 	        setStations(stations);
 	        
