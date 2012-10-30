@@ -70,8 +70,18 @@ public class Simulator {
 	public void proceedNextTile() throws TrainCrashException {
 		Location location = train.getLocation();
 		CompassHeading heading = train.getHeading();
-		
-		location = getNextTile(location,heading);
+		location = getNextLocation(location,heading);
+		Tile tile = getTileWithTrack(location);
+		Track track = tile.getTrack();
+		heading = track.getOutboundHeading(heading);
+		this.train.setHeading(heading);
+		if(tile.hasStationTrack()) {
+			Station station = tile.getStation();
+			passStation(station);
+		}
+	}
+
+	private Tile getTileWithTrack(Location location) throws TrainCrashException {
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
 		}
@@ -82,36 +92,14 @@ public class Simulator {
 			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		}
-		
-		Track track = tile.getTrack();
-		CompassHeading nextHeading;
-		if(track.isSwitch()) {
-			Connection current = ((Switch) track).getCurrentConnection();
-			if(current.isInboundHeading(heading)) {
-				nextHeading = current.outboundorInbound(heading);
-			} else {
-				// look for the other connection(s) and get next heading
-				nextHeading = track.getOutboundHeading(heading);
-			}
-			((Switch) track).switchConnection();
-		} else {
-			nextHeading = track.getOutboundHeading(heading);
-		}
-		
-		if(tile.hasStationTrack()) {
-			Station station = tile.getStation();
-			passStation(station);
-		}
-		this.train.setHeading(nextHeading);
-		//victoryConditionOld.removePassedLocation(train);
+		return tile;
 	}
 	
 	public boolean isVictoryConditionsSatisfied() {
 		return this.victoryConditionEvaluator.isSatisfied();
-		//return this.victoryConditionOld.isVictoryConditionSatisfied(train);
 	}
 	
-	private Location getNextTile(Location location, CompassHeading heading) {
+	private Location getNextLocation(Location location, CompassHeading heading) {
 		switch(heading) {
 			case NORTHWEST:
 				location.setRow(location.getRow() - 1);

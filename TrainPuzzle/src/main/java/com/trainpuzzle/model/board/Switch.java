@@ -37,7 +37,9 @@ public class Switch extends Track{
 	}
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
 		if(current.isInboundHeading(inboundHeading)) {
-			return current.outboundorInbound(inboundHeading);
+			CompassHeading outboundHeading = current.outboundorInbound(inboundHeading);
+			switchConnection();
+			return outboundHeading;
 		}
 		throw new TrainCrashException();
 	}
