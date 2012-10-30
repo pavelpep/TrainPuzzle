@@ -40,41 +40,41 @@ public class LevelSelect extends Window implements ActionListener {
 		
 		// Level select title
 		JLabel titleLabel = new JLabel();
-		addComponent(this, titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		addComponent(this, titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
 		titleLabel.setText("Level Select");
 		this.add(titleLabel, gbConstraints);
 		
 		// Level 1 Button
 	    JButton levelOneButton = new JButton();
-		addComponent(this, levelOneButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, levelOneButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		levelOneButton.setText("Level 1");
 		levelOneButton.setActionCommand("LEVEL_ONE");
 		levelOneButton.addActionListener(this);
 		
 		// Level 2 Button
 		JButton levelTwoButton = new JButton();
-		addComponent(this, levelTwoButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, levelTwoButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		levelTwoButton.setText("Level 2");
 		levelTwoButton.setActionCommand("LEVEL_TWO");
 		levelTwoButton.addActionListener(this);
 		
 		// Level 3 Button
 		JButton levelThreeButton = new JButton();
-		addComponent(this, levelThreeButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, levelThreeButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		levelThreeButton.setText("Level 3");
 		levelThreeButton.setActionCommand("LEVEL_THREE");
 		levelThreeButton.addActionListener(this);
 		
 		// Load Button
 		JButton loadButton = new JButton();
-		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 4, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
 		loadButton.setText("Load Level");
 		loadButton.setActionCommand("LOAD");
 		loadButton.addActionListener(this);
 		
 		// Back button
 		JButton backButton = new JButton();
-		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
 		backButton.setText("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);

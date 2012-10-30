@@ -21,8 +21,11 @@ abstract class Window extends JFrame {
 	
 	// Initializes a specific jComponent
 	protected void addComponent(Container container, JComponent jComponent, int fontLayout, int fontSize,
-			Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, int anchor, int fill, Insets inset, boolean isEnabled) {
-		jComponent.setFont(new Font("Arial", fontLayout, fontSize));
+		Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, float weightX, float weightY, int anchor, int fill, Insets inset, boolean isEnabled) {
+		
+		gbConstraints = new GridBagConstraints();
+		Font defaultFont = new Font("Arial", fontLayout, fontSize);
+		jComponent.setFont(defaultFont);
 		jComponent.setBackground(bgColor);
 		this.gbConstraints.gridx = gridX;
 		this.gbConstraints.gridy = gridY;
@@ -31,6 +34,8 @@ abstract class Window extends JFrame {
 		this.gbConstraints.anchor = anchor;
 		this.gbConstraints.fill = fill;
 		this.gbConstraints.insets = inset;
+		this.gbConstraints.weightx = weightX;
+		this.gbConstraints.weighty = weightY;
 		jComponent.setEnabled(isEnabled);
 		//jComponent.setBorder(BorderFactory.createMatteBorder(1, 5, 1, 1, Color.red));
 		container.add(jComponent, gbConstraints);

@@ -46,9 +46,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Window elements
 	
+	private JPanel headerPanel = new JPanel();
+	
 	//Map Panel	
 	TitledBorder mapTitle;
-	JPanel mapPanel = new JPanel();
 	JPanel map = new JPanel();
 	private JLayeredPane[][] mapTiles;
 	TileMouseAdapter mouseAdapter;
@@ -60,7 +61,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	Location previousTrainLocation = new Location(0,0);
 	
-	private JButton runButton = new JButton("Simulate");
+	private JButton runButton = new JButton("Run");
 	private JButton pauseButton = new JButton("Pause");
 	
 	//Track Panel
@@ -96,29 +97,45 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		// Game title
 		
-		JLabel titleLabel = new JLabel();
-		addComponent(this, titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		titleLabel.setText("Level " + level.getLevelNumber());
-
+		initializeHeaderPanel();
 		initializeMapPanel();
 		initializeSidePanel();
 		
 		
-		
-		
-		
-		
+	}
+
+	private void initializeHeaderPanel() {
+		headerPanel = new JPanel();
+		addComponent(this, headerPanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		initializeBackButton();
+		initializeTitle();
+	}
+
+	private void initializeTitle() {
+		JLabel titleLabel = new JLabel();
+		titleLabel.setText("Level " + level.getLevelNumber());
+		Font titleFont = new Font("Arial", Font.BOLD, 28);
+		titleLabel.setFont(titleFont);
+		headerPanel.add(titleLabel);
+	}
+	
+	private void initializeBackButton() {
+		JButton backToLevelSelect = new JButton("Back to Level Select");
+		headerPanel.add(backToLevelSelect);		
+		backToLevelSelect.setActionCommand("backToLevelSelect");
+		backToLevelSelect.addActionListener(this);
 	}
 
 	private void initializeMapPanel() {
+		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
-		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		
+		addComponent(this, sidePanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		initializeMap(level.getBoard().NUMBER_OF_ROWS, level.getBoard().NUMBER_OF_COLUMNS);
 	}
 	
 	private void initializeMap(int numberOfRows, int numberOfColumns) {
-		addComponent(this, this.map, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+		addComponent(this, this.map, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
 		//mapPanel.setPreferredSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
 		map.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		map.setSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
@@ -304,87 +321,90 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private void initializeSidePanel() {
 		sidePanel.setPreferredSize(new Dimension(200, 600));
-		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
-		initializeBackButton();
+		
+		initializeSaveButton();
+		
 		initializeGameControlBox();
 		initializeTrackPanel();
 		initializeSelectedTrackPanel();
 	}
 
-	private void initializeBackButton() {
-		JButton backToLevelSelect = new JButton();
-		backToLevelSelect = new JButton("Back to Level Select");
-		sidePanel.add(backToLevelSelect);		
-		backToLevelSelect.setActionCommand("backToLevelSelect");
-		backToLevelSelect.addActionListener(this);
+	private void initializeSaveButton() {
+		//initialize Save button
+		JButton saveButton = new JButton("Save Level");
+		sidePanel.add(saveButton);
+		saveButton.setActionCommand("save");
+		saveButton.addActionListener(this);
 	}
 
 	private void initializeGameControlBox() {
-		addComponent(sidePanel, this.gameControlBox, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.gameControlBox, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		gameControlBox.setPreferredSize(new Dimension(200, 150));
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder sidePanelTitle;
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
-		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		gameControlBox.setBorder(sidePanelTitle);
+		TitledBorder gameControlBoxTitle;
+		gameControlBoxTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
+		gameControlBoxTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		gameControlBox.setBorder(gameControlBoxTitle);
+		gameControlBox.setLayout(new GridBagLayout());
+		
+		
+		int defaultFontSize = UIManager.getDefaults().getFont("TextPane.font").getSize();
 		
 		//initialize run button
-		runButton = new JButton("Simulate");
-		gameControlBox.add(runButton);		
+		runButton = new JButton("Run");
+		//gameControlBox.add(runButton);
+		addComponent(gameControlBox, runButton, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), 0, 0, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);		
+		runButton.setPreferredSize(new Dimension(200, 150));
 		runButton.setActionCommand("run");
 		runButton.addActionListener(this);
 		
 		//initialize pause button
 		pauseButton = new JButton("Pause");
-		gameControlBox.add(pauseButton);		
+		addComponent(gameControlBox, pauseButton, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), 0, 0, 3, 1, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(this);
-		pauseButton.setVisible(false);
-		
-		//initialize reset button
-		JButton resetButton = new JButton("Reset Position");
-		gameControlBox.add(resetButton);		
-		resetButton.setActionCommand("reset");
-		resetButton.addActionListener(this);
-		
-		//initialize reset button
-		JButton removeAllTracksButton = new JButton("Remove All Tracks");
-		gameControlBox.add(removeAllTracksButton);		
-		resetButton.setActionCommand("removeAllTracks");
-		resetButton.addActionListener(this);
+		pauseButton.setVisible(false);	
 		
 		//initialize speed decrease button
-		JButton speedDecreaseButton = new JButton("«");
-		gameControlBox.add(speedDecreaseButton);		
+		JButton speedDecreaseButton = new JButton("-");
+		addComponent(gameControlBox, speedDecreaseButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		speedDecreaseButton.setActionCommand("tickDecrease");
 		speedDecreaseButton.addActionListener(this);
 		
 		//initialize single step button
 		JButton singleStepButton = new JButton(">");
-		gameControlBox.add(singleStepButton);		
+		addComponent(gameControlBox, singleStepButton, Font.PLAIN, defaultFontSize, this.getBackground(), 1, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		singleStepButton.setActionCommand("tickOnce");
 		singleStepButton.addActionListener(this);
-				
+		
+		
 		
 		//initialize speed decrease button
-		JButton speedIncreaseButton = new JButton("»");
-		gameControlBox.add(speedIncreaseButton);		
+		JButton speedIncreaseButton = new JButton("+");
+		addComponent(gameControlBox, speedIncreaseButton, Font.PLAIN, defaultFontSize, this.getBackground(), 2, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		speedIncreaseButton.setActionCommand("tickIncrease");
 		speedIncreaseButton.addActionListener(this);
 		
-		//initialize Save button
-		JButton saveButton = new JButton("Save Level");
-		gameControlBox.add(saveButton);		
-		saveButton.setActionCommand("save");
-		saveButton.addActionListener(this);
+		//initialize reset button
+		JButton resetButton = new JButton("Reset Position");
+		addComponent(gameControlBox, resetButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 2, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		resetButton.setActionCommand("reset");
+		resetButton.addActionListener(this);
+		
+		//initialize removeAllTracksButton button
+		JButton removeAllTracksButton = new JButton("Remove All Tracks");
+		addComponent(gameControlBox, removeAllTracksButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 3, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		removeAllTracksButton.setActionCommand("removeAllTracks");
+		removeAllTracksButton.addActionListener(this);
 		
 		//messageBox =  new JLabel("<html>First line and maybe second line</html>");
 		messageBox.setHorizontalAlignment(JLabel.CENTER);
 		Font font = messageBox.getFont();
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
-		gameControlBox.add(messageBox);
+		//gameControlBox.add(messageBox);
 			  
 	}	
 	
@@ -396,7 +416,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void initializeTrackPanel() {
 		// Track Panel 
 		
-		addComponent(sidePanel, this.trackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.trackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), true);
 		trackPanel.setPreferredSize(new Dimension(200, 300));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
@@ -458,7 +478,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	//Selected Track Panel 
 	private void initializeSelectedTrackPanel() {
 		//Initialize Selected Track Panel 
-		addComponent(sidePanel, this.selectedTrackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(sidePanel, this.selectedTrackPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		//selectedTrackPanel.setPreferredSize(new Dimension(150, 150));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
