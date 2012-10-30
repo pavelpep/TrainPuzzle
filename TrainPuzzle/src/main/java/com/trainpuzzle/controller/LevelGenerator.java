@@ -55,6 +55,24 @@ class LevelGenerator {
 		}
 	}
 	
+	/*private void setOstaclesByRow(int row, int columnStart, int columnEnd, ObstacleType obstacleType) {
+		for (int i = columnStart; i <= columnEnd; i++){
+			this.board.getTile(row, i).setObstacle(obstacleType);
+		}
+	}
+	*/
+	private void setObstaclesByRow(int row, int columnStart, int columnEnd, ObstacleType obstacleType) {
+		for (int i = columnStart; i <= columnEnd; i++){
+			this.board.getTile(row, i).setObstacle(new Obstacle(obstacleType));
+		}
+	}
+	
+	private void setObstaclesByColumn(int rowStart, int rowEnd, int column, ObstacleType obstacleType) {
+		for (int i = rowStart; i <= rowEnd; i++){
+			this.board.getTile(i, column).setObstacle(new Obstacle(obstacleType));
+		}
+	}
+	
 	private void setObstacles(ArrayList<Location> locations, ObstacleType obstacleType) {
 		for (Location currentLocation : locations) {
 			this.board.getTile(currentLocation).setObstacle(new Obstacle(obstacleType));
@@ -88,6 +106,8 @@ class LevelGenerator {
 	        stations.add(new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH));
 	        setStations(stations);
 	        
+	        setLandscapeByRow(4, 9, 10, LandscapeType.WATER);
+	        setLandscapeByRow(5, 10, 11, LandscapeType.WATER);
 	        setLandscapeByRow(14, 0, 5, LandscapeType.WATER);
 	        setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
 	        setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
@@ -95,20 +115,21 @@ class LevelGenerator {
 	        setLandscapeByColumn(4, 7, 18, LandscapeType.WATER);
 	        setLandscapeByColumn(3, 8, 19, LandscapeType.WATER);
 	        
-	        ArrayList<Location> treeLocations = new ArrayList<Location>();
-	        treeLocations.add(new Location(10, 0));
-	        treeLocations.add(new Location(10, 1));
-	        treeLocations.add(new Location(10, 2));
-	        treeLocations.add(new Location(10, 3));
-	        treeLocations.add(new Location(11, 3));
-	        treeLocations.add(new Location(11, 4));
-	        treeLocations.add(new Location(12, 4));
-	        treeLocations.add(new Location(12, 5));
-	        treeLocations.add(new Location(13, 5));
-	        treeLocations.add(new Location(13, 6));
-	        treeLocations.add(new Location(14, 6));
-	        setObstacles(treeLocations, ObstacleType.TREES);
-
+	        setObstaclesByRow(0, 0, 5, ObstacleType.TREES);
+	        
+	        ArrayList<Location> rockLocations = new ArrayList<Location>();
+	        rockLocations.add(new Location(6, 3));
+	        rockLocations.add(new Location(3, 15));
+	        rockLocations.add(new Location(8, 17));
+	        setObstacles(rockLocations, ObstacleType.ROCK);
+	        
+	        setObstaclesByRow(5, 9, 9, ObstacleType.TREES);
+	        setObstaclesByRow(10, 0, 3, ObstacleType.TREES);
+	        setObstaclesByRow(11, 3, 4, ObstacleType.TREES);
+	        setObstaclesByRow(12, 4, 5, ObstacleType.TREES);
+	        setObstaclesByRow(13, 5, 6, ObstacleType.TREES);
+	        setObstaclesByRow(14, 6, 6, ObstacleType.TREES);
+	        
 	    	return new Level(1, this.board, startLocation, this.root, this.economy);
 		}
 		
