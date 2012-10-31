@@ -1,15 +1,14 @@
 package com.trainpuzzle.model.board;
 import java.util.Iterator;
-
 import com.trainpuzzle.exception.TrainCrashException;
 
-public class Switch extends Track{
+public class Switch extends Track {
+	
 	private Iterator<Connection> connectionsIterator;
 	private Connection current;
 	
-	Switch(Connection connection1, Connection connection2) {
-		super(connection1, connection2);
-		isSwitch = true;
+	Switch(Connection connection1, Connection connection2, TrackType trackType) {
+		super(connection1, connection2, trackType);
 		goToFirstConnection();
 	}
 	

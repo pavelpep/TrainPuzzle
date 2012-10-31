@@ -21,6 +21,7 @@ import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.controller.TrackPlacer;
@@ -191,7 +192,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
 		addComponent(this, mapPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		loadedLevelMap = new LoadedLevelMap(gameController, mouseAdapter, level.getBoard().NUMBER_OF_ROWS, level.getBoard().NUMBER_OF_COLUMNS);
+		loadedLevelMap = new LoadedLevelMap(gameController, mouseAdapter, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap.getMap());
 	}
 	
@@ -343,7 +344,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "straightTrack") {
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
-			selectedTrack = new Track(connection);
+			selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
@@ -354,7 +355,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "diagonalTrack") {
 			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
-			selectedTrack = new Track(connection);
+			selectedTrack = new Track(connection, TrackType.DIAGONAL_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
@@ -363,9 +364,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
-			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
-			selectedTrack = new Track(connection);
+			selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
@@ -374,10 +374,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
-			
-			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
-			selectedTrack = new Track(connection);
+			selectedTrack = new Track(connection, TrackType.CURVERIGHT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
@@ -386,10 +384,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "intersectionTrack") {
-			//Create and set new track on mouseAdapter
-			selectedTrack = new Track();
-			selectedTrack.addConnection(CompassHeading.NORTH,CompassHeading.SOUTH);
-			selectedTrack.addConnection(CompassHeading.WEST,CompassHeading.EAST);
+			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+			Connection connection2 = new Connection(CompassHeading.WEST, CompassHeading.EAST);
+			selectedTrack = new Track(connection1, connection2, TrackType.INTERSECTION_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
 			
 			selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
@@ -398,12 +395,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 		
 		if (event.getActionCommand() == "diagonalIntersectionTrack") {
-			//Create and set new track on mouseAdapter
-			selectedTrack = new Track();
-			selectedTrack.addConnection(CompassHeading.NORTHEAST,CompassHeading.SOUTHWEST);
-			selectedTrack.addConnection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
+			Connection connection1 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+			selectedTrack = new Track(connection1, connection2, TrackType.DIAGONAL_INTERSECTION_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
+	
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
 			
 			redrawSelectedTrackPanel();

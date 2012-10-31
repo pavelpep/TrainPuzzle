@@ -8,6 +8,7 @@ import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.model.board.TrackType;
 
 import java.awt.*;
 import javax.swing.*;
@@ -24,7 +25,7 @@ class TileMouseAdapter extends MouseAdapter {
 		TileMouseAdapter(TrackPlacer trackPlacer) {
 			super();
 			this.trackPlacer = trackPlacer;
-			track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST));
+			track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
 		}
 		
 		public void  mousePressed(MouseEvent e) {

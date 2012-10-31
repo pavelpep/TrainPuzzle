@@ -67,7 +67,7 @@ public class Station implements java.io.Serializable {
 				assert(1==0): "Error while handling unacceptable values for entranceFacing";
 				
 		}
-		Track track = new Track(connection);
+		Track track = new Track(connection, TrackType.STRAIGHT_TRACK);
 		track.setUnremoveable();
 		track.setToBeStationTrack();
 		return track;

@@ -1,8 +1,11 @@
 package com.trainpuzzle.model.board;
 
+import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.trainpuzzle.exception.CannotPlaceTrackException;
+import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.TrainCrashException;
 
 import static com.trainpuzzle.model.board.CompassHeading.*;
@@ -15,18 +18,12 @@ public class Track implements java.io.Serializable{
 	private boolean isStationTrack = false;
 	private boolean removable = true;
 	
-	protected boolean isSwitch = false;
-	protected Set<Connection> connections;
-	
+	protected Set<Connection> connections = new HashSet<Connection>();
+	protected TrackType trackType = TrackType.STRAIGHT_TRACK;
 	
 	/* Public Interface */
 	
-	public Track() {
-		connections = new HashSet<Connection>();
-	}
-	
 	public Track(Track trackToCopy) {
-		connections = new HashSet<Connection>();
 		removeConnections();
 		for(Connection connection : trackToCopy.getConnections()) {
 			addConnection(connection.getCompassHeadingPair()[0], connection.getCompassHeadingPair()[1]);
@@ -34,17 +31,18 @@ public class Track implements java.io.Serializable{
 		if(trackToCopy.isUnremovable()){
 			setUnremoveable();
 		}
+		trackType = trackToCopy.getTrackType();
 	}
 	
-	public Track(Connection connection) {
-		connections = new HashSet<Connection>();
+	public Track(Connection connection, TrackType trackType) {
 		connections.add(connection);
+		this.trackType = trackType;
 	}
 	
-	public Track(Connection connection1, Connection connection2) {
-		connections = new HashSet<Connection>();
+	public Track(Connection connection1, Connection connection2, TrackType trackType) {
 		connections.add(connection1);
 		connections.add(connection2);
+		this.trackType = trackType;
 	}
 	
 	public void rotateTrack() {		
@@ -55,56 +53,45 @@ public class Track implements java.io.Serializable{
 	
 	/* Getters and Setters */
 	
-	public void addConnection(Connection connection) {
-		connections.add(connection);
-		
+	private void addConnection(Connection connection) {
+		connections.add(connection);	
 	}
 	
-	public void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
+	private void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
 		connections.add(new Connection(firstCompassHeading, secondCompassHeading));
 	}
-	
 	
 	public Set<Connection> getConnections() {
 		return connections;
 	}
 	
-	private void removeConnections(){
+	private void removeConnections() {
 		connections.removeAll(connections);
 	}
 	
-	public void setUnremoveable(){
+	public void setUnremoveable() {
 		removable = false;
 	}
 	
-	public boolean isRemovable(){
+	public boolean isRemovable() {
 		return removable;
 	}
 	
-	public boolean isUnremovable(){
+	public boolean isUnremovable() {
 		return !removable;
 	}
 	
-	public void setToBeStationTrack(){
+	public void setToBeStationTrack() {
 		isStationTrack = true;
 	}
 	
-	
-	public boolean isStationTrack(){
+	public boolean isStationTrack() {
 		return isStationTrack;
 	}
 	
-	public boolean isSwitch(){
-		return isSwitch;
+	public boolean isSwitch() {
+		return (this instanceof Switch);
 	}
-
-
-	/**
-	 * Get the outboundHeading
-	 * 
-	 * @param inboundHeading is direction in which the train is heading now
-	 * @return outboundHeading  
-	 */
 
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
 		for(Connection connection : connections) {
@@ -113,5 +100,13 @@ public class Track implements java.io.Serializable{
 			}
 		}
 		throw new TrainCrashException();
+	}
+	
+	public TrackType getTrackType() {
+		return trackType;
+	}
+
+	public void setTrackType(TrackType trackType) {
+		this.trackType = trackType;
 	}
 }

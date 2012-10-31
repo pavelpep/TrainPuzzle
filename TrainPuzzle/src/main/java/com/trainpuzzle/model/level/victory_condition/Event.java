@@ -56,6 +56,7 @@ public class Event implements java.io.Serializable {
 		Event other = (Event) obj;
 		return compareEvent(other);
 	}
+	
 	private void createSationName(){
 		int row = station.getStationLocation().getRow();
 		int column = station.getStationLocation().getColumn();

@@ -3,6 +3,12 @@ package com.trainpuzzle.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import com.trainpuzzle.model.board.*;
+import com.trainpuzzle.model.level.*;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
@@ -63,7 +69,7 @@ public class Simulator {
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
-			//JOptionPane.showMessageDialog(null, "The train has crashed!");
+			JOptionPane.showMessageDialog(null, "The train has crashed!");
 		}
 	}
 	
@@ -134,7 +140,7 @@ public class Simulator {
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		return (location.getRow() >= board.NUMBER_OF_ROWS || location.getColumn() >= board.NUMBER_OF_COLUMNS);
+		return (location.getRow() >= board.rows || location.getColumn() >= board.columns);
 	}	
 	
 	private void passStation(Station station) {

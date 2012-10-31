@@ -11,21 +11,21 @@ public class Board implements Observable, java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public int NUMBER_OF_ROWS = 15;
-	public int NUMBER_OF_COLUMNS = 20;
+	public int rows = 15;
+	public int columns = 20;
 	private Tile[][] tiles;
 	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
-		tiles = new Tile[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+		tiles = new Tile[rows][columns];
 		initializeTiles();
 	}
 	
 	public Board(int numRows, int numColumns) {
-		NUMBER_OF_ROWS = numRows;
-		NUMBER_OF_COLUMNS = numColumns;
-		tiles = new Tile[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+		rows = numRows;
+		columns = numColumns;
+		tiles = new Tile[rows][columns];
 		initializeTiles();
 	}
 	
@@ -44,8 +44,8 @@ public class Board implements Observable, java.io.Serializable {
 		
 	private void initializeTiles() {
 			
-		for(int row = 0; row < NUMBER_OF_ROWS; row++) {
-			for(int column = 0; column < NUMBER_OF_COLUMNS; column++) {
+		for(int row = 0; row < rows; row++) {
+			for(int column = 0; column < columns; column++) {
 				tiles[row][column] = new Tile();
 			}	
 		}

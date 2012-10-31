@@ -186,9 +186,9 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 		}
 	}
 
-	public void  redrawTiles(){
-		  for(int row = 0; row < level.getBoard().NUMBER_OF_ROWS; row++){
-				for(int column = 0; column < level.getBoard().NUMBER_OF_COLUMNS; column++){
+	public void redrawTiles(){
+		  for(int row = 0; row < level.getBoard().rows; row++){
+				for(int column = 0; column < level.getBoard().columns; column++){
 					redrawTile(row, column);
 				}
 			}
@@ -238,8 +238,8 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 			redrawTrain(train);
 		}
 		else if(object instanceof Tile){
-			for(int row = 0; row < level.getBoard().NUMBER_OF_ROWS; row++){
-				for(int column = 0; column < level.getBoard().NUMBER_OF_COLUMNS; column++){
+			for(int row = 0; row < level.getBoard().rows; row++){
+				for(int column = 0; column < level.getBoard().columns; column++){
 					if(object.equals(level.getBoard().getTile(row, column)))
 						redrawTile(row, column);
 				}

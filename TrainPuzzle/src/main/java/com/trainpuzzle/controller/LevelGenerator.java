@@ -19,8 +19,8 @@ class LevelGenerator {
 	private AndVictoryCondition root;
 	private Economy economy;
     
-	private void setStartLocation(Location location, CompassHeading compassHeading1, CompassHeading compassHeading2) {
-		Track startingTrack = new Track(new Connection(compassHeading1, compassHeading2));
+	private void setStartLocation(Location location, CompassHeading compassHeading1, CompassHeading compassHeading2, TrackType trackType) {
+		Track startingTrack = new Track(new Connection(compassHeading1, compassHeading2), trackType);
 		startingTrack.setUnremoveable();
 		this.board.getTile(location).setTrack(startingTrack);
 	}
@@ -99,7 +99,7 @@ class LevelGenerator {
 	        this.root = new AndVictoryCondition();
 
 	        Location startLocation = new Location(4,0);
-	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 			
 	        ArrayList<Station> stations = new ArrayList<Station>();
 	        stations.add(new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST));
@@ -139,7 +139,7 @@ class LevelGenerator {
 	        this.root = new AndVictoryCondition();
 
 	        Location startLocation = new Location(4,4);
-	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 			
 	        ArrayList<Station> stations = new ArrayList<Station>();
 	        stations.add(new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST));
@@ -191,7 +191,7 @@ class LevelGenerator {
 	        this.root = new AndVictoryCondition();
 	        
 	        Location startLocation = new Location(0,0);
-	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 			
 	        ArrayList<Station> stations = new ArrayList<Station>();
 	        stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
