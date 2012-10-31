@@ -9,6 +9,7 @@ public class Switch extends Track {
 	
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
+		assert(!isValidSwitch(connection1, connection2)): "Invalid switch";
 		goToFirstConnection();
 	}
 	
@@ -21,14 +22,23 @@ public class Switch extends Track {
 		}
 	}
 	
-	private boolean isValidSwitch() {
-		//CompassHeading[] compassHeadingPair
+	private boolean isValidSwitch(Connection connection1, Connection connection2) {
+		CompassHeading[] compassHeadingPair1 = connection1.getCompassHeadingPair();
+		CompassHeading[] compassHeadingPair2 = connection2.getCompassHeadingPair();
 		
-		for(Connection connection : connections) {
-			
+		return hasOneSimilarHeading(compassHeadingPair1, compassHeadingPair2);
+	}
+	
+	private boolean hasOneSimilarHeading(CompassHeading[] pair1, CompassHeading[] pair2) {
+		int similarHeadingCounts = 0;
+		for(CompassHeading pair1_heading: pair1) {
+			for(CompassHeading pair2_heading: pair2) {
+				if(pair1_heading == pair2_heading) {
+					similarHeadingCounts++;
+				}
+			}
 		}
-		
-		return true;
+		return (similarHeadingCounts == 1);
 	}
 	
 	public Connection getCurrentConnection() {
