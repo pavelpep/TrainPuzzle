@@ -1,0 +1,11 @@
+package com.trainpuzzle.model.board;
+
+public enum TrackType {
+	STRAIGHT_TRACK,
+	CURVELEFT_TRACK,
+	CURVERIGHT_TRACK,
+	DIAGONAL_TRACK,
+	INTERSECTION_TRACK,
+	DIAGONAL_INTERSECTION_TRACK;
+	
+}
