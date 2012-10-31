@@ -81,6 +81,7 @@ public class Simulator {
 		Track track = tile.getTrack();
 		heading = track.getOutboundHeading(heading);
 		this.train.setHeading(heading);
+		train.setLocation(location);
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
@@ -106,37 +107,38 @@ public class Simulator {
 	}
 	
 	private Location getNextLocation(Location location, CompassHeading heading) {
+		Location nextLocation = new Location(location);
 		switch(heading) {
 			case NORTHWEST:
-				location.setRow(location.getRow() - 1);
-				location.setColumn(location.getColumn() - 1);
+				nextLocation.setRow(location.getRow() - 1);
+				nextLocation.setColumn(location.getColumn() - 1);
 				break;
 			case NORTH:
-				location.setRow(location.getRow() - 1);
+				nextLocation.setRow(location.getRow() - 1);
 				break;
 			case NORTHEAST:
-				location.setRow(location.getRow() - 1);
-				location.setColumn(location.getColumn() + 1);
+				nextLocation.setRow(location.getRow() - 1);
+				nextLocation.setColumn(location.getColumn() + 1);
 				break;
 			case EAST:
-				location.setColumn(location.getColumn() + 1);
+				nextLocation.setColumn(location.getColumn() + 1);
 				break;
 			case SOUTHEAST:
-				location.setRow(location.getRow() + 1);
-				location.setColumn(location.getColumn() + 1);
+				nextLocation.setRow(location.getRow() + 1);
+				nextLocation.setColumn(location.getColumn() + 1);
 				break;
 			case SOUTH:
-				location.setRow(location.getRow() + 1);
+				nextLocation.setRow(location.getRow() + 1);
 				break;
 			case SOUTHWEST: 
-				location.setRow(location.getRow() + 1);
-				location.setColumn(location.getColumn() - 1);
+				nextLocation.setRow(location.getRow() + 1);
+				nextLocation.setColumn(location.getColumn() - 1);
 				break;
 			case WEST:
-				location.setColumn(location.getColumn() - 1);
+				nextLocation.setColumn(location.getColumn() - 1);
 				break;
 		}
-		return location;
+		return nextLocation;
 	}
 	
 	private boolean isOffTheMap(Location location) {
