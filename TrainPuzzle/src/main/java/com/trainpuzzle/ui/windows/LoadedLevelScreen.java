@@ -226,23 +226,25 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Click to rotate");
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		selectedTrackPanel.setBorder(sidePanelTitle);
-		
+	
+		selectedTrackPanel.add(rotateButton());
+
+		return selectedTrackPanel;
+	}
+
+	private JButton rotateButton() {
 		rotateButton = new JButton();
 		rotateButton.setBounds(0, 0, 40, 40);
 		rotateButton.setPreferredSize(new Dimension(100, 100));
 		rotateButton.setMargin(new Insets(0, 15, 0, 0));
 		rotateButton.setActionCommand("rotateTrack");
 		rotateButton.addActionListener(this);
-		selectedTrackPanel.add(rotateButton);
-	
-		return selectedTrackPanel;
+		return rotateButton;
 	}
 	
-	private void redrawSelectedTrackPanel(Track selectedTrack, RotatedImageIcon selectedTrackImage) {
-		this.selectedTrack = selectedTrack;
-		this.selectedTrackImage = selectedTrackImage;
+	private void redrawRotateButton() {
 		rotateButton.removeAll();
-		JLabel selectedTrackContainer = new JLabel(this.selectedTrackImage);
+		JLabel selectedTrackContainer = new JLabel(selectedTrackImage);
 		rotateButton.add(selectedTrackContainer);
 		rotateButton.repaint();
 		this.setVisible(true);
@@ -292,7 +294,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			if(increasedValue >= lowerBound){
 				gameController.getSimulator().setTickInterval(increasedValue);
 			}
-			
 		}
 		
 		if (event.getActionCommand() == "removeAllTracks") {
@@ -305,43 +306,37 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				gameController.saveCurrentLevel(saveLevelFile);
 			}
 		}
+		
 		if (event.getActionCommand() == "straightTrack") {
-			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
 			selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
 			selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "diagonalTrack") {
-			//Create and set new connection on mouseAdapter
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
 			selectedTrack = new Track(connection, TrackType.DIAGONAL_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
 			selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			redrawSelectedTrackPanel(selectedTrack,new RotatedImageIcon(Images.CURVELEFT_TRACK));
+			selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
 			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
 			selectedTrack = new Track(connection, TrackType.CURVERIGHT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
 			selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "intersectionTrack") {
@@ -349,10 +344,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			Connection connection2 = new Connection(CompassHeading.WEST, CompassHeading.EAST);
 			selectedTrack = new Track(connection1, connection2, TrackType.INTERSECTION_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
 			selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "diagonalIntersectionTrack") {
@@ -360,21 +353,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
 			selectedTrack = new Track(connection1, connection2, TrackType.DIAGONAL_INTERSECTION_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-	
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "rotateTrack") {	
 			selectedTrack = new Track(selectedTrack);
-			//rotate track and set on  mouseAdapter
 			selectedTrack.rotateTrack();
 			mouseAdapter.setTrack(selectedTrack);
-			
 			selectedTrackImage.rotate90DegreesClockwise();
-			
-			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
+			redrawRotateButton();
 		}
 	}
 	
