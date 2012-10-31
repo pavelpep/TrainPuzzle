@@ -22,20 +22,23 @@ import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.Observer;
 
-public class LoadedLevelMap extends Window implements ActionListener, Observer {
+public class LoadedLevelMap implements  Observer {
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
+	private final int tileSizeInPixels = 40;
 	
 
 	private GameController gameController;
+	private Level level;
+	private Train train;
+	TileMouseAdapter mouseAdapter;
+	
 	JPanel map = new JPanel();
 	private JLayeredPane[][] mapTiles;
-	TileMouseAdapter mouseAdapter;
-	private Level level;
 	
-	private Train train;
+	
 	Location previousTrainLocation = new Location(0,0);
 	
 	
@@ -45,25 +48,22 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 		this.train = gameController.getSimulator().getTrain();
 		this.mouseAdapter = mouseAdapter;
 		
-		
 		//mapPanel.setPreferredSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
 		map.setLayout(new GridLayout(numberOfRows, numberOfColumns));
-		map.setSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
+		map.setSize(new Dimension(tileSizeInPixels * numberOfRows, tileSizeInPixels * numberOfColumns));
 		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
+		
 		// Initialize Map Panel
 		for(int row = 0; row < numberOfRows; row++){
 			for(int column = 0; column < numberOfColumns; column++){
-				//initializes tile
 				JLayeredPane mapTile = new JLayeredPane();
-				mapTile.setMinimumSize(new Dimension(40, 40));
-				mapTile.setPreferredSize(new Dimension(40, 40));
+				mapTile.setMinimumSize(new Dimension(tileSizeInPixels, tileSizeInPixels));
+				mapTile.setPreferredSize(new Dimension(tileSizeInPixels, tileSizeInPixels));
 				mapTiles[row][column] = mapTile;
 
-				//add mouse clicky thing to tile
 				level.getBoard().getTile(row, column).register(this);
 				mapTile.addMouseListener(mouseAdapter); 
 				
-				//add tile to map panel
 				map.add(mapTile);
 			}
 		}
@@ -72,39 +72,28 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 	}
 
 	private void drawLandscape(int row, int column) {
-		try {
-			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(landscapeLayerIndex)[0]);
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
-		
+		JLayeredPane mapTile = mapTiles[row][column];
+		removeComponentsInGUILayer(mapTile,landscapeLayerIndex);
 		JLabel landscapeLayer = new JLabel();
 		switch(level.getBoard().getTile(row, column).getLandscapeType()) {
-		case GRASS:
-			landscapeLayer=new JLabel(Images.GRASS_IMAGE);
-			break;
-		case WATER:
-			landscapeLayer=new JLabel(Images.WATER_IMAGE);
-			break;
+			case GRASS:
+				landscapeLayer=new JLabel(Images.GRASS_IMAGE);
+				break;
+			case WATER:
+				landscapeLayer=new JLabel(Images.WATER_IMAGE);
+				break;
 		}
-		
-		landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		
 		if(level.getBoard().getTile(row, column).getLandscapeType().equals("water")) {
 			landscapeLayer=new JLabel(Images.WATER_IMAGE);
-			landscapeLayer.setTransferHandler(new TransferHandler("icon"));
 		}
-		landscapeLayer.setBounds(0,0,40,40);
-		mapTiles[row][column].add(landscapeLayer, new Integer(landscapeLayerIndex));
+		landscapeLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
 	
 	private void drawObstacle(int row, int column) {
-		try {
-			mapTiles[row][column].remove(mapTiles[row][column].getComponentsInLayer(obstacleLayerIndex)[0]);
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
 		JLayeredPane mapTile = mapTiles[row][column];
+		removeComponentsInGUILayer(mapTile,obstacleLayerIndex);
 		if(level.getBoard().getTile(row, column).hasObstacle()) {
 			JLabel obstacleLayer = new JLabel();
 			switch(level.getBoard().getTile(row, column).getObstacleType()){
@@ -123,22 +112,14 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 			default:
 				break;
 			}
-			obstacleLayer.setTransferHandler(new TransferHandler("icon"));
-			obstacleLayer.setBounds(0,0,40,40);
+			obstacleLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 		}
 	}
 	
 	private void drawTrack(int row, int column) {
-		try {
-			Component[] components = mapTiles[row][column].getComponentsInLayer(trackLayerIndex);
-			for(Component component: components){
-			mapTiles[row][column].remove(component);
-			}
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
 		JLayeredPane mapTile = mapTiles[row][column];
+		removeComponentsInGUILayer(mapTile,trackLayerIndex);
 		if(level.getBoard().getTile(row, column).hasTrack()){
 
 			for(Connection connection:level.getBoard().getTile(row, column).getTrack().getConnections()){
@@ -156,14 +137,15 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 						else{
 							trackLayer=new JLabel(new RotatedImageIcon(Images.DIAGONAL_TRACK, i * 2 + 1));
 						}
-						trackLayer.setBounds(0,0,40,40);
+						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					straight.rotate90Degrees();
-					
+				}
+				for(int i = 0; i < 2; i++){	
 					if(connection.equals(diagonal)){
 						trackLayer=new JLabel(new RotatedImageIcon(Images.DIAGONAL_TRACK, i * 2));
-						trackLayer.setBounds(0,0,40,40);
+						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					diagonal.rotate90Degrees();
@@ -171,13 +153,13 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 				for(int i = 0; i < 4; i++){	
 					if(connection.equals(curveLeft)){
 						trackLayer=new JLabel(new RotatedImageIcon(Images.CURVELEFT_TRACK, i * 2));
-						trackLayer.setBounds(0,0,40,40);
+						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					curveLeft.rotate90Degrees();
 					if(connection.equals(curveRight)){
 						trackLayer=new JLabel(new RotatedImageIcon(Images.CURVERIGHT_TRACK, i * 2));
-						trackLayer.setBounds(0,0,40,40);
+						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
 					}
 					curveRight.rotate90Degrees();
@@ -207,30 +189,29 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 	}
 	
 	private void redrawTrain(Train train) {
-		int previousRow = previousTrainLocation.getRow();
-		int previousColumn = previousTrainLocation.getColumn();
-		try {
-			mapTiles[previousRow][previousColumn].remove(mapTiles[previousRow][previousColumn].getComponentsInLayer(trainLayerIndex)[0]);
-			
-		} catch(Exception e){
-			//logger.error(e.getMessage(), e.fillInStackTrace());
-		}
+		JLayeredPane previousTile = mapTiles[previousTrainLocation.getRow()][previousTrainLocation.getColumn()];
+		removeComponentsInGUILayer(previousTile,trainLayerIndex);
 		previousTrainLocation = new Location(train.getLocation());
 		
+		int rotation = train.getHeading().ordinal() - 3;
+		JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN, rotation));
+		trainLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 		int row = train.getLocation().getRow();
 		int column = train.getLocation().getColumn();
-		
-		int rotation = train.getHeading().ordinal() - 3; //we should make train image point NORTHWEST to begin
-		ImageIcon trainImage = new RotatedImageIcon(Images.TRAIN, rotation);
-		JLabel trainLayer = new JLabel(trainImage);
-		trainLayer.setBounds(0,0,40,40);
 		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
-		
 		map.repaint();
 	}
 	
-	
-	
+	private void removeComponentsInGUILayer(JLayeredPane mapTile, int layerIndex) {
+		try {
+			Component[] components = mapTile.getComponentsInLayer(layerIndex);
+			for(Component component: components){
+				mapTile.remove(component);
+			}
+		} catch(Exception e){
+			//logger.error(e.getMessage(), e.fillInStackTrace());
+		}
+	}
 	
 	@Override
 	public void notifyChange(Object object) {
@@ -245,18 +226,6 @@ public class LoadedLevelMap extends Window implements ActionListener, Observer {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void create() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public JPanel getMap() {
