@@ -7,7 +7,7 @@ public class Switch extends Track {
 	private Iterator<Connection> connectionsIterator;
 	private Connection current;
 	
-	Switch(Connection connection1, Connection connection2, TrackType trackType) {
+	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
 		goToFirstConnection();
 	}
@@ -34,13 +34,15 @@ public class Switch extends Track {
 	public Connection getCurrentConnection() {
 		return current;
 	}
-	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
+	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException{
+		CompassHeading outboundHeading;
 		if(current.isInboundHeading(inboundHeading)) {
-			CompassHeading outboundHeading = current.outboundorInbound(inboundHeading);
-			switchConnection();
-			return outboundHeading;
+			outboundHeading = current.outboundorInbound(inboundHeading);
+		} else {	// if the current connection does not connect to the inboundHeading, check for all other possible connections  
+			outboundHeading = super.getOutboundHeading(inboundHeading);
 		}
-		throw new TrainCrashException();
+		switchConnection();
+		return outboundHeading;		
 	}
 	
 	public void switchConnection() {
