@@ -49,6 +49,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JButton pauseButton = new JButton("Pause");
 	private JPanel trackPanel = new JPanel();
 	private JPanel selectedTrackPanel = new JPanel();
+	private JButton rotateButton = new JButton("Run");
 	private RotatedImageIcon selectedTrackImage;
 	private Track selectedTrack;
 	private JLabel messageBox =  new JLabel("<html></html>");
@@ -106,7 +107,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.add(trackPanel());
 		sidePanel.add(selectedTrackPanel());
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		}
+	}
 
 	private JButton saveButton() {
 		JButton saveButton = new JButton("Save Level");
@@ -226,23 +227,25 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		selectedTrackPanel.setBorder(sidePanelTitle);
 		
-		redrawSelectedTrackPanel();
-		
-		return selectedTrackPanel;
-	}
-	
-	private void redrawSelectedTrackPanel() {
-		selectedTrackPanel.removeAll();
-		JLabel selectedTrackContainer = new JLabel(selectedTrackImage);
-		JButton rotateButton = new JButton();
-		rotateButton.add(selectedTrackContainer);
+		rotateButton = new JButton();
 		rotateButton.setBounds(0, 0, 40, 40);
 		rotateButton.setPreferredSize(new Dimension(100, 100));
 		rotateButton.setMargin(new Insets(0, 15, 0, 0));
 		rotateButton.setActionCommand("rotateTrack");
 		rotateButton.addActionListener(this);
 		selectedTrackPanel.add(rotateButton);
-		selectedTrackPanel.repaint();
+	
+		return selectedTrackPanel;
+	}
+	
+	private void redrawSelectedTrackPanel(Track selectedTrack, RotatedImageIcon selectedTrackImage) {
+		this.selectedTrack = selectedTrack;
+		this.selectedTrackImage = selectedTrackImage;
+		rotateButton.removeAll();
+		JLabel selectedTrackContainer = new JLabel(this.selectedTrackImage);
+		rotateButton.add(selectedTrackContainer);
+		rotateButton.repaint();
+		this.setVisible(true);
 	}
 
 	//TODO: this method seems pretty useless remove?
@@ -310,7 +313,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 		
 		if (event.getActionCommand() == "diagonalTrack") {
@@ -321,17 +324,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 		
 		if (event.getActionCommand() == "curveleftTrack") {
 			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
 			selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
 			mouseAdapter.setTrack(selectedTrack);
-			
-			selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
-			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,new RotatedImageIcon(Images.CURVELEFT_TRACK));
 		}
 		
 		if (event.getActionCommand() == "curverightTrack") {
@@ -341,7 +341,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 		
 		if (event.getActionCommand() == "intersectionTrack") {
@@ -352,7 +352,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 		
 		if (event.getActionCommand() == "diagonalIntersectionTrack") {
@@ -363,7 +363,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 		
 		if (event.getActionCommand() == "rotateTrack") {	
@@ -374,7 +374,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 			selectedTrackImage.rotate90DegreesClockwise();
 			
-			redrawSelectedTrackPanel();
+			redrawSelectedTrackPanel(selectedTrack,selectedTrackImage);
 		}
 	}
 	
