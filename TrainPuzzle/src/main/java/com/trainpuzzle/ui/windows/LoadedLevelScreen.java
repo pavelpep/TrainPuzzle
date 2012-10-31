@@ -82,6 +82,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		initializeTitle();
 	}
 
+	private void initializeBackButton() {
+		JButton backToLevelSelect = new JButton("Back to Level Select");
+		headerPanel.add(backToLevelSelect);		
+		backToLevelSelect.setActionCommand("backToLevelSelect");
+		backToLevelSelect.addActionListener(this);
+	}
+	
 	private void initializeTitle() {
 		JLabel titleLabel = new JLabel();
 		titleLabel.setText("Level " + level.getLevelNumber());
@@ -90,20 +97,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		headerPanel.add(titleLabel);
 	}
 	
-	private void initializeBackButton() {
-		JButton backToLevelSelect = new JButton("Back to Level Select");
-		headerPanel.add(backToLevelSelect);		
-		backToLevelSelect.setActionCommand("backToLevelSelect");
-		backToLevelSelect.addActionListener(this);
-	}
 
 	private void initializeSidePanel() {
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
-		
 		initializeSaveButton();
-		
 		initializeGameControlBox();
 		initializeTrackPanel();
 		initializeSelectedTrackPanel();
@@ -129,53 +128,28 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		
 		int defaultFontSize = UIManager.getDefaults().getFont("TextPane.font").getSize();
+
+
+		addButton(runButton, "run",  gameControlBox, 0, 0, 3, 1);	
+		runButton.setVisible(true);
 		
-		//initialize run button
-		runButton = new JButton("Run");
-		//gameControlBox.add(runButton);
-		addComponent(gameControlBox, runButton, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), 0, 0, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);		
-		runButton.setPreferredSize(new Dimension(200, 150));
-		runButton.setActionCommand("run");
-		runButton.addActionListener(this);
+		addButton(pauseButton, "pause", gameControlBox, 0, 0, 3, 1);
+		pauseButton.setVisible(false);
 		
-		//initialize pause button
-		pauseButton = new JButton("Pause");
-		addComponent(gameControlBox, pauseButton, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), 0, 0, 3, 1, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		pauseButton.setActionCommand("pause");
-		pauseButton.addActionListener(this);
-		pauseButton.setVisible(false);	
-		
-		//initialize speed decrease button
 		JButton speedDecreaseButton = new JButton("-");
-		addComponent(gameControlBox, speedDecreaseButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		speedDecreaseButton.setActionCommand("tickDecrease");
-		speedDecreaseButton.addActionListener(this);
+		addButton(speedDecreaseButton, "tickDecrease", gameControlBox, 0, 1, 1, 1);
 		
-		//initialize single step button
 		JButton singleStepButton = new JButton(">");
-		addComponent(gameControlBox, singleStepButton, Font.PLAIN, defaultFontSize, this.getBackground(), 1, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		singleStepButton.setActionCommand("tickOnce");
-		singleStepButton.addActionListener(this);
+		addButton(singleStepButton, "tickOnce", gameControlBox, 1, 1, 1, 1);
 		
-		
-		
-		//initialize speed decrease button
 		JButton speedIncreaseButton = new JButton("+");
-		addComponent(gameControlBox, speedIncreaseButton, Font.PLAIN, defaultFontSize, this.getBackground(), 2, 1, 1, 1, (float) 0.33, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		speedIncreaseButton.setActionCommand("tickIncrease");
-		speedIncreaseButton.addActionListener(this);
+		addButton(speedIncreaseButton, "tickIncrease", gameControlBox, 2, 1, 1, 1);
 		
-		//initialize reset button
 		JButton resetButton = new JButton("Reset Position");
-		addComponent(gameControlBox, resetButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 2, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		resetButton.setActionCommand("reset");
-		resetButton.addActionListener(this);
+		addButton(resetButton, "reset", gameControlBox, 0, 2, 3, 1);
 		
-		//initialize removeAllTracksButton button
 		JButton removeAllTracksButton = new JButton("Remove All Tracks");
-		addComponent(gameControlBox, removeAllTracksButton, Font.PLAIN, defaultFontSize, this.getBackground(), 0, 3, 3, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		removeAllTracksButton.setActionCommand("removeAllTracks");
-		removeAllTracksButton.addActionListener(this);
+		addButton(removeAllTracksButton, "removeAllTracks", gameControlBox, 0, 3, 3, 1);
 		
 		//messageBox =  new JLabel("<html>First line and maybe second line</html>");
 		messageBox.setHorizontalAlignment(JLabel.CENTER);
@@ -184,7 +158,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		messageBox.setForeground(Color.BLACK);
 		//gameControlBox.add(messageBox);
 			  
-	}	
+	}
+
+	private void addButton(JButton button, String actionCommand, Container destinationContainer, int x, int y, int width, int height) {
+		int defaultFontSize = UIManager.getDefaults().getFont("TextPane.font").getSize();
+		addComponent(destinationContainer, button, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), x, y, width, height, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		button.setActionCommand(actionCommand);
+		button.addActionListener(this);
+	}
 	
 	//Map Panel
 
@@ -334,6 +315,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			}
 			
 		}
+		
+		if (event.getActionCommand() == "removeAllTracks") {
+			gameController.removeAllTracks();
+		}
+		
+		
 		
 		if (event.getActionCommand() == "save") {
 			File saveLevelFile = saveFileDialog();

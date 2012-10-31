@@ -78,6 +78,21 @@ public class GameController{
 		}
 	}
 	
+	public void removeAllTracks() {
+		for(int row = 0; row < level.getBoard().rows; row++) {
+			for(int column = 0; column < level.getBoard().columns; column++) {
+				try {
+					if(level.getBoard().getTile(row, column).hasTrack()){
+						trackPlacer.removeTrack(row, column);
+					}
+				} catch (CannotRemoveTrackException e) {
+					logger.error(e.getMessage(), e.fillInStackTrace());
+				}
+			}
+		}
+		
+	}
+	
 	/* Getters and Setters */
 	
 	public CampaignManager getCampaignManager() {
