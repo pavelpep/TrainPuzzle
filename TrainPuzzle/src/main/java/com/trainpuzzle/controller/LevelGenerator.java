@@ -55,12 +55,6 @@ class LevelGenerator {
 		}
 	}
 	
-	/*private void setOstaclesByRow(int row, int columnStart, int columnEnd, ObstacleType obstacleType) {
-		for (int i = columnStart; i <= columnEnd; i++){
-			this.board.getTile(row, i).setObstacle(obstacleType);
-		}
-	}
-	*/
 	private void setObstaclesByRow(int row, int columnStart, int columnEnd, ObstacleType obstacleType) {
 		for (int i = columnStart; i <= columnEnd; i++){
 			this.board.getTile(row, i).setObstacle(new Obstacle(obstacleType));
