@@ -10,31 +10,36 @@ public class Economy implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
 	public static final int NO_LIMIT = -1;
-	private static final int individualTrackLimit = 10;
 	private int budget = 1000;
 	private int totalTrackLimit = 100;
-	private HashMap trackLimit = new HashMap();
-	private HashMap trackCounter = new HashMap();
+	private HashMap<TrackType, Integer> individualTrackLimit = new HashMap<TrackType, Integer>();
+	private HashMap<TrackType, Integer> numOfIndividualTrackPlaced = new HashMap<TrackType, Integer>();
 	private int singleTrackLimit = 20;
 	private int crossTrackLimit = 20;
 	
 	public Economy(){
 		for(TrackType trackType:TrackType.values()){
-			trackLimit.put(trackType, individualTrackLimit);
-			trackCounter.put(trackType, 0);
+			individualTrackLimit.put(trackType, 10);
+			numOfIndividualTrackPlaced.put(trackType, 0);
 			
 		}
 	}
 	
-	public void incrementTrackCounter(TrackType trackType){
-		Object currentNumOfTheTypeOfTrack=trackCounter.get(trackType);
-		
+	public void useOnePieceOfTrack(TrackType trackType){
+		Integer currentNumOfThisTrack=numOfIndividualTrackPlaced.get(trackType);
+		currentNumOfThisTrack++;
+		numOfIndividualTrackPlaced.put(trackType, currentNumOfThisTrack);
+	}
+	
+	public void retrunOnePieceOfTrack(TrackType trackType){
+		Integer currentNumOfThisTrack=numOfIndividualTrackPlaced.get(trackType);
+		currentNumOfThisTrack--;
+		numOfIndividualTrackPlaced.put(trackType, currentNumOfThisTrack);
 		
 	}
 	
-	public void decreaseTrackCounter(TrackType trackType){
-		Object currentNumOfTheTypeOfTrack=trackCounter.get(trackType);
-		
+	public boolean isAvailable(TrackType trackType){
+	return true;	
 	}
 	
 	public int getBudget() {

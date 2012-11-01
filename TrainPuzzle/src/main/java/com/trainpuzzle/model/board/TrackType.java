@@ -8,4 +8,5 @@ public enum TrackType {
 	INTERSECTION_TRACK,
 	DIAGONAL_INTERSECTION_TRACK;
 	
+	
 }
