@@ -16,6 +16,14 @@ public enum TrackType {
 
 	private TrackType parent = null;
 	private int currentTrackLimit = 0;
+	public TrackType getParent() {
+		return parent;
+	}
+
+
+
+
+
 	private TrackType(TrackType parent, Integer trackLimit){
 		this.parent = parent;
 		this.currentTrackLimit = trackLimit;
@@ -25,6 +33,10 @@ public enum TrackType {
 	 public int getTrackLimit(TrackType trackType){
 		 return trackType.currentTrackLimit;
 	 }
+	 
+	 public TrackType getParent(TrackType trackType){
+		 return trackType.parent;
+	 }	 
 	 
 	 public void incrementTrackLimit(TrackType trackType){
 		 trackType.currentTrackLimit++;

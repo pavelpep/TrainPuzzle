@@ -34,7 +34,16 @@ public class Economy implements java.io.Serializable{
 	}
 	
 	public boolean isAvailable(TrackType trackType){
-	return true;	
+		TrackType parent=trackType.getParent();
+		TrackType grandparent=parent.getParent();
+		boolean individualTrackUnderLimit=trackType.getTrackLimit(trackType)>0;
+		boolean groupTrackUnderLimit=parent.getTrackLimit(parent)>0;
+		boolean totalTrackUnderLimit=grandparent.getTrackLimit(grandparent)>0;
+		
+		if (individualTrackUnderLimit && groupTrackUnderLimit && totalTrackUnderLimit){
+			return true;
+		}
+		return false;	
 	}
 	
 	public int getBudget() {
