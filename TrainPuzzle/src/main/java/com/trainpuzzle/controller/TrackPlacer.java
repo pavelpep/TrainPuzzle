@@ -9,13 +9,19 @@ import com.trainpuzzle.model.board.*;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.level.Level;
 
+import com.trainpuzzle.model.level.Economy;
+import com.trainpuzzle.model.board.TrackType;
+
+
 public class TrackPlacer {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
+	private Economy economy;
 	private Board map;
 	
 	public TrackPlacer(Level levelToAddTrack) {
 		this.levelToAddTrack = levelToAddTrack;
+		this.economy = levelToAddTrack.getEconomy();
 		this.map = levelToAddTrack.getBoard();
 	}
 
@@ -32,8 +38,13 @@ public class TrackPlacer {
 		else if (tile.getLandscapeType() == LandscapeType.WATER) {
 			errorMessage += "landscape type is water";
 		}
+		else if (!economy.isAvailable(track.getTrackType())){
+			errorMessage +="the track is out of limit, not available now";
+		}
 		else {
 			tile.setTrack(track);
+			TrackType trackType=track.getTrackType();
+			trackType.decrementTrackLimit(trackType);
 			map.notifyAllObservers();
 			return;
 		}

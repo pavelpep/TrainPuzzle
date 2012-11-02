@@ -52,6 +52,7 @@ public enum TrackType {
 		 TrackType grandparent = parent.parent;
 		 parent.currentTrackLimit--;
 		 grandparent.currentTrackLimit--;
+		 System.out.println(trackType.currentTrackLimit+" "+parent.currentTrackLimit+" "+grandparent.currentTrackLimit);
 	 }	 
 	
 	
