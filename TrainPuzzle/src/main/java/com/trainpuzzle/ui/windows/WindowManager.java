@@ -7,7 +7,11 @@
 package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
+import java.util.LinkedList;
+
 import javax.swing.*;
+
+import com.trainpuzzle.controller.GameController;
 
 /* This is the Window Manager for the Train Track Puzzle game. It manages windows,
  * modules and global data used by this application.
@@ -18,45 +22,45 @@ public class WindowManager {
 	// Fields
 	private static WindowManager manager;
 	
+	private GameController gameController;
 	private Window activeWindow;
 	private Window previousWindow;
+	private LinkedList<Window> windowList; 
 	private boolean isWindowChanged;
 	
 	// Constructors
-	private WindowManager() {
+	private WindowManager(GameController gameController) {
+		this.gameController = gameController;
+		windowList = new LinkedList<Window>();
 		activeWindow = null;
 		previousWindow = null;
 		isWindowChanged = false;
 	}
 	
 	// Methods
-	public static synchronized WindowManager getManager() {
+	public static synchronized WindowManager getManager(GameController gameController) {
 		if (manager == null) {
-			manager = new WindowManager();
+			manager = new WindowManager(gameController);
 		}
 		return manager;
 	}
 	
-	public Window getActiveWindow() {
-		return activeWindow;
-	}
-	
 	public void setActiveWindow(Window window) {
-		if (activeWindow != window) {
-			activeWindow = window;
-			isWindowChanged = true;
+		if(!windowList.isEmpty()) {
+			windowList.getLast().setVisible(false);
 		}
+		window.setVisible(true);
+		windowList.add(window);
+		System.out.println(windowList.size());
 	}
 	
-	public Window getPreviousWindow() {
-		return previousWindow;
+	public void showPreviousWindow() {
+		windowList.getLast().dispose();
+		windowList.removeLast();
+		windowList.getLast().setVisible(true);
 	}
 	
-	public void setPreviousWindow(Window window) {
-		previousWindow = window;
-		window.setVisible(false);
-	}
-	
+	/*
 	public boolean getIsWindowChanged() {
 		return isWindowChanged;
 	}
@@ -77,4 +81,5 @@ public class WindowManager {
 		}
 		return (!isWindowChanged);
 	}
+	*/
 }

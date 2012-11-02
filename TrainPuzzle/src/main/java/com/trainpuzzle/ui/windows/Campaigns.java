@@ -6,10 +6,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import com.trainpuzzle.controller.CampaignManager;
+import com.trainpuzzle.controller.GameController;
 
 import java.util.*;
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
+	private GameController gameController;
 	CampaignManager campaignManager;
 	// Layout Manager
 	private GridBagConstraints c;
@@ -24,7 +26,8 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	private JButton backButton = null;
 	
 	// Constructor
-	public Campaigns() {
+	public Campaigns(GameController gameController) {
+		this.gameController = gameController;
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
@@ -34,9 +37,11 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		listModel = new DefaultListModel();
 		listModel.addElement("Player1");
 		listModel.addElement("Player2");
+		create();
 	}
 	
-	public Campaigns(CampaignManager campaignManager) {
+	public Campaigns(GameController gameController, CampaignManager campaignManager) {
+		this.gameController = gameController;
 		this.campaignManager = campaignManager;
 		
 		c = new GridBagConstraints();
@@ -48,6 +53,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		listModel = new DefaultListModel();
 		listModel.addElement("Player1");
 		listModel.addElement("Player2");
+		create();
 	}
 	
 	public void create() {
@@ -108,8 +114,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "back") {
-			WindowManager.getManager().setActiveWindow(new MainMenu()); 
-			WindowManager.getManager().updateWindows();
+			WindowManager.getManager(gameController).showPreviousWindow();
 		}
 	}
 

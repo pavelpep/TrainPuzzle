@@ -6,10 +6,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import com.trainpuzzle.controller.CampaignManager;
+import com.trainpuzzle.controller.GameController;
 
 import java.util.*;
 
 class CampaignsMenu extends Window implements ActionListener, ListSelectionListener {
+	private GameController gameController;
 	CampaignManager campaignManager;
 	
 	// Layout Manager
@@ -27,8 +29,8 @@ class CampaignsMenu extends Window implements ActionListener, ListSelectionListe
 	private JButton deleteProfile = null;
 		
 	// Constructor
-	public CampaignsMenu() {
-		
+	public CampaignsMenu(GameController gameController) {
+		this.gameController = gameController;
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
@@ -38,9 +40,9 @@ class CampaignsMenu extends Window implements ActionListener, ListSelectionListe
 		listModel = new DefaultListModel();
 	}
 	
-public CampaignsMenu(CampaignManager campaignManager) {
+	public CampaignsMenu(GameController gameController, CampaignManager campaignManager) {
+		this.gameController = gameController;
 		this.campaignManager = campaignManager;
-				
 		c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
@@ -144,8 +146,7 @@ public CampaignsMenu(CampaignManager campaignManager) {
 		}
 		
 		if (e.getActionCommand() == "back") {
-			WindowManager.getManager().setActiveWindow(new MainMenu()); 
-			WindowManager.getManager().updateWindows();
+			WindowManager.getManager(gameController).showPreviousWindow(); 
 		}
 		
 	}

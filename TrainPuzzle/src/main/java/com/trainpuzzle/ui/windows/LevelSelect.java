@@ -18,15 +18,6 @@ public class LevelSelect extends Window implements ActionListener {
 	
 	int levelSelected = 0;
 	
-	// Constructor
-	public LevelSelect() {
-		gbConstraints = new GridBagConstraints();
-		setLayout(new GridBagLayout());
-		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);	
-	}
-	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
 		gbConstraints = new GridBagConstraints();
@@ -34,6 +25,7 @@ public class LevelSelect extends Window implements ActionListener {
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
+		create();
 	}
 	
 	public void create() {	    
@@ -85,42 +77,30 @@ public class LevelSelect extends Window implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		if (action == "back") {
-				WindowManager.getManager().setActiveWindow(new MainMenu(gameController)); 
-				WindowManager.getManager().updateWindows();
+				WindowManager.getManager(gameController).showPreviousWindow();
 		} else if (action == "LEVEL_ONE") {
 			levelSelected = 1;
-					
 			gameController.startGame(levelSelected);
-			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
-			WindowManager.getManager().updateWindows();	
+			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
 		}		
 		 else if (action == "LEVEL_TWO") {
 			levelSelected = 2;
-					
 			gameController.startGame(levelSelected);
-			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
-			WindowManager.getManager().updateWindows();	
+			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
 		}
 		 else if (action == "LEVEL_THREE") {
 			levelSelected = 3;
-					
 			gameController.startGame(levelSelected);
-			LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-			WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
-			WindowManager.getManager().updateWindows();	
+			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
 		}		
 		 else if (action == "LOAD") {
 			File levelFile = openFile();
 			if(levelFile != null){	
 				gameController.startGame(levelFile);
 				LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-				WindowManager.getManager().setActiveWindow(loadedLevelScreen); 
-				WindowManager.getManager().updateWindows();	
+				WindowManager.getManager(gameController).setActiveWindow(loadedLevelScreen);
 			}
 		}	
-		WindowManager.getManager().setPreviousWindow(this);
 	}
 	
 	

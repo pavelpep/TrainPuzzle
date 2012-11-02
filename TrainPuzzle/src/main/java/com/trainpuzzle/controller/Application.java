@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import com.trainpuzzle.ui.windows.LevelSelect;
+import com.trainpuzzle.ui.windows.MainMenu;
 import com.trainpuzzle.ui.windows.WindowManager;
 
 public class Application {
@@ -34,9 +35,12 @@ public class Application {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		
-		LevelSelect levelSelect = new LevelSelect(gameController);
-		WindowManager.getManager().setActiveWindow(levelSelect);
-		WindowManager.getManager().updateWindows();
+		//WindowManager.
+		
+		//LevelSelect levelSelect = new LevelSelect(gameController);
+		WindowManager.getManager(gameController).setActiveWindow(new MainMenu(gameController));
+		//WindowManager.getManager().setActiveWindow(levelSelect);
+		//WindowManager.getManager().updateWindows();
 		//MainMenu mainMenu = new MainMenu(this, campaignManager);
 		//WindowManager.getManager().setActiveWindow(mainMenu);
 	}	

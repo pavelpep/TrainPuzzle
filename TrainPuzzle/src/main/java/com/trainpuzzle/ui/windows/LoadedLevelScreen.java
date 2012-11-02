@@ -268,9 +268,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
-			WindowManager.getManager().setActiveWindow(WindowManager.getManager().getPreviousWindow()); 
-			WindowManager.getManager().updateWindows();	
-			WindowManager.getManager().setPreviousWindow(this);
+			WindowManager.getManager(gameController).showPreviousWindow();
 		}
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
