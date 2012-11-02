@@ -96,7 +96,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return(messageBox);
 	}
 	
-	private void setMessageBoxMessage(String message) {
+	public void setMessageBoxMessage(String message) {
 		setMessageBoxMessage(message, Color.BLACK);
 	}
 	

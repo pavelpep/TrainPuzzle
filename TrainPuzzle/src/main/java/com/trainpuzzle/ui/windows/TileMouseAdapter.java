@@ -3,6 +3,7 @@ package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 
+import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.TrackPlacer;
 
 import com.trainpuzzle.model.board.CompassHeading;
@@ -15,7 +16,8 @@ import javax.swing.*;
 import java.awt.event.*;
 
 class TileMouseAdapter extends MouseAdapter {
-        private TrackPlacer trackPlacer;
+		private GameController gameController;
+		private TrackPlacer trackPlacer;
 		private Track track;
 		
 		TileMouseAdapter() {
@@ -40,15 +42,15 @@ class TileMouseAdapter extends MouseAdapter {
 	                try {
 	                	trackPlacer.placeTrack(track, row, column);
 	                }catch(CannotPlaceTrackException ex) {
-	                	//TODO remove system.out and send to UI
-	                	System.out.println(ex.getMessage());
+	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+	                	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
 	                }
                 }else if(e.getButton() == MouseEvent.BUTTON3){
 	                try {
 	                	trackPlacer.removeTrack(row, column);
 	                }catch(CannotRemoveTrackException ex) {
-	                	//TODO remove system.out and send to UI
-	                	System.out.println(ex.getMessage());
+	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+	                	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
 	                }
                 }
               //TransferHandler handler = c.getTransferHandler();

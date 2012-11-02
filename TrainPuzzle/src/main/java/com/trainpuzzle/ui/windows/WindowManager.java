@@ -47,6 +47,10 @@ public class WindowManager {
 		windowList.add(window);
 	}
 	
+	public Window getActiveWindow() {
+			return windowList.getLast();
+	}
+	
 	public void showPreviousWindow() {
 		windowList.getLast().dispose();
 		windowList.removeLast();
