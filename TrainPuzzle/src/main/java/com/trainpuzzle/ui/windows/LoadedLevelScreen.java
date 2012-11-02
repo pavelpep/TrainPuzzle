@@ -77,10 +77,31 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private void initializeHeaderPanel() {
 		headerPanel = new JPanel();
-		headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		headerPanel.add(backButton());
-		headerPanel.add(titleLabel());
+		headerPanel.setLayout(new GridBagLayout());
+		addComponent(headerPanel, backButton(), Font.CENTER_BASELINE, 12, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(headerPanel, titleLabel(), Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(headerPanel, messageBox(), Font.CENTER_BASELINE, 16, this.getBackground(), 2, 0, 1, 1, 1, 0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		
 		addComponent(this, headerPanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+	}
+
+	private JLabel messageBox() {
+		messageBox =  new JLabel("");
+		messageBox.setHorizontalAlignment(JLabel.RIGHT);
+		//messageBox.setBorder(BorderFactory.createMatteBorder(1, 5, 1, 1, Color.red));
+		Font font = messageBox.getFont();
+		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
+		messageBox.setForeground(Color.BLACK);
+		return(messageBox);
+	}
+	
+	private void setMessageBoxMessage(String message) {
+		setMessageBoxMessage(message, Color.BLACK);
+	}
+	
+	private void setMessageBoxMessage(String message, Color colour) {
+		messageBox.setText(message);
+		messageBox.setForeground(colour);
 	}
 
 	private JButton backButton() {
@@ -146,13 +167,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JButton removeAllTracksButton = new JButton("Remove All Tracks");
 		addButtonToGridBag(removeAllTracksButton, "removeAllTracks", gameControlBox, 0, 3, 3, 1);
 		
-		//messageBox =  new JLabel("<html>First line and maybe second line</html>");
-		messageBox.setHorizontalAlignment(JLabel.CENTER);
-		Font font = messageBox.getFont();
-		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
-		messageBox.setForeground(Color.BLACK);
-		//gameControlBox.add(messageBox);
-		
 		return gameControlBox;
 			  
 	}
@@ -207,7 +221,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JButton diagonalIntersectionTrack = new JButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE);
 		addTrackButton(diagonalIntersectionTrack, "diagonalIntersectionTrack", trackPanel);		
 	}
-	
 
 	private void addTrackButton(JButton button, String actionCommand, Container destinationContainer) {
 		button.setBounds(0, 0, 40, 40);
@@ -217,8 +230,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		destinationContainer.add(button);
 	}
 	
-	
-	//Selected Track Panel 
 	private JPanel selectedTrackPanel() {
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
