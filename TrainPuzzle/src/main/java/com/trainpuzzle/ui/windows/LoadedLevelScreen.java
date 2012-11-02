@@ -41,6 +41,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	// Window elements
 	
+	
 	private JPanel headerPanel = new JPanel();
 	private LoadedLevelMap loadedLevelMap;
 	private JPanel sidePanel = new JPanel();
@@ -52,7 +53,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JButton rotateButton = new JButton("Run");
 	private RotatedImageIcon selectedTrackImage;
 	private Track selectedTrack;
-	private JLabel messageBox =  new JLabel("<html></html>");
+	private JLabel messageBox =  new JLabel("");
+	Timer makeItBlink;
+	boolean blinkState = true;
 
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
@@ -93,11 +96,34 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		Font font = messageBox.getFont();
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
+		
+		int blinkInterval = 2500;
+		
+		
+        makeItBlink = new Timer(blinkInterval,
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                    	setMessageBoxMessage("");
+                    	makeItBlink.stop();
+                    	/*
+                    	blinkState = !blinkState;
+                        if (blinkState) {
+                        	messageBox.setForeground(Color.RED);
+                        }
+                        else {
+                        	messageBox.setForeground(Color.BLACK);
+                        }
+                        */
+                    }
+        });
+		
 		return(messageBox);
 	}
 	
 	public void setMessageBoxMessage(String message) {
 		setMessageBoxMessage(message, Color.BLACK);
+		makeItBlink.start();
+		
 	}
 	
 	private void setMessageBoxMessage(String message, Color colour) {
