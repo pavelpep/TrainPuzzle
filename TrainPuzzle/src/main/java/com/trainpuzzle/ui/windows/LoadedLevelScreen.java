@@ -64,10 +64,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		//Window Layout
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setBackground(this.getBackground());
-		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(1024, 700));
+		setLocationRelativeTo(null);
+		
+		//setExtendedState(Frame.MAXIMIZED_BOTH);
 
 		// Game title
 		initializeHeaderPanel();

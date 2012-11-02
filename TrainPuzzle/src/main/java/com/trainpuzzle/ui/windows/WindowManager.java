@@ -23,18 +23,12 @@ public class WindowManager {
 	private static WindowManager manager;
 	
 	private GameController gameController;
-	private Window activeWindow;
-	private Window previousWindow;
 	private LinkedList<Window> windowList; 
-	private boolean isWindowChanged;
 	
 	// Constructors
 	private WindowManager(GameController gameController) {
 		this.gameController = gameController;
 		windowList = new LinkedList<Window>();
-		activeWindow = null;
-		previousWindow = null;
-		isWindowChanged = false;
 	}
 	
 	// Methods
@@ -51,7 +45,6 @@ public class WindowManager {
 		}
 		window.setVisible(true);
 		windowList.add(window);
-		System.out.println(windowList.size());
 	}
 	
 	public void showPreviousWindow() {
@@ -59,27 +52,4 @@ public class WindowManager {
 		windowList.removeLast();
 		windowList.getLast().setVisible(true);
 	}
-	
-	/*
-	public boolean getIsWindowChanged() {
-		return isWindowChanged;
-	}
-	
-	public void setIsWindowChanged(boolean changed) {
-		isWindowChanged = changed;
-	}
-	
-	public boolean updateWindows() {
-		if (isWindowChanged) {
-			if (previousWindow != null) {
-				previousWindow.dispose();
-			}
-			previousWindow = activeWindow;
-			activeWindow.create();
-			
-			isWindowChanged = false;
-		}
-		return (!isWindowChanged);
-	}
-	*/
 }
