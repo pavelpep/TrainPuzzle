@@ -65,7 +65,9 @@ public class Simulator {
 	
 	public void move() {
     	try {
-			proceedNextTile();
+    		if (!isVictoryConditionsSatisfied()) {
+    			proceedNextTile();
+    		}
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
@@ -74,18 +76,20 @@ public class Simulator {
 	}
 	
 	public void proceedNextTile() throws TrainCrashException {
+	
 		Location location = train.getLocation();
 		CompassHeading heading = train.getHeading();
-		location = getNextLocation(location,heading);
-		Tile tile = getTileWithTrack(location);
+		Location nextLocation = getNextLocation(location,heading);
+		Tile tile = getTileWithTrack(nextLocation);
 		Track track = tile.getTrack();
 		heading = track.getOutboundHeading(heading);
 		this.train.setHeading(heading);
-		train.setLocation(location);
+		train.setLocation(nextLocation);
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
 		}
+	
 	}
 
 	private Tile getTileWithTrack(Location location) throws TrainCrashException {
