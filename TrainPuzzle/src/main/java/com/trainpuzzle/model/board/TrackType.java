@@ -3,57 +3,30 @@ package com.trainpuzzle.model.board;
 import java.util.HashMap;
 
 public enum TrackType {
-	TRACK(null,60),
-		STRAIGHT(TRACK, 20),
-			STRAIGHT_TRACK(STRAIGHT, 15),
-			DIAGONAL_TRACK(STRAIGHT,15),
-		CURVE(TRACK, 20),
-			CURVELEFT_TRACK(CURVE,15),
-			CURVERIGHT_TRACK(CURVE,15),
-		INTERSECTION(TRACK, 15),
-			INTERSECTION_TRACK(INTERSECTION, 10),
-			DIAGONAL_INTERSECTION_TRACK(INTERSECTION,10);
-
+	TRACK(null),
+		STRAIGHT(TRACK),
+			STRAIGHT_TRACK(STRAIGHT),
+			DIAGONAL_TRACK(STRAIGHT),
+		CURVE(TRACK),
+			CURVELEFT_TRACK(CURVE),
+			CURVERIGHT_TRACK(CURVE),
+		INTERSECTION(TRACK),
+			INTERSECTION_TRACK(INTERSECTION),
+			DIAGONAL_INTERSECTION_TRACK(INTERSECTION),
+		SWITCH(TRACK),
+			CURVELEFT_STRAIGHT_SWITCH(SWITCH),
+			CURVERIGHT_STRAIGHT_SWITCH(SWITCH);
+		
+	TrackType(TrackType parent) {
+		this.parent = parent;
+	}
 	private TrackType parent = null;
-	private int currentTrackLimit = 0;
 	public TrackType getParent() {
 		return parent;
 	}
-
-
-
-
-
-	private TrackType(TrackType parent, Integer trackLimit){
-		this.parent = parent;
-		this.currentTrackLimit = trackLimit;
-		}
-	
 		
-	 public int getTrackLimit(TrackType trackType){
-		 return trackType.currentTrackLimit;
-	 }
+	  
 	 
-	 public TrackType getParent(TrackType trackType){
-		 return trackType.parent;
-	 }	 
-	 
-	 public void incrementTrackLimit(TrackType trackType){
-		 trackType.currentTrackLimit++;
-		 TrackType parent = trackType.parent;
-		 TrackType grandparent = parent.parent;
-		 parent.currentTrackLimit++;
-		 grandparent.currentTrackLimit++;
-	 }
-	 
-	 public void decrementTrackLimit(TrackType trackType){
-		 trackType.currentTrackLimit--;
-		 TrackType parent = trackType.parent;
-		 TrackType grandparent = parent.parent;
-		 parent.currentTrackLimit--;
-		 grandparent.currentTrackLimit--;
-		 System.out.println(trackType.currentTrackLimit+" "+parent.currentTrackLimit+" "+grandparent.currentTrackLimit);
-	 }	 
 	
 	
 }

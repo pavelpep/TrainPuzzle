@@ -44,7 +44,7 @@ public class TrackPlacer {
 		else {
 			tile.setTrack(track);
 			TrackType trackType=track.getTrackType();
-			trackType.decrementTrackLimit(trackType);
+			economy.useOnePieceOfTrack(trackType);
 			map.notifyAllObservers();
 			return;
 		}
@@ -58,7 +58,9 @@ public class TrackPlacer {
 		
 		if(tile.hasTrack()) {			
 			if (tile.getTrack().isRemovable()) {
+				TrackType trackType=tile.getTrack().getTrackType();
 				tile.removeTrack();
+				economy.retrunOnePieceOfTrack(trackType);
 				map.notifyAllObservers();
 				return;
 			} 

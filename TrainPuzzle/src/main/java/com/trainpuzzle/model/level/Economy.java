@@ -11,40 +11,56 @@ public class Economy implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	public static final int NO_LIMIT = -1;
 	private int budget = 1000;
-	private HashMap<TrackType, Integer> numOfIndividualTrackPlaced = new HashMap<TrackType, Integer>();
+	private HashMap<TrackType, Integer> numberOfTrack = new HashMap<TrackType, Integer>();
 	
 	public Economy(){
 		for(TrackType trackType:TrackType.values()){
-			numOfIndividualTrackPlaced.put(trackType, 0);
+			numberOfTrack.put(trackType, NO_LIMIT);
 			
+		}
+	}
+	public Economy(int[] trackLimit) {
+		TrackType[] trackTypes = TrackType.values();
+		for(int i = 0;i < 13;i++) {
+			if(trackLimit.length <= i) {
+				numberOfTrack.put(trackTypes[i], NO_LIMIT);
+			}
+			else {
+				numberOfTrack.put(trackTypes[i], trackLimit[i]);
+			}
 		}
 	}
 	
 	public void useOnePieceOfTrack(TrackType trackType){
-		Integer currentNumOfThisTrack=numOfIndividualTrackPlaced.get(trackType);
-		currentNumOfThisTrack++;
-		numOfIndividualTrackPlaced.put(trackType, currentNumOfThisTrack);
+		Integer currentNumOfThisTrack=numberOfTrack.get(trackType);
+		if(currentNumOfThisTrack !=NO_LIMIT) {
+			currentNumOfThisTrack--;
+			numberOfTrack.put(trackType, currentNumOfThisTrack);
+		}
+		if(trackType.getParent() != null) {
+			useOnePieceOfTrack(trackType.getParent());
+		}
 	}
 	
 	public void retrunOnePieceOfTrack(TrackType trackType){
-		Integer currentNumOfThisTrack=numOfIndividualTrackPlaced.get(trackType);
-		currentNumOfThisTrack--;
-		numOfIndividualTrackPlaced.put(trackType, currentNumOfThisTrack);
-		
+		Integer currentNumOfThisTrack=numberOfTrack.get(trackType);
+		if(currentNumOfThisTrack !=NO_LIMIT) {
+			currentNumOfThisTrack++;
+			numberOfTrack.put(trackType, currentNumOfThisTrack);
+		}
+		if(trackType.getParent() != null) {
+			retrunOnePieceOfTrack(trackType.getParent());
+		}
 	}
 	
 	public boolean isAvailable(TrackType trackType){
-		TrackType parent=trackType.getParent();
-		TrackType grandparent=parent.getParent();
-		boolean individualTrackUnderLimit=trackType.getTrackLimit(trackType)>0;
-		boolean groupTrackUnderLimit=parent.getTrackLimit(parent)>0;
-		boolean totalTrackUnderLimit=grandparent.getTrackLimit(grandparent)>0;
-		System.out.println("this track:"+trackType.getTrackLimit(trackType)+"parent"+parent.getTrackLimit(parent)+"root"+grandparent.getTrackLimit(grandparent));
-		
-		if (individualTrackUnderLimit && groupTrackUnderLimit && totalTrackUnderLimit){
-			return true;
+		if(trackType.getParent() == null){
+			return numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT;
 		}
-		return false;	
+		if(numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT) {
+			return isAvailable(trackType.getParent());
+		}
+		return false;
 	}
 	
 	public int getBudget() {
