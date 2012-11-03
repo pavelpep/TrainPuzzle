@@ -43,15 +43,14 @@ public class Simulator {
 	public Simulator(Level level) {
 		this.level = level;
 		this.board = this.level.getBoard();
-		this.train = new Train();
+		
 
 		initializeSimulator();
 	}
 
 	private void initializeSimulator() {
 		Location startPoint = new Location(this.level.getStartLocation());
-		this.train.setLocation(startPoint);
-		this.train.setHeading(EAST);
+		this.train = new Train(startPoint,EAST);
 		//this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
 		trainCrashed = false;
@@ -84,7 +83,7 @@ public class Simulator {
 		Track track = tile.getTrack();
 		heading = track.getOutboundHeading(heading);
 		this.train.setHeading(heading);
-		train.setLocation(nextLocation);
+		this.train.setLocation(nextLocation);
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
