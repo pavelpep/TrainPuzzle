@@ -20,10 +20,6 @@ public class TileMouseAdapter extends MouseAdapter {
 		private TrackPlacer trackPlacer;
 		private Track track;
 		
-		TileMouseAdapter() {
-			super();
-		}
-		
 		public TileMouseAdapter(TrackPlacer trackPlacer) {
 			super();
 			this.trackPlacer = trackPlacer;
@@ -65,6 +61,7 @@ public class TileMouseAdapter extends MouseAdapter {
 		}
 		
 		public void setTrack(Track track){
+			System.out.println(this.track.getTrackType());
 			this.track = track;
 		}
         

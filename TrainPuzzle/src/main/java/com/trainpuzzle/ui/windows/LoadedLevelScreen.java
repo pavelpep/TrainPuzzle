@@ -2,17 +2,14 @@ package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LoadedLevelMap;
+import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
@@ -20,15 +17,8 @@ import org.apache.log4j.Logger;
 import test.trainpuzzle.observe.*;
 
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.exception.CannotPlaceTrackException;
-import com.trainpuzzle.exception.CannotRemoveTrackException;
-import com.trainpuzzle.exception.TrainCrashException;
-import com.trainpuzzle.model.board.CompassHeading;
-import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Track;
-import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.controller.TrackPlacer;
 
 
@@ -42,20 +32,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private GameController gameController;
 	private Level level;
 
-	TileMouseAdapter mouseAdapter;
-	
 	// Window elements
-	
 	
 	private JPanel headerPanel = new JPanel();
 	private LoadedLevelMap loadedLevelMap;
 	private JPanel sidePanel = new JPanel();
 	private GameControlBox gameControlBox;
 	private JPanel trackPanel = new JPanel();
-	private JPanel selectedTrackPanel = new JPanel();
-	private JButton rotateButton = new JButton("Run");
-	private RotatedImageIcon selectedTrackImage;
-	private Track selectedTrack;
+	private SelectedTrack selectedTrackPanel;
+	
 	private JLabel messageBox =  new JLabel("");
 	Timer makeItBlink;
 	boolean blinkState = true;
@@ -65,7 +50,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		//Connect to application
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
-		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		
 		
 		//Window Layout
 		setLayout(new GridBagLayout());
@@ -156,9 +141,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.add(saveButton());
 		gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
-		trackPanel = new TrackSelection(gameController);
+		trackPanel = new TrackSelection(gameController, this);
 		sidePanel.add(trackPanel);
-		sidePanel.add(selectedTrackPanel());
+		selectedTrackPanel = new SelectedTrack(gameController, this);
+		sidePanel.add(selectedTrackPanel);
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
 
@@ -179,15 +165,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		mapPanel.add(loadedLevelMap);
 		addComponent(this, mapPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
-
 	
-	private JPanel selectedTrackPanel() {
-		
-		
-
+	public SelectedTrack getSelectedTrackPanel() {
 		return selectedTrackPanel;
 	}
-
+	
+	public LoadedLevelMap getMapPanel() {
+		return loadedLevelMap;
+	}
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {

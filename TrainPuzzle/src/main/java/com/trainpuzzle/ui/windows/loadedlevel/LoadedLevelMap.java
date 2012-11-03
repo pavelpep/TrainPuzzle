@@ -213,6 +213,10 @@ public class LoadedLevelMap extends JPanel implements Observer {
 		}
 	}
 	
+	public TileMouseAdapter getMouseAdapter() {
+		return mouseAdapter;
+	}
+	
 	@Override
 	public void notifyChange(Object object) {
 		if(object instanceof Train){

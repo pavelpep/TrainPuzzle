@@ -14,35 +14,34 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
 public class SelectedTrack extends JPanel implements ActionListener {
 	private GameController gameController;
+	private LoadedLevelScreen loadedLevelScreen;
 	
 	private JButton rotateButton = new JButton();
 	private RotatedImageIcon selectedTrackImage;
 	private Track selectedTrack;
-	private TileMouseAdapter mouseAdapter;
 	
-	public SelectedTrack(GameController gameController) {
+	public SelectedTrack(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
 		this.gameController = gameController;
-		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		this.loadedLevelScreen = loadedLevelScreen;
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder sidePanelTitle;
 		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Click to rotate");
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(sidePanelTitle);
-	
+		
 		this.add(rotateButton());
 	}
 	
-
 	private JButton rotateButton() {
-		JButton rotateButton = new JButton();
+		rotateButton = new JButton();
 		rotateButton.setBounds(0, 0, 40, 40);
 		rotateButton.setPreferredSize(new Dimension(100, 100));
 		rotateButton.setMargin(new Insets(0, 15, 0, 0));
@@ -51,25 +50,30 @@ public class SelectedTrack extends JPanel implements ActionListener {
 		return rotateButton;
 	}
 	
-	public void redrawRotateButton() {
+	public void redrawRotateButton(Track track, RotatedImageIcon trackImage) {
+		
 		rotateButton.removeAll();
+		selectedTrack = track;
+		loadedLevelScreen.getMapPanel().getMouseAdapter().setTrack(selectedTrack);
+		selectedTrackImage = trackImage;
 		JLabel selectedTrackContainer = new JLabel(selectedTrackImage);
 		rotateButton.add(selectedTrackContainer);
-		rotateButton.repaint();
-		this.setVisible(true);
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		/*
-		if (event.getActionCommand() == "rotateTrack") {	
-			selectedTrack = new Track(selectedTrack);
-			selectedTrack.rotateTrack();
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage.rotate90DegreesClockwise();
-			redrawRotateButton();
-		}*/
+		loadedLevelScreen.repaint();
+		loadedLevelScreen.setVisible(true);
 		
 	}
+
+	private void rotate() {
+		selectedTrack = new Track(selectedTrack);
+		selectedTrack.rotateTrack();
+		selectedTrackImage.rotate90DegreesClockwise();
+		redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		if (event.getActionCommand() == "rotateTrack") {	
+			rotate();
+		}
+	}
+
 }
