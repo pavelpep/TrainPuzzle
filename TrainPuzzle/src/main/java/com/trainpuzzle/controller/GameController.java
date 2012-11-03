@@ -40,14 +40,14 @@ public class GameController{
 	 	
 	/**
 	 * 
-	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.run()}
+	 * @deprecated this function been replaced with {@link test.trainpuzzle.controller.run()}
 	 */
 	public void runSimulation() {
 		simulator.run();
 	}
 	/**
 	 * 
-	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.reset()}
+	 * @deprecated this function been replaced with {@link test.trainpuzzle.controller.reset()}
 	 */
 	public void resetSimulation() {
 	    simulator.reset();

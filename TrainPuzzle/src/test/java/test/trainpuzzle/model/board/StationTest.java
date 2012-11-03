@@ -1,4 +1,4 @@
-package com.trainpuzzle.model.board.test;
+package test.trainpuzzle.model.board;
 
 import junit.framework.TestCase;
 

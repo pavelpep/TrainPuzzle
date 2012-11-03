@@ -2,11 +2,14 @@ package com.trainpuzzle.model.level;
 
 import java.util.LinkedList;
 
-import com.trainpuzzle.model.board.*;
+import test.trainpuzzle.model.board.*;
+
+import com.trainpuzzle.model.board.Location;
+import com.trainpuzzle.model.board.Train;
 
 /**
  * 
- * @deprecated this class has been replaced with {@link com.trainpuzzle.model.level.victory_condition.VictoryCondition}
+ * @deprecated this class has been replaced with {@link test.trainpuzzle.model.level.victory_condition.VictoryCondition}
  */
 @Deprecated
 public class VictoryConditionOld {

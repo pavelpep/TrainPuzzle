@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.board.test;
+package test.trainpuzzle.model.board;
 
 import junit.framework.TestCase;
 
-public class TileTest extends TestCase {
+public class TrackTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,43 +12,31 @@ public class TileTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testTile() {
+	public void testTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testRemoveTrack() {
+	public void testTrackConnection() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testHasTrack() {
+	public void testTrackConnectionConnection() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testHasObstacle() {
+	public void testRotateTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetElevation() {
+	public void testAddConnection() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetElevation() {
+	public void testGetConnections() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetTrack() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testSetTrack() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testGetLandscapeType() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testSetLandscapeType() {
+	public void testGetOutboundHeading() {
 		fail("Not yet implemented"); // TODO
 	}
 

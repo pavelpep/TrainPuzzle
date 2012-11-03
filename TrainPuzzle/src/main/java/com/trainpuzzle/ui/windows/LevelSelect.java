@@ -1,6 +1,6 @@
 package com.trainpuzzle.ui.windows;
 
-import com.trainpuzzle.controller.*;
+import com.trainpuzzle.controller.GameController;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,6 +8,8 @@ import java.io.File;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import test.trainpuzzle.controller.*;
 
 import java.util.*;
 

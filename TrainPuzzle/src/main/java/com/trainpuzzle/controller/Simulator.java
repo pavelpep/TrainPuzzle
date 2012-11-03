@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-import com.trainpuzzle.model.board.*;
-import com.trainpuzzle.model.level.*;
+
+import test.trainpuzzle.model.board.*;
+import test.trainpuzzle.model.level.*;
+
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;

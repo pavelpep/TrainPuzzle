@@ -2,7 +2,16 @@ package com.trainpuzzle.controller;
 
 import java.util.ArrayList;
 
-import com.trainpuzzle.model.board.*;
+import test.trainpuzzle.model.board.*;
+
+import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Connection;
+import com.trainpuzzle.model.board.Location;
+import com.trainpuzzle.model.board.Obstacle;
+import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 import com.trainpuzzle.model.board.Station.StationType;

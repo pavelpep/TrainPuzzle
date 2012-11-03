@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.board.test;
+package test.trainpuzzle.model.board;
 
 import junit.framework.TestCase;
 
-public class ConnectionTest extends TestCase {
+public class LocationTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,23 +12,7 @@ public class ConnectionTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testConnection() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testGetCompassHeadingPair() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testIsInboundHeading() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testOutboundorInbound() {
+	public void testLocation() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -36,11 +20,19 @@ public class ConnectionTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testRotate45Degrees() {
+	public void testGetRow() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testRotate90Degrees() {
+	public void testSetRow() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetColumn() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetColumn() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -49,6 +41,10 @@ public class ConnectionTest extends TestCase {
 	}
 
 	public void testGetClass() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testHashCode() {
 		fail("Not yet implemented"); // TODO
 	}
 

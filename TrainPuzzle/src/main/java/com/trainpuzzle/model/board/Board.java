@@ -3,7 +3,10 @@ package com.trainpuzzle.model.board;
 import java.util.Set;
 import java.util.HashSet;
 
-import com.trainpuzzle.observe.*;
+import test.trainpuzzle.observe.*;
+
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
 
 public class Board implements Observable, java.io.Serializable {

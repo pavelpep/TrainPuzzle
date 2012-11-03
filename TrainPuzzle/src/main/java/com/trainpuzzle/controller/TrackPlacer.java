@@ -2,10 +2,15 @@ package com.trainpuzzle.controller;
 
 
 import org.apache.log4j.Logger;
+
+import test.trainpuzzle.model.board.*;
+
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotRotateException;
-import com.trainpuzzle.model.board.*;
+import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.Tile;
+import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.level.Level;
 

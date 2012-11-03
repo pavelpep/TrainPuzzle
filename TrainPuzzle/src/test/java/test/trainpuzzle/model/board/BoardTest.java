@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.board.test;
+package test.trainpuzzle.model.board;
 
 import junit.framework.TestCase;
 
-public class ObstacleTest extends TestCase {
+public class BoardTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,23 +12,27 @@ public class ObstacleTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testObstacle() {
+	public void testBoard() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetName() {
+	public void testRegister() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetName() {
+	public void testNotifyAllObservers() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetImgLocation() {
+	public void testGetTile() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetImgLocation() {
+	public void testGetNumberOfColumns() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetNumberOfRows() {
 		fail("Not yet implemented"); // TODO
 	}
 

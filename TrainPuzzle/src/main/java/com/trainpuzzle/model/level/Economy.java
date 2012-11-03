@@ -2,7 +2,9 @@ package com.trainpuzzle.model.level;
 
 import java.util.HashMap;
 
-import com.trainpuzzle.model.board.*;
+import test.trainpuzzle.model.board.*;
+
+import com.trainpuzzle.model.board.TrackType;
 
 import com.trainpuzzle.infrastructure.Images;
 

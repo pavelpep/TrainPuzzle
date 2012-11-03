@@ -1,5 +1,5 @@
 package com.trainpuzzle.ui.windows;
-import com.trainpuzzle.observe.*;
+import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LoadedLevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
@@ -16,6 +16,8 @@ import javax.swing.border.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.log4j.Logger;
+
+import test.trainpuzzle.observe.*;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.exception.CannotPlaceTrackException;

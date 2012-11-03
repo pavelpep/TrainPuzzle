@@ -1,8 +1,8 @@
-package com.trainpuzzle.model.board.test;
+package test.trainpuzzle.model.board;
 
 import junit.framework.TestCase;
 
-public class LocationTest extends TestCase {
+public class TileTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -12,27 +12,43 @@ public class LocationTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testLocation() {
+	public void testTile() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject() {
+	public void testRemoveTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetRow() {
+	public void testHasTrack() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetRow() {
+	public void testHasObstacle() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testGetColumn() {
+	public void testGetElevation() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testSetColumn() {
+	public void testSetElevation() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetTrack() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetTrack() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testGetLandscapeType() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	public void testSetLandscapeType() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -48,7 +64,7 @@ public class LocationTest extends TestCase {
 		fail("Not yet implemented"); // TODO
 	}
 
-	public void testEqualsObject1() {
+	public void testEquals() {
 		fail("Not yet implemented"); // TODO
 	}
 

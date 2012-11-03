@@ -14,9 +14,11 @@ import java.io.PrintStream;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import test.trainpuzzle.model.level.*;
+
 import com.thoughtworks.xstream.*;
 
-import com.trainpuzzle.model.level.*;
+import com.trainpuzzle.model.level.Level;
 
 
 public class CampaignManager {
