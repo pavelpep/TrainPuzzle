@@ -20,6 +20,7 @@ import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Train;
+import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
@@ -202,6 +203,35 @@ public class LoadedLevelMap extends JPanel implements Observer {
 		this.repaint();
 	}
 	
+	private Location previousEndCarLocation = new Location(0,0);
+	
+	private void redrawTrainCars(Train train) {
+		//delete previous end car
+		JLayeredPane previousTile = mapTiles[previousEndCarLocation.getRow()][previousEndCarLocation.getColumn()];
+		removeComponentsInGUILayer(previousTile,trainLayerIndex);
+		
+		TrainCar trainCars[] = train.getTrainCars();
+		previousEndCarLocation = new Location(trainCars[0].getLocation());
+		
+		// delete all other previous cars 
+		for(int i=0; i < trainCars.length - 1; i++){
+			
+			previousTile = mapTiles[trainCars[i].getLocation().getRow()][trainCars[i].getLocation().getColumn()];
+		    removeComponentsInGUILayer(previousTile,trainLayerIndex);
+			
+		}
+		for(TrainCar trainCar: trainCars){
+			int rotation = trainCar.getHeading().ordinal() - 3;
+			JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN_CAR, rotation));
+			trainLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+			int row = trainCar.getLocation().getRow();
+			int column = trainCar.getLocation().getColumn();
+			mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
+			this.repaint();
+		}
+		
+	}
+	
 	private void removeComponentsInGUILayer(JLayeredPane mapTile, int layerIndex) {
 		try {
 			Component[] components = mapTile.getComponentsInLayer(layerIndex);
@@ -221,6 +251,7 @@ public class LoadedLevelMap extends JPanel implements Observer {
 	public void notifyChange(Object object) {
 		if(object instanceof Train){
 			redrawTrain(train);
+			redrawTrainCars(train);
 		}
 		else if(object instanceof Tile){
 			for(int row = 0; row < level.getBoard().rows; row++){
