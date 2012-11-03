@@ -42,7 +42,7 @@ public class TrackPlacer {
 			errorMessage += "landscape type is water";
 		}
 		else if (!economy.isAvailable(track.getTrackType())){
-			errorMessage +="the track is out of limit, not available now";
+			errorMessage +="the track is out of limit";
 		}
 		else {
 			tile.setTrack(track);

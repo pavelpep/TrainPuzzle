@@ -2,6 +2,8 @@ package com.trainpuzzle.factory;
 
 import java.util.ArrayList;
 
+
+
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
@@ -19,12 +21,14 @@ import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 
+import java.util.HashMap;
+
 
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
 public class LevelFactory {
 	private Board board; 
 	private AndVictoryCondition root;
-	private Economy economy;
+	//private Economy economy;
     
 	private void setStartLocation(Location location, CompassHeading compassHeading1, CompassHeading compassHeading2, TrackType trackType) {
 		Track startingTrack = new Track(new Connection(compassHeading1, compassHeading2), trackType);
@@ -96,7 +100,6 @@ public class LevelFactory {
 	
 	   public Level createLevelOne() {
 	    	this.board = new Board();
-	        this.economy = new Economy();
 	        this.root = new AndVictoryCondition();
 
 	        Location startLocation = new Location(4,0);
@@ -131,12 +134,31 @@ public class LevelFactory {
 	        setObstaclesByRow(13, 5, 6, ObstacleType.TREES);
 	        setObstaclesByRow(14, 6, 6, ObstacleType.TREES);
 	        
-	    	return new Level(1, this.board, startLocation, this.root, this.economy);
+	        HashMap<TrackType, Integer> trackLimitsLevelOne = new HashMap<TrackType,Integer>();
+	        final int NO_LIMIT = -1;
+	        trackLimitsLevelOne.put(TrackType.TRACK, 50);
+	        trackLimitsLevelOne.put(TrackType.STRAIGHT, 15);
+	        trackLimitsLevelOne.put(TrackType.CURVE, 15);
+	        trackLimitsLevelOne.put(TrackType.INTERSECTION, 15);
+	        trackLimitsLevelOne.put(TrackType.SWITCH, 15);
+	        trackLimitsLevelOne.put(TrackType.STRAIGHT_TRACK, NO_LIMIT);
+	        trackLimitsLevelOne.put(TrackType.DIAGONAL_TRACK, NO_LIMIT);
+	        trackLimitsLevelOne.put(TrackType.CURVELEFT_TRACK, 10);
+	        trackLimitsLevelOne.put(TrackType.CURVERIGHT_TRACK, 10);
+	        trackLimitsLevelOne.put(TrackType.INTERSECTION_TRACK, 10);
+	        trackLimitsLevelOne.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 10);
+	        trackLimitsLevelOne.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 10);
+	        trackLimitsLevelOne.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_LIMIT);
+	        int budget = NO_LIMIT;
+	        Economy economy = new Economy(budget, trackLimitsLevelOne);
+	        	
+	        
+	    	return new Level(1, this.board, startLocation, this.root, economy);
 		}
 		
 	    public Level createLevelTwo() {
 	    	this.board = new Board();
-	        this.economy = new Economy();
+	        Economy economy = new Economy();
 	        this.root = new AndVictoryCondition();
 
 	        Location startLocation = new Location(4,4);
@@ -183,12 +205,12 @@ public class LevelFactory {
 	        treeLocations.add(new Location(4, 10));
 	        setObstacles(treeLocations, ObstacleType.TREES);
 
-	    	return new Level(2, this.board, startLocation, this.root, this.economy);
+	    	return new Level(2, this.board, startLocation, this.root, economy);
 		}
 	    
 	    public Level createLevelThree() {
 	    	this.board = new Board(10, 10);
-	        this.economy = new Economy();
+	        Economy economy = new Economy();
 	        this.root = new AndVictoryCondition();
 	        
 	        Location startLocation = new Location(0,0);
@@ -218,6 +240,6 @@ public class LevelFactory {
 
 	        setStations(stations);
 	        
-	    	return new Level(3, this.board, startLocation, this.root, this.economy);
+	    	return new Level(3, this.board, startLocation, this.root, economy);
 		}
 }
