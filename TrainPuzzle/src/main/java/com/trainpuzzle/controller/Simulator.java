@@ -3,8 +3,8 @@ package com.trainpuzzle.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 import javax.swing.JOptionPane;
+
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -65,7 +65,7 @@ public class Simulator {
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
-			JOptionPane.showMessageDialog(null, "The train has crashed!");
+			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class Simulator {
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle()) {
 			// TODO: Better way to inform user train crashed
-			//JOptionPane.showMessageDialog(null, "The train has crashed!");
+			JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		}
 		return tile;
@@ -161,8 +161,12 @@ public class Simulator {
 	public void reset() {
 		timer.cancel();
 		isRunning = false;
-		initializeSimulator();
+		Location startPoint = new Location(this.level.getStartLocation());
+		this.train.setLocation(startPoint);
+		this.train.setHeading(EAST);
+		this.train.resetTrainCars();
 		this.victoryConditionEvaluator.resetEvents();
+		trainCrashed=false;
 	}
 	
 	public void stop() {

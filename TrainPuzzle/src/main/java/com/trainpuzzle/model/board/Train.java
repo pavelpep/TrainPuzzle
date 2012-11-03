@@ -46,19 +46,19 @@ public class Train implements Observable{
 	public Location getLocation() {
 		return location;
 	}
-/*
-	public void setLocation(int row, int column ) {
-		this.location.setRow(row);
-		this.location.setColumn(column);
-	}
-*/
+
 	public void setLocation(Location location) {
 		trainCars.poll();
 		trainCars.add(new TrainCar(this.location, this.heading));
 		this.location = location;
 		notifyAllObservers();
 	}
-	
+	public void resetTrainCars(){
+		for(TrainCar trainCar : trainCars) {
+			trainCar.setLocation(this.location);
+			trainCar.setHeading(this.heading);
+		}
+	}
 	public CompassHeading getHeading() {
 		return heading;
 	}
