@@ -186,12 +186,14 @@ public class LoadedLevelMap extends JPanel implements Observer {
 	private void initializeTrain() {
 		train.register(this);
 		redrawTrain(train);
+		redrawTrainCars(train);
 	}
 	
 	private void redrawTrain(Train train) {
-		JLayeredPane previousTile = mapTiles[previousTrainLocation.getRow()][previousTrainLocation.getColumn()];
-		removeComponentsInGUILayer(previousTile,trainLayerIndex);
-		previousTrainLocation = new Location(train.getLocation());
+		for(JLayeredPane[] tileArr: mapTiles){
+			for(JLayeredPane tile: tileArr)
+			removeComponentsInGUILayer(tile,trainLayerIndex);
+		}
 		
 		int rotation = train.getHeading().ordinal() - 3;
 		JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN, rotation));
@@ -201,24 +203,11 @@ public class LoadedLevelMap extends JPanel implements Observer {
 		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
 		this.repaint();
 	}
-	
-	private Location previousEndCarLocation = new Location(0,0);
-	
+		
 	private void redrawTrainCars(Train train) {
-		//delete previous end car
-		JLayeredPane previousTile = mapTiles[previousEndCarLocation.getRow()][previousEndCarLocation.getColumn()];
-		removeComponentsInGUILayer(previousTile,trainLayerIndex);
-		
+
 		TrainCar trainCars[] = train.getTrainCars();
-		previousEndCarLocation = new Location(trainCars[0].getLocation());
 		
-		// delete all other previous cars 
-		for(int i=0; i < trainCars.length - 1; i++){
-			
-			previousTile = mapTiles[trainCars[i].getLocation().getRow()][trainCars[i].getLocation().getColumn()];
-		    removeComponentsInGUILayer(previousTile,trainLayerIndex);
-			
-		}
 		for(TrainCar trainCar: trainCars){
 			int rotation = trainCar.getHeading().ordinal() - 3;
 			JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN_CAR, rotation));

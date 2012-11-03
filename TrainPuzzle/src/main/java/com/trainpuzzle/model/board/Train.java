@@ -58,6 +58,7 @@ public class Train implements Observable{
 			trainCar.setLocation(this.location);
 			trainCar.setHeading(this.heading);
 		}
+		notifyAllObservers();
 	}
 	public CompassHeading getHeading() {
 		return heading;
