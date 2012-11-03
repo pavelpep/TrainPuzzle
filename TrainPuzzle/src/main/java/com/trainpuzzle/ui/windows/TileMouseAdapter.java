@@ -61,7 +61,6 @@ public class TileMouseAdapter extends MouseAdapter {
 		}
 		
 		public void setTrack(Track track){
-			System.out.println(this.track.getTrackType());
 			this.track = track;
 		}
         
