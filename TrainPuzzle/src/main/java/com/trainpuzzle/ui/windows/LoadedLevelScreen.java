@@ -181,34 +181,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private JPanel selectedTrackPanel() {
 		
-		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder sidePanelTitle;
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Click to rotate");
-		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		selectedTrackPanel.setBorder(sidePanelTitle);
-	
-		selectedTrackPanel.add(rotateButton());
+		
 
 		return selectedTrackPanel;
 	}
 
-	private JButton rotateButton() {
-		rotateButton = new JButton();
-		rotateButton.setBounds(0, 0, 40, 40);
-		rotateButton.setPreferredSize(new Dimension(100, 100));
-		rotateButton.setMargin(new Insets(0, 15, 0, 0));
-		rotateButton.setActionCommand("rotateTrack");
-		rotateButton.addActionListener(this);
-		return rotateButton;
-	}
-	
-	private void redrawRotateButton() {
-		rotateButton.removeAll();
-		JLabel selectedTrackContainer = new JLabel(selectedTrackImage);
-		rotateButton.add(selectedTrackContainer);
-		rotateButton.repaint();
-		this.setVisible(true);
-	}
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
@@ -222,13 +199,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			}
 		}
 		
-		if (event.getActionCommand() == "rotateTrack") {	
-			selectedTrack = new Track(selectedTrack);
-			selectedTrack.rotateTrack();
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage.rotate90DegreesClockwise();
-			redrawRotateButton();
-		}
+
 	}
 	
 	private File saveFileDialog(){
