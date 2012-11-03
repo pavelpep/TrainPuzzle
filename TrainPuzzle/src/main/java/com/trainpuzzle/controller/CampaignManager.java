@@ -18,12 +18,13 @@ import test.trainpuzzle.model.level.*;
 
 import com.thoughtworks.xstream.*;
 
+import com.trainpuzzle.factory.LevelFactory;
 import com.trainpuzzle.model.level.Level;
 
 
 public class CampaignManager {
 	private Level levelLoaded;
-	private LevelGenerator levelGenerator = new LevelGenerator();
+	private LevelFactory levelFactory = new LevelFactory();
 	
 	public CampaignManager(){
 
@@ -31,14 +32,14 @@ public class CampaignManager {
 	
 	public Level loadLevel(int levelNumber) {
 		if(levelNumber == 1){
-			this.levelLoaded = levelGenerator.createLevelOne();
+			this.levelLoaded = levelFactory.createLevelOne();
 		}else if(levelNumber == 2){
-			this.levelLoaded = levelGenerator.createLevelTwo();
+			this.levelLoaded = levelFactory.createLevelTwo();
 		}else if(levelNumber == 3){
-			this.levelLoaded = levelGenerator.createLevelThree();
+			this.levelLoaded = levelFactory.createLevelThree();
 		}else{
 			 //just in case
-			 this.levelLoaded = levelGenerator.createLevelOne();
+			 this.levelLoaded = levelFactory.createLevelOne();
 		}
 		return this.levelLoaded;
 	}

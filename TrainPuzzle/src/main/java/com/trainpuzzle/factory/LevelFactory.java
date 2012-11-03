@@ -1,8 +1,6 @@
-package com.trainpuzzle.controller;
+package com.trainpuzzle.factory;
 
 import java.util.ArrayList;
-
-import test.trainpuzzle.model.board.*;
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -23,8 +21,8 @@ import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 
 
 //purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
-class LevelGenerator {
-	private Board board;
+public class LevelFactory {
+	private Board board; 
 	private AndVictoryCondition root;
 	private Economy economy;
     
