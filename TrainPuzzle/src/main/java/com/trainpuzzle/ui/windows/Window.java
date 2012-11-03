@@ -16,9 +16,6 @@ abstract class Window extends JFrame {
 	
 	Window() {}
 	
-	// Creates the JFrame with elements
-	public abstract void create();
-	
 	// Initializes a specific jComponent
 	protected void addComponent(Container container, JComponent jComponent, int fontLayout, int fontSize,
 		Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, float weightX, float weightY, int anchor, int fill, Insets inset, boolean isEnabled) {

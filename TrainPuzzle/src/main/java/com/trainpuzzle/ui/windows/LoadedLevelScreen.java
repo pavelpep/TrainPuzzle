@@ -2,6 +2,7 @@ package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.observe.*;
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LoadedLevelMap;
+import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -153,7 +154,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.add(saveButton());
 		gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
-		sidePanel.add(trackPanel());
+		trackPanel = new TrackSelection(gameController);
+		sidePanel.add(trackPanel);
 		sidePanel.add(selectedTrackPanel());
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
@@ -175,48 +177,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		mapPanel.add(loadedLevelMap);
 		addComponent(this, mapPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
-	
-	private JPanel trackPanel() {
-		trackPanel.setPreferredSize(new Dimension(200, 300));
-		
-		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder sidePanelTitle;
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track");
-		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		trackPanel.setBorder(sidePanelTitle);
-	
-		intializeTrackList();
-		
-		return trackPanel;
-	}
-	
-	private void intializeTrackList(){
-		JButton straightTrack = new JButton(Images.STRAIGHT_TRACK_IMAGE);
-		addTrackButton(straightTrack, "straightTrack", trackPanel);
-		
-		JButton diagonalTrack = new JButton(Images.DIAGONAL_TRACK_IMAGE);
-		addTrackButton(diagonalTrack, "diagonalTrack", trackPanel);
-		
-		JButton curveleftTrack = new JButton(Images.CURVELEFT_TRACK_IMAGE);
-		addTrackButton(curveleftTrack, "curveleftTrack", trackPanel);
-		
-		JButton curverightTrack = new JButton(Images.CURVERIGHT_TRACK_IMAGE);
-		addTrackButton(curverightTrack, "curverightTrack", trackPanel);
-		
-		JButton intersectionTrack = new JButton(Images.INTERSECTION_TRACK_IMAGE);
-		addTrackButton(intersectionTrack, "intersectionTrack", trackPanel);
-		
-		JButton diagonalIntersectionTrack = new JButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE);
-		addTrackButton(diagonalIntersectionTrack, "diagonalIntersectionTrack", trackPanel);		
-	}
 
-	private void addTrackButton(JButton button, String actionCommand, Container destinationContainer) {
-		button.setBounds(0, 0, 40, 40);
-		button.setPreferredSize(new Dimension(60,60));
-		button.setActionCommand(actionCommand);
-		button.addActionListener(this);
-		destinationContainer.add(button);
-	}
 	
 	private JPanel selectedTrackPanel() {
 		
@@ -248,11 +209,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		rotateButton.repaint();
 		this.setVisible(true);
 	}
-
-	//TODO: this method seems pretty useless remove?
-	public void create() {
-		this.setVisible(true);
-	}
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
@@ -264,56 +220,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			if(saveLevelFile != null){
 				gameController.saveCurrentLevel(saveLevelFile);
 			}
-		}
-		
-		if (event.getActionCommand() == "straightTrack") {
-			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
-			selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
-			redrawRotateButton();
-		}
-		
-		if (event.getActionCommand() == "diagonalTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
-			selectedTrack = new Track(connection, TrackType.DIAGONAL_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
-			redrawRotateButton();
-		}
-		
-		if (event.getActionCommand() == "curveleftTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
-			selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
-			redrawRotateButton();
-		}
-		
-		if (event.getActionCommand() == "curverightTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
-			selectedTrack = new Track(connection, TrackType.CURVERIGHT_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
-			redrawRotateButton();
-		}
-		
-		if (event.getActionCommand() == "intersectionTrack") {
-			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-			Connection connection2 = new Connection(CompassHeading.WEST, CompassHeading.EAST);
-			selectedTrack = new Track(connection1, connection2, TrackType.INTERSECTION_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
-			redrawRotateButton();
-		}
-		
-		if (event.getActionCommand() == "diagonalIntersectionTrack") {
-			Connection connection1 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
-			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-			selectedTrack = new Track(connection1, connection2, TrackType.DIAGONAL_INTERSECTION_TRACK);
-			mouseAdapter.setTrack(selectedTrack);
-			selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
-			redrawRotateButton();
 		}
 		
 		if (event.getActionCommand() == "rotateTrack") {	
