@@ -3,14 +3,11 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.TransferHandler;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.TrackPlacer;
@@ -27,6 +24,8 @@ import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
 public class LoadedLevelMap extends JPanel implements Observer {
+	private static final long serialVersionUID = 1L;
+	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;

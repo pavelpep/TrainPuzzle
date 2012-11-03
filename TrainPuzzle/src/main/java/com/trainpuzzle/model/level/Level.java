@@ -1,13 +1,10 @@
 package com.trainpuzzle.model.level;
 
-import test.trainpuzzle.model.board.*;
-import test.trainpuzzle.model.level.victory_condition.*;
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
-import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;

@@ -1,20 +1,9 @@
 package com.trainpuzzle.controller;
 
-import java.awt.FileDialog;
-import java.awt.Frame;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintStream;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-import test.trainpuzzle.model.level.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 
 import com.thoughtworks.xstream.*;
 

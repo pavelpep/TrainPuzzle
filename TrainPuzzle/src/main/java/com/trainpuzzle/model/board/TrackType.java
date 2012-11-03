@@ -1,6 +1,5 @@
 package com.trainpuzzle.model.board;
 
-import java.util.HashMap;
 
 public enum TrackType {
 	TRACK(null,0),

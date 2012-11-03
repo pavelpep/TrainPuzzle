@@ -3,20 +3,13 @@ package com.trainpuzzle.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import test.trainpuzzle.model.board.*;
-import test.trainpuzzle.model.level.*;
-
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
-import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
-import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;

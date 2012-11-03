@@ -17,9 +17,10 @@ import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
-import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
 public class SelectedTrack extends JPanel implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	
 	private GameController gameController;
 	private LoadedLevelScreen loadedLevelScreen;
 	

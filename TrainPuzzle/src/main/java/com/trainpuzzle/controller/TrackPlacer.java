@@ -3,8 +3,6 @@ package com.trainpuzzle.controller;
 
 import org.apache.log4j.Logger;
 
-import test.trainpuzzle.model.board.*;
-
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotRotateException;

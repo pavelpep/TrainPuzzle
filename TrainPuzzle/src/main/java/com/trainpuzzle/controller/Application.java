@@ -4,7 +4,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import com.trainpuzzle.ui.windows.LevelSelect;
 import com.trainpuzzle.ui.windows.MainMenu;
 import com.trainpuzzle.ui.windows.WindowManager;
 

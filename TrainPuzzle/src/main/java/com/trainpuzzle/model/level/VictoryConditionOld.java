@@ -2,8 +2,6 @@ package com.trainpuzzle.model.level;
 
 import java.util.LinkedList;
 
-import test.trainpuzzle.model.board.*;
-
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Train;
 

@@ -3,6 +3,8 @@ import java.util.Iterator;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Switch extends Track {
+
+	private static final long serialVersionUID = 1L;
 	
 	private Iterator<Connection> connectionsIterator;
 	private Connection current;

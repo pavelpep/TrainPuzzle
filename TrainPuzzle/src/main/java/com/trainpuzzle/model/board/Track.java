@@ -1,15 +1,10 @@
 package com.trainpuzzle.model.board;
 
-import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.trainpuzzle.exception.CannotPlaceTrackException;
-import com.trainpuzzle.exception.CannotRemoveTrackException;
+
 import com.trainpuzzle.exception.TrainCrashException;
-
-import static com.trainpuzzle.model.board.CompassHeading.*;
-
 
 public class Track implements java.io.Serializable{
 	
@@ -58,7 +53,7 @@ public class Track implements java.io.Serializable{
 	}
 	
 	private void addConnection(CompassHeading firstCompassHeading, CompassHeading secondCompassHeading) {
-		connections.add(new Connection(firstCompassHeading, secondCompassHeading));
+		addConnection(new Connection(firstCompassHeading, secondCompassHeading));
 	}
 	
 	public Set<Connection> getConnections() {

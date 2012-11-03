@@ -1,36 +1,25 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-import java.awt.Color;
-import java.awt.Container;
+
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.infrastructure.Images;
-import com.trainpuzzle.model.board.CompassHeading;
-import com.trainpuzzle.model.board.Connection;
-import com.trainpuzzle.model.board.Track;
-import com.trainpuzzle.model.board.TrackType;
-import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.WindowManager;
 
 public class GameControlBox extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
+	
 	private GameController gameController;
 	private JButton runButton = new JButton("Run");
 	private JButton pauseButton = new JButton("Pause");

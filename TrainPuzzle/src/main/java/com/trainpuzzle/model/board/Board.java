@@ -3,8 +3,6 @@ package com.trainpuzzle.model.board;
 import java.util.Set;
 import java.util.HashSet;
 
-import test.trainpuzzle.observe.*;
-
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 

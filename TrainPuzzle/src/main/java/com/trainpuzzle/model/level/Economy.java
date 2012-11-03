@@ -2,15 +2,12 @@ package com.trainpuzzle.model.level;
 
 import java.util.HashMap;
 
-import test.trainpuzzle.model.board.*;
-
 import com.trainpuzzle.model.board.TrackType;
-
-import com.trainpuzzle.infrastructure.Images;
 
 public class Economy implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	public static final int NO_LIMIT = -1;
 	private int budget = 1000;
 	private HashMap<TrackType, Integer> numberOfTrack = new HashMap<TrackType, Integer>();
