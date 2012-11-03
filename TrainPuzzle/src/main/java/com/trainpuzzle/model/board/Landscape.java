@@ -1,6 +1,5 @@
 package com.trainpuzzle.model.board;
 
-import com.trainpuzzle.infrastructure.Images;
 
 public class Landscape implements java.io.Serializable{
 	
@@ -12,24 +11,11 @@ public class Landscape implements java.io.Serializable{
 	}
 	
 	private LandscapeType landscape;
-	private String imgLocation;
+
 
 	public Landscape(LandscapeType type) {
 		this.landscape = type;
 		
-		switch(this.landscape) {
-		case GRASS:
-			//this.imgLocation = "src/main/resources/images/grass.png";
-			this.imgLocation = Images.GRASS;
-			break;
-		case WATER:
-			//this.imgLocation = "src/main/resources/images/water.png";
-			this.imgLocation = Images.WATER;
-			break;
-		default:
-			//this.imgLocation = "src/main/resources/images/grass.png";
-			this.imgLocation = Images.GRASS;
-		}
 	}
 	
 	/* Getters and Setters  */	
@@ -40,14 +26,6 @@ public class Landscape implements java.io.Serializable{
 	
 	public void setType(LandscapeType landscape) {
 		this.landscape = landscape;
-	}
-	
-	public String getImgLocation() {
-		return this.imgLocation;
-	}
-
-	public void setImgLocation(String imgLocation) {
-		this.imgLocation = imgLocation;
 	}
 	
 }
