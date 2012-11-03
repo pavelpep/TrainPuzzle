@@ -45,52 +45,44 @@ public class GameControlBox extends JPanel implements ActionListener{
 		gameControlBoxTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(gameControlBoxTitle);
 		this.setLayout(new GridBagLayout());
-
 		
-		runButton.setActionCommand("run");
-		runButton.addActionListener(this);
+		runButton = initializeButton("Run", "run");
 		runButton.setVisible(true);
 		GridBagConstraints runButtonContraints = buttonConstraints(new Point(0, 0), new Dimension(3, 1));
 		this.add(runButton, runButtonContraints);
 		
-		pauseButton.setActionCommand("pause");
-		pauseButton.addActionListener(this);
+		pauseButton = initializeButton("Pause","pause");
 		pauseButton.setVisible(false);
 		GridBagConstraints pauseButtonContraints = buttonConstraints(new Point(0, 0), new Dimension(3, 1));
 		this.add(pauseButton, pauseButtonContraints);
 		
-		JButton speedDecreaseButton = new JButton("-");
-		speedDecreaseButton.setActionCommand("tickDecrease");
-		speedDecreaseButton.addActionListener(this);
+		JButton speedDecreaseButton = initializeButton("-","tickDecrease");
 		GridBagConstraints speedDecreaseButtonContraints = buttonConstraints(new Point(0, 1), new Dimension(1, 1));
 		this.add(speedDecreaseButton, speedDecreaseButtonContraints);
 		
-		JButton singleStepButton = new JButton(">");
-		singleStepButton.setActionCommand("tickOnce");
-		singleStepButton.addActionListener(this);
+		JButton singleStepButton = initializeButton(">", "tickOnce");
 		GridBagConstraints singleStepButtonContraints = buttonConstraints(new Point(1, 1), new Dimension(1, 1));
 		this.add(singleStepButton, singleStepButtonContraints);
 		
-		JButton speedIncreaseButton = new JButton("+");
-		speedIncreaseButton.setActionCommand("tickIncrease");
-		speedIncreaseButton.addActionListener(this);
+		JButton speedIncreaseButton = initializeButton("+", "tickIncrease");
 		GridBagConstraints speedIncreaseButtonContraints = buttonConstraints(new Point(2, 1), new Dimension(1, 1));
 		this.add(speedIncreaseButton, speedIncreaseButtonContraints);
 		
-		JButton resetButton = new JButton("Reset Position");
-		resetButton.setActionCommand("reset");
-		resetButton.addActionListener(this);
+		JButton resetButton = initializeButton("Reset Position","reset");
 		GridBagConstraints resetButtonContraints = buttonConstraints(new Point(0, 2), new Dimension(3, 1));
 		this.add(resetButton, resetButtonContraints);
 		
-		JButton removeAllTracksButton = new JButton("Remove All Tracks");
-		removeAllTracksButton.setActionCommand("removeAllTracks");
-		removeAllTracksButton.addActionListener(this);
+		JButton removeAllTracksButton = initializeButton("Remove All Tracks", "removeAllTracks");
 		GridBagConstraints removeAllTracksButtonContraints = buttonConstraints(new Point(0, 3), new Dimension(3, 1));
 		this.add(removeAllTracksButton, removeAllTracksButtonContraints);
 	}
 	
-	
+	private JButton initializeButton(String label, String actionCommand) {
+		JButton button = new JButton(label);
+		button.setActionCommand(actionCommand);
+		button.addActionListener(this);
+		return button;
+	}
 
 	private GridBagConstraints buttonConstraints(Point location, Dimension size) {
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
