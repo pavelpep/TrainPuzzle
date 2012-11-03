@@ -70,7 +70,9 @@ public class Train implements Observable{
 	}
 	
 	public TrainCar[] getTrainCars() {
-		return (TrainCar[]) this.trainCars.toArray();
+		TrainCar[] traincars = new TrainCar[trainCars.size()];
+		trainCars.toArray(traincars);
+		return traincars;
 	}
 
 }

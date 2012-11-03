@@ -7,6 +7,7 @@ public final class Images {
 	//String type
 	
 	public final static String TRAIN = "src/main/resources/images/train.png";
+	public final static String TRAIN_CAR = "src/main/resources/images/traincar.png";
 	
 	//Landscape and obstacles
 	public final static String GRASS = "src/main/resources/images/grass2.png";
