@@ -1,5 +1,7 @@
 package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.observe.*;
+import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
+import com.trainpuzzle.ui.windows.loadedlevel.LoadedLevelMap;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -45,9 +47,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel headerPanel = new JPanel();
 	private LoadedLevelMap loadedLevelMap;
 	private JPanel sidePanel = new JPanel();
-	private JPanel gameControlBox = new JPanel();
-	private JButton runButton = new JButton("Run");
-	private JButton pauseButton = new JButton("Pause");
+	private GameControlBox gameControlBox;
 	private JPanel trackPanel = new JPanel();
 	private JPanel selectedTrackPanel = new JPanel();
 	private JButton rotateButton = new JButton("Run");
@@ -151,7 +151,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		sidePanel.setLayout(new FlowLayout());
 		sidePanel.add(saveButton());
-		sidePanel.add(gameControlBox());
+		gameControlBox = new GameControlBox(gameController);
+		sidePanel.add(gameControlBox);
 		sidePanel.add(trackPanel());
 		sidePanel.add(selectedTrackPanel());
 		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
@@ -164,54 +165,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return saveButton;
 	}
 
-	private JPanel gameControlBox() {
-		gameControlBox.setPreferredSize(new Dimension(200, 150));
-		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder gameControlBoxTitle;
-		gameControlBoxTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
-		gameControlBoxTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		gameControlBox.setBorder(gameControlBoxTitle);
-		gameControlBox.setLayout(new GridBagLayout());
-
-		addButtonToGridBag(runButton, "run",  gameControlBox, 0, 0, 3, 1);	
-		runButton.setVisible(true);
-		
-		addButtonToGridBag(pauseButton, "pause", gameControlBox, 0, 0, 3, 1);
-		pauseButton.setVisible(false);
-		
-		JButton speedDecreaseButton = new JButton("-");
-		addButtonToGridBag(speedDecreaseButton, "tickDecrease", gameControlBox, 0, 1, 1, 1);
-		
-		JButton singleStepButton = new JButton(">");
-		addButtonToGridBag(singleStepButton, "tickOnce", gameControlBox, 1, 1, 1, 1);
-		
-		JButton speedIncreaseButton = new JButton("+");
-		addButtonToGridBag(speedIncreaseButton, "tickIncrease", gameControlBox, 2, 1, 1, 1);
-		
-		JButton resetButton = new JButton("Reset Position");
-		addButtonToGridBag(resetButton, "reset", gameControlBox, 0, 2, 3, 1);
-		
-		JButton removeAllTracksButton = new JButton("Remove All Tracks");
-		addButtonToGridBag(removeAllTracksButton, "removeAllTracks", gameControlBox, 0, 3, 3, 1);
-		
-		return gameControlBox;
-			  
-	}
-
-	private void addButtonToGridBag(JButton button, String actionCommand, Container destinationContainer, int x, int y, int width, int height) {
-		int defaultFontSize = UIManager.getDefaults().getFont("TextPane.font").getSize();
-		button.setActionCommand(actionCommand);
-		button.addActionListener(this);
-		addComponent(destinationContainer, button, Font.CENTER_BASELINE, defaultFontSize, this.getBackground(), x, y, width, height, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-	}
 	
 	//Map Panel
 
 	private void initializeMapPanel() {
 		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
-		loadedLevelMap = new LoadedLevelMap(gameController, mouseAdapter, level.getBoard().rows, level.getBoard().columns);
-		mapPanel.add(loadedLevelMap.getMap());
+		loadedLevelMap = new LoadedLevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
+		mapPanel.add(loadedLevelMap);
 		addComponent(this, mapPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
 	
@@ -297,44 +258,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if (event.getActionCommand() == "backToLevelSelect") {
 			WindowManager.getManager(gameController).showPreviousWindow();
 		}
-		if (event.getActionCommand() == "run") {
-			gameController.getSimulator().run();
-			runButton.setVisible(false);
-			pauseButton.setVisible(true);
-			
-		}
-		if (event.getActionCommand() == "pause") {
-			gameController.getSimulator().stop();
-			runButton.setVisible(true);
-			pauseButton.setVisible(false);
-		}	
-		if (event.getActionCommand() == "reset") {
-			gameController.getSimulator().reset();
-			
-		}	
-		if (event.getActionCommand() == "tickDecrease") {
-			int decreasedValue = gameController.getSimulator().getTickInterval() * 2;
-			int upperBound = gameController.getSimulator().getTickIntervalUpperBound();
-			if(decreasedValue <= upperBound){
-				gameController.getSimulator().setTickInterval(decreasedValue);
-			}
-		}
-		
-		if (event.getActionCommand() == "tickOnce") {
-			gameController.getSimulator().move();
-		}
-		
-		if (event.getActionCommand() == "tickIncrease") {
-			int increasedValue = gameController.getSimulator().getTickInterval() / 2;
-			int lowerBound = gameController.getSimulator().getTickIntervalLowerBound();
-			if(increasedValue >= lowerBound){
-				gameController.getSimulator().setTickInterval(increasedValue);
-			}
-		}
-		
-		if (event.getActionCommand() == "removeAllTracks") {
-			gameController.removeAllTracks();
-		}
 		
 		if (event.getActionCommand() == "save") {
 			File saveLevelFile = saveFileDialog();
@@ -415,20 +338,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 
 	public void notifyChange(Object object){
-
-
-		if(object instanceof CannotRemoveTrackException){
-			messageBox.setForeground(Color.RED);
-			messageBox.setText("<html><p>Cannot remove track</p></html>");
-		}
-		else if(object instanceof CannotPlaceTrackException){
-			messageBox.setForeground(Color.RED);
-			messageBox.setText("<html><p>Cannot place track</p></html>");
-		}
-		else if(object instanceof TrainCrashException){
-			messageBox.setForeground(Color.RED);
-			messageBox.setText("<html><p>Train has crashed</p><p>Please reset and try again</p></html>");
-		}
 	}
 
 	

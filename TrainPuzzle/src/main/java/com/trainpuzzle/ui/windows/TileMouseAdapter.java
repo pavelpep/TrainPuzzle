@@ -15,7 +15,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-class TileMouseAdapter extends MouseAdapter {
+public class TileMouseAdapter extends MouseAdapter {
 		private GameController gameController;
 		private TrackPlacer trackPlacer;
 		private Track track;
@@ -24,7 +24,7 @@ class TileMouseAdapter extends MouseAdapter {
 			super();
 		}
 		
-		TileMouseAdapter(TrackPlacer trackPlacer) {
+		public TileMouseAdapter(TrackPlacer trackPlacer) {
 			super();
 			this.trackPlacer = trackPlacer;
 			track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
