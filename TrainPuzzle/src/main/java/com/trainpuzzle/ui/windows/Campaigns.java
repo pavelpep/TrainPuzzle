@@ -17,13 +17,16 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	private GridBagConstraints c;
 	
 	// Window elements	
-	private JList profileList;
-	private DefaultListModel listModel = null;
+	private String campaignName = null;
+	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private JList campaignList = new JList(listModel);
+	private JScrollPane listScrollPane = new JScrollPane(campaignList);
 	
-	private JLabel title = null;
-	private JButton newProfile = null;;
-	private JButton loadProfile = null;
-	private JButton backButton = null;
+	private JLabel titleLabel = new JLabel();
+	private JButton newCampaign = new JButton();
+	private JButton loadCampaign = new JButton();
+	private JButton deleteCampaign = new JButton();
+	private JButton backButton = new JButton();
 	
 	// Constructor
 	public Campaigns(GameController gameController) {
@@ -33,10 +36,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
-		listModel = new DefaultListModel();
-		listModel.addElement("Player1");
-		listModel.addElement("Player2");
 		create();
 	}
 	
@@ -49,71 +48,56 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
-		listModel = new DefaultListModel();
-		listModel.addElement("Player1");
-		listModel.addElement("Player2");
 		create();
 	}
 	
 	public void create() {
 		// Title
-		title = new JLabel("Choose Campaign");
-		title.setFont(new Font("Arial", Font.BOLD, 20));
-		c.gridx = 1;
-		c.gridy = 0;
-		c.gridwidth = 2;
-		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10, 10, 0, 10);
-		this.add(title, c);
+		addComponent(this, this.titleLabel, Font.CENTER_BASELINE, 20, Color.LIGHT_GRAY, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		this.titleLabel.setText("Choose Campaign");
 		
-		profileList = new JList(listModel);
-		profileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		profileList.addListSelectionListener(this);
-		profileList.setVisibleRowCount(5);		
-		JScrollPane listScrollPane = new JScrollPane(profileList);
+		addComponent(this, this.listScrollPane, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		campaignList.addListSelectionListener(this);
+		campaignList.setVisibleRowCount(8);		
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		c.ipadx = 50;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		//this.add(profileList, c);
-		this.add(listScrollPane, c);
+		addComponent(this, this.newCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		this.newCampaign.setText("New Campaign");
+		newCampaign.setActionCommand("newCampaign");
+		newCampaign.addActionListener(this);
 		
-		loadProfile = new JButton("Load Campaign");
-		c.gridx = 1;
-		c.gridy = 3;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		this.add(loadProfile, c);
+		addComponent(this, this.loadCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		this.loadCampaign.setText("Load Campaign");
+		loadCampaign.setActionCommand("loadCampaign");
+		loadCampaign.addActionListener(this);
 		
-		newProfile = new JButton("New Campaign");
-		c.gridx = 1;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		this.add(newProfile, c);
+		addComponent(this, this.deleteCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 4, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		this.deleteCampaign.setText("Delete Campaign");
+		deleteCampaign.setActionCommand("deleteCampaign");
+		deleteCampaign.addActionListener(this);
 		
-		backButton = new JButton("Back");
-		c.gridx = 1;
-		c.gridy = 4;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.fill = GridBagConstraints.NONE;
-		c.insets = new Insets(30, 0, 0, 0);
-		this.add(backButton, c);		
-		
-		// ActionListeners for window elements
+		addComponent(this, this.backButton, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), true);
+		this.backButton.setText("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
-		
-		this.setVisible(true);
-		
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "back") {
+	public void actionPerformed(ActionEvent event) {
+		String action = event.getActionCommand();
+		
+		if (action == "newCampaign") {
+			campaignName = JOptionPane.showInputDialog("Please enter your name:");			
+			if (campaignName == null || campaignName.isEmpty() || !campaignName.matches(".*\\w.*")) {
+				JOptionPane.showMessageDialog(null, "You must enter a name");
+			} else {
+				listModel.addElement(campaignName);
+			}
+		} else if (action == "loadCampaign") {
+			campaignName = (String) campaignList.getSelectedValue();	
+		} else if (action == "deleteCampaign") {
+			campaignName = (String) campaignList.getSelectedValue();
+			listModel.removeElement(campaignName);
+		} else if (action == "back") {
 			WindowManager.getManager(gameController).showPreviousWindow();
 		}
 	}
@@ -122,6 +106,4 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		// TODO Auto-generated method stub
 		
 	}	
-	
-	
 }

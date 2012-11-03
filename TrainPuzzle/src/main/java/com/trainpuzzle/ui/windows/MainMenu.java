@@ -16,7 +16,7 @@ public class MainMenu extends Window implements ActionListener {
 	// Window elements
 	private JLabel menuLabel = new JLabel();
 	private JButton continueButton = new JButton();
-	private JButton profilesButton = new JButton(); 
+	private JButton campaignsButton = new JButton(); 
 	private JButton creditsButton = new JButton();
 	private JButton exitButton = new JButton();
 	
@@ -50,10 +50,10 @@ public class MainMenu extends Window implements ActionListener {
 		this.continueButton.addActionListener(this);
 	
 		/// Campaigns Button
-		addComponent(this, this.profilesButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
-		this.profilesButton.setText("Add/Change Campaign");
-		this.profilesButton.setActionCommand("campaigns");
-		this.profilesButton.addActionListener(this);
+		addComponent(this, this.campaignsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
+		this.campaignsButton.setText("Add/Change Campaign");
+		this.campaignsButton.setActionCommand("campaigns");
+		this.campaignsButton.addActionListener(this);
 		
 		// Credits Button
 		addComponent(this, this.creditsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), false);
