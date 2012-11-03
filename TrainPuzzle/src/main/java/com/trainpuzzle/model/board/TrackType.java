@@ -3,26 +3,31 @@ package com.trainpuzzle.model.board;
 import java.util.HashMap;
 
 public enum TrackType {
-	TRACK(null),
-		STRAIGHT(TRACK),
-			STRAIGHT_TRACK(STRAIGHT),
-			DIAGONAL_TRACK(STRAIGHT),
-		CURVE(TRACK),
-			CURVELEFT_TRACK(CURVE),
-			CURVERIGHT_TRACK(CURVE),
-		INTERSECTION(TRACK),
-			INTERSECTION_TRACK(INTERSECTION),
-			DIAGONAL_INTERSECTION_TRACK(INTERSECTION),
-		SWITCH(TRACK),
-			CURVELEFT_STRAIGHT_SWITCH(SWITCH),
-			CURVERIGHT_STRAIGHT_SWITCH(SWITCH);
-		
-	TrackType(TrackType parent) {
+	TRACK(null,0),
+		STRAIGHT(TRACK,0),
+			STRAIGHT_TRACK(STRAIGHT,10),
+			DIAGONAL_TRACK(STRAIGHT,10),
+		CURVE(TRACK,0),
+			CURVELEFT_TRACK(CURVE,10),
+			CURVERIGHT_TRACK(CURVE,10),
+		INTERSECTION(TRACK,0),
+			INTERSECTION_TRACK(INTERSECTION,10),
+			DIAGONAL_INTERSECTION_TRACK(INTERSECTION,10),
+		SWITCH(TRACK,0),
+			CURVELEFT_STRAIGHT_SWITCH(SWITCH,10),
+			CURVERIGHT_STRAIGHT_SWITCH(SWITCH,10);
+	TrackType(TrackType parent,int price) {
 		this.parent = parent;
+		this.price = price;
 	}
+	private int price;
 	private TrackType parent = null;
+	
 	public TrackType getParent() {
 		return parent;
+	}
+	public int getPrice() {
+		return this.price;
 	}
 		
 	  

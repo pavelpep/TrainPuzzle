@@ -15,23 +15,21 @@ public class Economy implements java.io.Serializable{
 	
 	public Economy(){
 		for(TrackType trackType:TrackType.values()){
-			numberOfTrack.put(trackType, NO_LIMIT);
-			
+			numberOfTrack.put(trackType, NO_LIMIT);	
 		}
+		budget = NO_LIMIT;
 	}
-	public Economy(int[] trackLimit) {
-		TrackType[] trackTypes = TrackType.values();
-		for(int i = 0;i < 13;i++) {
-			if(trackLimit.length <= i) {
-				numberOfTrack.put(trackTypes[i], NO_LIMIT);
-			}
-			else {
-				numberOfTrack.put(trackTypes[i], trackLimit[i]);
-			}
+	public Economy(int budget) {
+		for(TrackType trackType:TrackType.values()){
+			numberOfTrack.put(trackType, NO_LIMIT);	
 		}
+		this.budget = budget;
 	}
 	
 	public void useOnePieceOfTrack(TrackType trackType){
+		if(budget != NO_LIMIT) {
+			this.budget = budget + trackType.getPrice();
+		}
 		Integer currentNumOfThisTrack=numberOfTrack.get(trackType);
 		if(currentNumOfThisTrack !=NO_LIMIT) {
 			currentNumOfThisTrack--;
@@ -43,6 +41,9 @@ public class Economy implements java.io.Serializable{
 	}
 	
 	public void retrunOnePieceOfTrack(TrackType trackType){
+		if(budget != NO_LIMIT) {
+			this.budget = budget + trackType.getPrice();
+		}
 		Integer currentNumOfThisTrack=numberOfTrack.get(trackType);
 		if(currentNumOfThisTrack !=NO_LIMIT) {
 			currentNumOfThisTrack++;
@@ -54,11 +55,13 @@ public class Economy implements java.io.Serializable{
 	}
 	
 	public boolean isAvailable(TrackType trackType){
-		if(trackType.getParent() == null){
-			return numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT;
-		}
-		if(numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT) {
-			return isAvailable(trackType.getParent());
+		if(budget == NO_LIMIT || budget >= trackType.getPrice()) {
+			if(trackType.getParent() == null){
+				return numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT;
+			}
+			if(numberOfTrack.get(trackType) > 0 || numberOfTrack.get(trackType) == NO_LIMIT) {
+				return isAvailable(trackType.getParent());
+			}
 		}
 		return false;
 	}
@@ -68,6 +71,15 @@ public class Economy implements java.io.Serializable{
 	}
 	public void setBudget(int budget) {
 		this.budget = budget;
+	}
+	public void setTrackLimit(TrackType trackType, int limit) {
+		numberOfTrack.put(trackType, limit);
+	}
+	public Integer getTrackLimit(TrackType trackType) {
+		return numberOfTrack.get(trackType);
+	}
+	public HashMap<TrackType, Integer> getTrackLimits() {
+		return this.numberOfTrack;
 	}
 	
 }
