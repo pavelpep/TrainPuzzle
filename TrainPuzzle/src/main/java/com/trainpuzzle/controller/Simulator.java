@@ -77,8 +77,8 @@ public class Simulator {
 		Tile tile = getTileWithTrack(nextLocation);
 		Track track = tile.getTrack();
 		heading = track.getOutboundHeading(heading);
-		this.train.setHeading(heading);
 		this.train.setLocation(nextLocation);
+		this.train.setHeading(heading);
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
