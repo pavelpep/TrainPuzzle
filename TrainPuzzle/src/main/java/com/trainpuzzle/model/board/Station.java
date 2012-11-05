@@ -20,11 +20,15 @@ public class Station implements java.io.Serializable {
 		GREEN;
 	}
 	
+	// TODO: create load type
+	
 	private StationType stationType;
 	private Location stationLocation;
 	private CompassHeading entranceFacing;
 	private Track track;
 	private Obstacle stationBuilding;
+	private int numberOfLoads;
+	
 	
 	/* Public Interface */
 	
@@ -123,5 +127,19 @@ public class Station implements java.io.Serializable {
 	
 	public Obstacle getBuilding() {
 		return stationBuilding;
+	}
+	
+	public void takeLoad() {
+		if(numberOfLoads > 0) {
+			numberOfLoads--;
+		}
+		// TODO: throw exception
+	}
+	
+	public void dropLoad() {
+		if(numberOfLoads < 2) {
+			numberOfLoads++;
+		}
+		// TODO: throw exception
 	}
 }
