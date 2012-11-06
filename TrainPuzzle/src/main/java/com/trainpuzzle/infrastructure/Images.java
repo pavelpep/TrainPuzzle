@@ -6,6 +6,7 @@ public final class Images {
 	
 	//String type
 	
+	//Train
 	public final static String TRAIN = "src/main/resources/images/train.png";
 	public final static String TRAIN_CAR = "src/main/resources/images/traincar.png";
 	
@@ -30,8 +31,10 @@ public final class Images {
 
 	//ImageIcon type
 	
+	//Train
 	public final static ImageIcon TRAIN_IMAGE = new ImageIcon(TRAIN);
-	
+	public final static ImageIcon TRAIN_CAR_IMAGE = new ImageIcon(TRAIN_CAR);
+
 	//Landscape and obstacles
 	public final static ImageIcon GRASS_IMAGE = new ImageIcon(GRASS);
 	public final static ImageIcon WATER_IMAGE = new ImageIcon(WATER);
