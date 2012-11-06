@@ -6,14 +6,12 @@ public class Event implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int time;
 	private Station station;
-	private String eventName;
 	
 	
 
 	public Event(int time, Station station) {
 		this.time = time;
 		this.station = station;
-		this.createSationName();
 	}
 	
 	
@@ -34,13 +32,6 @@ public class Event implements java.io.Serializable {
 	}
 
 
-	public String getEventName() {
-		return eventName;
-	}
-
-	public void setEventId(String eventName) {
-		this.eventName = eventName;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,15 +48,10 @@ public class Event implements java.io.Serializable {
 		return compareEvent(other);
 	}
 	
-	private void createSationName(){
-		int row = station.getStationLocation().getRow();
-		int column = station.getStationLocation().getColumn();
-		eventName = "pass station at (" + row +"," + column +")";
-	}
 	
 	private boolean compareEvent(Event event) {
 		//TODO: ensure that equals method handles time correctly for VictoryConditionEvaluator
-		return eventName.equals(event.getEventName());
+		return station.equals(event.getStation());
 			
 		
 	}
