@@ -12,32 +12,27 @@ public class Switch extends Track {
 	
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
-		assert(!isValidSwitch(connection1, connection2)): "Invalid switch";
+		this.entrance = findValidEntrance(connection1, connection2);
+		
 		goToFirstConnection();
 	}
 	
-	private boolean isValidSwitch(Connection connection1, Connection connection2) {
-		CompassHeading[] compassHeadingPair1 = connection1.getCompassHeadingPair();
-		CompassHeading[] compassHeadingPair2 = connection2.getCompassHeadingPair();
-		
-		return hasOnlyOneSimilarHeadingAndSetEntrance(compassHeadingPair1, compassHeadingPair2);
-	}
-	
-	private boolean hasOnlyOneSimilarHeadingAndSetEntrance(CompassHeading[] pair1, CompassHeading[] pair2) {
+	private CompassHeading findValidEntrance(Connection connection1, Connection connection2) {
 		int similarHeadingCounts = 0;
+		CompassHeading entrance = null;
+		
+		CompassHeading[] pair1 = connection1.getCompassHeadingPair();
+		CompassHeading[] pair2 = connection2.getCompassHeadingPair();
 		for(CompassHeading pair1_heading: pair1) {
 			for(CompassHeading pair2_heading: pair2) {
 				if(pair1_heading == pair2_heading) {
 					similarHeadingCounts++;
-					setEntrance(pair1_heading);
+					entrance = pair1_heading;
 				}
 			}
 		}
-		return (similarHeadingCounts == 1);
-	}
-	
-	private void setEntrance(CompassHeading entrance) {
-		this.entrance = entrance;
+		assert(similarHeadingCounts != 1): "Invalid switch";
+		return entrance;
 	}
 	
 	private void goToFirstConnection() {
