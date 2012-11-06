@@ -19,7 +19,6 @@ public class GameController{
 	private TrackPlacer trackPlacer;
 	private Simulator simulator;
 	private Level level;
-	private Level loadedLevelWithTrack;
 
 	public void startGame(int levelNumber) {
 		campaignManager = new CampaignManager();
@@ -27,6 +26,7 @@ public class GameController{
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
+	
 	public void startGame(File levelFile) {
 		campaignManager = new CampaignManager();
 		level = campaignManager.loadLevel(levelFile);
@@ -38,25 +38,10 @@ public class GameController{
 		return simulator;
 	}
 	 	
-	/**
-	 * 
-	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.simulator.run()}
-	 */
-	public void runSimulation() {
-		simulator.run();
-	}
-	/**
-	 * 
-	 * @deprecated this function been replaced with {@link com.trainpuzzle.controller.simulator.reset()}
-	 */
-	public void resetSimulation() {
-	    simulator.reset();
-	}
 	
 	public void placeTrack(Track track, int row, int column) {
 		try {
 			trackPlacer.placeTrack(track, row, column);
-			loadedLevelWithTrack = trackPlacer.getLevelWithTrack();
 			
 		} catch (CannotPlaceTrackException e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
@@ -69,8 +54,8 @@ public class GameController{
 	public void removeTrack(int row, int column) {
 		try {
 			trackPlacer.removeTrack(row, column);
-			loadedLevelWithTrack = trackPlacer.getLevelWithTrack();
-		} catch (CannotRemoveTrackException e) {
+		}
+		catch (CannotRemoveTrackException e) {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 			for(Observer observer : observerList) {
 				observer.notifyChange(e);
@@ -101,10 +86,6 @@ public class GameController{
 	
 	public Board getBlankMap() {
 		return level.getBoard();
-	}
-	
-	public Board getTrackMap() {
-		return loadedLevelWithTrack.getBoard();
 	}
 	
 	public Level getLevel() {
