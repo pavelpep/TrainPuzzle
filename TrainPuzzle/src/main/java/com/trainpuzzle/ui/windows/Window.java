@@ -16,6 +16,24 @@ abstract class Window extends JFrame {
 	
 	Window() {}
 	
+	protected void initializeComponent(JComponent jComponent, int fontSize) {
+		Font defaultFont = new Font("Arial", Font.CENTER_BASELINE, fontSize);
+		jComponent.setFont(defaultFont);
+		jComponent.setBackground(this.getBackground());
+	}
+	
+	protected GridBagConstraints gbConstraints(Point location, Dimension size, float weightX, float weightY) {
+		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = (int) location.getX();
+		gridBagConstraints.gridy = (int) location.getY();
+		gridBagConstraints.gridwidth = (int) size.getWidth();
+		gridBagConstraints.gridheight = (int) size.getHeight();
+		gridBagConstraints.weightx = weightX;
+		gridBagConstraints.weighty = weightY;
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		return gridBagConstraints;
+	}
+	
 	// Initializes a specific jComponent
 	protected void addComponent(Container container, JComponent jComponent, int fontLayout, int fontSize,
 		Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, float weightX, float weightY, int anchor, int fill, Insets inset, boolean isEnabled) {

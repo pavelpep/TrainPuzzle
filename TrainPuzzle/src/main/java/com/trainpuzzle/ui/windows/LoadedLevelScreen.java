@@ -33,7 +33,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Level level;
 
 	// Window elements
-	
 	private JPanel headerPanel = new JPanel();
 	private LoadedLevelMap loadedLevelMap;
 	private JPanel sidePanel = new JPanel();
@@ -51,7 +50,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
 		
-		
 		//Window Layout
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,20 +60,29 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		//setExtendedState(Frame.MAXIMIZED_BOTH);
 
 		// Game title
-		initializeHeaderPanel();
-		initializeMapPanel();
-		initializeSidePanel();
+		addHeaderPanel();
+		addMapPanel();
+		addSidePanel();
 	}
 
-	private void initializeHeaderPanel() {
+	private void addHeaderPanel() {
 		headerPanel = new JPanel();
 		headerPanel.setLayout(new GridBagLayout());
-		addComponent(headerPanel, backButton(), Font.CENTER_BASELINE, 12, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		addComponent(headerPanel, titleLabel(), Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		addComponent(headerPanel, messageBox(), Font.CENTER_BASELINE, 14, this.getBackground(), 2, 0, 1, 1, 1, 0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
-		addComponent(this, headerPanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		GridBagConstraints backButtonContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		headerPanel.add(backButton(), backButtonContraints);
+		
+		GridBagConstraints titleLabelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 1), 0, 0);
+		headerPanel.add(titleLabel(), titleLabelContraints);
+		
+		GridBagConstraints messageBoxContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 1, 0);
+		headerPanel.add(messageBox(), messageBoxContraints);
+		
+		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		this.add(headerPanel, headerPanelContraints);
 	}
+	
+
 
 	private JLabel messageBox() {
 		messageBox =  new JLabel("");
@@ -84,18 +91,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		Font font = messageBox.getFont();
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
-		
-
-		
-		
-        messageBoxDisplayTimer = new Timer(MESSAGE_BOX_DISPLAY_IN_MILLISECONDS,
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                    	setMessageBoxMessage("");
-                    	messageBoxDisplayTimer.stop();
-                    }
-        });
-		
+		messageBoxDisplayTimer = new Timer(MESSAGE_BOX_DISPLAY_IN_MILLISECONDS,
+			new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setMessageBoxMessage("");
+					messageBoxDisplayTimer.stop();
+				}
+			}
+		);
 		return(messageBox);
 	}
 	
@@ -106,12 +109,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void setMessageBoxMessage(String message, Color colour) {
 		messageBox.setText(message);
 		messageBox.setForeground(colour);
-    	if(messageBoxDisplayTimer.isRunning()) {
-    		messageBoxDisplayTimer.restart();
-    	}
-    	else {
-    		messageBoxDisplayTimer.start();
-    	}
+		if(messageBoxDisplayTimer.isRunning()) {
+			messageBoxDisplayTimer.restart();
+		}
+		else {
+			messageBoxDisplayTimer.start();
+		}
 	}
 
 	private JButton backButton() {
@@ -130,7 +133,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 
-	private void initializeSidePanel() {
+	private void addSidePanel() {
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		sidePanel.setLayout(new FlowLayout());
 		sidePanel.add(saveButton());
@@ -140,7 +143,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.add(trackPanel);
 		selectedTrackPanel = new SelectedTrack(gameController, this);
 		sidePanel.add(selectedTrackPanel);
-		addComponent(this, sidePanel, Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		
+		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 2), 0, 0);
+		this.add(sidePanel, sidePanelContraints);
 	}
 
 	private JButton saveButton() {
@@ -153,12 +158,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	//Map Panel
 
-	private void initializeMapPanel() {
+	private void addMapPanel() {
 		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
 		loadedLevelMap = new LoadedLevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);
-		addComponent(this, mapPanel, Font.CENTER_BASELINE, 0, this.getBackground(), 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
+		this.add(mapPanel, mapPanelContraints);
 	}
 	
 	public SelectedTrack getSelectedTrackPanel() {
@@ -186,13 +192,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private File saveFileDialog(){
 		JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-	        "XML Encoded Level", "xml");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showSaveDialog(this);
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    	return chooser.getSelectedFile();
-	    }
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			"XML Encoded Level", "xml");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showSaveDialog(this);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			return chooser.getSelectedFile();
+		}
 		return null;
 	}
 
