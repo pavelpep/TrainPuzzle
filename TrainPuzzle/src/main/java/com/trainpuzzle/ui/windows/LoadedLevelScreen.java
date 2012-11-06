@@ -42,8 +42,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private SelectedTrack selectedTrackPanel;
 	
 	private JLabel messageBox =  new JLabel("");
-	Timer makeItBlink;
-	boolean blinkState = true;
+	private Timer messageBoxDisplayTimer;
+	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
@@ -72,7 +72,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		headerPanel.setLayout(new GridBagLayout());
 		addComponent(headerPanel, backButton(), Font.CENTER_BASELINE, 12, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		addComponent(headerPanel, titleLabel(), Font.CENTER_BASELINE, 28, this.getBackground(), 1, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
-		addComponent(headerPanel, messageBox(), Font.CENTER_BASELINE, 16, this.getBackground(), 2, 0, 1, 1, 1, 0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
+		addComponent(headerPanel, messageBox(), Font.CENTER_BASELINE, 14, this.getBackground(), 2, 0, 1, 1, 1, 0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 		
 		addComponent(this, headerPanel, Font.CENTER_BASELINE, 28, this.getBackground(), 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), true);
 	}
@@ -85,23 +85,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
 		
-		int blinkInterval = 2500;
+
 		
 		
-        makeItBlink = new Timer(blinkInterval,
+        messageBoxDisplayTimer = new Timer(MESSAGE_BOX_DISPLAY_IN_MILLISECONDS,
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                     	setMessageBoxMessage("");
-                    	makeItBlink.stop();
-                    	/*
-                    	blinkState = !blinkState;
-                        if (blinkState) {
-                        	messageBox.setForeground(Color.RED);
-                        }
-                        else {
-                        	messageBox.setForeground(Color.BLACK);
-                        }
-                        */
+                    	messageBoxDisplayTimer.stop();
                     }
         });
 		
@@ -110,13 +101,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void setMessageBoxMessage(String message) {
 		setMessageBoxMessage(message, Color.BLACK);
-		makeItBlink.start();
-		
 	}
 	
 	private void setMessageBoxMessage(String message, Color colour) {
 		messageBox.setText(message);
 		messageBox.setForeground(colour);
+    	if(messageBoxDisplayTimer.isRunning()) {
+    		messageBoxDisplayTimer.restart();
+    	}
+    	else {
+    		messageBoxDisplayTimer.start();
+    	}
 	}
 
 	private JButton backButton() {
