@@ -23,8 +23,8 @@ public class Cargo implements java.io.Serializable{
 		return this.cargo;
 	}
 	
-	public void setType(CargoType landscape) {
-		this.cargo = landscape;
+	public void setType(CargoType cargo) {
+		this.cargo = cargo;
 	}
 	
 }
