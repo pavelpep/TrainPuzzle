@@ -20,7 +20,7 @@ public class Location implements java.io.Serializable {
 	
 	@Override
 	public boolean equals(Object object) {
-		if(object == null){
+		if(object == null) {
 			return false;
 		}
 		Location location = (Location) object;

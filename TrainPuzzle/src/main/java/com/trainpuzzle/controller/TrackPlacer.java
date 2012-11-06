@@ -47,6 +47,7 @@ public class TrackPlacer {
 			TrackType trackType=track.getTrackType();
 			economy.useOnePieceOfTrack(trackType);
 			map.notifyAllObservers();
+			return;
 		}
 		logger.warn("CannotPlaceTrackException was thrown");
 		throw new CannotPlaceTrackException(errorMessage);

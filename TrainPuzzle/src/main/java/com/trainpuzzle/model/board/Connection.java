@@ -1,11 +1,8 @@
 package com.trainpuzzle.model.board;
 
-
 public class Connection implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	//TODO: Write comment of why it's not set to null
 	private CompassHeading compassHeading1 = CompassHeading.NORTHEAST;
 	private CompassHeading compassHeading2 = CompassHeading.NORTHWEST;
 	
@@ -22,9 +19,7 @@ public class Connection implements java.io.Serializable {
 		connectionHeadings[1] = compassHeading2;
 		return connectionHeadings;
 	}
-	
-	//TODO: possibly will need a rotateConnection() method in the future
-	
+		
 	public boolean isInboundHeading(CompassHeading inbound) {
 		CompassHeading outbound = inbound.opposite();
 		return outbound == compassHeading1 || outbound == compassHeading2; 
@@ -61,8 +56,6 @@ public class Connection implements java.io.Serializable {
 		return headingsAreDirectlyEqual || headingsAreIndirectlyEqual;
 	}
 		
-
-	
 	public void rotate45Degrees() {
 		compassHeading1 = compassHeading1.rotate45DegreesClockwise();
 		compassHeading2 = compassHeading2.rotate45DegreesClockwise();

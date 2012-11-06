@@ -1,7 +1,6 @@
 package com.trainpuzzle.model.board;
 
-
-public class Landscape implements java.io.Serializable{
+public class Landscape implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -10,22 +9,19 @@ public class Landscape implements java.io.Serializable{
 		WATER
 	}
 	
-	private LandscapeType landscape;
+	private LandscapeType landscapeType;
 
-
-	public Landscape(LandscapeType type) {
-		this.landscape = type;
-		
+	public Landscape(LandscapeType landscapeType) {
+		this.landscapeType = landscapeType;		
 	}
 	
 	/* Getters and Setters  */	
 
 	public LandscapeType getType() {
-		return this.landscape;
+		return landscapeType;
 	}
 	
-	public void setType(LandscapeType landscape) {
-		this.landscape = landscape;
+	public void setType(LandscapeType landscapeType) {
+		this.landscapeType = landscapeType;
 	}
-	
 }
