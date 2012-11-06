@@ -1,6 +1,5 @@
 package com.trainpuzzle.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -10,7 +9,6 @@ import com.thoughtworks.xstream.*;
 
 import com.trainpuzzle.model.level.Campaign;
 import com.trainpuzzle.model.level.Level;
-
 
 public class CampaignManager {
 
@@ -26,25 +24,23 @@ public class CampaignManager {
 		return this.levelLoaded;
 	}
 	
-	public Level openNextLevel(){
-		
+	public Level openNextLevel() {
 		return loadLevel(campaign.getCurrentLevel());
-		
 	}
 	
 	public void saveLevel(File file) {
-	      try {
-	        // Create the necessary output streams to save the level.
-	        PrintStream out = new PrintStream(file);
+		try {
+	    // Create the necessary output streams to save the level.
+			PrintStream out = new PrintStream(file);
 	        XStream xstream = new XStream();
 	        xstream.toXML(levelLoaded, out);
-	        
-	        System.out.println("wrote to file: " + file.getAbsoluteFile());
+	        System.out.println("saved to file: " + file.getAbsoluteFile());
 	      }
-	      // Print out exceptions.  We should really display them in a dialog...
-	      catch (IOException e) { System.out.println(e); }
-	    
-	  }
+	    // Print out exceptions.  We should really display them in a dialog...
+	    catch (IOException e) { 
+	    	System.out.println(e); 
+	    }
+	}
  
 	public Level loadLevel(File file) {
 		  
@@ -64,36 +60,30 @@ public class CampaignManager {
 	  }
 	  
 	public void saveCampaign() {
-		  File file = new File("campaign.xml"); 
-	      try {
-	        // Create the necessary output streams to save the level.
-	        PrintStream out = new PrintStream(file);
-	        XStream xstream = new XStream();
-	        xstream.toXML(campaign, out);
-	        
-	        System.out.println("wrote to file: " + file.getAbsoluteFile());
-	      }
-	      // Print out exceptions.  We should really display them in a dialog...
-	      catch (IOException e) { System.out.println(e); }
-	    
-	  }
+		File file = new File("campaign.xml"); 
+		try {
+		// Create the necessary output streams to save the level.
+			PrintStream out = new PrintStream(file);
+			XStream xstream = new XStream();
+			xstream.toXML(campaign, out);
+			System.out.println("wrote to file: " + file.getAbsoluteFile());
+		}
+		// Print out exceptions. We should really display them in a dialog...
+		catch (IOException e) { 
+			System.out.println(e); 
+		}
+	}
 	  
 	public void loadCampaign() {
-		File file = new File("campaign.xml"); 
-		  
+		File file = new File("campaign.xml");  
 		Campaign loadedCampaign = new Campaign();
-		
-	      try {
-	        XStream xstream = new XStream();
+	    try {
+	    	XStream xstream = new XStream();
 	        loadedCampaign = (Campaign)xstream.fromXML(file);
 	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
-	        
-	      }
-	      // Print out exceptions.  We should really display them in a dialog...
-	      catch (Exception e) { System.out.println(e); }
-	      
-	      this.campaign = loadedCampaign;
-	  }
+	    }
+	    // Print out exceptions. We should really display them in a dialog...
+	    catch (Exception e) { System.out.println(e); }
+	    this.campaign = loadedCampaign;
+	}
 }
-
-

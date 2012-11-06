@@ -1,6 +1,5 @@
 package com.trainpuzzle.controller;
 
-
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.exception.CannotPlaceTrackException;
@@ -14,7 +13,6 @@ import com.trainpuzzle.model.level.Level;
 
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.board.TrackType;
-
 
 public class TrackPlacer {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
@@ -39,17 +37,16 @@ public class TrackPlacer {
 			errorMessage += "there was an obstacle";
 		} 
 		else if (tile.getLandscapeType() == LandscapeType.WATER) {
-			errorMessage += "landscape type is water";
+			errorMessage += "there was a water landscape";
 		}
-		else if (!economy.isAvailable(track.getTrackType())){
-			errorMessage +="the track is out of limit";
+		else if (!economy.isAvailable(track.getTrackType())) {
+			errorMessage += "the track is out of limit";
 		}
 		else {
 			tile.setTrack(track);
 			TrackType trackType=track.getTrackType();
 			economy.useOnePieceOfTrack(trackType);
 			map.notifyAllObservers();
-			return;
 		}
 		logger.warn("CannotPlaceTrackException was thrown");
 		throw new CannotPlaceTrackException(errorMessage);
@@ -57,7 +54,7 @@ public class TrackPlacer {
 
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException {
 		Tile tile = map.getTile(row, column);
-		String errorMessage = "Track failed to be removed because ";
+		String errorMessage = "Failed to be removed track from a tile because ";
 		
 		if(tile.hasTrack()) {			
 			if (tile.getTrack().isRemovable()) {
@@ -68,11 +65,11 @@ public class TrackPlacer {
 				return;
 			} 
 			else {
-				errorMessage += "there was an unremovable track";
+				errorMessage += "it's an unremovable track";
 			}
 		} 
 		else {
-			errorMessage += "there was no track at the tile to remove";
+			errorMessage += "there was no track to be removed";
 		}
 		logger.warn("CannotRemoveTrackException was thrown");
 		throw new CannotRemoveTrackException(errorMessage);
@@ -93,5 +90,5 @@ public class TrackPlacer {
 	
 	public Level getLevelWithTrack() {
 		return levelToAddTrack;
-	}	
+	}
 }

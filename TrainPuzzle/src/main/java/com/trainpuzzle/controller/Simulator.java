@@ -21,6 +21,7 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Simulator {
+	
 	private Level level;
 	private Board board;
 	private Train train;
@@ -38,24 +39,15 @@ public class Simulator {
 	public Simulator(Level level) {
 		this.level = level;
 		this.board = this.level.getBoard();
-		
-
 		initializeSimulator();
 	}
 
 	private void initializeSimulator() {
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train = new Train(startPoint,EAST);
-		//this.victoryConditionOld = new VictoryConditionOld(this.level.getEndLocation());
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
 		trainCrashed = false;
 	}
-	
-	/**
-	 * Move the train to next tile according to its heading and change its heading, too
-	 * 
-	 * @return whether the train goes to next tile successfully or not
-	 */
 	
 	public void move() {
     	try {
@@ -70,7 +62,6 @@ public class Simulator {
 	}
 	
 	public void proceedNextTile() throws TrainCrashException {
-	
 		Location location = train.getLocation();
 		CompassHeading heading = train.getHeading();
 		Location nextLocation = getNextLocation(location,heading);
@@ -144,7 +135,6 @@ public class Simulator {
 	}	
 	
 	private void passStation(Station station) {
-		//String name = "pass station "+station.hashCode();
 		Event event = new Event(100, station);
 		this.victoryConditionEvaluator.processEvent(event);
 	}
@@ -156,8 +146,7 @@ public class Simulator {
 	public Train getTrain() {
 		return this.train;
 	}
-	
-    
+	    
 	public void reset() {
 		timer.cancel();
 		isRunning = false;
@@ -177,7 +166,6 @@ public class Simulator {
 	public void run() {
 		timer.cancel();
 		timer = new Timer();
-		
 		TimerTask timerTask = new TimerTask() {
 	 		
 			public void run() {
@@ -196,7 +184,7 @@ public class Simulator {
 	
 	public void setTickInterval(int tickIntervalInMillis) {
 	    this.tickInterval = tickIntervalInMillis;
-	    if(isRunning){
+	    if(isRunning) {
 	    	run();
 	    }
 	}
@@ -215,6 +203,5 @@ public class Simulator {
 	
 	public int getTickIntervalUpperBound() {
 		return tickIntervalUpperBound;
-	}
-    
+	}   
 }

@@ -11,7 +11,7 @@ import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.Observer;
 
-public class GameController{
+public class GameController {
 	
 	private Logger logger = Logger.getLogger(Application.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
@@ -75,7 +75,6 @@ public class GameController{
 				}
 			}
 		}
-		
 	}
 	
 	/* Getters and Setters */
@@ -95,7 +94,6 @@ public class GameController{
 	public void saveCurrentLevel(File file){
 		campaignManager.saveLevel(file);
 	}
-	
 }
 
 

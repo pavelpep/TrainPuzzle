@@ -12,7 +12,7 @@ public class Application {
 	private Logger logger = Logger.getLogger(Application.class);
 	
 	public static void main(String[]args) {
-		BasicConfigurator.configure(); //loads log4j.xml configuration file
+		BasicConfigurator.configure(); // loads log4j.xml configuration file
 		
 		Application thisApplication = new Application();
 		GameController gameController = new GameController();
@@ -21,7 +21,7 @@ public class Application {
 	}
 	
 	public void createMainMenu(GameController gameController) {
-		//assert campaignManager != null : "campaignManager not set";
+		// assert campaignManager != null : "campaignManager not set";
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -33,14 +33,13 @@ public class Application {
 		    //TODO: Switch to default view
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
-		
-		//WindowManager.
-		
-		//LevelSelect levelSelect = new LevelSelect(gameController);
 		WindowManager.getManager(gameController).setActiveWindow(new MainMenu(gameController));
-		//WindowManager.getManager().setActiveWindow(levelSelect);
-		//WindowManager.getManager().updateWindows();
-		//MainMenu mainMenu = new MainMenu(this, campaignManager);
-		//WindowManager.getManager().setActiveWindow(mainMenu);
+
+		// WindowManager.		
+		// LevelSelect levelSelect = new LevelSelect(gameController);
+		// WindowManager.getManager().setActiveWindow(levelSelect);
+		// WindowManager.getManager().updateWindows();
+		// MainMenu mainMenu = new MainMenu(this, campaignManager);
+		// WindowManager.getManager().setActiveWindow(mainMenu);
 	}	
 }
