@@ -28,6 +28,9 @@ public class CampaignManager {
 		return loadLevel(campaign.getCurrentLevel());
 	}
 	
+	public Campaign getCampaign(){
+		return this.campaign;
+	}
 	  
 	public void saveCampaign() {
 		File file = new File("campaign.xml"); 
