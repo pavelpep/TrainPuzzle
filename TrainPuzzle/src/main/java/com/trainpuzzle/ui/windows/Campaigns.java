@@ -18,7 +18,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	// Window elements	
 	private String campaignName = null;
-	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private DefaultListModel listModel = new DefaultListModel();
 	private JList campaignList = new JList(listModel);
 	private JScrollPane listScrollPane = new JScrollPane(campaignList);
 	
