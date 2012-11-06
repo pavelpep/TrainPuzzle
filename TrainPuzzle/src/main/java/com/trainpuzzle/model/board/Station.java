@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import com.trainpuzzle.exception.NoCargoException;
-
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
  * Station is treated as an obstacle (tracks cannot be built on it)
@@ -34,7 +32,8 @@ public class Station implements java.io.Serializable {
 	private CompassHeading entranceFacing;
 	private Track track;
 	private Obstacle stationBuilding;
-	private LinkedList<Cargo> cargo = new LinkedList<Cargo>();
+	private LinkedList<Cargo> extraCargo = new LinkedList<Cargo>();
+	private LinkedList<Cargo> requiredCargo = new LinkedList<Cargo>();
 	
 	
 	/* Public Interface */
@@ -134,17 +133,42 @@ public class Station implements java.io.Serializable {
 	
 	public Obstacle getBuilding() {
 		return stationBuilding;
+	}	
+	
+	public boolean hasExtraCargo() {
+		return requiredCargo.size() > 0;
 	}
 	
-	public Cargo pickupCargo() throws NoCargoException {
-		if(cargo.size() > 0) {
-			return cargo.getFirst();
-		}
+	public Cargo pickupExtraCargo() {
+		assert extraCargo.size() > 0;
 		
-		throw new NoCargoException();
+		return extraCargo.getFirst();		
 	}
 	
-	public void addLoad(Cargo cargo) {
-		this.cargo.add(cargo);
+	public void addExtraCargo(Cargo cargo) {
+		this.extraCargo.add(cargo);
 	}
+	
+	public boolean hasRequiredCargo() {
+		return requiredCargo.size() > 0;
+	}
+	
+	public boolean isRequiredCargo(Cargo cargo) {
+		return requiredCargo.contains(cargo);
+	}
+	
+	public void dropoffRequiredCargo(Cargo cargo)  {
+		requiredCargo.removeFirstOccurrence(cargo);
+	}
+	
+	public void addRequiredCargo(Cargo requiredCargo) {
+		this.requiredCargo.add(requiredCargo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return stationLocation.equals(((Location) obj));
+	}
+	
+	
 }

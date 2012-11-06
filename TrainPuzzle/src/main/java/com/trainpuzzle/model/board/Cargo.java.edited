@@ -8,7 +8,7 @@ public class Cargo implements java.io.Serializable{
 	public enum CargoType {
 		COTTON,
 		IRON,
-		WOOD
+		STEEL
 	}
 	
 	private CargoType cargoType;
@@ -23,21 +23,24 @@ public class Cargo implements java.io.Serializable{
 		return this.cargoType;
 	}
 	
-	public void setType(CargoType cargo) {
-		this.cargoType = cargo;
-	}
-
+<<<<<<< .mine
 	@Override
 	public int hashCode() {
 		return cargoType.ordinal();
 	}
-	
+
+	public void setType(CargoType landscape) {
+		this.cargoType = landscape;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		return this.cargoType.equals(((Cargo)obj).cargoType);
+=======
+	public void setType(CargoType cargo) {
+		this.cargo = cargo;
+>>>>>>> .r531
 	}
-	
-	
 	
 	
 	
