@@ -10,17 +10,17 @@ public class Campaign implements java.io.Serializable {
 	private int lastLevel = 10;
 	private int currentLevel = 1;
 	
-	public Campaign(){
+	public Campaign() {
 		
 	}
 	
-	public void completeCurrentLevel(){
-		if(currentLevel >= firstLevel && currentLevel <= lastLevel){
+	public void completeCurrentLevel() {
+		if(currentLevel >= firstLevel && currentLevel <= lastLevel) {
 				currentLevel = currentLevel + 1;
 		}
 	}
 	
-	public int getCurrentLevel(){
+	public int getCurrentLevel() {
 		return this.currentLevel;
 	}
 	
@@ -29,15 +29,15 @@ public class Campaign implements java.io.Serializable {
 		Level levelLoaded;
 		LevelFactory levelFactory = new LevelFactory();
 		
-		if(levelNumber == 1){
-			levelLoaded = levelFactory.createLevelOne();
-		}else if(levelNumber == 2){
-			levelLoaded = levelFactory.createLevelTwo();
-		}else if(levelNumber == 3){
-			levelLoaded = levelFactory.createLevelThree();
-		}else{
-			 //just in case
-			levelLoaded = levelFactory.createLevelOne();
+		switch(levelNumber) {
+		case 1: levelLoaded = levelFactory.createLevelOne();
+				break;
+		case 2: levelLoaded = levelFactory.createLevelTwo();
+				break;
+		case 3: levelLoaded = levelFactory.createLevelThree();
+				break;
+		default:levelLoaded = levelFactory.createLevelOne();
+				break;
 		}
 		return levelLoaded;
 	}
