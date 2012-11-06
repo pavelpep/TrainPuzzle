@@ -2,6 +2,13 @@ package com.trainpuzzle.model.board;
 
 import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import com.trainpuzzle.exception.NoCargoException;
+
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
  * Station is treated as an obstacle (tracks cannot be built on it)
@@ -27,7 +34,7 @@ public class Station implements java.io.Serializable {
 	private CompassHeading entranceFacing;
 	private Track track;
 	private Obstacle stationBuilding;
-	private int numberOfLoads;
+	private LinkedList<Cargo> cargo = new LinkedList<Cargo>();
 	
 	
 	/* Public Interface */
@@ -129,17 +136,15 @@ public class Station implements java.io.Serializable {
 		return stationBuilding;
 	}
 	
-	public void takeLoad() {
-		if(numberOfLoads > 0) {
-			numberOfLoads--;
+	public Cargo pickupCargo() throws NoCargoException {
+		if(cargo.size() > 0) {
+			return cargo.getFirst();
 		}
-		// TODO: throw exception
+		
+		throw new NoCargoException();
 	}
 	
-	public void dropLoad() {
-		if(numberOfLoads < 2) {
-			numberOfLoads++;
-		}
-		// TODO: throw exception
+	public void addLoad(Cargo cargo) {
+		this.cargo.add(cargo);
 	}
 }

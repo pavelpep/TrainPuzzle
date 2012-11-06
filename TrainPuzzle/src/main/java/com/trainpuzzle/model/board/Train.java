@@ -53,6 +53,7 @@ public class Train implements Observable{
 		this.location = location;
 		notifyAllObservers();
 	}
+	
 	public void resetTrainCars(){
 		for(TrainCar trainCar : trainCars) {
 			trainCar.setLocation(this.location);
@@ -60,6 +61,7 @@ public class Train implements Observable{
 		}
 		notifyAllObservers();
 	}
+	
 	public CompassHeading getHeading() {
 		return heading;
 	}

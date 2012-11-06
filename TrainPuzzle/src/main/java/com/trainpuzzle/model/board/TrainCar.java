@@ -5,7 +5,7 @@ public class TrainCar {
 
 	private Location location; 
 	private CompassHeading heading;
-	
+	private Cargo cargo;
 	
 	public TrainCar() {
 		
@@ -16,6 +16,20 @@ public class TrainCar {
 		setHeading(heading);
 	}
 	
+	public boolean hasCargo() {
+		return cargo != null;
+	}
+	
+	public void addCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+	
+	public Cargo dropCargo() {
+		Cargo currentCargo = cargo;
+		cargo = null;
+		
+		return currentCargo;
+	}
 	
 	/*Getters and Setters */
 
@@ -34,4 +48,5 @@ public class TrainCar {
 	public void setHeading(CompassHeading heading) {
 		this.heading = heading;
 	}
+	
 }
