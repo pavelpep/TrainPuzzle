@@ -5,7 +5,9 @@ import com.trainpuzzle.factory.LevelFactory;
 public class Campaign implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-		
+	private String campaignName = "Campaign 1";	
+
+
 	private int firstLevel = 1;
 	private int lastLevel = 10;
 	private int currentLevel = 1;
@@ -40,5 +42,14 @@ public class Campaign implements java.io.Serializable {
 				break;
 		}
 		return levelLoaded;
+	}
+
+
+	public String getCampaignName() {
+		return campaignName;
+	}
+
+	public void setCampaignName(String campaignName) {
+		this.campaignName = campaignName;
 	}
 }

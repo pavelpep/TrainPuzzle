@@ -1,12 +1,15 @@
 package com.trainpuzzle.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
+
+import com.thoughtworks.xstream.XStream;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
-import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.Observer;
@@ -28,8 +31,7 @@ public class GameController {
 	}
 	
 	public void startGame(File levelFile) {
-		campaignManager = new CampaignManager();
-		level = campaignManager.loadLevel(levelFile);
+		level = loadLevel(levelFile);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
@@ -83,17 +85,44 @@ public class GameController {
 		return campaignManager;
 	}
 	
-	public Board getBlankMap() {
-		return level.getBoard();
-	}
 	
 	public Level getLevel() {
 		return this.level;
 	}
 
 	public void saveCurrentLevel(File file){
-		campaignManager.saveLevel(file);
+		saveLevel(this.level, file);
 	}
+	private void saveLevel(Level level, File file) {
+	      try {
+	        // Create the necessary output streams to save the level.
+	        PrintStream out = new PrintStream(file);
+	        XStream xstream = new XStream();
+	        xstream.toXML(level, out);
+	        
+	        System.out.println("wrote to file: " + file.getAbsoluteFile());
+	      }
+	      // Print out exceptions.  We should really display them in a dialog...
+	      catch (IOException e) { System.out.println(e); }
+	    
+	  }
+
+	private Level loadLevel(File file) {
+		  
+		Level loadedLevel = new Level(3);
+		
+	      try {
+	        XStream xstream = new XStream();
+	        loadedLevel = (Level)xstream.fromXML(file);
+	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
+	        
+	      }
+	      // Print out exceptions.  We should really display them in a dialog...
+	      catch (Exception e) { System.out.println(e); }
+	     
+	      return loadedLevel;
+	  }
+	
 }
 
 

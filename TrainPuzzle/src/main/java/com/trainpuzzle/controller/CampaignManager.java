@@ -28,36 +28,6 @@ public class CampaignManager {
 		return loadLevel(campaign.getCurrentLevel());
 	}
 	
-	public void saveLevel(File file) {
-		try {
-	    // Create the necessary output streams to save the level.
-			PrintStream out = new PrintStream(file);
-	        XStream xstream = new XStream();
-	        xstream.toXML(levelLoaded, out);
-	        System.out.println("saved to file: " + file.getAbsoluteFile());
-	      }
-	    // Print out exceptions.  We should really display them in a dialog...
-	    catch (IOException e) { 
-	    	System.out.println(e); 
-	    }
-	}
- 
-	public Level loadLevel(File file) {
-		  
-		Level loadedLevel = new Level(3);
-		
-	      try {
-	        XStream xstream = new XStream();
-	        loadedLevel = (Level)xstream.fromXML(file);
-	        this.levelLoaded = loadedLevel;
-	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
-	        
-	      }
-	      // Print out exceptions.  We should really display them in a dialog...
-	      catch (Exception e) { System.out.println(e); }
-	     
-	      return this.levelLoaded;
-	  }
 	  
 	public void saveCampaign() {
 		File file = new File("campaign.xml"); 
