@@ -16,6 +16,7 @@ import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
+import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
@@ -61,6 +62,12 @@ public class TrackSelection extends JPanel implements ActionListener{
 		
 		JButton diagonalIntersectionTrack = initializeButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack");
 		this.add(diagonalIntersectionTrack);
+		
+		JButton curveleftStraightSwitch = initializeButton(Images.STRAIGHT_TRACK_IMAGE, "curveleftStraightSwitch");
+		this.add(curveleftStraightSwitch);
+		
+		JButton curverightStraightSwitch = initializeButton(Images.STRAIGHT_TRACK_IMAGE, "curverightStraightSwitch");
+		this.add(curverightStraightSwitch);
 	}
 	
 	private JButton initializeButton(ImageIcon label, String actionCommand) {
@@ -116,6 +123,21 @@ public class TrackSelection extends JPanel implements ActionListener{
 			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
 		}
 		
+		if (event.getActionCommand() == "curveleftStraightSwitch") {
+			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
+			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVELEFT_STRAIGHT_SWITCH);
+			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+		}
+		
+		if (event.getActionCommand() == "curverightStraightSwitch") {
+			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+			Connection connection2 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
+			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVERIGHT_STRAIGHT_SWITCH);
+			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+		}
 	}
 	
 }
