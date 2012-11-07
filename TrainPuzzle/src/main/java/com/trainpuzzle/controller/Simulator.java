@@ -194,7 +194,6 @@ public class Simulator {
 	 		
 			public void run() {
 	        	move();
-	 			
 	        	if(isVictoryConditionsSatisfied() || trainCrashed) {
 	        		this.cancel();
 	        		isRunning = false;

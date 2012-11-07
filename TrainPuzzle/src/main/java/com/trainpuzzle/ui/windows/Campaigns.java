@@ -32,10 +32,12 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
-		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		//setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		
 		create();
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	

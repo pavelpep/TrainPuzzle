@@ -19,14 +19,15 @@ public class MainMenu extends Window implements ActionListener {
 		this.gameController = gameController;
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		create();
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	public void create() {
 		JPanel mainMenuPanel = new JPanel();
 		mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
-		mainMenuPanel.setBorder(new EmptyBorder(200, 10, 10, 10) );
+		mainMenuPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(mainMenuPanel);
 		
 		JLabel menuLabel = new JLabel("Train Track Puzzle Game");

@@ -40,7 +40,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel trackPanel = new JPanel();
 	private SelectedTrack selectedTrackPanel;
 	
-	private JLabel messageBox =  new JLabel("");
+	private JTextArea messageBox =  new JTextArea("");
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 
@@ -54,8 +54,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(this.getBackground());
-		setMinimumSize(new Dimension(1024, 700));
-		setLocationRelativeTo(null);
+		//setMinimumSize(new Dimension(1024, 700));
+		
 		
 		//setExtendedState(Frame.MAXIMIZED_BOTH);
 
@@ -63,6 +63,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		addHeaderPanel();
 		addMapPanel();
 		addSidePanel();
+		
+		pack();
+		setLocationRelativeTo(null);
 	}
 
 	private void addHeaderPanel() {
@@ -84,10 +87,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 
 
-	private JLabel messageBox() {
-		messageBox =  new JLabel("");
-		messageBox.setHorizontalAlignment(JLabel.RIGHT);
-		//messageBox.setBorder(BorderFactory.createMatteBorder(1, 5, 1, 1, Color.red));
+	private JTextArea messageBox() {
+		messageBox =  new JTextArea("");
+		messageBox.setPreferredSize(new Dimension(300,50));
+		messageBox.setLineWrap(true);
+		messageBox.setWrapStyleWord(true);
 		Font font = messageBox.getFont();
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
@@ -134,7 +138,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 
 	private void addSidePanel() {
-		sidePanel.setPreferredSize(new Dimension(200, 600));
+		sidePanel.setPreferredSize(new Dimension(200, 650));
 		sidePanel.setLayout(new FlowLayout());
 		sidePanel.add(saveButton());
 		gameControlBox = new GameControlBox(gameController);
@@ -160,7 +164,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private void addMapPanel() {
 		JPanel mapPanel = new JPanel();
-		mapPanel.setPreferredSize(new Dimension(800, 600));
+		//mapPanel.setPreferredSize(new Dimension(800, 600));
 		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);

@@ -26,16 +26,17 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
-		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+		//setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);	
 		create();
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	public void create() {
 		JPanel levelSelectPanel = new JPanel();
 		levelSelectPanel.setLayout(new BoxLayout(levelSelectPanel, BoxLayout.Y_AXIS));
-		levelSelectPanel.setBorder(new EmptyBorder(200, 10, 10, 10) );
+		levelSelectPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(levelSelectPanel);
 		
 		JLabel titleLabel = new JLabel("Level Select");
