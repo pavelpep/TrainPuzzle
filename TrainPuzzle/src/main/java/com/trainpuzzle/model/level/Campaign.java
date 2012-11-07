@@ -5,28 +5,25 @@ import com.trainpuzzle.factory.LevelFactory;
 public class Campaign implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String campaignName = "Campaign 1";	
-
-
-	private int firstLevel = 1;
-	private int lastLevel = 10;
-	private int currentLevel = 1;
 	
-	public Campaign() {
-		
+	private String campaignName;
+    CampaignLevel[]	campaignLevels;
+    private Level currentLevel;
+	
+    public Campaign() {
+    	campaignName = "Campaign 1";
+    	campaignLevels = new CampaignLevel[3];
+    	campaignLevels[0] = new CampaignLevel(false,false,1);
+    	campaignLevels[1] = new CampaignLevel(true,false,2);
+    	campaignLevels[2] = new CampaignLevel(true,false,3);
+    	
 	}
 	
-	public void completeCurrentLevel() {
-		if(currentLevel >= firstLevel && currentLevel <= lastLevel) {
-				currentLevel = currentLevel + 1;
-		}
+	public void completeLevel(int levelNumber) {
+		campaignLevels[levelNumber - 1].isCompleted = true;	
 	}
 	
-	public int getCurrentLevel() {
-		return this.currentLevel;
-	}
-	
-	public Level loadLevel(int levelNumber) {
+	public void loadLevel(int levelNumber) {
 		
 		Level levelLoaded;
 		LevelFactory levelFactory = new LevelFactory();
@@ -41,15 +38,28 @@ public class Campaign implements java.io.Serializable {
 		default:levelLoaded = levelFactory.createLevelOne();
 				break;
 		}
-		return levelLoaded;
+		currentLevel= levelLoaded;
 	}
 
-
+	public void loadNextLevel(){
+		loadLevel(getCurrentLevelNumber() + 1);
+	}
+	
 	public String getCampaignName() {
 		return campaignName;
 	}
-
-	public void setCampaignName(String campaignName) {
-		this.campaignName = campaignName;
+	
+	public CampaignLevel[] getCampaignLevels() {
+		return this.campaignLevels;
 	}
+	
+	public Level getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	public int getCurrentLevelNumber() {
+		return this.currentLevel.getLevelNumber();
+	}
+
+
 }
