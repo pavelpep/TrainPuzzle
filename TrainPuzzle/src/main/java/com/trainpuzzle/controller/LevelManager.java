@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import com.thoughtworks.xstream.*;
 
 
+import com.trainpuzzle.factory.LevelFactory;
 import com.trainpuzzle.model.level.Campaign;
 import com.trainpuzzle.model.level.Level;
 
@@ -23,15 +24,31 @@ public class LevelManager {
         this.campaign = campaign;
 	}
 		
-	public Level loadLevel(int levelNumber) {
-		campaign.loadLevel(levelNumber);
-		this.levelLoaded = campaign.getCurrentLevel();
-		return this.levelLoaded;
+	public void loadLevel(int levelNumber) {
+		
+		Level levelLoaded;
+		LevelFactory levelFactory = new LevelFactory();
+		
+		switch(levelNumber) {
+		case 1: levelLoaded = levelFactory.createLevelOne();
+				break;
+		case 2: levelLoaded = levelFactory.createLevelTwo();
+				break;
+		case 3: levelLoaded = levelFactory.createLevelThree();
+				break;
+		default:levelLoaded = levelFactory.createLevelOne();
+				break;
+		}
+		this.levelLoaded = levelLoaded;
+		
 	}
 	
-	public Level loadNextLevel() {
-		campaign.loadNextLevel();
-		this.levelLoaded = campaign.getCurrentLevel();
+	public void loadNextLevel() {
+		int nextLevel = levelLoaded.getLevelNumber() + 1;
+		loadLevel(nextLevel);
+	}
+	
+	public Level getLevel(){
 		return this.levelLoaded;
 	}
 	

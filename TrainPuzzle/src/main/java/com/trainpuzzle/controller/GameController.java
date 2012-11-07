@@ -28,19 +28,19 @@ public class GameController {
 
 	public GameController(){
 		campaignManager = new CampaignManager();
+		campaignManager.selectCampaign(1);
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 	
 	public void startGame() {
-		level = levelManager.loadNextLevel();
+		level = levelManager.getLevel();
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
 	
 	public void startGame(int levelNumber) {
-		level = levelManager.loadLevel(levelNumber);
-		trackPlacer = new TrackPlacer(level);
-		simulator = new Simulator(level);
+		levelManager.loadLevel(levelNumber);
+		startGame();
 	}
 
 	public void startGame(File levelFile) {
