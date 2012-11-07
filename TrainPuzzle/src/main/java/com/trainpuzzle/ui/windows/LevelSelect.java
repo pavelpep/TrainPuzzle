@@ -38,50 +38,46 @@ public class LevelSelect extends Window implements ActionListener {
 		// Level select title
 		JLabel titleLabel = new JLabel("Level Select");
 		initializeComponent(titleLabel, 28);
-		//addComponent(this, titleLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
 		levelSelectPanel.add(titleLabel);
 		
 		// Level 1 Button
-	    JButton levelOneButton = new JButton("Level 1");
+	    JButton levelOneButton = initializeButton("Level 1","LEVEL_ONE");
 	    initializeComponent(levelOneButton, 20);
 	    levelOneButton.setBackground(Color.GREEN);
-		levelOneButton.setActionCommand("LEVEL_ONE");
-		levelOneButton.addActionListener(this);
 		levelSelectPanel.add(levelOneButton);
 		
 		// Level 2 Button
-		JButton levelTwoButton = new JButton("Level 2");
+		JButton levelTwoButton = initializeButton("Level 2","LEVEL_TWO");
 		initializeComponent(levelTwoButton, 20);
 		levelTwoButton.setBackground(Color.GREEN);
-		levelTwoButton.setActionCommand("LEVEL_TWO");
-		levelTwoButton.addActionListener(this);
 		levelSelectPanel.add(levelTwoButton);
 		
 		// Level 3 Button
-		JButton levelThreeButton = new JButton("Level 3");
+		JButton levelThreeButton = initializeButton("Level 3","LEVEL_THREE");
 		initializeComponent(levelThreeButton, 20);
 		levelThreeButton.setBackground(Color.GREEN);
-		levelThreeButton.setActionCommand("LEVEL_THREE");
-		levelThreeButton.addActionListener(this);
 		levelSelectPanel.add(levelThreeButton);
 		
 		// Load Button
-		JButton loadButton = new JButton("Load Level");
+		JButton loadButton = initializeButton("Load Level","LOAD");
 		initializeComponent(loadButton, 20);
 		loadButton.setBackground(Color.GREEN);
-		loadButton.setActionCommand("LOAD");
-		loadButton.addActionListener(this);
 		levelSelectPanel.add(loadButton);
 		
 		// Back button
-		JButton backButton = new JButton("Back");
+		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 20);
 		backButton.setBackground(Color.LIGHT_GRAY);
-		backButton.setActionCommand("back");
-		backButton.addActionListener(this);
 		levelSelectPanel.add(backButton);
 
 		this.setVisible(true);
+	}
+	
+	private JButton initializeButton(String label, String actionCommand) {
+		JButton button = new JButton(label);
+		button.setActionCommand(actionCommand);
+		button.addActionListener(this);
+		return button;
 	}
 
 	public void actionPerformed(ActionEvent event) {
