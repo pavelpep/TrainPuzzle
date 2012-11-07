@@ -20,12 +20,15 @@ public class CampaignManager {
 	}
 	
 	public Level loadLevel(int levelNumber) {
-		this.levelLoaded = campaign.loadLevel(levelNumber);
+		campaign.loadLevel(levelNumber);
+		this.levelLoaded = campaign.getCurrentLevel();
 		return this.levelLoaded;
 	}
 	
-	public Level openNextLevel() {
-		return loadLevel(campaign.getCurrentLevel());
+	public Level loadNextLevel() {
+		campaign.loadNextLevel();
+		this.levelLoaded = campaign.getCurrentLevel();
+		return this.levelLoaded;
 	}
 	
 	public Campaign getCampaign(){
