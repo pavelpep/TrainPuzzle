@@ -16,9 +16,11 @@ public class CampaignManager {
 	private Level levelLoaded;
 	
 	public CampaignManager(){
-        loadCampaign();
+        campaign = new Campaign();
+		File file = new File("campaign.xml");
+		loadCampaign(file);
 	}
-	
+		
 	public Level loadLevel(int levelNumber) {
 		campaign.loadLevel(levelNumber);
 		this.levelLoaded = campaign.getCurrentLevel();
@@ -50,16 +52,16 @@ public class CampaignManager {
 		}
 	}
 	  
-	public void loadCampaign() {
-		File file = new File("campaign.xml");  
-		Campaign loadedCampaign = new Campaign();
+	public void loadCampaign(File file) {
+
 	    try {
+	    	Campaign loadedCampaign;
 	    	XStream xstream = new XStream();
 	        loadedCampaign = (Campaign)xstream.fromXML(file);
+	        this.campaign = loadedCampaign;
 	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
 	    }
 	    // Print out exceptions. We should really display them in a dialog...
 	    catch (Exception e) { System.out.println(e); }
-	    this.campaign = loadedCampaign;
 	}
 }
