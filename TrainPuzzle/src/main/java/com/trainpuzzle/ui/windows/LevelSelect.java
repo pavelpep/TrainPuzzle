@@ -1,21 +1,20 @@
 package com.trainpuzzle.ui.windows;
 
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.model.level.CampaignLevel;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import test.trainpuzzle.controller.*;
-
-import java.util.*;
 
 // Level selection for the campaign
-public class LevelSelect extends Window implements ActionListener {
+public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
 	private GameController gameController;
 	
 	
@@ -23,6 +22,8 @@ public class LevelSelect extends Window implements ActionListener {
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
+		gbConstraints = new GridBagConstraints();
+		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
@@ -30,75 +31,59 @@ public class LevelSelect extends Window implements ActionListener {
 	}
 	
 	public void create() {	    
-		JPanel levelSelectPanel = new JPanel();
-		levelSelectPanel.setLayout(new BoxLayout(levelSelectPanel, BoxLayout.Y_AXIS));
-		levelSelectPanel.setBorder(new EmptyBorder(200, 10, 10, 10) );
-		this.add(levelSelectPanel);
 		
-		// Level select title
-		JLabel titleLabel = new JLabel("Level Select");
-		initializeComponent(titleLabel, 28);
-		levelSelectPanel.add(titleLabel);
+		// Title
+		JLabel titleLabel = new JLabel();
+		addComponent(this, titleLabel, Font.CENTER_BASELINE, 20, Color.LIGHT_GRAY, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
+		titleLabel.setText("Choose Campaign");
 		
-		// Level 1 Button
-	    JButton levelOneButton = initializeButton("Level 1","LEVEL_ONE");
-	    initializeComponent(levelOneButton, 20);
-	    levelOneButton.setBackground(Color.GREEN);
-		levelSelectPanel.add(levelOneButton);
+		DefaultListModel listModel = new DefaultListModel();
+		JList campaignList = new JList(listModel);
+		JScrollPane listScrollPane = new JScrollPane(campaignList);
 		
-		// Level 2 Button
-		JButton levelTwoButton = initializeButton("Level 2","LEVEL_TWO");
-		initializeComponent(levelTwoButton, 20);
-		levelTwoButton.setBackground(Color.GREEN);
-		levelSelectPanel.add(levelTwoButton);
+		addComponent(this, listScrollPane, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		campaignList.addListSelectionListener(this);
+		campaignList.setVisibleRowCount(8);
+		for(CampaignLevel campaignLevel: gameController.getCampaignManager().getCampaign().getCampaignLevels()){
+			listModel.addElement("Level " + campaignLevel.levelNumber);
+		}
 		
-		// Level 3 Button
-		JButton levelThreeButton = initializeButton("Level 3","LEVEL_THREE");
-		initializeComponent(levelThreeButton, 20);
-		levelThreeButton.setBackground(Color.GREEN);
-		levelSelectPanel.add(levelThreeButton);
+		
+		// Start Level Button
+	    JButton startLevelButton = new JButton();
+		addComponent(this, startLevelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		startLevelButton.setText("Start Level");
+		startLevelButton.setActionCommand("START_LEVEL");
+		startLevelButton.addActionListener(this);
+		
 		
 		// Load Button
-		JButton loadButton = initializeButton("Load Level","LOAD");
-		initializeComponent(loadButton, 20);
-		loadButton.setBackground(Color.GREEN);
-		levelSelectPanel.add(loadButton);
+		JButton loadButton = new JButton();
+		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
+		loadButton.setText("Load Level");
+		loadButton.setActionCommand("LOAD");
+		loadButton.addActionListener(this);
 		
 		// Back button
-		JButton backButton = initializeButton("Back","back");
-		initializeComponent(backButton, 20);
-		backButton.setBackground(Color.LIGHT_GRAY);
-		levelSelectPanel.add(backButton);
+		JButton backButton = new JButton();
+		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 6, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
+		backButton.setText("Back");
+		backButton.setActionCommand("back");
+		backButton.addActionListener(this);
 
 		this.setVisible(true);
-	}
-	
-	private JButton initializeButton(String label, String actionCommand) {
-		JButton button = new JButton(label);
-		button.setActionCommand(actionCommand);
-		button.addActionListener(this);
-		return button;
 	}
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		if (action == "back") {
 				WindowManager.getManager(gameController).showPreviousWindow();
-		} else if (action == "LEVEL_ONE") {
-			levelSelected = 1;
+		} else if (action == "START_LEVEL") {
 			gameController.startGame(levelSelected);
 			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
 		}		
-		 else if (action == "LEVEL_TWO") {
-			levelSelected = 2;
-			gameController.startGame(levelSelected);
-			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
-		}
-		 else if (action == "LEVEL_THREE") {
-			levelSelected = 3;
-			gameController.startGame(levelSelected);
-			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
-		}		
+
 		 else if (action == "LOAD") {
 			File levelFile = openFile();
 			if(levelFile != null){	
@@ -120,5 +105,11 @@ public class LevelSelect extends Window implements ActionListener {
 	    	return chooser.getSelectedFile();
 	    }
 		return null;
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent arg0) {
+		levelSelected = 1 + arg0.getFirstIndex();
+		
 	}
 }
