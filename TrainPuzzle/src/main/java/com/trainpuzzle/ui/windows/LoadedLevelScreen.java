@@ -90,6 +90,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JTextArea messageBox() {
 		messageBox =  new JTextArea("");
 		messageBox.setPreferredSize(new Dimension(300,50));
+		messageBox.setOpaque(false);
+		messageBox.setBackground(new Color(255, 255, 255, 0));
+		messageBox.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		messageBox.setCursor(null);
+		messageBox.setFocusable(false);
+		messageBox.setEditable(false);
 		messageBox.setLineWrap(true);
 		messageBox.setWrapStyleWord(true);
 		Font font = messageBox.getFont();
