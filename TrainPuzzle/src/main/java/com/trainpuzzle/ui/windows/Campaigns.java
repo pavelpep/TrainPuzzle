@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.io.File;
+import java.io.FileFilter;
 
 import com.trainpuzzle.controller.CampaignManager;
 import com.trainpuzzle.controller.GameController;
@@ -17,10 +19,14 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	private GridBagConstraints c;
 	
 	// Window elements	
+	private File newCampaignDirectory = null;	
+	private File campaignsDirectory = new File("Campaigns/");	
 	private String campaignName = null;
 	private DefaultListModel listModel = new DefaultListModel();
 	private JList campaignList = new JList(listModel);
 	private JScrollPane listScrollPane = new JScrollPane(campaignList);
+	
+	
 	
 	private JLabel titleLabel = new JLabel();
 	private JButton newCampaign = new JButton();
@@ -80,18 +86,37 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		this.backButton.setText("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
+		
+		// The following enumerates the previously stored campaigns on disk
+		campaignsDirectory.mkdirs();
+		File[] listCampaignDirectory = campaignsDirectory.listFiles(new FileFilter() {
+			public boolean accept(File pathname) {
+				return pathname.isDirectory();
+			}
+		});
+		
+		for (File campaignFolder : listCampaignDirectory) {
+			listModel.addElement(campaignFolder.getName());
+		}
 	}
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		
-		if (action == "newCampaign") {
-			campaignName = JOptionPane.showInputDialog("Please enter your name:");			
+		if (action == "newCampaign") {			
+			campaignName = JOptionPane.showInputDialog("Please enter your name:");	
+			newCampaignDirectory = new File("Campaigns/" + campaignName);
 			if (campaignName == null || campaignName.isEmpty() || !campaignName.matches(".*\\w.*")) {
 				JOptionPane.showMessageDialog(null, "You must enter a name");
 			} else {
-				listModel.addElement(campaignName);
+				if(newCampaignDirectory.mkdirs()) {					
+					JOptionPane.showMessageDialog(null, "Campaign creation successful");
+					listModel.addElement(campaignName);
+				} else {
+					JOptionPane.showMessageDialog(null, "Campaign creation unsuccessful. Campaign already exists");
+				}
 			}
+			
 		} else if (action == "loadCampaign") {
 			campaignName = (String) campaignList.getSelectedValue();	
 		} else if (action == "deleteCampaign") {
