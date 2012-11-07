@@ -63,10 +63,10 @@ public class TrackSelection extends JPanel implements ActionListener{
 		JButton diagonalIntersectionTrack = initializeButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack");
 		this.add(diagonalIntersectionTrack);
 		
-		JButton curveleftStraightSwitch = initializeButton(Images.STRAIGHT_TRACK_IMAGE, "curveleftStraightSwitch");
+		JButton curveleftStraightSwitch = initializeButton(Images.CURVELEFT_TRACK_IMAGE, "curveleftStraightSwitch");
 		this.add(curveleftStraightSwitch);
 		
-		JButton curverightStraightSwitch = initializeButton(Images.STRAIGHT_TRACK_IMAGE, "curverightStraightSwitch");
+		JButton curverightStraightSwitch = initializeButton(Images.CURVERIGHT_TRACK_IMAGE, "curverightStraightSwitch");
 		this.add(curverightStraightSwitch);
 	}
 	
@@ -127,7 +127,7 @@ public class TrackSelection extends JPanel implements ActionListener{
 			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
 			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVELEFT_STRAIGHT_SWITCH);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
 			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
 		}
 		
@@ -135,7 +135,7 @@ public class TrackSelection extends JPanel implements ActionListener{
 			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 			Connection connection2 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
 			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVERIGHT_STRAIGHT_SWITCH);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
 			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
 		}
 	}

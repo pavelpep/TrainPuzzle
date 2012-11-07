@@ -1,13 +1,9 @@
 package com.trainpuzzle.model.board;
 import java.util.Iterator;
-
-import org.apache.log4j.Logger;
-
 import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Switch extends Track {
-	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private static final long serialVersionUID = 1L;
 	
 	private Iterator<Connection> connectionsIterator;
@@ -63,15 +59,11 @@ public class Switch extends Track {
 	
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException{
 		CompassHeading outboundHeading;
-		logger.warn("Switch's getOutboundHeading!");
 		if(isEntrance(inboundHeading)) {
 			outboundHeading = current.outboundorInbound(inboundHeading);
 			switchConnection();
-			logger.warn("Enter from entrance!");
 		} else {	// if the inbound heading is not connected to the "switch entrance", check if it is connected to any other "switch exits"
 			outboundHeading = super.getOutboundHeading(inboundHeading);
-			logger.warn("Enter from exit!");
-			logger.warn("Entrance at " + entrance.toString());
 		}
 		
 		return outboundHeading;		
@@ -92,7 +84,6 @@ public class Switch extends Track {
 		} else {
 			goToFirstConnection();
 		}
-		logger.warn("Switched connection!");
 		// TODO: notify UI to redraw the switch when current is changed
 	}
 }
