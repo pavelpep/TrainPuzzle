@@ -11,6 +11,9 @@ import java.io.File;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import org.apache.log4j.Logger;
 
@@ -40,7 +43,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel trackPanel = new JPanel();
 	private SelectedTrack selectedTrackPanel;
 	
-	private JTextArea messageBox =  new JTextArea("");
+	private JTextPane messageBox =  new JTextPane();
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 
@@ -87,17 +90,22 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 
 
-	private JTextArea messageBox() {
-		messageBox =  new JTextArea("");
-		messageBox.setPreferredSize(new Dimension(300,50));
+	private JTextPane messageBox() {
+		messageBox =  new JTextPane();
+		messageBox.setPreferredSize(new Dimension(300,20));
+		
+		StyledDocument doc = messageBox.getStyledDocument();
+		SimpleAttributeSet alignment = new SimpleAttributeSet();
+		StyleConstants.setAlignment(alignment, StyleConstants.ALIGN_RIGHT);
+		doc.setParagraphAttributes(0, doc.getLength(), alignment, false);
+		
 		messageBox.setOpaque(false);
 		messageBox.setBackground(new Color(255, 255, 255, 0));
 		messageBox.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		messageBox.setCursor(null);
 		messageBox.setFocusable(false);
 		messageBox.setEditable(false);
-		messageBox.setLineWrap(true);
-		messageBox.setWrapStyleWord(true);
+		
 		Font font = messageBox.getFont();
 		messageBox.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		messageBox.setForeground(Color.BLACK);
