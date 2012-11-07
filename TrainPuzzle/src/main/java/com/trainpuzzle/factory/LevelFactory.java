@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 
 import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Cargo.*;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
@@ -106,8 +108,15 @@ public class LevelFactory {
 	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 			
 	        ArrayList<Station> stations = new ArrayList<Station>();
-	        stations.add(new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST));
-	        stations.add(new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH));
+	        Station stationToAdd=new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST);
+	        stations.add(stationToAdd);
+	        stationToAdd.addExtraCargo(new Cargo(CargoType.COTTON));
+	        stationToAdd.addExtraCargo(new Cargo(CargoType.WOOD));
+	        
+	        stationToAdd=new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH);
+	        stations.add(stationToAdd);
+	        stationToAdd.addExtraCargo(new Cargo(CargoType.IRON));
+	        
 	        setStations(stations);
 	        
 	        setLandscapeByRow(4, 9, 10, LandscapeType.WATER);
