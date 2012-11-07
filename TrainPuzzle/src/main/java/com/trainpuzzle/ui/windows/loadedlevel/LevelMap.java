@@ -16,6 +16,7 @@ import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Tile;
+import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
@@ -97,7 +98,6 @@ public class LevelMap extends JPanel implements Observer {
 		removeComponentsInGUILayer(mapTile,obstacleLayerIndex);
 		if(level.getBoard().getTile(row, column).hasObstacle()) {
 			JLabel obstacleLayer = new JLabel();
-			JLabel cargoLayer = new JLabel();
 			switch(level.getBoard().getTile(row, column).getObstacleType()){
 				case ROCK:
 					obstacleLayer = new JLabel(Images.ROCK_IMAGE);
@@ -107,7 +107,6 @@ public class LevelMap extends JPanel implements Observer {
 					break;
 				case GREEN_STATION:
 					obstacleLayer = new JLabel(Images.GREEN_STATION_IMAGE);
-					cargoLayer = new JLabel(Images.IRON_IMAGE);
 					break;
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
@@ -116,12 +115,39 @@ public class LevelMap extends JPanel implements Observer {
 				break;
 			}
 			obstacleLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-			cargoLayer.setBounds(0,0, tileSizeInPixels, 10);
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
-			mapTile.add(cargoLayer, new Integer(obstacleLayerIndex));
 		}
 	}
 	
+	private void drawCargo(int row, int column) {
+		if (level.getBoard().getTile(row, column).hasStationBuilding()){
+		System.out.println(level.getBoard().getTile(row, column).getStation().getType());
+		JLayeredPane mapTile = mapTiles[row][column];
+		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
+		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
+		if(stationOnTile.hasExtraCargo()) {
+			JLabel cargoLayer = new JLabel();
+			System.out.println(stationOnTile.getExtraCargo().getFirst().getType());
+			switch(stationOnTile.getExtraCargo().getFirst().getType()){
+				/*case COTTON:
+					cargoLayer = new JLabel(Images.COTTON_IMAGE);
+					break;
+				case WOOD:
+					cargoLayer = new JLabel(WOOD._IMAGE);
+					break;*/
+				case IRON:
+					cargoLayer = new JLabel(Images.IRON_IMAGE);
+					break;				
+			default:
+				break;
+			}
+			cargoLayer.setBounds(0,0, tileSizeInPixels, 10);
+			mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
+		}
+		}
+	
+	}
+		
 	private void drawTrack(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		removeComponentsInGUILayer(mapTile,trackLayerIndex);
@@ -186,6 +212,7 @@ public class LevelMap extends JPanel implements Observer {
 		   drawObstacle(row, column);
 		   drawLandscape(row, column);
 		   drawTrack(row, column);
+		   drawCargo(row, column);
 	}
 	
 	private void initializeTrain() {

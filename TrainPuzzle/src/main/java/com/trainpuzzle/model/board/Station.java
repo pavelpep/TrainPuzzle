@@ -136,7 +136,7 @@ public class Station implements java.io.Serializable {
 	}	
 	
 	public boolean hasExtraCargo() {
-		return requiredCargo.size() > 0;
+		return extraCargo.size() > 0;
 	}
 	
 	public LinkedList<Cargo> getExtraCargo() {
