@@ -3,6 +3,8 @@ package com.trainpuzzle.ui.windows;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import com.trainpuzzle.controller.Application;
 import com.trainpuzzle.controller.CampaignManager;
@@ -13,57 +15,54 @@ public class MainMenu extends Window implements ActionListener {
 	GameController gameController;
 	CampaignManager campaignManager;
 	
-	// Window elements
-	private JLabel menuLabel = new JLabel();
-	private JButton continueButton = new JButton();
-	private JButton campaignsButton = new JButton(); 
-	private JButton creditsButton = new JButton();
-	private JButton exitButton = new JButton();
-	
-	// Constructor
-	public MainMenu() {		
-		setLayout(new GridBagLayout());
-		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);		
-	}
-	
 	public MainMenu(GameController gameController) {	
 		this.gameController = gameController;
-		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		create();
 	}
 	
-	public void create() {	    
+	public void create() {
+		JPanel mainMenuPanel = new JPanel();
+		mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
+		mainMenuPanel.setBorder(new EmptyBorder(200, 10, 10, 10) );
+		this.add(mainMenuPanel);
 		
-		// Game Title
-		addComponent(this, this.menuLabel, Font.CENTER_BASELINE, 28, Color.BLACK, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		this.menuLabel.setText("Train Track Puzzle Game");
-		
-		// Continue Button
-		addComponent(this, this.continueButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(30, 0, 10, 0), true);
-		this.continueButton.setText("Continue Campaign");
-		this.continueButton.setActionCommand("continue");
-		this.continueButton.addActionListener(this);
+		JLabel menuLabel = new JLabel("Train Track Puzzle Game");
+		initializeComponent(menuLabel, 28);
+		mainMenuPanel.add(menuLabel);
+
+
+		JButton continueButton = new JButton();
+		initializeComponent(continueButton, 20);
+		continueButton.setBackground(Color.ORANGE);
+		continueButton.setText("Continue Campaign");
+		continueButton.setActionCommand("continue");
+		continueButton.addActionListener(this);
+		mainMenuPanel.add(continueButton);
 	
-		/// Campaigns Button
-		addComponent(this, this.campaignsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), true);
-		this.campaignsButton.setText("Add/Change Campaign");
-		this.campaignsButton.setActionCommand("campaigns");
-		this.campaignsButton.addActionListener(this);
+
+		JButton campaignsButton = new JButton("Add/Change Campaign"); 
+		initializeComponent(campaignsButton, 20);
+		campaignsButton.setBackground(Color.ORANGE);
+		campaignsButton.setActionCommand("campaigns");
+		campaignsButton.addActionListener(this);
+		mainMenuPanel.add(campaignsButton);
 		
-		// Credits Button
-		addComponent(this, this.creditsButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.ORANGE, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 0, 10, 0), false);
-		this.creditsButton.setText("Credits");
+
+		JButton creditsButton = new JButton("Credits");
+		initializeComponent(creditsButton, 20);
+		creditsButton.setBackground(Color.ORANGE);
+		mainMenuPanel.add(creditsButton);
 		
-		// Exit Button
-		addComponent(this, this.exitButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 4, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(40, 0, 20, 0), true);
-		this.exitButton.setText("Exit");
-		this.exitButton.setActionCommand("exit");
-		this.exitButton.addActionListener(this);
+
+		JButton exitButton = new JButton("Exit");
+		initializeComponent(exitButton, 20);
+		exitButton.setBackground(Color.ORANGE);
+		exitButton.setActionCommand("exit");
+		exitButton.addActionListener(this);
+		mainMenuPanel.add(exitButton);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
