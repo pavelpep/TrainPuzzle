@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.ui.windows.WindowManager;
 
 public class GameControlBox extends JPanel implements ActionListener{
@@ -113,7 +114,11 @@ public class GameControlBox extends JPanel implements ActionListener{
 		}
 		
 		if (event.getActionCommand() == "tickOnce") {
-			gameController.getSimulator().move();
+			try {
+				gameController.getSimulator().move();
+			} catch (TrainCrashException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if (event.getActionCommand() == "tickIncrease") {

@@ -31,14 +31,14 @@ public class Simulator {
 	private VictoryConditionEvaluator victoryConditionEvaluator;
 	
 	private boolean trainCrashed = false;
-    private boolean isRunning = false;
-    
-    private Timer timer = new Timer();
-    private final int defaultTickInterval = 200;
-    private final int tickIntervalLowerBound = 50;
-    private final int tickIntervalUpperBound = 1000;
-    private int tickInterval = defaultTickInterval;
-    
+	private boolean isRunning = false;
+	
+	private Timer timer = new Timer();
+	private final int defaultTickInterval = 200;
+	private final int tickIntervalLowerBound = 50;
+	private final int tickIntervalUpperBound = 1000;
+	private int tickInterval = defaultTickInterval;
+	
 	public Simulator(Level level) {
 		this.level = level;
 		this.board = this.level.getBoard();
@@ -52,14 +52,18 @@ public class Simulator {
 		trainCrashed = false;
 	}
 	
-	public void move() {
-    	try {
-    		if (!isVictoryConditionsSatisfied()) {
-    			proceedNextTile();
-    		}
+	public void move() throws TrainCrashException{
+		try {
+			if (!isVictoryConditionsSatisfied()) {
+				proceedNextTile();
+			}
+			else if(isVictoryConditionsSatisfied()) {
+				stop();
+			}
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
+			stop();
 			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 		}
 	}
@@ -88,7 +92,7 @@ public class Simulator {
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle()) {
 			// TODO: Better way to inform user train crashed
-			JOptionPane.showMessageDialog(null, "The train has crashed!");
+			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		}
 		return tile;
@@ -170,7 +174,7 @@ public class Simulator {
 	public Train getTrain() {
 		return this.train;
 	}
-	    
+		
 	public void reset() {
 		timer.cancel();
 		isRunning = false;
@@ -191,25 +195,23 @@ public class Simulator {
 		timer.cancel();
 		timer = new Timer();
 		TimerTask timerTask = new TimerTask() {
-	 		
 			public void run() {
-	        	move();
-	        	if(isVictoryConditionsSatisfied() || trainCrashed) {
-	        		this.cancel();
-	        		isRunning = false;
-	        	}
+				try {
+					move();
+				} catch (TrainCrashException e) {
+					e.printStackTrace();
+				}
 			}
-	    };
-	    
+		};
 		timer.schedule(timerTask, 0, tickInterval);
 		isRunning = true;
 	}
 	
 	public void setTickInterval(int tickIntervalInMillis) {
-	    this.tickInterval = tickIntervalInMillis;
-	    if(isRunning) {
-	    	run();
-	    }
+		this.tickInterval = tickIntervalInMillis;
+		if(isRunning) {
+			run();
+		}
 	}
 	
 	public int getTickInterval() {
