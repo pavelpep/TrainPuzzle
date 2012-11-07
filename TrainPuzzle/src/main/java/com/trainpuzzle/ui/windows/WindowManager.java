@@ -6,10 +6,7 @@
 
 package com.trainpuzzle.ui.windows;
 
-import java.awt.*;
-import java.util.LinkedList;
-
-import javax.swing.*;
+import java.util.Stack;
 
 import com.trainpuzzle.controller.GameController;
 
@@ -22,38 +19,36 @@ public class WindowManager {
 	// Fields
 	private static WindowManager manager;
 	
-	private GameController gameController;
-	private LinkedList<Window> windowList; 
+	private Stack<Window> windowList; 
 	
 	// Constructors
-	private WindowManager(GameController gameController) {
-		this.gameController = gameController;
-		windowList = new LinkedList<Window>();
+	private WindowManager() {
+		windowList = new Stack<Window>();
 	}
 	
 	// Methods
 	public static synchronized WindowManager getManager(GameController gameController) {
 		if (manager == null) {
-			manager = new WindowManager(gameController);
+			manager = new WindowManager();
 		}
 		return manager;
 	}
 	
 	public void setActiveWindow(Window window) {
 		if(!windowList.isEmpty()) {
-			windowList.getLast().setVisible(false);
+			windowList.peek().setVisible(false);
 		}
 		window.setVisible(true);
 		windowList.add(window);
 	}
 	
 	public Window getActiveWindow() {
-			return windowList.getLast();
+			return windowList.peek();
 	}
 	
 	public void showPreviousWindow() {
-		windowList.getLast().dispose();
-		windowList.removeLast();
-		windowList.getLast().setVisible(true);
+		windowList.peek().dispose();
+		windowList.pop();
+		windowList.peek().setVisible(true);
 	}
 }
