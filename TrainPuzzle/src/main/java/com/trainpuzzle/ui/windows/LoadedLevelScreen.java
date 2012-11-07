@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -36,11 +37,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Level level;
 
 	// Window elements
-	private JPanel headerPanel = new JPanel();
 	private LevelMap loadedLevelMap;
-	private JPanel sidePanel = new JPanel();
-	private GameControlBox gameControlBox;
-	private JPanel trackPanel = new JPanel();
 	private SelectedTrack selectedTrackPanel;
 	
 	private JTextPane messageBox =  new JTextPane();
@@ -49,30 +46,39 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
-		//Connect to application
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
 		
-		//Window Layout
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(this.getBackground());
 		//setMinimumSize(new Dimension(1024, 700));
-		
-		
 		//setExtendedState(Frame.MAXIMIZED_BOTH);
-
-		// Game title
-		addHeaderPanel();
-		addMapPanel();
-		addSidePanel();
+		
+		create();
 		
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	private void addHeaderPanel() {
-		headerPanel = new JPanel();
+	private void create() {
+		JPanel loadedLevelScreenPanel = new JPanel();
+		loadedLevelScreenPanel.setLayout(new GridBagLayout());
+		loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
+		this.add(loadedLevelScreenPanel);
+		
+		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		loadedLevelScreenPanel.add(headerPanel(), headerPanelContraints);
+		
+		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
+		loadedLevelScreenPanel.add(mapPanel(), mapPanelContraints);
+		
+		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 2), 0, 0);
+		loadedLevelScreenPanel.add(sidePanel(), sidePanelContraints);
+	}
+
+	private JPanel headerPanel() {
+		JPanel headerPanel = new JPanel();
 		headerPanel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints backButtonContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
@@ -84,8 +90,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		GridBagConstraints messageBoxContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 1, 0);
 		headerPanel.add(messageBox(), messageBoxContraints);
 		
-		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
-		this.add(headerPanel, headerPanelContraints);
+		return headerPanel;
 	}
 	
 
@@ -151,19 +156,23 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 
-	private void addSidePanel() {
+	private JPanel sidePanel() {
+		JPanel sidePanel = new JPanel();
 		sidePanel.setPreferredSize(new Dimension(200, 650));
 		sidePanel.setLayout(new FlowLayout());
+		
 		sidePanel.add(saveButton());
-		gameControlBox = new GameControlBox(gameController);
+		
+		GameControlBox gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
-		trackPanel = new TrackSelection(gameController, this);
+		
+		JPanel trackPanel = new TrackSelection(gameController, this);
 		sidePanel.add(trackPanel);
+		
 		selectedTrackPanel = new SelectedTrack(gameController, this);
 		sidePanel.add(selectedTrackPanel);
 		
-		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 2), 0, 0);
-		this.add(sidePanel, sidePanelContraints);
+		return sidePanel;
 	}
 
 	private JButton saveButton() {
@@ -176,14 +185,14 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	//Map Panel
 
-	private void addMapPanel() {
+	private JPanel mapPanel() {
 		JPanel mapPanel = new JPanel();
 		//mapPanel.setPreferredSize(new Dimension(800, 600));
 		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);
-		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
-		this.add(mapPanel, mapPanelContraints);
+		
+		return mapPanel;
 	}
 	
 	public SelectedTrack getSelectedTrackPanel() {
