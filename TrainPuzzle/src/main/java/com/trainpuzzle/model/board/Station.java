@@ -58,8 +58,8 @@ public class Station implements java.io.Serializable {
 		return this.stationType;
 	}
 
-	public void setType(StationType station) {
-		this.stationType = station;
+	public void setType(StationType stationType) {
+		this.stationType = stationType;
 	}
 	
 	private Track createTrack() {
@@ -167,7 +167,7 @@ public class Station implements java.io.Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		return stationLocation.equals(((Location) obj));
+		return stationLocation.equals(((Station) obj).getStationLocation());
 	}
 	
 	
