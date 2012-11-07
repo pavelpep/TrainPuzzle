@@ -25,12 +25,12 @@ public class Economy implements java.io.Serializable {
 	}
 	
 	public void useOnePieceOfTrack(TrackType trackType) {
-		Integer currentNumOfThisTrack=numberOfAvailableTrack.get(trackType);
+		Integer currentNumOfThisTrack = numberOfAvailableTrack.get(trackType);
 
 		if(budget != NO_LIMIT) {
 			this.budget = budget + trackType.getPrice();
 		}
-		if(currentNumOfThisTrack !=NO_LIMIT) {
+		if(currentNumOfThisTrack != NO_LIMIT) {
 			currentNumOfThisTrack--;
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
@@ -40,12 +40,12 @@ public class Economy implements java.io.Serializable {
 	}
 	
 	public void retrunOnePieceOfTrack(TrackType trackType) {
-		Integer currentNumOfThisTrack=numberOfAvailableTrack.get(trackType);
+		Integer currentNumOfThisTrack = numberOfAvailableTrack.get(trackType);
 		
 		if(budget != NO_LIMIT) {
 			this.budget = budget + trackType.getPrice();
 		}
-		if(currentNumOfThisTrack !=NO_LIMIT) {
+		if(currentNumOfThisTrack != NO_LIMIT) {
 			currentNumOfThisTrack++;
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
@@ -55,10 +55,10 @@ public class Economy implements java.io.Serializable {
 	}
 	
 	public boolean isAvailable(TrackType trackType) {
-		boolean isRootOfTrackType=trackType.getParent() == null;
-		boolean isRootAvailable=numberOfAvailableTrack.get(trackType) > 0 
+		boolean isRootOfTrackType = trackType.getParent() == null;
+		boolean isRootAvailable = numberOfAvailableTrack.get(trackType) > 0 
 				|| numberOfAvailableTrack.get(trackType) == NO_LIMIT;
-		boolean trackTypeIsAvailable=numberOfAvailableTrack.get(trackType) > 0 
+		boolean trackTypeIsAvailable = numberOfAvailableTrack.get(trackType) > 0 
 				|| numberOfAvailableTrack.get(trackType) == NO_LIMIT;
 		
 		if(budget == NO_LIMIT || budget >= trackType.getPrice()) {

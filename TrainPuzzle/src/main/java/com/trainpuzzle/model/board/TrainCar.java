@@ -2,7 +2,6 @@ package com.trainpuzzle.model.board;
 
 public class TrainCar {
 
-
 	private Location location; 
 	private CompassHeading heading;
 	private Cargo cargo;
@@ -47,6 +46,5 @@ public class TrainCar {
 	
 	public void setHeading(CompassHeading heading) {
 		this.heading = heading;
-	}
-	
+	}	
 }
