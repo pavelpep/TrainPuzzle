@@ -23,22 +23,31 @@ public class GameController {
 	private Simulator simulator;
 	private Level level;
 
-	public void startGame(int levelNumber) {
+	public GameController(){
 		campaignManager = new CampaignManager();
-		level = campaignManager.loadLevel(levelNumber);
+		
+	}
+	
+	public void startGame() {
+		campaignManager.loadCampaign(new File("campaign.xml"));
+		level = campaignManager.loadNextLevel();
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
 	
+	public void startGame(int levelNumber) {
+		level = campaignManager.loadLevel(levelNumber);
+		trackPlacer = new TrackPlacer(level);
+		simulator = new Simulator(level);
+	}
+
 	public void startGame(File levelFile) {
 		level = loadLevel(levelFile);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
 	
-	public Simulator getSimulator() {
-		return simulator;
-	}
+
 	 	
 	
 	public void placeTrack(Track track, int row, int column) {
@@ -85,11 +94,14 @@ public class GameController {
 		return campaignManager;
 	}
 	
-	
 	public Level getLevel() {
 		return this.level;
 	}
-
+	
+	public Simulator getSimulator() {
+		return simulator;
+	}
+	
 	public void saveCurrentLevel(File file){
 		saveLevel(this.level, file);
 	}
@@ -106,7 +118,6 @@ public class GameController {
 	      catch (IOException e) { System.out.println(e); }
 	    
 	  }
-
 	private Level loadLevel(File file) {
 		  
 		Level loadedLevel = new Level(3);

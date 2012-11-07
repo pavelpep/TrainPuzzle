@@ -17,8 +17,6 @@ public class CampaignManager {
 	
 	public CampaignManager(){
         campaign = new Campaign();
-		File file = new File("campaign.xml");
-		loadCampaign(file);
 	}
 		
 	public Level loadLevel(int levelNumber) {
