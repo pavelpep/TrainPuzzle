@@ -19,7 +19,10 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	private GameController gameController;
 	
 	
-	int levelSelected = 0;
+	private int levelSelected = 1;
+	DefaultListModel listModel;
+	JList levelList;
+	
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
@@ -39,18 +42,18 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		initializeComponent(titleLabel, 28);
 		levelSelectPanel.add(titleLabel);
 		
-		DefaultListModel listModel = new DefaultListModel();
-		JList campaignList = new JList(listModel);
-		JScrollPane listScrollPane = new JScrollPane(campaignList);
+		listModel = new DefaultListModel();
+		levelList = new JList(listModel);
 		
-		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		campaignList.addListSelectionListener(this);
-		campaignList.setVisibleRowCount(8);
+		
+		levelList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		levelList.addListSelectionListener(this);
+		levelList.setVisibleRowCount(8);
 		for(CampaignLevel campaignLevel: gameController.getLevelManager().getCampaign().getCampaignLevels()){
 			listModel.addElement("Level " + campaignLevel.levelNumber);
 		}
-		initializeComponent(campaignList, 15);
-		levelSelectPanel.add(campaignList);
+		initializeComponent(levelList, 15);
+		levelSelectPanel.add(levelList);
 		
 		
 		// Start Level Button
@@ -109,8 +112,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		JList list = (JList)arg0.getSource();
-		levelSelected = 1 + list.getSelectedIndex();
+		levelSelected = 1 + levelList.getSelectedIndex();
 		System.out.println("level selected: " + levelSelected);
 		
 	}

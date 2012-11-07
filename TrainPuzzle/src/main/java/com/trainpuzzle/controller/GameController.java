@@ -49,6 +49,10 @@ public class GameController {
 		simulator = new Simulator(level);
 	}
 	
+	public void changeCampaign(int campaignNumber){
+		campaignManager.selectCampaign(campaignNumber);
+		levelManager = new LevelManager(campaignManager.getCampaign());
+	}
 
 	 	
 	

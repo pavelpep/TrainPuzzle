@@ -10,27 +10,28 @@ import java.io.FileFilter;
 
 import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.model.level.Campaign;
+import com.trainpuzzle.model.level.CampaignLevel;
 
 import java.util.*;
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
+	private static final long serialVersionUID = 1L;
+	
 	private GameController gameController;
 	LevelManager campaignManager;
 	// Layout Manager
-	private GridBagConstraints c;
+
 	
 	// Window elements	
-	private File newCampaignDirectory = null;	
-	private File campaignsDirectory = new File("Campaigns/");	
-	private String campaignName = null;
-	private DefaultListModel listModel = new DefaultListModel();
-	private JList campaignList = new JList(listModel);
+	private int campaignSelected = 1;
+	private DefaultListModel listModel;
+	private JList campaignList;
 	
 	
 	
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
-		c = new GridBagConstraints();
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -41,7 +42,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	public Campaigns(GameController gameController, LevelManager campaignManager) {
 		this.gameController = gameController;
 		this.campaignManager = campaignManager;
-		c = new GridBagConstraints();
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -58,72 +58,43 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		initializeComponent(titleLabel, 20);
 		campaignsPanel.add(titleLabel);
 		
+		listModel = new DefaultListModel();
+		campaignList = new JList(listModel);
+		
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
-		
-		JScrollPane listScrollPane = new JScrollPane(campaignList);
-		initializeComponent(listScrollPane, 15);
-		campaignsPanel.add(listScrollPane);
+		for(Campaign campaign: gameController.getCampaignManager().getCampaignList()){
+			listModel.addElement(campaign.getCampaignName());
+		}
+		initializeComponent(campaignList, 15);
+		campaignsPanel.add(campaignList);
 
-		JButton newCampaign = initializeButton("New Campaign","newCampaign");
-		initializeComponent(newCampaign, 15);
-		campaignsPanel.add(newCampaign);
 		
-		JButton loadCampaign = initializeButton("Load Campaign","loadCampaign");
-		initializeComponent(loadCampaign, 15);
-		campaignsPanel.add(loadCampaign);
-		
-		JButton deleteCampaign = initializeButton("Delete Campaign","deleteCampaign");
-		initializeComponent(deleteCampaign, 15);
-		campaignsPanel.add(deleteCampaign);
+		JButton selectCampaign = initializeButton("Select Campaign","selectCampaign");
+		initializeComponent(selectCampaign, 15);
+		campaignsPanel.add(selectCampaign);
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);
 		
-		// The following enumerates the previously stored campaigns on disk
-		campaignsDirectory.mkdirs();
-		File[] listCampaignDirectory = campaignsDirectory.listFiles(new FileFilter() {
-			public boolean accept(File pathname) {
-				return pathname.isDirectory();
-			}
-		});
-		
-		for (File campaignFolder : listCampaignDirectory) {
-			listModel.addElement(campaignFolder.getName());
-		}
 	}
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		
-		if (action == "newCampaign") {			
-			campaignName = JOptionPane.showInputDialog("Please enter your name:");	
-			newCampaignDirectory = new File("Campaigns/" + campaignName);
-			if (campaignName == null || campaignName.isEmpty() || !campaignName.matches(".*\\w.*")) {
-				JOptionPane.showMessageDialog(null, "You must enter a name");
-			} else {
-				if(newCampaignDirectory.mkdirs()) {					
-					JOptionPane.showMessageDialog(null, "Campaign creation successful");
-					listModel.addElement(campaignName);
-				} else {
-					JOptionPane.showMessageDialog(null, "Campaign creation unsuccessful. Campaign already exists");
-				}
-			}
-			
-		} else if (action == "loadCampaign") {
-			campaignName = (String) campaignList.getSelectedValue();	
-		} else if (action == "deleteCampaign") {
-			campaignName = (String) campaignList.getSelectedValue();
-			listModel.removeElement(campaignName);
+
+	    if (action == "selectCampaign") {
+			gameController.changeCampaign(campaignSelected);
 		} else if (action == "back") {
 			WindowManager.getManager(gameController).showPreviousWindow();
 		}
 	}
 
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
+		campaignSelected = 1 + campaignList.getSelectedIndex();
+		System.out.println("campaign selected: " + campaignSelected);
 		
 	}	
 }
