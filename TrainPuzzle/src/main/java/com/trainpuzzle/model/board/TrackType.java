@@ -1,7 +1,7 @@
 package com.trainpuzzle.model.board;
 
-
 public enum TrackType {
+	
 	TRACK(null,0),
 		STRAIGHT(TRACK,0),
 			STRAIGHT_TRACK(STRAIGHT,10),
@@ -15,22 +15,20 @@ public enum TrackType {
 		SWITCH(TRACK,0),
 			CURVELEFT_STRAIGHT_SWITCH(SWITCH,10),
 			CURVERIGHT_STRAIGHT_SWITCH(SWITCH,10);
-	TrackType(TrackType parent,int price) {
-		this.parent = parent;
-		this.price = price;
+
+	private TrackType parentTrackType = null;
+	private int cost;
+	
+	TrackType(TrackType parentTrackType,int cost) {
+		this.parentTrackType = parentTrackType;
+		this.cost = cost;
 	}
-	private int price;
-	private TrackType parent = null;
 	
 	public TrackType getParent() {
-		return parent;
+		return parentTrackType;
 	}
+	
 	public int getPrice() {
-		return this.price;
+		return this.cost;
 	}
-		
-	  
-	 
-	
-	
 }

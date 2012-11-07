@@ -8,11 +8,9 @@ import com.trainpuzzle.exception.TrainCrashException;
 
 public class Track implements java.io.Serializable{
 	
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;	
 	private boolean isStationTrack = false;
 	private boolean removable = true;
-	
 	protected Set<Connection> connections = new HashSet<Connection>();
 	protected TrackType trackType = TrackType.STRAIGHT_TRACK;
 	
@@ -23,7 +21,7 @@ public class Track implements java.io.Serializable{
 		for(Connection connection : trackToCopy.getConnections()) {
 			addConnection(connection.getCompassHeadingPair()[0], connection.getCompassHeadingPair()[1]);
 		}
-		if(trackToCopy.isUnremovable()){
+		if(trackToCopy.isUnremovable()) {
 			setUnremoveable();
 		}
 		trackType = trackToCopy.getTrackType();
