@@ -47,4 +47,7 @@ public class TrainCar {
 	public void setHeading(CompassHeading heading) {
 		this.heading = heading;
 	}	
+	public Cargo getCargo() {
+		return cargo;
+	}
 }
