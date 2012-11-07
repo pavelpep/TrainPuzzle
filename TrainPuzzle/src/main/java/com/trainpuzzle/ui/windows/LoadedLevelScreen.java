@@ -161,6 +161,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void addMapPanel() {
 		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
+		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);
 		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
