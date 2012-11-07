@@ -35,7 +35,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		// Title
 		JLabel titleLabel = new JLabel();
 		addComponent(this, titleLabel, Font.CENTER_BASELINE, 20, Color.LIGHT_GRAY, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		titleLabel.setText("Choose Campaign");
+		titleLabel.setText("Choose Level");
 		
 		DefaultListModel listModel = new DefaultListModel();
 		JList campaignList = new JList(listModel);
