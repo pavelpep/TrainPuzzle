@@ -1,7 +1,7 @@
 package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
-import com.trainpuzzle.ui.windows.loadedlevel.LoadedLevelMap;
+import com.trainpuzzle.ui.windows.loadedlevel.LevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
 
@@ -34,7 +34,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	// Window elements
 	private JPanel headerPanel = new JPanel();
-	private LoadedLevelMap loadedLevelMap;
+	private LevelMap loadedLevelMap;
 	private JPanel sidePanel = new JPanel();
 	private GameControlBox gameControlBox;
 	private JPanel trackPanel = new JPanel();
@@ -161,7 +161,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void addMapPanel() {
 		JPanel mapPanel = new JPanel();
 		mapPanel.setPreferredSize(new Dimension(800, 600));
-		loadedLevelMap = new LoadedLevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
+		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);
 		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
 		this.add(mapPanel, mapPanelContraints);
@@ -171,7 +171,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return selectedTrackPanel;
 	}
 	
-	public LoadedLevelMap getMapPanel() {
+	public LevelMap getMapPanel() {
 		return loadedLevelMap;
 	}
 	

@@ -23,7 +23,7 @@ import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
-public class LoadedLevelMap extends JPanel implements Observer {
+public class LevelMap extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	
 	private final int landscapeLayerIndex = 0;
@@ -43,7 +43,7 @@ public class LoadedLevelMap extends JPanel implements Observer {
 	Location previousTrainLocation = new Location(0,0);
 	
 	
-	public LoadedLevelMap(GameController gameController, int numberOfRows, int numberOfColumns) {
+	public LevelMap(GameController gameController, int numberOfRows, int numberOfColumns) {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
 		this.train = gameController.getSimulator().getTrain();
