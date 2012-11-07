@@ -7,13 +7,16 @@ import javax.swing.JOptionPane;
 
 
 import com.trainpuzzle.model.board.Board;
+import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
+import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
@@ -136,6 +139,27 @@ public class Simulator {
 	
 	private void passStation(Station station) {
 		Event event = new Event(100, station);
+		this.victoryConditionEvaluator.processEvent(event);
+		dropAndPickCargo(station);
+		
+	}
+
+	private void dropAndPickCargo(Station station) {
+		TrainCar[] trainCars = train.getTrainCars();
+		for(TrainCar trainCar : trainCars) {
+			if(trainCar.hasCargo() && station.isRequiredCargo(trainCar.getCargo())) {
+				dropCargo(station, trainCar);
+			}
+			if(station.hasExtraCargo() && !trainCar.hasCargo()) {
+				trainCar.addCargo(station.pickupExtraCargo());
+			}
+		}
+	}
+
+	private void dropCargo(Station station, TrainCar trainCar) {
+		Cargo cargo = trainCar.dropCargo();
+		station.dropoffRequiredCargo(cargo);
+		DropCargoEvent event = new DropCargoEvent(100,station,cargo);
 		this.victoryConditionEvaluator.processEvent(event);
 	}
 	
