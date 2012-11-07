@@ -8,14 +8,14 @@ import javax.swing.event.*;
 import java.io.File;
 import java.io.FileFilter;
 
-import com.trainpuzzle.controller.CampaignManager;
+import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 
 import java.util.*;
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
 	private GameController gameController;
-	CampaignManager campaignManager;
+	LevelManager campaignManager;
 	// Layout Manager
 	private GridBagConstraints c;
 	
@@ -38,7 +38,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	}
 	
 	
-	public Campaigns(GameController gameController, CampaignManager campaignManager) {
+	public Campaigns(GameController gameController, LevelManager campaignManager) {
 		this.gameController = gameController;
 		this.campaignManager = campaignManager;
 		c = new GridBagConstraints();

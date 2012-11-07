@@ -3,35 +3,49 @@ package com.trainpuzzle.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+
 import com.thoughtworks.xstream.*;
 
+
 import com.trainpuzzle.model.level.Campaign;
+import com.trainpuzzle.model.level.Level;
 
-
-public class CampaignManager {
+public class LevelManager {
 
 	private Campaign campaign;
-
-	public CampaignManager(){
+	private Level levelLoaded;
+	
+	public LevelManager(){
         this.campaign = new Campaign();
 	}
 	
-	public void getCampaignList(){
+	public LevelManager(Campaign campaign){
+        this.campaign = campaign;
+	}
 		
+	public Level loadLevel(int levelNumber) {
+		campaign.loadLevel(levelNumber);
+		this.levelLoaded = campaign.getCurrentLevel();
+		return this.levelLoaded;
+	}
 	
-	}	
+	public Level loadNextLevel() {
+		campaign.loadNextLevel();
+		this.levelLoaded = campaign.getCurrentLevel();
+		return this.levelLoaded;
+	}
 	
 	public Campaign getCampaign(){
 		return this.campaign;
 	}
-	  
-	public void saveCampaign() {
-		File file = new File("campaign.xml"); 
+
+	public void saveLevel() {
+		File file = new File("level.xml"); 
 		try {
 		// Create the necessary output streams to save the level.
 			PrintStream out = new PrintStream(file);
 			XStream xstream = new XStream();
-			xstream.toXML(campaign, out);
+			xstream.toXML(levelLoaded, out);
 			System.out.println("wrote to file: " + file.getAbsoluteFile());
 		}
 		// Print out exceptions. We should really display them in a dialog...
@@ -39,14 +53,13 @@ public class CampaignManager {
 			System.out.println(e); 
 		}
 	}
-	  
-	public void loadCampaign(File file) {
+  	public void loadLevel(File file) {
 
 	    try {
-	    	Campaign loadedCampaign;
+	    	Level levelLoaded;
 	    	XStream xstream = new XStream();
-	        loadedCampaign = (Campaign)xstream.fromXML(file);
-	        this.campaign = loadedCampaign;
+	    	levelLoaded = (Level)xstream.fromXML(file);
+	        this.levelLoaded = levelLoaded;
 	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
 	    }
 	    // Print out exceptions. We should really display them in a dialog...

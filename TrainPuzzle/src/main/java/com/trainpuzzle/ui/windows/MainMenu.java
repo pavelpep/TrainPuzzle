@@ -7,13 +7,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import com.trainpuzzle.controller.Application;
-import com.trainpuzzle.controller.CampaignManager;
+import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 
 
 public class MainMenu extends Window implements ActionListener {
 	GameController gameController;
-	CampaignManager campaignManager;
+	LevelManager campaignManager;
 	
 	public MainMenu(GameController gameController) {	
 		this.gameController = gameController;

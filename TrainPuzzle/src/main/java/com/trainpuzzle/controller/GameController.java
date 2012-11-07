@@ -18,25 +18,27 @@ public class GameController {
 	
 	private Logger logger = Logger.getLogger(Application.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
+	
 	private CampaignManager campaignManager;
+	private LevelManager levelManager;
+	
 	private TrackPlacer trackPlacer;
 	private Simulator simulator;
 	private Level level;
 
 	public GameController(){
 		campaignManager = new CampaignManager();
-		
+		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 	
 	public void startGame() {
-		campaignManager.loadCampaign(new File("campaign.xml"));
-		level = campaignManager.loadNextLevel();
+		level = levelManager.loadNextLevel();
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
 	
 	public void startGame(int levelNumber) {
-		level = campaignManager.loadLevel(levelNumber);
+		level = levelManager.loadLevel(levelNumber);
 		trackPlacer = new TrackPlacer(level);
 		simulator = new Simulator(level);
 	}
@@ -61,7 +63,6 @@ public class GameController {
 			}
 		}
 	}
-	
 	public void removeTrack(int row, int column) {
 		try {
 			trackPlacer.removeTrack(row, column);
@@ -73,7 +74,6 @@ public class GameController {
 			}
 		}
 	}
-	
 	public void removeAllTracks() {
 		for(int row = 0; row < level.getBoard().rows; row++) {
 			for(int column = 0; column < level.getBoard().columns; column++) {
@@ -90,8 +90,13 @@ public class GameController {
 	
 	/* Getters and Setters */
 	
+
+	
 	public CampaignManager getCampaignManager() {
 		return campaignManager;
+	}
+	public LevelManager getLevelManager() {
+		return levelManager;
 	}
 	
 	public Level getLevel() {
@@ -105,6 +110,7 @@ public class GameController {
 	public void saveCurrentLevel(File file){
 		saveLevel(this.level, file);
 	}
+	
 	private void saveLevel(Level level, File file) {
 	      try {
 	        // Create the necessary output streams to save the level.

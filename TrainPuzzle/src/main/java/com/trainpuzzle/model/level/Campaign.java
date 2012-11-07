@@ -8,7 +8,7 @@ public class Campaign implements java.io.Serializable {
 	
 	private String campaignName;
     CampaignLevel[]	campaignLevels;
-    private Level currentLevel;
+    private transient Level currentLevel;
 	
     public Campaign() {
     	campaignName = "Campaign 1";
@@ -60,6 +60,5 @@ public class Campaign implements java.io.Serializable {
 	public int getCurrentLevelNumber() {
 		return this.currentLevel.getLevelNumber();
 	}
-
 
 }

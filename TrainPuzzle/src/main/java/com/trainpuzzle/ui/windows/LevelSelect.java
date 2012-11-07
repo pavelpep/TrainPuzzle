@@ -46,7 +46,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
-		for(CampaignLevel campaignLevel: gameController.getCampaignManager().getCampaign().getCampaignLevels()){
+		for(CampaignLevel campaignLevel: gameController.getLevelManager().getCampaign().getCampaignLevels()){
 			listModel.addElement("Level " + campaignLevel.levelNumber);
 		}
 		initializeComponent(campaignList, 15);
@@ -109,7 +109,9 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		levelSelected = 1 + arg0.getFirstIndex();
+		JList list = (JList)arg0.getSource();
+		levelSelected = 1 + list.getSelectedIndex();
+		System.out.println("level selected: " + levelSelected);
 		
 	}
 }
