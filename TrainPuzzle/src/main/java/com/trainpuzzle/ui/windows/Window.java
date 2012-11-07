@@ -1,6 +1,7 @@
 package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -8,7 +9,7 @@ import javax.swing.*;
  * into one class, which is used in common by other subclasses that create Windows.
  */
 
-abstract class Window extends JFrame {
+abstract class Window extends JFrame implements ActionListener {
 	// Layout Manager
 	protected static final int DEFAULT_WIDTH = 1028;
 	protected static final int DEFAULT_HEIGHT = 768;
@@ -23,6 +24,13 @@ abstract class Window extends JFrame {
 		//jComponent.setAlignmentX(CENTER_ALIGNMENT);
 	}
 	
+	protected JButton initializeButton(String label, String actionCommand) {
+		JButton button = new JButton(label);
+		button.setActionCommand(actionCommand);
+		button.addActionListener(this);
+		return button;
+	}
+	
 	protected GridBagConstraints gbConstraints(Point location, Dimension size, float weightX, float weightY) {
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridx = (int) location.getX();
@@ -35,7 +43,7 @@ abstract class Window extends JFrame {
 		return gridBagConstraints;
 	}
 	
-	// Initializes a specific jComponent
+	/*
 	protected void addComponent(Container container, JComponent jComponent, int fontLayout, int fontSize,
 		Color bgColor, int gridX, int gridY, int gridWidth, int gridHeight, float weightX, float weightY, int anchor, int fill, Insets inset, boolean isEnabled) {
 		
@@ -56,4 +64,5 @@ abstract class Window extends JFrame {
 		//jComponent.setBorder(BorderFactory.createMatteBorder(1, 5, 1, 1, Color.red));
 		container.add(jComponent, gbConstraints);
 	}
+	*/
 }

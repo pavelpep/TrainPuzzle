@@ -3,6 +3,7 @@ package com.trainpuzzle.ui.windows;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 import java.io.File;
 import java.io.FileFilter;
@@ -24,33 +25,23 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	private String campaignName = null;
 	private DefaultListModel listModel = new DefaultListModel();
 	private JList campaignList = new JList(listModel);
-	private JScrollPane listScrollPane = new JScrollPane(campaignList);
 	
 	
 	
-	private JLabel titleLabel = new JLabel();
-	private JButton newCampaign = new JButton();
-	private JButton loadCampaign = new JButton();
-	private JButton deleteCampaign = new JButton();
-	private JButton backButton = new JButton();
-	
-	// Constructor
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
 		c = new GridBagConstraints();
-		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		create();
 	}
 	
+	
 	public Campaigns(GameController gameController, CampaignManager campaignManager) {
 		this.gameController = gameController;
 		this.campaignManager = campaignManager;
-		
 		c = new GridBagConstraints();
-		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -58,34 +49,38 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	}
 	
 	public void create() {
-		// Title
-		addComponent(this, this.titleLabel, Font.CENTER_BASELINE, 20, Color.LIGHT_GRAY, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		this.titleLabel.setText("Choose Campaign");
+		JPanel campaignsPanel = new JPanel();
+		campaignsPanel.setLayout(new BoxLayout(campaignsPanel, BoxLayout.Y_AXIS));
+		campaignsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		this.add(campaignsPanel);
 		
-		addComponent(this, this.listScrollPane, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
+		JLabel titleLabel = new JLabel("Choose Campaign");
+		initializeComponent(titleLabel, 20);
+		campaignsPanel.add(titleLabel);
+		
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
-		campaignList.setVisibleRowCount(8);		
+		campaignList.setVisibleRowCount(8);
 		
-		addComponent(this, this.newCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
-		this.newCampaign.setText("New Campaign");
-		newCampaign.setActionCommand("newCampaign");
-		newCampaign.addActionListener(this);
+		JScrollPane listScrollPane = new JScrollPane(campaignList);
+		initializeComponent(listScrollPane, 15);
+		campaignsPanel.add(listScrollPane);
+
+		JButton newCampaign = initializeButton("New Campaign","newCampaign");
+		initializeComponent(newCampaign, 15);
+		campaignsPanel.add(newCampaign);
 		
-		addComponent(this, this.loadCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
-		this.loadCampaign.setText("Load Campaign");
-		loadCampaign.setActionCommand("loadCampaign");
-		loadCampaign.addActionListener(this);
+		JButton loadCampaign = initializeButton("Load Campaign","loadCampaign");
+		initializeComponent(loadCampaign, 15);
+		campaignsPanel.add(loadCampaign);
 		
-		addComponent(this, this.deleteCampaign, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 4, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
-		this.deleteCampaign.setText("Delete Campaign");
-		deleteCampaign.setActionCommand("deleteCampaign");
-		deleteCampaign.addActionListener(this);
+		JButton deleteCampaign = initializeButton("Delete Campaign","deleteCampaign");
+		initializeComponent(deleteCampaign, 15);
+		campaignsPanel.add(deleteCampaign);
 		
-		addComponent(this, this.backButton, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 0, 0), true);
-		this.backButton.setText("Back");
-		backButton.setActionCommand("back");
-		backButton.addActionListener(this);
+		JButton backButton = initializeButton("Back","back");
+		initializeComponent(backButton, 15);
+		campaignsPanel.add(backButton);
 		
 		// The following enumerates the previously stored campaigns on disk
 		campaignsDirectory.mkdirs();

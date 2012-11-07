@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,55 +23,54 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
-		gbConstraints = new GridBagConstraints();
-		setLayout(new GridBagLayout());
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	
 		create();
 	}
 	
-	public void create() {	    
+	public void create() {
+		JPanel levelSelectPanel = new JPanel();
+		levelSelectPanel.setLayout(new BoxLayout(levelSelectPanel, BoxLayout.Y_AXIS));
+		levelSelectPanel.setBorder(new EmptyBorder(200, 10, 10, 10) );
+		this.add(levelSelectPanel);
 		
-		// Title
-		JLabel titleLabel = new JLabel();
-		addComponent(this, titleLabel, Font.CENTER_BASELINE, 20, Color.LIGHT_GRAY, 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(10, 10, 0, 10), true);
-		titleLabel.setText("Choose Level");
+		JLabel titleLabel = new JLabel("Level Select");
+		initializeComponent(titleLabel, 28);
+		levelSelectPanel.add(titleLabel);
 		
 		DefaultListModel listModel = new DefaultListModel();
 		JList campaignList = new JList(listModel);
 		JScrollPane listScrollPane = new JScrollPane(campaignList);
 		
-		addComponent(this, listScrollPane, Font.CENTER_BASELINE, 15, Color.LIGHT_GRAY, 0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(10, 10, 0, 10), true);
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
 		for(CampaignLevel campaignLevel: gameController.getCampaignManager().getCampaign().getCampaignLevels()){
 			listModel.addElement("Level " + campaignLevel.levelNumber);
 		}
+		initializeComponent(campaignList, 15);
+		levelSelectPanel.add(campaignList);
 		
 		
 		// Start Level Button
-	    JButton startLevelButton = new JButton();
-		addComponent(this, startLevelButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
-		startLevelButton.setText("Start Level");
-		startLevelButton.setActionCommand("START_LEVEL");
-		startLevelButton.addActionListener(this);
+		
+		JButton startLevelButton = initializeButton("Start Level","START_LEVEL");
+		initializeComponent(startLevelButton, 20);
+		startLevelButton.setBackground(Color.GREEN);
+		levelSelectPanel.add(startLevelButton);
 		
 		
 		// Load Button
-		JButton loadButton = new JButton();
-		addComponent(this, loadButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.GREEN, 0, 5, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(30, 0, 10, 0), true);
-		loadButton.setText("Load Level");
-		loadButton.setActionCommand("LOAD");
-		loadButton.addActionListener(this);
+		JButton loadButton = initializeButton("Load Level","LOAD");
+		initializeComponent(loadButton, 20);
+		loadButton.setBackground(Color.GREEN);
+		levelSelectPanel.add(loadButton);
 		
-		// Back button
-		JButton backButton = new JButton();
-		addComponent(this, backButton, Font.LAYOUT_LEFT_TO_RIGHT, 20, Color.LIGHT_GRAY, 0, 6, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(50, 0, 10, 0), true);
-		backButton.setText("Back");
-		backButton.setActionCommand("back");
-		backButton.addActionListener(this);
+		JButton backButton = initializeButton("Back","back");
+		initializeComponent(backButton, 20);
+		backButton.setBackground(Color.LIGHT_GRAY);
+		levelSelectPanel.add(backButton);
 
 		this.setVisible(true);
 	}
