@@ -30,6 +30,7 @@ public class LevelMap extends JPanel implements Observer {
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
+	private final int cargoLayerIndex=4;
 	private final int tileSizeInPixels = 40;
 	
 
@@ -96,6 +97,7 @@ public class LevelMap extends JPanel implements Observer {
 		removeComponentsInGUILayer(mapTile,obstacleLayerIndex);
 		if(level.getBoard().getTile(row, column).hasObstacle()) {
 			JLabel obstacleLayer = new JLabel();
+			JLabel cargoLayer = new JLabel();
 			switch(level.getBoard().getTile(row, column).getObstacleType()){
 				case ROCK:
 					obstacleLayer = new JLabel(Images.ROCK_IMAGE);
@@ -105,6 +107,7 @@ public class LevelMap extends JPanel implements Observer {
 					break;
 				case GREEN_STATION:
 					obstacleLayer = new JLabel(Images.GREEN_STATION_IMAGE);
+					cargoLayer = new JLabel(Images.IRON_IMAGE);
 					break;
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
@@ -113,7 +116,9 @@ public class LevelMap extends JPanel implements Observer {
 				break;
 			}
 			obstacleLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+			cargoLayer.setBounds(0,0, tileSizeInPixels, 10);
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
+			mapTile.add(cargoLayer, new Integer(obstacleLayerIndex));
 		}
 	}
 	

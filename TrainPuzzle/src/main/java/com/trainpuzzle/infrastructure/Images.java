@@ -20,6 +20,9 @@ public final class Images {
 	public final static String RED_STATION = "src/main/resources/images/redStation.png";
 	public final static String GREEN_STATION = "src/main/resources/images/greenStation.png";
 	
+	//Cargo
+	public final static String IRON = "src/main/resources/images/blackSquare.png";
+	
 	//Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
 	public final static String STRAIGHT_TRACK = "src/main/resources/images/straight_track.png";
@@ -44,6 +47,10 @@ public final class Images {
 	//Stations
 	public final static ImageIcon RED_STATION_IMAGE = new ImageIcon(RED_STATION);
 	public final static ImageIcon GREEN_STATION_IMAGE = new ImageIcon(GREEN_STATION);
+	
+	//Cargo
+	public final static ImageIcon IRON_IMAGE = new ImageIcon(IRON);
+	
 	
 	//Tracks
 	public final static ImageIcon PERMANENT_STRAIGHT_TRACK_IMAGE = new ImageIcon(PERMANENT_STRAIGHT_TRACK);
