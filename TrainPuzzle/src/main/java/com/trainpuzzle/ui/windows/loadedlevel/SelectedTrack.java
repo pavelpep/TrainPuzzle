@@ -14,6 +14,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
@@ -65,7 +66,11 @@ public class SelectedTrack extends JPanel implements ActionListener {
 	}
 
 	private void rotate() {
-		selectedTrack = new Track(selectedTrack);
+		if(!selectedTrack.isSwitch()) {
+			selectedTrack = new Track(selectedTrack);
+		} else {
+			selectedTrack = new Switch((Switch)selectedTrack);
+		}
 		selectedTrack.rotateTrack();
 		selectedTrackImage.rotate90DegreesClockwise();
 		redrawRotateButton(selectedTrack, selectedTrackImage);
