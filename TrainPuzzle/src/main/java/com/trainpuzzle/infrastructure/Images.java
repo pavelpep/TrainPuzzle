@@ -33,7 +33,10 @@ public final class Images {
 	public final static String CURVERIGHT_TRACK = "src/main/resources/images/curve_right_track.png";
 	public final static String INTERSECTION_TRACK = "src/main/resources/images/intersection_track.png";
 	public final static String DIAGONAL_INTERSECTION_TRACK = "src/main/resources/images/diagonal_intersection_track.png";
-
+	public final static String CURVELEFT_SWITCH = "src/main/resources/images/left_switch.png";
+	public final static String CURVERIGHT_SWITCH = "src/main/resources/images/right_switch.png";
+	
+	
 	//ImageIcon type
 	
 	//Train
@@ -63,5 +66,6 @@ public final class Images {
 	public final static ImageIcon CURVERIGHT_TRACK_IMAGE = new ImageIcon(CURVERIGHT_TRACK);	
 	public final static ImageIcon INTERSECTION_TRACK_IMAGE =  new ImageIcon(INTERSECTION_TRACK);
 	public final static ImageIcon DIAGONAL_INTERSECTION_TRACK_IMAGE =  new ImageIcon(DIAGONAL_INTERSECTION_TRACK);
-
+	public final static ImageIcon CURVELEFT_SWITCH_IMAGE = new ImageIcon(CURVELEFT_SWITCH);
+	public final static ImageIcon CURVERIGHT_SWITCH_IMAGE = new ImageIcon(CURVERIGHT_SWITCH);
 }
