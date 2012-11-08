@@ -37,6 +37,9 @@ public class LevelManager {
 		levelLoaded = level;	
 
 	}
+	public void levelCompleted(){
+		campaign.completeLevel(levelLoaded.getLevelNumber());
+	}
 	
 	private void loadNextLevel() {
 		int nextLevel = levelLoaded.getLevelNumber() + 1;

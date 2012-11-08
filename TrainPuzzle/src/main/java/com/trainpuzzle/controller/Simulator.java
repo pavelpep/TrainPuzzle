@@ -225,5 +225,9 @@ public class Simulator {
 	
 	public int getTickIntervalUpperBound() {
 		return tickIntervalUpperBound;
+	}
+	
+	public VictoryConditionEvaluator getVictoryConditionEvaluator() {
+		return victoryConditionEvaluator;
 	}   
 }

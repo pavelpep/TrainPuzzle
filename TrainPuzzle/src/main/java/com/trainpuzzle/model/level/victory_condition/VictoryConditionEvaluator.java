@@ -1,9 +1,15 @@
 package com.trainpuzzle.model.level.victory_condition;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.trainpuzzle.observe.*;
 
 
-public class VictoryConditionEvaluator implements VictoryCondition {
-	private VictoryCondition root;
+public class VictoryConditionEvaluator implements VictoryCondition, Observable {
 	
+	private Set<Observer> observerList = new HashSet<Observer>();
+	
+	private VictoryCondition root;
 	
 	public VictoryConditionEvaluator(VictoryCondition root) {
 		this.root = root;
@@ -11,7 +17,9 @@ public class VictoryConditionEvaluator implements VictoryCondition {
 	}
 	
 	public boolean isSatisfied() {
-		return root.isSatisfied();
+		Boolean isSatisfied = root.isSatisfied();
+		if(isSatisfied){notifyAllObservers();}
+		return isSatisfied;
 	}
 /*		
 	public void eventHappened(Event event) {
@@ -46,6 +54,21 @@ public class VictoryConditionEvaluator implements VictoryCondition {
 	@Override
 	public void resetEvents() {
 		root.resetEvents();
+	}
+
+	@Override
+	public void register(Observer observer) {
+		if(observerList == null) {
+			observerList = new HashSet<Observer>();
+		}
+		observerList.add(observer);
+	}
+
+	@Override
+	public void notifyAllObservers() {
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
 	}
 	
 }
