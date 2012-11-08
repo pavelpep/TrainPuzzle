@@ -51,7 +51,9 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelList.addListSelectionListener(this);
 		levelList.setVisibleRowCount(8);
 		for(CampaignLevel campaignLevel: gameController.getLevelManager().getCampaign().getCampaignLevels()){
-			listModel.addElement("Level " + campaignLevel.levelNumber);
+			String levelName = "Level " + campaignLevel.levelNumber;
+			String levelState = (campaignLevel.isLocked) ? "locked" : "unlocked";
+			listModel.addElement(levelName + " (" + levelState +")");
 		}
 		initializeComponent(levelList, 15);
 		levelSelectPanel.add(levelList);
