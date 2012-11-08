@@ -11,7 +11,6 @@ import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.TrackType;
 
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 

@@ -15,24 +15,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-
-import org.apache.log4j.Logger;
-
-import test.trainpuzzle.observe.*;
-
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.controller.TrackPlacer;
 
 
 // Level selection for the campaign
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
 
 	private static final long serialVersionUID = 1L;
-
-	private Logger logger = Logger.getLogger(LoadedLevelScreen.class);
-	
 	private GameController gameController;
 	private Level level;
 

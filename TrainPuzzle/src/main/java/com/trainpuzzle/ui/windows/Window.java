@@ -10,6 +10,8 @@ import javax.swing.*;
  */
 
 abstract class Window extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	
 	// Layout Manager
 	protected static final int DEFAULT_WIDTH = 1028;
 	protected static final int DEFAULT_HEIGHT = 768;

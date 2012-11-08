@@ -5,23 +5,23 @@ import com.trainpuzzle.model.level.CampaignLevel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 // Level selection for the campaign
 public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
+	private static final long serialVersionUID = 1L;
+
+
 	private GameController gameController;
 	
 	
 	private int levelSelected = 1;
-	DefaultListModel listModel;
-	JList levelList;
+	JList<String> levelList;
 	
 	
 	public LevelSelect(GameController gameController) {
@@ -39,14 +39,14 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelSelectPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(levelSelectPanel);
 		
+		//Title
 		JLabel titleLabel = new JLabel("Level Select");
 		initializeComponent(titleLabel, 28);
 		levelSelectPanel.add(titleLabel);
 		
-		listModel = new DefaultListModel();
-		levelList = new JList(listModel);
-		
-		
+		//Level List 
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		levelList = new JList<String>(listModel);
 		levelList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		levelList.addListSelectionListener(this);
 		levelList.setVisibleRowCount(8);
@@ -57,20 +57,13 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelSelectPanel.add(levelList);
 		
 		
-		// Start Level Button
-		
+		//Start Level Button
 		JButton startLevelButton = initializeButton("Start Level","START_LEVEL");
 		initializeComponent(startLevelButton, 20);
 		startLevelButton.setBackground(Color.GREEN);
 		levelSelectPanel.add(startLevelButton);
 		
-		
-		// Load Button
-		JButton loadButton = initializeButton("Load Level","LOAD");
-		initializeComponent(loadButton, 20);
-		loadButton.setBackground(Color.GREEN);
-		levelSelectPanel.add(loadButton);
-		
+		//Back Button
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 20);
 		backButton.setBackground(Color.LIGHT_GRAY);
@@ -87,28 +80,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 			gameController.startGame(levelSelected);
 			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
 		}		
-
-		 else if (action == "LOAD") {
-			File levelFile = openFile();
-			if(levelFile != null){	
-				gameController.startGame(levelFile);
-				LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-				WindowManager.getManager(gameController).setActiveWindow(loadedLevelScreen);
-			}
-		}	
-	}
-	
-	
-	private File openFile(){
-		JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-	        "XML Encoded Level", "xml");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showOpenDialog(this);
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    	return chooser.getSelectedFile();
-	    }
-		return null;
+			
 	}
 
 	@Override

@@ -3,9 +3,6 @@ package com.trainpuzzle.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JOptionPane;
-
-
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;

@@ -5,15 +5,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
-import java.io.File;
-import java.io.FileFilter;
 
 import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.model.level.Campaign;
-import com.trainpuzzle.model.level.CampaignLevel;
 
-import java.util.*;
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
@@ -25,8 +21,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	// Window elements	
 	private int campaignSelected = 1;
-	private DefaultListModel listModel;
-	private JList campaignList;
+	private JList<String> campaignList;
 	
 	
 	
@@ -56,13 +51,14 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.add(campaignsPanel);
 		
+		//Title Label
 		JLabel titleLabel = new JLabel("Choose Campaign");
 		initializeComponent(titleLabel, 20);
 		campaignsPanel.add(titleLabel);
 		
-		listModel = new DefaultListModel();
-		campaignList = new JList(listModel);
-		
+		//Campaigns List
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		campaignList = new JList<String>(listModel);
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
@@ -72,11 +68,12 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		initializeComponent(campaignList, 15);
 		campaignsPanel.add(campaignList);
 
-		
+		//Select Campaign Button
 		JButton selectCampaign = initializeButton("Select Campaign","selectCampaign");
 		initializeComponent(selectCampaign, 15);
 		campaignsPanel.add(selectCampaign);
 		
+		//Back Button
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);

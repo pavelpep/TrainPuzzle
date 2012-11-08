@@ -8,6 +8,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class RotatedImageIcon extends ImageIcon {
+	private static final long serialVersionUID = 1L;
 	
 	int multiplesOf45Degrees = 0;
 	
