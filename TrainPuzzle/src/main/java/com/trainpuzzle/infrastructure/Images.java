@@ -22,6 +22,8 @@ public final class Images {
 	
 	//Cargo
 	public final static String IRON = "src/main/resources/images/blackSquare.png";
+	public final static String COTTON = "src/main/resources/images/whiteSquare.png";
+	public final static String WOOD = "src/main/resources/images/brownSquare.png";
 	
 	//Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
@@ -50,7 +52,8 @@ public final class Images {
 	
 	//Cargo
 	public final static ImageIcon IRON_IMAGE = new ImageIcon(IRON);
-	
+	public final static ImageIcon COTTON_IMAGE = new ImageIcon(COTTON);
+	public final static ImageIcon WOOD_IMAGE = new ImageIcon(WOOD);
 	
 	//Tracks
 	public final static ImageIcon PERMANENT_STRAIGHT_TRACK_IMAGE = new ImageIcon(PERMANENT_STRAIGHT_TRACK);

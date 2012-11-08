@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import java.util.LinkedList;
+
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.infrastructure.Images;
@@ -17,6 +19,7 @@ import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
@@ -119,34 +122,43 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private void drawCargo(int row, int column) {
-		if (level.getBoard().getTile(row, column).hasStationBuilding()){
-		System.out.println(level.getBoard().getTile(row, column).getStation().getType());
-		JLayeredPane mapTile = mapTiles[row][column];
-		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
-		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
-		if(stationOnTile.hasExtraCargo()) {
-			JLabel cargoLayer = new JLabel();
-			System.out.println(stationOnTile.getExtraCargo().getFirst().getType());
-			switch(stationOnTile.getExtraCargo().getFirst().getType()){
-				/*case COTTON:
+	private void actualDrawCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
+		JLabel cargoLayer = new JLabel();
+		int drawCargoAtLocationX=0;
+		int drawCargoAtLocationY=0;
+		for (Cargo extraCargoInStation: extraCargoesInStation){
+			switch(extraCargoInStation.getType()){
+				case COTTON:
 					cargoLayer = new JLabel(Images.COTTON_IMAGE);
 					break;
 				case WOOD:
-					cargoLayer = new JLabel(WOOD._IMAGE);
-					break;*/
+					cargoLayer = new JLabel(Images.WOOD_IMAGE);
+					break;
 				case IRON:
 					cargoLayer = new JLabel(Images.IRON_IMAGE);
 					break;				
-			default:
-				break;
+				default:
+					break;
 			}
-			cargoLayer.setBounds(0,0, tileSizeInPixels, 10);
-			mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
+		cargoLayer.setBounds(drawCargoAtLocationX, drawCargoAtLocationY,tileSizeInPixels/2 , 10);
+		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
+		drawCargoAtLocationX=drawCargoAtLocationX+tileSizeInPixels/2;
 		}
-		}
-	
 	}
+		
+	private void drawCargoes(int row, int column) {
+		if (level.getBoard().getTile(row, column).hasStationBuilding()){
+			JLayeredPane mapTile = mapTiles[row][column];
+			removeComponentsInGUILayer(mapTile,cargoLayerIndex);
+			Station stationOnTile = level.getBoard().getTile(row, column).getStation();
+			if(stationOnTile.hasExtraCargo()) {
+				LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
+				actualDrawCargoes(mapTile, extraCargoesInStation);				
+			}
+		}
+	}
+	
+
 		
 	private void drawTrack(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
@@ -212,7 +224,7 @@ public class LevelMap extends JPanel implements Observer {
 		   drawObstacle(row, column);
 		   drawLandscape(row, column);
 		   drawTrack(row, column);
-		   drawCargo(row, column);
+		   drawCargoes(row, column);
 	}
 	
 	private void initializeTrain() {
