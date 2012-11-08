@@ -67,13 +67,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(loadedLevelScreenPanel);
 		
-		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(2, 1), 0, 0);
 		loadedLevelScreenPanel.add(headerPanel(), headerPanelContraints);
 		
-		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 0);
+		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 0);
 		loadedLevelScreenPanel.add(mapPanel(), mapPanelContraints);
 		
-		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 2), 0, 0);
+		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 0);
 		loadedLevelScreenPanel.add(sidePanel(), sidePanelContraints);
 	}
 
@@ -82,13 +82,20 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		headerPanel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints backButtonContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		backButtonContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(backButton(), backButtonContraints);
 		
 		GridBagConstraints titleLabelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 1), 0, 0);
+		titleLabelContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(titleLabel(), titleLabelContraints);
 		
 		GridBagConstraints messageBoxContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 1, 0);
+		messageBoxContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(messageBox(), messageBoxContraints);
+		
+		GridBagConstraints saveButtonContraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 0, 0);
+		saveButtonContraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(saveButton(), saveButtonContraints);
 		
 		return headerPanel;
 	}
@@ -101,7 +108,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		StyledDocument doc = messageBox.getStyledDocument();
 		SimpleAttributeSet alignment = new SimpleAttributeSet();
-		StyleConstants.setAlignment(alignment, StyleConstants.ALIGN_RIGHT);
+		StyleConstants.setAlignment(alignment, StyleConstants.ALIGN_CENTER);
 		doc.setParagraphAttributes(0, doc.getLength(), alignment, false);
 		
 		messageBox.setOpaque(false);
@@ -158,10 +165,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private JPanel sidePanel() {
 		JPanel sidePanel = new JPanel();
-		sidePanel.setPreferredSize(new Dimension(200, 650));
-		sidePanel.setLayout(new FlowLayout());
-		
-		sidePanel.add(saveButton());
+		sidePanel.setPreferredSize(new Dimension(200, 575));
+		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
 		GameControlBox gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
