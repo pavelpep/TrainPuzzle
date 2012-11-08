@@ -8,6 +8,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.thoughtworks.xstream.XStream;
+import com.trainpuzzle.exception.CannotLoadLockedLevelException;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.model.board.Track;
@@ -40,7 +41,12 @@ public class GameController {
 	}
 	
 	public void startGame(int levelNumber) {
-		levelManager.loadLevel(levelNumber);
+		try {
+			levelManager.loadLevel(levelNumber);
+		} catch (CannotLoadLockedLevelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		startGame();
 	}
 

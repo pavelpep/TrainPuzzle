@@ -15,14 +15,15 @@ public class Campaign implements java.io.Serializable {
     public Campaign() {
     	campaignName = "Campaign 1";
     	campaignLevels.add(new CampaignLevel(false,false,1));
-    	campaignLevels.add(new CampaignLevel(true,false,2));
-    	campaignLevels.add(new CampaignLevel(true,false,3));
+    	campaignLevels.add(new CampaignLevel(false,false,2));
+    	campaignLevels.add(new CampaignLevel(false,false,3));
     	
 	}
     public Campaign(String name) {
     	campaignName = name;
     	campaignLevels.add(new CampaignLevel(false,false,1));
     	campaignLevels.add(new CampaignLevel(true,false,2));
+    	campaignLevels.add(new CampaignLevel(true,false,3));
     	
 	}
 	

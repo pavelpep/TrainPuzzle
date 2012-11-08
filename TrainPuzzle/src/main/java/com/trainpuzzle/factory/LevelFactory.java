@@ -99,8 +99,22 @@ public class LevelFactory {
 	level.setVictoryConditions(victoryConditions);
 	}
 	*/
+	public Level createLevel(int levelNumber){
+		Level level;
+		switch(levelNumber) {
+		case 1: level = createLevelOne();
+				break;
+		case 2: level = createLevelTwo();
+				break;
+		case 3: level = createLevelThree();
+				break;
+		default:level = createLevelOne();
+				break;
+		}
+		return level;
+	}
 	
-	   public Level createLevelOne() {
+	private Level createLevelOne() {
 	    	this.board = new Board();
 	        this.root = new AndVictoryCondition();
 
@@ -165,7 +179,7 @@ public class LevelFactory {
 	    	return new Level(1, this.board, startLocation, this.root, economy);
 		}
 		
-	    public Level createLevelTwo() {
+	private Level createLevelTwo() {
 	    	this.board = new Board();
 	        Economy economy = new Economy();
 	        this.root = new AndVictoryCondition();
@@ -217,7 +231,7 @@ public class LevelFactory {
 	    	return new Level(2, this.board, startLocation, this.root, economy);
 		}
 	    
-	    public Level createLevelThree() {
+	private Level createLevelThree() {
 	    	this.board = new Board(10, 10);
 	        Economy economy = new Economy();
 	        this.root = new AndVictoryCondition();
