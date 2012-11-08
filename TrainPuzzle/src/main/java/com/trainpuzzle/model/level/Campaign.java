@@ -1,35 +1,36 @@
 package com.trainpuzzle.model.level;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Campaign implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String campaignName;
-    private CampaignLevel[]	campaignLevels;
+	private List<CampaignLevel> campaignLevels = new ArrayList<CampaignLevel>();
     
 	
     public Campaign() {
     	campaignName = "Campaign 1";
-    	campaignLevels = new CampaignLevel[3];
-    	campaignLevels[0] = new CampaignLevel(false,false,1);
-    	campaignLevels[1] = new CampaignLevel(true,false,2);
-    	campaignLevels[2] = new CampaignLevel(true,false,3);
+    	campaignLevels.add(new CampaignLevel(false,false,1));
+    	campaignLevels.add(new CampaignLevel(true,false,2));
+    	campaignLevels.add(new CampaignLevel(true,false,3));
     	
 	}
     public Campaign(String name) {
     	campaignName = name;
-    	campaignLevels = new CampaignLevel[2];
-    	campaignLevels[0] = new CampaignLevel(false,false,1);
-    	campaignLevels[1] = new CampaignLevel(true,false,2);
+    	campaignLevels.add(new CampaignLevel(false,false,1));
+    	campaignLevels.add(new CampaignLevel(true,false,2));
     	
 	}
 	
 	public void completeLevel(int levelNumber) {
-		campaignLevels[levelNumber - 1].isCompleted = true;
+		campaignLevels.get(levelNumber - 1).isCompleted = true;
 		try
 		{
-			campaignLevels[levelNumber].isLocked = false;
+			campaignLevels.get(levelNumber).isLocked = false;
 		}
 		finally{}
 	}
@@ -41,8 +42,8 @@ public class Campaign implements java.io.Serializable {
 	public void setCampaignName(String name) {
 		this.campaignName = name;
 	}
-	public CampaignLevel[] getCampaignLevels() {
-		return this.campaignLevels;
+	public List<CampaignLevel> getCampaignLevels() {
+		return campaignLevels;
 	}
 	
 	

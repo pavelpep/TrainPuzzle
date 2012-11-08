@@ -849,7 +849,6 @@
           <elevation>0</elevation>
           <obstacle>
             <obstacle>GREEN_STATION</obstacle>
-            
           </obstacle>
           <landscape>
             <landscapeType>GRASS</landscapeType>

@@ -3,6 +3,9 @@ package com.trainpuzzle.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thoughtworks.xstream.*;
 
 import com.trainpuzzle.model.level.Campaign;
@@ -10,26 +13,25 @@ import com.trainpuzzle.model.level.Campaign;
 
 public class CampaignManager {
 
-	private Campaign[] campaigns;
+	private List<Campaign> campaigns = new ArrayList<Campaign>();
 	private transient Campaign selectedCampaign;
 	
 	public CampaignManager(){
-		this.campaigns = new Campaign[2];
-        this.campaigns[0] = new Campaign();
-        this.campaigns[1] = new Campaign("Campaign 2");
+        campaigns.add( new Campaign());
+        campaigns.add(new Campaign("Campaign 2"));
         
 	}
 	
-	public Campaign[] getCampaigns(){
-		return this.campaigns;
+	public List<Campaign> getCampaigns(){
+		return campaigns;
 	}	
 	
 	public Campaign getCampaign(){
-		return this.selectedCampaign;
+		return selectedCampaign;
 	}
 	
 	public void selectCampaign(int campaignNumber){
-		this.selectedCampaign = this.campaigns[campaignNumber-1];
+		selectedCampaign = this.campaigns.get(campaignNumber-1);
 	}
 	
 	  
