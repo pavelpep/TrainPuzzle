@@ -13,13 +13,15 @@ public class Switch extends Track {
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
 		entrance = findValidEntrance(connection1, connection2);
-		goToFirstConnection();
+		connectionsIterator = connections.iterator();
+		current = switchConnection();
 	}
 	
 	public Switch(Switch switchToCopy) {
 		super(switchToCopy);
 		entrance = switchToCopy.getEntrance();
-		goToFirstConnection();
+		connectionsIterator = connections.iterator();
+		current = switchConnection();
 	}
 	
 	private CompassHeading findValidEntrance(Connection connection1, Connection connection2) {
@@ -40,15 +42,6 @@ public class Switch extends Track {
 		return entrance;
 	}
 	
-	private void goToFirstConnection() {
-		connectionsIterator = connections.iterator();
-		if(connectionsIterator.hasNext()) {
-			current = connectionsIterator.next();
-		} else {
-			// TODO: throw an assertion or exception while there should be 2 connections (more than one connection) in the connection set
-		}
-	}
-	
 	public Connection getCurrentConnection() {
 		return current;
 	}
@@ -61,7 +54,8 @@ public class Switch extends Track {
 		CompassHeading outboundHeading;
 		if(isEntrance(inboundHeading)) {
 			outboundHeading = current.outboundorInbound(inboundHeading);
-			switchConnection();
+			current = switchConnection();
+			// TODO: notify UI to redraw the switch when current is changed
 		} else {	// if the inbound heading is not connected to the "switch entrance", check if it is connected to any other "switch exits"
 			outboundHeading = super.getOutboundHeading(inboundHeading);
 		}
@@ -78,12 +72,10 @@ public class Switch extends Track {
 		return inboundHeading.opposite() == entrance;
 	}
 	
-	private void switchConnection() {
-		if(connectionsIterator.hasNext()) {
-			current = connectionsIterator.next();
-		} else {
-			goToFirstConnection();
+	private Connection switchConnection() {
+		if(!connectionsIterator.hasNext()) {
+			connectionsIterator = connections.iterator();
 		}
-		// TODO: notify UI to redraw the switch when current is changed
+		return connectionsIterator.next();
 	}
 }

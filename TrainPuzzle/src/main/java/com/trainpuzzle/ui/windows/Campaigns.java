@@ -66,7 +66,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
-		for(Campaign campaign: gameController.getCampaignManager().getCampaignList()){
+		for(Campaign campaign: gameController.getCampaignManager().getCampaigns()){
 			listModel.addElement(campaign.getCampaignName());
 		}
 		initializeComponent(campaignList, 15);

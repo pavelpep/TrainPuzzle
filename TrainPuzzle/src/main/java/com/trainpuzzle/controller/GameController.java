@@ -16,6 +16,7 @@ import com.trainpuzzle.observe.Observer;
 
 public class GameController {
 	
+	private static final int DEFAULT_CAMPAIGN = 1;
 	private Logger logger = Logger.getLogger(Application.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
@@ -28,7 +29,7 @@ public class GameController {
 
 	public GameController(){
 		campaignManager = new CampaignManager();
-		campaignManager.selectCampaign(1);
+		campaignManager.selectCampaign(DEFAULT_CAMPAIGN);
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 	

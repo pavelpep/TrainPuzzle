@@ -10,18 +10,18 @@ import com.trainpuzzle.model.level.Campaign;
 
 public class CampaignManager {
 
-	private Campaign[] campaignList;
+	private Campaign[] campaigns;
 	private transient Campaign selectedCampaign;
 	
 	public CampaignManager(){
-		this.campaignList = new Campaign[2];
-        this.campaignList[0] = new Campaign();
-        this.campaignList[1] = new Campaign("Campaign 2");
+		this.campaigns = new Campaign[2];
+        this.campaigns[0] = new Campaign();
+        this.campaigns[1] = new Campaign("Campaign 2");
         
 	}
 	
-	public Campaign[] getCampaignList(){
-		return this.campaignList;
+	public Campaign[] getCampaigns(){
+		return this.campaigns;
 	}	
 	
 	public Campaign getCampaign(){
@@ -29,7 +29,7 @@ public class CampaignManager {
 	}
 	
 	public void selectCampaign(int campaignNumber){
-		this.selectedCampaign = this.campaignList[campaignNumber-1];
+		this.selectedCampaign = this.campaigns[campaignNumber-1];
 	}
 	
 	  
