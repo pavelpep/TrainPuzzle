@@ -14,32 +14,18 @@ public class Switch extends Track {
 		super(connection1, connection2, trackType);
 		entrance = findValidEntrance(connection1, connection2);
 		connectionsIterator = connections.iterator();
-		current = switchConnection();
+		current = nextConnection();
 	}
 	
 	public Switch(Switch switchToCopy) {
 		super(switchToCopy);
 		entrance = switchToCopy.getEntrance();
 		connectionsIterator = connections.iterator();
-		current = switchConnection();
+		current = nextConnection();
 	}
 	
 	private CompassHeading findValidEntrance(Connection connection1, Connection connection2) {
-		int similarHeadingCounts = 0;
-		CompassHeading entrance = null;
-		
-		CompassHeading[] pair1 = connection1.getCompassHeadingPair();
-		CompassHeading[] pair2 = connection2.getCompassHeadingPair();
-		for(CompassHeading pair1_heading: pair1) {
-			for(CompassHeading pair2_heading: pair2) {
-				if(pair1_heading == pair2_heading) {
-					similarHeadingCounts++;
-					entrance = pair1_heading;
-				}
-			}
-		}
-		assert(similarHeadingCounts == 1): "Invalid switch (similar headings:" + similarHeadingCounts + ")";
-		return entrance;
+		return connection1.findSimilarHeading(connection2);
 	}
 	
 	public Connection getCurrentConnection() {
@@ -53,8 +39,8 @@ public class Switch extends Track {
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException{
 		CompassHeading outboundHeading;
 		if(isEntrance(inboundHeading)) {
-			outboundHeading = current.outboundorInbound(inboundHeading);
-			current = switchConnection();
+			outboundHeading = current.outboundForInbound(inboundHeading);
+			current = nextConnection();
 			// TODO: notify UI to redraw the switch when current is changed
 		} else {	// if the inbound heading is not connected to the "switch entrance", check if it is connected to any other "switch exits"
 			outboundHeading = super.getOutboundHeading(inboundHeading);
@@ -72,7 +58,7 @@ public class Switch extends Track {
 		return inboundHeading.opposite() == entrance;
 	}
 	
-	private Connection switchConnection() {
+	private Connection nextConnection() {
 		if(!connectionsIterator.hasNext()) {
 			connectionsIterator = connections.iterator();
 		}

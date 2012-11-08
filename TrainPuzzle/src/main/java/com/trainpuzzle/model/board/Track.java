@@ -89,7 +89,7 @@ public class Track implements java.io.Serializable{
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
 		for(Connection connection : connections) {
 			if(connection.isInboundHeading(inboundHeading)) {
-				return connection.outboundorInbound(inboundHeading);
+				return connection.outboundForInbound(inboundHeading);
 			}
 		}
 		throw new TrainCrashException();

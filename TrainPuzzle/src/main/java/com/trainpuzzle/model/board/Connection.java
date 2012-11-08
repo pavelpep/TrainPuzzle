@@ -25,7 +25,7 @@ public class Connection implements java.io.Serializable {
 		return outbound == compassHeading1 || outbound == compassHeading2; 
 	}
 	
-	public CompassHeading outboundorInbound(CompassHeading inbound) {
+	public CompassHeading outboundForInbound(CompassHeading inbound) {
 		CompassHeading outbound = inbound.opposite();
 		if(outbound == compassHeading1) {
 			return compassHeading2;
@@ -33,6 +33,25 @@ public class Connection implements java.io.Serializable {
 		else {
 			return compassHeading1;
 		}
+	}
+	
+	public CompassHeading findSimilarHeading(Connection anotherConnection) {
+		int similarHeadingCounts = 0;
+		CompassHeading similarHeading = null;
+		
+		CompassHeading[] pair1 = getCompassHeadingPair();
+		CompassHeading[] pair2 = anotherConnection.getCompassHeadingPair();
+		for(CompassHeading pair1_heading: pair1) {
+			for(CompassHeading pair2_heading: pair2) {
+				if(pair1_heading == pair2_heading) {
+					similarHeadingCounts++;
+					similarHeading = pair1_heading;
+				}
+			}
+		}
+		// TODO: throw exception if similar heading > 1
+		
+		return similarHeading;
 	}
 	
 	@Override
