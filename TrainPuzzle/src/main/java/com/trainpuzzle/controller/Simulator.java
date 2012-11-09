@@ -89,6 +89,7 @@ public class Simulator implements Observable{
 			}
 			else if(isVictoryConditionsSatisfied()) {
 				stop();
+				notifyAllObservers();
 			}
 		} catch (TrainCrashException e) {
 			e.printStackTrace();

@@ -16,6 +16,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
@@ -39,6 +40,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	public LoadedLevelScreen(GameController gameController) {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
+
+		gameController.getSimulator().register(this);
+		gameController.getSimulator().getVictoryConditionEvaluator().register(this);
 		
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +55,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		pack();
 		setLocationRelativeTo(null);
 		//register with the victory conditions evaluator
-		gameController.getSimulator().getVictoryConditionEvaluator().register(this);
 	}
 
 	private void create() {
@@ -213,8 +216,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//	gameController.saveCurrentLevel(saveLevelFile);
 			//}
 		}
-		
-
 	}
 	
 	private File saveFileDialog(){
@@ -233,8 +234,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		if(object instanceof VictoryConditionEvaluator){
 			gameController.getLevelManager().levelCompleted();
 			gameController.getCampaignManager().saveCampaign();
-        	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
-        	loadedLevelScreen.setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
+        	//LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+        	setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
+		}
+		if(object instanceof Simulator){
+			if(((Simulator) object).isTrainCrashed()) {
+				setMessageBoxMessage("TRAIN CRASHED");
+			}
 		}
 	}
 
