@@ -2,7 +2,7 @@ package com.trainpuzzle.controller;
 
 import java.util.List;
 
-import com.trainpuzzle.exception.CannotLoadLockedLevelException;
+import com.trainpuzzle.exception.LevelLockedException;
 import com.trainpuzzle.factory.LevelFactory;
 import com.trainpuzzle.infrastructure.FileManager;
 import com.trainpuzzle.model.level.Campaign;
@@ -20,13 +20,18 @@ public class LevelManager {
         this.campaign = campaign;   
 	}
 		
-	public void loadLevel(int levelNumber) throws CannotLoadLockedLevelException {
+	public void selectLevel(int levelNumber) throws LevelLockedException{
 		campaign.setCurrentLevelNumber(levelNumber);
-		campaignLevel = campaign.getCampaignLevels().get(campaign.getCurrentLevelNumber()-1);
+		campaignLevel = campaign.getCurrentLevel();
 		//check if level is locked
 		if(campaignLevel.isLocked){
-			throw new CannotLoadLockedLevelException("Level " + levelNumber + " is locked.");
+			throw new LevelLockedException("Level " + levelNumber + " is locked.");
 		}
+		loadLevel(levelNumber);
+	}
+	
+	private void loadLevel(int levelNumber) {
+
 		//if level has been saved, load it's save
 		if(campaignLevel.hasUserSave){
 			String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
@@ -38,16 +43,11 @@ public class LevelManager {
 			Level level = levelFactory.createLevel(levelNumber);
 			levelLoaded = level;	
 		}
-
 	}
 
 	public void loadNextLevel() {
 		int nextLevel = campaign.getCurrentLevelNumber() + 1;
-		try {
-			loadLevel(nextLevel);
-		} catch (CannotLoadLockedLevelException e) {
-			e.printStackTrace();
-		}
+	    loadLevel(nextLevel);
 	}
 	
 	public void levelCompleted(){

@@ -51,6 +51,9 @@ public class Campaign implements java.io.Serializable {
 	public List<CampaignLevel> getCampaignLevels() {
 		return campaignLevels;
 	}
+    public CampaignLevel getCurrentLevel() {
+		return campaignLevels.get(currentLevel-1);
+	}
     public int getCurrentLevelNumber() {
 		return currentLevel;
 	}

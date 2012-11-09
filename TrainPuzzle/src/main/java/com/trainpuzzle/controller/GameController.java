@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
 
-import com.trainpuzzle.exception.CannotLoadLockedLevelException;
+import com.trainpuzzle.exception.LevelLockedException;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.infrastructure.FileManager;
@@ -40,8 +40,8 @@ public class GameController {
 	
 	public void startGame(int levelNumber) {
 		try {
-			levelManager.loadLevel(levelNumber);
-		} catch (CannotLoadLockedLevelException e) {
+			levelManager.selectLevel(levelNumber);
+		} catch (LevelLockedException e) {
 			e.printStackTrace();
 		}
 		startGame();
@@ -97,9 +97,6 @@ public class GameController {
 	}
 	
 	/* Getters and Setters */
-	
-
-	
 	public CampaignManager getCampaignManager() {
 		return campaignManager;
 	}
