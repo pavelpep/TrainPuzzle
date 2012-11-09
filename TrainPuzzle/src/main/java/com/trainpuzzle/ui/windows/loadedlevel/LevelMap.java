@@ -1,5 +1,6 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -54,12 +55,17 @@ public class LevelMap extends JPanel implements Observer {
 		this.train = gameController.getSimulator().getTrain();
 		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
 		
-		//mapPanel.setPreferredSize(new Dimension(40*numberOfRows, 40*numberOfColumns));
 		this.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		this.setSize(new Dimension(tileSizeInPixels * numberOfRows, tileSizeInPixels * numberOfColumns));
 		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
 		
 		// Initialize Map Panel
+		initializeMapPanel(numberOfRows, numberOfColumns);
+		redrawTiles();
+		initializeTrain();
+	}
+
+	private void initializeMapPanel(int numberOfRows, int numberOfColumns) {
 		for(int row = 0; row < numberOfRows; row++){
 			for(int column = 0; column < numberOfColumns; column++){
 				JLayeredPane mapTile = new JLayeredPane();
@@ -72,8 +78,6 @@ public class LevelMap extends JPanel implements Observer {
 				this.add(mapTile);
 			}
 		}
-		redrawTiles();
-		initializeTrain();
 	}
 
 	private void drawLandscape(int row, int column) {
@@ -123,27 +127,27 @@ public class LevelMap extends JPanel implements Observer {
 	}
 	
 	private void actualDrawCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
-		JLabel cargoLayer = new JLabel();
-		int drawCargoAtLocationX=0;
-		int drawCargoAtLocationY=0;
+		JPanel cargoLayer = new JPanel();
+		cargoLayer.setOpaque(false);
+		JLabel cargo = new JLabel();
 		for (Cargo extraCargoInStation: extraCargoesInStation){
 			switch(extraCargoInStation.getType()){
 				case COTTON:
-					cargoLayer = new JLabel(Images.COTTON_IMAGE);
+					cargo = new JLabel(Images.COTTON_IMAGE);
 					break;
 				case WOOD:
-					cargoLayer = new JLabel(Images.WOOD_IMAGE);
+					cargo = new JLabel(Images.WOOD_IMAGE);
 					break;
 				case IRON:
-					cargoLayer = new JLabel(Images.IRON_IMAGE);
+					cargo = new JLabel(Images.IRON_IMAGE);
 					break;				
 				default:
 					break;
 			}
-		cargoLayer.setBounds(drawCargoAtLocationX, drawCargoAtLocationY,tileSizeInPixels/2 , 10);
-		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
-		drawCargoAtLocationX=drawCargoAtLocationX+tileSizeInPixels/2;
+		cargoLayer.add(cargo);
 		}
+		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
 		
 	private void drawCargoes(int row, int column) {
