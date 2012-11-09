@@ -1,7 +1,9 @@
 package com.trainpuzzle.controller;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
@@ -29,12 +31,13 @@ public class Simulator {
 	
 	private boolean trainCrashed = false;
 	private boolean isRunning = false;
-	
-	private Timer timer = new Timer();
+
+	private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 	private final int defaultTickInterval = 200;
 	private final int tickIntervalLowerBound = 50;
 	private final int tickIntervalUpperBound = 1000;
 	private int tickInterval = defaultTickInterval;
+	
 	
 	public Simulator(Level level) {
 		this.level = level;
@@ -61,7 +64,6 @@ public class Simulator {
 			e.printStackTrace();
 			trainCrashed = true;
 			stop();
-			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 		}
 	}
 	
@@ -173,7 +175,7 @@ public class Simulator {
 	}
 		
 	public void reset() {
-		timer.cancel();
+		stop();
 		isRunning = false;
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
@@ -184,23 +186,14 @@ public class Simulator {
 	}
 	
 	public void stop() {
-		timer.cancel();
+		executor.shutdownNow();
 		isRunning = false;
 	}
 	
-	public void run() {
-		timer.cancel();
-		timer = new Timer();
-		TimerTask timerTask = new TimerTask() {
-			public void run() {
-				try {
-					move();
-				} catch (TrainCrashException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		timer.schedule(timerTask, 0, tickInterval);
+	public void run(){
+		executor = Executors.newSingleThreadScheduledExecutor();
+		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
+		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
 		isRunning = true;
 	}
 	
