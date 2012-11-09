@@ -1,5 +1,7 @@
 package com.trainpuzzle.controller;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -18,11 +20,15 @@ import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
 import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 
-public class Simulator {
+public class Simulator implements Observable{
+	
+	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	private Level level;
 	private Board board;
@@ -52,6 +58,30 @@ public class Simulator {
 		trainCrashed = false;
 	}
 	
+	
+	public void reset() {
+		stop();
+		isRunning = false;
+		Location startPoint = new Location(this.level.getStartLocation());
+		this.train.setLocation(startPoint);
+		this.train.setHeading(EAST);
+		this.train.resetTrainCars();
+		this.victoryConditionEvaluator.resetEvents();
+		trainCrashed=false;
+	}
+	
+	public void stop() {
+		executor.shutdownNow();
+		isRunning = false;
+	}
+	
+	public void run(){
+		executor = Executors.newSingleThreadScheduledExecutor();
+		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
+		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
+		isRunning = true;
+	}
+	
 	public void move() throws TrainCrashException{
 		try {
 			if (!isVictoryConditionsSatisfied()) {
@@ -63,6 +93,7 @@ public class Simulator {
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
+			notifyAllObservers();
 			stop();
 		}
 	}
@@ -140,6 +171,30 @@ public class Simulator {
 		return (location.getRow() >= board.rows || location.getColumn() >= board.columns);
 	}	
 	
+	
+	public void setTickInterval(int tickIntervalInMillis) {
+		this.tickInterval = tickIntervalInMillis;
+		if(isRunning) {
+			run();
+		}
+	}
+	
+	public int getTickInterval() {
+		return tickInterval;
+	}
+
+	public int getDefaultTickInterval() {
+		return defaultTickInterval;
+	}
+	
+	public int getTickIntervalLowerBound() {
+		return tickIntervalLowerBound;
+	}
+	
+	public int getTickIntervalUpperBound() {
+		return tickIntervalUpperBound;
+	}
+	
 	private void passStation(Station station) {
 		Event event = new Event(100, station);
 		this.victoryConditionEvaluator.processEvent(event);
@@ -173,54 +228,21 @@ public class Simulator {
 	public Train getTrain() {
 		return this.train;
 	}
-		
-	public void reset() {
-		stop();
-		isRunning = false;
-		Location startPoint = new Location(this.level.getStartLocation());
-		this.train.setLocation(startPoint);
-		this.train.setHeading(EAST);
-		this.train.resetTrainCars();
-		this.victoryConditionEvaluator.resetEvents();
-		trainCrashed=false;
-	}
-	
-	public void stop() {
-		executor.shutdownNow();
-		isRunning = false;
-	}
-	
-	public void run(){
-		executor = Executors.newSingleThreadScheduledExecutor();
-		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
-		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
-		isRunning = true;
-	}
-	
-	public void setTickInterval(int tickIntervalInMillis) {
-		this.tickInterval = tickIntervalInMillis;
-		if(isRunning) {
-			run();
-		}
-	}
-	
-	public int getTickInterval() {
-		return tickInterval;
-	}
-	
-	public int getDefaultTickInterval() {
-		return defaultTickInterval;
-	}
-	
-	public int getTickIntervalLowerBound() {
-		return tickIntervalLowerBound;
-	}
-	
-	public int getTickIntervalUpperBound() {
-		return tickIntervalUpperBound;
-	}
 	
 	public VictoryConditionEvaluator getVictoryConditionEvaluator() {
 		return victoryConditionEvaluator;
-	}   
+	}
+
+	public void register(Observer observer){
+		if(observerList == null) {
+    	  observerList = new HashSet<Observer>();
+		}
+		observerList.add(observer);
+	}
+		
+	public void notifyAllObservers() {
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
+	} 
 }
