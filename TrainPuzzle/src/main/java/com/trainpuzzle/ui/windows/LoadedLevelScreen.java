@@ -232,6 +232,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	public void notifyChange(Object object){
 		if(object instanceof VictoryConditionEvaluator){
 			gameController.getLevelManager().levelCompleted();
+			gameController.getCampaignManager().saveCampaign();
         	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
         	loadedLevelScreen.setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 		}
