@@ -18,16 +18,8 @@ public class Campaign implements java.io.Serializable {
     	campaignLevels.add(new CampaignLevel(false,false,1));
     	campaignLevels.add(new CampaignLevel(false,false,2));
     	campaignLevels.add(new CampaignLevel(false,false,3));
-    	
 	}
-    public Campaign(String name) {
-    	currentLevel = 1;
-    	campaignName = name;
-    	campaignLevels.add(new CampaignLevel(false,false,1));
-    	campaignLevels.add(new CampaignLevel(true,false,2));
-    	campaignLevels.add(new CampaignLevel(true,false,3));
-    	
-	}
+
 	
 	public void completeLevel(int levelNumber) {
 		campaignLevels.get(levelNumber - 1).isCompleted = true;
@@ -42,10 +34,10 @@ public class Campaign implements java.io.Serializable {
 		campaignLevels.get(levelNumber).isLocked = false;
 	}
 	
-	public String getCampaignName() {
+	public String getName() {
 		return campaignName;
 	}
-	public void setCampaignName(String name) {
+	public void setName(String name) {
 		this.campaignName = name;
 	}
 	public List<CampaignLevel> getCampaignLevels() {
@@ -57,8 +49,8 @@ public class Campaign implements java.io.Serializable {
     public int getCurrentLevelNumber() {
 		return currentLevel;
 	}
-	public void setCurrentLevelNumber(int currentLevel) {
-		this.currentLevel = currentLevel;
+	public void selectLevel(int levelNumber) {
+		this.currentLevel = levelNumber;
 	}
 	
 	

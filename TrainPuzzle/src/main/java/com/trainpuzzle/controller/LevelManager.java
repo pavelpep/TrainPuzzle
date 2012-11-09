@@ -21,7 +21,7 @@ public class LevelManager {
 	}
 		
 	public void selectLevel(int levelNumber) throws LevelLockedException{
-		campaign.setCurrentLevelNumber(levelNumber);
+		campaign.selectLevel(levelNumber);
 		campaignLevel = campaign.getCurrentLevel();
 		//check if level is locked
 		if(campaignLevel.isLocked){
@@ -34,8 +34,7 @@ public class LevelManager {
 
 		//if level has been saved, load it's save
 		if(campaignLevel.hasUserSave){
-			String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
-			Level level = FileManager.loadLevel(filename);
+			Level level = FileManager.loadLevel(campaign.getName(), ((Integer)levelNumber).toString());
 			levelLoaded = level;	
 		}// otherwise load the master level
 		else{
@@ -67,7 +66,7 @@ public class LevelManager {
 	
 	public void saveCurrentLevel(){
 		int levelNumber = campaign.getCurrentLevelNumber();
-		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
+		String filename = "Campaigns/" + campaign.getName() + "/Saves/" + levelNumber + ".xml";
 		FileManager.saveLevel(levelLoaded, filename);
 		campaignLevel.hasUserSave = true;
 	}
