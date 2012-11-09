@@ -16,7 +16,6 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 
@@ -233,6 +232,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	public void notifyChange(Object object){
 		if(object instanceof VictoryConditionEvaluator){
 			gameController.getLevelManager().levelCompleted();
+        	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+        	loadedLevelScreen.setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 		}
 	}
 
