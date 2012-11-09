@@ -13,7 +13,7 @@ public class Campaign implements java.io.Serializable {
     
 	
     public Campaign() {
-    	campaignName = "Campaign 1";
+    	campaignName = "Campaign1";
     	campaignLevels.add(new CampaignLevel(false,false,1));
     	campaignLevels.add(new CampaignLevel(false,false,2));
     	campaignLevels.add(new CampaignLevel(false,false,3));

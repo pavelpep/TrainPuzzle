@@ -18,7 +18,7 @@ public class CampaignManager {
 	
 	public CampaignManager(){
         campaigns.add( new Campaign());
-        campaigns.add(new Campaign("Campaign 2"));
+        campaigns.add(new Campaign("Campaign2"));
         
 	}
 	

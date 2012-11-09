@@ -17,7 +17,9 @@ import com.trainpuzzle.model.level.Level;
 public class LevelManager {
 
 	private Campaign campaign;
+	private CampaignLevel campaignLevel;
 	private Level levelLoaded;
+	
 	
 	public LevelManager(){
         campaign = new Campaign();
@@ -25,17 +27,22 @@ public class LevelManager {
 	
 	public LevelManager(Campaign campaign){
         this.campaign = campaign;
+        
 	}
 		
 	public void loadLevel(int levelNumber) throws CannotLoadLockedLevelException {
-		if(campaign.getCampaignLevels().get(levelNumber - 1).isLocked){
+		this.campaignLevel = campaign.getCampaignLevels().get(levelNumber - 1);
+		//check if level is locked
+		if(campaignLevel.isLocked){
 			throw new CannotLoadLockedLevelException("Level " + levelNumber + " is locked.");
 		}
-		if(campaign.getCampaignLevels().get(levelNumber - 1).hasUserSave){
+		//if level has been saved, load it's save
+		if(campaignLevel.hasUserSave){
 			String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
 			Level level = loadLevel(filename);
 			levelLoaded = level;	
-		}else{
+		}// otherwise load the master level
+		else{
 			LevelFactory levelFactory = new LevelFactory();
 			Level level = levelFactory.createLevel(levelNumber);
 			levelLoaded = level;	
@@ -60,7 +67,7 @@ public class LevelManager {
 		int levelNumber = levelLoaded.getLevelNumber();
 		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
 		saveLevel(levelLoaded, filename);
-		campaign.getCampaignLevels().get(levelNumber - 1).hasUserSave = true;
+		campaignLevel.hasUserSave = true;
 	}
 	
 	public Level getLevel(){
