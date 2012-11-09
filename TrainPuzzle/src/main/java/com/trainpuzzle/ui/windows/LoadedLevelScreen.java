@@ -29,6 +29,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Level level;
 
 	// Window elements
+	private GameControlBox gameControlBox;
 	private LevelMap loadedLevelMap;
 	private SelectedTrack selectedTrackPanel;
 	
@@ -164,7 +165,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.setPreferredSize(new Dimension(200, 575));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
-		GameControlBox gameControlBox = new GameControlBox(gameController);
+		gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
 		
 		JPanel trackPanel = new TrackSelection(gameController, this);
@@ -231,16 +232,25 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 
 	public void notifyChange(Object object){
+		
+		/*
 		if(object instanceof VictoryConditionEvaluator){
 			gameController.getLevelManager().levelCompleted();
 			gameController.getCampaignManager().saveCampaign();
         	//LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
         	setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 		}
+		*/
 		if(object instanceof Simulator){
 			if(((Simulator) object).isTrainCrashed()) {
 				setMessageBoxMessage("TRAIN CRASHED");
 			}
+			if(((Simulator) object).isVictoryConditionsSatisfied()) {
+				gameController.getLevelManager().levelCompleted();
+				gameController.getCampaignManager().saveCampaign();
+				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
+			}
+			gameControlBox.setRunButtonVisible();
 		}
 	}
 

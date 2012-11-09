@@ -60,7 +60,6 @@ public class Simulator implements Observable{
 	
 	
 	public void reset() {
-		stop();
 		isRunning = false;
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
@@ -68,14 +67,18 @@ public class Simulator implements Observable{
 		this.train.resetTrainCars();
 		this.victoryConditionEvaluator.resetEvents();
 		trainCrashed=false;
+		stop();
 	}
 	
 	public void stop() {
 		executor.shutdownNow();
 		isRunning = false;
+		notifyAllObservers();
+		System.out.println("STOPPED");
 	}
 	
 	public void run(){
+		executor.shutdownNow();
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
@@ -89,12 +92,10 @@ public class Simulator implements Observable{
 			}
 			else if(isVictoryConditionsSatisfied()) {
 				stop();
-				notifyAllObservers();
 			}
 		} catch (TrainCrashException e) {
 			e.printStackTrace();
 			trainCrashed = true;
-			notifyAllObservers();
 			stop();
 		}
 	}
@@ -175,7 +176,7 @@ public class Simulator implements Observable{
 	
 	public void setTickInterval(int tickIntervalInMillis) {
 		this.tickInterval = tickIntervalInMillis;
-		if(isRunning) {
+		if(isRunning){
 			run();
 		}
 	}

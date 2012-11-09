@@ -85,6 +85,15 @@ public class GameControlBox extends JPanel implements ActionListener{
 		return gridBagConstraints;
 	}
 	
+	public void setRunButtonVisible() {
+		runButton.setVisible(true);
+		pauseButton.setVisible(false);
+	}
+	
+	public void setPauseButtonVisible() {
+		runButton.setVisible(false);
+		pauseButton.setVisible(true);
+	}
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
@@ -92,14 +101,12 @@ public class GameControlBox extends JPanel implements ActionListener{
 		}
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
-			runButton.setVisible(false);
-			pauseButton.setVisible(true);
+			setPauseButtonVisible();
 			
 		}
 		if (event.getActionCommand() == "pause") {
 			gameController.getSimulator().stop();
-			runButton.setVisible(true);
-			pauseButton.setVisible(false);
+			setRunButtonVisible();
 		}	
 		if (event.getActionCommand() == "reset") {
 			gameController.getSimulator().reset();
