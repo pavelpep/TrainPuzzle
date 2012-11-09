@@ -1,15 +1,10 @@
 package com.trainpuzzle.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.List;
-
-import com.thoughtworks.xstream.*;
-
 
 import com.trainpuzzle.exception.CannotLoadLockedLevelException;
 import com.trainpuzzle.factory.LevelFactory;
+import com.trainpuzzle.infrastructure.FileManager;
 import com.trainpuzzle.model.level.Campaign;
 import com.trainpuzzle.model.level.CampaignLevel;
 import com.trainpuzzle.model.level.Level;
@@ -27,7 +22,7 @@ public class LevelManager {
 		
 	public void loadLevel(int levelNumber) throws CannotLoadLockedLevelException {
 		campaign.setCurrentLevelNumber(levelNumber);
-		campaignLevel = campaign.getCampaignLevels().get(campaign.getCurrentLevelNumber());
+		campaignLevel = campaign.getCampaignLevels().get(campaign.getCurrentLevelNumber()-1);
 		//check if level is locked
 		if(campaignLevel.isLocked){
 			throw new CannotLoadLockedLevelException("Level " + levelNumber + " is locked.");
@@ -35,7 +30,7 @@ public class LevelManager {
 		//if level has been saved, load it's save
 		if(campaignLevel.hasUserSave){
 			String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
-			Level level = loadLevel(filename);
+			Level level = FileManager.loadLevel(filename);
 			levelLoaded = level;	
 		}// otherwise load the master level
 		else{
@@ -73,35 +68,9 @@ public class LevelManager {
 	public void saveCurrentLevel(){
 		int levelNumber = campaign.getCurrentLevelNumber();
 		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
-		saveLevel(levelLoaded, filename);
+		FileManager.saveLevel(levelLoaded, filename);
 		campaignLevel.hasUserSave = true;
 	}
 	
-	public void saveLevel(Level level, String filename) {
-		File file = new File(filename); 
-		try {
-			PrintStream out = new PrintStream(file);
-			XStream xstream = new XStream();
-			xstream.toXML(level, out);
-			System.out.println("wrote to file: " + file.getAbsoluteFile());
-		}
-		// Print out exceptions. We should really display them in a dialog...
-		catch (IOException e) { 
-			System.out.println(e); 
-		}
-	}
-	
-  	private Level loadLevel(String filename) {
-  		File file = new File(filename);
-  		Level levelLoaded = new Level(1);
-  		try {
-	    	
-	    	XStream xstream = new XStream();
-	    	levelLoaded = (Level)xstream.fromXML(file);
-	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
-	    }
-	    // Print out exceptions. We should really display them in a dialog...
-	    catch (Exception e) { System.out.println(e); }
-  		return levelLoaded;
-	}
+
 }
