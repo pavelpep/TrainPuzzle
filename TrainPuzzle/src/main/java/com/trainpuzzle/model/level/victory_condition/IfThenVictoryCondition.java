@@ -24,6 +24,10 @@ public class IfThenVictoryCondition implements VictoryCondition, java.io.Seriali
 		return conditionSatisfied;
 	}
 	
+	public List<VictoryCondition> getChildren() {
+		return childConditions;
+	}
+	
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
 	}

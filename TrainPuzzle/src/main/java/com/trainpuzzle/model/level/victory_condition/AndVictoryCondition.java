@@ -24,6 +24,10 @@ public class AndVictoryCondition implements VictoryCondition, java.io.Serializab
 		return conditionSatisfied;
 	}
 	
+	public List<VictoryCondition> getChildren() {
+		return childConditions;
+	}
+	
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
 	}

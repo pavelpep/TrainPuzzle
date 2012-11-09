@@ -24,6 +24,10 @@ public class OrVictoryCondition implements VictoryCondition, java.io.Serializabl
 		return conditionSatisfied;
 	}
 	
+	public List<VictoryCondition> getChildren() {
+		return childConditions;
+	}
+	
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
 	}
