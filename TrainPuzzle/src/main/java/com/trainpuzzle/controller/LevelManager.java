@@ -9,7 +9,6 @@ import com.thoughtworks.xstream.*;
 
 
 import com.trainpuzzle.exception.CannotLoadLockedLevelException;
-import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.factory.LevelFactory;
 import com.trainpuzzle.model.level.Campaign;
 import com.trainpuzzle.model.level.CampaignLevel;
@@ -32,16 +31,22 @@ public class LevelManager {
 		if(campaign.getCampaignLevels().get(levelNumber - 1).isLocked){
 			throw new CannotLoadLockedLevelException("Level " + levelNumber + " is locked.");
 		}
-		LevelFactory levelFactory = new LevelFactory();
-		Level level = levelFactory.createLevel(levelNumber);
-		levelLoaded = level;	
+		if(campaign.getCampaignLevels().get(levelNumber - 1).hasUserSave){
+			String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
+			Level level = loadLevel(filename);
+			levelLoaded = level;	
+		}else{
+			LevelFactory levelFactory = new LevelFactory();
+			Level level = levelFactory.createLevel(levelNumber);
+			levelLoaded = level;	
+		}
 
 	}
 	public void levelCompleted(){
 		campaign.completeLevel(levelLoaded.getLevelNumber());
 	}
 	
-	private void loadNextLevel() {
+	public void loadNextLevel() {
 		int nextLevel = levelLoaded.getLevelNumber() + 1;
 		try {
 			loadLevel(nextLevel);
@@ -49,6 +54,13 @@ public class LevelManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void saveCurrentLevel(){
+		int levelNumber = levelLoaded.getLevelNumber();
+		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
+		saveLevel(levelLoaded, filename);
+		campaign.getCampaignLevels().get(levelNumber - 1).hasUserSave = true;
 	}
 	
 	public Level getLevel(){
@@ -59,13 +71,12 @@ public class LevelManager {
 		return campaign.getCampaignLevels();
 	}
 
-	public void saveLevel() {
-		File file = new File("level.xml"); 
+	public void saveLevel(Level level, String filename) {
+		File file = new File(filename); 
 		try {
-		// Create the necessary output streams to save the level.
 			PrintStream out = new PrintStream(file);
 			XStream xstream = new XStream();
-			xstream.toXML(levelLoaded, out);
+			xstream.toXML(level, out);
 			System.out.println("wrote to file: " + file.getAbsoluteFile());
 		}
 		// Print out exceptions. We should really display them in a dialog...
@@ -73,16 +84,18 @@ public class LevelManager {
 			System.out.println(e); 
 		}
 	}
-  	public void loadLevel(File file) {
-
-	    try {
-	    	Level levelLoaded;
+	
+  	private Level loadLevel(String filename) {
+  		File file = new File(filename);
+  		Level levelLoaded = new Level(1);
+  		try {
+	    	
 	    	XStream xstream = new XStream();
 	    	levelLoaded = (Level)xstream.fromXML(file);
-	        this.levelLoaded = levelLoaded;
 	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
 	    }
 	    // Print out exceptions. We should really display them in a dialog...
 	    catch (Exception e) { System.out.println(e); }
+  		return levelLoaded;
 	}
 }
