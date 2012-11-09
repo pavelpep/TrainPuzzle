@@ -21,17 +21,13 @@ public class LevelManager {
 	private Level levelLoaded;
 	
 	
-	public LevelManager(){
-        campaign = new Campaign();
-	}
-	
 	public LevelManager(Campaign campaign){
-        this.campaign = campaign;
-        
+        this.campaign = campaign;   
 	}
 		
 	public void loadLevel(int levelNumber) throws CannotLoadLockedLevelException {
-		this.campaignLevel = campaign.getCampaignLevels().get(levelNumber - 1);
+		campaign.setCurrentLevelNumber(levelNumber);
+		campaignLevel = campaign.getCampaignLevels().get(campaign.getCurrentLevelNumber());
 		//check if level is locked
 		if(campaignLevel.isLocked){
 			throw new CannotLoadLockedLevelException("Level " + levelNumber + " is locked.");
@@ -49,35 +45,38 @@ public class LevelManager {
 		}
 
 	}
-	public void levelCompleted(){
-		campaign.completeLevel(levelLoaded.getLevelNumber());
-	}
-	
+
 	public void loadNextLevel() {
-		int nextLevel = levelLoaded.getLevelNumber() + 1;
+		int nextLevel = campaign.getCurrentLevelNumber() + 1;
 		try {
 			loadLevel(nextLevel);
 		} catch (CannotLoadLockedLevelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public void saveCurrentLevel(){
-		int levelNumber = levelLoaded.getLevelNumber();
-		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
-		saveLevel(levelLoaded, filename);
-		campaignLevel.hasUserSave = true;
+	public void levelCompleted(){
+		campaign.completeLevel(campaign.getCurrentLevelNumber());
 	}
-	
 	public Level getLevel(){
 		return levelLoaded;
+	}
+	
+	public int getCurrentLevelNumber(){
+		return campaign.getCurrentLevelNumber();
 	}
 	
 	public List<CampaignLevel> getLevels(){
 		return campaign.getCampaignLevels();
 	}
-
+	
+	public void saveCurrentLevel(){
+		int levelNumber = campaign.getCurrentLevelNumber();
+		String filename = "Campaigns/" + campaign.getCampaignName() + "/Saves/" + levelNumber + ".xml";
+		saveLevel(levelLoaded, filename);
+		campaignLevel.hasUserSave = true;
+	}
+	
 	public void saveLevel(Level level, String filename) {
 		File file = new File(filename); 
 		try {
