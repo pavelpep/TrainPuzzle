@@ -166,72 +166,31 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private JPanel cargoPanel() {
 		JPanel cargoPanel = new JPanel();
-		cargoPanel.setLayout(new GridBagLayout());
-						
-		String cargoType = "COTTON";
-		Point jlabelLocation = new Point(0,0);
-		addCargoType(cargoPanel, cargoType, jlabelLocation);
-		cargoType = "IRON";
-		jlabelLocation = new Point(1,0);				
-		addCargoType(cargoPanel, cargoType, jlabelLocation);
-		cargoType = "WOOD";
-		jlabelLocation = new Point(2,0);				
-		addCargoType(cargoPanel, cargoType, jlabelLocation);
+		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
+		cargoPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
-		ImageIcon cargoImage = Images.COTTON_IMAGE;
-		jlabelLocation = new Point(0,1);				
-		addCargoImage(cargoPanel, cargoImage, jlabelLocation);
-		cargoImage = Images.IRON_IMAGE;
-		jlabelLocation = new Point(1,1);				
-		addCargoImage(cargoPanel, cargoImage, jlabelLocation);
-		cargoImage = Images.WOOD_IMAGE;
-		jlabelLocation = new Point(2,1);				
-		addCargoImage(cargoPanel, cargoImage, jlabelLocation);		
-				
-		jlabelLocation= new Point(0,2);
-		Integer cargoNumber=1;
-		String cargoNumberStr=cargoNumber.toString();
-		int insets[]={5,20,5,5};
-		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);
-		jlabelLocation= new Point(1,2);
-		cargoNumber=2;
-		cargoNumberStr=cargoNumber.toString();
-		insets[0] = 5;insets[1] = 15;insets[2] = 5;insets[3] = 5;
-		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);
-		jlabelLocation= new Point(2,2);
-		cargoNumber=3;
-		cargoNumberStr=cargoNumber.toString();
-		insets[0] = 5;insets[1] = 20;insets[2] = 5;insets[3] = 5;
-		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);		
+		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE));
+		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE));
+		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE));
 		
 		return cargoPanel;
 	}
 	
-	private void addCargoType(JPanel cargoPanel, String cargoType, Point jlabelLocation){
-		JLabel typeLabel = new JLabel();
-		typeLabel.setText(cargoType);
-		Font typeFont = new Font("Arial", Font.BOLD, 10);
-		typeLabel.setFont(typeFont);
-		GridBagConstraints cottonContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
-		cottonContraints.insets = new Insets(5,5,5,5);
-		cargoPanel.add(typeLabel, cottonContraints);	
+	private JPanel cargo(String cargoType, ImageIcon cargoImage) {
+		JPanel cargo = new JPanel();
+		cargo.setLayout(new BoxLayout(cargo, BoxLayout.Y_AXIS));
+		cargo.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		JLabel cargoTypeLabel = new JLabel(cargoType);
+		initializeComponent(cargoTypeLabel, 10);
+		cargo.add(cargoTypeLabel);
+		
+		JLabel cargoImageLabel = new JLabel(cargoImage);
+		initializeComponent(cargoImageLabel, 10);
+		cargo.add(cargoImageLabel);
+		
+		return cargo;
 	}
-	
-	private void addCargoImage(JPanel cargoPanel,ImageIcon cargoImage, Point jlabelLocation){
-		JLabel imageLabel = new JLabel(cargoImage);
-		GridBagConstraints cottonImageContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
-		cottonImageContraints.insets = new Insets(5,5,5,5);
-		cargoPanel.add(imageLabel, cottonImageContraints);	
-	}
-	
-	private void addCargoNumber(JPanel cargoPanel, String cargoNumber, Point jlabelLocation, int insets[]){
-		JLabel numberLabel = new JLabel();
-		numberLabel.setText(cargoNumber);
-		GridBagConstraints cargoNumberContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
-		cargoNumberContraints.insets = new Insets(insets[0],insets[1],insets[2],insets[3]);
-		cargoPanel.add(numberLabel, cargoNumberContraints);	
-	}
-	
 
 	private JPanel sidePanel() {
 		JPanel sidePanel = new JPanel();
@@ -257,12 +216,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return saveButton;
 	}
 
-	
-	//Map Panel
-
 	private JPanel mapPanel() {
 		JPanel mapPanel = new JPanel();
-		//mapPanel.setPreferredSize(new Dimension(800, 600));
 		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
 		mapPanel.add(loadedLevelMap);
@@ -305,15 +260,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 
 	public void notifyChange(Object object){
-		
-		/*
-		if(object instanceof VictoryConditionEvaluator){
-			gameController.getLevelManager().levelCompleted();
-			gameController.getCampaignManager().saveCampaign();
-        	//LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
-        	setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
-		}
-		*/
 		if(object instanceof Simulator){
 			if(((Simulator) object).isTrainCrashed()) {
 				setMessageBoxMessage("TRAIN CRASHED");

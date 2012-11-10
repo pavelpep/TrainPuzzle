@@ -3,6 +3,7 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 
@@ -129,6 +130,8 @@ public class LevelMap extends JPanel implements Observer {
 	private void actualDrawExtraCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
+		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
+		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
 		JLabel cargo = new JLabel();
 		for (Cargo extraCargoInStation: extraCargoesInStation){
 			switch(extraCargoInStation.getType()){
@@ -153,6 +156,8 @@ public class LevelMap extends JPanel implements Observer {
 	private void actualDrawRequiredCargoes(JLayeredPane mapTile, LinkedList<Cargo> requiredCargoesInStation){
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
+		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
+		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
 		JLabel cargo = new JLabel();
 		for (Cargo requiredCargoInStation: requiredCargoesInStation){
 			switch(requiredCargoInStation.getType()){
