@@ -19,6 +19,7 @@ import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
+import com.trainpuzzle.infrastructure.Images;
 
 
 // Level selection for the campaign
@@ -86,11 +87,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		titleLabelContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(titleLabel(), titleLabelContraints);
 		
-		GridBagConstraints messageBoxContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 1, 0);
+		GridBagConstraints cargoPanelContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 0, 0);
+		cargoPanelContraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(cargoPanel(), cargoPanelContraints);
+		
+		GridBagConstraints messageBoxContraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
 		messageBoxContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(messageBox(), messageBoxContraints);
 		
-		GridBagConstraints saveButtonContraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 0, 0);
+		GridBagConstraints saveButtonContraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 0, 0);
 		saveButtonContraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(saveButton(), saveButtonContraints);
 		
@@ -157,6 +162,74 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		Font titleFont = new Font("Arial", Font.BOLD, 28);
 		titleLabel.setFont(titleFont);
 		return titleLabel;
+	}
+	
+	private JPanel cargoPanel() {
+		JPanel cargoPanel = new JPanel();
+		cargoPanel.setLayout(new GridBagLayout());
+						
+		String cargoType = "COTTON";
+		Point jlabelLocation = new Point(0,0);
+		addCargoType(cargoPanel, cargoType, jlabelLocation);
+		cargoType = "IRON";
+		jlabelLocation = new Point(1,0);				
+		addCargoType(cargoPanel, cargoType, jlabelLocation);
+		cargoType = "WOOD";
+		jlabelLocation = new Point(2,0);				
+		addCargoType(cargoPanel, cargoType, jlabelLocation);
+		
+		ImageIcon cargoImage = Images.COTTON_IMAGE;
+		jlabelLocation = new Point(0,1);				
+		addCargoImage(cargoPanel, cargoImage, jlabelLocation);
+		cargoImage = Images.IRON_IMAGE;
+		jlabelLocation = new Point(1,1);				
+		addCargoImage(cargoPanel, cargoImage, jlabelLocation);
+		cargoImage = Images.WOOD_IMAGE;
+		jlabelLocation = new Point(2,1);				
+		addCargoImage(cargoPanel, cargoImage, jlabelLocation);		
+				
+		jlabelLocation= new Point(0,2);
+		Integer cargoNumber=1;
+		String cargoNumberStr=cargoNumber.toString();
+		int insets[]={5,20,5,5};
+		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);
+		jlabelLocation= new Point(1,2);
+		cargoNumber=2;
+		cargoNumberStr=cargoNumber.toString();
+		insets[0] = 5;insets[1] = 15;insets[2] = 5;insets[3] = 5;
+		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);
+		jlabelLocation= new Point(2,2);
+		cargoNumber=3;
+		cargoNumberStr=cargoNumber.toString();
+		insets[0] = 5;insets[1] = 20;insets[2] = 5;insets[3] = 5;
+		addCargoNumber(cargoPanel, cargoNumberStr, jlabelLocation, insets);		
+		
+		return cargoPanel;
+	}
+	
+	private void addCargoType(JPanel cargoPanel, String cargoType, Point jlabelLocation){
+		JLabel typeLabel = new JLabel();
+		typeLabel.setText(cargoType);
+		Font typeFont = new Font("Arial", Font.BOLD, 10);
+		typeLabel.setFont(typeFont);
+		GridBagConstraints cottonContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
+		cottonContraints.insets = new Insets(5,5,5,5);
+		cargoPanel.add(typeLabel, cottonContraints);	
+	}
+	
+	private void addCargoImage(JPanel cargoPanel,ImageIcon cargoImage, Point jlabelLocation){
+		JLabel imageLabel = new JLabel(cargoImage);
+		GridBagConstraints cottonImageContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
+		cottonImageContraints.insets = new Insets(5,5,5,5);
+		cargoPanel.add(imageLabel, cottonImageContraints);	
+	}
+	
+	private void addCargoNumber(JPanel cargoPanel, String cargoNumber, Point jlabelLocation, int insets[]){
+		JLabel numberLabel = new JLabel();
+		numberLabel.setText(cargoNumber);
+		GridBagConstraints cargoNumberContraints = gbConstraints(jlabelLocation, new Dimension(1, 1), 0, 0);
+		cargoNumberContraints.insets = new Insets(insets[0],insets[1],insets[2],insets[3]);
+		cargoPanel.add(numberLabel, cargoNumberContraints);	
 	}
 	
 
