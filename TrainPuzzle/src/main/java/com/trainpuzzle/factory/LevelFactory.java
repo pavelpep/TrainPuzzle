@@ -133,7 +133,8 @@ public class LevelFactory {
 	        
 	        stationToAdd=new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);
-	        stationToAdd.addRequiredCargo(new Cargo(CargoType.COTTON));	        
+	        stationToAdd.addRequiredCargo(new Cargo(CargoType.WOOD));	
+	        stationToAdd.addRequiredCargo(new Cargo(CargoType.COTTON));	 
 	        
 	        setStations(stations);
 	        

@@ -25,6 +25,11 @@ public final class Images {
 	public final static String COTTON = "src/main/resources/images/whiteSquare.png";
 	public final static String WOOD = "src/main/resources/images/brownSquare.png";
 	
+	//RequiredCargo
+	public final static String REQUIRED_IRON = "src/main/resources/images/blackFrame.png";
+	public final static String REQUIRED_COTTON = "src/main/resources/images/whiteFrame.png";
+	public final static String REQUIRED_WOOD = "src/main/resources/images/brownFrame.png";	
+	
 	//Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
 	public final static String STRAIGHT_TRACK = "src/main/resources/images/straight_track.png";
@@ -57,6 +62,11 @@ public final class Images {
 	public final static ImageIcon IRON_IMAGE = new ImageIcon(IRON);
 	public final static ImageIcon COTTON_IMAGE = new ImageIcon(COTTON);
 	public final static ImageIcon WOOD_IMAGE = new ImageIcon(WOOD);
+	
+	//RequiredCargo
+	public final static ImageIcon REQUIRED_IRON_IMAGE = new ImageIcon(REQUIRED_IRON);
+	public final static ImageIcon REQUIRED_COTTON_IMAGE = new ImageIcon(REQUIRED_COTTON);	
+	public final static ImageIcon REQUIRED_WOOD_IMAGE = new ImageIcon(REQUIRED_WOOD);
 	
 	//Tracks
 	public final static ImageIcon PERMANENT_STRAIGHT_TRACK_IMAGE = new ImageIcon(PERMANENT_STRAIGHT_TRACK);

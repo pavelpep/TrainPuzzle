@@ -126,7 +126,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private void actualDrawCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
+	private void actualDrawExtraCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
 		JLabel cargo = new JLabel();
@@ -149,22 +149,45 @@ public class LevelMap extends JPanel implements Observer {
 		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
-		
+
+	private void actualDrawRequiredCargoes(JLayeredPane mapTile, LinkedList<Cargo> requiredCargoesInStation){
+		JPanel cargoLayer = new JPanel();
+		cargoLayer.setOpaque(false);
+		JLabel cargo = new JLabel();
+		for (Cargo requiredCargoInStation: requiredCargoesInStation){
+			switch(requiredCargoInStation.getType()){
+				case COTTON:
+					cargo = new JLabel(Images.REQUIRED_COTTON_IMAGE);
+					break;
+				case WOOD:
+					cargo = new JLabel(Images.REQUIRED_WOOD_IMAGE);
+					break;
+				case IRON:
+					cargo = new JLabel(Images.REQUIRED_IRON_IMAGE);
+					break;				
+				default:
+					break;
+			}
+		cargoLayer.add(cargo);
+		}
+		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
+	}
+	
 	private void drawCargoes(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
-		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
 		if (!level.getBoard().getTile(row, column).hasStationBuilding()){
 			return;
 		}
+		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
 		if(stationOnTile.hasExtraCargo()) {
 			LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
-			actualDrawCargoes(mapTile, extraCargoesInStation);				
+			actualDrawExtraCargoes(mapTile, extraCargoesInStation);				
 		}
-		else return;
 		if (stationOnTile.hasRequiredCargo()){
 			LinkedList<Cargo> requiredCargoesInStation = stationOnTile.getrequiredCargo();
-			actualDrawCargoes(mapTile, requiredCargoesInStation);
+			actualDrawRequiredCargoes(mapTile, requiredCargoesInStation);
 		}
 	}
 	
