@@ -131,6 +131,10 @@ public class LevelFactory {
 	        stations.add(stationToAdd);
 	        stationToAdd.addExtraCargo(new Cargo(CargoType.COTTON));
 	        
+	        stationToAdd=new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
+	        stations.add(stationToAdd);
+	        stationToAdd.addRequiredCargo(new Cargo(CargoType.COTTON));	        
+	        
 	        setStations(stations);
 	        
 	        setLandscapeByRow(4, 9, 10, LandscapeType.WATER);
