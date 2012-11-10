@@ -21,7 +21,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	
 	
 	private int levelSelected = 1;
-	JList<String> levelList;
+	JList levelList;
 	
 	
 	public LevelSelect(GameController gameController) {
@@ -45,8 +45,8 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelSelectPanel.add(titleLabel);
 		
 		//Level List 
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		levelList = new JList<String>(listModel);
+		DefaultListModel listModel = new DefaultListModel();
+		levelList = new JList(listModel);
 		levelList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		levelList.addListSelectionListener(this);
 		levelList.setVisibleRowCount(8);

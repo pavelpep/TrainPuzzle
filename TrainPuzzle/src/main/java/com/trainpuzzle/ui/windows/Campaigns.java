@@ -21,7 +21,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	// Window elements	
 	private int campaignSelected = 1;
-	private JList<String> campaignList;
+	private JList campaignList;
 	
 	
 	
@@ -57,8 +57,8 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignsPanel.add(titleLabel);
 		
 		//Campaigns List
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		campaignList = new JList<String>(listModel);
+		DefaultListModel listModel = new DefaultListModel();
+		campaignList = new JList(listModel);
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(8);
