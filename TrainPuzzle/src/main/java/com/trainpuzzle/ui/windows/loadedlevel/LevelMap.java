@@ -151,14 +151,20 @@ public class LevelMap extends JPanel implements Observer {
 	}
 		
 	private void drawCargoes(int row, int column) {
-		if (level.getBoard().getTile(row, column).hasStationBuilding()){
-			JLayeredPane mapTile = mapTiles[row][column];
-			removeComponentsInGUILayer(mapTile,cargoLayerIndex);
-			Station stationOnTile = level.getBoard().getTile(row, column).getStation();
-			if(stationOnTile.hasExtraCargo()) {
-				LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
-				actualDrawCargoes(mapTile, extraCargoesInStation);				
-			}
+		JLayeredPane mapTile = mapTiles[row][column];
+		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
+		if (!level.getBoard().getTile(row, column).hasStationBuilding()){
+			return;
+		}
+		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
+		if(stationOnTile.hasExtraCargo()) {
+			LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
+			actualDrawCargoes(mapTile, extraCargoesInStation);				
+		}
+		else return;
+		if (stationOnTile.hasRequiredCargo()){
+			LinkedList<Cargo> requiredCargoesInStation = stationOnTile.getrequiredCargo();
+			actualDrawCargoes(mapTile, requiredCargoesInStation);
 		}
 	}
 	
