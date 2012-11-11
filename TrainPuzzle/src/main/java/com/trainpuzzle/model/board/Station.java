@@ -148,11 +148,11 @@ public class Station implements java.io.Serializable {
 		return requiredCargo;	
 	}	
 	
-/*	public Cargo pickupExtraCargo() {
+	public Cargo pickupExtraCargo() {
 		assert extraCargo.size() > 0;
 		
 		return extraCargo.pollFirst();		
-	}*/
+	}
 	
 	public void setRequiredCargo(LinkedList<Cargo> requiredCargo) {
 		this.requiredCargo = requiredCargo;

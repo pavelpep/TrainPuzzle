@@ -7,16 +7,9 @@ public class TrainCar {
 
 	private Location location; 
 	private CompassHeading heading;
-	//private Cargo cargo;
-	LinkedList<Cargo> cargoesOnCar = new LinkedList<Cargo>();
-	
-	public LinkedList<Cargo> getCargoesOnCar() {
-		return cargoesOnCar;
-	}
+	private Cargo cargo;
+	//LinkedList<Cargo> cargoesOnCar = new LinkedList<Cargo>();
 
-	public boolean hasCargo(){
-		return !this.cargoesOnCar.isEmpty();
-	}
 
 	public TrainCar() {
 		
@@ -27,7 +20,7 @@ public class TrainCar {
 		setHeading(heading);
 	}
 	
-/*	public boolean hasCargo() {
+	public boolean hasCargo() {
 		return cargo != null;
 	}
 	
@@ -40,7 +33,7 @@ public class TrainCar {
 		cargo = null;
 		
 		return currentCargo;
-	}*/
+	}
 
 	public Location getLocation() {
 		return location;
@@ -57,33 +50,33 @@ public class TrainCar {
 	public void setHeading(CompassHeading heading) {
 		this.heading = heading;
 	}	
-/*	public Cargo getCargo() {
+	public Cargo getCargo() {
 		return cargo;
 	}
-}*/
+}
 
-	public void loadCargoes(LinkedList<Cargo> cargoesToLoad){
-		Cargo cargoOnCar = null;
+	/*public void loadCargoes(LinkedList<Cargo> cargoesToLoad){
+		Cargo cargoOnTrain = null;
 		for(Cargo cargo : cargoesToLoad){
-			cargoOnCar = getCargoFromCar(cargo);
-			if (!cargoOnCar.equals(null)){
-				cargoOnCar.incrementCargo();
+			if (this.cargoesOnCar.contains(cargo)){
+				cargoOnTrain = getCargoFromList(this.cargoesOnCar,cargo);
+				cargoOnTrain.incrementCargo();
 			}
-			else this.cargoesOnCar.addLast(cargo);
+			this.cargoesOnCar.addLast(cargo);
 		}
 	}
 
 	public LinkedList<Cargo> unloadCaroges(LinkedList<Cargo> cargoesWanted){
-		Cargo cargoOnCar = null;
+		Cargo cargoOnTrain = null;
 		LinkedList<Cargo> cargoesStillWanted = cargoesWanted;
 		if (cargoesStillWanted.isEmpty()) return cargoesStillWanted;
-		for (Cargo cargoWanted: cargoesStillWanted){
-				cargoOnCar = getCargoFromCar(cargoWanted);
-				if (!cargoOnCar.equals(null)){
-				cargoOnCar.decrementCargo();
+		for (Cargo cargoWanted: cargoesWanted){
+			if (this.cargoesOnCar.contains(cargoWanted)){
+				cargoOnTrain = getCargoFromList(this.cargoesOnCar,cargoWanted);
+				cargoOnTrain.decrementCargo();
 				cargoWanted.decrementCargo();
-				this.cargoesOnCar = removeNullCargoInList(this.cargoesOnCar,cargoOnCar);
-				cargoesStillWanted = removeNullCargoInList(cargoesStillWanted, cargoWanted);
+				removeNullCargoInList(this.cargoesOnCar,cargoOnTrain);
+				removeNullCargoInList(cargoesStillWanted, cargoWanted);
 			}
 		}
 		return cargoesStillWanted;
@@ -99,16 +92,14 @@ public class TrainCar {
 		return cargoesList;
 	}
 
-	private Cargo getCargoFromCar(Cargo wantedCargo) {
-		Cargo cargoInList = null;
-		Iterator<Cargo> iterator = this.cargoesOnCar.iterator();
+	private Cargo getCargoFromList(LinkedList<Cargo> cargoesList, Cargo wantedCargo) {
+		Cargo cargoOnTrain = null;
+		Iterator<Cargo> iterator = cargoesList.iterator();
 		while (iterator.hasNext()){
-			cargoInList = iterator.next();
-			if (cargoInList.getType() == wantedCargo.getType()){
+			cargoOnTrain = iterator.next();
+			if (cargoOnTrain.equals(wantedCargo)){
 				break;
 			}
 		}
-		return cargoInList;		
-	}
-
-}
+		return cargoOnTrain;		
+	}*/
