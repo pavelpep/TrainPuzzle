@@ -52,6 +52,13 @@ public class Campaign implements java.io.Serializable {
 	public void selectLevel(int levelNumber) {
 		this.currentLevel = levelNumber;
 	}
+	public void reset(){
+		for(CampaignLevel campaignLevel: campaignLevels){
+			campaignLevel.reset();
+		}
+		
+		campaignLevels.get(0).isLocked = false;
+	}
 	
 	
 }

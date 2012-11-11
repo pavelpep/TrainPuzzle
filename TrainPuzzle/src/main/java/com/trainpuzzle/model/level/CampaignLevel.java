@@ -12,4 +12,10 @@ public class CampaignLevel {
 		this.hasUserSave = false;
 		this.levelNumber = levelNumber;
 	}
+	
+	public void reset(){
+		isLocked = true;
+		isCompleted = false;
+		hasUserSave = false;
+	}
 }
