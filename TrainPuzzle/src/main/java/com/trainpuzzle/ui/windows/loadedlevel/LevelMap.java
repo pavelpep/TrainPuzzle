@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.TrackPlacer;
@@ -22,6 +24,7 @@ import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
@@ -31,6 +34,12 @@ import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
 public class LevelMap extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
+	
+	private final Connection STRAIGHT = new Connection(CompassHeading.EAST, CompassHeading.WEST);
+	private final Connection DIAGONAL = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+	private final Connection CURVE_LEFT = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
+	private final Connection CURVE_RIGHT = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
+	private final List<Connection> CONNECTION_LIST = Arrays.asList(STRAIGHT, DIAGONAL, CURVE_LEFT, CURVE_RIGHT);
 	
 	private final int landscapeLayerIndex = 0;
 	private final int trackLayerIndex = 1;
@@ -178,51 +187,41 @@ public class LevelMap extends JPanel implements Observer {
 		JLayeredPane mapTile = mapTiles[row][column];
 		removeComponentsInGUILayer(mapTile,trackLayerIndex);
 		if(level.getBoard().getTile(row, column).hasTrack()){
-
-			for(Connection connection:level.getBoard().getTile(row, column).getTrack().getConnections()){
-				Connection diagonal = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-				Connection straight = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-				Connection curveLeft = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
-				Connection curveRight = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
-				
-				JLabel trackLayer = new JLabel();
-				for(int i = 0; i < 2; i++){
-					if(connection.equals(straight)){
-						if(level.getBoard().getTile(row, column).getTrack().isUnremovable()){
-							trackLayer=new JLabel(new RotatedImageIcon(Images.PERMANENT_STRAIGHT_TRACK, i * 2 + 2));
+			Track track = level.getBoard().getTile(row, column).getTrack();
+			Track copyOfTrack = new Track(track);
+			for(Connection connection:copyOfTrack.getConnections()){
+				for(Connection comparedConnection: CONNECTION_LIST){
+					for(int rotation = 0; rotation < 4; rotation++) {
+						if(connection.equals(comparedConnection)){
+							JLabel trackLayer=new JLabel(getConnectionImage(track, comparedConnection, 4 - rotation));
+							trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+							mapTile.add(trackLayer, new Integer(trackLayerIndex));
+							break;
 						}
-						else{
-							trackLayer=new JLabel(new RotatedImageIcon(Images.STRAIGHT_TRACK, i * 2 + 2));
-						}
-						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
+						connection.rotate90Degrees();
 					}
-					straight.rotate90Degrees();
-				}
-				for(int i = 0; i < 2; i++){	
-					if(connection.equals(diagonal)){
-						trackLayer=new JLabel(new RotatedImageIcon(Images.DIAGONAL_TRACK, i * 2));
-						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
-					diagonal.rotate90Degrees();
-				}
-				for(int i = 0; i < 4; i++){	
-					if(connection.equals(curveLeft)){
-						trackLayer=new JLabel(new RotatedImageIcon(Images.CURVELEFT_TRACK, i * 2));
-						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
-					curveLeft.rotate90Degrees();
-					if(connection.equals(curveRight)){
-						trackLayer=new JLabel(new RotatedImageIcon(Images.CURVERIGHT_TRACK, i * 2));
-						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-						mapTile.add(trackLayer, new Integer(trackLayerIndex));
-					}
-					curveRight.rotate90Degrees();
 				}
 			}
 		}
+	}
+	
+	private RotatedImageIcon getConnectionImage(Track track, Connection connection, int rotation) {
+		if(track.isUnremovable()){
+			return new RotatedImageIcon(Images.PERMANENT_STRAIGHT_TRACK, rotation * 2);
+		}
+		if(connection.equals(STRAIGHT)){
+			return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
+		}
+		if(connection.equals(DIAGONAL)){
+			return new RotatedImageIcon(Images.DIAGONAL_TRACK, rotation * 2);
+		}
+		if(connection.equals(CURVE_LEFT)){
+			return new RotatedImageIcon(Images.CURVELEFT_TRACK, rotation * 2);
+		}
+		if(connection.equals(CURVE_RIGHT)){
+			return new RotatedImageIcon(Images.CURVERIGHT_TRACK, rotation * 2);
+		}
+		return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
 	}
 
 	public void redrawTiles(){

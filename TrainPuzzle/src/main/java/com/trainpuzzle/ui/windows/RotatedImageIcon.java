@@ -22,7 +22,7 @@ public class RotatedImageIcon extends ImageIcon {
 	
 	public RotatedImageIcon(Image image, int multiplesOf45Degrees) {
 		super.setImage(image);
-		this.multiplesOf45Degrees =  multiplesOf45Degrees;
+		this.multiplesOf45Degrees = multiplesOf45Degrees;
 	}
 	
 	public RotatedImageIcon(String filename, int multiplesOf45Degrees) {
