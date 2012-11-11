@@ -6,7 +6,8 @@ public class Landscape implements java.io.Serializable {
 
 	public enum LandscapeType {
 		GRASS,
-		WATER
+		WATER,
+		DIRT
 	}
 	
 	private LandscapeType landscapeType;
