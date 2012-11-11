@@ -9,6 +9,7 @@ import javax.swing.event.*;
 import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.model.level.Campaign;
+import com.trainpuzzle.model.level.CampaignLevel;
 
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
@@ -16,16 +17,17 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	private GameController gameController;
 	LevelManager campaignManager;
+	Campaign campaign;
 	private int campaignSelected = 1;
 	private JList campaignList;
+	private int resetOptionPane = JOptionPane.YES_OPTION;
 	
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
 		create();
 		pack();
 		setLocationRelativeTo(null);
-	}
-	
+	}	
 	
 	public Campaigns(GameController gameController, LevelManager campaignManager) {
 		this.gameController = gameController;
@@ -81,8 +83,14 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
 			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
-		} else if (action == "resetLevel") {
-			// Reset all levels and clear any saves related to campaign
+		} else if (action == "resetCampaign") {
+			resetOptionPane = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset Campaign" + campaignSelected + "?", "Reset Campaign", JOptionPane.YES_NO_OPTION);
+			if (resetOptionPane == JOptionPane.YES_OPTION) {
+				// NEED TO CHANGE THE XML FILE ITSELF IN ORDER TO RESET!
+				JOptionPane.showMessageDialog(null, "Campaign reset successful");
+			} else if (resetOptionPane == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "Campaign not reseted");
+			}
 		} else if (action == "back") {
 			WindowManager.getManager().showPreviousWindow();
 		}
