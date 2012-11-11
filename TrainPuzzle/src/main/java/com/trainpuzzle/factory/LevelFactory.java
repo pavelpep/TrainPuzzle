@@ -144,10 +144,18 @@ public class LevelFactory {
 	        setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
 	        setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
 	        setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
+	        setLandscapeByColumn(2, 8, 17, LandscapeType.DIRT);
+	        setLandscapeByColumn(1, 3, 18, LandscapeType.DIRT);
+	        setLandscapeByColumn(0, 2, 19, LandscapeType.DIRT);
 	        setLandscapeByColumn(4, 7, 18, LandscapeType.WATER);
 	        setLandscapeByColumn(3, 8, 19, LandscapeType.WATER);
+	        setLandscapeByColumn(8, 12, 18, LandscapeType.DIRT);
+	        setLandscapeByColumn(9, 14, 19, LandscapeType.DIRT);
 	        
 	        setObstaclesByRow(0, 0, 5, ObstacleType.TREES);
+	        setObstaclesByRow(7, 4, 5, ObstacleType.MOUNTAINS);
+	        setObstaclesByRow(8, 5, 5, ObstacleType.MOUNTAINS);
+	        setObstaclesByRow(12, 7, 7, ObstacleType.MOUNTAINS);
 	        
 	        ArrayList<Location> rockLocations = new ArrayList<Location>();
 	        rockLocations.add(new Location(6, 3));
@@ -161,6 +169,8 @@ public class LevelFactory {
 	        setObstaclesByRow(12, 4, 5, ObstacleType.TREES);
 	        setObstaclesByRow(13, 5, 6, ObstacleType.TREES);
 	        setObstaclesByRow(14, 6, 6, ObstacleType.TREES);
+	        setObstaclesByRow(11, 12, 12, ObstacleType.MOUNTAINS);
+
 	        
 	        HashMap<TrackType, Integer> trackLimitsLevelOne = new HashMap<TrackType,Integer>();
 	        final int NO_LIMIT = -1;
@@ -198,27 +208,17 @@ public class LevelFactory {
 	        stations.add(new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST));
 	        setStations(stations);
 	        
-	        ArrayList<Location> waterLocations = new ArrayList<Location>();
-	        waterLocations.add(new Location(0,5));
-	        waterLocations.add(new Location(0,6));
-	        waterLocations.add(new Location(0,7));
-	        waterLocations.add(new Location(0,8));
-	        waterLocations.add(new Location(0,9));
-	        waterLocations.add(new Location(0,10));
-	        waterLocations.add(new Location(1,5));
-	        waterLocations.add(new Location(1,6));
-	        waterLocations.add(new Location(1,7));
-	        waterLocations.add(new Location(1,8));
-	        waterLocations.add(new Location(1,9));
-	        waterLocations.add(new Location(9,12));
-	        waterLocations.add(new Location(9,13));
-	        waterLocations.add(new Location(9,14));
-	        waterLocations.add(new Location(10,12));
-	        waterLocations.add(new Location(10,13));
-	        waterLocations.add(new Location(10,14));
-	        waterLocations.add(new Location(10,15));
-	        setLandscapes(waterLocations, LandscapeType.WATER);
+	        setLandscapeByRow(0, 5, 10, LandscapeType.WATER);
+	        setLandscapeByRow(1, 5, 9, LandscapeType.WATER);
+	        setLandscapeByRow(9, 12, 14, LandscapeType.WATER);
+	        setLandscapeByRow(10, 12, 15, LandscapeType.WATER);
 	        
+	        ArrayList<Location> mountainLocations = new ArrayList<Location>();
+	        mountainLocations.add(new Location(8, 10));
+	        mountainLocations.add(new Location(4, 6));
+	        mountainLocations.add(new Location(13, 18));
+	        setObstacles(mountainLocations, ObstacleType.MOUNTAINS);
+	              
 	        ArrayList<Location> treeLocations = new ArrayList<Location>();
 	        treeLocations.add(new Location(5, 13));
 	        treeLocations.add(new Location(2, 1));
