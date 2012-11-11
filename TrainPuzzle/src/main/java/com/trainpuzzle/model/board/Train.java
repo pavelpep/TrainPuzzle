@@ -15,7 +15,7 @@ public class Train implements Observable{
 	private CompassHeading heading = CompassHeading.EAST;
 	Set<Observer> observerList = new HashSet<Observer>();
 	Queue<TrainCar> trainCars = new LinkedList<TrainCar>();
-	LinkedList<Cargo> cargoesOnTrain = new LinkedList<Cargo>();
+	
 	
 	/* Public Interface */
 	
@@ -78,53 +78,4 @@ public class Train implements Observable{
 		trainCars.toArray(traincars);
 		return traincars;
 	}
-	
-	public void loadCargoes(LinkedList<Cargo> cargoesToLoad){
-		Cargo cargoOnTrain = null;
-		for(Cargo cargo : cargoesToLoad){
-			if (this.cargoesOnTrain.contains(cargo)){
-				cargoOnTrain = getCargoFromList(this.cargoesOnTrain,cargo);
-				cargoOnTrain.incrementCargo();
-			}
-			this.cargoesOnTrain.addLast(cargo);
-		}
-	}
-	
-	public LinkedList<Cargo> unloadCaroges(LinkedList<Cargo> cargoesWanted){
-		Cargo cargoOnTrain = null;
-		LinkedList<Cargo> cargoesStillWanted = cargoesWanted;
-		for (Cargo cargoWanted: cargoesWanted){
-			if (this.cargoesOnTrain.contains(cargoWanted)){
-				cargoOnTrain = getCargoFromList(this.cargoesOnTrain,cargoWanted);
-				cargoOnTrain.decrementCargo();
-				cargoWanted.decrementCargo();
-				removeNullCargoInList(this.cargoesOnTrain,cargoOnTrain);
-				removeNullCargoInList(cargoesStillWanted, cargoWanted);
-			}
-		}
-		return cargoesStillWanted;
-	}
-	
-	
-
-	private LinkedList<Cargo> removeNullCargoInList(LinkedList<Cargo> cargoesList,
-			Cargo cargo) {
-		if (cargo.getNumberOfCargo() < 1)  {
-			cargoesList.remove(cargo);
-		}
-		return cargoesList;
-	}
-
-	private Cargo getCargoFromList(LinkedList<Cargo> cargoesList, Cargo wantedCargo) {
-		Cargo cargoOnTrain = null;
-		Iterator<Cargo> iterator = cargoesList.iterator();
-		while (iterator.hasNext()){
-			cargoOnTrain = iterator.next();
-			if (cargoOnTrain.equals(wantedCargo)){
-				break;
-			}
-		}
-		return cargoOnTrain;		
-	}
-	
-}
+}	

@@ -2,6 +2,7 @@ package com.trainpuzzle.controller;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.LinkedList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -202,23 +203,28 @@ public class Simulator implements Observable{
 	}
 
 	private void dropAndPickCargo(Station station) {
+		//For this iteration, to simplify the case, just use one cars to load all cargoes because of unawareness of 
+		//how many cargoes can be loaded in a cars and assuming that there is no cargo limits for a car
 		TrainCar[] trainCars = train.getTrainCars();
+		LinkedList<Cargo> cargoStillWanted = null;
 		for(TrainCar trainCar : trainCars) {
-			if(trainCar.hasCargo() && station.isRequiredCargo(trainCar.getCargo())) {
-				dropCargo(station, trainCar);
+			if(trainCar.hasCargo()) {
+				cargoStillWanted = trainCar.unloadCaroges(station.getrequiredCargo());
+				station.setRequiredCargo(cargoStillWanted);
 			}
-			if(station.hasExtraCargo() && !trainCar.hasCargo()) {
-				trainCar.addCargo(station.pickupExtraCargo());
+			if(station.hasExtraCargo()) {
+				trainCar.loadCargoes(station.getExtraCargo());
+				station.setExtraCargo(null);
 			}
 		}
 	}
 
-	private void dropCargo(Station station, TrainCar trainCar) {
+/*	private void dropCargo(Station station, TrainCar trainCar) {
 		Cargo cargo = trainCar.dropCargo();
 		station.dropoffRequiredCargo(cargo);
 		DropCargoEvent event = new DropCargoEvent(100,station,cargo);
 		this.victoryConditionEvaluator.processEvent(event);
-	}
+	}*/
 	
 	public boolean isTrainCrashed() {
 		return trainCrashed;

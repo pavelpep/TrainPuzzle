@@ -137,19 +137,27 @@ public class Station implements java.io.Serializable {
 	}
 	
 	public LinkedList<Cargo> getExtraCargo() {
-	return extraCargo;	
+		return this.extraCargo;	
 	}
 	
+	public void setExtraCargo(LinkedList<Cargo> extraCargo) {
+		this.extraCargo = extraCargo;
+	}
+
 	public LinkedList<Cargo> getrequiredCargo() {
-	return requiredCargo;	
+		return requiredCargo;	
 	}	
 	
-	public Cargo pickupExtraCargo() {
+/*	public Cargo pickupExtraCargo() {
 		assert extraCargo.size() > 0;
 		
 		return extraCargo.pollFirst();		
-	}
+	}*/
 	
+	public void setRequiredCargo(LinkedList<Cargo> requiredCargo) {
+		this.requiredCargo = requiredCargo;
+	}
+
 	public void addExtraCargo(Cargo cargo) {
 		assert extraCargo.size() < 2 : "Cargo types can be up to 2";
 		
