@@ -25,55 +25,67 @@ public class TrackPlacer {
 		this.economy = levelToAddTrack.getEconomy();
 		this.map = levelToAddTrack.getBoard();
 	}
-
-	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException {
-		Tile tile = map.getTile(row, column);
-		String errorMessage = "Failed to place track on a tile because ";
+	
+	private String getPlaceTrackErrorMessage(Tile tile, Track track) {
+		String errorMessage = "";
+		String commonMessage = "Failed to place track on a tile because ";
 		
 		if (tile.hasTrack()) {
-			errorMessage += "there was already a track";
+			errorMessage = commonMessage + "there was already a track";
 		} 
 		else if (tile.hasObstacle()) {
-			errorMessage += "there was an obstacle";
+			errorMessage = commonMessage + "there was an obstacle";
 		} 
 		else if (tile.getLandscapeType() == LandscapeType.WATER) {
-			errorMessage += "there was a water landscape";
+			errorMessage = commonMessage + "there was a water landscape";
 		}
 		else if (!economy.isAvailable(track.getTrackType())) {
-			errorMessage += "the track is out of limit";
+			errorMessage = commonMessage + "the track is out of limit";
 		}
-		else {
+		return errorMessage;
+	}
+	
+	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException {
+		Tile tile = map.getTile(row, column);
+		String errorMessage = getPlaceTrackErrorMessage(tile, track);
+		if(errorMessage.equals("")) {
 			tile.setTrack(track);
 			TrackType trackType=track.getTrackType();
 			economy.useOnePieceOfTrack(trackType);
 			map.notifyAllObservers();
-			return;
 		}
-		logger.warn("CannotPlaceTrackException was thrown");
-		throw new CannotPlaceTrackException(errorMessage);
+		else {
+			logger.warn("CannotPlaceTrackException was thrown");
+			throw new CannotPlaceTrackException(errorMessage);
+			
+		}
 	}
-
+	
+	private String getRemoveTrackErrorMessage(Tile tile) {
+		String commonMessage = "Failed to be removed track from a tile because ";
+		String errorMessage = "";
+		if(!tile.hasTrack()) {
+			errorMessage = commonMessage + "there was no track to be removed";
+		}
+		else if(!tile.getTrack().isRemovable()) {
+			errorMessage = commonMessage + "it's an unremovable track";
+		}
+		return errorMessage;
+	}
+	
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException {
 		Tile tile = map.getTile(row, column);
-		String errorMessage = "Failed to be removed track from a tile because ";
-		
-		if(tile.hasTrack()) {			
-			if (tile.getTrack().isRemovable()) {
-				TrackType trackType=tile.getTrack().getTrackType();
-				tile.removeTrack();
-				economy.retrunOnePieceOfTrack(trackType);
-				map.notifyAllObservers();
-				return;
-			} 
-			else {
-				errorMessage += "it's an unremovable track";
-			}
-		} 
-		else {
-			errorMessage += "there was no track to be removed";
+		String errorMessage = getRemoveTrackErrorMessage(tile);
+		if(errorMessage.equals("")) {
+			TrackType trackType=tile.getTrack().getTrackType();
+			tile.removeTrack();
+			economy.retrunOnePieceOfTrack(trackType);
+			map.notifyAllObservers();
 		}
-		logger.warn("CannotRemoveTrackException was thrown");
-		throw new CannotRemoveTrackException(errorMessage);
+		else {
+			logger.warn("CannotRemoveTrackException was thrown");
+			throw new CannotRemoveTrackException(errorMessage);
+		}
 	}
 	
 	public void rotateTrack(int row, int column) throws CannotRotateException {
