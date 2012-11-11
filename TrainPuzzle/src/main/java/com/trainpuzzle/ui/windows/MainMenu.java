@@ -73,15 +73,15 @@ public class MainMenu extends Window implements ActionListener {
 		String action = event.getActionCommand();
 		
 		if (action == "continue") {
-			WindowManager.getManager(gameController).setActiveWindow(new LevelSelect(gameController)); 
+			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
 		} else if (action == "campaigns") {
-			WindowManager.getManager(gameController).setActiveWindow(new Campaigns(gameController)); 
+			WindowManager.getManager().setActiveWindow(new Campaigns(gameController)); 
 		} else if (action == "load") {
 			File levelFile = openFile();
 			if(levelFile != null){	
 				gameController.startGame(levelFile);
 				LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
-				WindowManager.getManager(gameController).setActiveWindow(loadedLevelScreen);
+				WindowManager.getManager().setActiveWindow(loadedLevelScreen);
 			}
 	    } else if (action == "exit") {
 			// Exit program

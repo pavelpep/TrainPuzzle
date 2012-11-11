@@ -27,7 +27,6 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
 		//setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		create();
 		pack();
 		setLocationRelativeTo(null);
@@ -39,12 +38,10 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelSelectPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(levelSelectPanel);
 		
-		//Title
 		JLabel titleLabel = new JLabel("Level Select");
 		initializeComponent(titleLabel, 28);
 		levelSelectPanel.add(titleLabel);
 		
-		//Level List 
 		DefaultListModel listModel = new DefaultListModel();
 		levelList = new JList(listModel);
 		levelList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -58,14 +55,11 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		initializeComponent(levelList, 15);
 		levelSelectPanel.add(levelList);
 		
-		
-		//Start Level Button
 		JButton startLevelButton = initializeButton("Start Level","START_LEVEL");
 		initializeComponent(startLevelButton, 20);
 		startLevelButton.setBackground(Color.GREEN);
 		levelSelectPanel.add(startLevelButton);
 		
-		//Back Button
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 20);
 		backButton.setBackground(Color.LIGHT_GRAY);
@@ -77,10 +71,10 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		if (action == "back") {
-				WindowManager.getManager(gameController).showPreviousWindow();
+				WindowManager.getManager().showPreviousWindow();
 		} else if (action == "START_LEVEL") {
 			gameController.startGame(levelSelected);
-			WindowManager.getManager(gameController).setActiveWindow(new LoadedLevelScreen(gameController));
+			WindowManager.getManager().setActiveWindow(new LoadedLevelScreen(gameController));
 		}		
 			
 	}

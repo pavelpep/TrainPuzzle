@@ -27,9 +27,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
-		//setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		create();
 		pack();
 		setLocationRelativeTo(null);
@@ -87,7 +84,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	    if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
 		} else if (action == "back") {
-			WindowManager.getManager(gameController).showPreviousWindow();
+			WindowManager.getManager().showPreviousWindow();
 		}
 	}
 

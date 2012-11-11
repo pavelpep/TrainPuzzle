@@ -44,19 +44,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.level = this.gameController.getLevel();
 
 		gameController.getSimulator().register(this);
-		gameController.getSimulator().getVictoryConditionEvaluator().register(this);
 		
 		setLayout(new GridBagLayout());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(this.getBackground());
-		//setMinimumSize(new Dimension(1024, 700));
-		//setExtendedState(Frame.MAXIMIZED_BOTH);
 		
 		create();
-		
 		pack();
 		setLocationRelativeTo(null);
-		//register with the victory conditions evaluator
 	}
 
 	private void create() {
@@ -235,7 +229,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
-			WindowManager.getManager(gameController).showPreviousWindow();
+			WindowManager.getManager().showPreviousWindow();
 		}
 		
 		if (event.getActionCommand() == "save") {

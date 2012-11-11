@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class TileMouseAdapter extends MouseAdapter {
-		private GameController gameController;
 		private TrackPlacer trackPlacer;
 		private Track track;
 		
@@ -37,14 +36,14 @@ public class TileMouseAdapter extends MouseAdapter {
 	                try {
 	                	trackPlacer.placeTrack(track, row, column);
 	                }catch(CannotPlaceTrackException ex) {
-	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
 	                	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
 	                }
                 }else if(e.getButton() == MouseEvent.BUTTON3){
 	                try {
 	                	trackPlacer.removeTrack(row, column);
 	                }catch(CannotRemoveTrackException ex) {
-	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager(gameController).getActiveWindow();
+	                	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
 	                	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
 	                }
                 }

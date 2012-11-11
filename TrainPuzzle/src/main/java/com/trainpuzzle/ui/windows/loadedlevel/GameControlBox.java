@@ -96,9 +96,6 @@ public class GameControlBox extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand() == "backToLevelSelect") {
-			WindowManager.getManager(gameController).showPreviousWindow();
-		}
 		if (event.getActionCommand() == "run") {
 			gameController.getSimulator().run();
 			setPauseButtonVisible();

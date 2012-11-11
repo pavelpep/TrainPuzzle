@@ -27,7 +27,7 @@ public class WindowManager {
 	}
 	
 	// Methods
-	public static synchronized WindowManager getManager(GameController gameController) {
+	public static synchronized WindowManager getManager() {
 		if (manager == null) {
 			manager = new WindowManager();
 		}
