@@ -229,11 +229,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		if (event.getActionCommand() == "save") {
 			gameController.getLevelManager().saveCurrentLevel();
-			//File saveLevelFile = saveFileDialog();
-			//if(saveLevelFile != null){
-			//	gameController.saveCurrentLevel(saveLevelFile);
-			//}
 		}
+		
 		if (event.getActionCommand() == "saveToFile") {
 			File saveLevelFile = saveFileDialog();
 			if(saveLevelFile != null){
