@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -124,60 +125,34 @@ public class LevelMap extends JPanel implements Observer {
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 		}
 	}
-	
-	private void actualDrawExtraCargoes(JLayeredPane mapTile, LinkedList<Cargo> extraCargoesInStation){
-		JPanel cargoLayer = new JPanel();
-		cargoLayer.setOpaque(false);
-		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
-		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
-		JLabel cargo = new JLabel();
-		for (Cargo extraCargoInStation: extraCargoesInStation){
-			switch(extraCargoInStation.getType()){
-				case COTTON:
-					cargo = new JLabel(Images.COTTON_IMAGE);
-					break;
-				case WOOD:
-					cargo = new JLabel(Images.WOOD_IMAGE);
-					break;
-				case IRON:
-					cargo = new JLabel(Images.IRON_IMAGE);
-					break;				
-				default:
-					break;
-			}
-		cargoLayer.add(cargo);
-		}
-		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
-	}
 
-	private void actualDrawRequiredCargoes(JLayeredPane mapTile, LinkedList<Cargo> requiredCargoesInStation){
+	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> cargoList){
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
 		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
 		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
-		JLabel cargo = new JLabel();
-		for (Cargo requiredCargoInStation: requiredCargoesInStation){
-			switch(requiredCargoInStation.getType()){
-				case COTTON:
-					cargo = new JLabel(Images.REQUIRED_COTTON_IMAGE);
-					break;
-				case WOOD:
-					cargo = new JLabel(Images.REQUIRED_WOOD_IMAGE);
-					break;
-				case IRON:
-					cargo = new JLabel(Images.REQUIRED_IRON_IMAGE);
-					break;				
-				default:
-					break;
-			}
-		cargoLayer.add(cargo);
+		for (Cargo cargo: cargoList){
+			JLabel cargoLabel = new JLabel(getCargoImage(cargo));
+			cargoLayer.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
 	
-	private void drawCargoes(int row, int column) {
+	private ImageIcon getCargoImage(Cargo cargo) {
+		switch(cargo.getType()){
+			case COTTON:
+				return Images.REQUIRED_COTTON_IMAGE;
+			case WOOD:
+				return Images.REQUIRED_WOOD_IMAGE;
+			case IRON:
+				return Images.REQUIRED_IRON_IMAGE;
+			default:
+				return Images.REQUIRED_COTTON_IMAGE;
+		}
+	}
+	
+	private void drawAllCargoes(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		if (!level.getBoard().getTile(row, column).hasStationBuilding()){
 			return;
@@ -186,11 +161,11 @@ public class LevelMap extends JPanel implements Observer {
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
 		if(stationOnTile.hasExtraCargo()) {
 			LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
-			actualDrawExtraCargoes(mapTile, extraCargoesInStation);				
+			drawCargoes(mapTile, extraCargoesInStation);
 		}
 		if (stationOnTile.hasRequiredCargo()){
 			LinkedList<Cargo> requiredCargoesInStation = stationOnTile.getrequiredCargo();
-			actualDrawRequiredCargoes(mapTile, requiredCargoesInStation);
+			drawCargoes(mapTile, requiredCargoesInStation);
 		}
 	}
 	
@@ -260,7 +235,7 @@ public class LevelMap extends JPanel implements Observer {
 		   drawObstacle(row, column);
 		   drawLandscape(row, column);
 		   drawTrack(row, column);
-		   drawCargoes(row, column);
+		   drawAllCargoes(row, column);
 	}
 	
 	private void initializeTrain() {
