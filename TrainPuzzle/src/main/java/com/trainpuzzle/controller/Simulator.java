@@ -206,25 +206,28 @@ public class Simulator implements Observable{
 		//For this iteration, to simplify the case, just use one cars to load all cargoes because of unawareness of 
 		//how many cargoes can be loaded in a cars and assuming that there is no cargo limits for a car
 		TrainCar[] trainCars = train.getTrainCars();
-		LinkedList<Cargo> cargoStillWanted = null;
+		//LinkedList<Cargo> cargoStillWanted = null;
 		for(TrainCar trainCar : trainCars) {
 			if(trainCar.hasCargo() && !station.getrequiredCargo().equals(null)) {
-				cargoStillWanted = trainCar.unloadCaroges(station.getrequiredCargo());
-				station.setRequiredCargo(cargoStillWanted);
+				/*cargoStillWanted = trainCar.unloadCaroges(station.getrequiredCargo());
+				station.setRequiredCargo(cargoStillWanted);*/
+				dropCargo(station,trainCar);
 			}
-			if(station.hasExtraCargo()) {
-				trainCar.loadCargoes(station.getExtraCargo());
-				station.setExtraCargo(null);
+			if(station.hasExtraCargo() && !trainCar.hasCargo()) {
+				
+				//trainCar.loadCargoes(station.getExtraCargo());
+				//station.setExtraCargo(null);
+				trainCar.addCargo(station.pickupExtraCargo());
 			}
 		}
 	}
 
-/*	private void dropCargo(Station station, TrainCar trainCar) {
+	private void dropCargo(Station station, TrainCar trainCar) {
 		Cargo cargo = trainCar.dropCargo();
 		station.dropoffRequiredCargo(cargo);
 		DropCargoEvent event = new DropCargoEvent(100,station,cargo);
 		this.victoryConditionEvaluator.processEvent(event);
-	}*/
+	}
 	
 	public boolean isTrainCrashed() {
 		return trainCrashed;
