@@ -58,7 +58,10 @@ public class GameController {
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 
-	 	
+	public void levelCompleted(){
+		levelManager.levelCompleted();
+		campaignManager.saveCampaign();
+	} 	
 	
 	public void placeTrack(Track track, int row, int column) {
 		try {
