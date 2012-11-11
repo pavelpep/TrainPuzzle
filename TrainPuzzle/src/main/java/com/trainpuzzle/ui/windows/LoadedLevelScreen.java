@@ -18,7 +18,6 @@ import javax.swing.text.StyledDocument;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 import com.trainpuzzle.infrastructure.Images;
 
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
@@ -235,6 +234,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			//	gameController.saveCurrentLevel(saveLevelFile);
 			//}
 		}
+		if (event.getActionCommand() == "saveToFile") {
+			File saveLevelFile = saveFileDialog();
+			if(saveLevelFile != null){
+				gameController.saveCurrentLevel(saveLevelFile);
+			}
+		}
 	}
 	
 	private File saveFileDialog(){
@@ -255,8 +260,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				setMessageBoxMessage("TRAIN CRASHED");
 			}
 			if(((Simulator) object).isVictoryConditionsSatisfied()) {
-				gameController.getLevelManager().levelCompleted();
-				gameController.getCampaignManager().saveCampaign();
+				gameController.levelCompleted();
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 			}
 			gameControlBox.setRunButtonVisible();
