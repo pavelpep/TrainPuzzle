@@ -58,7 +58,9 @@ public class Cargo implements java.io.Serializable{
 	
 	@Override
 	public boolean equals(Object obj) {
-		return this.cargoType.equals(((Cargo)obj).cargoType);
+		boolean isEqual = this.cargoType.equals(((Cargo)obj).cargoType) && 
+				this.numberOfCargo == ((Cargo)obj).numberOfCargo;
+		return isEqual;
 	}
 	
 	

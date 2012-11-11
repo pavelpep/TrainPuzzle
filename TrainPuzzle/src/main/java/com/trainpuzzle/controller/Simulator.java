@@ -208,7 +208,7 @@ public class Simulator implements Observable{
 		TrainCar[] trainCars = train.getTrainCars();
 		LinkedList<Cargo> cargoStillWanted = null;
 		for(TrainCar trainCar : trainCars) {
-			if(trainCar.hasCargo()) {
+			if(trainCar.hasCargo() && !station.getrequiredCargo().equals(null)) {
 				cargoStillWanted = trainCar.unloadCaroges(station.getrequiredCargo());
 				station.setRequiredCargo(cargoStillWanted);
 			}

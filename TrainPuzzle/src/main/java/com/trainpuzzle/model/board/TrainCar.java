@@ -63,27 +63,27 @@ public class TrainCar {
 }*/
 
 	public void loadCargoes(LinkedList<Cargo> cargoesToLoad){
-		Cargo cargoOnTrain = null;
+		Cargo cargoOnCar = null;
 		for(Cargo cargo : cargoesToLoad){
-			if (this.cargoesOnCar.contains(cargo)){
-				cargoOnTrain = getCargoFromList(this.cargoesOnCar,cargo);
-				cargoOnTrain.incrementCargo();
+			cargoOnCar = getCargoFromCar(cargo);
+			if (!cargoOnCar.equals(null)){
+				cargoOnCar.incrementCargo();
 			}
-			this.cargoesOnCar.addLast(cargo);
+			else this.cargoesOnCar.addLast(cargo);
 		}
 	}
 
 	public LinkedList<Cargo> unloadCaroges(LinkedList<Cargo> cargoesWanted){
-		Cargo cargoOnTrain = null;
+		Cargo cargoOnCar = null;
 		LinkedList<Cargo> cargoesStillWanted = cargoesWanted;
 		if (cargoesStillWanted.isEmpty()) return cargoesStillWanted;
-		for (Cargo cargoWanted: cargoesWanted){
-			if (this.cargoesOnCar.contains(cargoWanted)){
-				cargoOnTrain = getCargoFromList(this.cargoesOnCar,cargoWanted);
-				cargoOnTrain.decrementCargo();
+		for (Cargo cargoWanted: cargoesStillWanted){
+				cargoOnCar = getCargoFromCar(cargoWanted);
+				if (!cargoOnCar.equals(null)){
+				cargoOnCar.decrementCargo();
 				cargoWanted.decrementCargo();
-				removeNullCargoInList(this.cargoesOnCar,cargoOnTrain);
-				removeNullCargoInList(cargoesStillWanted, cargoWanted);
+				this.cargoesOnCar = removeNullCargoInList(this.cargoesOnCar,cargoOnCar);
+				cargoesStillWanted = removeNullCargoInList(cargoesStillWanted, cargoWanted);
 			}
 		}
 		return cargoesStillWanted;
@@ -99,16 +99,16 @@ public class TrainCar {
 		return cargoesList;
 	}
 
-	private Cargo getCargoFromList(LinkedList<Cargo> cargoesList, Cargo wantedCargo) {
-		Cargo cargoOnTrain = null;
-		Iterator<Cargo> iterator = cargoesList.iterator();
+	private Cargo getCargoFromCar(Cargo wantedCargo) {
+		Cargo cargoInList = null;
+		Iterator<Cargo> iterator = this.cargoesOnCar.iterator();
 		while (iterator.hasNext()){
-			cargoOnTrain = iterator.next();
-			if (cargoOnTrain.equals(wantedCargo)){
+			cargoInList = iterator.next();
+			if (cargoInList.getType() == wantedCargo.getType()){
 				break;
 			}
 		}
-		return cargoOnTrain;		
+		return cargoInList;		
 	}
 
 }
