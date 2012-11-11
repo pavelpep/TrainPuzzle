@@ -7,6 +7,7 @@ public class Obstacle implements java.io.Serializable {
 	public enum ObstacleType{
 		ROCK,
 		TREES,
+		MOUNTAINS,
 		GREEN_STATION,
 		RED_STATION
 	}

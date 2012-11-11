@@ -15,6 +15,7 @@ public final class Images {
 	public final static String WATER = "src/main/resources/images/water3.png";
 	public final static String ROCK = "src/main/resources/images/rock.png";
 	public final static String TREES = "src/main/resources/images/trees.png";
+	public final static String MOUNTAINS = "src/main/resources/images/mountains.png";
 	
 	//Stations
 	public final static String RED_STATION = "src/main/resources/images/redStation.png";
@@ -53,6 +54,7 @@ public final class Images {
 	public final static ImageIcon WATER_IMAGE = new ImageIcon(WATER);
 	public final static ImageIcon ROCK_IMAGE = new ImageIcon(ROCK);
 	public final static ImageIcon TREES_IMAGE = new ImageIcon(TREES);
+	public final static ImageIcon MOUNTAINS_IMAGE = new ImageIcon(MOUNTAINS);
 	
 	//Stations
 	public final static ImageIcon RED_STATION_IMAGE = new ImageIcon(RED_STATION);

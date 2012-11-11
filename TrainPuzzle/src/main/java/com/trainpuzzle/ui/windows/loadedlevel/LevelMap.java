@@ -112,6 +112,9 @@ public class LevelMap extends JPanel implements Observer {
 				case TREES:
 					obstacleLayer = new JLabel(Images.TREES_IMAGE);
 					break;
+				case MOUNTAINS:
+					obstacleLayer = new JLabel(Images.MOUNTAINS_IMAGE);
+					break;
 				case GREEN_STATION:
 					obstacleLayer = new JLabel(Images.GREEN_STATION_IMAGE);
 					break;
