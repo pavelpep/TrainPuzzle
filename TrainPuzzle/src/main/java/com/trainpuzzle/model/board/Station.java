@@ -136,7 +136,7 @@ public class Station implements java.io.Serializable {
 		return requiredCargo.size() > 0;
 	}
 	
-	public LinkedList<Cargo> getExtraCargo() {
+	public LinkedList<Cargo> getExportCargo() {
 		return this.extraCargo;	
 	}
 	
@@ -144,7 +144,7 @@ public class Station implements java.io.Serializable {
 		this.extraCargo = extraCargo;
 	}
 
-	public LinkedList<Cargo> getrequiredCargo() {
+	public LinkedList<Cargo> getImportCargo() {
 		return requiredCargo;	
 	}	
 	

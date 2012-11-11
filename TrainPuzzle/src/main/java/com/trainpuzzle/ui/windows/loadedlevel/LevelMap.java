@@ -138,20 +138,24 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 
-	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> cargoList){
+	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, LinkedList<Cargo> importCargoList){
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
 		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
 		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
-		for (Cargo cargo: cargoList){
-			JLabel cargoLabel = new JLabel(getCargoImage(cargo));
+		for (Cargo cargo: exportCargoList){
+			JLabel cargoLabel = new JLabel(getExportCargoImage(cargo));
+			cargoLayer.add(cargoLabel);
+		}
+		for (Cargo cargo: importCargoList){
+			JLabel cargoLabel = new JLabel(getImportCargoImage(cargo));
 			cargoLayer.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
 	
-	private ImageIcon getCargoImage(Cargo cargo) {
+	private ImageIcon getExportCargoImage(Cargo cargo) {
 		switch(cargo.getType()){
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
@@ -164,21 +168,27 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
+	private ImageIcon getImportCargoImage(Cargo cargo) {
+		switch(cargo.getType()){
+			case COTTON:
+				return Images.COTTON_IMAGE;
+			case WOOD:
+				return Images.WOOD_IMAGE;
+			case IRON:
+				return Images.IRON_IMAGE;
+			default:
+				return Images.COTTON_IMAGE;
+		}
+	}
+	
 	private void drawAllCargoes(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		if (!level.getBoard().getTile(row, column).hasStationBuilding()){
 			return;
 		}
-		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
-		if(stationOnTile.hasExtraCargo()) {
-			LinkedList<Cargo> extraCargoesInStation = stationOnTile.getExtraCargo();
-			drawCargoes(mapTile, extraCargoesInStation);
-		}
-		if (stationOnTile.hasRequiredCargo()){
-			LinkedList<Cargo> requiredCargoesInStation = stationOnTile.getrequiredCargo();
-			drawCargoes(mapTile, requiredCargoesInStation);
-		}
+		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
+		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo());
 	}
 	
 
