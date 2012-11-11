@@ -16,7 +16,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.exception.TrainCrashException;
-import com.trainpuzzle.ui.windows.WindowManager;
 
 public class GameControlBox extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;

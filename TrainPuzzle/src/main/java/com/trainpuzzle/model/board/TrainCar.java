@@ -29,8 +29,6 @@ public class TrainCar {
 		
 		return currentCargo;
 	}
-	
-	/*Getters and Setters */
 
 	public Location getLocation() {
 		return location;

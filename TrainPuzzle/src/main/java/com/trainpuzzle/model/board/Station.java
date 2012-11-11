@@ -2,10 +2,7 @@ package com.trainpuzzle.model.board;
 
 import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
@@ -36,8 +33,6 @@ public class Station implements java.io.Serializable {
 	private LinkedList<Cargo> requiredCargo = new LinkedList<Cargo>();
 	
 	
-	/* Public Interface */
-	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
 		assert(isOddNumber(entranceFacing.getValue()));	// entrance value should be an odd number (North, East, South, or West)
 		
@@ -52,8 +47,6 @@ public class Station implements java.io.Serializable {
 		return (value % 2 == 1);
 	}
 	
-	/*Getters and Setters */
-
 	public StationType getType() {
 		return this.stationType;
 	}

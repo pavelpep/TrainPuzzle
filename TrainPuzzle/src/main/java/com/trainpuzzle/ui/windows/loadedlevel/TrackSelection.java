@@ -25,11 +25,10 @@ import com.trainpuzzle.ui.windows.RotatedImageIcon;
 public class TrackSelection extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
-	private GameController gameController;
+
 	private LoadedLevelScreen loadedLevelScreen;
 	
-	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
-		this.gameController = gameController;
+	public TrackSelection(LoadedLevelScreen loadedLevelScreen) {
 		this.loadedLevelScreen = loadedLevelScreen;
 		
 		this.setPreferredSize(new Dimension(200, 300));

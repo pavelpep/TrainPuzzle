@@ -21,15 +21,12 @@ import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.VictoryConditionEvaluator;
 import com.trainpuzzle.infrastructure.Images;
 
-
-// Level selection for the campaign
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
 
 	private static final long serialVersionUID = 1L;
 	private GameController gameController;
 	private Level level;
 
-	// Window elements
 	private GameControlBox gameControlBox;
 	private LevelMap loadedLevelMap;
 	private SelectedTrack selectedTrackPanel;
@@ -38,7 +35,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 
-	// Constructor
 	public LoadedLevelScreen(GameController gameController) {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
@@ -194,10 +190,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
 		
-		JPanel trackPanel = new TrackSelection(gameController, this);
+		JPanel trackPanel = new TrackSelection(this);
 		sidePanel.add(trackPanel);
 		
-		selectedTrackPanel = new SelectedTrack(gameController, this);
+		selectedTrackPanel = new SelectedTrack(this);
 		sidePanel.add(selectedTrackPanel);
 		
 		return sidePanel;

@@ -23,7 +23,6 @@ public class LevelManager {
 	public void selectLevel(int levelNumber) throws LevelLockedException{
 		campaign.selectLevel(levelNumber);
 		campaignLevel = campaign.getCurrentLevel();
-		//check if level is locked
 		if(campaignLevel.isLocked){
 			throw new LevelLockedException("Level " + levelNumber + " is locked.");
 		}

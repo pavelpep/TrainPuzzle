@@ -96,7 +96,6 @@ public class GameController {
 		}
 	}
 	
-	/* Getters and Setters */
 	public CampaignManager getCampaignManager() {
 		return campaignManager;
 	}

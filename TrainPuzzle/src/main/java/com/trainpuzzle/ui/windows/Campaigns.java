@@ -16,14 +16,8 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	private GameController gameController;
 	LevelManager campaignManager;
-	// Layout Manager
-
-	
-	// Window elements	
 	private int campaignSelected = 1;
 	private JList campaignList;
-	
-	
 	
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
@@ -47,13 +41,11 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignsPanel.setLayout(new BoxLayout(campaignsPanel, BoxLayout.Y_AXIS));
 		campaignsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.add(campaignsPanel);
-		
-		//Title Label
+
 		JLabel titleLabel = new JLabel("Choose Campaign");
 		initializeComponent(titleLabel, 20);
 		campaignsPanel.add(titleLabel);
 		
-		//Campaigns List
 		DefaultListModel listModel = new DefaultListModel();
 		campaignList = new JList(listModel);
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -65,12 +57,10 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		initializeComponent(campaignList, 15);
 		campaignsPanel.add(campaignList);
 
-		//Select Campaign Button
 		JButton selectCampaign = initializeButton("Select Campaign","selectCampaign");
 		initializeComponent(selectCampaign, 15);
 		campaignsPanel.add(selectCampaign);
 		
-		//Back Button
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);
@@ -79,8 +69,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
-		
-
 	    if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
 		} else if (action == "back") {

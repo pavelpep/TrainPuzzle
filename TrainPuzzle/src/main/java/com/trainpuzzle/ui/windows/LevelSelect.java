@@ -12,21 +12,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
-// Level selection for the campaign
 public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
 
-
 	private GameController gameController;
-	
-	
 	private int levelSelected = 1;
 	JList levelList;
 	
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
-		//setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		create();
 		pack();
 		setLocationRelativeTo(null);

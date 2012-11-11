@@ -21,16 +21,14 @@ import com.trainpuzzle.ui.windows.RotatedImageIcon;
 
 public class SelectedTrack extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
-	private GameController gameController;
+
 	private LoadedLevelScreen loadedLevelScreen;
 	
 	private JButton rotateButton = new JButton();
 	private RotatedImageIcon selectedTrackImage;
 	private Track selectedTrack;
 	
-	public SelectedTrack(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
-		this.gameController = gameController;
+	public SelectedTrack(LoadedLevelScreen loadedLevelScreen) {
 		this.loadedLevelScreen = loadedLevelScreen;
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);

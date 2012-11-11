@@ -4,15 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
-import com.trainpuzzle.controller.GameController;
-
-/* The purpose of this abstract class (i.e. superclass) is to put the common method name Create() 
- * into one class, which is used in common by other subclasses that create Windows.
- */
 
 abstract class Window extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +30,6 @@ abstract class Window extends JFrame implements ActionListener {
 		jComponent.setFont(defaultFont);
 		jComponent.setBackground(this.getBackground());
 		jComponent.setAlignmentX(CENTER_ALIGNMENT);
-		//jComponent.setAlignmentX(CENTER_ALIGNMENT);
 	}
 	
 	protected JButton initializeButton(String label, String actionCommand) {

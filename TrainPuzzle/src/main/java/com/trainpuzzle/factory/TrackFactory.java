@@ -38,7 +38,7 @@ public class TrackFactory {
 		case DIAGONAL_INTERSECTION_TRACK:
 			return diagonalIntersectionTrack();
 		default:
-			return straightTrack(); // Might want to have a better default case.
+			return straightTrack();
 		}
 	}
 	

@@ -14,8 +14,6 @@ public class Landscape implements java.io.Serializable {
 	public Landscape(LandscapeType landscapeType) {
 		this.landscapeType = landscapeType;		
 	}
-	
-	/* Getters and Setters  */	
 
 	public LandscapeType getType() {
 		return landscapeType;

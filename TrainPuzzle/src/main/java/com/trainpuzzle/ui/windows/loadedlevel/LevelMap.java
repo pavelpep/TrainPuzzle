@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -59,8 +58,7 @@ public class LevelMap extends JPanel implements Observer {
 		this.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		this.setSize(new Dimension(tileSizeInPixels * numberOfRows, tileSizeInPixels * numberOfColumns));
 		mapTiles = new JLayeredPane[numberOfRows][numberOfColumns];
-		
-		// Initialize Map Panel
+
 		initializeMapPanel(numberOfRows, numberOfColumns);
 		redrawTiles();
 		initializeTrain();

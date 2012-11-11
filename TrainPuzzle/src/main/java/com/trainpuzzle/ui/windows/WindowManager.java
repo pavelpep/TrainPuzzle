@@ -8,25 +8,15 @@ package com.trainpuzzle.ui.windows;
 
 import java.util.Stack;
 
-import com.trainpuzzle.controller.GameController;
-
-/* This is the Window Manager for the Train Track Puzzle game. It manages windows,
- * modules and global data used by this application.
- * Only ONE Window Manager can exist at any time during the program.
- */
 
 public class WindowManager {
-	// Fields
 	private static WindowManager manager;
-	
 	private Stack<Window> windowList; 
-	
-	// Constructors
+
 	private WindowManager() {
 		windowList = new Stack<Window>();
 	}
-	
-	// Methods
+
 	public static synchronized WindowManager getManager() {
 		if (manager == null) {
 			manager = new WindowManager();

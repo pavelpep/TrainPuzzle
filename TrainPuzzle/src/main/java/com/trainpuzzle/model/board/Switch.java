@@ -1,6 +1,5 @@
 package com.trainpuzzle.model.board;
 import java.util.Iterator;
-import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Switch extends Track {

@@ -37,31 +37,26 @@ public class MainMenu extends Window implements ActionListener {
 		initializeComponent(menuLabel, 28);
 		mainMenuPanel.add(menuLabel);
 
-        //Continue Campaign Button
 		JButton continueButton = initializeButton("Continue Campaign","continue");
 		initializeComponent(continueButton, 20);
 		continueButton.setBackground(Color.ORANGE);
 		mainMenuPanel.add(continueButton);
-	
-		//Select Campaign Button
+
 		JButton campaignsButton = initializeButton("Select Campaign","campaigns");
 		initializeComponent(campaignsButton, 20);
 		campaignsButton.setBackground(Color.ORANGE);
 		mainMenuPanel.add(campaignsButton);
-		
-		// Load Button
+
 		JButton loadButton = initializeButton("Load Level","load");
 		initializeComponent(loadButton, 20);
 		loadButton.setBackground(Color.GREEN);
 		mainMenuPanel.add(loadButton);
-        
-		//Credits Button
+
 		JButton creditsButton = initializeButton("Credits","credits");
 		initializeComponent(creditsButton, 20);
 		creditsButton.setBackground(Color.ORANGE);
 		mainMenuPanel.add(creditsButton);
-		
-		//Exit Button
+
 		JButton exitButton = initializeButton("Exit","exit");
 		initializeComponent(exitButton, 20);
 		exitButton.setBackground(Color.ORANGE);
@@ -84,7 +79,6 @@ public class MainMenu extends Window implements ActionListener {
 				WindowManager.getManager().setActiveWindow(loadedLevelScreen);
 			}
 	    } else if (action == "exit") {
-			// Exit program
 			System.exit(0);
 		}
 	}

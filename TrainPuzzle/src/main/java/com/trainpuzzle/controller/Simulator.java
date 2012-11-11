@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import com.trainpuzzle.model.board.Board;
@@ -123,8 +122,6 @@ public class Simulator implements Observable{
 		
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle()) {
-			// TODO: Better way to inform user train crashed
-			//JOptionPane.showMessageDialog(null, "The train has crashed!");
 			throw new TrainCrashException();
 		}
 		return tile;

@@ -32,12 +32,5 @@ public class Application {
 			logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 		WindowManager.getManager().setActiveWindow(new MainMenu(gameController));
-
-		// WindowManager.		
-		// LevelSelect levelSelect = new LevelSelect(gameController);
-		// WindowManager.getManager().setActiveWindow(levelSelect);
-		// WindowManager.getManager().updateWindows();
-		// MainMenu mainMenu = new MainMenu(this, campaignManager);
-		// WindowManager.getManager().setActiveWindow(mainMenu);
 	}	
 }
