@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.board;
 
+import com.trainpuzzle.exception.InvalidCommonHeadingException;
+
 public class Connection implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -35,23 +37,25 @@ public class Connection implements java.io.Serializable {
 		}
 	}
 	
-	public CompassHeading findSimilarHeading(Connection anotherConnection) {
-		int similarHeadingCounts = 0;
-		CompassHeading similarHeading = null;
+	public CompassHeading findCommonHeading(Connection anotherConnection) throws InvalidCommonHeadingException {
+		int commonHeadingCounts = 0;
+		CompassHeading commonHeading = null;
 		
 		CompassHeading[] pair1 = getCompassHeadingPair();
 		CompassHeading[] pair2 = anotherConnection.getCompassHeadingPair();
 		for(CompassHeading pair1_heading: pair1) {
 			for(CompassHeading pair2_heading: pair2) {
 				if(pair1_heading == pair2_heading) {
-					similarHeadingCounts++;
-					similarHeading = pair1_heading;
+					commonHeadingCounts++;
+					commonHeading = pair1_heading;
 				}
 			}
 		}
-		// TODO: throw exception if similar heading > 1
 		
-		return similarHeading;
+		if (commonHeadingCounts != 1) {
+			throw new InvalidCommonHeadingException();
+		}
+		return commonHeading;
 	}
 	
 	@Override

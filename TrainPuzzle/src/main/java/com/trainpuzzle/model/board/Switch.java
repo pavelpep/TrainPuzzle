@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.board;
 import java.util.Iterator;
+
+import com.trainpuzzle.exception.InvalidCommonHeadingException;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Switch extends Track {
@@ -11,6 +13,9 @@ public class Switch extends Track {
 	
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
+		assert(trackType == TrackType.CURVELEFT_STRAIGHT_SWITCH
+			|| trackType == TrackType.CURVERIGHT_STRAIGHT_SWITCH): "Invalid trackType";
+		
 		entrance = findValidEntrance(connection1, connection2);
 		connectionsIterator = connections.iterator();
 		current = nextConnection();
@@ -24,7 +29,13 @@ public class Switch extends Track {
 	}
 	
 	private CompassHeading findValidEntrance(Connection connection1, Connection connection2) {
-		return connection1.findSimilarHeading(connection2);
+		CompassHeading validEntrance = null;
+		try {
+			validEntrance = connection1.findCommonHeading(connection2);
+		} catch (InvalidCommonHeadingException e){
+			assert(false): "Invalid Switch: " + e.getMessage();
+		}
+		return validEntrance;
 	}
 	
 	public Connection getCurrentConnection() {

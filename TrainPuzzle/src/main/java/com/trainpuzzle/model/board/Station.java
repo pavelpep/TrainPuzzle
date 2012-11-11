@@ -67,7 +67,7 @@ public class Station implements java.io.Serializable {
 				connection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
 				break;
 			default:
-				assert(1==0): "Error while handling unacceptable values for entranceFacing";
+				assert(false): "Error while handling unacceptable values for entranceFacing";
 				
 		}
 		Track track = new Track(connection, TrackType.STRAIGHT_TRACK);
@@ -86,7 +86,7 @@ public class Station implements java.io.Serializable {
 				tempObstacle = new Obstacle(RED_STATION);
 				break;
 			default:
-				assert(1==0): "Error while handling unacceptable values for stationType";
+				assert(false): "Error while handling unacceptable values for stationType";
 		}
 		return tempObstacle;
 	}
@@ -115,7 +115,7 @@ public class Station implements java.io.Serializable {
 				trackLocation = new Location(stationRow - 1, stationColumn);
 				break;
 			default:
-				assert(1==0): "Error while handling unacceptable values for entranceFacing";
+				assert(false): "Error while handling unacceptable values for entranceFacing";
 		}
 		return trackLocation;
 	}
