@@ -47,8 +47,9 @@ public class WindowManager {
 	}
 	
 	public void showPreviousWindow() {
-		windowList.peek().dispose();
-		windowList.pop();
-		windowList.peek().setVisible(true);
+		windowList.pop().dispose();
+		if(!windowList.isEmpty()) {
+			windowList.peek().setVisible(true);
+		}
 	}
 }
