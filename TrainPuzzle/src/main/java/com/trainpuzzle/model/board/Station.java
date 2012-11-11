@@ -147,7 +147,7 @@ public class Station implements java.io.Serializable {
 	public Cargo pickupExtraCargo() {
 		assert extraCargo.size() > 0;
 		
-		return extraCargo.getFirst();		
+		return extraCargo.pollFirst();		
 	}
 	
 	public void addExtraCargo(Cargo cargo) {
