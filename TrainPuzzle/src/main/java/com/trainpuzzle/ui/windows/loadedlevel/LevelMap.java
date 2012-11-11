@@ -189,7 +189,7 @@ public class LevelMap extends JPanel implements Observer {
 							trackLayer=new JLabel(new RotatedImageIcon(Images.PERMANENT_STRAIGHT_TRACK, i * 2 + 2));
 						}
 						else{
-							trackLayer=new JLabel(new RotatedImageIcon(Images.DIAGONAL_TRACK, i * 2 + 1));
+							trackLayer=new JLabel(new RotatedImageIcon(Images.STRAIGHT_TRACK, i * 2 + 2));
 						}
 						trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
 						mapTile.add(trackLayer, new Integer(trackLayerIndex));
