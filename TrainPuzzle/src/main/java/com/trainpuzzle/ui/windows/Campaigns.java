@@ -50,16 +50,25 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignList = new JList(listModel);
 		campaignList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		campaignList.addListSelectionListener(this);
-		campaignList.setVisibleRowCount(8);
+		campaignList.setVisibleRowCount(5);
+		
 		for(Campaign campaign: gameController.getCampaignManager().getCampaigns()){
 			listModel.addElement(campaign.getName());
 		}
 		initializeComponent(campaignList, 15);
 		campaignsPanel.add(campaignList);
-
+		
+		JScrollPane listScrollPane = new JScrollPane(campaignList);
+		initializeComponent(listScrollPane, 15);
+		campaignsPanel.add(listScrollPane);
+		
 		JButton selectCampaign = initializeButton("Select Campaign","selectCampaign");
 		initializeComponent(selectCampaign, 15);
 		campaignsPanel.add(selectCampaign);
+		
+		JButton resetCampaign = initializeButton("Reset Campaign","resetCampaign");
+		initializeComponent(resetCampaign, 15);
+		campaignsPanel.add(resetCampaign);
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
@@ -69,16 +78,18 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
-	    if (action == "selectCampaign") {
+		if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
+			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
+		} else if (action == "resetLevel") {
+			// Reset all levels and clear any saves related to campaign
 		} else if (action == "back") {
 			WindowManager.getManager().showPreviousWindow();
 		}
 	}
-
+	
 	public void valueChanged(ListSelectionEvent arg0) {
-		campaignSelected = 1 + campaignList.getSelectedIndex();
-		System.out.println("campaign selected: " + campaignSelected);
+		campaignSelected = 1 + campaignList.getSelectedIndex();		
 		
 	}	
 }
