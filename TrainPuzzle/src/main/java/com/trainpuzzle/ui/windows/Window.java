@@ -14,20 +14,20 @@ abstract class Window extends JFrame implements ActionListener {
 	protected static final int DEFAULT_WIDTH = 1028;
 	protected static final int DEFAULT_HEIGHT = 768;
 	
-	private JFrame mainFrame = new JFrame();
-	private JDialog nameDialog = new JDialog(mainFrame, "User Name Entry", true);
-	
-	
 	public Window() {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
+				String exit = "Exit";
+				String previousWindow = "Previous Window";
+				String cancel = "Cancel";
+				
 				String[] options;
 				if(WindowManager.getManager().hasPreviousWindow()) {
-					options= new String[]{"Exit", "Previous Window", "Cancel"};
+					options= new String[]{exit, previousWindow, cancel};
 				}
 				else {
-					options= new String[]{"Exit", "Cancel"};
+					options= new String[]{exit, cancel};
 				}
 				
 				int choice = JOptionPane.showOptionDialog(
@@ -40,13 +40,13 @@ abstract class Window extends JFrame implements ActionListener {
 					options, 
 					options[0]);
 				
-				if(options[choice].equals("Exit")){
+				if(options[choice].equals(exit)){
 					WindowManager.getManager().exit();
 				}
-				if(options[choice].equals("Previous Window")){
+				if(options[choice].equals(previousWindow)){
 					WindowManager.getManager().showPreviousWindow();
 				}
-				if(options[choice].equals("Cancel")){
+				if(options[choice].equals(cancel)){
 					
 				}
 				
