@@ -1,5 +1,6 @@
 package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.observe.Observer;
+
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
@@ -18,6 +19,8 @@ import javax.swing.text.StyledDocument;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.infrastructure.Images;
 
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
@@ -157,14 +160,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JPanel cargoPanel = new JPanel();
 		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
 		
-		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE));
-		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE));
-		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE));
+		Train train = this.gameController.getSimulator().getTrain();
+		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE, train.getNumOfCargoes().get(Cargo.CargoType.COTTON)));
+		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.IRON)));
+		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.WOOD)));
 		
 		return cargoPanel;
 	}
 	
-	private JPanel cargo(String cargoType, ImageIcon cargoImage) {
+	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
 		JPanel cargo = new JPanel();
 		cargo.setLayout(new BoxLayout(cargo, BoxLayout.Y_AXIS));
 		cargo.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -177,7 +181,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		initializeComponent(cargoImageLabel, 10);
 		cargo.add(cargoImageLabel);
 		
-		
+		JLabel cargoNumberLabel = new JLabel(numberOfCargo.toString());
+		initializeComponent(cargoNumberLabel, 10);
+		cargo.add(cargoNumberLabel);		
 		return cargo;
 	}
 

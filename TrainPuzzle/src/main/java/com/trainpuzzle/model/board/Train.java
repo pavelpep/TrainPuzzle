@@ -19,7 +19,7 @@ public class Train implements Observable{
 	
 	
 	/* Public Interface */
-	
+
 	public Train() {
 		add3Cars();
 		initializeNumCargoes();
@@ -65,6 +65,10 @@ public class Train implements Observable{
         moveCars();
 		this.location = location;
 		notifyAllObservers();
+	}
+	
+	public HashMap<Cargo.CargoType, Integer> getNumOfCargoes() {
+		return numOfCargoes;
 	}
 	
 	private void moveCars(){
