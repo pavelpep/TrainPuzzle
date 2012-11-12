@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Iterator;
-
-import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -81,7 +78,6 @@ public class Train implements Observable{
 				}
 			}
 		}
-		
 		return cargoDroppedOff; 
 	}
 	
@@ -96,8 +92,6 @@ public class Train implements Observable{
 					}
 				}
 		}
-	
-		
 		return cargoPickedUp; 
 	}
 	

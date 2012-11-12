@@ -14,7 +14,7 @@
       <levelNumber>2</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
     <com.trainpuzzle.model.level.CampaignLevel>
-      <isLocked>true</isLocked>
+      <isLocked>false</isLocked>
       <isCompleted>false</isCompleted>
       <hasUserSave>false</hasUserSave>
       <levelNumber>3</levelNumber>

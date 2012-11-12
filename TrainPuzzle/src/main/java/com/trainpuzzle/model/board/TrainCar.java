@@ -1,8 +1,5 @@
 package com.trainpuzzle.model.board;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class TrainCar {
 
 	private Location location; 

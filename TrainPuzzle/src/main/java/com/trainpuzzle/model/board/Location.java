@@ -25,6 +25,11 @@ public class Location implements java.io.Serializable {
 		return this.row == location.getRow() && this.column == location.getColumn();
 	}
 	
+	@Override
+	public String toString(){
+		return "(" + this.column + ", " + this.row + ")";
+	}
+	
 	public int getRow() {
 		return row;
 	}

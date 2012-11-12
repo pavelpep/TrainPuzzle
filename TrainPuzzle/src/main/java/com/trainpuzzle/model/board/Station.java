@@ -176,6 +176,7 @@ public class Station implements java.io.Serializable {
 	
 	public void dropoffRequiredCargo(Cargo cargo)  {
 		requiredCargo.removeFirstOccurrence(cargo);
+		System.out.print("Station: " + stationLocation.toString() + " Receive Cargo: " + cargo.getType().toString());
 	}
 	
 	@Override

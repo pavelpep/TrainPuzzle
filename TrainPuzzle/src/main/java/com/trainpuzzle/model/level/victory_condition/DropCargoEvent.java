@@ -1,7 +1,6 @@
 package com.trainpuzzle.model.level.victory_condition;
 
 import com.trainpuzzle.model.board.Cargo;
-import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
 
 public class DropCargoEvent extends Event {
