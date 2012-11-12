@@ -1,8 +1,8 @@
 package com.trainpuzzle.model.board;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Set;
 import java.util.Iterator;
 
@@ -14,7 +14,7 @@ public class Train implements Observable{
 	private Location location = new Location(0,0); 
 	private CompassHeading heading = CompassHeading.EAST;
 	Set<Observer> observerList = new HashSet<Observer>();
-	Queue<TrainCar> trainCars = new LinkedList<TrainCar>();
+	List<TrainCar> trainCars = new ArrayList<TrainCar>();
 	
 	
 	/* Public Interface */
@@ -50,10 +50,35 @@ public class Train implements Observable{
 	}
 
 	public void setLocation(Location location) {
-		trainCars.poll();
-		trainCars.add(new TrainCar(this.location, this.heading));
+        moveCars();
 		this.location = location;
 		notifyAllObservers();
+	}
+	
+	private void moveCars(){
+		trainCars.get(0).setLocation(trainCars.get(1).getLocation());
+		trainCars.get(1).setLocation(trainCars.get(2).getLocation());
+		trainCars.get(2).setLocation(this.location);
+		
+		trainCars.get(0).setHeading(trainCars.get(1).getHeading());
+		trainCars.get(1).setHeading(trainCars.get(2).getHeading());
+		trainCars.get(2).setHeading(this.heading);
+	}
+	
+	public List<Cargo> dropOff(List<Cargo> requestedCargo){
+		List<Cargo>  cargoDroppedOff = new ArrayList<Cargo>();
+		
+		
+		
+		return cargoDroppedOff; 
+	}
+	
+	public List<Cargo> pickUp(List<Cargo> availableCargo){
+		List<Cargo>  cargoPickedUp = new ArrayList<Cargo>();
+		
+		
+		
+		return cargoPickedUp; 
 	}
 	
 	public void resetTrainCars(){
