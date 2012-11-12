@@ -71,6 +71,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		JButton resetCampaign = initializeButton("Reset Campaign","resetCampaign");
 		initializeComponent(resetCampaign, 15);
 		campaignsPanel.add(resetCampaign);
+		resetCampaign.setEnabled(false); // Does not work now...
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
@@ -86,7 +87,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		} else if (action == "resetCampaign") {
 			resetOptionPane = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset Campaign" + campaignSelected + "?", "Reset Campaign", JOptionPane.YES_NO_OPTION);
 			if (resetOptionPane == JOptionPane.YES_OPTION) {
-				// NEED TO CHANGE THE XML FILE ITSELF IN ORDER TO RESET!
+				// NEED TO CHANGE THE CAMPAIGN XML FILE ITSELF IN ORDER TO RESET!
 				JOptionPane.showMessageDialog(null, "Campaign reset successful");
 			} else if (resetOptionPane == JOptionPane.NO_OPTION) {
 				JOptionPane.showMessageDialog(null, "Campaign not reseted");
