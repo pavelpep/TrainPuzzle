@@ -36,7 +36,6 @@ public class SelectedTrack extends JPanel implements ActionListener {
 		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Click to rotate");
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(sidePanelTitle);
-		
 		this.add(rotateButton());
 	}
 	

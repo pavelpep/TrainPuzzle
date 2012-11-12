@@ -1,14 +1,18 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -27,11 +31,13 @@ public class TrackSelection extends JPanel implements ActionListener{
 	
 
 	private LoadedLevelScreen loadedLevelScreen;
+	private GameController gameController;
 	
-	public TrackSelection(LoadedLevelScreen loadedLevelScreen) {
+	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
+		this.gameController = gameController;
 		this.loadedLevelScreen = loadedLevelScreen;
 		
-		this.setPreferredSize(new Dimension(200, 300));
+		this.setPreferredSize(new Dimension(200, 350));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder sidePanelTitle;
@@ -44,29 +50,49 @@ public class TrackSelection extends JPanel implements ActionListener{
 	}
 	
 	private void intializeTrackList(){
-		JButton straightTrack = initializeButton(Images.STRAIGHT_TRACK_IMAGE, "straightTrack");
-		this.add(straightTrack);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		JButton diagonalTrack = initializeButton(Images.DIAGONAL_TRACK_IMAGE, "diagonalTrack");
-		this.add(diagonalTrack);
+		JPanel straightPanel = new JPanel();
+		straightPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		straightPanel.add(track(TrackType.STRAIGHT_TRACK, Images.STRAIGHT_TRACK_IMAGE, "straightTrack"));
+		straightPanel.add(track(TrackType.DIAGONAL_TRACK, Images.DIAGONAL_TRACK_IMAGE, "diagonalTrack"));
+		String straightLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.STRAIGHT).toString();
+		straightPanel.add(new JLabel(straightLimit));
+		this.add(straightPanel);
 		
-		JButton curveleftTrack = initializeButton(Images.CURVELEFT_TRACK_IMAGE, "curveleftTrack");
-		this.add(curveleftTrack);
+		JPanel curvePanel = new JPanel();
+		curvePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		curvePanel.add(track(TrackType.CURVELEFT_TRACK, Images.CURVELEFT_TRACK_IMAGE, "curveleftTrack"));
+		curvePanel.add(track(TrackType.CURVERIGHT_TRACK, Images.CURVERIGHT_TRACK_IMAGE, "curverightTrack"));
+		String curveLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.CURVE).toString();
+		curvePanel.add(new JLabel(curveLimit));
+		this.add(curvePanel);
 		
-		JButton curverightTrack = initializeButton(Images.CURVERIGHT_TRACK_IMAGE, "curverightTrack");
-		this.add(curverightTrack);
+		JPanel intersectionPanel = new JPanel();
+		intersectionPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		intersectionPanel.add(track(TrackType.INTERSECTION_TRACK, Images.INTERSECTION_TRACK_IMAGE, "intersectionTrack"));
+		intersectionPanel.add(track(TrackType.DIAGONAL_INTERSECTION_TRACK, Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack"));
+		String intersectionLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION).toString();
+		intersectionPanel.add(new JLabel(intersectionLimit));
+		this.add(intersectionPanel);
 		
-		JButton intersectionTrack = initializeButton(Images.INTERSECTION_TRACK_IMAGE, "intersectionTrack");
-		this.add(intersectionTrack);
-		
-		JButton diagonalIntersectionTrack = initializeButton(Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack");
-		this.add(diagonalIntersectionTrack);
-		
-		JButton curveleftStraightSwitch = initializeButton(Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch");
-		this.add(curveleftStraightSwitch);
-		
-		JButton curverightStraightSwitch = initializeButton(Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch");
-		this.add(curverightStraightSwitch);
+		JPanel switchPanel = new JPanel();
+		switchPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		switchPanel.add(track(TrackType.CURVELEFT_STRAIGHT_SWITCH, Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch"));
+		switchPanel.add(track(TrackType.CURVERIGHT_STRAIGHT_SWITCH, Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch"));
+		String switchnLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION).toString();
+		switchPanel.add(new JLabel(switchnLimit));
+		this.add(switchPanel);
+	}
+	
+	private JPanel track(TrackType trackType, ImageIcon trackImage, String actionCommand) {
+		JPanel trackPanel = new JPanel();
+		trackPanel.setLayout(new BoxLayout(trackPanel, BoxLayout.Y_AXIS));
+		JButton trackButton = initializeButton(trackImage, actionCommand);
+		trackPanel.add(trackButton);
+		String straightTrackLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(trackType).toString();
+		trackPanel.add(new JLabel(straightTrackLimit));
+		return trackPanel;
 	}
 	
 	private JButton initializeButton(ImageIcon label, String actionCommand) {

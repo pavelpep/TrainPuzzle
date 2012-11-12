@@ -156,7 +156,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel cargoPanel() {
 		JPanel cargoPanel = new JPanel();
 		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
-		cargoPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE));
 		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE));
@@ -183,13 +182,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private JPanel sidePanel() {
 		JPanel sidePanel = new JPanel();
-		sidePanel.setPreferredSize(new Dimension(200, 575));
+		sidePanel.setPreferredSize(new Dimension(200, 650));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
 		gameControlBox = new GameControlBox(gameController);
 		sidePanel.add(gameControlBox);
 		
-		JPanel trackPanel = new TrackSelection(this);
+		JPanel trackPanel = new TrackSelection(gameController, this);
 		sidePanel.add(trackPanel);
 		
 		selectedTrackPanel = new SelectedTrack(this);
