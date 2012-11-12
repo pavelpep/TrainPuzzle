@@ -83,6 +83,9 @@ public class LevelMap extends JPanel implements Observer {
 				mapTile.setPreferredSize(new Dimension(tileSizeInPixels, tileSizeInPixels));
 				mapTiles[row][column] = mapTile;
 				level.getBoard().getTile(row, column).register(this);
+				if(level.getBoard().getTile(row, column).hasStationBuilding()){
+					level.getBoard().getTile(row, column).getStation().register(this);
+				}
 				mapTile.addMouseListener(mouseAdapter); 
 				
 				this.add(mapTile);
@@ -289,8 +292,8 @@ public class LevelMap extends JPanel implements Observer {
 			int row = trainCar.getLocation().getRow();
 			int column = trainCar.getLocation().getColumn();
 			mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
-			this.repaint();
 		}
+		this.repaint();
 		
 	}
 	
@@ -334,8 +337,19 @@ public class LevelMap extends JPanel implements Observer {
 		else if(object instanceof Tile){
 			for(int row = 0; row < level.getBoard().getRows(); row++){
 				for(int column = 0; column < level.getBoard().getColumns(); column++){
-					if(object.equals(level.getBoard().getTile(row, column)))
+					if(object.equals(level.getBoard().getTile(row, column))){
 						redrawTile(row, column);
+					}
+				}
+			}
+		}	else if(object instanceof Station){
+			for(int row = 0; row < level.getBoard().getRows(); row++){
+				for(int column = 0; column < level.getBoard().getColumns(); column++){
+					if(level.getBoard().getTile(row, column).hasStationBuilding()){
+						if(object.equals(level.getBoard().getTile(row, column).getStation())){
+							redrawTile(row, column);
+						}
+					}
 				}
 			}
 		}

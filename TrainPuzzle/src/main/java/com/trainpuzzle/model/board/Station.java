@@ -2,7 +2,12 @@ package com.trainpuzzle.model.board;
 
 import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
+
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
 /**
  * A station contains a station (takes a tile to hold) and a piece of track (takes another tile to hold).
@@ -13,10 +18,12 @@ import java.util.LinkedList;
  *   else if track is at the east or west of the station, it is placed vertically
  */
 
-public class Station implements java.io.Serializable {
+public class Station implements java.io.Serializable, Observable{
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	private transient Set<Observer> observerList = new HashSet<Observer>();
+	
 	public enum StationType {
 		RED,
 		GREEN;
@@ -145,30 +152,46 @@ public class Station implements java.io.Serializable {
 	public void sendExportCargo(Cargo cargo) {
 		System.out.print("Train Received Cargo from Station\n");
 		assert exportCargo.size() > 0;
-		
 		exportCargo.removeFirstOccurrence(cargo);		
+		notifyAllObservers();
 	}
 	
 	public void receiveImportCargo(Cargo cargo)  {
 		System.out.print("Station Received Cargo from Train\n");
 		importCargo.removeFirstOccurrence(cargo);
+		notifyAllObservers();
 	}
 	
 	public void addExportCargo(Cargo cargo) {
 		assert exportCargo.size() < 2 : "Cargo types can be up to 2";
-		
 		this.exportCargo.add(cargo);
+		notifyAllObservers();
 	}
 	
 	public void addImportCargo(Cargo cargo) {
 		assert importCargo.size() < 2 : "Cargo types can be up to 2";		
-		
 		this.importCargo.add(cargo);
+		notifyAllObservers();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
 		return stationLocation.equals(((Station) obj).getStationLocation());
+	}
+
+	@Override
+	public void register(Observer observer) {
+	      if(observerList == null) {
+	    	  observerList = new HashSet<Observer>();
+	      }
+			observerList.add(observer);	
+	}
+
+	@Override
+	public void notifyAllObservers() {
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
 	}
 	
 	
