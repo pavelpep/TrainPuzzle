@@ -87,12 +87,21 @@ public class Train implements Observable{
 				if(trainCar.hasCargo()){
 					if(trainCar.getCargo().getType() == cargo.getType()){
 						Cargo cargoDropped = trainCar.dropCargo();
+						decrementNumber(cargoDropped);
 						cargoDroppedOff.add(cargoDropped);
 					}
 				}
 			}
 		}
 		return cargoDroppedOff; 
+	}
+	
+	private void decrementNumber(Cargo cargo){
+		Integer currentNumOfCargoes = 0; 
+		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
+		currentNumOfCargoes = currentNumOfCargoes - 1;		
+		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
+		System.out.println("currentNumOfCargo=" + cargo.getType() + numOfCargoes.get(cargo.getType()));	
 	}
 		
 	public List<Cargo> pickUp(List<Cargo> availableCargo){
