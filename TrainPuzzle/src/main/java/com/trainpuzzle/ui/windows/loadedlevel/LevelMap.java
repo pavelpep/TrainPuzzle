@@ -238,8 +238,8 @@ public class LevelMap extends JPanel implements Observer {
 	}
 
 	public void redrawTiles(){
-		  for(int row = 0; row < level.getBoard().rows; row++){
-				for(int column = 0; column < level.getBoard().columns; column++){
+		  for(int row = 0; row < level.getBoard().getRows(); row++){
+				for(int column = 0; column < level.getBoard().getColumns(); column++){
 					redrawTile(row, column);
 				}
 			}
@@ -312,8 +312,8 @@ public class LevelMap extends JPanel implements Observer {
 			redrawTrainCars(train);
 		}
 		else if(object instanceof Tile){
-			for(int row = 0; row < level.getBoard().rows; row++){
-				for(int column = 0; column < level.getBoard().columns; column++){
+			for(int row = 0; row < level.getBoard().getRows(); row++){
+				for(int column = 0; column < level.getBoard().getColumns(); column++){
 					if(object.equals(level.getBoard().getTile(row, column)))
 						redrawTile(row, column);
 				}

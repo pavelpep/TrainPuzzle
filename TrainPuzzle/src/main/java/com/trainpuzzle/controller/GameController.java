@@ -86,8 +86,8 @@ public class GameController {
 		}
 	}
 	public void removeAllTracks() {
-		for(int row = 0; row < level.getBoard().rows; row++) {
-			for(int column = 0; column < level.getBoard().columns; column++) {
+		for(int row = 0; row < level.getBoard().getRows(); row++) {
+			for(int column = 0; column < level.getBoard().getColumns(); column++) {
 				try {
 					if(level.getBoard().getTile(row, column).hasTrack()){
 						trackPlacer.removeTrack(row, column);

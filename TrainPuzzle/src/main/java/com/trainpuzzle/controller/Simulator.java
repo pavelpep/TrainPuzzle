@@ -168,7 +168,7 @@ public class Simulator implements Observable{
 	}
 	
 	private boolean isOffTheMap(Location location) {
-		return (location.getRow() >= board.rows || location.getColumn() >= board.columns);
+		return (location.getRow() >= board.getRows() || location.getColumn() >= board.getColumns());
 	}	
 	
 	

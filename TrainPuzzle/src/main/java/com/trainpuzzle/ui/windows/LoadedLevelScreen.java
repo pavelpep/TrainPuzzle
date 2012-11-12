@@ -207,7 +207,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel mapPanel() {
 		JPanel mapPanel = new JPanel();
 		((FlowLayout) mapPanel.getLayout()).setVgap(0);
-		loadedLevelMap = new LevelMap(gameController, level.getBoard().rows, level.getBoard().columns);
+		loadedLevelMap = new LevelMap(gameController, level.getBoard().getRows(), level.getBoard().getColumns());
 		mapPanel.add(loadedLevelMap);
 		
 		return mapPanel;

@@ -9,21 +9,21 @@ public class Board implements Observable, java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public int rows = 15;
-	public int columns = 20;
+	private int rows = 15;
+	private int columns = 20;
 	private Tile[][] tiles;
 	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
-		tiles = new Tile[rows][columns];
+		tiles = new Tile[getRows()][getColumns()];
 		initializeTiles();
 	}
 	
 	public Board(int numRows, int numColumns) {
-		rows = numRows;
-		columns = numColumns;
-		tiles = new Tile[rows][columns];
+		setRows(numRows);
+		setColumns(numColumns);
+		tiles = new Tile[getRows()][getColumns()];
 		initializeTiles();
 	}
 	
@@ -41,8 +41,8 @@ public class Board implements Observable, java.io.Serializable {
 	}
 		
 	private void initializeTiles() {
-		for(int row = 0; row < rows; row++) {
-			for(int column = 0; column < columns; column++) {
+		for(int row = 0; row < getRows(); row++) {
+			for(int column = 0; column < getColumns(); column++) {
 				tiles[row][column] = new Tile();
 			}	
 		}
@@ -54,5 +54,21 @@ public class Board implements Observable, java.io.Serializable {
 	
 	public Tile getTile(Location location) {
 		return tiles[location.getRow()][location.getColumn()];
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public void setColumns(int columns) {
+		this.columns = columns;
 	}
 }
