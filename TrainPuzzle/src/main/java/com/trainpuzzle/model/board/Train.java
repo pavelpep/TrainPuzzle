@@ -56,13 +56,15 @@ public class Train implements Observable{
 	}
 	
 	private void moveCars(){
-		trainCars.get(0).setLocation(trainCars.get(1).getLocation());
-		trainCars.get(1).setLocation(trainCars.get(2).getLocation());
-		trainCars.get(2).setLocation(this.location);
+		int lastCar = trainCars.size() - 1;
 		
-		trainCars.get(0).setHeading(trainCars.get(1).getHeading());
-		trainCars.get(1).setHeading(trainCars.get(2).getHeading());
-		trainCars.get(2).setHeading(this.heading);
+		for(int i = 0; i < lastCar; i++){
+			trainCars.get(i).setLocation(trainCars.get(i+1).getLocation());
+			trainCars.get(i).setHeading(trainCars.get(i+1).getHeading());
+		}
+		
+		trainCars.get(lastCar).setLocation(this.location);
+		trainCars.get(lastCar).setHeading(this.heading);
 	}
 	
 	public List<Cargo> dropOff(List<Cargo> requestedCargo){
