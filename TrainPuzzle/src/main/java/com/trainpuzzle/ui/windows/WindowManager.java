@@ -42,4 +42,8 @@ public class WindowManager {
 			windowList.peek().setVisible(true);
 		}
 	}
+	
+	public void exit() {
+		System.exit(0);
+	}
 }

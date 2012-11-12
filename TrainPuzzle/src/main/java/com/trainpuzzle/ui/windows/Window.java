@@ -14,13 +14,33 @@ abstract class Window extends JFrame implements ActionListener {
 	protected static final int DEFAULT_WIDTH = 1028;
 	protected static final int DEFAULT_HEIGHT = 768;
 	
+	private JFrame mainFrame = new JFrame();
+	private JDialog nameDialog = new JDialog(mainFrame, "User Name Entry", true);
+	
 	
 	public Window() {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
-				WindowManager.getManager().showPreviousWindow();
-        	}
+				String[] options = {"Exit", "Previous Window", "Cancel"};
+				int choice = JOptionPane.showOptionDialog(
+					null, 
+					"", 
+					"Exit Confirmation", 
+					JOptionPane.YES_NO_OPTION, 
+					JOptionPane.PLAIN_MESSAGE, 
+					null, 
+					options, 
+					options[0]);
+				
+				if(choice == 0){
+					WindowManager.getManager().exit();
+				}
+				if(choice == 1){
+					WindowManager.getManager().showPreviousWindow();
+				}
+				
+			}
 		});
 		setVisible(true);
 	}
