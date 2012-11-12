@@ -204,7 +204,7 @@ public class Simulator implements Observable{
 	private void pickCargo(Station station) {
 		List<Cargo> pickUpedCargos = train.pickUp(station.getExportCargo());
 		for(Cargo cargo : pickUpedCargos) {
-			station.pickupExtraCargo(cargo);
+			station.pickupExportCargo(cargo);
 		}
 	}
 	
@@ -212,7 +212,7 @@ public class Simulator implements Observable{
 	private void dropCargo(Station station) {
 		List<Cargo> droppedCargo = train.dropOff(station.getImportCargo());
 		for(Cargo cargo : droppedCargo) {
-			station.dropoffRequiredCargo(cargo);
+			station.dropoffImportCargo(cargo);
 			DropCargoEvent event = new DropCargoEvent(100,station,cargo);
 			this.victoryConditionEvaluator.processEvent(event);
 		}

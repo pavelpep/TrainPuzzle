@@ -29,8 +29,8 @@ public class Station implements java.io.Serializable {
 	private CompassHeading entranceFacing;
 	private Track track;
 	private Obstacle stationBuilding;
-	private LinkedList<Cargo> extraCargo = new LinkedList<Cargo>();
-	private LinkedList<Cargo> requiredCargo = new LinkedList<Cargo>();
+	private LinkedList<Cargo> exportCargo = new LinkedList<Cargo>();
+	private LinkedList<Cargo> importCargo = new LinkedList<Cargo>();
 	
 	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
@@ -129,54 +129,55 @@ public class Station implements java.io.Serializable {
 	}	
 	
 	public boolean hasExtraCargo() {
-		return extraCargo.size() > 0;
+		return exportCargo.size() > 0;
 	}
 	
 	public boolean hasRequiredCargo() {
-		return requiredCargo.size() > 0;
+		return importCargo.size() > 0;
 	}
 	
 	public LinkedList<Cargo> getExportCargo() {
-		return this.extraCargo;	
+		return this.exportCargo;	
 	}
 	
-	public void setExtraCargo(LinkedList<Cargo> extraCargo) {
-		this.extraCargo = extraCargo;
+	public void setExportCargo(LinkedList<Cargo> extraCargo) {
+		this.exportCargo = extraCargo;
 	}
 
 	public LinkedList<Cargo> getImportCargo() {
-		return requiredCargo;	
+		return importCargo;	
 	}	
 	
-	public void pickupExtraCargo(Cargo cargo) {
-		assert extraCargo.size() > 0;
+	public void pickupExportCargo(Cargo cargo) {
+		System.out.print("Train Received Cargo from Station\n");
+		assert exportCargo.size() > 0;
 		
-		extraCargo.removeFirstOccurrence(cargo);		
+		exportCargo.removeFirstOccurrence(cargo);		
 	}
 	
 	public void setRequiredCargo(LinkedList<Cargo> requiredCargo) {
-		this.requiredCargo = requiredCargo;
+		this.importCargo = requiredCargo;
 	}
 
-	public void addExtraCargo(Cargo cargo) {
-		assert extraCargo.size() < 2 : "Cargo types can be up to 2";
+	public void addExportCargo(Cargo cargo) {
+		assert exportCargo.size() < 2 : "Cargo types can be up to 2";
 		
-		this.extraCargo.add(cargo);
+		this.exportCargo.add(cargo);
 	}
 	
 	public void addRequiredCargo(Cargo cargo) {
-		assert requiredCargo.size() < 2 : "Cargo types can be up to 2";		
+		assert importCargo.size() < 2 : "Cargo types can be up to 2";		
 		
-		this.requiredCargo.add(cargo);
+		this.importCargo.add(cargo);
 	}
 
 	public boolean isRequiredCargo(Cargo cargo) {
-		return requiredCargo.contains(cargo);
+		return importCargo.contains(cargo);
 	}
 	
-	public void dropoffRequiredCargo(Cargo cargo)  {
-		requiredCargo.removeFirstOccurrence(cargo);
-		System.out.print("Station: " + stationLocation.toString() + " Receive Cargo: " + cargo.getType().toString());
+	public void dropoffImportCargo(Cargo cargo)  {
+		System.out.print("Station Received Cargo from Train\n");
+		importCargo.removeFirstOccurrence(cargo);
 	}
 	
 	@Override

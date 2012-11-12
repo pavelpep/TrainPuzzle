@@ -89,6 +89,8 @@ public class Train implements Observable{
 				if(trainCar.hasCargo() == false){
 						Cargo cargoTaken = new Cargo(cargo.getType());
 						cargoPickedUp.add(cargoTaken);
+						trainCar.addCargo(cargoTaken);
+						break;
 					}
 				}
 		}

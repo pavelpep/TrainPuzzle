@@ -124,12 +124,13 @@ public class LevelFactory {
 	        ArrayList<Station> stations = new ArrayList<Station>();
 	        Station stationToAdd=new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST);
 	        stations.add(stationToAdd);
-	        stationToAdd.addExtraCargo(new Cargo(CargoType.IRON));
-	        stationToAdd.addExtraCargo(new Cargo(CargoType.WOOD));
+	        stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
+	        stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
 	        
 	        stationToAdd=new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);
-	        stationToAdd.addExtraCargo(new Cargo(CargoType.COTTON));
+	        stationToAdd.addRequiredCargo(new Cargo(CargoType.IRON));
+	        stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
 	        
 	        stationToAdd=new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);

@@ -257,6 +257,7 @@ public class LevelMap extends JPanel implements Observer {
 		train.register(this);
 		redrawTrain(train);
 		redrawTrainCars(train);
+		redrawTrainCargo(train);
 	}
 	
 	private void redrawTrain(Train train) {
@@ -290,6 +291,21 @@ public class LevelMap extends JPanel implements Observer {
 		
 	}
 	
+	private void redrawTrainCargo(Train train){
+		
+		TrainCar trainCars[] = train.getTrainCars();
+		
+		for(TrainCar trainCar: trainCars){
+			int row = trainCar.getLocation().getRow();
+			int column = trainCar.getLocation().getColumn();
+			if(trainCar.hasCargo()){
+				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo()));
+				cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+				mapTiles[row][column].add(cargoLayer, new Integer(cargoLayerIndex));
+			}
+			this.repaint();
+		}
+	}
 	private void removeComponentsInGUILayer(JLayeredPane mapTile, int layerIndex) {
 		try {
 			Component[] components = mapTile.getComponentsInLayer(layerIndex);
@@ -310,6 +326,7 @@ public class LevelMap extends JPanel implements Observer {
 		if(object instanceof Train){
 			redrawTrain(train);
 			redrawTrainCars(train);
+			redrawTrainCargo(train);
 		}
 		else if(object instanceof Tile){
 			for(int row = 0; row < level.getBoard().getRows(); row++){
