@@ -43,6 +43,10 @@ public class WindowManager {
 		}
 	}
 	
+	public boolean hasPreviousWindow() {
+		return windowList.size() > 1;
+	}
+	
 	public void exit() {
 		System.exit(0);
 	}

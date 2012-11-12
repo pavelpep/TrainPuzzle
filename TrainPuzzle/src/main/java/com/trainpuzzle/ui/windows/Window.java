@@ -22,7 +22,14 @@ abstract class Window extends JFrame implements ActionListener {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
-				String[] options = {"Exit", "Previous Window", "Cancel"};
+				String[] options;
+				if(WindowManager.getManager().hasPreviousWindow()) {
+					options= new String[]{"Exit", "Previous Window", "Cancel"};
+				}
+				else {
+					options= new String[]{"Exit", "Cancel"};
+				}
+				
 				int choice = JOptionPane.showOptionDialog(
 					null, 
 					"", 
@@ -33,12 +40,17 @@ abstract class Window extends JFrame implements ActionListener {
 					options, 
 					options[0]);
 				
-				if(choice == 0){
+				if(options[choice].equals("Exit")){
 					WindowManager.getManager().exit();
 				}
-				if(choice == 1){
+				if(options[choice].equals("Previous Window")){
 					WindowManager.getManager().showPreviousWindow();
 				}
+				if(options[choice].equals("Cancel")){
+					
+				}
+				
+				
 				
 			}
 		});
