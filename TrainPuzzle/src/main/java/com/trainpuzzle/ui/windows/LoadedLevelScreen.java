@@ -177,6 +177,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		initializeComponent(cargoImageLabel, 10);
 		cargo.add(cargoImageLabel);
 		
+		
 		return cargo;
 	}
 

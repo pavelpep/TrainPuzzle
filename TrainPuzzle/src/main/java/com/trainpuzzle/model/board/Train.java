@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.board;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,18 +14,28 @@ public class Train implements Observable{
 	private CompassHeading heading = CompassHeading.EAST;
 	Set<Observer> observerList = new HashSet<Observer>();
 	List<TrainCar> trainCars = new ArrayList<TrainCar>();
+	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
+	
 	
 	
 	/* Public Interface */
 	
 	public Train() {
 		add3Cars();
+		initializeNumCargoes();
 	}
 	
 	public Train(Location location, CompassHeading heading) {	
 		this.location = location;
 		this.heading = heading;
 		add3Cars();
+		initializeNumCargoes();
+	}
+	
+	public void initializeNumCargoes(){
+		this.numOfCargoes.put(Cargo.CargoType.COTTON, 0);
+		this.numOfCargoes.put(Cargo.CargoType.IRON, 0);
+		this.numOfCargoes.put(Cargo.CargoType.WOOD, 0);
 	}
 	
 	public void add3Cars(){
@@ -32,6 +43,7 @@ public class Train implements Observable{
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 	}
+	 
 	
 	public void register(Observer observer){
 		observerList.add(observer);
@@ -82,7 +94,7 @@ public class Train implements Observable{
 		}
 		return cargoDroppedOff; 
 	}
-	
+		
 	public List<Cargo> pickUp(List<Cargo> availableCargo){
 		List<Cargo>  cargoPickedUp = new ArrayList<Cargo>();
 		
@@ -92,11 +104,21 @@ public class Train implements Observable{
 						Cargo cargoTaken = new Cargo(cargo.getType());
 						cargoPickedUp.add(cargoTaken);
 						trainCar.addCargo(cargoTaken);
+						incrementNumber(cargoTaken);
 						break;
 					}
 				}
 		}
 		return cargoPickedUp; 
+	}
+	
+	
+	private void incrementNumber(Cargo cargo){
+		Integer currentNumOfCargoes = 0; 
+		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
+		currentNumOfCargoes = currentNumOfCargoes + 1;		
+		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
+		System.out.println("currentNumOfCargo=" + cargo.getType() + numOfCargoes.get(cargo.getType()));
 	}
 	
 	public void resetTrainCars(){
