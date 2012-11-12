@@ -216,8 +216,12 @@ public class LevelFactory {
 	        ArrayList<Location> mountainLocations = new ArrayList<Location>();
 	        mountainLocations.add(new Location(8, 10));
 	        mountainLocations.add(new Location(4, 6));
-	        mountainLocations.add(new Location(13, 18));
 	        setObstacles(mountainLocations, ObstacleType.MOUNTAINS);
+	        
+	        setObstaclesByRow(11, 13, 14, ObstacleType.MOUNTAINS);
+	        setObstaclesByRow(12, 14, 15, ObstacleType.MOUNTAINS);
+	        setObstaclesByRow(13, 13, 14, ObstacleType.MOUNTAINS);
+	        setObstaclesByRow(14, 12, 13, ObstacleType.MOUNTAINS);
 	              
 	        ArrayList<Location> treeLocations = new ArrayList<Location>();
 	        treeLocations.add(new Location(5, 13));
