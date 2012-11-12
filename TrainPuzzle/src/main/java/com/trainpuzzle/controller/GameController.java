@@ -102,6 +102,10 @@ public class GameController {
 	public CampaignManager getCampaignManager() {
 		return campaignManager;
 	}
+	
+	public void resetCampaign(int campaignNumber) {
+		campaignManager.resetCampaign(campaignNumber);
+	}
 	public LevelManager getLevelManager() {
 		return levelManager;
 	}

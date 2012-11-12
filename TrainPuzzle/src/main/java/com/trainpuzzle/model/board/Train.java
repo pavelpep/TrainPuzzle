@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Iterator;
 
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -70,7 +71,16 @@ public class Train implements Observable{
 	public List<Cargo> dropOff(List<Cargo> requestedCargo){
 		List<Cargo>  cargoDroppedOff = new ArrayList<Cargo>();
 		
-		
+		for(Cargo cargo: requestedCargo){
+			for(TrainCar trainCar: trainCars){
+				if(trainCar.hasCargo()){
+					if(trainCar.getCargo().getType() == cargo.getType()){
+						Cargo cargoDropped = trainCar.dropCargo();
+						cargoDroppedOff.add(cargoDropped);
+					}
+				}
+			}
+		}
 		
 		return cargoDroppedOff; 
 	}
@@ -78,7 +88,15 @@ public class Train implements Observable{
 	public List<Cargo> pickUp(List<Cargo> availableCargo){
 		List<Cargo>  cargoPickedUp = new ArrayList<Cargo>();
 		
-		
+		for(Cargo cargo: availableCargo){
+			for(TrainCar trainCar: trainCars){
+				if(trainCar.hasCargo() == false){
+						Cargo cargoTaken = new Cargo(cargo.getType());
+						cargoPickedUp.add(cargoTaken);
+					}
+				}
+		}
+	
 		
 		return cargoPickedUp; 
 	}

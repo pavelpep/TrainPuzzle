@@ -33,5 +33,11 @@ public class CampaignManager {
 		FileManager.saveCampaign(selectedCampaign, selectedCampaign.getName());
 	}
 	
+	public void resetCampaign(int campaignNumber){
+		campaigns.get(campaignNumber).reset();
+		selectCampaign(campaignNumber + 1);
+		saveCampaign();
+	}
+	
 	  
 }
