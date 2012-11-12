@@ -18,14 +18,16 @@ public class Train implements Observable{
 	/* Public Interface */
 	
 	public Train() {
-		
+		add3Cars();
 	}
 	
 	public Train(Location location, CompassHeading heading) {	
 		this.location = location;
 		this.heading = heading;
-		
-		//add 3 traincars
+		add3Cars();
+	}
+	
+	public void add3Cars(){
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));

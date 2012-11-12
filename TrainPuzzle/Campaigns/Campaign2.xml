@@ -3,12 +3,12 @@
   <campaignLevels>
     <com.trainpuzzle.model.level.CampaignLevel>
       <isLocked>false</isLocked>
-      <isCompleted>true</isCompleted>
+      <isCompleted>false</isCompleted>
       <hasUserSave>false</hasUserSave>
       <levelNumber>1</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
     <com.trainpuzzle.model.level.CampaignLevel>
-      <isLocked>false</isLocked>
+      <isLocked>true</isLocked>
       <isCompleted>false</isCompleted>
       <hasUserSave>false</hasUserSave>
       <levelNumber>2</levelNumber>

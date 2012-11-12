@@ -27,7 +27,7 @@ import com.trainpuzzle.exception.TrainCrashException;
 
 public class Simulator implements Observable{
 	
-	private transient Set<Observer> observerList = new HashSet<Observer>();
+	private Set<Observer> observerList = new HashSet<Observer>();
 	
 	private Level level;
 	private Board board;
@@ -51,29 +51,39 @@ public class Simulator implements Observable{
 	}
 
 	private void initializeSimulator() {
-		Location startPoint = new Location(this.level.getStartLocation());
-		this.train = new Train(startPoint,EAST);
+		this.train = new Train();
+		resetTrain();
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
-		trainCrashed = false;
+		
 	}
-	
-	
-	public void reset() {
-		isRunning = false;
+	private void resetTrain() {
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
 		this.train.resetTrainCars();
-		this.victoryConditionEvaluator.resetEvents();
 		trainCrashed=false;
+	}
+	
+	private void resetStations() {
+		
+	}	
+	
+	private void resetVictoryConditions() {
+		this.victoryConditionEvaluator.resetEvents();
+	}
+	
+	public void reset() {
+		resetTrain();
+		resetStations();
+		resetVictoryConditions();
 		stop();
 	}
 	
 	public void stop() {
 		executor.shutdownNow();
-		isRunning = false;
 		notifyAllObservers();
 		System.out.println("STOPPED");
+		isRunning = false;
 	}
 	
 	public void run(){
@@ -204,7 +214,7 @@ public class Simulator implements Observable{
 	private void pickCargo(Station station) {
 		List<Cargo> pickUpedCargos = train.pickUp(station.getExportCargo());
 		for(Cargo cargo : pickUpedCargos) {
-			station.pickupExportCargo(cargo);
+			station.sendExportCargo(cargo);
 		}
 	}
 	
@@ -212,7 +222,7 @@ public class Simulator implements Observable{
 	private void dropCargo(Station station) {
 		List<Cargo> droppedCargo = train.dropOff(station.getImportCargo());
 		for(Cargo cargo : droppedCargo) {
-			station.dropoffImportCargo(cargo);
+			station.receiveImportCargo(cargo);
 			DropCargoEvent event = new DropCargoEvent(100,station,cargo);
 			this.victoryConditionEvaluator.processEvent(event);
 		}

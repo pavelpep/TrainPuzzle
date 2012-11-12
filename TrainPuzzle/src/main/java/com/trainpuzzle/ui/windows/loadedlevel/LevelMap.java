@@ -46,6 +46,7 @@ public class LevelMap extends JPanel implements Observer {
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
 	private final int cargoLayerIndex=4;
+	private final int cargoTrainLayerIndex=5;
 	private final int tileSizeInPixels = 40;
 	
 
@@ -262,8 +263,10 @@ public class LevelMap extends JPanel implements Observer {
 	
 	private void redrawTrain(Train train) {
 		for(JLayeredPane[] tileArr: mapTiles){
-			for(JLayeredPane tile: tileArr)
-			removeComponentsInGUILayer(tile,trainLayerIndex);
+			for(JLayeredPane tile: tileArr){
+				removeComponentsInGUILayer(tile,trainLayerIndex);
+				removeComponentsInGUILayer(tile,cargoTrainLayerIndex);
+			}
 		}
 		
 		int rotation = train.getHeading().ordinal() - 3;
@@ -301,7 +304,7 @@ public class LevelMap extends JPanel implements Observer {
 			if(trainCar.hasCargo()){
 				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo()));
 				cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
-				mapTiles[row][column].add(cargoLayer, new Integer(cargoLayerIndex));
+				mapTiles[row][column].add(cargoLayer, new Integer(cargoTrainLayerIndex));
 			}
 			this.repaint();
 		}

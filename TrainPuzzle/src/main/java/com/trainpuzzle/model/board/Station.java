@@ -21,9 +21,7 @@ public class Station implements java.io.Serializable {
 		RED,
 		GREEN;
 	}
-	
-	// TODO: create load type
-	
+		
 	private StationType stationType;
 	private Location stationLocation;
 	private CompassHeading entranceFacing;
@@ -128,11 +126,11 @@ public class Station implements java.io.Serializable {
 		return stationBuilding;
 	}	
 	
-	public boolean hasExtraCargo() {
+	public boolean hasExportCargo() {
 		return exportCargo.size() > 0;
 	}
 	
-	public boolean hasRequiredCargo() {
+	public boolean hasImportCargo() {
 		return importCargo.size() > 0;
 	}
 	
@@ -140,44 +138,32 @@ public class Station implements java.io.Serializable {
 		return this.exportCargo;	
 	}
 	
-	public void setExportCargo(LinkedList<Cargo> extraCargo) {
-		this.exportCargo = extraCargo;
-	}
-
 	public LinkedList<Cargo> getImportCargo() {
 		return importCargo;	
 	}	
 	
-	public void pickupExportCargo(Cargo cargo) {
+	public void sendExportCargo(Cargo cargo) {
 		System.out.print("Train Received Cargo from Station\n");
 		assert exportCargo.size() > 0;
 		
 		exportCargo.removeFirstOccurrence(cargo);		
 	}
 	
-	public void setRequiredCargo(LinkedList<Cargo> requiredCargo) {
-		this.importCargo = requiredCargo;
+	public void receiveImportCargo(Cargo cargo)  {
+		System.out.print("Station Received Cargo from Train\n");
+		importCargo.removeFirstOccurrence(cargo);
 	}
-
+	
 	public void addExportCargo(Cargo cargo) {
 		assert exportCargo.size() < 2 : "Cargo types can be up to 2";
 		
 		this.exportCargo.add(cargo);
 	}
 	
-	public void addRequiredCargo(Cargo cargo) {
+	public void addImportCargo(Cargo cargo) {
 		assert importCargo.size() < 2 : "Cargo types can be up to 2";		
 		
 		this.importCargo.add(cargo);
-	}
-
-	public boolean isRequiredCargo(Cargo cargo) {
-		return importCargo.contains(cargo);
-	}
-	
-	public void dropoffImportCargo(Cargo cargo)  {
-		System.out.print("Station Received Cargo from Train\n");
-		importCargo.removeFirstOccurrence(cargo);
 	}
 	
 	@Override
