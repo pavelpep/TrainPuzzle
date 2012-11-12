@@ -188,7 +188,7 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 	public void notifyChange(Object object) {
 		this.removeAll();
 		trackGroups();
-		
+		this.validate();
 	}
 	
 }
