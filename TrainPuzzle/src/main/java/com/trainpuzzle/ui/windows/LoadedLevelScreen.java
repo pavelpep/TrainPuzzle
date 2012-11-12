@@ -182,7 +182,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private JPanel sidePanel() {
 		JPanel sidePanel = new JPanel();
-		sidePanel.setPreferredSize(new Dimension(200, 650));
+		sidePanel.setPreferredSize(new Dimension(200, 600));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
 		gameControlBox = new GameControlBox(gameController);

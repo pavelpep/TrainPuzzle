@@ -1,7 +1,9 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +44,8 @@ public class TrackSelection extends JPanel implements ActionListener{
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder sidePanelTitle;
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track");
+		String totalTrackLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.TRACK));
+		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track " + totalTrackLimit);
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(sidePanelTitle);
 	
@@ -51,8 +54,7 @@ public class TrackSelection extends JPanel implements ActionListener{
 	}
 	
 	private void intializeTrackList(){
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.getInsets(new Insets(0, 0, 0, 0));
+		this.setLayout(new GridLayout(0,1));
 		
 		JPanel straightPanel = new JPanel();
 		straightPanel.add(track(TrackType.STRAIGHT_TRACK, Images.STRAIGHT_TRACK_IMAGE, "straightTrack"));
@@ -64,23 +66,25 @@ public class TrackSelection extends JPanel implements ActionListener{
 		JPanel curvePanel = new JPanel();
 		curvePanel.add(track(TrackType.CURVELEFT_TRACK, Images.CURVELEFT_TRACK_IMAGE, "curveleftTrack"));
 		curvePanel.add(track(TrackType.CURVERIGHT_TRACK, Images.CURVERIGHT_TRACK_IMAGE, "curverightTrack"));
-		String curveLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.CURVE).toString();
+		String curveLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.CURVE));
 		curvePanel.add(new JLabel(curveLimit));
 		this.add(curvePanel);
 		
 		JPanel intersectionPanel = new JPanel();
 		intersectionPanel.add(track(TrackType.INTERSECTION_TRACK, Images.INTERSECTION_TRACK_IMAGE, "intersectionTrack"));
 		intersectionPanel.add(track(TrackType.DIAGONAL_INTERSECTION_TRACK, Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack"));
-		String intersectionLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION).toString();
+		String intersectionLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION));
 		intersectionPanel.add(new JLabel(intersectionLimit));
 		this.add(intersectionPanel);
 		
 		JPanel switchPanel = new JPanel();
 		switchPanel.add(track(TrackType.CURVELEFT_STRAIGHT_SWITCH, Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch"));
 		switchPanel.add(track(TrackType.CURVERIGHT_STRAIGHT_SWITCH, Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch"));
-		String switchnLimit = gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION).toString();
-		switchPanel.add(new JLabel(switchnLimit));
+		String switchLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION));
+		switchPanel.add(new JLabel(switchLimit));
 		this.add(switchPanel);
+		
+		
 	}
 	
 	private JPanel track(TrackType trackType, ImageIcon trackImage, String actionCommand) {
@@ -95,10 +99,10 @@ public class TrackSelection extends JPanel implements ActionListener{
 	
 	private String trackLimitToString(int trackLimit) {
 		if(trackLimit != -1) {
-			return "" + trackLimit;
+			return "[" + trackLimit + "]";
 		}
 		else {
-			return "" + '\u221e';
+			return "[" + "\u221e" + "]";
 		}
 	}
 	

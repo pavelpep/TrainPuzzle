@@ -14,8 +14,12 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.infrastructure.Images;
+import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Track;
+import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 
@@ -37,13 +41,20 @@ public class SelectedTrack extends JPanel implements ActionListener {
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(sidePanelTitle);
 		this.add(rotateButton());
+		
+		setDefaultTrack();
+		
+	}
+
+	private void setDefaultTrack() {
+		Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
+		Track selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+		redrawRotateButton(selectedTrack, selectedTrackImage);
 	}
 	
 	private JButton rotateButton() {
 		rotateButton = new JButton();
-		rotateButton.setBounds(0, 0, 40, 40);
-		rotateButton.setPreferredSize(new Dimension(100, 100));
-		rotateButton.setMargin(new Insets(0, 15, 0, 0));
 		rotateButton.setActionCommand("rotateTrack");
 		rotateButton.addActionListener(this);
 		return rotateButton;
