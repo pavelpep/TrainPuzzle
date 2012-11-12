@@ -1,10 +1,14 @@
 package test.trainpuzzle.model.board;
 
+import com.trainpuzzle.model.board.CompassHeading;
+import com.trainpuzzle.model.board.Connection;
+
 import junit.framework.TestCase;
 
 public class ConnectionTest extends TestCase {
-
+	Connection connection;
 	protected void setUp() throws Exception {
+		connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
 		super.setUp();
 	}
 
@@ -12,55 +16,48 @@ public class ConnectionTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
-
 	public void testConnection() {
-		fail("Not yet implemented"); // TODO
+		connection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+		assertNotNull(connection);
 	}
 
 	public void testGetCompassHeadingPair() {
-		fail("Not yet implemented"); // TODO
+		CompassHeading[] expectedPair = new CompassHeading[2];
+		expectedPair[0] = CompassHeading.NORTH;
+		expectedPair[1] = CompassHeading.SOUTH;
+		CompassHeading[] actualPair = connection.getCompassHeadingPair();
+		
+		assertEquals(expectedPair, actualPair);
 	}
 
 	public void testIsInboundHeading() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(connection.isInboundHeading(CompassHeading.NORTH));
+		assertFalse(connection.isInboundHeading(CompassHeading.WEST));
 	}
 
-	public void testOutboundorInbound() {
-		fail("Not yet implemented"); // TODO
+	public void testOutboundForInbound() {
+		assertEquals(CompassHeading.SOUTH, connection.outboundForInbound(CompassHeading.NORTH));
 	}
 
 	public void testEqualsObject() {
-		fail("Not yet implemented"); // TODO
+		Connection newConnection = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+		assertEquals(connection, newConnection);
 	}
 
 	public void testRotate45Degrees() {
-		fail("Not yet implemented"); // TODO
+		Connection newConnection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+		connection.rotate45Degrees();
+		assertEquals(connection, newConnection);
 	}
 
 	public void testRotate90Degrees() {
-		fail("Not yet implemented"); // TODO
+		Connection newConnection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+		connection.rotate90Degrees();
+		assertEquals(connection, newConnection);
 	}
 
-	public void testObject() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testGetClass() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testEqualsObject1() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testToString() {
+/*
+ 	public void testHashCode() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -71,21 +68,6 @@ public class ConnectionTest extends TestCase {
 	public void testNotifyAll() {
 		fail("Not yet implemented"); // TODO
 	}
-
-	public void testWaitLong() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testWaitLongInt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testWait() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	public void testFinalize() {
-		fail("Not yet implemented"); // TODO
-	}
+*/
 
 }

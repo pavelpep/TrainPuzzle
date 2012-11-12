@@ -1,10 +1,15 @@
 package test.trainpuzzle.model.board;
 
+import com.trainpuzzle.model.board.CompassHeading;
+import static com.trainpuzzle.model.board.CompassHeading.*;
+
 import junit.framework.TestCase;
 
 public class CompassHeadingTest extends TestCase {
-
+	CompassHeading heading;
+	
 	protected void setUp() throws Exception {
+		heading = NORTH;
 		super.setUp();
 	}
 
@@ -13,31 +18,31 @@ public class CompassHeadingTest extends TestCase {
 	}
 
 	public void testGetHeading() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(NORTH, CompassHeading.getHeading(0));
 	}
 
 	public void testOpposite() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(SOUTH, heading.opposite());
 	}
 
 	public void testRotate90DegreesClockwise() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(EAST, heading.rotate90DegreesClockwise());
 	}
 
 	public void testRotate90DegreesCounterClockwise() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(WEST, heading.rotate90DegreesCounterClockwise());
 	}
 
 	public void testRotate45DegreesClockwise() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(NORTHWEST, heading.rotate45DegreesClockwise());
 	}
 
 	public void testRotate45DegreesCounterClockwise() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(NORTHEAST, heading.rotate45DegreesCounterClockwise());
 	}
 
 	public void testGetValue() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(0, heading.getValue());
 	}
 
 }
