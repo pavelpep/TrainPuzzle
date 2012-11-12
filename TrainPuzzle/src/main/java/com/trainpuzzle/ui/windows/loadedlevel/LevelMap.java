@@ -100,6 +100,9 @@ public class LevelMap extends JPanel implements Observer {
 			case WATER:
 				landscapeLayer=new JLabel(Images.WATER_IMAGE);
 				break;
+			case DIRT:
+				landscapeLayer=new JLabel(Images.DIRT_IMAGE);
+				break;
 		}
 		
 		if(level.getBoard().getTile(row, column).getLandscapeType().equals("water")) {
@@ -129,7 +132,7 @@ public class LevelMap extends JPanel implements Observer {
 					break;
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
-					break;				
+					break;	
 			default:
 				break;
 			}
