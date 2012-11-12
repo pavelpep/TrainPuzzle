@@ -23,8 +23,8 @@ public class ConnectionTest extends TestCase {
 
 	public void testGetCompassHeadingPair() {
 		CompassHeading[] expectedPair = new CompassHeading[2];
-		expectedPair[0] = CompassHeading.NORTH;
-		expectedPair[1] = CompassHeading.SOUTH;
+		expectedPair[1] = CompassHeading.NORTH;
+		expectedPair[0] = CompassHeading.SOUTH;
 		CompassHeading[] actualPair = connection.getCompassHeadingPair();
 		
 		assertEquals(expectedPair, actualPair);
@@ -51,7 +51,7 @@ public class ConnectionTest extends TestCase {
 	}
 
 	public void testRotate90Degrees() {
-		Connection newConnection = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+		Connection newConnection = new Connection(CompassHeading.EAST, CompassHeading.WEST);
 		connection.rotate90Degrees();
 		assertEquals(connection, newConnection);
 	}

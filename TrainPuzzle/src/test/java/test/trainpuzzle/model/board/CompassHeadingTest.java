@@ -18,7 +18,7 @@ public class CompassHeadingTest extends TestCase {
 	}
 
 	public void testGetHeading() {
-		assertEquals(NORTH, CompassHeading.getHeading(0));
+		assertEquals(NORTH, CompassHeading.getHeading(1));
 	}
 
 	public void testOpposite() {
@@ -34,15 +34,15 @@ public class CompassHeadingTest extends TestCase {
 	}
 
 	public void testRotate45DegreesClockwise() {
-		assertEquals(NORTHWEST, heading.rotate45DegreesClockwise());
+		assertEquals(NORTHEAST, heading.rotate45DegreesClockwise());
 	}
 
 	public void testRotate45DegreesCounterClockwise() {
-		assertEquals(NORTHEAST, heading.rotate45DegreesCounterClockwise());
+		assertEquals(NORTHWEST, heading.rotate45DegreesCounterClockwise());
 	}
 
 	public void testGetValue() {
-		assertEquals(0, heading.getValue());
+		assertEquals(1, heading.getValue());
 	}
 
 }

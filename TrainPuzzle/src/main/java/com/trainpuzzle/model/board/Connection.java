@@ -11,7 +11,7 @@ public class Connection implements java.io.Serializable {
 	/* Public Interface */
 	
 	public Connection(CompassHeading compassHeading1, CompassHeading compassHeading2) {
-		this.compassHeading1= compassHeading1;
+		this.compassHeading1 = compassHeading1;
 		this.compassHeading2 = compassHeading2;
 	}
 	
