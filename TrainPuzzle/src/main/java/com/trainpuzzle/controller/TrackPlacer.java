@@ -71,7 +71,7 @@ public class TrackPlacer {
 		if(hasNoError(errorMessage)) {
 			TrackType trackType=tile.getTrack().getTrackType();
 			tile.removeTrack();
-			economy.retrunOnePieceOfTrack(trackType);
+			economy.returnOnePieceOfTrack(trackType);
 			map.notifyAllObservers();
 		}
 		else {

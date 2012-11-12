@@ -26,65 +26,74 @@ import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.TrackType;
+import com.trainpuzzle.model.level.Economy;
+import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 
-public class TrackSelection extends JPanel implements ActionListener{
+public class TrackSelection extends JPanel implements ActionListener, Observer{
 	private static final long serialVersionUID = 1L;
 	
 
 	private LoadedLevelScreen loadedLevelScreen;
 	private GameController gameController;
+	private Economy economy;
 	
 	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
 		this.gameController = gameController;
 		this.loadedLevelScreen = loadedLevelScreen;
+		economy = gameController.getLevel().getEconomy();
+		economy.register(this);
 		
-		this.setPreferredSize(new Dimension(200, 350));
 		
-		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder sidePanelTitle;
-		String totalTrackLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.TRACK));
-		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track " + totalTrackLimit);
-		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
-		this.setBorder(sidePanelTitle);
 	
-		intializeTrackList();
+		initializeTrackList();
 		
 	}
 	
-	private void intializeTrackList(){
+	private void initializeTrackList(){
+		this.setPreferredSize(new Dimension(200, 350));
+		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+		TitledBorder sidePanelTitle;
+		String totalTrackLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.TRACK));
+		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track " + totalTrackLimit);
+		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		this.setBorder(sidePanelTitle);
 		this.setLayout(new GridLayout(0,1));
 		
+		trackGroups();
+		
+		
+	}
+
+	private void trackGroups() {
 		JPanel straightPanel = new JPanel();
 		straightPanel.add(track(TrackType.STRAIGHT_TRACK, Images.STRAIGHT_TRACK_IMAGE, "straightTrack"));
 		straightPanel.add(track(TrackType.DIAGONAL_TRACK, Images.DIAGONAL_TRACK_IMAGE, "diagonalTrack"));
-		String straightLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.STRAIGHT));
+		String straightLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.STRAIGHT));
 		straightPanel.add(new JLabel(straightLimit));
 		this.add(straightPanel);
 		
 		JPanel curvePanel = new JPanel();
 		curvePanel.add(track(TrackType.CURVELEFT_TRACK, Images.CURVELEFT_TRACK_IMAGE, "curveleftTrack"));
 		curvePanel.add(track(TrackType.CURVERIGHT_TRACK, Images.CURVERIGHT_TRACK_IMAGE, "curverightTrack"));
-		String curveLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.CURVE));
+		String curveLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.CURVE));
 		curvePanel.add(new JLabel(curveLimit));
 		this.add(curvePanel);
 		
 		JPanel intersectionPanel = new JPanel();
 		intersectionPanel.add(track(TrackType.INTERSECTION_TRACK, Images.INTERSECTION_TRACK_IMAGE, "intersectionTrack"));
 		intersectionPanel.add(track(TrackType.DIAGONAL_INTERSECTION_TRACK, Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack"));
-		String intersectionLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION));
+		String intersectionLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.INTERSECTION));
 		intersectionPanel.add(new JLabel(intersectionLimit));
 		this.add(intersectionPanel);
 		
 		JPanel switchPanel = new JPanel();
 		switchPanel.add(track(TrackType.CURVELEFT_STRAIGHT_SWITCH, Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch"));
 		switchPanel.add(track(TrackType.CURVERIGHT_STRAIGHT_SWITCH, Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch"));
-		String switchLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(TrackType.INTERSECTION));
+		String switchLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.INTERSECTION));
 		switchPanel.add(new JLabel(switchLimit));
 		this.add(switchPanel);
-		
-		
 	}
 	
 	private JPanel track(TrackType trackType, ImageIcon trackImage, String actionCommand) {
@@ -92,7 +101,7 @@ public class TrackSelection extends JPanel implements ActionListener{
 		trackPanel.setLayout(new BoxLayout(trackPanel, BoxLayout.Y_AXIS));
 		JButton trackButton = initializeButton(trackImage, actionCommand);
 		trackPanel.add(trackButton);
-		String straightTrackLimit = trackLimitToString(gameController.getLevel().getEconomy().getNumOfAvailableTrack(trackType));
+		String straightTrackLimit = trackLimitToString(economy.getNumOfAvailableTrack(trackType));
 		trackPanel.add(new JLabel(straightTrackLimit));
 		return trackPanel;
 	}
@@ -174,6 +183,12 @@ public class TrackSelection extends JPanel implements ActionListener{
 			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_SWITCH);
 			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
 		}
+	}
+
+	public void notifyChange(Object object) {
+		this.removeAll();
+		trackGroups();
+		
 	}
 	
 }

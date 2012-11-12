@@ -1,10 +1,16 @@
 package com.trainpuzzle.model.level;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.trainpuzzle.model.board.TrackType;
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
-public class Economy implements java.io.Serializable {
+public class Economy implements java.io.Serializable, Observable {
+	
+	private transient Set<Observer> observerList = new HashSet<Observer>();
 
 	private static final long serialVersionUID = 1L;
 	public static final int NO_LIMIT = -1;
@@ -37,9 +43,10 @@ public class Economy implements java.io.Serializable {
 		if(trackType.getParent() != null) {
 			useOnePieceOfTrack(trackType.getParent());
 		}
+		notifyAllObservers();
 	}
 	
-	public void retrunOnePieceOfTrack(TrackType trackType) {
+	public void returnOnePieceOfTrack(TrackType trackType) {
 		Integer currentNumOfThisTrack = numberOfAvailableTrack.get(trackType);
 		
 		if(budget != NO_LIMIT) {
@@ -50,8 +57,9 @@ public class Economy implements java.io.Serializable {
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
 		if(trackType.getParent() != null) {
-			retrunOnePieceOfTrack(trackType.getParent());
+			returnOnePieceOfTrack(trackType.getParent());
 		}
+		notifyAllObservers();
 	}
 	
 	public boolean isAvailable(TrackType trackType) {
@@ -90,5 +98,19 @@ public class Economy implements java.io.Serializable {
 	
 	public HashMap<TrackType, Integer> getTrackLimits() {
 		return this.numberOfAvailableTrack;
-	}	
+	}
+	
+	public void register(Observer observer){
+		if(observerList == null) {
+    	  observerList = new HashSet<Observer>();
+		}
+		observerList.add(observer);
+	}
+		
+	public void notifyAllObservers() {
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
+	} 
+	
 }
