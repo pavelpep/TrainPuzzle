@@ -39,34 +39,30 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 	private GameController gameController;
 	private Economy economy;
 	
+	private TitledBorder sidePanelTitle;
+	
 	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
 		this.gameController = gameController;
 		this.loadedLevelScreen = loadedLevelScreen;
 		economy = gameController.getLevel().getEconomy();
 		economy.register(this);
 		
-		
-	
-		initializeTrackList();
-		
-	}
-	
-	private void initializeTrackList(){
+		setTrackSelectionBorder();
 		this.setPreferredSize(new Dimension(200, 350));
+		this.setLayout(new GridLayout(0,1));
+		
+		initializeTrackList();
+	}
+
+	private void setTrackSelectionBorder() {
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder sidePanelTitle;
 		String totalTrackLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.TRACK));
 		sidePanelTitle = BorderFactory.createTitledBorder(loweredetched, "Select Track " + totalTrackLimit);
 		sidePanelTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(sidePanelTitle);
-		this.setLayout(new GridLayout(0,1));
-		
-		trackGroups();
-		
-		
 	}
 
-	private void trackGroups() {
+	private void initializeTrackList() {
 		JPanel straightPanel = new JPanel();
 		straightPanel.add(track(TrackType.STRAIGHT_TRACK, Images.STRAIGHT_TRACK_IMAGE, "straightTrack"));
 		straightPanel.add(track(TrackType.DIAGONAL_TRACK, Images.DIAGONAL_TRACK_IMAGE, "diagonalTrack"));
@@ -91,7 +87,7 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 		JPanel switchPanel = new JPanel();
 		switchPanel.add(track(TrackType.CURVELEFT_STRAIGHT_SWITCH, Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch"));
 		switchPanel.add(track(TrackType.CURVERIGHT_STRAIGHT_SWITCH, Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch"));
-		String switchLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.INTERSECTION));
+		String switchLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.SWITCH));
 		switchPanel.add(new JLabel(switchLimit));
 		this.add(switchPanel);
 	}
@@ -187,7 +183,8 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 
 	public void notifyChange(Object object) {
 		this.removeAll();
-		trackGroups();
+		setTrackSelectionBorder();
+		initializeTrackList();
 		this.validate();
 	}
 	
