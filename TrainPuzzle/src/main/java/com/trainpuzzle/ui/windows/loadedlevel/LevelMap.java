@@ -158,7 +158,7 @@ public class LevelMap extends JPanel implements Observer {
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
 	
-	private ImageIcon getExportCargoImage(Cargo cargo) {
+	private ImageIcon getImportCargoImage(Cargo cargo) {
 		switch(cargo.getType()){
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
@@ -171,7 +171,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private ImageIcon getImportCargoImage(Cargo cargo) {
+	private ImageIcon getExportCargoImage(Cargo cargo) {
 		switch(cargo.getType()){
 			case COTTON:
 				return Images.COTTON_IMAGE;
