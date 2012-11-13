@@ -36,12 +36,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JTextPane messageBox =  new JTextPane();
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
+	
+	JPanel cargoPanelPointer = new JPanel();
 
 	public LoadedLevelScreen(GameController gameController) {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
 
 		gameController.getSimulator().register(this);
+		gameController.getSimulator().getTrain().registerLoadedLevel(this);
 		
 		setLayout(new GridBagLayout());
 		setBackground(this.getBackground());
@@ -81,7 +84,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		GridBagConstraints cargoPanelContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 0, 0);
 		cargoPanelContraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(cargoPanel(), cargoPanelContraints);
+		setCargoPanel(cargoPanelPointer);
+		headerPanel.add(cargoPanelPointer, cargoPanelContraints);
 		
 		GridBagConstraints messageBoxContraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
 		messageBoxContraints.insets = new Insets(5,5,5,5);
@@ -155,17 +159,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		titleLabel.setFont(titleFont);
 		return titleLabel;
 	}
+
 	
-	private JPanel cargoPanel() {
-		JPanel cargoPanel = new JPanel();
+	private void setCargoPanel(JPanel cargoPanel) {
 		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
 		
 		Train train = this.gameController.getSimulator().getTrain();
 		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE, train.getNumOfCargoes().get(Cargo.CargoType.COTTON)));
 		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.IRON)));
 		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.WOOD)));
-		
-		return cargoPanel;
+
 	}
 	
 	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
@@ -267,6 +270,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 			}
 			gameControlBox.setRunButtonVisible();
+		}
+		else if (object instanceof Train){
+			System.out.println("update numberOfCargoes");
+			cargoPanelPointer.removeAll();
+			setCargoPanel(cargoPanelPointer);
+			cargoPanelPointer.validate();
 		}
 	}
 
