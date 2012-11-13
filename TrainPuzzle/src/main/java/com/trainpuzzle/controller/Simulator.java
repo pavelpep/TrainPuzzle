@@ -208,16 +208,9 @@ public class Simulator implements Observable{
 		Event event = new Event(100, station);
 		this.victoryConditionEvaluator.processEvent(event);
 		dropCargo(station);
-		pickCargo(station);
+		train.pickUpAt(station);
 	}
 
-	private void pickCargo(Station station) {
-		List<Cargo> pickUpedCargos = train.pickUp(station.getExportCargo());
-		for(Cargo cargo : pickUpedCargos) {
-			station.sendExportCargo(cargo);
-		}
-	}
-	
 	
 	private void dropCargo(Station station) {
 		List<Cargo> droppedCargo = train.dropOff(station.getImportCargo());

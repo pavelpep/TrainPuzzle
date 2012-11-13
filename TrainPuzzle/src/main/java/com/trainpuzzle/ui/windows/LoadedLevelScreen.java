@@ -44,7 +44,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.level = this.gameController.getLevel();
 
 		gameController.getSimulator().register(this);
-		gameController.getSimulator().getTrain().registerLoadedLevel(this);
+		gameController.getSimulator().getTrain().registerObserver(this);
 		
 		setLayout(new GridBagLayout());
 		setBackground(this.getBackground());
@@ -272,7 +272,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			gameControlBox.setRunButtonVisible();
 		}
 		else if (object instanceof Train){
-			System.out.println("update numberOfCargoes");
 			cargoPanelPointer.removeAll();
 			setCargoPanel(cargoPanelPointer);
 			cargoPanelPointer.validate();

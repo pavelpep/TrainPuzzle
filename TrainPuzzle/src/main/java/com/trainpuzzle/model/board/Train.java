@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Set;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
@@ -45,7 +46,7 @@ public class Train implements Observable{
 		trainCars.add(new TrainCar(location, heading));
 	}
 	
-	public void registerLoadedLevel(Observer observer){
+	public void registerObserver(Observer observer){
 		observerLoadedLevel = observer;
 	}
 	
@@ -110,34 +111,29 @@ public class Train implements Observable{
 		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
 		currentNumOfCargoes = currentNumOfCargoes - 1;		
 		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
-		System.out.println("currentNumOfCargo=" + cargo.getType() + numOfCargoes.get(cargo.getType()));	
 	}
 		
-	public List<Cargo> pickUp(List<Cargo> availableCargo){
-		List<Cargo>  cargoPickedUp = new ArrayList<Cargo>();
-		
-		for(Cargo cargo: availableCargo){
+	public void pickUpAt(Station station){
+		LinkedList<Cargo> exportCargoesCopy = new LinkedList<Cargo>(station.getExportCargo());
+
+		for(Cargo cargo: exportCargoesCopy){
 			for(TrainCar trainCar: trainCars){
-				if(trainCar.hasCargo() == false){
-						Cargo cargoTaken = new Cargo(cargo.getType());
-						cargoPickedUp.add(cargoTaken);
-						trainCar.addCargo(cargoTaken);
-						incrementNumber(cargoTaken);
+				if(!trainCar.hasCargo()){
+						station.sendExportCargo(cargo);
+						trainCar.addCargo(cargo);
+						incrementNumber(cargo);
 						observerLoadedLevel.notifyChange(this);
 						break;
-					}
 				}
+			}	
 		}
-		return cargoPickedUp; 
 	}
-	
 	
 	private void incrementNumber(Cargo cargo){
 		Integer currentNumOfCargoes = 0; 
 		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
 		currentNumOfCargoes = currentNumOfCargoes + 1;		
 		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
-		System.out.println("currentNumOfCargo=" + cargo.getType() + numOfCargoes.get(cargo.getType()));
 	}
 	
 	public void resetTrainCars(){
