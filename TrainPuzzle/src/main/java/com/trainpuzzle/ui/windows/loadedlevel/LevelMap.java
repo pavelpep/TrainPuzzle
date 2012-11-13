@@ -45,20 +45,17 @@ public class LevelMap extends JPanel implements Observer {
 	private final int trackLayerIndex = 1;
 	private final int trainLayerIndex = 2;
 	private final int obstacleLayerIndex = 3;
-	private final int cargoLayerIndex=4;
-	private final int cargoTrainLayerIndex=5;
+	private final int cargoLayerIndex = 4;
+	private final int cargoTrainLayerIndex = 5;
 	private final int tileSizeInPixels = 40;
 	
-
 	private GameController gameController;
 	private Level level;
 	private Train train;
 	TileMouseAdapter mouseAdapter;
 	private JLayeredPane[][] mapTiles;
 	
-	
 	Location previousTrainLocation = new Location(0,0);
-	
 	
 	public LevelMap(GameController gameController, int numberOfRows, int numberOfColumns) {
 		this.gameController = gameController;
@@ -76,14 +73,15 @@ public class LevelMap extends JPanel implements Observer {
 	}
 
 	private void initializeMapPanel(int numberOfRows, int numberOfColumns) {
-		for(int row = 0; row < numberOfRows; row++){
-			for(int column = 0; column < numberOfColumns; column++){
+		for(int row = 0; row < numberOfRows; row++) {
+			for(int column = 0; column < numberOfColumns; column++) {
 				JLayeredPane mapTile = new JLayeredPane();
 				mapTile.setMinimumSize(new Dimension(tileSizeInPixels, tileSizeInPixels));
 				mapTile.setPreferredSize(new Dimension(tileSizeInPixels, tileSizeInPixels));
 				mapTiles[row][column] = mapTile;
 				level.getBoard().getTile(row, column).register(this);
-				if(level.getBoard().getTile(row, column).hasStationBuilding()){
+				
+				if(level.getBoard().getTile(row, column).hasStationBuilding()) {
 					level.getBoard().getTile(row, column).getStation().register(this);
 				}
 				mapTile.addMouseListener(mouseAdapter); 
@@ -107,21 +105,24 @@ public class LevelMap extends JPanel implements Observer {
 			case DIRT:
 				landscapeLayer=new JLabel(Images.DIRT_IMAGE);
 				break;
+			default:
+				break;
 		}
 		
 		if(level.getBoard().getTile(row, column).getLandscapeType().equals("water")) {
 			landscapeLayer=new JLabel(Images.WATER_IMAGE);
 		}
-		landscapeLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		landscapeLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(landscapeLayer, new Integer(landscapeLayerIndex));
 	}
 	
 	private void drawObstacle(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		removeComponentsInGUILayer(mapTile,obstacleLayerIndex);
+		
 		if(level.getBoard().getTile(row, column).hasObstacle()) {
 			JLabel obstacleLayer = new JLabel();
-			switch(level.getBoard().getTile(row, column).getObstacleType()){
+			switch(level.getBoard().getTile(row, column).getObstacleType()) {
 				case ROCK:
 					obstacleLayer = new JLabel(Images.ROCK_IMAGE);
 					break;
@@ -137,33 +138,35 @@ public class LevelMap extends JPanel implements Observer {
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
 					break;	
-			default:
-				break;
+				default:
+					break;
 			}
-			obstacleLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+			obstacleLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 			mapTile.add(obstacleLayer, new Integer(obstacleLayerIndex));
 		}
 	}
 
-	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, LinkedList<Cargo> importCargoList){
+	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, LinkedList<Cargo> importCargoList) {
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
 		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
 		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
-		for (Cargo cargo: exportCargoList){
+		
+		for (Cargo cargo: exportCargoList) {
 			JLabel cargoLabel = new JLabel(getExportCargoImage(cargo));
 			cargoLayer.add(cargoLabel);
 		}
-		for (Cargo cargo: importCargoList){
+		
+		for (Cargo cargo: importCargoList) {
 			JLabel cargoLabel = new JLabel(getImportCargoImage(cargo));
 			cargoLayer.add(cargoLabel);
 		}
-		cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
 	
 	private ImageIcon getImportCargoImage(Cargo cargo) {
-		switch(cargo.getType()){
+		switch(cargo.getType()) {
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
 			case WOOD:
@@ -176,7 +179,7 @@ public class LevelMap extends JPanel implements Observer {
 	}
 	
 	private ImageIcon getExportCargoImage(Cargo cargo) {
-		switch(cargo.getType()){
+		switch(cargo.getType()) {
 			case COTTON:
 				return Images.COTTON_IMAGE;
 			case WOOD:
@@ -190,7 +193,8 @@ public class LevelMap extends JPanel implements Observer {
 	
 	private void drawAllCargoes(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
-		if (!level.getBoard().getTile(row, column).hasStationBuilding()){
+		
+		if(!level.getBoard().getTile(row, column).hasStationBuilding()) {
 			return;
 		}
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
@@ -198,24 +202,26 @@ public class LevelMap extends JPanel implements Observer {
 		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo());
 	}
 	
-
-		
 	private void drawTrack(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		removeComponentsInGUILayer(mapTile,trackLayerIndex);
-		if(level.getBoard().getTile(row, column).hasTrack()){
+		
+		if(level.getBoard().getTile(row, column).hasTrack()) {
 			Track track = level.getBoard().getTile(row, column).getTrack();
 			Track copyOfTrack = new Track(track);
-			for(Connection connection:copyOfTrack.getConnections()){
-				for(Connection comparedConnection: CONNECTION_LIST){
-					for(int rotation = 0; rotation < 4; rotation++) {
-						if(connection.equals(comparedConnection)){
+			
+			for(Connection connection:copyOfTrack.getConnections()) {
+				for(Connection comparedConnection: CONNECTION_LIST) {
+					int rotation = 0;
+					while (rotation < 4) {
+						if(connection.equals(comparedConnection)) {
 							JLabel trackLayer=new JLabel(getConnectionImage(track, comparedConnection, 4 - rotation));
-							trackLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+							trackLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 							mapTile.add(trackLayer, new Integer(trackLayerIndex));
 							break;
 						}
 						connection.rotate90Degrees();
+						rotation++;
 					}
 				}
 			}
@@ -223,38 +229,44 @@ public class LevelMap extends JPanel implements Observer {
 	}
 	
 	private RotatedImageIcon getConnectionImage(Track track, Connection connection, int rotation) {
-		if(track.isUnremovable()){
+		if(track.isUnremovable()) {
 			return new RotatedImageIcon(Images.PERMANENT_STRAIGHT_TRACK, rotation * 2);
 		}
-		if(connection.equals(STRAIGHT)){
+		if(connection.equals(STRAIGHT)) {
 			return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
 		}
-		if(connection.equals(DIAGONAL)){
+		if(connection.equals(DIAGONAL)) {
 			return new RotatedImageIcon(Images.DIAGONAL_TRACK, rotation * 2);
 		}
-		if(connection.equals(CURVE_LEFT)){
+		if(connection.equals(CURVE_LEFT)) {
 			return new RotatedImageIcon(Images.CURVELEFT_TRACK, rotation * 2);
 		}
-		if(connection.equals(CURVE_RIGHT)){
+		if(connection.equals(CURVE_RIGHT)) {
 			return new RotatedImageIcon(Images.CURVERIGHT_TRACK, rotation * 2);
 		}
 		return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
 	}
 
-	public void redrawTiles(){
-		  for(int row = 0; row < level.getBoard().getRows(); row++){
-				for(int column = 0; column < level.getBoard().getColumns(); column++){
-					redrawTile(row, column);
-				}
+	public void redrawTiles() {
+		int row = 0;
+		int column = 0;
+		
+		while(row < level.getBoard().getRows()) {			
+			while(column < level.getBoard().getColumns()) {
+				redrawTile(row, column);
+				column++;
 			}
-		  this.repaint();
+			column = 0;
+			row++;
+		}
+		this.repaint();
 	}
 	
-	private void redrawTile(int row, int column){
-		   drawObstacle(row, column);
-		   drawLandscape(row, column);
-		   drawTrack(row, column);
-		   drawAllCargoes(row, column);
+	private void redrawTile(int row, int column) {
+		drawObstacle(row, column);
+		drawLandscape(row, column);
+		drawTrack(row, column);
+		drawAllCargoes(row, column);
 	}
 	
 	private void initializeTrain() {
@@ -265,8 +277,8 @@ public class LevelMap extends JPanel implements Observer {
 	}
 	
 	private void redrawTrain(Train train) {
-		for(JLayeredPane[] tileArr: mapTiles){
-			for(JLayeredPane tile: tileArr){
+		for(JLayeredPane[] tileArr: mapTiles) {
+			for(JLayeredPane tile: tileArr) {
 				removeComponentsInGUILayer(tile,trainLayerIndex);
 				removeComponentsInGUILayer(tile,cargoTrainLayerIndex);
 			}
@@ -274,7 +286,7 @@ public class LevelMap extends JPanel implements Observer {
 		
 		int rotation = train.getHeading().ordinal() - 3;
 		JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN, rotation));
-		trainLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+		trainLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		int row = train.getLocation().getRow();
 		int column = train.getLocation().getColumn();
 		mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
@@ -285,10 +297,10 @@ public class LevelMap extends JPanel implements Observer {
 
 		TrainCar trainCars[] = train.getTrainCars();
 		
-		for(TrainCar trainCar: trainCars){
+		for(TrainCar trainCar: trainCars) {
 			int rotation = trainCar.getHeading().ordinal() - 3;
 			JLabel trainLayer = new JLabel(new RotatedImageIcon(Images.TRAIN_CAR, rotation));
-			trainLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+			trainLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 			int row = trainCar.getLocation().getRow();
 			int column = trainCar.getLocation().getColumn();
 			mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
@@ -297,16 +309,17 @@ public class LevelMap extends JPanel implements Observer {
 		
 	}
 	
-	private void redrawTrainCargo(Train train){
+	private void redrawTrainCargo(Train train) {
 		
 		TrainCar trainCars[] = train.getTrainCars();
 		
-		for(TrainCar trainCar: trainCars){
+		for(TrainCar trainCar: trainCars) {
 			int row = trainCar.getLocation().getRow();
 			int column = trainCar.getLocation().getColumn();
-			if(trainCar.hasCargo()){
+			
+			if(trainCar.hasCargo()) {
 				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo()));
-				cargoLayer.setBounds(0,0,tileSizeInPixels,tileSizeInPixels);
+				cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 				mapTiles[row][column].add(cargoLayer, new Integer(cargoTrainLayerIndex));
 			}
 			this.repaint();
@@ -318,7 +331,7 @@ public class LevelMap extends JPanel implements Observer {
 			for(Component component: components){
 				mapTile.remove(component);
 			}
-		} catch(Exception e){
+		} catch(Exception e) {
 			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 	}
@@ -329,30 +342,42 @@ public class LevelMap extends JPanel implements Observer {
 	
 	@Override
 	public void notifyChange(Object object) {
-		if(object instanceof Train){
-			redrawTrain(train);
-			redrawTrainCars(train);
-			redrawTrainCargo(train);
+		if(object instanceof Train) {
+			instanceOfTrain(object);
 		}
-		else if(object instanceof Tile){
-			for(int row = 0; row < level.getBoard().getRows(); row++){
-				for(int column = 0; column < level.getBoard().getColumns(); column++){
-					if(object.equals(level.getBoard().getTile(row, column))){
-						redrawTile(row, column);
-					}
-				}
-			}
-		}	else if(object instanceof Station){
-			for(int row = 0; row < level.getBoard().getRows(); row++){
-				for(int column = 0; column < level.getBoard().getColumns(); column++){
-					if(level.getBoard().getTile(row, column).hasStationBuilding()){
-						if(object.equals(level.getBoard().getTile(row, column).getStation())){
-							redrawTile(row, column);
-						}
-					}
+		if(object instanceof Tile) {
+			instanceOfTile(object);
+		}	
+		if(object instanceof Station) {
+			instanceOfStation(object);
+		}
+	}
+	
+	public void instanceOfTrain(Object object) {
+		redrawTrain(train);
+		redrawTrainCars(train);
+		redrawTrainCargo(train);
+	}
+	
+	public void instanceOfTile(Object object) {
+		for(int row = 0; row < level.getBoard().getRows(); row++) {
+			for(int column = 0; column < level.getBoard().getColumns(); column++) {
+				if(object.equals(level.getBoard().getTile(row, column))) {
+					redrawTile(row, column);
 				}
 			}
 		}
 	}
-
+	
+	public void instanceOfStation(Object object) {
+		for(int row = 0; row < level.getBoard().getRows(); row++) {
+			for(int column = 0; column < level.getBoard().getColumns(); column++) {
+				if(level.getBoard().getTile(row, column).hasStationBuilding()) {
+					if(object.equals(level.getBoard().getTile(row, column).getStation())) {
+						redrawTile(row, column);
+					}
+				}
+			}
+		}	
+	}
 }
