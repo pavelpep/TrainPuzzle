@@ -15,6 +15,11 @@ abstract class Window extends JFrame implements ActionListener {
 	protected static final int DEFAULT_HEIGHT = 768;
 	
 	public Window() {
+		modifyWindowCloseAction();
+		setVisible(true);
+	}
+
+	private void modifyWindowCloseAction() {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
@@ -43,18 +48,14 @@ abstract class Window extends JFrame implements ActionListener {
 				if(options[choice].equals(exit)){
 					WindowManager.getManager().exit();
 				}
-				if(options[choice].equals(previousWindow)){
+				else if(options[choice].equals(previousWindow)){
 					WindowManager.getManager().showPreviousWindow();
 				}
-				if(options[choice].equals(cancel)){
+				else if(options[choice].equals(cancel)){
 					
 				}
-				
-				
-				
 			}
 		});
-		setVisible(true);
 	}
 	
 	protected void initializeComponent(JComponent jComponent, int fontSize) {

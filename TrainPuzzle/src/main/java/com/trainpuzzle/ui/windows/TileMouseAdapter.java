@@ -47,10 +47,6 @@ public class TileMouseAdapter extends MouseAdapter {
 	                	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
 	                }
                 }
-              //TransferHandler handler = c.getTransferHandler();
-                //handler.exportAsDrag(c, e, TransferHandler.COPY);
-                //System.out.println(row+ " , " +column);
-                //return position;
         }
 		
 		

@@ -35,6 +35,10 @@ public class GameControlBox extends JPanel implements ActionListener{
 		this.setBorder(gameControlBoxTitle);
 		this.setLayout(new GridBagLayout());
 		
+		addGameControlBoxComponents();
+	}
+
+	private void addGameControlBoxComponents() {
 		runButton = initializeButton("Run", "run");
 		runButton.setVisible(true);
 		GridBagConstraints runButtonContraints = buttonConstraints(new Point(0, 0), new Dimension(3, 1));

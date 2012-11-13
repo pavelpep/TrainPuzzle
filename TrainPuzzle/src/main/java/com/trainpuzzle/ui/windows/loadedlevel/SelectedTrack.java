@@ -43,7 +43,6 @@ public class SelectedTrack extends JPanel implements ActionListener {
 		this.add(rotateButton());
 		
 		setDefaultTrack();
-		
 	}
 
 	private void setDefaultTrack() {

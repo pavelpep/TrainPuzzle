@@ -47,10 +47,10 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 		economy = gameController.getLevel().getEconomy();
 		economy.register(this);
 		
-		setTrackSelectionBorder();
 		this.setPreferredSize(new Dimension(200, 350));
 		this.setLayout(new GridLayout(0,1));
 		
+		setTrackSelectionBorder();
 		initializeTrackList();
 	}
 
@@ -63,33 +63,46 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 	}
 
 	private void initializeTrackList() {
+		this.add(straightPanel());
+		this.add(curvePanel());
+		this.add(intersectionPanel());
+		this.add(switchPanel());
+	}
+
+	private JPanel straightPanel() {
 		JPanel straightPanel = new JPanel();
 		straightPanel.add(track(TrackType.STRAIGHT_TRACK, Images.STRAIGHT_TRACK_IMAGE, "straightTrack"));
 		straightPanel.add(track(TrackType.DIAGONAL_TRACK, Images.DIAGONAL_TRACK_IMAGE, "diagonalTrack"));
 		String straightLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.STRAIGHT));
 		straightPanel.add(new JLabel(straightLimit));
-		this.add(straightPanel);
-		
+		return straightPanel;
+	}
+	
+	private JPanel curvePanel() {
 		JPanel curvePanel = new JPanel();
 		curvePanel.add(track(TrackType.CURVELEFT_TRACK, Images.CURVELEFT_TRACK_IMAGE, "curveleftTrack"));
 		curvePanel.add(track(TrackType.CURVERIGHT_TRACK, Images.CURVERIGHT_TRACK_IMAGE, "curverightTrack"));
 		String curveLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.CURVE));
 		curvePanel.add(new JLabel(curveLimit));
-		this.add(curvePanel);
-		
+		return curvePanel;
+	}
+
+	private JPanel intersectionPanel() {
 		JPanel intersectionPanel = new JPanel();
 		intersectionPanel.add(track(TrackType.INTERSECTION_TRACK, Images.INTERSECTION_TRACK_IMAGE, "intersectionTrack"));
 		intersectionPanel.add(track(TrackType.DIAGONAL_INTERSECTION_TRACK, Images.DIAGONAL_INTERSECTION_TRACK_IMAGE, "diagonalIntersectionTrack"));
 		String intersectionLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.INTERSECTION));
 		intersectionPanel.add(new JLabel(intersectionLimit));
-		this.add(intersectionPanel);
-		
+		return intersectionPanel;
+	}
+
+	private JPanel switchPanel() {
 		JPanel switchPanel = new JPanel();
 		switchPanel.add(track(TrackType.CURVELEFT_STRAIGHT_SWITCH, Images.CURVELEFT_SWITCH_IMAGE, "curveleftStraightSwitch"));
 		switchPanel.add(track(TrackType.CURVERIGHT_STRAIGHT_SWITCH, Images.CURVERIGHT_SWITCH_IMAGE, "curverightStraightSwitch"));
 		String switchLimit = trackLimitToString(economy.getNumOfAvailableTrack(TrackType.SWITCH));
 		switchPanel.add(new JLabel(switchLimit));
-		this.add(switchPanel);
+		return switchPanel;
 	}
 	
 	private JPanel track(TrackType trackType, ImageIcon trackImage, String actionCommand) {
