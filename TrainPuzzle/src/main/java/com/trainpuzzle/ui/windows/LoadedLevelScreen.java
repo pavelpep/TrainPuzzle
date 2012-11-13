@@ -61,40 +61,40 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(loadedLevelScreenPanel);
 		
-		GridBagConstraints headerPanelContraints = gbConstraints(new Point(0, 0), new Dimension(2, 1), 0, 0);
-		loadedLevelScreenPanel.add(headerPanel(), headerPanelContraints);
+		GridBagConstraints headerPanelConstraints = gbConstraints(new Point(0, 0), new Dimension(2, 1), 0, 0);
+		loadedLevelScreenPanel.add(headerPanel(), headerPanelConstraints);
 		
-		GridBagConstraints mapPanelContraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 0);
-		loadedLevelScreenPanel.add(mapPanel(), mapPanelContraints);
+		GridBagConstraints mapPanelContsraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 0);
+		loadedLevelScreenPanel.add(mapPanel(), mapPanelContsraints);
 		
-		GridBagConstraints sidePanelContraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 0);
-		loadedLevelScreenPanel.add(sidePanel(), sidePanelContraints);
+		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 0);
+		loadedLevelScreenPanel.add(sidePanel(), sidePanelConstraints);
 	}
 
 	private JPanel headerPanel() {
 		JPanel headerPanel = new JPanel();
 		headerPanel.setLayout(new GridBagLayout());
 		
-		GridBagConstraints backButtonContraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
-		backButtonContraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(backButton(), backButtonContraints);
+		GridBagConstraints backButtonConstraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
+		backButtonConstraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(backButton(), backButtonConstraints);
 		
-		GridBagConstraints titleLabelContraints = gbConstraints(new Point(1, 0), new Dimension(1, 1), 0, 0);
-		titleLabelContraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(titleLabel(), titleLabelContraints);
+		GridBagConstraints titleLabelConstraints = gbConstraints(new Point(1, 0), new Dimension(1, 1), 0, 0);
+		titleLabelConstraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(titleLabel(), titleLabelConstraints);
 		
-		GridBagConstraints cargoPanelContraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 0, 0);
-		cargoPanelContraints.insets = new Insets(5,5,5,5);
+		GridBagConstraints cargoPanelConstraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 0, 0);
+		cargoPanelConstraints.insets = new Insets(5,5,5,5);
 		setCargoPanel(cargoPanelPointer);
-		headerPanel.add(cargoPanelPointer, cargoPanelContraints);
+		headerPanel.add(cargoPanelPointer, cargoPanelConstraints);
 		
-		GridBagConstraints messageBoxContraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
-		messageBoxContraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(messageBox(), messageBoxContraints);
+		GridBagConstraints messageBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
+		messageBoxConstraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(messageBox(), messageBoxConstraints);
 		
-		GridBagConstraints saveButtonContraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 0, 0);
-		saveButtonContraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(saveButton(), saveButtonContraints);
+		GridBagConstraints saveButtonConstraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 0, 0);
+		saveButtonConstraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(saveButton(), saveButtonConstraints);
 		
 		return headerPanel;
 	}

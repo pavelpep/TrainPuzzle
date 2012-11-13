@@ -37,7 +37,7 @@ abstract class Window extends JFrame implements ActionListener {
 				
 				int choice = JOptionPane.showOptionDialog(
 					null, 
-					"", 
+					"Are you sure you want to exit the game?", 
 					"Exit Confirmation", 
 					JOptionPane.YES_NO_OPTION, 
 					JOptionPane.PLAIN_MESSAGE, 
