@@ -3,15 +3,12 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IfThenVictoryCondition implements VictoryCondition, java.io.Serializable {
+public class IfThenVictoryCondition extends LogicalVictoryCondition implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
-	private boolean conditionSatisfied = false;
-	
 	
 	private void checkChildrenSatisfied() {
 		conditionSatisfied = true;
-		for(VictoryCondition child : childConditions) {
+		for(VictoryCondition child : this.getChildren()) {
 			if(!child.isSatisfied()) {
 				conditionSatisfied = false;
 			}
@@ -24,17 +21,9 @@ public class IfThenVictoryCondition implements VictoryCondition, java.io.Seriali
 		return conditionSatisfied;
 	}
 	
-	public List<VictoryCondition> getChildren() {
-		return childConditions;
-	}
-	
-	public void addChild(VictoryCondition child) {
-		childConditions.add(child);
-	}
-
 	@Override
 	public void processEvent(Event event) {
-		for(VictoryCondition child : childConditions) {
+		for(VictoryCondition child : this.getChildren()) {
 			if(!child.isSatisfied()) {
 				child.processEvent(event);
 				break;
@@ -42,16 +31,4 @@ public class IfThenVictoryCondition implements VictoryCondition, java.io.Seriali
 		}
 	}
 
-	@Override
-	public void resetEvents() {
-		 conditionSatisfied = false;
-		 resetChildrenEvents();
-	}
-	
-	private void resetChildrenEvents() {
-		for(VictoryCondition child : childConditions) {
-			child.resetEvents();
-		}
-	}
-	
 }

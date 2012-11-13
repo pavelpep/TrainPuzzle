@@ -3,15 +3,12 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AndVictoryCondition implements VictoryCondition, java.io.Serializable {
+public class AndVictoryCondition extends LogicalVictoryCondition implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
-	private boolean conditionSatisfied = false;
-	
 	
 	private void checkChildrenSatisfied() {
 		conditionSatisfied = true;
-		for(VictoryCondition child : childConditions) {
+		for(VictoryCondition child : this.getChildren()) {
 			if(!child.isSatisfied()) {
 				conditionSatisfied = false;
 			}
@@ -22,33 +19,6 @@ public class AndVictoryCondition implements VictoryCondition, java.io.Serializab
 	public boolean isSatisfied() {
 		checkChildrenSatisfied();
 		return conditionSatisfied;
-	}
-	
-	public List<VictoryCondition> getChildren() {
-		return childConditions;
-	}
-	
-	public void addChild(VictoryCondition child) {
-		childConditions.add(child);
-	}
-
-	@Override
-	public void processEvent(Event event) {
-		for(VictoryCondition child : childConditions) {
-			child.processEvent(event);
-		}
-	}
-
-	@Override
-	public void resetEvents() {
-		 conditionSatisfied = false;
-		 resetChildrenEvents();
-	}
-	
-	private void resetChildrenEvents() {
-		for(VictoryCondition child : childConditions) {
-			child.resetEvents();
-		}
 	}
 	
 }
