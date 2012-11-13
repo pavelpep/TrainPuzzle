@@ -28,7 +28,7 @@ public class VictoryConditions extends JPanel implements ActionListener{
 		this.setPreferredSize(new Dimension(200, 150));
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder gameControlBoxTitle;
-		gameControlBoxTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
+		gameControlBoxTitle = BorderFactory.createTitledBorder(loweredetched, "Victory Conditions");
 		gameControlBoxTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(gameControlBoxTitle);
 		

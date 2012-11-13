@@ -1,7 +1,6 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-import java.awt.Dimension;
-import java.awt.Insets;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +12,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;

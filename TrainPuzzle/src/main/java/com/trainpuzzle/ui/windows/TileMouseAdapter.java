@@ -3,7 +3,6 @@ package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 
-import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.TrackPlacer;
 
 import com.trainpuzzle.model.board.CompassHeading;

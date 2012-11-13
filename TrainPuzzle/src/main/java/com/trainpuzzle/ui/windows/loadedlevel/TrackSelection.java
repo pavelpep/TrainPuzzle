@@ -1,10 +1,8 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-import java.awt.Color;
-import java.awt.Component;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -44,7 +41,7 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
 		this.gameController = gameController;
 		this.loadedLevelScreen = loadedLevelScreen;
-		economy = gameController.getLevel().getEconomy();
+		economy = this.gameController.getLevel().getEconomy();
 		economy.register(this);
 		
 		this.setPreferredSize(new Dimension(200, 350));

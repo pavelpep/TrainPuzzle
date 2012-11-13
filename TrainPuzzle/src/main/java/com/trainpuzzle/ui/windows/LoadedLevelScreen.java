@@ -5,6 +5,7 @@ import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
+import com.trainpuzzle.ui.windows.loadedlevel.VictoryConditions;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -203,6 +204,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		selectedTrackPanel = new SelectedTrack(this);
 		sidePanel.add(selectedTrackPanel);
+		
+		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
+		sidePanel.add(victoryConditionsPanel);
 		
 		return sidePanel;
 	}
