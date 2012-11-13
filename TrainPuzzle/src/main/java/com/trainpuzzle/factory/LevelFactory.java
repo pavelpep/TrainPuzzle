@@ -251,10 +251,10 @@ public class LevelFactory {
 	        
 	        HashMap<TrackType, Integer> trackLimitsLevelTwo = new HashMap<TrackType,Integer>();
 	        final int NO_LIMIT = -1;
-	        trackLimitsLevelTwo.put(TrackType.TRACK, 45);
+	        trackLimitsLevelTwo.put(TrackType.TRACK, 37);
 	        trackLimitsLevelTwo.put(TrackType.STRAIGHT, 18);
 	        trackLimitsLevelTwo.put(TrackType.CURVE, 15);
-	        trackLimitsLevelTwo.put(TrackType.INTERSECTION, 10);
+	        trackLimitsLevelTwo.put(TrackType.INTERSECTION, 2);
 	        trackLimitsLevelTwo.put(TrackType.SWITCH, 2);
 	        trackLimitsLevelTwo.put(TrackType.STRAIGHT_TRACK, NO_LIMIT);
 	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_TRACK, NO_LIMIT);
