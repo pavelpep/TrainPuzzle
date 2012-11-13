@@ -199,13 +199,25 @@ public class LevelFactory {
 	        Economy economy = new Economy();
 	        this.root = new AndVictoryCondition();
 
-	        Location startLocation = new Location(4,4);
+	        Location startLocation = new Location(4,3);
 	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 			
 	        ArrayList<Station> stations = new ArrayList<Station>();
-	        stations.add(new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST));
-	        stations.add(new Station(StationType.RED, new Location(2, 8), CompassHeading.SOUTH));
-	        stations.add(new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST));
+	        Station stationToAdd = new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST);  
+	        stations.add(stationToAdd);
+	        stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
+	        stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
+	        
+	        stationToAdd = new Station(StationType.RED, new Location(2, 8), CompassHeading.SOUTH);
+	        stations.add(stationToAdd);	        
+	        stationToAdd.addImportCargo(new Cargo(CargoType.IRON));
+	        stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
+	        
+	        stationToAdd = new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST);
+	        stations.add(stationToAdd);	        
+	        stationToAdd.addImportCargo(new Cargo(CargoType.COTTON));
+	        stationToAdd.addImportCargo(new Cargo(CargoType.WOOD));
+	        
 	        setStations(stations);
 	        
 	        setLandscapeByRow(0, 5, 10, LandscapeType.WATER);
@@ -215,7 +227,7 @@ public class LevelFactory {
 	        
 	        ArrayList<Location> mountainLocations = new ArrayList<Location>();
 	        mountainLocations.add(new Location(8, 10));
-	        mountainLocations.add(new Location(4, 6));
+	        mountainLocations.add(new Location(4, 7));
 	        setObstacles(mountainLocations, ObstacleType.MOUNTAINS);
 	        
 	        setObstaclesByRow(11, 13, 14, ObstacleType.MOUNTAINS);
@@ -230,7 +242,7 @@ public class LevelFactory {
 	        treeLocations.add(new Location(8, 3));
 	        treeLocations.add(new Location(3, 13));
 	        treeLocations.add(new Location(6, 10));
-	        treeLocations.add(new Location(2, 6));
+	        treeLocations.add(new Location(2, 17));
 	        treeLocations.add(new Location(1, 13));
 	        treeLocations.add(new Location(13, 10));
 	        treeLocations.add(new Location(6, 13));
@@ -239,19 +251,19 @@ public class LevelFactory {
 	        
 	        HashMap<TrackType, Integer> trackLimitsLevelTwo = new HashMap<TrackType,Integer>();
 	        final int NO_LIMIT = -1;
-	        trackLimitsLevelTwo.put(TrackType.TRACK, 40);
-	        trackLimitsLevelTwo.put(TrackType.STRAIGHT, 15);
+	        trackLimitsLevelTwo.put(TrackType.TRACK, 45);
+	        trackLimitsLevelTwo.put(TrackType.STRAIGHT, 18);
 	        trackLimitsLevelTwo.put(TrackType.CURVE, 15);
 	        trackLimitsLevelTwo.put(TrackType.INTERSECTION, 10);
-	        trackLimitsLevelTwo.put(TrackType.SWITCH, 10);
+	        trackLimitsLevelTwo.put(TrackType.SWITCH, 2);
 	        trackLimitsLevelTwo.put(TrackType.STRAIGHT_TRACK, NO_LIMIT);
 	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_TRACK, NO_LIMIT);
 	        trackLimitsLevelTwo.put(TrackType.CURVELEFT_TRACK, 10);
 	        trackLimitsLevelTwo.put(TrackType.CURVERIGHT_TRACK, 10);
-	        trackLimitsLevelTwo.put(TrackType.INTERSECTION_TRACK, 10);
-	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 10);
-	        trackLimitsLevelTwo.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 10);
-	        trackLimitsLevelTwo.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_LIMIT);
+	        trackLimitsLevelTwo.put(TrackType.INTERSECTION_TRACK, 2);
+	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
+	        trackLimitsLevelTwo.put(TrackType.CURVELEFT_STRAIGHT_SWITCH,2);
+	        trackLimitsLevelTwo.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 2);
 	        int budget = NO_LIMIT;
 	        Economy economyLevelTwo = new Economy(budget, trackLimitsLevelTwo);
 	        		        
