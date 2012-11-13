@@ -140,6 +140,7 @@ public class Train implements Observable{
 		for(TrainCar trainCar : trainCars) {
 			trainCar.setLocation(this.location);
 			trainCar.setHeading(this.heading);
+			trainCar.resetCargo();
 		}
 		notifyAllObservers();
 	}

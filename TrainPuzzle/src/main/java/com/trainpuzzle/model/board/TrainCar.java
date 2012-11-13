@@ -32,6 +32,10 @@ public class TrainCar {
 		return currentCargo;
 	}
 
+	public void resetCargo() {
+		cargo = null;
+	}
+	
 	public Location getLocation() {
 		return location;
 	}
