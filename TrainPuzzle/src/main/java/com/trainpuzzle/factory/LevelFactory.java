@@ -189,10 +189,9 @@ public class LevelFactory {
 	        trackLimitsLevelOne.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 10);
 	        trackLimitsLevelOne.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_LIMIT);
 	        int budget = NO_LIMIT;
-	        Economy economy = new Economy(budget, trackLimitsLevelOne);
-	        	
-	        
-	    	return new Level(1, this.board, startLocation, this.root, economy);
+	        Economy economyLevelOne = new Economy(budget, trackLimitsLevelOne);
+	        		        
+	    	return new Level(1, this.board, startLocation, this.root, economyLevelOne);
 		}
 		
 	private Level createLevelTwo() {
@@ -237,8 +236,26 @@ public class LevelFactory {
 	        treeLocations.add(new Location(6, 13));
 	        treeLocations.add(new Location(4, 10));
 	        setObstacles(treeLocations, ObstacleType.TREES);
-
-	    	return new Level(2, this.board, startLocation, this.root, economy);
+	        
+	        HashMap<TrackType, Integer> trackLimitsLevelTwo = new HashMap<TrackType,Integer>();
+	        final int NO_LIMIT = -1;
+	        trackLimitsLevelTwo.put(TrackType.TRACK, 40);
+	        trackLimitsLevelTwo.put(TrackType.STRAIGHT, 15);
+	        trackLimitsLevelTwo.put(TrackType.CURVE, 15);
+	        trackLimitsLevelTwo.put(TrackType.INTERSECTION, 10);
+	        trackLimitsLevelTwo.put(TrackType.SWITCH, 10);
+	        trackLimitsLevelTwo.put(TrackType.STRAIGHT_TRACK, NO_LIMIT);
+	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_TRACK, NO_LIMIT);
+	        trackLimitsLevelTwo.put(TrackType.CURVELEFT_TRACK, 10);
+	        trackLimitsLevelTwo.put(TrackType.CURVERIGHT_TRACK, 10);
+	        trackLimitsLevelTwo.put(TrackType.INTERSECTION_TRACK, 10);
+	        trackLimitsLevelTwo.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 10);
+	        trackLimitsLevelTwo.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 10);
+	        trackLimitsLevelTwo.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_LIMIT);
+	        int budget = NO_LIMIT;
+	        Economy economyLevelTwo = new Economy(budget, trackLimitsLevelTwo);
+	        		        
+	    	return new Level(2, this.board, startLocation, this.root, economyLevelTwo);
 		}
 	    
 	private Level createLevelThree() {
@@ -273,6 +290,24 @@ public class LevelFactory {
 
 	        setStations(stations);
 	        
-	    	return new Level(3, this.board, startLocation, this.root, economy);
+	        HashMap<TrackType, Integer> trackLimitsLevelThree = new HashMap<TrackType,Integer>();
+	        final int NO_LIMIT = -1;
+	        trackLimitsLevelThree.put(TrackType.TRACK, 20);
+	        trackLimitsLevelThree.put(TrackType.STRAIGHT, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVE, 10);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION, 5);
+	        trackLimitsLevelThree.put(TrackType.SWITCH, 5);
+	        trackLimitsLevelThree.put(TrackType.STRAIGHT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.DIAGONAL_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVELEFT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION_TRACK, 5);
+	        trackLimitsLevelThree.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 5);
+	        trackLimitsLevelThree.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 5);
+	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 5);
+	        int budget = NO_LIMIT;
+	        Economy economyLevelThree = new Economy(budget, trackLimitsLevelThree);
+	        
+	    	return new Level(3, this.board, startLocation, this.root, economyLevelThree);
 		}
 }
