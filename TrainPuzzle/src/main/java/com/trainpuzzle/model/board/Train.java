@@ -14,6 +14,7 @@ public class Train implements Observable{
 	private Location location = new Location(0,0); 
 	private CompassHeading heading = CompassHeading.EAST;
 	Set<Observer> observerList = new HashSet<Observer>();
+	Observer observerLoadedlevel;
 	List<TrainCar> trainCars = new ArrayList<TrainCar>();
 	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
 	
@@ -47,6 +48,10 @@ public class Train implements Observable{
 	
 	public void register(Observer observer){
 		observerList.add(observer);
+	}
+	
+	public void registerLoadedLevel(Observer observer){
+		this.observerLoadedlevel = observer;
 	}
 	
 	public void notifyAllObservers(){
@@ -92,6 +97,7 @@ public class Train implements Observable{
 					if(trainCar.getCargo().getType() == cargo.getType()){
 						Cargo cargoDropped = trainCar.dropCargo();
 						decrementNumber(cargoDropped);
+						this.observerLoadedlevel.notifyChange(this);
 						notifyAllObservers();
 						cargoDroppedOff.add(cargoDropped);
 					}
@@ -117,6 +123,7 @@ public class Train implements Observable{
 						station.sendExportCargo(cargo);
 						trainCar.addCargo(cargo);
 						incrementNumber(cargo);
+						this.observerLoadedlevel.notifyChange(this);
 						notifyAllObservers();
 						break;
 				}
