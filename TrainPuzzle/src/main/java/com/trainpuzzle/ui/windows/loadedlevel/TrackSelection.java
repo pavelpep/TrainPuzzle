@@ -129,25 +129,25 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 		if (event.getActionCommand() == "straightTrack") {
 			straightTrackEvent();
 		}
-		if (event.getActionCommand() == "diagonalTrack") {
+		else if (event.getActionCommand() == "diagonalTrack") {
 			diagonalTrackEvent();
 		}
-		if (event.getActionCommand() == "curveleftTrack") {
+		else if (event.getActionCommand() == "curveleftTrack") {
 			curveleftTrackEvent();
 		}
-		if (event.getActionCommand() == "curverightTrack") {
+		else if (event.getActionCommand() == "curverightTrack") {
 			curverightTrackEvent();
 		}
-		if (event.getActionCommand() == "intersectionTrack") {
+		else if (event.getActionCommand() == "intersectionTrack") {
 			intersectionTrackEvent();
 		}
-		if (event.getActionCommand() == "diagonalIntersectionTrack") {
+		else if (event.getActionCommand() == "diagonalIntersectionTrack") {
 			diagonalIntersectionTrackEvent();
 		}
-		if (event.getActionCommand() == "curveleftStraightSwitch") {
+		else if (event.getActionCommand() == "curveleftStraightSwitch") {
 			curveleftStraightSwitchEvent();
 		}
-		if (event.getActionCommand() == "curverightStraightSwitch") {
+		else if (event.getActionCommand() == "curverightStraightSwitch") {
 			curverightStraightSwitchEvent();
 		}
 	}

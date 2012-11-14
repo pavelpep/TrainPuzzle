@@ -70,7 +70,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		initializeComponent(resetCampaign, 15);
 		campaignsPanel.add(resetCampaign);
 		
-		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);
@@ -82,22 +81,24 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
 			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
-		} else if (action == "resetCampaign") {
+		} 
+		else if (action == "resetCampaign") {
 			resetOptionPane = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset Campaign" + campaignSelected + "?", "Reset Campaign", JOptionPane.YES_NO_OPTION);
 			if (resetOptionPane == JOptionPane.YES_OPTION) {
 				// NEED TO CHANGE THE CAMPAIGN XML FILE ITSELF IN ORDER TO RESET!
 				gameController.resetCampaign(campaignList.getSelectedIndex());
 				JOptionPane.showMessageDialog(null, "Campaign reset successful");
-			} else if (resetOptionPane == JOptionPane.NO_OPTION) {
+			} 
+			else if (resetOptionPane == JOptionPane.NO_OPTION) {
 				JOptionPane.showMessageDialog(null, "Campaign not reseted");
 			}
-		} else if (action == "back") {
+		} 
+		else if (action == "back") {
 			WindowManager.getManager().showPreviousWindow();
 		}
 	}
 	
 	public void valueChanged(ListSelectionEvent arg0) {
 		campaignSelected = 1 + campaignList.getSelectedIndex();		
-		
 	}	
 }

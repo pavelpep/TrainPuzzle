@@ -11,14 +11,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
 public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
 
 	private GameController gameController;
 	private int levelSelected = 1;
 	JList levelList;
-	
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
@@ -42,6 +40,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		levelList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		levelList.addListSelectionListener(this);
 		levelList.setVisibleRowCount(8);
+		
 		for(CampaignLevel campaignLevel: gameController.getLevelManager().getLevels()){
 			String levelName = "Level " + campaignLevel.levelNumber;
 			String levelState = (campaignLevel.isLocked) ? "locked" : "unlocked";
@@ -66,12 +65,12 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 		if (action == "back") {
-				WindowManager.getManager().showPreviousWindow();
-		} else if (action == "START_LEVEL") {
+			WindowManager.getManager().showPreviousWindow();
+		} 
+		else if (action == "START_LEVEL") {
 			gameController.startGame(levelSelected);
 			WindowManager.getManager().setActiveWindow(new LoadedLevelScreen(gameController));
-		}		
-			
+		}	
 	}
 
 	@Override

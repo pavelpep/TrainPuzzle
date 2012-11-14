@@ -169,7 +169,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE, train.getNumOfCargoes().get(Cargo.CargoType.COTTON)));
 		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.IRON)));
 		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.WOOD)));
-
 	}
 	
 	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
@@ -240,11 +239,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			WindowManager.getManager().showPreviousWindow();
 		}
 		
-		if (event.getActionCommand() == "save") {
+		else if (event.getActionCommand() == "save") {
 			gameController.getLevelManager().saveCurrentLevel();
 		}
 		
-		if (event.getActionCommand() == "saveToFile") {
+		else if (event.getActionCommand() == "saveToFile") {
 			File saveLevelFile = saveFileDialog();
 			if(saveLevelFile != null){
 				gameController.saveCurrentLevel(saveLevelFile);
@@ -281,6 +280,4 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			cargoPanelPointer.validate();
 		}
 	}
-
-	
 }

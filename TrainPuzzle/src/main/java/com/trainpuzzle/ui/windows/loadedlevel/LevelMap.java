@@ -232,16 +232,16 @@ public class LevelMap extends JPanel implements Observer {
 		if(track.isUnremovable()) {
 			return new RotatedImageIcon(Images.PERMANENT_STRAIGHT_TRACK, rotation * 2);
 		}
-		if(connection.equals(STRAIGHT)) {
+		else if(connection.equals(STRAIGHT)) {
 			return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
 		}
-		if(connection.equals(DIAGONAL)) {
+		else if(connection.equals(DIAGONAL)) {
 			return new RotatedImageIcon(Images.DIAGONAL_TRACK, rotation * 2);
 		}
-		if(connection.equals(CURVE_LEFT)) {
+		else if(connection.equals(CURVE_LEFT)) {
 			return new RotatedImageIcon(Images.CURVELEFT_TRACK, rotation * 2);
 		}
-		if(connection.equals(CURVE_RIGHT)) {
+		else if(connection.equals(CURVE_RIGHT)) {
 			return new RotatedImageIcon(Images.CURVERIGHT_TRACK, rotation * 2);
 		}
 		return new RotatedImageIcon(Images.STRAIGHT_TRACK, rotation * 2);
@@ -345,10 +345,10 @@ public class LevelMap extends JPanel implements Observer {
 		if(object instanceof Train) {
 			instanceOfTrain(object);
 		}
-		if(object instanceof Tile) {
+		else if(object instanceof Tile) {
 			instanceOfTile(object);
 		}	
-		if(object instanceof Station) {
+		else if(object instanceof Station) {
 			instanceOfStation(object);
 		}
 	}
