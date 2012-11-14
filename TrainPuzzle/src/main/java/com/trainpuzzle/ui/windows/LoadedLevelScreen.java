@@ -1,4 +1,5 @@
 package com.trainpuzzle.ui.windows;
+
 import com.trainpuzzle.observe.Observer;
 
 import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
@@ -98,8 +99,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return headerPanel;
 	}
 	
-
-
 	private JTextPane messageBox() {
 		messageBox =  new JTextPane();
 		messageBox.setPreferredSize(new Dimension(300,20));
@@ -137,6 +136,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void setMessageBoxMessage(String message, Color colour) {
 		messageBox.setText(message);
 		messageBox.setForeground(colour);
+		
 		if(messageBoxDisplayTimer.isRunning()) {
 			messageBoxDisplayTimer.restart();
 		}
@@ -157,6 +157,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		titleLabel.setText("Level " + level.getLevelNumber());
 		Font titleFont = new Font("Arial", Font.BOLD, 28);
 		titleLabel.setFont(titleFont);
+		
 		return titleLabel;
 	}
 
@@ -253,20 +254,21 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		}
 	}
 	
-	private File saveFileDialog(){
+	private File saveFileDialog() {
 		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-			"XML Encoded Level", "xml");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Encoded Level", "xml");
 		chooser.setFileFilter(filter);
+		
 		int returnVal = chooser.showSaveDialog(this);
+		
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			return chooser.getSelectedFile();
 		}
 		return null;
 	}
 
-	public void notifyChange(Object object){
-		if(object instanceof Simulator){
+	public void notifyChange(Object object) {
+		if(object instanceof Simulator) {
 			if(((Simulator) object).isTrainCrashed()) {
 				setMessageBoxMessage("TRAIN CRASHED");
 			}
@@ -276,7 +278,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			}
 			gameControlBox.setRunButtonVisible();
 		}
-		else if (object instanceof Train){
+		else if (object instanceof Train) {
 			cargoPanelPointer.removeAll();
 			setCargoPanel(cargoPanelPointer);
 			cargoPanelPointer.validate();

@@ -52,9 +52,10 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		campaignList.addListSelectionListener(this);
 		campaignList.setVisibleRowCount(5);
 		
-		for(Campaign campaign: gameController.getCampaignManager().getCampaigns()){
+		for(Campaign campaign: gameController.getCampaignManager().getCampaigns()) {
 			listModel.addElement(campaign.getName());
 		}
+		
 		initializeComponent(campaignList, 15);
 		campaignsPanel.add(campaignList);
 		
@@ -72,20 +73,23 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
-		campaignsPanel.add(backButton);
-		
+		campaignsPanel.add(backButton);		
 	}
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
+		
 		if (action == "selectCampaign") {
 			gameController.changeCampaign(campaignSelected);
 			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
 		} 
 		else if (action == "resetCampaign") {
-			resetOptionPane = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset Campaign" + campaignSelected + "?", "Reset Campaign", JOptionPane.YES_NO_OPTION);
+			resetOptionPane = JOptionPane.showConfirmDialog(null, 
+					"Are you sure you want to reset Campaign" + campaignSelected + "?", 
+					"Reset Campaign", JOptionPane.YES_NO_OPTION);
+			
 			if (resetOptionPane == JOptionPane.YES_OPTION) {
-				// NEED TO CHANGE THE CAMPAIGN XML FILE ITSELF IN ORDER TO RESET!
+				// TODO: Need to change Campaign XML file itself in order to reset!
 				gameController.resetCampaign(campaignList.getSelectedIndex());
 				JOptionPane.showMessageDialog(null, "Campaign reset successful");
 			} 

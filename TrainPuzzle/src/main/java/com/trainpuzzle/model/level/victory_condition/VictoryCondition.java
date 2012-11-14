@@ -9,6 +9,5 @@ public interface VictoryCondition {
 		
 	public boolean isSatisfied();
 	public void processEvent(Event event);
-	public void resetEvents();
-	
+	public void resetEvents();	
 }

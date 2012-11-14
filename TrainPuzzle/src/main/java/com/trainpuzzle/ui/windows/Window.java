@@ -7,10 +7,9 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-
 abstract class Window extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 	protected static final int DEFAULT_WIDTH = 1028;
 	protected static final int DEFAULT_HEIGHT = 768;
 	
@@ -22,12 +21,13 @@ abstract class Window extends JFrame implements ActionListener {
 	private void modifyWindowCloseAction() {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
+			
 			public void windowClosing(WindowEvent ev) {
 				String exit = "Exit";
 				String previousWindow = "Previous Window";
-				String cancel = "Cancel";
-				
+				String cancel = "Cancel";	
 				String[] options;
+				
 				if(WindowManager.getManager().hasPreviousWindow()) {
 					options= new String[]{exit, previousWindow, cancel};
 				}
@@ -36,23 +36,19 @@ abstract class Window extends JFrame implements ActionListener {
 				}
 				
 				int choice = JOptionPane.showOptionDialog(
-					null, 
-					"Are you sure you want to exit the game?", 
-					"Exit Confirmation", 
-					JOptionPane.YES_NO_OPTION, 
-					JOptionPane.PLAIN_MESSAGE, 
-					null, 
-					options, 
-					options[0]);
+						null, 
+						"Are you sure you want to exit the game?", "Exit Confirmation", 
+						JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
+						null, 
+						options, options[0]);
 				
-				if(options[choice].equals(exit)){
+				if(options[choice].equals(exit)) {
 					WindowManager.getManager().exit();
 				}
-				else if(options[choice].equals(previousWindow)){
+				else if(options[choice].equals(previousWindow)) {
 					WindowManager.getManager().showPreviousWindow();
 				}
-				else if(options[choice].equals(cancel)){
-					
+				else if(options[choice].equals(cancel)) {
 				}
 			}
 		});
@@ -82,6 +78,5 @@ abstract class Window extends JFrame implements ActionListener {
 		gridBagConstraints.weighty = weightY;
 		gridBagConstraints.fill = GridBagConstraints.BOTH;
 		return gridBagConstraints;
-	}
-	
+	}	
 }

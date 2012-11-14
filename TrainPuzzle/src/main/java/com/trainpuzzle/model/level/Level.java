@@ -9,7 +9,7 @@ import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
 
-public class Level implements java.io.Serializable{
+public class Level implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,7 +24,9 @@ public class Level implements java.io.Serializable{
 		initializeEmptyVictoryConditions();
 	}
 
-	public Level(int levelNumber, Board board, Location startLocation, VictoryCondition victoryConditions, Economy economy) {
+	public Level(int levelNumber, Board board, Location startLocation, 
+			VictoryCondition victoryConditions, Economy economy) {
+		
 		this.levelNumber = levelNumber;
 		this.board = board;
 		this.startLocation = startLocation;
@@ -37,11 +39,7 @@ public class Level implements java.io.Serializable{
 		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation)));
 	}
 	
-	/* 
-	 * **********************
-	 * Getters & Setters	*
-	 * **********************
-	 */
+	 // Getters & Setters
 	
 	public Board getBoard() {
 		return board;
@@ -55,7 +53,6 @@ public class Level implements java.io.Serializable{
 		return this.startLocation;
 	}
 		
-	
 	public int getLevelNumber() {
 		return this.levelNumber;
 	}

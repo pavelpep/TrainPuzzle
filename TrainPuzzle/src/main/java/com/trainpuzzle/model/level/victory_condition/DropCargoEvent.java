@@ -4,6 +4,7 @@ import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.Station;
 
 public class DropCargoEvent extends Event {
+	
 	private static final long serialVersionUID = 1L;
 	private Cargo cargo;
 	public DropCargoEvent(int time, Station station,Cargo cargo) {
@@ -11,9 +12,6 @@ public class DropCargoEvent extends Event {
 		this.cargo = cargo;
 	}
 	
-
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -32,8 +30,6 @@ public class DropCargoEvent extends Event {
 		return station.equals(event.getStation()) && cargo.equals(this.cargo);
 	}
 
-
-
 	public Cargo getCargo() {
 		return cargo;
 	}
@@ -41,6 +37,4 @@ public class DropCargoEvent extends Event {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
-	
-
 }

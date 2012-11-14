@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
 public class OrVictoryCondition extends LogicalVictoryCondition implements java.io.Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private void checkChildrenSatisfied() {
@@ -17,5 +18,4 @@ public class OrVictoryCondition extends LogicalVictoryCondition implements java.
 		checkChildrenSatisfied();
 		return conditionSatisfied;
 	}
-
 }

@@ -3,7 +3,8 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogicalVictoryCondition implements VictoryCondition{
+public class LogicalVictoryCondition implements VictoryCondition {
+	
 	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
 	protected boolean conditionSatisfied = false;
 	
@@ -37,6 +38,5 @@ public class LogicalVictoryCondition implements VictoryCondition{
 	
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
-	}
-	
+	}	
 }

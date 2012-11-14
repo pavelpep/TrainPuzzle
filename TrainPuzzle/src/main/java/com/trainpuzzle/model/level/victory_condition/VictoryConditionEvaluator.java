@@ -4,16 +4,13 @@ import java.util.Set;
 
 import com.trainpuzzle.observe.*;
 
-
 public class VictoryConditionEvaluator implements VictoryCondition, Observable {
 	
-	private Set<Observer> observerList = new HashSet<Observer>();
-	
+	private Set<Observer> observerList = new HashSet<Observer>();	
 	private VictoryCondition root;
 	
 	public VictoryConditionEvaluator(VictoryCondition root) {
 		this.root = root;
-//		checkOutLeaves(this.root);
 	}
 	
 	public boolean isSatisfied() {
@@ -21,31 +18,7 @@ public class VictoryConditionEvaluator implements VictoryCondition, Observable {
 		if(isSatisfied){notifyAllObservers();}
 		return isSatisfied;
 	}
-/*		
-	public void eventHappened(Event event) {
-		for(LeafVictoryCondition leaf : leaves) {
-				if(leaf.checkEvent(event)) {
-					leaf.eventClear();
-				}
-		}
-		conditionSatisified = root.isSatisfied();
-	}
 
-	private void checkOutLeaves(VictoryConditionOld victoryCondition) {
-		VictoryConditionOld leftChild = victoryCondition.getLeftChild();
-		VictoryConditionOld rightChild = victoryCondition.getRightChild();
-		if( leftChild != null) {
-			checkOutLeaves(leftChild);
-		}
-		if(victoryCondition.getClass() == LeafVictoryCondition.class) {
-			LeafVictoryCondition leaf = (LeafVictoryCondition) victoryCondition;
-			leaves.add(leaf);
-		}
-		if( rightChild != null) {
-			checkOutLeaves(rightChild);
-		}
-	}
-*/
 	@Override
 	public void processEvent(Event event) {
 		root.processEvent(event);
@@ -70,5 +43,31 @@ public class VictoryConditionEvaluator implements VictoryCondition, Observable {
 			observer.notifyChange(this);
 		}
 	}
-	
 }
+
+// For future reference 
+/*		
+public void eventHappened(Event event) {
+	for(LeafVictoryCondition leaf : leaves) {
+			if(leaf.checkEvent(event)) {
+				leaf.eventClear();
+			}
+	}
+	conditionSatisified = root.isSatisfied();
+}
+
+private void checkOutLeaves(VictoryConditionOld victoryCondition) {
+	VictoryConditionOld leftChild = victoryCondition.getLeftChild();
+	VictoryConditionOld rightChild = victoryCondition.getRightChild();
+	if( leftChild != null) {
+		checkOutLeaves(leftChild);
+	}
+	if(victoryCondition.getClass() == LeafVictoryCondition.class) {
+		LeafVictoryCondition leaf = (LeafVictoryCondition) victoryCondition;
+		leaves.add(leaf);
+	}
+	if( rightChild != null) {
+		checkOutLeaves(rightChild);
+	}
+}
+*/

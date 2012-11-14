@@ -37,11 +37,11 @@ public class RotatedImageIcon extends ImageIcon {
 		super.paintIcon(c, g2, x, y);
 	}
 	
-	public void rotate90DegreesClockwise(){
+	public void rotate90DegreesClockwise() {
 		this.multiplesOf45Degrees = this.multiplesOf45Degrees + 2;
 	}
 	
-	public void rotate90DegreesCounterClockwise(){
+	public void rotate90DegreesCounterClockwise() {
 		this.multiplesOf45Degrees = this.multiplesOf45Degrees + 6;
 	}
 }

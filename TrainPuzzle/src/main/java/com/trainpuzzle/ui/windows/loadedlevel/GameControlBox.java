@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,12 +25,13 @@ public class GameControlBox extends JPanel implements ActionListener{
 	
 	public GameControlBox(GameController gameController) {
 		this.gameController = gameController;
-		
 		this.setPreferredSize(new Dimension(200, 150));
+		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder gameControlBoxTitle;
 		gameControlBoxTitle = BorderFactory.createTitledBorder(loweredetched, "Game Controls");
 		gameControlBoxTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
+		
 		this.setBorder(gameControlBoxTitle);
 		this.setLayout(new GridBagLayout());
 		
@@ -41,11 +41,13 @@ public class GameControlBox extends JPanel implements ActionListener{
 	private void addGameControlBoxComponents() {
 		runButton = initializeButton("Run", "run");
 		runButton.setVisible(true);
+		
 		GridBagConstraints runButtonContraints = buttonConstraints(new Point(0, 0), new Dimension(3, 1));
 		this.add(runButton, runButtonContraints);
 		
 		pauseButton = initializeButton("Pause","pause");
 		pauseButton.setVisible(false);
+		
 		GridBagConstraints pauseButtonContraints = buttonConstraints(new Point(0, 0), new Dimension(3, 1));
 		this.add(pauseButton, pauseButtonContraints);
 		
@@ -119,7 +121,6 @@ public class GameControlBox extends JPanel implements ActionListener{
 				gameController.getSimulator().setTickInterval(decreasedValue);
 			}
 		}
-		
 		if (event.getActionCommand() == "tickOnce") {
 			try {
 				gameController.getSimulator().move();
@@ -127,18 +128,16 @@ public class GameControlBox extends JPanel implements ActionListener{
 				e.printStackTrace();
 			}
 		}
-		
 		if (event.getActionCommand() == "tickIncrease") {
 			int increasedValue = gameController.getSimulator().getTickInterval() / 2;
 			int lowerBound = gameController.getSimulator().getTickIntervalLowerBound();
-			if(increasedValue >= lowerBound){
+			
+			if(increasedValue >= lowerBound) {
 				gameController.getSimulator().setTickInterval(increasedValue);
 			}
 		}
-		
 		if (event.getActionCommand() == "removeAllTracks") {
 			gameController.removeAllTracks();
 		}
 	}
-	
 }

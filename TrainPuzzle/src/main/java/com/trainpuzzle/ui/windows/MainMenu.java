@@ -11,7 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 
-
 public class MainMenu extends Window implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
@@ -59,8 +58,7 @@ public class MainMenu extends Window implements ActionListener {
 		JButton exitButton = initializeButton("Exit","exit");
 		initializeComponent(exitButton, 20);
 		exitButton.setBackground(Color.ORANGE);
-		mainMenuPanel.add(exitButton);
-		
+		mainMenuPanel.add(exitButton);		
 	}
 	
 	public void actionPerformed(ActionEvent event) {
@@ -68,29 +66,32 @@ public class MainMenu extends Window implements ActionListener {
 		
 		if (action == "continue") {
 			WindowManager.getManager().setActiveWindow(new LevelSelect(gameController)); 
-		} else if (action == "campaigns") {
+		} 
+		else if (action == "campaigns") {
 			WindowManager.getManager().setActiveWindow(new Campaigns(gameController)); 
-		} else if (action == "load") {
+		} 
+		else if (action == "load") {
 			File levelFile = openFile();
-			if(levelFile != null){	
+			if(levelFile != null) {	
 				gameController.startGame(levelFile);
 				LoadedLevelScreen loadedLevelScreen = new LoadedLevelScreen(gameController);
 				WindowManager.getManager().setActiveWindow(loadedLevelScreen);
 			}
-	    } else if (action == "exit") {
+	    } 
+		else if (action == "exit") {
 			System.exit(0);
 		}
 	}
 	
-	private File openFile(){
+	private File openFile() {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Encoded Level", "xml");
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(this);
+		
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			return chooser.getSelectedFile();
 		}
-			return null;
-		}
-	
+		return null;
+	}
 }

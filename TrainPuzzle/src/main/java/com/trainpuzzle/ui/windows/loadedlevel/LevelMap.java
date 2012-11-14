@@ -33,6 +33,7 @@ import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
 
 public class LevelMap extends JPanel implements Observer {
+
 	private static final long serialVersionUID = 1L;
 	
 	private final Connection STRAIGHT = new Connection(CompassHeading.EAST, CompassHeading.WEST);
@@ -306,7 +307,6 @@ public class LevelMap extends JPanel implements Observer {
 			mapTiles[row][column].add(trainLayer, new Integer(trainLayerIndex));
 		}
 		this.repaint();
-		
 	}
 	
 	private void redrawTrainCargo(Train train) {
@@ -325,6 +325,7 @@ public class LevelMap extends JPanel implements Observer {
 			this.repaint();
 		}
 	}
+	
 	private void removeComponentsInGUILayer(JLayeredPane mapTile, int layerIndex) {
 		try {
 			Component[] components = mapTile.getComponentsInLayer(layerIndex);

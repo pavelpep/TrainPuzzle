@@ -27,5 +27,4 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 			}
 		}
 	}
-
 }

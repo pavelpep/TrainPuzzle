@@ -3,7 +3,6 @@ package com.trainpuzzle.model.level;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Campaign implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,46 +18,49 @@ public class Campaign implements java.io.Serializable {
     	campaignLevels.add(new CampaignLevel(false,false,2));
     	campaignLevels.add(new CampaignLevel(false,false,3));
 	}
-
 	
 	public void completeLevel(int levelNumber) {
 		campaignLevels.get(levelNumber - 1).isCompleted = true;
-		try 
-		{
+		try {
 			unlockLevel(levelNumber);
 		}
-		finally{}
+		finally {
+			
+		}
 	}
 	
-	private void unlockLevel(int levelNumber){
+	private void unlockLevel(int levelNumber) {
 		campaignLevels.get(levelNumber).isLocked = false;
 	}
 	
 	public String getName() {
 		return campaignName;
 	}
+	
 	public void setName(String name) {
 		this.campaignName = name;
 	}
+	
 	public List<CampaignLevel> getCampaignLevels() {
 		return campaignLevels;
 	}
+	
     public CampaignLevel getCurrentLevel() {
 		return campaignLevels.get(currentLevel-1);
 	}
+    
     public int getCurrentLevelNumber() {
 		return currentLevel;
 	}
+    
 	public void selectLevel(int levelNumber) {
 		this.currentLevel = levelNumber;
 	}
-	public void reset(){
-		for(CampaignLevel campaignLevel: campaignLevels){
+	
+	public void reset() {
+		for(CampaignLevel campaignLevel: campaignLevels) {
 			campaignLevel.reset();
 		}
-		
 		campaignLevels.get(0).isLocked = false;
 	}
-	
-	
 }

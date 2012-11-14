@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,8 +21,8 @@ import com.trainpuzzle.ui.windows.LoadedLevelScreen;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 
 public class SelectedTrack extends JPanel implements ActionListener {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 	private LoadedLevelScreen loadedLevelScreen;
 	private JButton rotateButton = new JButton();
 	private RotatedImageIcon selectedTrackImage;
