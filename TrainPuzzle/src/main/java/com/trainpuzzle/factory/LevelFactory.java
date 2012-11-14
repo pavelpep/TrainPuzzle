@@ -19,9 +19,7 @@ import com.trainpuzzle.model.board.Obstacle.ObstacleType;
 import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.Event;
-import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.*;
 
 import java.util.HashMap;
 
@@ -85,7 +83,12 @@ public class LevelFactory {
 			this.board.getTile(currentLocation).setObstacle(new Obstacle(obstacleType));
 		}
 	}
-
+	private void addImportCargo (Station station, LogicalVictoryCondition condiction,Cargo cargo) {
+		station.addImportCargo(cargo);
+		DropCargoEvent event = new DropCargoEvent(100,station, cargo);
+		LeafVictoryCondition lcondiction = new LeafVictoryCondition(event);
+		condiction.addChild(lcondiction);
+	}
 	/*
 	private void setVictoryConditions(Level level, Location endLocation) {
 	AndVictoryCondition victoryConditions = new AndVictoryCondition();
@@ -129,13 +132,13 @@ public class LevelFactory {
 	        
 	        stationToAdd=new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);
-	        stationToAdd.addImportCargo(new Cargo(CargoType.IRON));
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.IRON));
 	        stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
 	        
 	        stationToAdd=new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);
-	        stationToAdd.addImportCargo(new Cargo(CargoType.WOOD));	
-	        stationToAdd.addImportCargo(new Cargo(CargoType.COTTON));	 
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));	 
 	        
 	        setStations(stations);
 	        
@@ -210,13 +213,13 @@ public class LevelFactory {
 	        
 	        stationToAdd = new Station(StationType.RED, new Location(2, 8), CompassHeading.SOUTH);
 	        stations.add(stationToAdd);	        
-	        stationToAdd.addImportCargo(new Cargo(CargoType.IRON));
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.IRON));
 	        stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
 	        
 	        stationToAdd = new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST);
 	        stations.add(stationToAdd);	        
-	        stationToAdd.addImportCargo(new Cargo(CargoType.COTTON));
-	        stationToAdd.addImportCargo(new Cargo(CargoType.WOOD));
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
+	        addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));
 	        
 	        setStations(stations);
 	        
