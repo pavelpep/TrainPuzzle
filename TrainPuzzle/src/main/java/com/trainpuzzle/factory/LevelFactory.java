@@ -307,17 +307,17 @@ public class LevelFactory {
 	        
 	        HashMap<TrackType, Integer> trackLimitsLevelThree = new HashMap<TrackType,Integer>();
 	        final int NO_LIMIT = -1;
-	        trackLimitsLevelThree.put(TrackType.TRACK, 20);
+	        trackLimitsLevelThree.put(TrackType.TRACK, 32);
 	        trackLimitsLevelThree.put(TrackType.STRAIGHT, 10);
-	        trackLimitsLevelThree.put(TrackType.CURVE, 10);
-	        trackLimitsLevelThree.put(TrackType.INTERSECTION, 5);
+	        trackLimitsLevelThree.put(TrackType.CURVE, 15);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION, 2);
 	        trackLimitsLevelThree.put(TrackType.SWITCH, 5);
 	        trackLimitsLevelThree.put(TrackType.STRAIGHT_TRACK, 10);
 	        trackLimitsLevelThree.put(TrackType.DIAGONAL_TRACK, 10);
 	        trackLimitsLevelThree.put(TrackType.CURVELEFT_TRACK, 10);
 	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_TRACK, 10);
-	        trackLimitsLevelThree.put(TrackType.INTERSECTION_TRACK, 5);
-	        trackLimitsLevelThree.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 5);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION_TRACK, 2);
+	        trackLimitsLevelThree.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
 	        trackLimitsLevelThree.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 5);
 	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 5);
 	        int budget = NO_LIMIT;
