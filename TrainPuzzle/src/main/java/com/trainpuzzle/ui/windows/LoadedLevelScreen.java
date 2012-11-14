@@ -45,7 +45,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		this.level = this.gameController.getLevel();
 
 		gameController.getSimulator().register(this);
-		gameController.getSimulator().getTrain().registerObserver(this);
+		gameController.getSimulator().getTrain().register(this);
 		
 		setLayout(new GridBagLayout());
 		setBackground(this.getBackground());
