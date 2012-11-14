@@ -5,7 +5,6 @@ import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
-import com.trainpuzzle.ui.windows.loadedlevel.VictoryConditions;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -204,8 +203,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		selectedTrackPanel = new SelectedTrack(this);
 		sidePanel.add(selectedTrackPanel);
 		
-		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
-		sidePanel.add(victoryConditionsPanel);
+		JButton victButton = initializeButton("Objectives","objectives");
+		initializeComponent(victButton, 15);
+		sidePanel.add(victButton);
 		
 		return sidePanel;
 	}
@@ -242,7 +242,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		else if (event.getActionCommand() == "save") {
 			gameController.getLevelManager().saveCurrentLevel();
 		}
-		
+		else if (event.getActionCommand() == "objectives") {
+			WindowManager.getManager().setActiveWindow(new VictoryConditionsWindow(gameController));
+		}
 		else if (event.getActionCommand() == "saveToFile") {
 			File saveLevelFile = saveFileDialog();
 			if(saveLevelFile != null){

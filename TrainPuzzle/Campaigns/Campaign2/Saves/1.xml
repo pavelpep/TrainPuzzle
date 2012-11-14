@@ -1140,7 +1140,16 @@
               <trackType>STRAIGHT_TRACK</trackType>
             </track>
             <stationBuilding reference="../../obstacle"/>
-            <exportCargo/>
+            <exportCargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>IRON</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>WOOD</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+            </exportCargo>
             <importCargo/>
           </station>
         </com.trainpuzzle.model.board.Tile>
@@ -1734,8 +1743,18 @@
               <trackType>STRAIGHT_TRACK</trackType>
             </track>
             <stationBuilding reference="../../obstacle"/>
-            <exportCargo/>
-            <importCargo/>
+            <exportCargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>COTTON</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+            </exportCargo>
+            <importCargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>IRON</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+            </importCargo>
           </station>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
@@ -1784,7 +1803,16 @@
             </track>
             <stationBuilding reference="../../obstacle"/>
             <exportCargo/>
-            <importCargo/>
+            <importCargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>WOOD</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+              <com.trainpuzzle.model.board.Cargo>
+                <cargoType>COTTON</cargoType>
+                <numberOfCargo>1</numberOfCargo>
+              </com.trainpuzzle.model.board.Cargo>
+            </importCargo>
           </station>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
@@ -1952,14 +1980,12 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track reference="../../com.trainpuzzle.model.board.Tile[10]/track"/>
           <landscape>
             <landscapeType>GRASS</landscapeType>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track reference="../../com.trainpuzzle.model.board.Tile[10]/track"/>
           <landscape>
             <landscapeType>GRASS</landscapeType>
           </landscape>
@@ -2127,7 +2153,7 @@
           <time>100</time>
           <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[7]/station"/>
         </condition>
-        <conditionSatisfied>true</conditionSatisfied>
+        <conditionSatisfied>false</conditionSatisfied>
         <hasTimeLimit>false</hasTimeLimit>
         <timeLimit>0</timeLimit>
       </com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
@@ -2136,7 +2162,7 @@
           <time>100</time>
           <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[9]/station"/>
         </condition>
-        <conditionSatisfied>true</conditionSatisfied>
+        <conditionSatisfied>false</conditionSatisfied>
         <hasTimeLimit>false</hasTimeLimit>
         <timeLimit>0</timeLimit>
       </com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
@@ -2145,39 +2171,23 @@
           <time>100</time>
           <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
         </condition>
-        <conditionSatisfied>true</conditionSatisfied>
+        <conditionSatisfied>false</conditionSatisfied>
         <hasTimeLimit>false</hasTimeLimit>
         <timeLimit>0</timeLimit>
       </com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
     </childConditions>
-    <conditionSatisfied>true</conditionSatisfied>
+    <conditionSatisfied>false</conditionSatisfied>
   </victoryConditions>
   <economy>
     <budget>-1</budget>
     <numberOfAvailableTrack>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>6</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>30</int>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
+        <int>15</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
-        <int>1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>10</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>CURVE</com.trainpuzzle.model.board.TrackType>
@@ -2196,16 +2206,32 @@
         <int>10</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <int>10</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>32</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>6</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
+        <int>3</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>15</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>15</int>
       </entry>
     </numberOfAvailableTrack>
   </economy>
