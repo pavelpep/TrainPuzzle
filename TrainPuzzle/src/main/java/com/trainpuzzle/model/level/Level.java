@@ -1,6 +1,5 @@
 package com.trainpuzzle.model.level;
 
-
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
@@ -20,13 +19,11 @@ public class Level implements java.io.Serializable{
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
 	
-		
 	public Level(int levelNumber) {
 		this.levelNumber = levelNumber;
 		initializeEmptyVictoryConditions();
 	}
 
-	
 	public Level(int levelNumber, Board board, Location startLocation, VictoryCondition victoryConditions, Economy economy) {
 		this.levelNumber = levelNumber;
 		this.board = board;

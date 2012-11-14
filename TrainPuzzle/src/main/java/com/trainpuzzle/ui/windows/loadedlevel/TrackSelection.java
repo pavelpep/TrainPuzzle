@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -30,12 +29,10 @@ import com.trainpuzzle.ui.windows.RotatedImageIcon;
 
 public class TrackSelection extends JPanel implements ActionListener, Observer{
 	private static final long serialVersionUID = 1L;
-	
 
 	private LoadedLevelScreen loadedLevelScreen;
 	private GameController gameController;
 	private Economy economy;
-	
 	private TitledBorder sidePanelTitle;
 	
 	public TrackSelection(GameController gameController, LoadedLevelScreen loadedLevelScreen) {
@@ -127,75 +124,98 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 		button.addActionListener(this);
 		return button;
 	}
-
+	
 	public void actionPerformed(ActionEvent event) {
-
 		if (event.getActionCommand() == "straightTrack") {
-			Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
-			Track selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			straightTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "diagonalTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
-			Track selectedTrack = new Track(connection, TrackType.DIAGONAL_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			diagonalTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "curveleftTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
-			Track selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			curveleftTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "curverightTrack") {
-			Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
-			Track selectedTrack = new Track(connection, TrackType.CURVERIGHT_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			curverightTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "intersectionTrack") {
-			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-			Connection connection2 = new Connection(CompassHeading.WEST, CompassHeading.EAST);
-			Track selectedTrack = new Track(connection1, connection2, TrackType.INTERSECTION_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			intersectionTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "diagonalIntersectionTrack") {
-			Connection connection1 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
-			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
-			Track selectedTrack = new Track(connection1, connection2, TrackType.DIAGONAL_INTERSECTION_TRACK);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			diagonalIntersectionTrackEvent();
 		}
-		
 		if (event.getActionCommand() == "curveleftStraightSwitch") {
-			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-			Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
-			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVELEFT_STRAIGHT_SWITCH);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_SWITCH);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			curveleftStraightSwitchEvent();
 		}
-		
 		if (event.getActionCommand() == "curverightStraightSwitch") {
-			Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
-			Connection connection2 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
-			Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVERIGHT_STRAIGHT_SWITCH);
-			RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_SWITCH);
-			loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+			curverightStraightSwitchEvent();
 		}
 	}
 
+	public void straightTrackEvent() {
+		Connection connection = new Connection(CompassHeading.EAST,CompassHeading.WEST);
+		Track selectedTrack = new Track(connection, TrackType.STRAIGHT_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.STRAIGHT_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void diagonalTrackEvent() {
+		Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTHEAST);
+		Track selectedTrack = new Track(connection, TrackType.DIAGONAL_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void curveleftTrackEvent() {
+		Connection connection = new Connection(CompassHeading.NORTHWEST,CompassHeading.SOUTH);
+		Track selectedTrack = new Track(connection, TrackType.CURVELEFT_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void curverightTrackEvent() {
+		Connection connection = new Connection(CompassHeading.NORTHEAST,CompassHeading.SOUTH);
+		Track selectedTrack = new Track(connection, TrackType.CURVERIGHT_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void intersectionTrackEvent() {
+		Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+		Connection connection2 = new Connection(CompassHeading.WEST, CompassHeading.EAST);
+		Track selectedTrack = new Track(connection1, connection2, TrackType.INTERSECTION_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.INTERSECTION_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void diagonalIntersectionTrackEvent() {
+		Connection connection1 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTHWEST);
+		Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTHEAST);
+		Track selectedTrack = new Track(connection1, connection2, TrackType.DIAGONAL_INTERSECTION_TRACK);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.DIAGONAL_INTERSECTION_TRACK);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void curveleftStraightSwitchEvent() {
+		Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+		Connection connection2 = new Connection(CompassHeading.NORTHWEST, CompassHeading.SOUTH);
+		Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVELEFT_STRAIGHT_SWITCH);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVELEFT_SWITCH);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
+	public void curverightStraightSwitchEvent() {
+		Connection connection1 = new Connection(CompassHeading.NORTH, CompassHeading.SOUTH);
+		Connection connection2 = new Connection(CompassHeading.NORTHEAST, CompassHeading.SOUTH);
+		Track selectedTrack = new Switch(connection1, connection2, TrackType.CURVERIGHT_STRAIGHT_SWITCH);
+		RotatedImageIcon selectedTrackImage = new RotatedImageIcon(Images.CURVERIGHT_SWITCH);
+		loadedLevelScreen.getSelectedTrackPanel().redrawRotateButton(selectedTrack, selectedTrackImage);
+	}
+	
 	public void notifyChange(Object object) {
 		this.removeAll();
 		setTrackSelectionBorder();
 		initializeTrackList();
 		this.validate();
 	}
-	
 }

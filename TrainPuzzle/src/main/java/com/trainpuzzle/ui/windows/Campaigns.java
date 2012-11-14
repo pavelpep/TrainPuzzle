@@ -9,8 +9,6 @@ import javax.swing.event.*;
 import com.trainpuzzle.controller.LevelManager;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.model.level.Campaign;
-import com.trainpuzzle.model.level.CampaignLevel;
-
 
 class Campaigns extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;

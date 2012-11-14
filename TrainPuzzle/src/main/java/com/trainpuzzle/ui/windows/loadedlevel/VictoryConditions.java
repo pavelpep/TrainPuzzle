@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +33,6 @@ public class VictoryConditions extends JPanel implements ActionListener{
 		
 		JPanel victoryConditionPanel = new JPanel();
 		
-		
 	    DefaultMutableTreeNode top =
 	        new DefaultMutableTreeNode("The Java Series");
 	    //createNodes(top);
@@ -45,9 +43,7 @@ public class VictoryConditions extends JPanel implements ActionListener{
 		
 	}
 	
-
 	public void actionPerformed(ActionEvent event) {
 		
 	}
-	
 }

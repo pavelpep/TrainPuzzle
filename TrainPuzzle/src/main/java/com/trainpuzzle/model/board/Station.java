@@ -8,7 +8,6 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 

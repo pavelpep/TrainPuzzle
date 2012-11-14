@@ -1,8 +1,5 @@
 package com.trainpuzzle.model.board;
 
-import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
-
-
 public class Cargo implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;

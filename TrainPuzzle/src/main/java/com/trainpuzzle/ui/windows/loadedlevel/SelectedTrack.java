@@ -25,7 +25,6 @@ public class SelectedTrack extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private LoadedLevelScreen loadedLevelScreen;
-	
 	private JButton rotateButton = new JButton();
 	private RotatedImageIcon selectedTrackImage;
 	private Track selectedTrack;
@@ -73,7 +72,8 @@ public class SelectedTrack extends JPanel implements ActionListener {
 	private void rotate() {
 		if(!selectedTrack.isSwitch()) {
 			selectedTrack = new Track(selectedTrack);
-		} else {
+		} 
+		else {
 			selectedTrack = new Switch((Switch)selectedTrack);
 		}
 		selectedTrack.rotateTrack();
@@ -86,5 +86,4 @@ public class SelectedTrack extends JPanel implements ActionListener {
 			rotate();
 		}
 	}
-
 }
