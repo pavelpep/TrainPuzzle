@@ -178,18 +178,18 @@ public class LevelFactory {
 	        
 	        HashMap<TrackType, Integer> trackLimitsLevelOne = new HashMap<TrackType,Integer>();
 	        final int NO_LIMIT = -1;
-	        trackLimitsLevelOne.put(TrackType.TRACK, 50);
+	        trackLimitsLevelOne.put(TrackType.TRACK, 30);
 	        trackLimitsLevelOne.put(TrackType.STRAIGHT, 15);
 	        trackLimitsLevelOne.put(TrackType.CURVE, 15);
-	        trackLimitsLevelOne.put(TrackType.INTERSECTION, 15);
-	        trackLimitsLevelOne.put(TrackType.SWITCH, 15);
+	        trackLimitsLevelOne.put(TrackType.INTERSECTION, 5);
+	        trackLimitsLevelOne.put(TrackType.SWITCH, 5);
 	        trackLimitsLevelOne.put(TrackType.STRAIGHT_TRACK, NO_LIMIT);
 	        trackLimitsLevelOne.put(TrackType.DIAGONAL_TRACK, NO_LIMIT);
 	        trackLimitsLevelOne.put(TrackType.CURVELEFT_TRACK, 10);
 	        trackLimitsLevelOne.put(TrackType.CURVERIGHT_TRACK, 10);
-	        trackLimitsLevelOne.put(TrackType.INTERSECTION_TRACK, 10);
-	        trackLimitsLevelOne.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 10);
-	        trackLimitsLevelOne.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 10);
+	        trackLimitsLevelOne.put(TrackType.INTERSECTION_TRACK, 5);
+	        trackLimitsLevelOne.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 5);
+	        trackLimitsLevelOne.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 5);
 	        trackLimitsLevelOne.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_LIMIT);
 	        int budget = NO_LIMIT;
 	        Economy economyLevelOne = new Economy(budget, trackLimitsLevelOne);
