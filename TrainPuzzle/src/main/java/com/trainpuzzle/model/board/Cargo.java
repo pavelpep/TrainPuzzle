@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.board;
 
+import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
+
 
 public class Cargo implements java.io.Serializable{
 	
@@ -56,9 +58,14 @@ public class Cargo implements java.io.Serializable{
 	
 	@Override
 	public boolean equals(Object obj) {
-		boolean isEqual = this.cargoType.equals(((Cargo)obj).cargoType) && 
-				this.numberOfCargo == ((Cargo)obj).numberOfCargo;
-		return isEqual;
+		if (this == obj) {
+			return true;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Cargo other = (Cargo) obj;
+		return other.getType() ==cargoType;
 	}
 	
 }

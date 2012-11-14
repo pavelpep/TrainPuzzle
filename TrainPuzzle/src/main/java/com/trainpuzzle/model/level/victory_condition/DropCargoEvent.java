@@ -29,7 +29,7 @@ public class DropCargoEvent extends Event {
 	private boolean compareDropCargoEvent(DropCargoEvent event) {
 		Station station = this.getStation();
 		Cargo cargo = event.getCargo();
-		return station.equals(event.getStation()) && this.cargo == cargo;
+		return station.equals(event.getStation()) && cargo.equals(this.cargo);
 	}
 
 
