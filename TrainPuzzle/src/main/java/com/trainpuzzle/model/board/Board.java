@@ -27,6 +27,19 @@ public class Board implements Observable, java.io.Serializable {
 		initializeTiles();
 	}
 	
+	public void resetStationCargo(Board orignalBoard) {
+		for(int row = 0; row < getRows(); row++) {
+			for(int column = 0; column < getColumns(); column++) {
+				if(tiles[row][column].hasStationBuilding()) {
+					Station newStation = orignalBoard.getTile(row, column).getStation();
+					Station currentStation = tiles[row][column].getStation();
+					
+					currentStation.setCargo(newStation);
+				}
+			}
+		}
+	}
+	
 	public void register(Observer observer) {
 		if(observerList == null) {
 			observerList = new HashSet<Observer>();

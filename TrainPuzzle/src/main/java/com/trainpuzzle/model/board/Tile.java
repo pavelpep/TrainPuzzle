@@ -18,7 +18,7 @@ public class Tile implements Observable, java.io.Serializable {
 
   /* Public Interface */
 
-	public Tile(){	
+	public Tile() {	
 		elevation = 0;
 		landscape = new Landscape(Landscape.LandscapeType.GRASS);
 	}

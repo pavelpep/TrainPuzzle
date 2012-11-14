@@ -16,7 +16,7 @@ import com.trainpuzzle.observe.Observer;
 public class GameController {
 	
 	private static final int DEFAULT_CAMPAIGN = 1;
-	private Logger logger = Logger.getLogger(Application.class);
+	private Logger logger = Logger.getLogger(GameController.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
 	private CampaignManager campaignManager;

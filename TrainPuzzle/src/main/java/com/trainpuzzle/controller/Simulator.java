@@ -24,6 +24,7 @@ import com.trainpuzzle.observe.Observer;
 
 import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
+import com.trainpuzzle.factory.LevelFactory;
 
 public class Simulator implements Observable{
 	
@@ -56,6 +57,7 @@ public class Simulator implements Observable{
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
 		
 	}
+	
 	private void resetTrain() {
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
@@ -65,7 +67,10 @@ public class Simulator implements Observable{
 	}
 	
 	private void resetStations() {
+		LevelFactory levelFactory = new LevelFactory();
+		Board originalBoard = levelFactory.createLevel(level.getLevelNumber()).getBoard();
 		
+		board.resetStationCargo(originalBoard);
 	}	
 	
 	private void resetVictoryConditions() {
@@ -210,7 +215,6 @@ public class Simulator implements Observable{
 		dropCargo(station);
 		train.pickUpAt(station);
 	}
-
 	
 	private void dropCargo(Station station) {
 		List<Cargo> droppedCargo = train.dropOff(station.getImportCargo());

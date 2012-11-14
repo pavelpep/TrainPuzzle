@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -19,7 +22,7 @@ import com.trainpuzzle.observe.Observer;
  */
 
 public class Station implements java.io.Serializable, Observable{
-	
+	private Logger logger = Logger.getLogger(Station.class);
 	private static final long serialVersionUID = 1L;
 	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
@@ -96,6 +99,10 @@ public class Station implements java.io.Serializable, Observable{
 		return tempObstacle;
 	}
 
+	public void setCargo(Station station) {
+		this.exportCargo = station.exportCargo;
+		this.importCargo = station.importCargo;
+	}
 	
 	public Location getStationLocation() {
 		return stationLocation;
@@ -150,14 +157,14 @@ public class Station implements java.io.Serializable, Observable{
 	}	
 	
 	public void sendExportCargo(Cargo cargo) {
-		System.out.print("Train Received Cargo from Station\n");
+		logger.debug("Train Received Cargo from Station");
 		assert exportCargo.size() > 0;
 		exportCargo.removeFirstOccurrence(cargo);		
 		notifyAllObservers();
 	}
 	
 	public void receiveImportCargo(Cargo cargo)  {
-		System.out.print("Station Received Cargo from Train\n");
+		logger.debug("Station Received Cargo from Train");
 		importCargo.removeFirstOccurrence(cargo);
 		notifyAllObservers();
 	}
