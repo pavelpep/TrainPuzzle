@@ -1,10 +1,12 @@
 package com.trainpuzzle.model.board;
+
 import java.util.Iterator;
 
 import com.trainpuzzle.exception.InvalidCommonHeadingException;
 import com.trainpuzzle.exception.TrainCrashException;
 
 public class Switch extends Track {
+
 	private static final long serialVersionUID = 1L;
 	
 	private Iterator<Connection> connectionsIterator;
@@ -46,16 +48,17 @@ public class Switch extends Track {
 		return entrance;
 	}
 	
-	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException{
+	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
 		CompassHeading outboundHeading;
+		
+		// TODO: notify UI to redraw the switch when current is changed
 		if(isEntrance(inboundHeading)) {
 			outboundHeading = current.outboundForInbound(inboundHeading);
-			current = nextConnection();
-			// TODO: notify UI to redraw the switch when current is changed
-		} else {	// if the inbound heading is not connected to the "switch entrance", check if it is connected to any other "switch exits"
+			current = nextConnection();	
+		} 
+		else {	
 			outboundHeading = super.getOutboundHeading(inboundHeading);
 		}
-		
 		return outboundHeading;		
 	}
 	

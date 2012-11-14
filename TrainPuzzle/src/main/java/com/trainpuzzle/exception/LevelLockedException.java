@@ -1,4 +1,3 @@
-
 package com.trainpuzzle.exception;
 
 public class LevelLockedException extends Exception {

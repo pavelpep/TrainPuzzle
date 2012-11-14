@@ -6,16 +6,14 @@ import java.util.Set;
 
 import com.trainpuzzle.exception.TrainCrashException;
 
-public class Track implements java.io.Serializable{
+public class Track implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;	
 	private boolean isStationTrack = false;
 	private boolean removable = true;
 	protected Set<Connection> connections = new HashSet<Connection>();
 	protected TrackType trackType = TrackType.STRAIGHT_TRACK;
-	
-	/* Public Interface */
-	
+		
 	public Track(Track trackToCopy) {
 		removeConnections();
 		for(Connection connection : trackToCopy.getConnections()) {

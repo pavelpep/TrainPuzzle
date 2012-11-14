@@ -5,8 +5,6 @@ public class TrainCar {
 	private Location location; 
 	private CompassHeading heading;
 	private Cargo cargo;
-	//LinkedList<Cargo> cargoesOnCar = new LinkedList<Cargo>();
-
 
 	public TrainCar() {
 		
@@ -55,6 +53,8 @@ public class TrainCar {
 		return cargo;
 	}
 }
+
+// For future reference
 
 	/*public void loadCargoes(LinkedList<Cargo> cargoesToLoad){
 		Cargo cargoOnTrain = null;

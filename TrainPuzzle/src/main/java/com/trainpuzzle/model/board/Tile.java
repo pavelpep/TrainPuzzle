@@ -16,14 +16,12 @@ public class Tile implements Observable, java.io.Serializable {
 	private Station station;
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 
-  /* Public Interface */
-
 	public Tile() {	
 		elevation = 0;
 		landscape = new Landscape(Landscape.LandscapeType.GRASS);
 	}
 	
-	public void register(Observer observer){
+	public void register(Observer observer) {
       if(observerList == null) {
     	  observerList = new HashSet<Observer>();
       }

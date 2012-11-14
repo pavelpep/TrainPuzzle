@@ -7,9 +7,7 @@ public class Connection implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private CompassHeading compassHeading1 = CompassHeading.NORTHEAST;
 	private CompassHeading compassHeading2 = CompassHeading.NORTHWEST;
-	
-	/* Public Interface */
-	
+		
 	public Connection(CompassHeading compassHeading1, CompassHeading compassHeading2) {
 		this.compassHeading1 = compassHeading1;
 		this.compassHeading2 = compassHeading2;
@@ -39,10 +37,11 @@ public class Connection implements java.io.Serializable {
 	
 	public CompassHeading findCommonHeading(Connection anotherConnection) throws InvalidCommonHeadingException {
 		int commonHeadingCounts = 0;
-		CompassHeading commonHeading = null;
 		
+		CompassHeading commonHeading = null;		
 		CompassHeading[] pair1 = getCompassHeadingPair();
 		CompassHeading[] pair2 = anotherConnection.getCompassHeadingPair();
+		
 		for(CompassHeading pair1_heading: pair1) {
 			for(CompassHeading pair2_heading: pair2) {
 				if(pair1_heading == pair2_heading) {
@@ -73,8 +72,10 @@ public class Connection implements java.io.Serializable {
 		}
 		Connection other = (Connection) object;
 		
-		boolean headingsAreDirectlyEqual   = ((compassHeading1 == other.compassHeading1) && (compassHeading2 == other.compassHeading2));
-		boolean headingsAreIndirectlyEqual = ((compassHeading1 == other.compassHeading2) && (compassHeading2 == other.compassHeading1));
+		boolean headingsAreDirectlyEqual = ((compassHeading1 == other.compassHeading1) && 
+				(compassHeading2 == other.compassHeading2));
+		boolean headingsAreIndirectlyEqual = ((compassHeading1 == other.compassHeading2) && 
+				(compassHeading2 == other.compassHeading1));
 		
 		return headingsAreDirectlyEqual || headingsAreIndirectlyEqual;
 	}

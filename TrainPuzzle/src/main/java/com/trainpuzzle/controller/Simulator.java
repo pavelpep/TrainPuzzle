@@ -26,7 +26,7 @@ import static com.trainpuzzle.model.board.CompassHeading.*;
 import com.trainpuzzle.exception.TrainCrashException;
 import com.trainpuzzle.factory.LevelFactory;
 
-public class Simulator implements Observable{
+public class Simulator implements Observable {
 	
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
@@ -69,7 +69,6 @@ public class Simulator implements Observable{
 	private void resetStations() {
 		LevelFactory levelFactory = new LevelFactory();
 		Board originalBoard = levelFactory.createLevel(level.getLevelNumber()).getBoard();
-		
 		board.resetStationCargo(originalBoard);
 	}	
 	
@@ -91,7 +90,7 @@ public class Simulator implements Observable{
 		isRunning = false;
 	}
 	
-	public void run(){
+	public void run() {
 		executor.shutdownNow();
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
@@ -99,9 +98,9 @@ public class Simulator implements Observable{
 		isRunning = true;
 	}
 	
-	public void move() throws TrainCrashException{
+	public void move() throws TrainCrashException {
 		try {
-			if (!isVictoryConditionsSatisfied()) {
+			if(!isVictoryConditionsSatisfied()) {
 				proceedNextTile();
 			}
 			else if(isVictoryConditionsSatisfied()) {
@@ -123,18 +122,18 @@ public class Simulator implements Observable{
 		heading = track.getOutboundHeading(heading);
 		this.train.setLocation(nextLocation);
 		this.train.setHeading(heading);
+		
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
 		}
-	
 	}
-
+	
 	private Tile getTileWithTrack(Location location) throws TrainCrashException {
 		if(isOffTheMap(location)) {
 			throw new TrainCrashException();
 		}
-		
+	
 		Tile tile = board.getTile(location.getRow(), location.getColumn());
 		if(!tile.hasTrack() || tile.hasObstacle()) {
 			throw new TrainCrashException();
@@ -185,10 +184,9 @@ public class Simulator implements Observable{
 		return (location.getRow() >= board.getRows() || location.getColumn() >= board.getColumns());
 	}	
 	
-	
 	public void setTickInterval(int tickIntervalInMillis) {
 		this.tickInterval = tickIntervalInMillis;
-		if(isRunning){
+		if(isRunning) {
 			run();
 		}
 	}
@@ -237,7 +235,7 @@ public class Simulator implements Observable{
 		return victoryConditionEvaluator;
 	}
 
-	public void register(Observer observer){
+	public void register(Observer observer) {
 		if(observerList == null) {
     	  observerList = new HashSet<Observer>();
 		}

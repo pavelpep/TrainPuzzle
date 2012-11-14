@@ -9,9 +9,8 @@ import javax.swing.tree.TreePath;
 import com.trainpuzzle.model.level.victory_condition.*;
 
 public class VictoryConditionAdapter implements TreeModel {
-	TreeModelListener treeModelListener; //FIXME: Listener probably needs to be implemented/extended in VictoryCondition somehow?
+	TreeModelListener treeModelListener;
 	VictoryCondition rootCondition;
-	
 	
 	public VictoryConditionAdapter(VictoryCondition root) {
 		rootCondition = root;
@@ -23,9 +22,8 @@ public class VictoryConditionAdapter implements TreeModel {
 		List<VictoryCondition> parentsChildren = victoryCondition.getChildren();
 		
 		if(parentsChildren.size() < index) {
-			return null; //as requested in TreeModel docs
+			return null; // As requested in TreeModel documents
 		}
-		
 		return parentsChildren.get(index);
 	}
 
@@ -45,7 +43,7 @@ public class VictoryConditionAdapter implements TreeModel {
 	@Override
 	public int getIndexOfChild(Object parent, Object child) {
 		if(parent == null || child == null) {
-			return -1; //as requested in TreeModel docs
+			return -1; // As requested in TreeModel documents
 		}
 		AndVictoryCondition victoryCondition = (AndVictoryCondition) parent;
 		
@@ -62,10 +60,12 @@ public class VictoryConditionAdapter implements TreeModel {
 		return node instanceof LeafVictoryCondition;
 	}
 
-/* **************************************************
-	Still need to complete below features,
-	Listener probably needs to be implemented/extended in VictoryCondition somehow?	
-***************************************************************** */
+/* 
+ * **************************************************
+	TODO: Still need to complete features below. 
+	Listener needs to be implemented/extended properly in VictoryCondition somehow?	
+ * ************************************************** 
+*/
 	
 	@Override
 	public void addTreeModelListener(TreeModelListener l) {
@@ -79,7 +79,6 @@ public class VictoryConditionAdapter implements TreeModel {
 
 	@Override
 	public void valueForPathChanged(TreePath path, Object newValue) {
-		// TODO Auto-generated method stub
+		
 	}
-
 }

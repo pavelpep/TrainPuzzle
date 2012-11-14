@@ -13,7 +13,6 @@ public class Cargo implements java.io.Serializable{
 	private CargoType cargoType;
 	private int numberOfCargo = 1; 
 
-
 	public Cargo(CargoType type) {
 		this.cargoType = type;
 	}
@@ -27,16 +26,15 @@ public class Cargo implements java.io.Serializable{
 		return numberOfCargo;
 	}
 	
-
 	public void setNumberOfCargo(int numberOfCargo) {
 		this.numberOfCargo = numberOfCargo;
 	}
 	
-	public void incrementCargo(){
+	public void incrementCargo() {
 		this.numberOfCargo++;
 	}
 	
-	public void decrementCargo(){
+	public void decrementCargo() {
 		this.numberOfCargo--;
 	}	
 	
@@ -64,5 +62,4 @@ public class Cargo implements java.io.Serializable{
 		Cargo other = (Cargo) obj;
 		return other.getType() ==cargoType;
 	}
-	
 }

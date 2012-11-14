@@ -9,7 +9,7 @@ import java.util.Set;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
-public class Train implements Observable{
+public class Train implements Observable {
  
 	private Location location = new Location(0,0); 
 	private CompassHeading heading = CompassHeading.EAST;
@@ -18,10 +18,6 @@ public class Train implements Observable{
 	List<TrainCar> trainCars = new ArrayList<TrainCar>();
 	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
 	
-	
-	
-	/* Public Interface */
-
 	public Train() {
 		add3Cars();
 		initializeNumCargoes();
@@ -34,34 +30,32 @@ public class Train implements Observable{
 		initializeNumCargoes();
 	}
 	
-	public void initializeNumCargoes(){
+	public void initializeNumCargoes() {
 		this.numOfCargoes.put(Cargo.CargoType.COTTON, 0);
 		this.numOfCargoes.put(Cargo.CargoType.IRON, 0);
 		this.numOfCargoes.put(Cargo.CargoType.WOOD, 0);
 	}
 	
-	public void add3Cars(){
+	public void add3Cars() {
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 	}
 	
-	public void register(Observer observer){
+	public void register(Observer observer) {
 		observerList.add(observer);
 	}
 	
-	public void registerLoadedLevel(Observer observer){
+	public void registerLoadedLevel(Observer observer) {
 		this.observerLoadedlevel = observer;
 	}
 	
-	public void notifyAllObservers(){
+	public void notifyAllObservers() {
 		for(Observer observer : observerList) {
 			observer.notifyChange(this);
 		}
 	}
 	
-	/*Getters and Setters */
-
 	public Location getLocation() {
 		return location;
 	}
@@ -76,25 +70,24 @@ public class Train implements Observable{
 		return numOfCargoes;
 	}
 	
-	private void moveCars(){
+	private void moveCars() {
 		int lastCar = trainCars.size() - 1;
 		
-		for(int i = 0; i < lastCar; i++){
+		for(int i = 0; i < lastCar; i++) {
 			trainCars.get(i).setLocation(trainCars.get(i+1).getLocation());
 			trainCars.get(i).setHeading(trainCars.get(i+1).getHeading());
 		}
-		
 		trainCars.get(lastCar).setLocation(this.location);
 		trainCars.get(lastCar).setHeading(this.heading);
 	}
 	
-	public List<Cargo> dropOff(List<Cargo> requestedCargo){
+	public List<Cargo> dropOff(List<Cargo> requestedCargo) {
 		List<Cargo>  cargoDroppedOff = new ArrayList<Cargo>();
 		
-		for(Cargo cargo: requestedCargo){
-			for(TrainCar trainCar: trainCars){
-				if(trainCar.hasCargo()){
-					if(trainCar.getCargo().getType() == cargo.getType()){
+		for(Cargo cargo: requestedCargo) {
+			for(TrainCar trainCar: trainCars) {
+				if(trainCar.hasCargo()) {
+					if(trainCar.getCargo().getType() == cargo.getType()) {
 						Cargo cargoDropped = trainCar.dropCargo();
 						decrementNumber(cargoDropped);
 						this.observerLoadedlevel.notifyChange(this);
@@ -107,38 +100,38 @@ public class Train implements Observable{
 		return cargoDroppedOff; 
 	}
 	
-	private void decrementNumber(Cargo cargo){
+	private void decrementNumber(Cargo cargo) {
 		Integer currentNumOfCargoes = 0; 
 		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
 		currentNumOfCargoes = currentNumOfCargoes - 1;		
 		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
 	}
 		
-	public void pickUpAt(Station station){
+	public void pickUpAt(Station station) {
 		LinkedList<Cargo> exportCargoesCopy = new LinkedList<Cargo>(station.getExportCargo());
 
-		for(Cargo cargo: exportCargoesCopy){
-			for(TrainCar trainCar: trainCars){
+		for(Cargo cargo: exportCargoesCopy) {
+			for(TrainCar trainCar: trainCars) {
 				if(!trainCar.hasCargo()){
-						station.sendExportCargo(cargo);
-						trainCar.addCargo(cargo);
-						incrementNumber(cargo);
-						this.observerLoadedlevel.notifyChange(this);
-						notifyAllObservers();
-						break;
+					station.sendExportCargo(cargo);
+					trainCar.addCargo(cargo);
+					incrementNumber(cargo);
+					this.observerLoadedlevel.notifyChange(this);
+					notifyAllObservers();
+					break;
 				}
 			}	
 		}
 	}
 	
-	private void incrementNumber(Cargo cargo){
+	private void incrementNumber(Cargo cargo) {
 		Integer currentNumOfCargoes = 0; 
 		currentNumOfCargoes = numOfCargoes.get(cargo.getType());
 		currentNumOfCargoes = currentNumOfCargoes + 1;		
 		numOfCargoes.put(cargo.getType(), currentNumOfCargoes);
 	}
 	
-	public void resetTrainCars(){
+	public void resetTrainCars() {
 		for(TrainCar trainCar : trainCars) {
 			trainCar.setLocation(this.location);
 			trainCar.setHeading(this.heading);

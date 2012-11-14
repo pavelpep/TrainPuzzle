@@ -26,7 +26,7 @@ public class Location implements java.io.Serializable {
 	}
 	
 	@Override
-	public String toString(){
+	public String toString() {
 		return "(" + this.column + ", " + this.row + ")";
 	}
 	

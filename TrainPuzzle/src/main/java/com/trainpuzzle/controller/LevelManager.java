@@ -14,16 +14,15 @@ public class LevelManager {
 	private Campaign campaign;
 	private CampaignLevel campaignLevel;
 	private Level levelLoaded;
-	
-	
-	public LevelManager(Campaign campaign){
+		
+	public LevelManager(Campaign campaign) {
         this.campaign = campaign;   
 	}
 		
-	public void selectLevel(int levelNumber) throws LevelLockedException{
+	public void selectLevel(int levelNumber) throws LevelLockedException {
 		campaign.selectLevel(levelNumber);
 		campaignLevel = campaign.getCurrentLevel();
-		if(campaignLevel.isLocked){
+		if(campaignLevel.isLocked) {
 			throw new LevelLockedException("Level " + levelNumber + " is locked.");
 		}
 		loadLevel(levelNumber);
@@ -31,12 +30,12 @@ public class LevelManager {
 	
 	private void loadLevel(int levelNumber) {
 
-		//if level has been saved, load it's save
-		if(campaignLevel.hasUserSave){
+		// if level has been saved, load the saved level
+		if(campaignLevel.hasUserSave) {
 			Level level = FileManager.loadLevel(campaign.getName(), ((Integer)levelNumber).toString());
 			levelLoaded = level;	
-		}// otherwise load the master level
-		else{
+		}// Otherwise, load the master level
+		else {
 			LevelFactory levelFactory = new LevelFactory();
 			Level level = levelFactory.createLevel(levelNumber);
 			levelLoaded = level;	
@@ -48,27 +47,26 @@ public class LevelManager {
 	    loadLevel(nextLevel);
 	}
 	
-	public void levelCompleted(){
+	public void levelCompleted() {
 		campaign.completeLevel(campaign.getCurrentLevelNumber());
 	}
-	public Level getLevel(){
+	
+	public Level getLevel() {
 		return levelLoaded;
 	}
 	
-	public int getCurrentLevelNumber(){
+	public int getCurrentLevelNumber() {
 		return campaign.getCurrentLevelNumber();
 	}
 	
-	public List<CampaignLevel> getLevels(){
+	public List<CampaignLevel> getLevels() {
 		return campaign.getCampaignLevels();
 	}
 	
-	public void saveCurrentLevel(){
+	public void saveCurrentLevel() {
 		int levelNumber = campaign.getCurrentLevelNumber();
 		String filename = "Campaigns/" + campaign.getName() + "/Saves/" + levelNumber + ".xml";
 		FileManager.saveLevel(levelLoaded, filename);
 		campaignLevel.hasUserSave = true;
 	}
-	
-
 }

@@ -37,8 +37,7 @@ public class TrackPlacer {
 		}
 		else {
 			logger.warn("CannotPlaceTrackException was thrown");
-			throw new CannotPlaceTrackException(errorMessage);
-			
+			throw new CannotPlaceTrackException(errorMessage);			
 		}
 	}
 	

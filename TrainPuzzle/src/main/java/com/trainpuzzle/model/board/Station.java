@@ -20,10 +20,10 @@ import com.trainpuzzle.observe.Observer;
  *   else if track is at the east or west of the station, it is placed vertically
  */
 
-public class Station implements java.io.Serializable, Observable{
+public class Station implements java.io.Serializable, Observable {
+	
 	private Logger logger = Logger.getLogger(Station.class);
 	private static final long serialVersionUID = 1L;
-	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public enum StationType {
@@ -39,9 +39,9 @@ public class Station implements java.io.Serializable, Observable{
 	private LinkedList<Cargo> exportCargo = new LinkedList<Cargo>();
 	private LinkedList<Cargo> importCargo = new LinkedList<Cargo>();
 	
-	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
-		assert(isOddNumber(entranceFacing.getValue()));	// entrance value should be an odd number (North, East, South, or West)
+		// entrance value should be an odd number (North, East, South, or West)
+		assert(isOddNumber(entranceFacing.getValue()));	
 		
 		this.stationType = station;
 		this.stationLocation = stationLocation;
@@ -75,15 +75,15 @@ public class Station implements java.io.Serializable, Observable{
 				break;
 			default:
 				assert(false): "Error while handling unacceptable values for entranceFacing";
-				
 		}
+		
 		Track track = new Track(connection, TrackType.STRAIGHT_TRACK);
 		track.setUnremoveable();
 		track.setToBeStationTrack();
 		return track;
 	}
 	
-	private Obstacle createObstacle(StationType stationType){
+	private Obstacle createObstacle(StationType stationType) {
 		Obstacle tempObstacle = null;
 		switch(stationType) {
 			case GREEN:
@@ -163,7 +163,7 @@ public class Station implements java.io.Serializable, Observable{
 		notifyAllObservers();
 	}
 	
-	public void receiveImportCargo(Cargo cargo)  {
+	public void receiveImportCargo(Cargo cargo) {
 		logger.debug("Station Received Cargo from Train");
 		importCargo.removeFirstOccurrence(cargo);
 		notifyAllObservers();
@@ -188,10 +188,10 @@ public class Station implements java.io.Serializable, Observable{
 
 	@Override
 	public void register(Observer observer) {
-	      if(observerList == null) {
-	    	  observerList = new HashSet<Observer>();
-	      }
-			observerList.add(observer);	
+		if(observerList == null) {
+			observerList = new HashSet<Observer>();
+		}
+		observerList.add(observer);	
 	}
 
 	@Override
@@ -199,7 +199,5 @@ public class Station implements java.io.Serializable, Observable{
 		for(Observer observer : observerList) {
 			observer.notifyChange(this);
 		}
-	}
-	
-	
+	}	
 }

@@ -4,7 +4,7 @@ public class Obstacle implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public enum ObstacleType{
+	public enum ObstacleType {
 		ROCK,
 		TREES,
 		MOUNTAINS,

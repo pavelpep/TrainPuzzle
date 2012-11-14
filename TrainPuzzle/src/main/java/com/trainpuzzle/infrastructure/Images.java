@@ -4,13 +4,13 @@ import javax.swing.ImageIcon;
 
 public final class Images {
 	
-	//String type
+	// String type
 	
-	//Train
+	// Train
 	public final static String TRAIN = "src/main/resources/images/train.png";
 	public final static String TRAIN_CAR = "src/main/resources/images/traincar.png";
 	
-	//Landscape and obstacles
+	// Landscape and obstacles
 	public final static String GRASS = "src/main/resources/images/grass2.png";
 	public final static String WATER = "src/main/resources/images/water3.png";
 	public final static String DIRT = "src/main/resources/images/dirt.png";
@@ -18,21 +18,21 @@ public final class Images {
 	public final static String TREES = "src/main/resources/images/trees.png";
 	public final static String MOUNTAINS = "src/main/resources/images/mountains.png";
 	
-	//Stations
+	// Stations
 	public final static String RED_STATION = "src/main/resources/images/redStation.png";
 	public final static String GREEN_STATION = "src/main/resources/images/greenStation.png";
 	
-	//Cargo
+	// Cargo
 	public final static String IRON = "src/main/resources/images/blackSquare.png";
 	public final static String COTTON = "src/main/resources/images/whiteSquare.png";
 	public final static String WOOD = "src/main/resources/images/brownSquare.png";
 	
-	//RequiredCargo
+	// Required Cargo
 	public final static String REQUIRED_IRON = "src/main/resources/images/blackFrame.png";
 	public final static String REQUIRED_COTTON = "src/main/resources/images/whiteFrame.png";
 	public final static String REQUIRED_WOOD = "src/main/resources/images/brownFrame.png";	
 	
-	//Tracks
+	// Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
 	public final static String STRAIGHT_TRACK = "src/main/resources/images/straight_track.png";
 	public final static String DIAGONAL_TRACK = "src/main/resources/images/diagonal_track.png";
@@ -43,14 +43,13 @@ public final class Images {
 	public final static String CURVELEFT_SWITCH = "src/main/resources/images/left_switch.png";
 	public final static String CURVERIGHT_SWITCH = "src/main/resources/images/right_switch.png";
 	
+	// ImageIcon type
 	
-	//ImageIcon type
-	
-	//Train
+	// Train
 	public final static ImageIcon TRAIN_IMAGE = new ImageIcon(TRAIN);
 	public final static ImageIcon TRAIN_CAR_IMAGE = new ImageIcon(TRAIN_CAR);
 
-	//Landscape and obstacles
+	// Landscape and obstacles
 	public final static ImageIcon GRASS_IMAGE = new ImageIcon(GRASS);
 	public final static ImageIcon WATER_IMAGE = new ImageIcon(WATER);
 	public final static ImageIcon DIRT_IMAGE = new ImageIcon(DIRT);
@@ -58,21 +57,21 @@ public final class Images {
 	public final static ImageIcon TREES_IMAGE = new ImageIcon(TREES);
 	public final static ImageIcon MOUNTAINS_IMAGE = new ImageIcon(MOUNTAINS);
 	
-	//Stations
+	// Stations
 	public final static ImageIcon RED_STATION_IMAGE = new ImageIcon(RED_STATION);
 	public final static ImageIcon GREEN_STATION_IMAGE = new ImageIcon(GREEN_STATION);
 	
-	//Cargo
+	// Cargo
 	public final static ImageIcon IRON_IMAGE = new ImageIcon(IRON);
 	public final static ImageIcon COTTON_IMAGE = new ImageIcon(COTTON);
 	public final static ImageIcon WOOD_IMAGE = new ImageIcon(WOOD);
 	
-	//RequiredCargo
+	// Required Cargo
 	public final static ImageIcon REQUIRED_IRON_IMAGE = new ImageIcon(REQUIRED_IRON);
 	public final static ImageIcon REQUIRED_COTTON_IMAGE = new ImageIcon(REQUIRED_COTTON);	
 	public final static ImageIcon REQUIRED_WOOD_IMAGE = new ImageIcon(REQUIRED_WOOD);
 	
-	//Tracks
+	// Tracks
 	public final static ImageIcon PERMANENT_STRAIGHT_TRACK_IMAGE = new ImageIcon(PERMANENT_STRAIGHT_TRACK);
 	public final static ImageIcon STRAIGHT_TRACK_IMAGE = new ImageIcon(STRAIGHT_TRACK);
 	public final static ImageIcon DIAGONAL_TRACK_IMAGE = new ImageIcon( DIAGONAL_TRACK);

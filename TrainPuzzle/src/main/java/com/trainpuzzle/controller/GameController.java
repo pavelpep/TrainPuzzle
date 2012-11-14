@@ -26,7 +26,7 @@ public class GameController {
 	private Simulator simulator;
 	private Level level;
 
-	public GameController(){
+	public GameController() {
 		campaignManager = new CampaignManager();
 		campaignManager.selectCampaign(DEFAULT_CAMPAIGN);
 		levelManager = new LevelManager(campaignManager.getCampaign());
@@ -53,12 +53,12 @@ public class GameController {
 		simulator = new Simulator(level);
 	}
 	
-	public void changeCampaign(int campaignNumber){
+	public void changeCampaign(int campaignNumber) {
 		campaignManager.selectCampaign(campaignNumber);
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 
-	public void levelCompleted(){
+	public void levelCompleted() {
 		levelManager.levelCompleted();
 		campaignManager.saveCampaign();
 	} 	
@@ -74,6 +74,7 @@ public class GameController {
 			}
 		}
 	}
+	
 	public void removeTrack(int row, int column) {
 		try {
 			trackPlacer.removeTrack(row, column);
@@ -85,11 +86,12 @@ public class GameController {
 			}
 		}
 	}
+	
 	public void removeAllTracks() {
 		for(int row = 0; row < level.getBoard().getRows(); row++) {
 			for(int column = 0; column < level.getBoard().getColumns(); column++) {
 				try {
-					if(level.getBoard().getTile(row, column).hasTrack()){
+					if(level.getBoard().getTile(row, column).hasTrack()) {
 						trackPlacer.removeTrack(row, column);
 					}
 				} catch (CannotRemoveTrackException e) {
@@ -106,6 +108,7 @@ public class GameController {
 	public void resetCampaign(int campaignNumber) {
 		campaignManager.resetCampaign(campaignNumber);
 	}
+	
 	public LevelManager getLevelManager() {
 		return levelManager;
 	}
@@ -118,12 +121,7 @@ public class GameController {
 		return simulator;
 	}
 	
-	public void saveCurrentLevel(File file){
+	public void saveCurrentLevel(File file) {
 		FileManager.saveLevel(this.level, file.getAbsolutePath());
-	}
-	
-
-	
+	}	
 }
-
-

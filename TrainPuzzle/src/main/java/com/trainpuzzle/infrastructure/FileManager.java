@@ -9,28 +9,33 @@ import com.trainpuzzle.model.level.Campaign;
 import com.trainpuzzle.model.level.Level;
 
 public class FileManager {
+	
 	//Saving and Loading Levels
 	public static void saveLevel(Level level, String filename) {
 		saveObject(level,filename);
 	}
+
 	public static void saveLevel(Level level, String campaignName, String levelNumber){
 		String filename = "Campaigns/" + campaignName + "/Saves/" + levelNumber + ".xml";
 		saveLevel(level, filename);
 	}
+	
 	public static Level loadLevel(String filename) {
 		return (Level)loadObject(filename);
 	}
-	public static Level loadLevel(String campaignName, String levelNumber){
+	
+	public static Level loadLevel(String campaignName, String levelNumber) {
 		String filename = "Campaigns/" + campaignName + "/Saves/" + levelNumber + ".xml";
 		return loadLevel(filename);
 	}
 	
 	//Saving and Loading Campaigns
-	public static void saveCampaign(Campaign campaign, String campaignName){
+	public static void saveCampaign(Campaign campaign, String campaignName) {
 		String filename = "Campaigns/" + campaignName + ".xml";
 		saveObject(campaign, filename);
 	}
-	public static Campaign loadCampaign(String campaignName){
+	
+	public static Campaign loadCampaign(String campaignName) {
 		String filename = "Campaigns/" + campaignName +  ".xml";
 		return (Campaign)loadObject(filename);
 	}
@@ -43,11 +48,12 @@ public class FileManager {
 			xstream.toXML(object, out);
 			System.out.println("wrote to file: " + file.getAbsoluteFile());
 		}
-		// Print out exceptions. We should really display them in a dialog...
+		// TODO: Print out exceptions. Should display them in a dialog...
 		catch (IOException e) { 
 			System.out.println(e); 
 		}
 	}
+    
   	public static Object loadObject(String filename) {
   		File file = new File(filename);
   		Object objectLoaded = new Object();
@@ -57,10 +63,8 @@ public class FileManager {
 	    	objectLoaded = xstream.fromXML(file);
 	        System.out.println("loaded from file: " + file.getAbsoluteFile());    
 	    }
-	    // Print out exceptions. We should really display them in a dialog...
+		// TODO: Print out exceptions. Should display them in a dialog...
 	    catch (Exception e) { System.out.println(e); }
   		return objectLoaded;
 	}
-	
-	
 }
