@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * Represents 'component' in the composite programming pattern
  * 
@@ -9,5 +11,8 @@ public interface VictoryCondition {
 		
 	public boolean isSatisfied();
 	public void processEvent(Event event);
-	public void resetEvents();	
+	public void resetEvents();
+	public DefaultMutableTreeNode getDisplayNode(); 
+	public void setDisplayNode(DefaultMutableTreeNode displayNode);
+	
 }

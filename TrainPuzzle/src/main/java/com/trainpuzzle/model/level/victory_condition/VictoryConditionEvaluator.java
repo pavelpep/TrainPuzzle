@@ -2,15 +2,18 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
+import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.*;
 
-public class VictoryConditionEvaluator implements VictoryCondition, Observable {
+public class VictoryConditionEvaluator implements Observable {
 	
 	private Set<Observer> observerList = new HashSet<Observer>();	
 	private VictoryCondition root;
 	
-	public VictoryConditionEvaluator(VictoryCondition root) {
-		this.root = root;
+	public VictoryConditionEvaluator(Level level) {
+		this.root = level.getVictoryConditions();
 	}
 	
 	public boolean isSatisfied() {
@@ -19,12 +22,10 @@ public class VictoryConditionEvaluator implements VictoryCondition, Observable {
 		return isSatisfied;
 	}
 
-	@Override
 	public void processEvent(Event event) {
 		root.processEvent(event);
 	}
 
-	@Override
 	public void resetEvents() {
 		root.resetEvents();
 	}

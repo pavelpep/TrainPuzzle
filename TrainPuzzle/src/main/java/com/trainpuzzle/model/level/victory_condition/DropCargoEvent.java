@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
 import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
 
 public class DropCargoEvent extends Event {
@@ -37,4 +38,10 @@ public class DropCargoEvent extends Event {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+	
+	public String toString() {
+		Location location = this.getStation().getStationLocation();
+		return "drop "+cargo.getType().getName()+" at Station ( "+location.getRow()+","+location.getColumn()+")" ;
+	}
+
 }

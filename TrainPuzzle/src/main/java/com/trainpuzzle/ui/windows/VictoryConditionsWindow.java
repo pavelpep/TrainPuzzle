@@ -1,16 +1,17 @@
 package com.trainpuzzle.ui.windows;
-
 import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.ui.windows.loadedlevel.VictoryConditions;
 
-class VictoryConditionsWindow extends Window implements ActionListener {
-
-	private static final long serialVersionUID = 1L;
+public class VictoryConditionsWindow extends Window implements ActionListener {
+private static final long serialVersionUID = 1L;
+	
 	private GameController gameController;
 
 	public VictoryConditionsWindow(GameController gameController) {
@@ -26,12 +27,15 @@ class VictoryConditionsWindow extends Window implements ActionListener {
 		campaignsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.add(campaignsPanel);
 		
+		
 		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
 		campaignsPanel.add(victoryConditionsPanel);
+		
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);
+		
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -41,4 +45,5 @@ class VictoryConditionsWindow extends Window implements ActionListener {
 			WindowManager.getManager().showPreviousWindow();
 		}
 	}
+
 }

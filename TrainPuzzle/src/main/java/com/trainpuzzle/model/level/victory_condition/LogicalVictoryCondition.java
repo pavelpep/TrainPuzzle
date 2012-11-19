@@ -3,11 +3,14 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 public class LogicalVictoryCondition implements VictoryCondition {
 	
 	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
 	protected boolean conditionSatisfied = false;
-	
+	private String name;
+	private DefaultMutableTreeNode displayNode;
 	@Override
 	public boolean isSatisfied() {
 		return conditionSatisfied;
@@ -23,6 +26,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	@Override
 	public void resetEvents() {
 		 conditionSatisfied = false;
+		 this.displayNode.setUserObject(name);
 		 resetChildrenEvents();
 	}
 	
@@ -38,5 +42,23 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
-	}	
+		this.displayNode.add(child.getDisplayNode());
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public DefaultMutableTreeNode getDisplayNode() {
+		return displayNode;
+	}
+
+	public void setDisplayNode(DefaultMutableTreeNode displayNode) {
+		this.displayNode = displayNode;
+	}
+	
 }

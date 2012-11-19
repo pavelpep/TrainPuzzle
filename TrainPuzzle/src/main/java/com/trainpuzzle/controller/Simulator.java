@@ -55,7 +55,7 @@ public class Simulator implements Observable {
 	private void initializeSimulator() {
 		this.train = new Train();
 		resetTrain();
-		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level.getVictoryConditions());
+		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level);
 		
 	}
 	

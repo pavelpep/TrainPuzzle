@@ -25,7 +25,6 @@ import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.infrastructure.Images;
 
 public class LoadedLevelScreen extends Window implements ActionListener, Observer {
-
 	private static final long serialVersionUID = 1L;
 	private GameController gameController;
 	private Level level;

@@ -1,5 +1,6 @@
 package com.trainpuzzle.model.level.victory_condition;
 
+import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
 
 public class Event implements java.io.Serializable {
@@ -28,6 +29,11 @@ public class Event implements java.io.Serializable {
 		this.station = station;
 	}
 	
+	public String toString() {
+		Location location = station.getStationLocation();
+		return "pass station at ("+location.getRow()+","+location.getColumn()+")";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

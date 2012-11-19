@@ -23,10 +23,15 @@ import com.trainpuzzle.model.level.victory_condition.*;
 
 import java.util.HashMap;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
+
+//purposely created without the public tag because we only want this class accessible by the CampaignManager (which is in the same package)
 /* 
  * Created without the public tag on purpose because we only want this class 
  * to be accessible by the CampaignManager (which is in the same package) 
 */
+
 public class LevelFactory {
 	private Board board; 
 	private AndVictoryCondition root;
@@ -89,11 +94,12 @@ public class LevelFactory {
 			this.board.getTile(currentLocation).setObstacle(new Obstacle(obstacleType));
 		}
 	}
-	private void addImportCargo (Station station, LogicalVictoryCondition condiction,Cargo cargo) {
+	private void addImportCargo (Station station, LogicalVictoryCondition condiction, Cargo cargo) {
 		station.addImportCargo(cargo);
 		DropCargoEvent event = new DropCargoEvent(100,station, cargo);
-		LeafVictoryCondition lcondiction = new LeafVictoryCondition(event);
-		condiction.addChild(lcondiction);
+		LeafVictoryCondition lcondition = new LeafVictoryCondition(event);
+		condiction.addChild(lcondition);
+		
 	}
 
 	public Level createLevel(int levelNumber){
@@ -198,7 +204,6 @@ public class LevelFactory {
 	private Level createLevelTwo() {
     	this.board = new Board();
         this.root = new AndVictoryCondition();
-
         Location startLocation = new Location(4,3);
         setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 		
@@ -271,53 +276,56 @@ public class LevelFactory {
 	}
 	    
 	private Level createLevelThree() {
-    	this.board = new Board(10, 10);
-        this.root = new AndVictoryCondition();
-        
-        Location startLocation = new Location(0,0);
-        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
-		
-        ArrayList<Station> stations = new ArrayList<Station>();
-        stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
-        stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));
-        
-        setObstaclesByRow(2, 4, 6, ObstacleType.TREES);
-        setObstaclesByRow(3, 4, 9, ObstacleType.TREES);
-        setObstaclesByColumn(4, 5, 2, ObstacleType.TREES);
-        setObstaclesByColumn(4, 5, 3, ObstacleType.TREES);
-        
-        ArrayList<Location> rockLocations = new ArrayList<Location>();
-        rockLocations.add(new Location(4, 5));
-        rockLocations.add(new Location(3, 2));
-        setObstacles(rockLocations, ObstacleType.ROCK);
-        
-        setLandscapeByColumn(1, 4, 0, LandscapeType.WATER);
-        setLandscapeByColumn(1, 2, 1, LandscapeType.WATER);
-        setLandscapeByColumn(7, 7, 3, LandscapeType.WATER);
-        setLandscapeByColumn(7, 8, 4, LandscapeType.WATER);
-        setLandscapeByColumn(4, 8, 8, LandscapeType.WATER);
-        setLandscapeByColumn(4, 8, 9, LandscapeType.WATER);
+	    	this.board = new Board(10, 10);
+	        Economy economy = new Economy();
+	        this.root = new AndVictoryCondition();
+	        root.setName("And");
+	        
+	        Location startLocation = new Location(0,0);
+	        setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
+			
+	        ArrayList<Station> stations = new ArrayList<Station>();
+	        stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
+	        stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));
+	        
+	        setObstaclesByRow(2, 4, 6, ObstacleType.TREES);
 
-        setStations(stations);
+	        setObstaclesByRow(3, 4, 9, ObstacleType.TREES);
+	        setObstaclesByColumn(4, 5, 2, ObstacleType.TREES);
+	        setObstaclesByColumn(4, 5, 3, ObstacleType.TREES);
+	        
+	        ArrayList<Location> rockLocations = new ArrayList<Location>();
+	        rockLocations.add(new Location(4, 5));
+	        rockLocations.add(new Location(3, 2));
+	        setObstacles(rockLocations, ObstacleType.ROCK);
+	        
+	        setLandscapeByColumn(1, 4, 0, LandscapeType.WATER);
+	        setLandscapeByColumn(1, 2, 1, LandscapeType.WATER);
+	        setLandscapeByColumn(7, 7, 3, LandscapeType.WATER);
+	        setLandscapeByColumn(7, 8, 4, LandscapeType.WATER);
+	        setLandscapeByColumn(4, 8, 8, LandscapeType.WATER);
+	        setLandscapeByColumn(4, 8, 9, LandscapeType.WATER);
+
+    	
+	        setStations(stations);
         
-        HashMap<TrackType, Integer> trackLimitsLevelThree = new HashMap<TrackType,Integer>();
-        final int NO_LIMIT = -1;
-        trackLimitsLevelThree.put(TrackType.TRACK, 29);
-        trackLimitsLevelThree.put(TrackType.STRAIGHT, 10);
-        trackLimitsLevelThree.put(TrackType.CURVE, 15);
-        trackLimitsLevelThree.put(TrackType.INTERSECTION, 2);
-        trackLimitsLevelThree.put(TrackType.SWITCH, 2);
-        trackLimitsLevelThree.put(TrackType.STRAIGHT_TRACK, 10);
-        trackLimitsLevelThree.put(TrackType.DIAGONAL_TRACK, 10);
-        trackLimitsLevelThree.put(TrackType.CURVELEFT_TRACK, 10);
-        trackLimitsLevelThree.put(TrackType.CURVERIGHT_TRACK, 10);
-        trackLimitsLevelThree.put(TrackType.INTERSECTION_TRACK, 2);
-        trackLimitsLevelThree.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
-        trackLimitsLevelThree.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 2);
-        trackLimitsLevelThree.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 2);
-        int budget = NO_LIMIT;
-        Economy economyLevelThree = new Economy(budget, trackLimitsLevelThree);
-        
-    	return new Level(3, this.board, startLocation, this.root, economyLevelThree);
+	        HashMap<TrackType, Integer> trackLimitsLevelThree = new HashMap<TrackType,Integer>();
+	        final int NO_LIMIT = -1;
+	        trackLimitsLevelThree.put(TrackType.TRACK, 29);
+	        trackLimitsLevelThree.put(TrackType.STRAIGHT, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVE, 15);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION, 2);
+	        trackLimitsLevelThree.put(TrackType.SWITCH, 2);
+	        trackLimitsLevelThree.put(TrackType.STRAIGHT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.DIAGONAL_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVELEFT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_TRACK, 10);
+	        trackLimitsLevelThree.put(TrackType.INTERSECTION_TRACK, 2);
+	        trackLimitsLevelThree.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
+	        trackLimitsLevelThree.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 2);
+	        trackLimitsLevelThree.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 2);
+	        int budget = NO_LIMIT;
+	        Economy economyLevelThree = new Economy(budget, trackLimitsLevelThree);
+	        return new Level(3, this.board, startLocation, this.root, economyLevelThree);
 	}
 }

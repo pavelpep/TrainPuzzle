@@ -5,9 +5,18 @@ public class Cargo implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 
 	public enum CargoType {
-		COTTON,
-		IRON,
-		WOOD
+		COTTON("Cotton"),
+		IRON("Iron"),
+		WOOD("Wood");
+		
+		private String name;
+		
+		private CargoType(String name) {
+			this.name = name;
+		}
+		public String getName() {
+			return name;
+		}
 	}
 	
 	private CargoType cargoType;

@@ -1,5 +1,7 @@
 package com.trainpuzzle.model.level;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
@@ -76,4 +78,5 @@ public class Level implements java.io.Serializable {
 	public void setEconomy(Economy economy) {
 		this.economy = economy;
 	}
+
 }

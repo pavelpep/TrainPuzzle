@@ -1,7 +1,15 @@
 package com.trainpuzzle.model.level.victory_condition;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 public class IfThenVictoryCondition extends LogicalVictoryCondition implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public IfThenVictoryCondition() {
+		this.setName("In order");
+		 DefaultMutableTreeNode displayNode = new  DefaultMutableTreeNode("In order");
+			this.setDisplayNode(displayNode);
+	}
 	
 	private void checkChildrenSatisfied() {
 		conditionSatisfied = true;
@@ -9,6 +17,9 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 			if(!child.isSatisfied()) {
 				conditionSatisfied = false;
 			}
+		}
+		if(conditionSatisfied) {
+			this.getDisplayNode().setUserObject(this.getName() + " Clear!");
 		}
 	}
 
