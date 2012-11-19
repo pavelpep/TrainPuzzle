@@ -187,6 +187,7 @@ public class Station implements java.io.Serializable, Observable {
 		int ordinalOfCargoType = Math.abs(randomNum.nextInt()%3);
 		Cargo producedCargo = new Cargo(CargoType.values()[ordinalOfCargoType]);
 		this.exportCargo.add(producedCargo);
+		notifyAllObservers();
 	}
 	
 	public void addImportCargo(Cargo cargo) {
