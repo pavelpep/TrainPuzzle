@@ -25,13 +25,16 @@ public class Switch extends Track implements Observable{
 			|| trackType == TrackType.CURVERIGHT_STRAIGHT_SWITCH): "Invalid trackType";
 		
 		entrance = findValidEntrance(connection1, connection2);
-		connectionsIterator = connections.iterator();
-		current = nextConnection();
+		resetIteratorAndCurrent();
 	}
 	
 	public Switch(Switch switchToCopy) {
 		super(switchToCopy);
 		entrance = switchToCopy.getEntrance();
+		resetIteratorAndCurrent();
+	}
+	
+	public void resetIteratorAndCurrent() {
 		connectionsIterator = connections.iterator();
 		current = nextConnection();
 	}
