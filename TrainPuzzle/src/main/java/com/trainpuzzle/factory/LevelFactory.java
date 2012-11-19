@@ -46,6 +46,11 @@ public class LevelFactory {
 			Event event = new Event(100,station); 
 			LeafVictoryCondition leaf = new LeafVictoryCondition(event);
 			root.addChild(leaf);
+			
+			//add CargoFactory station to A List
+			if (station.getType()==StationType.CARGO_FACTORY){
+				board.addCargoFactories(station);
+			}
 		}
 	}
  	
@@ -127,7 +132,10 @@ public class LevelFactory {
         stationToAdd=new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
         stations.add(stationToAdd);
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
-        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));	 
+        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));	
+        
+        stationToAdd=new Station(StationType.CARGO_FACTORY, new Location(8, 15), CompassHeading.WEST);
+        stations.add(stationToAdd);
         
         setStations(stations);
         

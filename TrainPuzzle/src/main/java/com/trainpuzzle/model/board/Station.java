@@ -2,12 +2,14 @@ package com.trainpuzzle.model.board;
 
 import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-
+import java.util.Random;
 import org.apache.log4j.Logger;
 
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -28,7 +30,8 @@ public class Station implements java.io.Serializable, Observable {
 	
 	public enum StationType {
 		RED,
-		GREEN;
+		GREEN,
+		CARGO_FACTORY;
 	}
 		
 	private StationType stationType;
@@ -92,6 +95,8 @@ public class Station implements java.io.Serializable, Observable {
 			case RED:
 				tempObstacle = new Obstacle(RED_STATION);
 				break;
+			case CARGO_FACTORY:
+				tempObstacle = new Obstacle(CARGO_FACTORY_STATION);
 			default:
 				assert(false): "Error while handling unacceptable values for stationType";
 		}
@@ -103,6 +108,7 @@ public class Station implements java.io.Serializable, Observable {
 		this.importCargo = station.importCargo;
 		notifyAllObservers();
 	}
+	
 	
 	public Location getStationLocation() {
 		return stationLocation;
@@ -173,6 +179,14 @@ public class Station implements java.io.Serializable, Observable {
 		assert exportCargo.size() < 2 : "Cargo types can be up to 2";
 		this.exportCargo.add(cargo);
 		notifyAllObservers();
+	}
+	
+	public void generateExportCargo(){
+		assert exportCargo.size() < 2;
+		Random randomNum = new Random(System.currentTimeMillis());
+		int ordinalOfCargoType = Math.abs(randomNum.nextInt()%3);
+		Cargo producedCargo = new Cargo(CargoType.values()[ordinalOfCargoType]);
+		this.exportCargo.add(producedCargo);
 	}
 	
 	public void addImportCargo(Cargo cargo) {

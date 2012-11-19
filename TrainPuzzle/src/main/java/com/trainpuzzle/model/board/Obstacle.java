@@ -9,7 +9,8 @@ public class Obstacle implements java.io.Serializable {
 		TREES,
 		MOUNTAINS,
 		GREEN_STATION,
-		RED_STATION
+		RED_STATION,
+		CARGO_FACTORY_STATION
 	}
 	
 	private ObstacleType obstacle;

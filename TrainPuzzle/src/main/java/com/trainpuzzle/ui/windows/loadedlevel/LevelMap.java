@@ -139,7 +139,9 @@ public class LevelMap extends JPanel implements Observer {
 					break;
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
-					break;	
+					break;
+				case CARGO_FACTORY_STATION:
+					obstacleLayer = new JLabel(Images.CARGO_FACTORY_IMAGE);
 				default:
 					break;
 			}

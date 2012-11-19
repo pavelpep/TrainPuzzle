@@ -32,6 +32,7 @@ public class Simulator implements Observable {
 	
 	private Level level;
 	private Board board;
+
 	private Train train;
 	private VictoryConditionEvaluator victoryConditionEvaluator;
 	
@@ -94,7 +95,11 @@ public class Simulator implements Observable {
 		executor.shutdownNow();
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
+		CargoGenerator cargoGenerator = new CargoGenerator(this);
+		final int FIVE_SECOND = 5000;
+		int intervalOfGenerateCargo = FIVE_SECOND;
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
+		executor.scheduleAtFixedRate(cargoGenerator, 0,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
 		isRunning = true;
 	}
 	
@@ -230,6 +235,11 @@ public class Simulator implements Observable {
 	public Train getTrain() {
 		return this.train;
 	}
+	
+	public Board getBoard() {
+		return board;
+	}
+
 	
 	public VictoryConditionEvaluator getVictoryConditionEvaluator() {
 		return victoryConditionEvaluator;
