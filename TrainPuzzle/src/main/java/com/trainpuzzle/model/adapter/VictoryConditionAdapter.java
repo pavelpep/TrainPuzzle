@@ -1,5 +1,6 @@
 package com.trainpuzzle.model.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.event.TreeModelListener;
@@ -21,10 +22,16 @@ public class VictoryConditionAdapter implements TreeModel {
 		AndVictoryCondition victoryCondition = (AndVictoryCondition) parent;
 		List<VictoryCondition> parentsChildren = victoryCondition.getChildren();
 		
+		
+		List<VictoryConditionAdapter> adaptedParentsChildren = new ArrayList<VictoryConditionAdapter>();
+		for (VictoryCondition child : parentsChildren) {
+			adaptedParentsChildren.add(new VictoryConditionAdapter(child));
+		}
+		
 		if(parentsChildren.size() < index) {
 			return null; // As requested in TreeModel documents
 		}
-		return parentsChildren.get(index);
+		return adaptedParentsChildren.get(index);
 	}
 
 	
@@ -52,7 +59,7 @@ public class VictoryConditionAdapter implements TreeModel {
 	
 	@Override
 	public Object getRoot() {
-		return rootCondition;
+		return new VictoryConditionAdapter(rootCondition);
 	}
 
 	@Override
