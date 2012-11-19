@@ -1,17 +1,23 @@
 package com.trainpuzzle.model.board;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.trainpuzzle.exception.InvalidCommonHeadingException;
 import com.trainpuzzle.exception.TrainCrashException;
+import com.trainpuzzle.observe.Observable;
+import com.trainpuzzle.observe.Observer;
 
-public class Switch extends Track {
+public class Switch extends Track implements Observable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Iterator<Connection> connectionsIterator;
 	private Connection current;
 	private CompassHeading entrance;
+	
+	private Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);
@@ -51,10 +57,10 @@ public class Switch extends Track {
 	public CompassHeading getOutboundHeading(CompassHeading inboundHeading) throws TrainCrashException {
 		CompassHeading outboundHeading;
 		
-		// TODO: notify UI to redraw the switch when current is changed
 		if(isEntrance(inboundHeading)) {
 			outboundHeading = current.outboundForInbound(inboundHeading);
-			current = nextConnection();	
+			current = nextConnection();
+			notifyAllObservers();
 		} 
 		else {	
 			outboundHeading = super.getOutboundHeading(inboundHeading);
@@ -77,4 +83,17 @@ public class Switch extends Track {
 		}
 		return connectionsIterator.next();
 	}
+	
+	public void register(Observer observer) {
+		if(observerList == null) {
+    	  observerList = new HashSet<Observer>();
+		}
+		observerList.add(observer);
+	}
+		
+	public void notifyAllObservers() {
+		for(Observer observer : observerList) {
+			observer.notifyChange(this);
+		}
+	} 
 }

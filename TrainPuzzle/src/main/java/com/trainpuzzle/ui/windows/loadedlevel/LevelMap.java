@@ -214,6 +214,7 @@ public class LevelMap extends JPanel implements Observer {
 			Connection currentConnectionOfSwitch = null;
 			
 			if (track.isSwitch()) {
+				((Switch)track).register(this);
 				for(Connection connection:copyOfTrack.getConnections()) {
 					if(isCurrentConnection((Switch)track, connection)) {
 						currentConnectionOfSwitch = connection;
@@ -378,8 +379,13 @@ public class LevelMap extends JPanel implements Observer {
 		else if(object instanceof Station) {
 			instanceOfStation(object);
 		}
+		else if(object instanceof Switch) {
+			instanceOfSwitch(object);
+		}
 	}
 	
+	
+
 	public void instanceOfTrain(Object object) {
 		redrawTrain(train);
 		redrawTrainCars(train);
@@ -406,5 +412,17 @@ public class LevelMap extends JPanel implements Observer {
 				}
 			}
 		}	
+	}
+	
+	public void instanceOfSwitch(Object object) {
+		for(int row = 0; row < level.getBoard().getRows(); row++) {
+			for(int column = 0; column < level.getBoard().getColumns(); column++) {
+				if(level.getBoard().getTile(row, column).hasTrack()) {
+					if(object.equals(level.getBoard().getTile(row, column).getTrack())) {
+						redrawTile(row, column);
+					}
+				}
+			}
+		}
 	}
 }
