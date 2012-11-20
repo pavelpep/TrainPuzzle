@@ -96,10 +96,10 @@ public class Simulator implements Observable {
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
 		CargoGenerator cargoGenerator = new CargoGenerator(this);
-		final int FIVE_SECOND = 5000;
+		final int FIVE_SECOND = 3000;
 		int intervalOfGenerateCargo = FIVE_SECOND;
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
-		executor.scheduleAtFixedRate(cargoGenerator, 0,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
+		executor.scheduleAtFixedRate(cargoGenerator, 1000,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
 		isRunning = true;
 	}
 	

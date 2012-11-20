@@ -53,7 +53,7 @@ public class LevelFactory {
 			root.addChild(leaf);
 			
 			//add CargoFactory station to A List
-			if (station.getType()==StationType.CARGO_FACTORY){
+			if (station.getType()==StationType.IRON_FACTORY){
 				board.addCargoFactories(station);
 			}
 		}
@@ -140,7 +140,7 @@ public class LevelFactory {
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));	
         
-        stationToAdd=new Station(StationType.CARGO_FACTORY, new Location(8, 15), CompassHeading.WEST);
+        stationToAdd=new Station(StationType.IRON_FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);
         
         setStations(stations);
