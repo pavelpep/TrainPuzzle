@@ -140,6 +140,16 @@ public class Train implements Observable {
 		notifyAllObservers();
 	}
 	
+	public void resetCargo(){
+			this.numOfCargoes.put(Cargo.CargoType.COTTON, 0);
+			this.numOfCargoes.put(Cargo.CargoType.IRON, 0);
+			this.numOfCargoes.put(Cargo.CargoType.WOOD, 0);
+			//System.out.println("here");
+			this.observerLoadedlevel.notifyChange(this);
+			//System.out.println("you go");
+	}
+	
+	
 	public CompassHeading getHeading() {
 		return heading;
 	}

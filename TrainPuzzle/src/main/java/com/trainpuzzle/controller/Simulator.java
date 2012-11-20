@@ -54,7 +54,11 @@ public class Simulator implements Observable {
 
 	private void initializeSimulator() {
 		this.train = new Train();
-		resetTrain();
+		Location startPoint = new Location(this.level.getStartLocation());
+		this.train.setLocation(startPoint);
+		this.train.setHeading(EAST);
+		this.train.resetTrainCars();
+		trainCrashed=false;
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level);
 		
 	}
@@ -64,6 +68,7 @@ public class Simulator implements Observable {
 		this.train.setLocation(startPoint);
 		this.train.setHeading(EAST);
 		this.train.resetTrainCars();
+		this.train.resetCargo();
 		trainCrashed=false;
 	}
 	
@@ -96,8 +101,8 @@ public class Simulator implements Observable {
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
 		CargoGenerator cargoGenerator = new CargoGenerator(this);
-		final int FIVE_SECOND = 3000;
-		int intervalOfGenerateCargo = FIVE_SECOND;
+		final int TWO_SECOND = 1000;
+		int intervalOfGenerateCargo = TWO_SECOND;
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
 		executor.scheduleAtFixedRate(cargoGenerator, 1000,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
 		isRunning = true;

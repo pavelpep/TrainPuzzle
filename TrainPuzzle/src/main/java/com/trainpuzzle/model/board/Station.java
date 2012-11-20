@@ -99,6 +99,7 @@ public class Station implements java.io.Serializable, Observable {
 				break;
 			case IRON_FACTORY:
 				tempObstacle = new Obstacle(IRON_FACTORY_STATION);
+				break;
 			default:
 				assert(false): "Error while handling unacceptable values for stationType";
 		}
@@ -184,29 +185,26 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void generateExportCargo(){
-		assert exportCargo.size() < 2;
+		assert exportCargo.size() < 2: "Number of cargos can be up to 2";
 		Cargo producedCargo = null;
 		switch(stationType){
 			case IRON_FACTORY:
 				producedCargo = new Cargo(CargoType.IRON);
 				this.exportCargo.add(producedCargo);
-				notifyAllObservers();
 				break;
 			case WOOD_FACTORY:
 				producedCargo = new Cargo(CargoType.WOOD);
 				this.exportCargo.add(producedCargo);
-				notifyAllObservers();
 				break;
 			case COTTON_FACTORY:
 				producedCargo = new Cargo(CargoType.COTTON);
-				this.exportCargo.add(producedCargo);
-				notifyAllObservers();
+				this.exportCargo.add(producedCargo);				
 				break;
 		default:
 			assert(false): "Error with wrong stationType";
-			notifyAllObservers();
 			break;
 		}
+		notifyAllObservers();
 	}
 	
 	public void addImportCargo(Cargo cargo) {

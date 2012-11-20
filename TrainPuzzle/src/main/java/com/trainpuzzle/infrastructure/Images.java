@@ -21,7 +21,7 @@ public final class Images {
 	// Stations
 	public final static String RED_STATION = "src/main/resources/images/redStation.png";
 	public final static String GREEN_STATION = "src/main/resources/images/greenStation.png";
-	public final static String IRON_FACTORY_STATION = "src/main/resources/images/cargoFactory.png";
+	public final static String IRON_FACTORY_STATION = "src/main/resources/images/ironFactory.png";
 	
 	// Cargo
 	public final static String IRON = "src/main/resources/images/blackSquare.png";
