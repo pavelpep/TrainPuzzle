@@ -101,7 +101,7 @@ public class Simulator implements Observable {
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
 		CargoGenerator cargoGenerator = new CargoGenerator(this);
-		final int TWO_SECOND = 1000;
+		final int TWO_SECOND = 2000;
 		int intervalOfGenerateCargo = TWO_SECOND;
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
 		executor.scheduleAtFixedRate(cargoGenerator, 1000,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
