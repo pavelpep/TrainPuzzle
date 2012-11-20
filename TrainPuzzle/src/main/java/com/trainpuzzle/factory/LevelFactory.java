@@ -151,6 +151,8 @@ public class LevelFactory {
         setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
         setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
         setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
+        setLandscapeByRow(9, 7, 9, LandscapeType.MEDSWAMP);
+        setLandscapeByRow(10, 6, 8, LandscapeType.MEDSWAMP);
         
         setLandscapeByColumn(2, 8, 17, LandscapeType.DIRT);
         setLandscapeByColumn(1, 3, 18, LandscapeType.DIRT);
