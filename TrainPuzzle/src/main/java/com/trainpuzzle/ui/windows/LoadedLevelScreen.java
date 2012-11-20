@@ -203,6 +203,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		selectedTrackPanel = new SelectedTrack(this);
 		sidePanel.add(selectedTrackPanel);
 		
+		JButton toggleButton = initializeButton("Toggle switches","toggle");
+		initializeComponent(toggleButton, 15);
+		sidePanel.add(toggleButton);
+		
 		JButton victButton = initializeButton("Objectives","objectives");
 		initializeComponent(victButton, 15);
 		sidePanel.add(victButton);
@@ -241,6 +245,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		else if (event.getActionCommand() == "save") {
 			gameController.getLevelManager().saveCurrentLevel();
+		}
+		else if (event.getActionCommand() == "toggle") {
+			loadedLevelMap.getMouseAdapter().setToggleMode();
 		}
 		else if (event.getActionCommand() == "objectives") {
 			WindowManager.getManager().setActiveWindow(new VictoryConditionsWindow(gameController));

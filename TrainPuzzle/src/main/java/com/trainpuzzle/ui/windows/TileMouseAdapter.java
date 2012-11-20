@@ -17,11 +17,19 @@ import java.awt.event.*;
 public class TileMouseAdapter extends MouseAdapter {
 	private TrackPlacer trackPlacer;
 	private Track track;
+	
+	private Mode mode;
+	
+	public enum Mode {
+		PlaceTrack,
+		Toggle
+	}
 		
 	public TileMouseAdapter(TrackPlacer trackPlacer) {
 		super();
 		this.trackPlacer = trackPlacer;
 		track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
+		mode = Mode.PlaceTrack;
 	}
 		
 	public void  mousePressed(MouseEvent e) {
@@ -31,20 +39,11 @@ public class TileMouseAdapter extends MouseAdapter {
         int column = c.getX()/40;
             
         if (e.getButton() == MouseEvent.BUTTON1) {
-            try {
-            	
-            	Track copyOfTrack;
-            	if(!track.isSwitch()) {
-            		copyOfTrack = new Track(track);
-            	} else {
-            		copyOfTrack = new Switch((Switch)track);
-            	}
-            	trackPlacer.placeTrack(copyOfTrack, row, column);
-        	} 
-            catch(CannotPlaceTrackException ex) {
-            	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
-            	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
-            }
+        	if(mode == Mode.PlaceTrack) { 
+	            placeTrackAt(row, column);
+        	} else if(mode == Mode.Toggle) {
+        		
+        	}
         }
         else if(e.getButton() == MouseEvent.BUTTON3) {
             try {
@@ -56,6 +55,22 @@ public class TileMouseAdapter extends MouseAdapter {
             }
         }
     }
+
+	private void placeTrackAt(int row, int column) {
+		try {
+			Track copyOfTrack;
+			if(!track.isSwitch()) {
+				copyOfTrack = new Track(track);
+			} else {
+				copyOfTrack = new Switch((Switch)track);
+			}
+			trackPlacer.placeTrack(copyOfTrack, row, column);
+		} 
+		catch(CannotPlaceTrackException ex) {
+			LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
+			loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
+		}
+	}
 			
 	public TrackPlacer getTrackPlacer() {
 		return trackPlacer;
@@ -63,5 +78,14 @@ public class TileMouseAdapter extends MouseAdapter {
 	
 	public void setTrack(Track track) {
 		this.track = track;
+		setPlaceTrackMode();
+	}
+	
+	public void setPlaceTrackMode() {
+		mode = Mode.PlaceTrack;
+	}
+	
+	public void setToggleMode() {
+		mode = Mode.Toggle;
 	}
 }
