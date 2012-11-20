@@ -6,7 +6,6 @@ import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-import java.util.Random;
 import org.apache.log4j.Logger;
 
 import com.trainpuzzle.model.board.Cargo.CargoType;

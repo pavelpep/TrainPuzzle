@@ -5,11 +5,15 @@ import com.trainpuzzle.model.board.Station;
 
 public class Event implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	private int time;
+	private int time = 0;
 	private Station station;
 	
 	public Event(int time, Station station) {
 		this.time = time;
+		this.station = station;
+	}
+	
+	public Event(Station station) {
 		this.station = station;
 	}
 	

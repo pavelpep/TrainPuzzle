@@ -1,5 +1,7 @@
 package com.trainpuzzle.controller;
 
 public class Clock {
-	//TODO: For future implementation.
+	public static final int NO_LIMIT = -1;
+	
+	
 }

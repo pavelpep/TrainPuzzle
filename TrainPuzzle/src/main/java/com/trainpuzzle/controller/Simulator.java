@@ -1,6 +1,7 @@
 package com.trainpuzzle.controller;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -28,6 +29,10 @@ import com.trainpuzzle.factory.LevelFactory;
 
 public class Simulator implements Observable {
 	
+	public static final int NOTIMELIMIT = -1;
+	private int timeLimit = NOTIMELIMIT;
+	private int time = 0;
+	
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
 	private Level level;
@@ -35,6 +40,7 @@ public class Simulator implements Observable {
 
 	private Train train;
 	private VictoryConditionEvaluator victoryConditionEvaluator;
+	private List<CargoRequestGenerator> cargoRequestGenerators;
 	
 	private boolean trainCrashed = false;
 	private boolean isRunning = false;
@@ -49,6 +55,7 @@ public class Simulator implements Observable {
 	public Simulator(Level level) {
 		this.level = level;
 		this.board = this.level.getBoard();
+		this.cargoRequestGenerators = level.getCargorequestors();
 		initializeSimulator();
 	}
 
@@ -63,6 +70,15 @@ public class Simulator implements Observable {
 		
 	}
 	
+	public void reset() {
+		resetTrain();
+		resetStations();
+		resetCargoRequestGenerators();
+		resetVictoryConditions();
+		stop();
+	}
+	
+
 	private void resetTrain() {
 		Location startPoint = new Location(this.level.getStartLocation());
 		this.train.setLocation(startPoint);
@@ -76,17 +92,16 @@ public class Simulator implements Observable {
 		LevelFactory levelFactory = new LevelFactory();
 		Board originalBoard = levelFactory.createLevel(level.getLevelNumber()).getBoard();
 		board.resetStationCargo(originalBoard);
-	}	
+	}
 	
 	private void resetVictoryConditions() {
 		this.victoryConditionEvaluator.resetEvents();
 	}
 	
-	public void reset() {
-		resetTrain();
-		resetStations();
-		resetVictoryConditions();
-		stop();
+	private void resetCargoRequestGenerators() {
+		for(CargoRequestGenerator generator : cargoRequestGenerators) {
+			generator.reset(board);
+		}
 	}
 	
 	public void stop() {
@@ -97,6 +112,7 @@ public class Simulator implements Observable {
 	}
 	
 	public void run() {
+		
 		executor.shutdownNow();
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
@@ -109,17 +125,30 @@ public class Simulator implements Observable {
 	}
 	
 	public void move() throws TrainCrashException {
-		try {
-			if(!isVictoryConditionsSatisfied()) {
-				proceedNextTile();
-			}
-			else if(isVictoryConditionsSatisfied()) {
+		if(checkTimeOut()) {
+			stop();
+		}
+		else{
+			try {
+				if(!isVictoryConditionsSatisfied()) {
+					proceedNextTile();
+					time += 5;
+					generateCargoResquests();
+				}
+				else if(isVictoryConditionsSatisfied()) {
+					stop();
+				}
+			} catch (TrainCrashException e) {
+				e.printStackTrace();
+				trainCrashed = true;
 				stop();
 			}
-		} catch (TrainCrashException e) {
-			e.printStackTrace();
-			trainCrashed = true;
-			stop();
+		}
+	}
+	
+	private void generateCargoResquests() {
+		for(CargoRequestGenerator generator : cargoRequestGenerators) {
+			generator.generateRequest(time);
 		}
 	}
 	
@@ -132,11 +161,15 @@ public class Simulator implements Observable {
 		heading = track.getOutboundHeading(heading);
 		this.train.setLocation(nextLocation);
 		this.train.setHeading(heading);
-		
 		if(tile.hasStationTrack()) {
 			Station station = tile.getStation();
 			passStation(station);
 		}
+	}
+	
+	
+	private boolean checkTimeOut() {
+		return !(timeLimit == NOTIMELIMIT) && time>= timeLimit;
 	}
 	
 	private Tile getTileWithTrack(Location location) throws TrainCrashException {

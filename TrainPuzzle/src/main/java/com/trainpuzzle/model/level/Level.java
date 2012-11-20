@@ -1,7 +1,11 @@
 package com.trainpuzzle.model.level;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import com.trainpuzzle.controller.CargoRequestGenerator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
@@ -20,6 +24,7 @@ public class Level implements java.io.Serializable {
 	private Location startLocation = new Location(0,0);
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
+	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>(); 
 	
 	public Level(int levelNumber) {
 		this.levelNumber = levelNumber;
@@ -39,6 +44,10 @@ public class Level implements java.io.Serializable {
 	private void initializeEmptyVictoryConditions() {
 		Station placeholderStation = new Station(StationType.GREEN, startLocation, CompassHeading.NORTH);
 		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation)));
+	}
+	
+	public void addCargoRequestGenerator(CargoRequestGenerator generator) {
+		this.cargorequestors.add(generator);
 	}
 	
 	 // Getters & Setters
@@ -77,6 +86,14 @@ public class Level implements java.io.Serializable {
 	
 	public void setEconomy(Economy economy) {
 		this.economy = economy;
+	}
+
+	public List<CargoRequestGenerator> getCargorequestors() {
+		return cargorequestors;
+	}
+
+	public void setCargorequestors(List<CargoRequestGenerator> cargorequestors) {
+		this.cargorequestors = cargorequestors;
 	}
 
 }

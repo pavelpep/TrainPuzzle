@@ -13,6 +13,11 @@ public class DropCargoEvent extends Event {
 		this.cargo = cargo;
 	}
 	
+	public DropCargoEvent(Station station,Cargo cargo) {
+		super(station);
+		this.cargo = cargo;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

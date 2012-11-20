@@ -30,6 +30,10 @@ public class LogicalVictoryCondition implements VictoryCondition {
 		 resetChildrenEvents();
 	}
 	
+	public void removeChildrens() {
+		this.childConditions.clear();
+	}
+	
 	private void resetChildrenEvents() {
 		for(VictoryCondition child : childConditions) {
 			child.resetEvents();
