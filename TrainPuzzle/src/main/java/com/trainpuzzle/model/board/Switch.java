@@ -62,8 +62,7 @@ public class Switch extends Track implements Observable{
 		
 		if(isEntrance(inboundHeading)) {
 			outboundHeading = current.outboundForInbound(inboundHeading);
-			current = nextConnection();
-			notifyAllObservers();
+			toggle();
 		} 
 		else {	
 			outboundHeading = super.getOutboundHeading(inboundHeading);
@@ -74,6 +73,11 @@ public class Switch extends Track implements Observable{
 	public void rotateTrack() {		
 		super.rotateTrack();
 		entrance = entrance.rotate90DegreesClockwise();
+	}
+	
+	public void toggle() {
+		current = nextConnection();
+		notifyAllObservers();
 	}
 	
 	private boolean isEntrance(CompassHeading inboundHeading) {

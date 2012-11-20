@@ -3,6 +3,7 @@ package com.trainpuzzle.ui.windows;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 
+import com.trainpuzzle.controller.SwitchToggler;
 import com.trainpuzzle.controller.TrackPlacer;
 
 import com.trainpuzzle.model.board.CompassHeading;
@@ -16,6 +17,7 @@ import java.awt.event.*;
 
 public class TileMouseAdapter extends MouseAdapter {
 	private TrackPlacer trackPlacer;
+	private SwitchToggler switchToggler;
 	private Track track;
 	
 	private Mode mode;
@@ -28,6 +30,7 @@ public class TileMouseAdapter extends MouseAdapter {
 	public TileMouseAdapter(TrackPlacer trackPlacer) {
 		super();
 		this.trackPlacer = trackPlacer;
+		//this.switchToggler = new SwitchToggler(trackPlacer.getLevel());
 		track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
 		mode = Mode.PlaceTrack;
 	}
