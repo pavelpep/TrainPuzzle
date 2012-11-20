@@ -28,11 +28,14 @@ public class TrackPlacer {
 	
 	public void placeTrack(Track track, int row, int column) throws CannotPlaceTrackException {
 		Tile tile = map.getTile(row, column);
+		int multiplier= tile.getLandscape().getMultiplier();
+		System.out.println("landscape="+tile.getLandscape().getType());
+		System.out.println("multiplier="+multiplier);
 		String errorMessage = getPlaceTrackErrorMessage(tile, track);
 		if(hasNoError(errorMessage)) {
 			tile.setTrack(track);
 			TrackType trackType = track.getTrackType();
-			economy.useOnePieceOfTrack(trackType);
+			economy.useTracks(trackType, multiplier);
 			map.notifyAllObservers();
 		}
 		else {
@@ -40,6 +43,7 @@ public class TrackPlacer {
 			throw new CannotPlaceTrackException(errorMessage);			
 		}
 	}
+	
 	
 	private String getPlaceTrackErrorMessage(Tile tile, Track track) {
 		String errorMessage = "";
@@ -66,11 +70,12 @@ public class TrackPlacer {
 	
 	public void removeTrack(int row, int column) throws CannotRemoveTrackException {
 		Tile tile = map.getTile(row, column);
+		int multiplier= tile.getLandscape().getMultiplier();
 		String errorMessage = getRemoveTrackErrorMessage(tile);
 		if(hasNoError(errorMessage)) {
 			TrackType trackType=tile.getTrack().getTrackType();
 			tile.removeTrack();
-			economy.returnOnePieceOfTrack(trackType);
+			economy.returnTracks(trackType, multiplier);
 			map.notifyAllObservers();
 		}
 		else {

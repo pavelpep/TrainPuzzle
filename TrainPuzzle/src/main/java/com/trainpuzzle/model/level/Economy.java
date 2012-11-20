@@ -30,34 +30,34 @@ public class Economy implements java.io.Serializable, Observable {
 		this.budget = budget;
 	}
 	
-	public void useOnePieceOfTrack(TrackType trackType) {
+	public void useTracks(TrackType trackType, int multiplier) {
 		Integer currentNumOfThisTrack = numberOfAvailableTrack.get(trackType);
 
 		if(budget != NO_LIMIT) {
 			this.budget = budget + trackType.getPrice();
 		}
 		if(currentNumOfThisTrack != NO_LIMIT) {
-			currentNumOfThisTrack--;
+			currentNumOfThisTrack = currentNumOfThisTrack - multiplier;
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
 		if(trackType.getParent() != null) {
-			useOnePieceOfTrack(trackType.getParent());
+			useTracks(trackType.getParent(), multiplier);
 		}
 		notifyAllObservers();
 	}
 	
-	public void returnOnePieceOfTrack(TrackType trackType) {
+	public void returnTracks(TrackType trackType, int multiplier) {
 		Integer currentNumOfThisTrack = numberOfAvailableTrack.get(trackType);
 		
 		if(budget != NO_LIMIT) {
 			this.budget = budget + trackType.getPrice();
 		}
 		if(currentNumOfThisTrack != NO_LIMIT) {
-			currentNumOfThisTrack++;
+			currentNumOfThisTrack = currentNumOfThisTrack + multiplier;
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
 		if(trackType.getParent() != null) {
-			returnOnePieceOfTrack(trackType.getParent());
+			returnTracks(trackType.getParent(), multiplier);
 		}
 		notifyAllObservers();
 	}

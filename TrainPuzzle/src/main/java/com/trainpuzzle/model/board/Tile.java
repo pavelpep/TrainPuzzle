@@ -13,6 +13,7 @@ public class Tile implements Observable, java.io.Serializable {
 	private Track track;
 	private Obstacle obstacle;
 	private Landscape landscape;
+
 	private Station station;
 	private transient Set<Observer> observerList = new HashSet<Observer>();
 
@@ -120,5 +121,9 @@ public class Tile implements Observable, java.io.Serializable {
 	
 	public Obstacle.ObstacleType getObstacleType() {
 		return obstacle.getType();
+	}
+	
+	public Landscape getLandscape() {
+		return landscape;
 	}
 }
