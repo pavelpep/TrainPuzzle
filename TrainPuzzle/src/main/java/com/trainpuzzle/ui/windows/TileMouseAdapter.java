@@ -7,6 +7,7 @@ import com.trainpuzzle.controller.TrackPlacer;
 
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
+import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.TrackType;
 
@@ -31,7 +32,14 @@ public class TileMouseAdapter extends MouseAdapter {
             
         if (e.getButton() == MouseEvent.BUTTON1) {
             try {
-            	trackPlacer.placeTrack(track, row, column);
+            	
+            	Track copyOfTrack;
+            	if(!track.isSwitch()) {
+            		copyOfTrack = new Track(track);
+            	} else {
+            		copyOfTrack = new Switch((Switch)track);
+            	}
+            	trackPlacer.placeTrack(copyOfTrack, row, column);
         	} 
             catch(CannotPlaceTrackException ex) {
             	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
