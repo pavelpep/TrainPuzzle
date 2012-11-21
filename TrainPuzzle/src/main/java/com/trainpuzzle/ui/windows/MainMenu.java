@@ -47,7 +47,7 @@ public class MainMenu extends Window implements ActionListener {
 
 		JButton loadButton = initializeButton("Load Level","load");
 		initializeComponent(loadButton, 20);
-		loadButton.setBackground(Color.GREEN);
+		loadButton.setBackground(Color.ORANGE);
 		mainMenuPanel.add(loadButton);
 
 		JButton creditsButton = initializeButton("Credits","credits");
@@ -57,7 +57,7 @@ public class MainMenu extends Window implements ActionListener {
 
 		JButton exitButton = initializeButton("Exit","exit");
 		initializeComponent(exitButton, 20);
-		exitButton.setBackground(Color.ORANGE);
+		exitButton.setBackground(Color.LIGHT_GRAY);
 		mainMenuPanel.add(exitButton);		
 	}
 	
