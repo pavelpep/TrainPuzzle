@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -22,6 +23,7 @@ public class GameControlBox extends JPanel implements ActionListener{
 	private GameController gameController;
 	private JButton runButton = new JButton("Run");
 	private JButton pauseButton = new JButton("Pause");
+	private int removeTracksOptionPane = JOptionPane.YES_OPTION;
 	
 	public GameControlBox(GameController gameController) {
 		this.gameController = gameController;
@@ -67,7 +69,7 @@ public class GameControlBox extends JPanel implements ActionListener{
 		GridBagConstraints resetButtonContraints = buttonConstraints(new Point(0, 2), new Dimension(3, 1));
 		this.add(resetButton, resetButtonContraints);
 		
-		JButton removeAllTracksButton = initializeButton("Remove All Tracks", "removeAllTracks");
+		JButton removeAllTracksButton = initializeButton("Remove All Placed Tracks", "removeAllTracks");
 		GridBagConstraints removeAllTracksButtonContraints = buttonConstraints(new Point(0, 3), new Dimension(3, 1));
 		this.add(removeAllTracksButton, removeAllTracksButtonContraints);
 	}
@@ -137,7 +139,17 @@ public class GameControlBox extends JPanel implements ActionListener{
 			}
 		}
 		if (event.getActionCommand() == "removeAllTracks") {
-			gameController.removeAllTracks();
+			removeTracksOptionPane = JOptionPane.showConfirmDialog(null,"Are you sure you want to remove all your placed tracks?");
+			
+			if (removeTracksOptionPane == JOptionPane.YES_OPTION) {
+				gameController.removeAllTracks();
+				JOptionPane.showMessageDialog(null, "All placed tracks removed!");
+			} 
+			else {
+				JOptionPane.showMessageDialog(null, "Placed tracks not removed.");
+			}
+
+
 		}
 	}
 }
