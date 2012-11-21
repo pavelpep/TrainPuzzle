@@ -113,9 +113,15 @@ public class LevelMap extends JPanel implements Observer {
 			case LIGHTDIRT:
 				landscapeLayer=new JLabel(Images.LIGHTDIRT_IMAGE);
 				break;
+			case DARKSWAMP:
+				landscapeLayer=new JLabel(Images.DARKSWAMP_IMAGE);
+				break;	
 			case MEDSWAMP:
 				landscapeLayer=new JLabel(Images.MEDSWAMP_IMAGE);
-				break;				
+				break;	
+			case LIGHTSWAMP:
+				landscapeLayer=new JLabel(Images.LIGHTSWAMP_IMAGE);
+				break;	
 			default:
 				break;
 		}

@@ -16,7 +16,9 @@ public final class Images {
 	public final static String ROUGHDIRT = "src/main/resources/images/dark_dirt.png";
 	public final static String DIRT = "src/main/resources/images/dirt.png";
 	public final static String LIGHTDIRT = "src/main/resources/images/light_dirt.png";
-	public final static String MEDSWAMP = "src/main/resources/images/medSwamp.png";
+	public final static String DARKSWAMP = "src/main/resources/images/dark_swamp.png";
+	public final static String MEDSWAMP = "src/main/resources/images/medium_swamp.png";
+	public final static String LIGHTSWAMP = "src/main/resources/images/light_swamp.png";
 	public final static String ROCK = "src/main/resources/images/rock.png";
 	public final static String TREES = "src/main/resources/images/trees.png";
 	public final static String MOUNTAINS = "src/main/resources/images/mountains.png";
@@ -59,7 +61,9 @@ public final class Images {
 	public final static ImageIcon ROUGHDIRT_IMAGE = new ImageIcon(ROUGHDIRT);
 	public final static ImageIcon DIRT_IMAGE = new ImageIcon(DIRT);
 	public final static ImageIcon LIGHTDIRT_IMAGE = new ImageIcon(LIGHTDIRT);
+	public final static ImageIcon DARKSWAMP_IMAGE = new ImageIcon(DARKSWAMP);
 	public final static ImageIcon MEDSWAMP_IMAGE = new ImageIcon(MEDSWAMP);
+	public final static ImageIcon LIGHTSWAMP_IMAGE = new ImageIcon(LIGHTSWAMP);
 	public final static ImageIcon ROCK_IMAGE = new ImageIcon(ROCK);
 	public final static ImageIcon TREES_IMAGE = new ImageIcon(TREES);
 	public final static ImageIcon MOUNTAINS_IMAGE = new ImageIcon(MOUNTAINS);

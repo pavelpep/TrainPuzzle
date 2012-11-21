@@ -10,7 +10,9 @@ public class Landscape implements java.io.Serializable {
 		ROUGHDIRT,
 		DIRT,
 		LIGHTDIRT,
-		MEDSWAMP
+		DARKSWAMP,
+		MEDSWAMP,
+		LIGHTSWAMP
 	}
 	
 	private LandscapeType landscapeType;
@@ -28,6 +30,9 @@ public class Landscape implements java.io.Serializable {
 		this.landscapeType = landscapeType;
 		switch (landscapeType){
 		case ROUGHDIRT:
+			this.multiplier=3;
+			break;
+		case DARKSWAMP:
 			this.multiplier=3;
 			break;
 		case DIRT:
