@@ -3,9 +3,11 @@ import java.awt.event.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.awt.AWTUtilities;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.ui.windows.loadedlevel.VictoryConditions;
 
@@ -20,6 +22,11 @@ private static final long serialVersionUID = 1L;
 		create();
 		pack();
 		setLocationRelativeTo(null);
+		addWindowListener(new WindowAdapter() {
+			public void windowDeactivated(WindowEvent ev) {
+				AWTUtilities.setWindowOpacity(WindowManager.getManager().getActiveWindow(), (float) 0.5);
+			}
+		});
 	}	
 		
 	public void create() {

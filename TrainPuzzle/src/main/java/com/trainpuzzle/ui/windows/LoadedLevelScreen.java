@@ -6,6 +6,7 @@ import com.trainpuzzle.ui.windows.loadedlevel.GameControlBox;
 import com.trainpuzzle.ui.windows.loadedlevel.LevelMap;
 import com.trainpuzzle.ui.windows.loadedlevel.SelectedTrack;
 import com.trainpuzzle.ui.windows.loadedlevel.TrackSelection;
+import com.trainpuzzle.ui.windows.loadedlevel.VictoryConditions;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -46,7 +47,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		gameController.getSimulator().register(this);
 		gameController.getSimulator().getTrain().registerLoadedLevel(this);
 		
-		setLayout(new GridBagLayout());
 		setBackground(this.getBackground());
 		
 		create();
@@ -57,16 +57,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void create() {
 		JPanel loadedLevelScreenPanel = new JPanel();
 		loadedLevelScreenPanel.setLayout(new GridBagLayout());
-		loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
+		//loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(loadedLevelScreenPanel);
 		
 		GridBagConstraints headerPanelConstraints = gbConstraints(new Point(0, 0), new Dimension(2, 1), 0, 0);
 		loadedLevelScreenPanel.add(headerPanel(), headerPanelConstraints);
 		
-		GridBagConstraints mapPanelContsraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 0);
+		GridBagConstraints mapPanelContsraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 1);
 		loadedLevelScreenPanel.add(mapPanel(), mapPanelContsraints);
 		
-		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 0);
+		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 1);
 		loadedLevelScreenPanel.add(sidePanel(), sidePanelConstraints);
 	}
 
@@ -100,7 +100,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private JTextPane messageBox() {
 		messageBox =  new JTextPane();
-		messageBox.setPreferredSize(new Dimension(300,20));
+		messageBox.setMinimumSize(new Dimension(300,20));
 		
 		StyledDocument doc = messageBox.getStyledDocument();
 		SimpleAttributeSet alignment = new SimpleAttributeSet();
@@ -173,7 +173,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
 		JPanel cargo = new JPanel();
 		cargo.setLayout(new BoxLayout(cargo, BoxLayout.Y_AXIS));
-		cargo.setBorder(new EmptyBorder(10, 10, 10, 10));
+		cargo.setBorder(new EmptyBorder(0, 10, 0, 10));
 		
 		JLabel cargoTypeLabel = new JLabel(cargoType);
 		initializeComponent(cargoTypeLabel, 10);
@@ -200,12 +200,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		JPanel trackPanel = new TrackSelection(gameController, this);
 		sidePanel.add(trackPanel);
 		
+		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
+		sidePanel.add(victoryConditionsPanel);
+		
 		selectedTrackPanel = new SelectedTrack(this);
 		sidePanel.add(selectedTrackPanel);
 		
 		JButton toggleButton = initializeButton("Toggle switches","toggle");
 		initializeComponent(toggleButton, 15);
 		sidePanel.add(toggleButton);
+		
+		
 		
 		JButton victButton = initializeButton("Objectives","objectives");
 		initializeComponent(victButton, 15);
