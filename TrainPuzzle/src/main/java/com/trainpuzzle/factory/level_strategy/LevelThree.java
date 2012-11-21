@@ -23,8 +23,6 @@ public class LevelThree extends LevelOutline {
 		this.board = new Board(10, 10);
         this.root = new AndVictoryCondition();
         
-        root.setName("And");
-        
         setStations();
         setLandscape();
         setObstacles();

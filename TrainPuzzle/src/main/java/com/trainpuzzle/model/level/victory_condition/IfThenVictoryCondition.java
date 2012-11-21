@@ -6,7 +6,6 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 	private static final long serialVersionUID = 1L;
 	
 	public IfThenVictoryCondition() {
-		this.setName("In order");
 		userObject = new TreeNodeUserObject(this,"Complete in order");
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
 		this.setDisplayNode(displayNode);
@@ -18,7 +17,6 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 			if(!child.isSatisfied()) {
 				conditionSatisfied = false;
 			}
-			this.getDisplayNode().setUserObject(getName());
 		}
 		if(conditionSatisfied) {
 			userObject.setLabel(userObject.getLabel() + " Clear!");

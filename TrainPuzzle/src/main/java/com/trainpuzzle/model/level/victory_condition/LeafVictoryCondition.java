@@ -18,7 +18,6 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 	
 	public LeafVictoryCondition(Event condition) {
 		this.condition = condition;
-		name = condition.toString();
 		
 		userObject = new TreeNodeUserObject(this,condition.toString());
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
@@ -48,7 +47,6 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 	@Override
 	public void resetEvents() {
 		conditionSatisfied = false;
-		this.displayNode.setUserObject(condition.toString());
 	}
 
 	@Override
@@ -61,8 +59,7 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 				conditionSatisfied = (event.getTime() <= timeLimit) && condition.equals(event);
 			}
 			if(conditionSatisfied) {
-				this.displayNode.setUserObject(event.toString()+ " Clear!");
-				treeModel.nodeChanged(displayNode);
+				treeModel.nodeChanged(getDisplayNode());
 			}
 		}
 	}

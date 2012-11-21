@@ -7,7 +7,6 @@ public class OrVictoryCondition extends LogicalVictoryCondition implements java.
 	private static final long serialVersionUID = 1L;
 	
 	public OrVictoryCondition() {
-		this.setName("OR");
 		userObject = new TreeNodeUserObject(this,"Optional objectives");
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
 		this.setDisplayNode(displayNode);

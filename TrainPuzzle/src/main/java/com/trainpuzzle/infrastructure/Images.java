@@ -49,6 +49,9 @@ public final class Images {
 	public final static String CURVELEFT_SWITCH = "src/main/resources/images/left_switch.png";
 	public final static String CURVERIGHT_SWITCH = "src/main/resources/images/right_switch.png";
 	
+	public final static String VC_UNSATISFIED = "src/main/resources/images/blackFrame.png";
+	public final static String VC_SATISFIED = "src/main/resources/images/greenSquare.png";
+	
 	// ImageIcon type
 	
 	// Train
@@ -93,4 +96,8 @@ public final class Images {
 	public final static ImageIcon DIAGONAL_INTERSECTION_TRACK_IMAGE =  new ImageIcon(DIAGONAL_INTERSECTION_TRACK);
 	public final static ImageIcon CURVELEFT_SWITCH_IMAGE = new ImageIcon(CURVELEFT_SWITCH);
 	public final static ImageIcon CURVERIGHT_SWITCH_IMAGE = new ImageIcon(CURVERIGHT_SWITCH);
+	
+	public final static ImageIcon VC_UNSATISFIED_IMAGE = new ImageIcon(VC_UNSATISFIED);
+	public final static ImageIcon VC_SATISFIED_IMAGE = new ImageIcon(VC_SATISFIED);
+	
 }

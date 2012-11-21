@@ -10,7 +10,6 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	
 	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
 	protected boolean conditionSatisfied = false;
-	private String name;
 	private DefaultMutableTreeNode displayNode;
 	private DefaultTreeModel treeModel;
 	protected TreeNodeUserObject userObject;
@@ -30,7 +29,6 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	@Override
 	public void resetEvents() {
 		 conditionSatisfied = false;
-		 this.displayNode.setUserObject(name);
 		 resetChildrenEvents();
 	}
 	
@@ -53,20 +51,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 		childConditions.add(child);
 		this.displayNode.add(child.getDisplayNode());
 	}
-
-	public String getName() {
-		if(conditionSatisfied) {
-			return name+ " Clear!";
-		}
-		else {
-			return name;
-		}
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public DefaultMutableTreeNode getDisplayNode() {
 		return displayNode;
 	}

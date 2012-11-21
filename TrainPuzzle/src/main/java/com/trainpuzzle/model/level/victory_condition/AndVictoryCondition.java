@@ -7,7 +7,6 @@ public class AndVictoryCondition extends LogicalVictoryCondition implements java
 	private static final long serialVersionUID = 1L;
 	
 	public AndVictoryCondition() {
-		this.setName("And");
 		userObject = new TreeNodeUserObject(this,"Complete all objectives");
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
 		this.setDisplayNode(displayNode);
@@ -22,7 +21,6 @@ public class AndVictoryCondition extends LogicalVictoryCondition implements java
 		}
 		if(conditionSatisfied) {
 			userObject.setLabel(userObject.getLabel() + " Clear!");
-			//this.getDisplayNode().setUserObject(this.getName() + " Clear!");
 			getTreeModel().nodeChanged(getDisplayNode());
 		}
 	}

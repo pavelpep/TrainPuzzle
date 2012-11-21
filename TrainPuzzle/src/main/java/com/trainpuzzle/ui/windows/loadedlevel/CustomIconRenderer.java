@@ -17,14 +17,14 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
 	ImageIcon unsatisfisedIcon;
 	ImageIcon satisfisedIcon;
 	public CustomIconRenderer() {
-		unsatisfisedIcon = Images.REQUIRED_WOOD_IMAGE;
-		satisfisedIcon = Images.WOOD_IMAGE;
+		unsatisfisedIcon = Images.VC_UNSATISFIED_IMAGE;
+		satisfisedIcon = Images.VC_SATISFIED_IMAGE;
 	}
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 		DefaultMutableTreeNode nodeObj = ((DefaultMutableTreeNode)value);
 		TreeNodeUserObject userObject = (TreeNodeUserObject)(nodeObj.getUserObject());
-		if (userObject.getLabel().contains("Clear")) {
+		if (userObject.getVictoryCondition().isSatisfied()) {
 			setIcon(satisfisedIcon);
 		} else {
 			setIcon(unsatisfisedIcon);
