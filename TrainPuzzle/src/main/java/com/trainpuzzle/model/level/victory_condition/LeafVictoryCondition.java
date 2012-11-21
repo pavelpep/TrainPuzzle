@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class LeafVictoryCondition implements VictoryCondition, java.io.Serializable {
 	
@@ -12,11 +13,13 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 	private int timeLimit;
 	private String name;
 	private DefaultMutableTreeNode displayNode;
+	private DefaultTreeModel treeModel;
 	
 	public LeafVictoryCondition(Event condition) {
 		this.condition = condition;
 		name = condition.toString();
 		setDisplayNode(new DefaultMutableTreeNode(name));
+		treeModel = new DefaultTreeModel(displayNode);
 	}
 	
 	public LeafVictoryCondition(boolean hasTimeLimit, int timeLimit,Event condition) {
@@ -25,6 +28,7 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 		this.timeLimit = timeLimit;
 		name = condition.toString();
 		setDisplayNode(new DefaultMutableTreeNode(name));
+		treeModel = new DefaultTreeModel(displayNode);
 	}
 	
 	public Event getCondition() {
@@ -53,6 +57,7 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 			}
 			if(conditionSatisfied) {
 				this.displayNode.setUserObject(event.toString()+ " Clear!");
+				treeModel.nodeChanged(displayNode);
 			}
 		}
 	}
@@ -71,6 +76,14 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 
 	public void setDisplayNode(DefaultMutableTreeNode displayNode) {
 		this.displayNode = displayNode;
+	}
+	
+	public DefaultTreeModel getTreeModel() {
+		return treeModel;
+	}
+
+	public void setTreeModel(DefaultTreeModel treeModel) {
+		this.treeModel = treeModel;
 	}
 	
 }

@@ -4,8 +4,11 @@ import java.awt.Dimension;
 
 import java.awt.GridLayout;
 import java.net.URL;
+import java.util.Enumeration;
 
 
+import javax.jws.WebParam.Mode;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -15,12 +18,15 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import com.trainpuzzle.controller.GameController;
+import com.trainpuzzle.infrastructure.Images;
 
-public class VictoryConditions extends JPanel implements TreeSelectionListener {
+public class VictoryConditions extends JPanel {// implements TreeSelectionListener {
 
 	private static final long serialVersionUID = 1L;
 	private GameController gameController;
@@ -31,30 +37,43 @@ public class VictoryConditions extends JPanel implements TreeSelectionListener {
 		super(new GridLayout(1,0));
 		
 		this.gameController = gameController;
-        //Create the nodes.
-        DefaultMutableTreeNode top =
-            gameController.getLevel().getVictoryConditions().getDisplayNode();
+		
+        DefaultMutableTreeNode top = gameController.getLevel().getVictoryConditions().getDisplayNode();
  
-        //Create a tree that allows one selection at a time.
         tree = new JTree(top);
-        tree.getSelectionModel().setSelectionMode
-                (TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        
+        gameController.getLevel().getVictoryConditions().setTreeModel(model);
+        
  
         //Listen for when the selection changes.
-        tree.addTreeSelectionListener(this);
-
- 
-        //Create the scroll pane and add the tree to it. 
+        //tree.addTreeSelectionListener(this);
+        
         JScrollPane treeView = new JScrollPane(tree);
         Dimension minimumSize = new Dimension(100, 50);
         treeView.setMinimumSize(minimumSize);
         add(treeView);
+        
+
+        CustomIconRenderer renderer = new CustomIconRenderer();
+        tree.setCellRenderer(renderer);
+        
+        
+        
+        
     }
+	
+	public void update(){
+		tree.updateUI();
+		
+	}
  
     /** Required by TreeSelectionListener interface. */
+	/*
     public void valueChanged(TreeSelectionEvent e) {
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode)
-                           tree.getLastSelectedPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
  
         if (node == null) return;
  
@@ -68,6 +87,7 @@ public class VictoryConditions extends JPanel implements TreeSelectionListener {
         }
 
     }
+    */
  
     private class ObjectiveInfo {
         public String objectiveName;
@@ -85,6 +105,7 @@ public class VictoryConditions extends JPanel implements TreeSelectionListener {
             return objectiveName;
         }
     }
+
 
  
    

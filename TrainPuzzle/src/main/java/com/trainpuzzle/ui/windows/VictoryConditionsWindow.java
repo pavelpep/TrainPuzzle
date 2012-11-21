@@ -13,6 +13,7 @@ public class VictoryConditionsWindow extends Window implements ActionListener {
 private static final long serialVersionUID = 1L;
 	
 	private GameController gameController;
+	JPanel victoryConditionsPanel;
 
 	public VictoryConditionsWindow(GameController gameController) {
 		this.gameController = gameController;
@@ -28,9 +29,12 @@ private static final long serialVersionUID = 1L;
 		this.add(campaignsPanel);
 		
 		
-		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
+		victoryConditionsPanel = new VictoryConditions(gameController);
 		campaignsPanel.add(victoryConditionsPanel);
 		
+		JButton refreshButton = initializeButton("Refresh","refresh");
+		initializeComponent(refreshButton, 15);
+		campaignsPanel.add(refreshButton);
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
@@ -41,6 +45,10 @@ private static final long serialVersionUID = 1L;
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
 
+		if (action == "refresh") {
+			victoryConditionsPanel.updateUI();
+		}
+		
 		if (action == "back") {
 			WindowManager.getManager().showPreviousWindow();
 		}

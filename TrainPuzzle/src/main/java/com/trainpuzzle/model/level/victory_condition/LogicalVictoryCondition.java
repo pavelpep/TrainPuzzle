@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class LogicalVictoryCondition implements VictoryCondition {
 	
@@ -11,6 +12,8 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	protected boolean conditionSatisfied = false;
 	private String name;
 	private DefaultMutableTreeNode displayNode;
+	private DefaultTreeModel treeModel;
+	
 	@Override
 	public boolean isSatisfied() {
 		return conditionSatisfied;
@@ -63,6 +66,17 @@ public class LogicalVictoryCondition implements VictoryCondition {
 
 	public void setDisplayNode(DefaultMutableTreeNode displayNode) {
 		this.displayNode = displayNode;
+	}
+	
+	public DefaultTreeModel getTreeModel() {
+		return treeModel;
+	}
+
+	public void setTreeModel(DefaultTreeModel treeModel) {
+		for(VictoryCondition child: getChildren()) {
+			child.setTreeModel(treeModel);
+		}
+		this.treeModel = treeModel;
 	}
 	
 }
