@@ -63,7 +63,12 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 	}
 
 	public String getName() {
-		return name;
+		if(conditionSatisfied) {
+			return name+ " Clear!";
+		}
+		else {
+			return name;
+		}
 	}
 
 	public void setName(String name) {

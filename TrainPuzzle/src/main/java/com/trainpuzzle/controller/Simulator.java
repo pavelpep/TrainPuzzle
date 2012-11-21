@@ -30,7 +30,7 @@ import com.trainpuzzle.factory.LevelFactory;
 public class Simulator implements Observable {
 	
 	public static final int NOTIMELIMIT = -1;
-	private int timeLimit = NOTIMELIMIT;
+	private int timeLimit;
 	private int time = 0;
 	
 	private Set<Observer> observerList = new HashSet<Observer>();
@@ -56,6 +56,7 @@ public class Simulator implements Observable {
 		this.level = level;
 		this.board = this.level.getBoard();
 		this.cargoRequestGenerators = level.getCargorequestors();
+		this.timeLimit = level.getTimeLimit();
 		initializeSimulator();
 	}
 
@@ -67,12 +68,12 @@ public class Simulator implements Observable {
 		this.train.resetTrainCars();
 		trainCrashed=false;
 		this.victoryConditionEvaluator = new VictoryConditionEvaluator(level);
-		
 	}
 	
 	public void reset() {
 		resetTrain();
 		resetStations();
+		time = 0;
 		resetCargoRequestGenerators();
 		resetVictoryConditions();
 		stop();

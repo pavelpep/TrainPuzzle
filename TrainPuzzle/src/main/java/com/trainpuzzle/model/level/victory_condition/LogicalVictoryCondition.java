@@ -35,6 +35,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	
 	public void removeChildrens() {
 		this.childConditions.clear();
+		this.displayNode.removeAllChildren();
 	}
 	
 	private void resetChildrenEvents() {
@@ -53,11 +54,17 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	}
 
 	public String getName() {
-		return name;
+		if(conditionSatisfied) {
+			return name+ " Clear!";
+		}
+		else {
+			return name;
+		}
 	}
 
 	public void setName(String name) {
 		this.name = name;
+		this.displayNode.setUserObject(name);
 	}
 
 	public DefaultMutableTreeNode getDisplayNode() {

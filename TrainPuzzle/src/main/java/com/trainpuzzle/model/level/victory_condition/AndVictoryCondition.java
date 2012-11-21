@@ -7,9 +7,9 @@ public class AndVictoryCondition extends LogicalVictoryCondition implements java
 	private static final long serialVersionUID = 1L;
 	
 	public AndVictoryCondition() {
-		this.setName("And");
-		 DefaultMutableTreeNode displayNode = new  DefaultMutableTreeNode("And");
+		DefaultMutableTreeNode displayNode = new  DefaultMutableTreeNode();
 		this.setDisplayNode(displayNode);
+		this.setName("And");
 	}
 	
 	private void checkChildrenSatisfied() {
@@ -19,9 +19,7 @@ public class AndVictoryCondition extends LogicalVictoryCondition implements java
 				conditionSatisfied = false;
 			}
 		}
-		if(conditionSatisfied) {
-			this.getDisplayNode().setUserObject(this.getName() + " Clear!");
-		}
+		this.getDisplayNode().setUserObject(getName());
 	}
 
 	@Override

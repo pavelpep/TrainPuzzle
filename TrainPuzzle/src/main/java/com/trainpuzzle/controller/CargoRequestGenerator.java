@@ -15,18 +15,26 @@ public class CargoRequestGenerator {
 	private IfThenVictoryCondition parentVictoryCondition;
 	private int time; 
 	private CargoType requestType;
+	
 	public CargoRequestGenerator(Station station, LogicalVictoryCondition condition, int time, CargoType type) {
 		this.station = station;
 		this.time = time;
 		this.parentVictoryCondition =new IfThenVictoryCondition();
 		condition.addChild(parentVictoryCondition);
 		this.requestType =type;
+		changeName();
+	}
+	
+	private void changeName() {
+		Location location =station.getStationLocation();
+		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +time +" game time";
+		this.parentVictoryCondition.setName(name);
 	}
 	
 	public void generateRequest (int time) {
 		if (time % (this.time) == 0) {
 			Cargo cargo = new Cargo(requestType);
-			station.addExportCargo(cargo);
+			station.addImportCargo(cargo);
 			DropCargoEvent event = new DropCargoEvent(station,cargo);
 			parentVictoryCondition.addChild(new LeafVictoryCondition(event));
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.trainpuzzle.controller.CargoRequestGenerator;
+import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
@@ -24,7 +25,8 @@ public class Level implements java.io.Serializable {
 	private Location startLocation = new Location(0,0);
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
-	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>(); 
+	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>();
+	private int timeLimit = Simulator.NOTIMELIMIT; 
 	
 	public Level(int levelNumber) {
 		this.levelNumber = levelNumber;
@@ -94,6 +96,14 @@ public class Level implements java.io.Serializable {
 
 	public void setCargorequestors(List<CargoRequestGenerator> cargorequestors) {
 		this.cargorequestors = cargorequestors;
+	}
+
+	public int getTimeLimit() {
+		return timeLimit;
+	}
+
+	public void setTimeLimit(int timeLimit) {
+		this.timeLimit = timeLimit;
 	}
 
 }
