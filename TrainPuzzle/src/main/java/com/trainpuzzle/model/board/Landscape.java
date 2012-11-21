@@ -7,7 +7,9 @@ public class Landscape implements java.io.Serializable {
 	public enum LandscapeType {
 		GRASS,
 		WATER,
+		ROUGHDIRT,
 		DIRT,
+		LIGHTDIRT,
 		MEDSWAMP
 	}
 	
@@ -25,9 +27,12 @@ public class Landscape implements java.io.Serializable {
 	public void setType(LandscapeType landscapeType) {
 		this.landscapeType = landscapeType;
 		switch (landscapeType){
-		case DIRT:
+		case ROUGHDIRT:
 			this.multiplier=3;
 			break;
+		case DIRT:
+			this.multiplier=2;
+			break;			
 		case MEDSWAMP:
 			this.multiplier=2;
 			break;
