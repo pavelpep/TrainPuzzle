@@ -63,7 +63,7 @@ public class LevelMap extends JPanel implements Observer {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
 		this.train = gameController.getSimulator().getTrain();
-		mouseAdapter = new TileMouseAdapter(new TrackPlacer(gameController.getLevel()));
+		mouseAdapter = new TileMouseAdapter(gameController.getLevel());
 		
 		this.setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		this.setSize(new Dimension(tileSizeInPixels * numberOfRows, tileSizeInPixels * numberOfColumns));
