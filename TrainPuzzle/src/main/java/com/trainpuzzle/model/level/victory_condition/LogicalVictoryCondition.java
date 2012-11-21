@@ -13,6 +13,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	private String name;
 	private DefaultMutableTreeNode displayNode;
 	private DefaultTreeModel treeModel;
+	protected TreeNodeUserObject userObject;
 	
 	@Override
 	public boolean isSatisfied() {
@@ -64,7 +65,6 @@ public class LogicalVictoryCondition implements VictoryCondition {
 
 	public void setName(String name) {
 		this.name = name;
-		this.displayNode.setUserObject(name);
 	}
 
 	public DefaultMutableTreeNode getDisplayNode() {
@@ -84,6 +84,10 @@ public class LogicalVictoryCondition implements VictoryCondition {
 			child.setTreeModel(treeModel);
 		}
 		this.treeModel = treeModel;
+	}
+	
+	public TreeNodeUserObject getUserObject() {
+		return userObject;
 	}
 	
 }

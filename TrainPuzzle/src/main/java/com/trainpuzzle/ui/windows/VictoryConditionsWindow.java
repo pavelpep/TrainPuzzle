@@ -32,10 +32,6 @@ private static final long serialVersionUID = 1L;
 		victoryConditionsPanel = new VictoryConditions(gameController);
 		campaignsPanel.add(victoryConditionsPanel);
 		
-		JButton refreshButton = initializeButton("Refresh","refresh");
-		initializeComponent(refreshButton, 15);
-		campaignsPanel.add(refreshButton);
-		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
 		campaignsPanel.add(backButton);
@@ -44,11 +40,6 @@ private static final long serialVersionUID = 1L;
 
 	public void actionPerformed(ActionEvent event) {
 		String action = event.getActionCommand();
-
-		if (action == "refresh") {
-			victoryConditionsPanel.updateUI();
-		}
-		
 		if (action == "back") {
 			WindowManager.getManager().showPreviousWindow();
 		}

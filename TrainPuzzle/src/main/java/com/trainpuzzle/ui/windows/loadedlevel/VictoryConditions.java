@@ -60,15 +60,7 @@ public class VictoryConditions extends JPanel {// implements TreeSelectionListen
         CustomIconRenderer renderer = new CustomIconRenderer();
         tree.setCellRenderer(renderer);
         
-        
-        
-        
     }
-	
-	public void update(){
-		tree.updateUI();
-		
-	}
  
     /** Required by TreeSelectionListener interface. */
 	/*

@@ -14,11 +14,16 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 	private String name;
 	private DefaultMutableTreeNode displayNode;
 	private DefaultTreeModel treeModel;
+	private TreeNodeUserObject userObject;
 	
 	public LeafVictoryCondition(Event condition) {
 		this.condition = condition;
 		name = condition.toString();
-		setDisplayNode(new DefaultMutableTreeNode(name));
+		
+		userObject = new TreeNodeUserObject(this,condition.toString());
+		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
+		this.setDisplayNode(displayNode);
+		
 		treeModel = new DefaultTreeModel(displayNode);
 	}
 	
