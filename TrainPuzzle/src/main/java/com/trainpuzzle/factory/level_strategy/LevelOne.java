@@ -1,6 +1,7 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import com.trainpuzzle.model.board.Cargo;
@@ -15,6 +16,7 @@ import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
+import com.trainpuzzle.controller.CargoGenerator;
 
 public class LevelOne extends LevelOutline {
 	
@@ -28,8 +30,11 @@ public class LevelOne extends LevelOutline {
         setObstacles();
         
         Economy economy = createEconomy();
-        		        
-    	return new Level(1, this.board, createStartLocation(), this.root, economy);
+        
+        Level levelOne=new Level(1, this.board, createStartLocation(), this.root, economy);
+        levelOne.addCargoGenerator(cargoGenerator);
+        	        
+    	return levelOne;
 	}
 
 	private Economy createEconomy() {
@@ -65,6 +70,7 @@ public class LevelOne extends LevelOutline {
         stationToAdd = new Station(StationType.IRON_FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);
         
+        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);        
         setStations(stations);
 	}
 

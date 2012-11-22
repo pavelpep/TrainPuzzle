@@ -1,11 +1,13 @@
 package com.trainpuzzle.model.level;
 
 import java.util.LinkedList;
+
 import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.trainpuzzle.controller.CargoRequestGenerator;
+import com.trainpuzzle.controller.CargoGenerator;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -26,6 +28,7 @@ public class Level implements java.io.Serializable {
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
 	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>();
+	private List<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>();
 	private int timeLimit = Simulator.NOTIMELIMIT; 
 	
 	public Level(int levelNumber) {
@@ -50,6 +53,10 @@ public class Level implements java.io.Serializable {
 	
 	public void addCargoRequestGenerator(CargoRequestGenerator generator) {
 		this.cargorequestors.add(generator);
+	}
+	
+	public void addCargoGenerator(CargoGenerator generator) {
+		this.cargoGenerators.add(generator);
 	}
 	
 	 // Getters & Setters
@@ -92,6 +99,10 @@ public class Level implements java.io.Serializable {
 
 	public List<CargoRequestGenerator> getCargorequestors() {
 		return cargorequestors;
+	}
+	
+	public List<CargoGenerator> getCargoGenerators() {
+		return cargoGenerators;
 	}
 
 	public void setCargorequestors(List<CargoRequestGenerator> cargorequestors) {

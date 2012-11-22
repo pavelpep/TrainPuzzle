@@ -1,7 +1,7 @@
 package com.trainpuzzle.controller;
 
 import java.util.HashSet;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -40,6 +40,7 @@ public class Simulator implements Observable {
 
 	private Train train;
 	private VictoryConditionEvaluator victoryConditionEvaluator;
+	private List<CargoGenerator> cargoGenerators;
 	private List<CargoRequestGenerator> cargoRequestGenerators;
 	
 	private boolean trainCrashed = false;
@@ -56,6 +57,7 @@ public class Simulator implements Observable {
 		this.level = level;
 		this.board = this.level.getBoard();
 		this.cargoRequestGenerators = level.getCargorequestors();
+		this.cargoGenerators = level.getCargoGenerators();
 		this.timeLimit = level.getTimeLimit();
 		initializeSimulator();
 	}
@@ -117,11 +119,7 @@ public class Simulator implements Observable {
 		executor.shutdownNow();
 		executor = Executors.newSingleThreadScheduledExecutor();
 		SimulatorTimer simulatorTimer = new SimulatorTimer(this);
-		CargoGenerator cargoGenerator = new CargoGenerator(this);
-		final int TWO_SECOND = 2000;
-		int intervalOfGenerateCargo = TWO_SECOND;
 		executor.scheduleAtFixedRate(simulatorTimer, 0, tickInterval, TimeUnit.MILLISECONDS);
-		executor.scheduleAtFixedRate(cargoGenerator, 1000,intervalOfGenerateCargo, TimeUnit.MILLISECONDS);
 		isRunning = true;
 	}
 	
@@ -135,6 +133,7 @@ public class Simulator implements Observable {
 					proceedNextTile();
 					time += 5;
 					generateCargoResquests();
+					generateCargos();
 				}
 				else if(isVictoryConditionsSatisfied()) {
 					stop();
@@ -150,6 +149,12 @@ public class Simulator implements Observable {
 	private void generateCargoResquests() {
 		for(CargoRequestGenerator generator : cargoRequestGenerators) {
 			generator.generateRequest(time);
+		}
+	}
+	
+	private void generateCargos() {
+		for(CargoGenerator generator : cargoGenerators) {
+			generator.generateCargo(time);
 		}
 	}
 	

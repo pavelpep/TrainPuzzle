@@ -15,10 +15,7 @@ public class Board implements Observable, java.io.Serializable {
 	private Tile[][] tiles;
 	
 	private transient Set<Observer> observerList = new HashSet<Observer>();
-	private ArrayList<Station> CargoFactories = new ArrayList<Station>();
 	
-
-
 	public Board() {
 		tiles = new Tile[getRows()][getColumns()];
 		initializeTiles();
@@ -87,13 +84,6 @@ public class Board implements Observable, java.io.Serializable {
 
 	public void setColumns(int columns) {
 		this.columns = columns;
-	}
-	public ArrayList<Station> getCargoFactories() {
-		return CargoFactories;
-	}
-
-	public void addCargoFactories(Station station) {
-		CargoFactories.add(station);
 	}
 	
 }

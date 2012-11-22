@@ -2,6 +2,7 @@ package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
 
+import com.trainpuzzle.controller.CargoGenerator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -26,6 +27,7 @@ public abstract class LevelOutline {
 	
 	protected Board board = new Board();
 	protected AndVictoryCondition root;
+    protected CargoGenerator cargoGenerator = null;
 	
 	public abstract Level createLevel();
 	
@@ -45,12 +47,8 @@ public abstract class LevelOutline {
 			LeafVictoryCondition leaf = new LeafVictoryCondition(event);
 			root.addChild(leaf);
 			
-			//add CargoFactory station to A List
-			if (station.getType()==StationType.IRON_FACTORY){
-				board.addCargoFactories(station);
 			}
 		}
-	}
  	
 	protected void setLandscapes(ArrayList<Location> locations, LandscapeType landscapeType) {
 		for (Location currentLocation : locations) {

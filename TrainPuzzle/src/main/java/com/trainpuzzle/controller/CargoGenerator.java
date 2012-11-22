@@ -1,21 +1,31 @@
 package com.trainpuzzle.controller;
 
+import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Cargo.CargoType;
+import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
+import com.trainpuzzle.model.level.victory_condition.IfThenVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
+
 import java.util.ArrayList;
 
-public class CargoGenerator implements Runnable{
-	private Simulator simulator; 
+public class CargoGenerator {
+	private Station station;
+	private int generatingInterval; 
+	private CargoType generateType; 
 	
-	public CargoGenerator(Simulator simulator) {
-		this.simulator = simulator;
+	public CargoGenerator(Station station, int generatingInterval, CargoType type) {
+		this.station = station;
+		this.generatingInterval = generatingInterval;
+		this.generateType = type;
 	}
 	
-	public void run(){
-		ArrayList<Station> cargoFactory = new ArrayList<Station>();
-		cargoFactory = simulator.getBoard().getCargoFactories();
-		for (Station station: cargoFactory){
-			station.generateExportCargo();
+	public void generateCargo (int time) {
+		if (time % (this.generatingInterval) == 0) {
+			Cargo cargo = new Cargo(generateType);
+			station.addExportCargo(cargo);
 		}
 	}
-			
+
 }

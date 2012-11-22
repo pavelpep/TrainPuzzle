@@ -178,34 +178,12 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void addExportCargo(Cargo cargo) {
-		assert exportCargo.size() < 2 : "Cargo types can be up to 2";
-		this.exportCargo.add(cargo);
-		notifyAllObservers();
-	}
-	
-	public void generateExportCargo(){
-		assert exportCargo.size() < 2: "Number of cargos can be up to 2";
-		Cargo producedCargo = null;
-		switch(stationType){
-			case IRON_FACTORY:
-				producedCargo = new Cargo(CargoType.IRON);
-				this.exportCargo.add(producedCargo);
-				break;
-			case WOOD_FACTORY:
-				producedCargo = new Cargo(CargoType.WOOD);
-				this.exportCargo.add(producedCargo);
-				break;
-			case COTTON_FACTORY:
-				producedCargo = new Cargo(CargoType.COTTON);
-				this.exportCargo.add(producedCargo);				
-				break;
-		default:
-			assert(false): "Error with wrong stationType";
-			break;
+		if  (exportCargo.size() < 3) {
+			this.exportCargo.add(cargo);
+			notifyAllObservers();
 		}
-		notifyAllObservers();
 	}
-	
+		
 	public void addImportCargo(Cargo cargo) {
 		assert importCargo.size() < 2 : "Cargo types can be up to 2";		
 		this.importCargo.add(cargo);
