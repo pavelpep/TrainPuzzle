@@ -1,6 +1,7 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Component;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -12,6 +13,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
+import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Station;
@@ -165,15 +168,26 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 
-	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, LinkedList<Cargo> importCargoList) {
+	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, 
+			LinkedList<Cargo> importCargoList, StationType stationType) {
 		JPanel cargoLayer = new JPanel();
 		cargoLayer.setOpaque(false);
 		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
 		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
 		
-		for (Cargo cargo: exportCargoList) {
-			JLabel cargoLabel = new JLabel(getExportCargoImage(cargo));
+		Iterator<Cargo> iterator = exportCargoList.iterator();
+		int numberOfCargo=1;
+		while (iterator.hasNext()){
+			Cargo exportCargo = iterator.next();
+			if (numberOfCargo > 2) break;			
+			JLabel cargoLabel = new JLabel(getExportCargoImage(exportCargo));
 			cargoLayer.add(cargoLabel);
+			numberOfCargo++;
+		}
+		if (stationType != StationType.GREEN && stationType != StationType.RED){
+			Integer numCargo = exportCargoList.size();
+			JLabel numCargoLabel = new JLabel(numCargo.toString());
+			cargoLayer.add(numCargoLabel);
 		}
 		
 		for (Cargo cargo: importCargoList) {
@@ -218,7 +232,8 @@ public class LevelMap extends JPanel implements Observer {
 		}
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
 		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
-		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo());
+		StationType stationType = stationOnTile.getType();
+		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo(), stationType);
 	}
 	
 	private void drawTrack(int row, int column) {
