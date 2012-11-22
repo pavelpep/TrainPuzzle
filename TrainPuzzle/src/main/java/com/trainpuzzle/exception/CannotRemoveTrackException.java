@@ -1,6 +1,6 @@
 package com.trainpuzzle.exception;
 
-public class CannotRemoveTrackException extends Exception {
+public class CannotRemoveTrackException extends CannotOperateTrackException {
 
 	private static final long serialVersionUID = 1L;
 

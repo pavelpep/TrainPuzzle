@@ -1,6 +1,6 @@
 package com.trainpuzzle.exception;
 
-public class CannotPlaceTrackException extends Exception {
+public class CannotPlaceTrackException extends CannotOperateTrackException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,6 @@
 package com.trainpuzzle.exception;
 
-public class CannotRotateException extends Exception {
+public class CannotRotateException extends CannotOperateTrackException {
 
 	private static final long serialVersionUID = 1L;
 	

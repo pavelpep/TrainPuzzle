@@ -1,6 +1,6 @@
 package com.trainpuzzle.exception;
 
-public class CannotToggleSwitchException extends Exception{
+public class CannotToggleSwitchException extends CannotOperateTrackException{
 
 	private static final long serialVersionUID = 1L;
 

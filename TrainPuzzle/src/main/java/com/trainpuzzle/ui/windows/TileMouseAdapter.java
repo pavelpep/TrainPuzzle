@@ -1,5 +1,6 @@
 package com.trainpuzzle.ui.windows;
 
+import com.trainpuzzle.exception.CannotOperateTrackException;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotToggleSwitchException;
@@ -42,31 +43,21 @@ public class TileMouseAdapter extends MouseAdapter {
         
         int row = c.getY()/40;
         int column = c.getX()/40;
-            
-        if (e.getButton() == MouseEvent.BUTTON1) {
-        	try {
+        
+        try {
+        	if (e.getButton() == MouseEvent.BUTTON1) {
 	        	if(mode == Mode.PlaceTrack) { 
 		            placeTrackAt(row, column);
 	        	} else if(mode == Mode.Toggle) {
 					switchToggler.toggleSwitch(row, column);
 	        	}
-        	} catch(CannotPlaceTrackException ex) {
-    			LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
-    			loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
-    		} catch(CannotToggleSwitchException ex) {
-    			LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
-    			loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
-    		}
-        }
-        else if(e.getButton() == MouseEvent.BUTTON3) {
-            try {
+        	} else if(e.getButton() == MouseEvent.BUTTON3) {
             	trackPlacer.removeTrack(row, column);
-            }
-            catch(CannotRemoveTrackException ex) {
-            	LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
-            	loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
-            }
-        }
+        	}
+		} catch(CannotOperateTrackException ex) {
+			LoadedLevelScreen loadedLevelScreen = (LoadedLevelScreen)WindowManager.getManager().getActiveWindow();
+			loadedLevelScreen.setMessageBoxMessage(ex.getMessage());
+		}
     }
 
 	private void placeTrackAt(int row, int column) throws CannotPlaceTrackException {
