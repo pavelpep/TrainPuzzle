@@ -28,8 +28,9 @@ public class Level implements java.io.Serializable {
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
 	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>();
-	private List<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>();
-	private int timeLimit = Simulator.NOTIMELIMIT; 
+	private int timeLimit = Simulator.NOT_IME_LIMIT;
+
+	private List<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>(); 
 	
 	public Level(int levelNumber) {
 		this.levelNumber = levelNumber;

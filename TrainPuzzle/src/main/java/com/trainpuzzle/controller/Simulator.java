@@ -29,7 +29,8 @@ import com.trainpuzzle.factory.LevelFactory;
 
 public class Simulator implements Observable {
 	
-	public static final int NOTIMELIMIT = -1;
+	public static final int NOT_IME_LIMIT = -1;
+	private static final int TIME_PER_STEP = 5;
 	private int timeLimit;
 	private int time = 0;
 	
@@ -126,12 +127,13 @@ public class Simulator implements Observable {
 	public void move() throws TrainCrashException {
 		if(checkTimeOut()) {
 			stop();
+			//throw new TimeOutException();
 		}
 		else{
 			try {
 				if(!isVictoryConditionsSatisfied()) {
 					proceedNextTile();
-					time += 5;
+					time += TIME_PER_STEP;
 					generateCargoResquests();
 					generateCargos();
 				}
@@ -174,8 +176,15 @@ public class Simulator implements Observable {
 	}
 	
 	
-	private boolean checkTimeOut() {
-		return !(timeLimit == NOTIMELIMIT) && time>= timeLimit;
+	public boolean checkTimeOut() {
+		return !(timeLimit == NOT_IME_LIMIT) && time>= timeLimit;
+	}
+	
+	public int getRestTime() {
+		if(timeLimit == NOT_IME_LIMIT) {
+			return timeLimit;
+		}
+		return timeLimit - time;
 	}
 	
 	private Tile getTileWithTrack(Location location) throws TrainCrashException {
