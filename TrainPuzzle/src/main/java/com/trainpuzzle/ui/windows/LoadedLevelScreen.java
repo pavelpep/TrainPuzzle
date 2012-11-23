@@ -194,27 +194,34 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		sidePanel.setPreferredSize(new Dimension(200, 600));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
+		JPanel controlPanel = new JPanel();
+		controlPanel.setPreferredSize(new Dimension(200, 600));
+		controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
+		
 		gameControlBox = new GameControlBox(gameController);
-		sidePanel.add(gameControlBox);
+		controlPanel.add(gameControlBox);
 		
 		JPanel trackPanel = new TrackSelection(gameController, this);
-		sidePanel.add(trackPanel);
+		controlPanel.add(trackPanel);
 		
 		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
-		sidePanel.add(victoryConditionsPanel);
+		controlPanel.add(victoryConditionsPanel);
 		
 		selectedTrackPanel = new SelectedTrack(this);
-		sidePanel.add(selectedTrackPanel);
+		controlPanel.add(selectedTrackPanel);
 		
 		JButton toggleButton = initializeButton("Toggle switches","toggle");
 		initializeComponent(toggleButton, 15);
-		sidePanel.add(toggleButton);
+		controlPanel.add(toggleButton);
 		
+		JTabbedPane tabbedSidePane = new JTabbedPane();
+		tabbedSidePane.addTab("Controls", null, controlPanel, null);
+		tabbedSidePane.setMnemonicAt(0, KeyEvent.VK_1);
 		
+		tabbedSidePane.addTab("Victory Conditions", null, victoryConditionsPanel, null);
+		tabbedSidePane.setMnemonicAt(1, KeyEvent.VK_2);
 		
-		JButton victButton = initializeButton("Objectives","objectives");
-		initializeComponent(victButton, 15);
-		sidePanel.add(victButton);
+		sidePanel.add(tabbedSidePane);
 		
 		return sidePanel;
 	}
