@@ -178,7 +178,7 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void addExportCargo(Cargo cargo) {
-		if  (exportCargo.size() < 100) {
+		if  (exportCargo.size() < 99) {
 			this.exportCargo.add(cargo);
 		}
 		notifyAllObservers();

@@ -22,6 +22,7 @@ import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.infrastructure.Images;
 
@@ -86,14 +87,15 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		cargoPanelConstraints.insets = new Insets(5,5,5,5);
 		setCargoPanel(cargoPanelPointer);
 		headerPanel.add(cargoPanelPointer, cargoPanelConstraints);
-		
+							
 		GridBagConstraints messageBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
 		messageBoxConstraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(messageBox(), messageBoxConstraints);
 		
 		GridBagConstraints saveButtonConstraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 0, 0);
 		saveButtonConstraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(saveButton(), saveButtonConstraints);
+		headerPanel.add(saveButton(), saveButtonConstraints);		
+		
 		
 		return headerPanel;
 	}
@@ -165,10 +167,34 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
 		
 		Train train = this.gameController.getSimulator().getTrain();
-		cargoPanel.add(cargo("COTTON", Images.COTTON_IMAGE, train.getNumOfCargoes().get(Cargo.CargoType.COTTON)));
-		cargoPanel.add(cargo("IRON", Images.IRON_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.IRON)));
-		cargoPanel.add(cargo("WOOD", Images.WOOD_IMAGE,train.getNumOfCargoes().get(Cargo.CargoType.WOOD)));
+		int numOfCargoOnTrain = 0; 
+		for (CargoType cargoType: CargoType.values()){
+			numOfCargoOnTrain = train.getNumOfCargoes().get(cargoType);
+			cargoPanel.add(cargo(cargoType.toString(), getCargoIcon(cargoType), numOfCargoOnTrain));
+		}
 	}
+		
+	private ImageIcon getCargoIcon(CargoType cargoType){
+		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
+		switch(cargoType){
+		case IRON:
+			cargoIcon = new ImageIcon(Images.IRON);
+			break;
+		case COTTON:
+			cargoIcon = new ImageIcon(Images.COTTON);
+			break;
+		case WOOD:
+			cargoIcon = new ImageIcon(Images.WOOD);
+			break;
+		case COAL:
+			cargoIcon = new ImageIcon(Images.COAL);
+			break;
+		case STEEL:
+			cargoIcon = new ImageIcon(Images.STEEL);
+			break;			
+		}
+		return cargoIcon;
+	}	
 	
 	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
 		JPanel cargo = new JPanel();

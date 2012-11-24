@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Set;
+
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -31,9 +33,9 @@ public class Train implements Observable {
 	}
 	
 	public void initializeNumCargoes() {
-		this.numOfCargoes.put(Cargo.CargoType.COTTON, 0);
-		this.numOfCargoes.put(Cargo.CargoType.IRON, 0);
-		this.numOfCargoes.put(Cargo.CargoType.WOOD, 0);
+		for(CargoType cargoType: CargoType.values()){
+		this.numOfCargoes.put(cargoType, 0);
+		}
 	}
 	
 	public void add3Cars() {

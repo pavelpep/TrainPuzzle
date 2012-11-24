@@ -7,8 +7,10 @@ public class Cargo implements java.io.Serializable{
 	public enum CargoType {
 		COTTON("Cotton"),
 		IRON("Iron"),
-		WOOD("Wood");
-		
+		WOOD("Wood"),
+		COAL("Coal"),
+		STEEL("Steel");
+				
 		private String name;
 		
 		private CargoType(String name) {
@@ -71,4 +73,5 @@ public class Cargo implements java.io.Serializable{
 		Cargo other = (Cargo) obj;
 		return other.getType() ==cargoType;
 	}
+	
 }

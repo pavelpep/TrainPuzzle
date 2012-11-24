@@ -29,14 +29,18 @@ public final class Images {
 	public final static String IRON_FACTORY_STATION = "src/main/resources/images/iron_trainStation.png";
 	
 	// Cargo
-	public final static String IRON = "src/main/resources/images/blackSquare.png";
+	public final static String IRON = "src/main/resources/images/readSquare.png";
 	public final static String COTTON = "src/main/resources/images/whiteSquare.png";
 	public final static String WOOD = "src/main/resources/images/brownSquare.png";
+	public final static String COAL = "src/main/resources/images/blackSquare.png";
+	public final static String STEEL = "src/main/resources/images/greySquare.png";
 	
 	// Required Cargo
-	public final static String REQUIRED_IRON = "src/main/resources/images/blackFrame.png";
+	public final static String REQUIRED_IRON = "src/main/resources/images/redFrame.png";
 	public final static String REQUIRED_COTTON = "src/main/resources/images/whiteFrame.png";
-	public final static String REQUIRED_WOOD = "src/main/resources/images/brownFrame.png";	
+	public final static String REQUIRED_WOOD = "src/main/resources/images/brownFrame.png";
+	public final static String REQUIRED_COAL = "src/main/resources/images/blackFrame.png";
+	public final static String REQUIRED_STEEL = "src/main/resources/images/steelFrame.png";
 	
 	// Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
@@ -99,5 +103,7 @@ public final class Images {
 	
 	public final static ImageIcon VC_UNSATISFIED_IMAGE = new ImageIcon(VC_UNSATISFIED);
 	public final static ImageIcon VC_SATISFIED_IMAGE = new ImageIcon(VC_SATISFIED);
+	
+
 	
 }
