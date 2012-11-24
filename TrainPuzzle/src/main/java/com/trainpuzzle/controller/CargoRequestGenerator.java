@@ -28,6 +28,19 @@ public class CargoRequestGenerator {
 		changeName();
 	}
 	
+	
+	public Station getStation() {
+		return station;
+	}
+
+
+
+	public CargoType getRequestType() {
+		return requestType;
+	}
+
+
+
 	private void changeName() {
 		Location location =station.getStationLocation();
 		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +time +" game time";

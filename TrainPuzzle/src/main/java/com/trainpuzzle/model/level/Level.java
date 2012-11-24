@@ -51,13 +51,33 @@ public class Level implements java.io.Serializable {
 		Station placeholderStation = new Station(StationType.GREEN, startLocation, CompassHeading.NORTH);
 		setVictoryConditions(new LeafVictoryCondition(new Event(1, placeholderStation)));
 	}
-	
-	public void addCargoRequestGenerator(CargoRequestGenerator generator) {
-		this.cargorequestors.add(generator);
+
+	//The number of cargoRquestors can not be more than 2
+	//There can not be simultaneously a cargoGenerator and a cragoRequestor at a same station
+	//Don't add two same types of requestors at a same station, such as two ironFactory generators  
+	public void addCargoRequestGenerator(CargoRequestGenerator newRequestor) {
+		Station station = newRequestor.getStation();
+		int numOfCargoGenerator = station.getNumOfCargoGenerator();
+		int numOfCargoRequestor = station.getNumOfCargoRequestor();
+		if (numOfCargoRequestor<2 && numOfCargoGenerator==0){
+			this.cargorequestors.add(newRequestor);
+			numOfCargoRequestor = numOfCargoRequestor + 1;
+			station.setNumOfCargoRequestor(numOfCargoRequestor);			
+			}
 	}
 	
-	public void addCargoGenerator(CargoGenerator generator) {
-		this.cargoGenerators.add(generator);
+	//The number of cargoGenerators can not be more than 2
+	//There can not be simultaneously a cargoGenerator and a cragoRequestor at a same station
+	//Don't add two same types of generators at a same station, such as two ironFactory generators  
+	public void addCargoGenerator(CargoGenerator newGenerator) {
+		Station station = newGenerator.getStation();
+		int numOfCargoGenerator = station.getNumOfCargoGenerator();
+		int numOfCargoRequestGenerator = station.getNumOfCargoRequestor();
+		if (numOfCargoGenerator<2 && numOfCargoRequestGenerator==0){
+			this.cargoGenerators.add(newGenerator);
+			numOfCargoGenerator = numOfCargoGenerator + 1;
+			station.setNumOfCargoGenerator(numOfCargoGenerator);			
+			}
 	}
 	
 	 // Getters & Setters

@@ -70,7 +70,8 @@ public class LevelOne extends LevelOutline {
         stationToAdd = new Station(StationType.IRON_FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);
         
-        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);        
+        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);
+        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);
         setStations(stations);
 	}
 

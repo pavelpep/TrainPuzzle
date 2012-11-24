@@ -27,5 +27,14 @@ public class CargoGenerator {
 			station.addExportCargo(cargo);
 		}
 	}
+	
+	public Station getStation() {
+		return station;
+	}
+
+	public CargoType getGenerateType() {
+		return generateType;
+	}
+
 
 }

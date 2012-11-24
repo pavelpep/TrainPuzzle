@@ -42,6 +42,9 @@ public class Station implements java.io.Serializable, Observable {
 	private Obstacle stationBuilding;
 	private LinkedList<Cargo> exportCargo = new LinkedList<Cargo>();
 	private LinkedList<Cargo> importCargo = new LinkedList<Cargo>();
+	private int numOfCargoGenerator = 0;
+	private int numOfCargoRequestor = 0;
+	
 	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
 		// entrance value should be an odd number (North, East, South, or West)
@@ -66,6 +69,22 @@ public class Station implements java.io.Serializable, Observable {
 		this.stationType = stationType;
 	}
 	
+	public int getNumOfCargoGenerator() {
+		return numOfCargoGenerator;
+	}
+
+	public void setNumOfCargoGenerator(int numOfCargoGenerator) {
+		this.numOfCargoGenerator = numOfCargoGenerator;
+	}
+
+	public int getNumOfCargoRequestor() {
+		return numOfCargoRequestor;
+	}
+
+	public void setNumOfCargoRequestor(int numOfCargoRequestor) {
+		this.numOfCargoRequestor = numOfCargoRequestor;
+	}
+
 	private Track createTrack() {
 		Connection connection = null;
 		switch(entranceFacing) {
