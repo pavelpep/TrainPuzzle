@@ -3,6 +3,8 @@ package com.trainpuzzle.model.board;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -18,14 +20,21 @@ public class Board implements Observable, java.io.Serializable {
 	
 	public Board() {
 		tiles = new Tile[getRows()][getColumns()];
-		initializeTiles();
+		initializeTiles(LandscapeType.GRASS);
 	}
 	
 	public Board(int numRows, int numColumns) {
 		setRows(numRows);
 		setColumns(numColumns);
 		tiles = new Tile[getRows()][getColumns()];
-		initializeTiles();
+		initializeTiles(LandscapeType.GRASS);
+	}
+	
+	public Board(int numRows, int numColumns, LandscapeType landscapeType) {
+		setRows(numRows);
+		setColumns(numColumns);
+		tiles = new Tile[getRows()][getColumns()];
+		initializeTiles(landscapeType);
 	}
 	
 	public void resetStationCargo(Board orignalBoard) {
@@ -53,11 +62,11 @@ public class Board implements Observable, java.io.Serializable {
 			observer.notifyChange(this);
 		}
 	}
-		
-	private void initializeTiles() {
+
+	private void initializeTiles(LandscapeType landscapeType) {
 		for(int row = 0; row < getRows(); row++) {
 			for(int column = 0; column < getColumns(); column++) {
-				tiles[row][column] = new Tile();
+				tiles[row][column] = new Tile(landscapeType);
 			}	
 		}
 	}

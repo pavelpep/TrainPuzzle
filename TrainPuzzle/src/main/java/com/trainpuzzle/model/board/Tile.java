@@ -3,6 +3,7 @@ package com.trainpuzzle.model.board;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.observe.Observable;
 import com.trainpuzzle.observe.Observer;
 
@@ -20,6 +21,11 @@ public class Tile implements Observable, java.io.Serializable {
 	public Tile() {	
 		elevation = 0;
 		landscape = new Landscape(Landscape.LandscapeType.GRASS);
+	}
+	
+	public Tile(LandscapeType landscapeType) {	
+		elevation = 0;
+		landscape = new Landscape(landscapeType);
 	}
 	
 	public void register(Observer observer) {
