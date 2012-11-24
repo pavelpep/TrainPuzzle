@@ -139,14 +139,16 @@ public class GameControlBox extends JPanel implements ActionListener{
 			}
 		}
 		if (event.getActionCommand() == "removeAllTracks") {
-			removeTracksOptionPane = JOptionPane.showConfirmDialog(null,"Are you sure you want to remove all your placed tracks?");
+			removeTracksOptionPane = JOptionPane.showConfirmDialog(null,"This will remove all placed tracks and reset your train." +
+					" Continue?");
 			
 			if (removeTracksOptionPane == JOptionPane.YES_OPTION) {
 				gameController.removeAllTracks();
-				JOptionPane.showMessageDialog(null, "All placed tracks removed!");
+				gameController.getSimulator().reset();
+				JOptionPane.showMessageDialog(null, "All placed tracks removed and position reset!");				
 			} 
 			else {
-				JOptionPane.showMessageDialog(null, "Placed tracks not removed.");
+				// do nothing
 			}
 
 
