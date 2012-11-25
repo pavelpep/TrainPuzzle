@@ -1,6 +1,7 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import java.util.HashMap;
 
@@ -25,14 +26,14 @@ public class LevelOne extends LevelOutline {
 	public Level createLevel() {
         this.root = new AndVictoryCondition();
 
-        setStations();
         setLandscape();
+        initStationsAndCargoGenerator();
         setObstacles();
         
         Economy economy = createEconomy();
         
         Level levelOne=new Level(1, this.board, createStartLocation(), this.root, economy);
-        levelOne.addCargoGenerator(cargoGenerator);
+        levelOne.setCargoGenerators(cargoGenerators);
         	        
     	return levelOne;
 	}
@@ -50,7 +51,7 @@ public class LevelOne extends LevelOutline {
 		return startLocation;
 	}
 
-	private void setStations() {
+	private void initStationsAndCargoGenerator() {
 		ArrayList<Station> stations = new ArrayList<Station>();
         Station stationToAdd=new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST);
         stations.add(stationToAdd);
@@ -65,16 +66,20 @@ public class LevelOne extends LevelOutline {
         stationToAdd = new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
         stations.add(stationToAdd);
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
-        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));	
+        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
         
         stationToAdd = new Station(StationType.IRON_FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);
         
-        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);
-        cargoGenerator = new CargoGenerator(stationToAdd,30, CargoType.IRON);
+        //There can not be more than 2 generaotrs at one station
+        CargoGenerator ironFactory = new CargoGenerator(stationToAdd,30,CargoType.IRON);
+        cargoGenerators.add(ironFactory);
+        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,30,CargoType.COAL);
+        cargoGenerators.add(coalFactory);
+        
         setStations(stations);
-	}
-
+	}	
+	
 	private HashMap<TrackType, Integer> createTrackLimits() {
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
         

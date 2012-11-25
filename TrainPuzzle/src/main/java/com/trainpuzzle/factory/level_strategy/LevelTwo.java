@@ -23,7 +23,7 @@ public class LevelTwo extends LevelOutline {
 	public Level createLevel() {
         this.root = new AndVictoryCondition();
 
-        setStations();
+        initStations();
         setLandscape();
         setObstacles();
         
@@ -45,7 +45,7 @@ public class LevelTwo extends LevelOutline {
 		return startLocation;
 	}
 
-	private void setStations() {
+	private void initStations() {
 		ArrayList<Station> stations = new ArrayList<Station>();
         Station stationToAdd = new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST);  
         stations.add(stationToAdd);

@@ -23,7 +23,7 @@ public class LevelThree extends LevelOutline {
 		this.board = new Board(10, 10);
         this.root = new AndVictoryCondition();
         
-        setStations();
+        initStations();
         setLandscape();
         setObstacles();
         
@@ -45,7 +45,7 @@ public class LevelThree extends LevelOutline {
 		return startLocation;
 	}
 
-	private void setStations() {
+	private void initStations() {
 		ArrayList<Station> stations = new ArrayList<Station>();
         stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
         stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));

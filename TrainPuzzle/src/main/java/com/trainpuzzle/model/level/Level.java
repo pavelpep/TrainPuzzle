@@ -125,6 +125,10 @@ public class Level implements java.io.Serializable {
 	public List<CargoGenerator> getCargoGenerators() {
 		return cargoGenerators;
 	}
+	
+	public void setCargoGenerators(List<CargoGenerator> cargoGenerators) {
+		this.cargoGenerators = cargoGenerators;
+	}
 
 	public void setCargorequestors(List<CargoRequestGenerator> cargorequestors) {
 		this.cargorequestors = cargorequestors;

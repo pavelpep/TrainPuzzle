@@ -1,6 +1,7 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.trainpuzzle.controller.CargoGenerator;
 import com.trainpuzzle.model.board.Board;
@@ -26,8 +27,8 @@ public abstract class LevelOutline {
 	protected final int NO_ECONOMY_LIMIT = -1;
 	
 	protected Board board = new Board();
+    protected LinkedList<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>();
 	protected AndVictoryCondition root;
-    protected CargoGenerator cargoGenerator = null;
 	
 	public abstract Level createLevel();
 	
