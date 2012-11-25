@@ -74,9 +74,9 @@ public class LevelOne extends LevelOutline {
         
         //There can not be more than 2 generators at one station
         //Don't add generator and requestor at one station simultaneously.
-        CargoGenerator ironFactory = new CargoGenerator(stationToAdd,30,CargoType.IRON);
+        CargoGenerator ironFactory = new CargoGenerator(stationToAdd,6,CargoType.IRON);
         cargoGenerators.add(ironFactory);
-        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,30,CargoType.COAL);
+        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,6,CargoType.COAL);
         cargoGenerators.add(coalFactory);
         
         setStations(stations);

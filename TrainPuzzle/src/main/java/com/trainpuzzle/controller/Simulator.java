@@ -31,7 +31,7 @@ import com.trainpuzzle.factory.LevelFactory;
 public class Simulator implements Observable {
 	
 	public static final int NOT_IME_LIMIT = -1;
-	private static final int TIME_PER_STEP = 5;
+	private static final int TIME_PER_STEP = 1;
 	private int timeLimit;
 	private int time = 0;
 	
