@@ -10,7 +10,7 @@ public class Obstacle implements java.io.Serializable {
 		MOUNTAINS,
 		GREEN_STATION,
 		RED_STATION,
-		IRON_FACTORY_STATION,
+		FACTORY_STATION,
 		WOOD_FACTORY_STATION,
 		COTTON_FACTORY_STATION
 	}

@@ -159,7 +159,7 @@ public class LevelMap extends JPanel implements Observer {
 				case RED_STATION:
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
 					break;
-				case IRON_FACTORY_STATION:
+				case FACTORY_STATION:
 					obstacleLayer = new JLabel(Images.FACTORY_IMAGE);
 				default:
 					break;
@@ -184,7 +184,7 @@ public class LevelMap extends JPanel implements Observer {
 		
 		
 		for (Cargo cargo: importCargoList) {
-			JLabel cargoLabel = new JLabel(getImportCargoImag(cargo.getType()));
+			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
 			cargoLayer.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
@@ -241,7 +241,29 @@ public class LevelMap extends JPanel implements Observer {
 		return cargoIcon;
 	}	
 	
-	private ImageIcon getImportCargoImag(CargoType cargoType) {
+	private ImageIcon getImportCargoIcon(CargoType cargoType){
+		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
+		switch(cargoType){
+		case IRON:
+			cargoIcon = new ImageIcon(Images.REQUIRED_IRON);
+			break;
+		case COTTON:
+			cargoIcon = new ImageIcon(Images.REQUIRED_COTTON);
+			break;
+		case WOOD:
+			cargoIcon = new ImageIcon(Images.REQUIRED_WOOD);
+			break;
+		case COAL:
+			cargoIcon = new ImageIcon(Images.REQUIRED_COAL);
+			break;
+		case STEEL:
+			cargoIcon = new ImageIcon(Images.REQUIRED_STEEL);
+			break;			
+		}
+		return cargoIcon;
+	}	
+	
+	/*private ImageIcon getImportCargoImag(CargoType cargoType) {
 		switch(cargoType) {
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
@@ -252,7 +274,7 @@ public class LevelMap extends JPanel implements Observer {
 			default:
 				return Images.REQUIRED_COTTON_IMAGE;
 		}
-	}
+	}*/
 	
 	/*private ImageIcon getExportCargoImage(CargoType cargoType) {
 		switch(cargoType) {

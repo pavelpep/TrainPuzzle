@@ -32,9 +32,7 @@ public class Station implements java.io.Serializable, Observable {
 	public enum StationType {
 		RED,
 		GREEN,
-		IRON_FACTORY,
-		WOOD_FACTORY,
-		COTTON_FACTORY
+		FACTORY
 	}
 		
 	private StationType stationType;
@@ -125,8 +123,8 @@ public class Station implements java.io.Serializable, Observable {
 			case RED:
 				tempObstacle = new Obstacle(RED_STATION);
 				break;
-			case IRON_FACTORY:
-				tempObstacle = new Obstacle(IRON_FACTORY_STATION);
+			case FACTORY:
+				tempObstacle = new Obstacle(FACTORY_STATION);
 				break;
 			default:
 				assert(false): "Error while handling unacceptable values for stationType";

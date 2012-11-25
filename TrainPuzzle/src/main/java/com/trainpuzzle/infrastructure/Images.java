@@ -80,15 +80,6 @@ public final class Images {
 	public final static ImageIcon GREEN_STATION_IMAGE = new ImageIcon(GREEN_STATION);
 	public final static ImageIcon FACTORY_IMAGE = new ImageIcon(FACTORY_STATION);
 	
-	// Cargo
-	public final static ImageIcon IRON_IMAGE = new ImageIcon(IRON);
-	public final static ImageIcon COTTON_IMAGE = new ImageIcon(COTTON);
-	public final static ImageIcon WOOD_IMAGE = new ImageIcon(WOOD);
-	
-	// Required Cargo
-	public final static ImageIcon REQUIRED_IRON_IMAGE = new ImageIcon(REQUIRED_IRON);
-	public final static ImageIcon REQUIRED_COTTON_IMAGE = new ImageIcon(REQUIRED_COTTON);	
-	public final static ImageIcon REQUIRED_WOOD_IMAGE = new ImageIcon(REQUIRED_WOOD);
 	
 	// Tracks
 	public final static ImageIcon PERMANENT_STRAIGHT_TRACK_IMAGE = new ImageIcon(PERMANENT_STRAIGHT_TRACK);

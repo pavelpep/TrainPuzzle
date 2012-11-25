@@ -68,7 +68,7 @@ public class LevelOne extends LevelOutline {
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
         
-        stationToAdd = new Station(StationType.IRON_FACTORY, new Location(8, 15), CompassHeading.WEST);
+        stationToAdd = new Station(StationType.FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);
         
         //There can not be more than 2 generators at one station
