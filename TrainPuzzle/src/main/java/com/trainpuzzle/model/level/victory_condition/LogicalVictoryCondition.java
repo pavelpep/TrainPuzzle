@@ -50,6 +50,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
 		this.displayNode.add(child.getDisplayNode());
+		child.setTreeModel(treeModel);
 	}
 	
 	public DefaultMutableTreeNode getDisplayNode() {
