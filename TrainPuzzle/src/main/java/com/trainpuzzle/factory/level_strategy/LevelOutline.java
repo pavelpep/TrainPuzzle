@@ -2,8 +2,10 @@ package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.trainpuzzle.controller.CargoGenerator;
+import com.trainpuzzle.controller.CargoRequestGenerator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -22,13 +24,15 @@ import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
 
 public abstract class LevelOutline {
 	protected final int NO_ECONOMY_LIMIT = -1;
 	
 	protected Board board = new Board();
-    protected LinkedList<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>();
-	protected AndVictoryCondition root;
+    protected List<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>();
+    protected List<CargoRequestGenerator> cargoRequestGenerators =  new LinkedList<CargoRequestGenerator>();
+	protected LogicalVictoryCondition root;
 	
 	public abstract Level createLevel();
 	

@@ -18,6 +18,7 @@ public class Campaign implements java.io.Serializable {
     	campaignLevels.add(new CampaignLevel(false, false, 2));
     	campaignLevels.add(new CampaignLevel(false, false, 3));
     	campaignLevels.add(new CampaignLevel(false, false, 4));
+    	campaignLevels.add(new CampaignLevel(false, false, 5));
 	}
 	
 	public void completeLevel(int levelNumber) {
