@@ -160,7 +160,7 @@ public class LevelMap extends JPanel implements Observer {
 					obstacleLayer = new JLabel(Images.RED_STATION_IMAGE);
 					break;
 				case IRON_FACTORY_STATION:
-					obstacleLayer = new JLabel(Images.IRON_FACTORY_IMAGE);
+					obstacleLayer = new JLabel(Images.FACTORY_IMAGE);
 				default:
 					break;
 			}
@@ -184,7 +184,7 @@ public class LevelMap extends JPanel implements Observer {
 		
 		
 		for (Cargo cargo: importCargoList) {
-			JLabel cargoLabel = new JLabel(getImportCargoImage(cargo.getType()));
+			JLabel cargoLabel = new JLabel(getImportCargoImag(cargo.getType()));
 			cargoLayer.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
@@ -198,16 +198,17 @@ public class LevelMap extends JPanel implements Observer {
 	}
 	private void displayAllCargoesInStation(JPanel cargoLayer, LinkedList<Cargo> exportCargoList){
 		for (Cargo cargo: exportCargoList) {
-			JLabel cargoLabel = new JLabel(getExportCargoImage(cargo.getType()));
+			JLabel cargoLabel = new JLabel(getExportCargoIcon(cargo.getType()));
 			cargoLayer.add(cargoLabel);
 		}			
 	}
 	
 	private void displayCargoTypesInStation(JPanel cargoLayer, HashMap<CargoType,Boolean> cargoTypeExist){
 		for (CargoType cargoType: CargoType.values()){
-			if (cargoTypeExist.get(cargoType)){			
-			JLabel cargoLabel = new JLabel(getExportCargoImage(cargoType));
-			cargoLayer.add(cargoLabel);
+			if (cargoTypeExist.get(cargoType)){	
+				System.out.println(cargoTypeExist.get(cargoType));	//test
+				JLabel cargoLabel = new JLabel(getExportCargoIcon(cargoType));
+				cargoLayer.add(cargoLabel);
 			}
 		}
 	}
@@ -218,7 +219,29 @@ public class LevelMap extends JPanel implements Observer {
 		cargoLayer.add(numCargoLabel);
 	}
 	
-	private ImageIcon getImportCargoImage(CargoType cargoType) {
+	private ImageIcon getExportCargoIcon(CargoType cargoType){
+		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
+		switch(cargoType){
+		case IRON:
+			cargoIcon = new ImageIcon(Images.IRON);
+			break;
+		case COTTON:
+			cargoIcon = new ImageIcon(Images.COTTON);
+			break;
+		case WOOD:
+			cargoIcon = new ImageIcon(Images.WOOD);
+			break;
+		case COAL:
+			cargoIcon = new ImageIcon(Images.COAL);
+			break;
+		case STEEL:
+			cargoIcon = new ImageIcon(Images.STEEL);
+			break;			
+		}
+		return cargoIcon;
+	}	
+	
+	private ImageIcon getImportCargoImag(CargoType cargoType) {
 		switch(cargoType) {
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
@@ -231,7 +254,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private ImageIcon getExportCargoImage(CargoType cargoType) {
+	/*private ImageIcon getExportCargoImage(CargoType cargoType) {
 		switch(cargoType) {
 			case COTTON:
 				return Images.COTTON_IMAGE;
@@ -242,7 +265,7 @@ public class LevelMap extends JPanel implements Observer {
 			default:
 				return Images.COTTON_IMAGE;
 		}
-	}
+	}*/
 	
 	private void drawCargoesAtStation(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
@@ -403,7 +426,7 @@ public class LevelMap extends JPanel implements Observer {
 			int column = trainCar.getLocation().getColumn();
 			
 			if(trainCar.hasCargo()) {
-				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo().getType()));
+				JLabel cargoLayer = new JLabel(getExportCargoIcon(trainCar.getCargo().getType()));
 				cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 				mapTiles[row][column].add(cargoLayer, new Integer(cargoTrainLayerIndex));
 			}

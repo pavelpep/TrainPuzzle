@@ -137,6 +137,7 @@ public class Station implements java.io.Serializable, Observable {
 	public void setCargo(Station station) {
 		this.exportCargo = station.exportCargo;
 		this.importCargo = station.importCargo;
+		this.cargoTypeExist = station.cargoTypeExist;
 		notifyAllObservers();
 	}
 	
