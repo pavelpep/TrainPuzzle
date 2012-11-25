@@ -23,9 +23,9 @@ public class CargoRequestGenerator {
 		this.station = station;
 		this.time = time;
 		this.parentVictoryCondition =new IfThenVictoryCondition();
-		condition.addChild(parentVictoryCondition);
 		this.requestType =type;
 		changeName();
+		condition.addChild(parentVictoryCondition);
 	}
 	
 	

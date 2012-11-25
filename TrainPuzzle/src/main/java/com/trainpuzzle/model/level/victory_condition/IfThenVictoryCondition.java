@@ -19,7 +19,7 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 			}
 		}
 		if(conditionSatisfied) {
-			userObject.setLabel(userObject.getLabel() + " Clear!");
+			//userObject.setLabel(userObject.getLabel() + " Clear!");
 			getTreeModel().nodeChanged(getDisplayNode());
 		}
 	}
