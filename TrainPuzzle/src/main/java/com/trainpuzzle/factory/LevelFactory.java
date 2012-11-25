@@ -27,6 +27,8 @@ public class LevelFactory {
 			return (new LevelFive()).createLevel();
 		case 6:
 			return (new LevelSix()).createLevel();
+		case 7:
+			return (new LevelSeven()).createLevel();
 		default: 
 			return (new LevelOne()).createLevel();
 		}
