@@ -30,8 +30,11 @@ public class LeafVictoryCondition implements VictoryCondition, java.io.Serializa
 		this.condition = condition;
 		this.hasTimeLimit = hasTimeLimit;
 		this.timeLimit = timeLimit;
-		name = condition.toString();
-		setDisplayNode(new DefaultMutableTreeNode(name));
+		
+		userObject = new TreeNodeUserObject(this,condition.toString());
+		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
+		this.setDisplayNode(displayNode);
+		
 		treeModel = new DefaultTreeModel(displayNode);
 	}
 	
