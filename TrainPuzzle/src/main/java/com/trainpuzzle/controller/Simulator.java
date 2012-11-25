@@ -13,6 +13,7 @@ import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
+import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
@@ -75,6 +76,7 @@ public class Simulator implements Observable {
 	
 	public void reset() {
 		resetTrain();
+		resetSwitches();
 		resetStations();
 		time = 0;
 		resetCargoRequestGenerators();
@@ -90,6 +92,20 @@ public class Simulator implements Observable {
 		this.train.resetTrainCars();
 		this.train.resetCargo();
 		trainCrashed=false;
+	}
+	
+	private void resetSwitches() {
+		for(int row = 0; row < board.getRows(); row++) {
+			for(int column = 0; column < board.getColumns(); column++) {
+				Tile tile = board.getTile(row, column);
+				if(tile.hasTrack()) {
+					Track track = tile.getTrack();
+					if(track.isSwitch()) {
+						((Switch)track).resetIteratorAndCurrent();
+					}
+				}
+			}
+		}	
 	}
 	
 	private void resetStations() {

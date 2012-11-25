@@ -37,6 +37,7 @@ public class Switch extends Track implements Observable{
 	public void resetIteratorAndCurrent() {
 		connectionsIterator = connections.iterator();
 		current = nextConnection();
+		notifyAllObservers();
 	}
 	
 	private CompassHeading findValidEntrance(Connection connection1, Connection connection2) {

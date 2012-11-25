@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.controller.TrackPlacer;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
@@ -242,26 +241,24 @@ public class LevelMap extends JPanel implements Observer {
 		
 		if(level.getBoard().getTile(row, column).hasTrack()) {
 			Track track = level.getBoard().getTile(row, column).getTrack();
-			Track copyOfTrack = new Track(track);
-			Connection currentConnectionOfSwitch = null;
+			
 			
 			if (track.isSwitch()) {
 				((Switch)track).register(this);
-				for(Connection connection:copyOfTrack.getConnections()) {
-					if(isCurrentConnection((Switch)track, connection)) {
-						currentConnectionOfSwitch = connection;
-						addTrackLayer(track, connection, mapTile);
-						break;
-					}
-				}
+				addCurrentConnectionLayer(track, mapTile);
 			}
 			
-			for(Connection connection:copyOfTrack.getConnections()) {
-				if(connection != currentConnectionOfSwitch) {
-					addTrackLayer(track, connection, mapTile);	
-				}
+			addAllOtherConnectionLayers(track, mapTile);
+		}
+	}
+
+	private void addCurrentConnectionLayer(Track track, JLayeredPane mapTile) {
+		Track copyOfTrack = new Track(track);
+		for(Connection connection:copyOfTrack.getConnections()) {
+			if(isCurrentConnection((Switch)track, connection)) {
+				addConnectionLayer(track, connection, mapTile);
+				break;
 			}
-			
 		}
 	}
 
@@ -269,16 +266,14 @@ public class LevelMap extends JPanel implements Observer {
 		return connection.equals(switchTrack.getCurrentConnection());
 	}
 	
-	private void addTrackLayer(Track track, Connection connection,
-			JLayeredPane mapTile) {
+	private void addConnectionLayer(Track trackToAdd, Connection connection, JLayeredPane mapTile) {
 		for(Connection comparedConnection: CONNECTION_LIST) {
 			int rotation = 0;
 			while (rotation < 4) {
-				
 				if(connection.equals(comparedConnection)) {
-					JLabel trackLayer=new JLabel(getConnectionImage(track, comparedConnection, 4 - rotation));
-					trackLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
-					mapTile.add(trackLayer, new Integer(trackLayerIndex));
+					JLabel connectionLayer = new JLabel(getConnectionImage(trackToAdd, comparedConnection, 4 - rotation));
+					connectionLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
+					mapTile.add(connectionLayer, new Integer(trackLayerIndex));
 					break;
 				}
 				connection.rotate90Degrees();
@@ -287,6 +282,14 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
+	private void addAllOtherConnectionLayers(Track track, JLayeredPane mapTile) {
+		Track copyOfTrack = new Track(track);
+		for(Connection connection:copyOfTrack.getConnections()) {
+			if(!track.isSwitch() || !isCurrentConnection((Switch)track, connection)) {
+				addConnectionLayer(track, connection, mapTile);	
+			}
+		}
+	}
 	
 	private RotatedImageIcon getConnectionImage(Track track, Connection connection, int rotation) {
 		if(track.isUnremovable()) {
