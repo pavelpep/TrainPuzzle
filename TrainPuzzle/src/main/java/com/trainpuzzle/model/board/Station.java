@@ -3,7 +3,9 @@ package com.trainpuzzle.model.board;
 import static com.trainpuzzle.model.board.Obstacle.ObstacleType.*;
 
 
+
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
 import org.apache.log4j.Logger;
@@ -44,6 +46,7 @@ public class Station implements java.io.Serializable, Observable {
 	private LinkedList<Cargo> importCargo = new LinkedList<Cargo>();
 	private int numOfCargoGenerator = 0;
 	private int numOfCargoRequestor = 0;
+	private HashMap<CargoType, Boolean>  cargoTypeExist = new HashMap<CargoType, Boolean>();
 	
 	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
@@ -55,6 +58,9 @@ public class Station implements java.io.Serializable, Observable {
 		this.entranceFacing = entranceFacing;
 		this.track = createTrack();
 		this.stationBuilding=createObstacle(stationType);
+		for (CargoType cargoType: CargoType.values()){
+			this.cargoTypeExist.put(cargoType, false);
+		}
 	}
 	
 	private boolean isOddNumber(int value) {
@@ -83,6 +89,10 @@ public class Station implements java.io.Serializable, Observable {
 
 	public void setNumOfCargoRequestor(int numOfCargoRequestor) {
 		this.numOfCargoRequestor = numOfCargoRequestor;
+	}
+	
+	public HashMap<CargoType, Boolean> getCargoTypeExist() {
+		return cargoTypeExist;
 	}
 
 	private Track createTrack() {
@@ -185,8 +195,21 @@ public class Station implements java.io.Serializable, Observable {
 	
 	public void sendExportCargo(Cargo cargo) {
 		logger.debug("Train Received Cargo from Station");
-		assert exportCargo.size() > 0;
-		exportCargo.removeFirstOccurrence(cargo);		
+		if (!exportCargo.contains(cargo)){		
+			return;
+		}
+		exportCargo.removeFirstOccurrence(cargo);
+		Boolean typeExist = exportCargo.contains(cargo);
+		this.cargoTypeExist.put(cargo.getType(), typeExist);
+		notifyAllObservers();
+	}
+	
+	public void addExportCargo(Cargo cargo) {
+		if  (exportCargo.size() >= 99) {
+			return;
+		}
+		this.exportCargo.add(cargo);
+		cargoTypeExist.put(cargo.getType(), true);
 		notifyAllObservers();
 	}
 	
@@ -196,12 +219,6 @@ public class Station implements java.io.Serializable, Observable {
 		notifyAllObservers();
 	}
 	
-	public void addExportCargo(Cargo cargo) {
-		if  (exportCargo.size() < 99) {
-			this.exportCargo.add(cargo);
-		}
-		notifyAllObservers();
-	}
 		
 	public void addImportCargo(Cargo cargo) {
 		assert importCargo.size() < 2 : "Cargo types can be up to 2";		

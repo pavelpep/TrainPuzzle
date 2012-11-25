@@ -2,6 +2,7 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Component;
 
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -13,9 +14,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.HashMap;
 
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
@@ -27,6 +28,7 @@ import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
@@ -168,37 +170,56 @@ public class LevelMap extends JPanel implements Observer {
 	}
 
 	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, 
-			LinkedList<Cargo> importCargoList, StationType stationType) {
+			LinkedList<Cargo> importCargoList, HashMap<CargoType, Boolean> cargoTypeExist, StationType stationType) {
 		JPanel cargoLayer = new JPanel();
-		cargoLayer.setOpaque(false);
-		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
-		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
+		initCargoLayer(cargoLayer);
 		
-		Iterator<Cargo> iterator = exportCargoList.iterator();
-		int numberOfCargo=1;
-		while (iterator.hasNext()){
-			Cargo exportCargo = iterator.next();
-			if (numberOfCargo > 2) break;			
-			JLabel cargoLabel = new JLabel(getExportCargoImage(exportCargo));
-			cargoLayer.add(cargoLabel);
-			numberOfCargo++;
+		if (stationType==StationType.GREEN || stationType==StationType.RED){
+			displayAllCargoesInStation(cargoLayer, exportCargoList);
 		}
-		if (stationType != StationType.GREEN && stationType != StationType.RED){
-			Integer numCargo = exportCargoList.size();
-			JLabel numCargoLabel = new JLabel(numCargo.toString());
-			cargoLayer.add(numCargoLabel);
+		else{
+			displayCargoTypesInStation(cargoLayer, cargoTypeExist);
+			displayNumOfCargosInStation(cargoLayer, exportCargoList);
 		}
+		
 		
 		for (Cargo cargo: importCargoList) {
-			JLabel cargoLabel = new JLabel(getImportCargoImage(cargo));
+			JLabel cargoLabel = new JLabel(getImportCargoImage(cargo.getType()));
 			cargoLayer.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
+
+	private void initCargoLayer(JPanel cargoLayer){
+		cargoLayer.setOpaque(false);
+		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
+		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
+	}
+	private void displayAllCargoesInStation(JPanel cargoLayer, LinkedList<Cargo> exportCargoList){
+		for (Cargo cargo: exportCargoList) {
+			JLabel cargoLabel = new JLabel(getExportCargoImage(cargo.getType()));
+			cargoLayer.add(cargoLabel);
+		}			
+	}
 	
-	private ImageIcon getImportCargoImage(Cargo cargo) {
-		switch(cargo.getType()) {
+	private void displayCargoTypesInStation(JPanel cargoLayer, HashMap<CargoType,Boolean> cargoTypeExist){
+		for (CargoType cargoType: CargoType.values()){
+			if (cargoTypeExist.get(cargoType)){			
+			JLabel cargoLabel = new JLabel(getExportCargoImage(cargoType));
+			cargoLayer.add(cargoLabel);
+			}
+		}
+	}
+	
+	private void displayNumOfCargosInStation(JPanel cargoLayer,LinkedList<Cargo> exportCargoList){
+		Integer numCargo = exportCargoList.size();
+		JLabel numCargoLabel = new JLabel(numCargo.toString());
+		cargoLayer.add(numCargoLabel);
+	}
+	
+	private ImageIcon getImportCargoImage(CargoType cargoType) {
+		switch(cargoType) {
 			case COTTON:
 				return Images.REQUIRED_COTTON_IMAGE;
 			case WOOD:
@@ -210,8 +231,8 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private ImageIcon getExportCargoImage(Cargo cargo) {
-		switch(cargo.getType()) {
+	private ImageIcon getExportCargoImage(CargoType cargoType) {
+		switch(cargoType) {
 			case COTTON:
 				return Images.COTTON_IMAGE;
 			case WOOD:
@@ -223,7 +244,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private void drawAllCargoes(int row, int column) {
+	private void drawCargoesAtStation(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		
 		if(!level.getBoard().getTile(row, column).hasStationBuilding()) {
@@ -231,8 +252,10 @@ public class LevelMap extends JPanel implements Observer {
 		}
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
 		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
+		HashMap<CargoType, Boolean> cargoTypeExist = stationOnTile.getCargoTypeExist();
 		StationType stationType = stationOnTile.getType();
-		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo(), stationType);
+		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo(),
+				cargoTypeExist, stationType);
 	}
 	
 	private void drawTrack(int row, int column) {
@@ -329,7 +352,7 @@ public class LevelMap extends JPanel implements Observer {
 		drawObstacle(row, column);
 		drawLandscape(row, column);
 		drawTrack(row, column);
-		drawAllCargoes(row, column);
+		drawCargoesAtStation(row, column);
 	}
 	
 	private void initializeTrain() {
@@ -380,7 +403,7 @@ public class LevelMap extends JPanel implements Observer {
 			int column = trainCar.getLocation().getColumn();
 			
 			if(trainCar.hasCargo()) {
-				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo()));
+				JLabel cargoLayer = new JLabel(getExportCargoImage(trainCar.getCargo().getType()));
 				cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 				mapTiles[row][column].add(cargoLayer, new Integer(cargoTrainLayerIndex));
 			}
