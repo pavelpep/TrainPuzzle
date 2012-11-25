@@ -39,7 +39,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 	
-	JPanel cargoPanelPointer = new JPanel();
+	private JPanel cargoPanelPointer = new JPanel();
+	
+	private JTextPane remainTimeBox = new JTextPane();
 
 	public LoadedLevelScreen(GameController gameController) {
 		this.gameController = gameController;
@@ -87,12 +89,17 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		cargoPanelConstraints.insets = new Insets(5,5,5,5);
 		setCargoPanel(cargoPanelPointer);
 		headerPanel.add(cargoPanelPointer, cargoPanelConstraints);
-							
-		GridBagConstraints messageBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
+		
+		GridBagConstraints remainTimeBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
+		remainTimeBoxConstraints.insets = new Insets(5,5,5,5);
+		headerPanel.add(setRemainTimeBox(), remainTimeBoxConstraints);
+		
+		
+		GridBagConstraints messageBoxConstraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 1, 0);
 		messageBoxConstraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(messageBox(), messageBoxConstraints);
-		
-		GridBagConstraints saveButtonConstraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 0, 0);
+							
+		GridBagConstraints saveButtonConstraints = gbConstraints(new Point(5, 0), new Dimension(1, 1), 0, 0);
 		saveButtonConstraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(saveButton(), saveButtonConstraints);		
 		
@@ -144,6 +151,41 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		else {
 			messageBoxDisplayTimer.start();
 		}
+	}
+	
+	private JTextPane setRemainTimeBox() {
+		StyledDocument doc = remainTimeBox.getStyledDocument();
+		SimpleAttributeSet alignment = new SimpleAttributeSet();
+		StyleConstants.setAlignment(alignment, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), alignment, false);
+		
+		remainTimeBox.setOpaque(false);
+		remainTimeBox.setBackground(new Color(255, 255, 255, 0));
+		remainTimeBox.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		remainTimeBox.setCursor(null);
+		remainTimeBox.setFocusable(false);
+		remainTimeBox.setEditable(false);
+		
+		remainTimeBox.setForeground(Color.BLACK);
+		int remainTime = this.level.getTimeLimit();
+		if(remainTime == Simulator.NOT_IME_LIMIT) {
+			remainTimeBox.setText("Remain Time: \u221e" );
+		}
+		else {
+			remainTimeBox.setText("Remain Time: " +remainTime );
+		}
+		return remainTimeBox;
+	}
+	
+	private void setRemainTime(int remainTime) {
+		if(remainTime == Simulator.NOT_IME_LIMIT) {
+			remainTimeBox.setText("Remain Time: \u221e" );
+		}
+		else {
+			remainTimeBox.setText("Remain Time: " +remainTime );
+		}
+		
+		
 	}
 
 	private JButton backButton() {
@@ -314,12 +356,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	public void notifyChange(Object object) {
 		if(object instanceof Simulator) {
+			setRemainTime(((Simulator) object).getRestTime());
 			if(((Simulator) object).isTrainCrashed()) {
 				setMessageBoxMessage("TRAIN CRASHED");
 			}
-			if(((Simulator) object).isVictoryConditionsSatisfied()) {
+			else if(((Simulator) object).isVictoryConditionsSatisfied()) {
 				gameController.levelCompleted();
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
+			}
+			else if (((Simulator)object).checkTimeOut()) {
+				setMessageBoxMessage("YOU RUN OUT OF TIME!");
 			}
 			gameControlBox.setRunButtonVisible();
 		}

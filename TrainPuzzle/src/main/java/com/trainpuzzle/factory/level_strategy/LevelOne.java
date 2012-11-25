@@ -34,6 +34,7 @@ public class LevelOne extends LevelOutline {
         
         Level levelOne=new Level(1, this.board, createStartLocation(), this.root, economy);
         levelOne.setCargoGenerators(cargoGenerators);
+        levelOne.setTimeLimit(60);
         	        
     	return levelOne;
 	}

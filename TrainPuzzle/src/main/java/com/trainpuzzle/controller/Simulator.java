@@ -143,7 +143,6 @@ public class Simulator implements Observable {
 	public void move() throws TrainCrashException {
 		if(checkTimeOut()) {
 			stop();
-			//throw new TimeOutException();
 		}
 		else{
 			try {
@@ -152,6 +151,7 @@ public class Simulator implements Observable {
 					time += TIME_PER_STEP;
 					generateCargoResquests();
 					generateCargos();
+					notifyAllObservers();
 				}
 				else if(isVictoryConditionsSatisfied()) {
 					stop();
@@ -282,7 +282,7 @@ public class Simulator implements Observable {
 	}
 	
 	private void passStation(Station station) {
-		Event event = new Event(100, station);
+		Event event = new Event(time, station);
 		this.victoryConditionEvaluator.processEvent(event);
 		dropCargo(station);
 		train.pickUpAt(station);
@@ -292,7 +292,7 @@ public class Simulator implements Observable {
 		List<Cargo> droppedCargo = train.dropOff(station.getImportCargo());
 		for(Cargo cargo : droppedCargo) {
 			station.receiveImportCargo(cargo);
-			DropCargoEvent event = new DropCargoEvent(100,station,cargo);
+			DropCargoEvent event = new DropCargoEvent(time,station,cargo);
 			this.victoryConditionEvaluator.processEvent(event);
 		}
 	}
