@@ -3,6 +3,7 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
@@ -23,6 +24,13 @@ public abstract class LogicalVictoryCondition implements VictoryCondition {
 			treeModel.nodeChanged(getDisplayNode());
 		}
 		return conditionSatisfied;
+	}
+	
+	public void setDefaultModel() {
+		JTree tree = new JTree();
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        this.setTreeModel(model);
 	}
 	
 	@Override
