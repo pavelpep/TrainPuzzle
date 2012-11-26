@@ -3,11 +3,14 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 import java.awt.Component;
 
 
+
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Color;
 
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -18,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.HashMap;
 
+import com.trainpuzzle.controller.CargoGenerator;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -169,23 +173,40 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 
-	private void drawCargoes(JLayeredPane mapTile, LinkedList<Cargo> exportCargoList, 
-			LinkedList<Cargo> importCargoList, HashMap<CargoType, Boolean> cargoTypeExist, StationType stationType) {
+	private void drawCargoes(JLayeredPane mapTile, Station station){
+		
+		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
+		LinkedList<Cargo> importCargoList = station.getImportCargo();
+		HashMap<CargoType, Boolean> cargoTypeExist = station.getCargoTypeExist();
+		StationType stationType = station.getType();
+			
 		JPanel cargoLayer = new JPanel();
 		initCargoLayer(cargoLayer);
 		
+		JPanel cargoRow1 = new JPanel();
+		cargoRow1.setOpaque(false);
+		cargoRow1.setLayout(new BoxLayout(cargoRow1, BoxLayout.X_AXIS));
+		cargoRow1.setAlignmentX(LEFT_ALIGNMENT);
+		
+		JPanel cargoRow2 = new JPanel();
+		cargoRow2.setOpaque(false);
+		cargoRow2.setLayout(new BoxLayout(cargoRow2, BoxLayout.X_AXIS));
+		cargoRow2.setAlignmentX(LEFT_ALIGNMENT);
+				
 		if (stationType==StationType.GREEN || stationType==StationType.RED){
-			displayAllCargoesInStation(cargoLayer, exportCargoList);
+			displayAllCargoesInStation(cargoRow1, exportCargoList);
 		}
 		else{
-			displayCargoTypesInStation(cargoLayer, cargoTypeExist);
-			displayNumOfCargosInStation(cargoLayer, exportCargoList);
+			displayCargoTypesInStation(cargoRow1, cargoTypeExist);
+			displayNumOfCargosInStation(cargoRow1, exportCargoList);
+			displayGeneratorFrequency(cargoRow2,station, cargoTypeExist);
 		}
-		
+		cargoLayer.add(cargoRow1);
+		cargoLayer.add(cargoRow2);		
 		
 		for (Cargo cargo: importCargoList) {
 			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
-			cargoLayer.add(cargoLabel);
+			cargoRow1.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
@@ -193,31 +214,48 @@ public class LevelMap extends JPanel implements Observer {
 
 	private void initCargoLayer(JPanel cargoLayer){
 		cargoLayer.setOpaque(false);
-		((FlowLayout) cargoLayer.getLayout()).setVgap(2);
-		((FlowLayout) cargoLayer.getLayout()).setHgap(2);
+		cargoLayer.setLayout(new BoxLayout(cargoLayer, BoxLayout.Y_AXIS));
 	}
-	private void displayAllCargoesInStation(JPanel cargoLayer, LinkedList<Cargo> exportCargoList){
+	private void displayAllCargoesInStation(JPanel cargoRow, LinkedList<Cargo> exportCargoList){
 		for (Cargo cargo: exportCargoList) {
 			JLabel cargoLabel = new JLabel(getExportCargoIcon(cargo.getType()));
-			cargoLayer.add(cargoLabel);
+			cargoRow.add(cargoLabel);
 		}			
 	}
 	
-	private void displayCargoTypesInStation(JPanel cargoLayer, HashMap<CargoType,Boolean> cargoTypeExist){
+	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> cargoTypeExist){
 		for (CargoType cargoType: CargoType.values()){
 			if (cargoTypeExist.get(cargoType)){	
-				System.out.println(cargoTypeExist.get(cargoType));	//test
 				JLabel cargoLabel = new JLabel(getExportCargoIcon(cargoType));
-				cargoLayer.add(cargoLabel);
+				cargoRow1.add(cargoLabel);
 			}
 		}
 	}
 	
-	private void displayNumOfCargosInStation(JPanel cargoLayer,LinkedList<Cargo> exportCargoList){
+	private void displayGeneratorFrequency(JPanel cargoRow2,Station station,
+			HashMap<CargoType,Boolean> cargoTypeExist){
+		for (CargoType cargoType: CargoType.values()){
+			if (cargoTypeExist.get(cargoType)){
+				CargoGenerator wantedGenerator = new CargoGenerator(station,10,cargoType);
+				int indexOfCargoGenerator = level.getCargoGenerators().indexOf(wantedGenerator);
+				wantedGenerator = level.getCargoGenerators().get(indexOfCargoGenerator);
+				
+				Integer generatingInterval = wantedGenerator.getGeneratingInterval();
+				JLabel cargoLabel = new JLabel(generatingInterval.toString()+ "T");
+				cargoLabel.setForeground(Color.WHITE);
+				Font font = new Font("Arial", Font.ROMAN_BASELINE, 9);
+				cargoLabel.setFont(font);
+				cargoRow2.add(cargoLabel);
+			}
+		}
+	}
+	
+	private void displayNumOfCargosInStation(JPanel cargoRow1,LinkedList<Cargo> exportCargoList){
 		Integer numCargo = exportCargoList.size();
 		JLabel numCargoLabel = new JLabel(numCargo.toString());
-		cargoLayer.add(numCargoLabel);
+		cargoRow1.add(numCargoLabel);
 	}
+
 	
 	private ImageIcon getExportCargoIcon(CargoType cargoType){
 		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
@@ -261,33 +299,7 @@ public class LevelMap extends JPanel implements Observer {
 			break;			
 		}
 		return cargoIcon;
-	}	
-	
-	/*private ImageIcon getImportCargoImag(CargoType cargoType) {
-		switch(cargoType) {
-			case COTTON:
-				return Images.REQUIRED_COTTON_IMAGE;
-			case WOOD:
-				return Images.REQUIRED_WOOD_IMAGE;
-			case IRON:
-				return Images.REQUIRED_IRON_IMAGE;
-			default:
-				return Images.REQUIRED_COTTON_IMAGE;
-		}
-	}*/
-	
-	/*private ImageIcon getExportCargoImage(CargoType cargoType) {
-		switch(cargoType) {
-			case COTTON:
-				return Images.COTTON_IMAGE;
-			case WOOD:
-				return Images.WOOD_IMAGE;
-			case IRON:
-				return Images.IRON_IMAGE;
-			default:
-				return Images.COTTON_IMAGE;
-		}
-	}*/
+	}		
 	
 	private void drawCargoesAtStation(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
@@ -297,10 +309,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 		removeComponentsInGUILayer(mapTile,cargoLayerIndex);
 		Station stationOnTile = level.getBoard().getTile(row, column).getStation();
-		HashMap<CargoType, Boolean> cargoTypeExist = stationOnTile.getCargoTypeExist();
-		StationType stationType = stationOnTile.getType();
-		drawCargoes(mapTile, stationOnTile.getExportCargo(), stationOnTile.getImportCargo(),
-				cargoTypeExist, stationType);
+		drawCargoes(mapTile, stationOnTile);
 	}
 	
 	private void drawTrack(int row, int column) {

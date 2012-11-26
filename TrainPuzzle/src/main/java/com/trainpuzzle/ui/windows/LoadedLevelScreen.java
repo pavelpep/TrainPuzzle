@@ -367,7 +367,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			else if (((Simulator)object).checkTimeOut()) {
 				setMessageBoxMessage("YOU RUN OUT OF TIME!");
 			}
-			gameControlBox.setRunButtonVisible();
+			//gameControlBox.setRunButtonVisible();
 		}
 		else if (object instanceof Train) {
 			cargoPanelPointer.removeAll();

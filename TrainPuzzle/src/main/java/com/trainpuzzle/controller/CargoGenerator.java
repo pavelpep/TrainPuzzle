@@ -31,10 +31,19 @@ public class CargoGenerator {
 	public Station getStation() {
 		return station;
 	}
+	
+
+	public int getGeneratingInterval() {
+		return generatingInterval;
+	}
 
 	public CargoType getGenerateType() {
 		return generateType;
 	}
 
+	public boolean equals(Object obj){
+		return this.station.equals(((CargoGenerator)obj).getStation())
+				&& this.generateType == ((CargoGenerator)obj).getGenerateType();
+	}
 
 }
