@@ -24,7 +24,7 @@ public class LevelFour extends LevelOutline {
 	
 	@Override
 	public Level createLevel() {
-        this.board = new Board(15, 20, LandscapeType.DIRT);
+        this.board = new Board(12, 12, LandscapeType.LIGHTDIRT);
 		this.root = new AndVictoryCondition();
 
         initStations();
@@ -44,24 +44,24 @@ public class LevelFour extends LevelOutline {
 	}
 
 	private Location createStartLocation() {
-		Location startLocation = new Location(4,3);
+		Location startLocation = new Location(0, 8);
         setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 		return startLocation;
 	}
 
 	private void initStations() {
 		ArrayList<Station> stations = new ArrayList<Station>();
-        Station stationToAdd = new Station(StationType.GREEN, new Location(11, 3), CompassHeading.EAST);  
+        Station stationToAdd = new Station(StationType.GREEN, new Location(11, 4), CompassHeading.NORTH);  
         stations.add(stationToAdd);
         stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
         stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
         
-        stationToAdd = new Station(StationType.RED, new Location(2, 8), CompassHeading.SOUTH);
+        stationToAdd = new Station(StationType.RED, new Location(0, 3), CompassHeading.SOUTH);
         stations.add(stationToAdd);	        
         addImportCargo (stationToAdd, root, new Cargo(CargoType.IRON));
         stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
         
-        stationToAdd = new Station(StationType.GREEN, new Location(7, 18), CompassHeading.WEST);
+        stationToAdd = new Station(StationType.GREEN, new Location(5, 7), CompassHeading.EAST);
         stations.add(stationToAdd);	        
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));
@@ -71,15 +71,15 @@ public class LevelFour extends LevelOutline {
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
-        trackLimits.put(TrackType.TRACK, 37);
+        trackLimits.put(TrackType.TRACK, 60);
         trackLimits.put(TrackType.STRAIGHT, 18);
-        trackLimits.put(TrackType.CURVE, 15);
+        trackLimits.put(TrackType.CURVE, 38);
         trackLimits.put(TrackType.INTERSECTION, 2);
         trackLimits.put(TrackType.SWITCH, 2);
         trackLimits.put(TrackType.STRAIGHT_TRACK, 18);
         trackLimits.put(TrackType.DIAGONAL_TRACK, 18);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, 10);
-        trackLimits.put(TrackType.CURVERIGHT_TRACK, 10);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 19);
+        trackLimits.put(TrackType.CURVERIGHT_TRACK, 19);
         trackLimits.put(TrackType.INTERSECTION_TRACK, 2);
         trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
         trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH,2);
@@ -88,40 +88,35 @@ public class LevelFour extends LevelOutline {
 	}
 
 	private void setLandscape() {
-		//setLandscapeByColumn(0, 0, 15, LandscapeType.DIRT);
-		//setLandscapeByRow(0, 5, 10, LandscapeType.WATER);
-        //setLandscapeByRow(1, 5, 9, LandscapeType.WATER);
-        //setLandscapeByRow(9, 12, 14, LandscapeType.WATER);
-        setLandscapeByRow(10, 12, 15, LandscapeType.WATER);
-        
+		setLandscapeByColumn(3, 8, 2, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(3, 8, 3, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(3, 8, 4, LandscapeType.DIRT);
+		setLandscapeByColumn(3, 8, 5, LandscapeType.DIRT);
+		setLandscapeByColumn(3, 8, 9, LandscapeType.DIRT);
+		
+		setLandscapeByRow(2, 3, 5, LandscapeType.ROUGHDIRT);
+		setLandscapeByRow(1, 5, 9, LandscapeType.ROUGHDIRT);
+		setLandscapeByRow(2, 6, 9, LandscapeType.DIRT);
+		setLandscapeByRow(3, 6, 9, LandscapeType.DIRT);
+		setLandscapeByRow(7, 6, 9, LandscapeType.DIRT);
+		setLandscapeByRow(8, 6, 9, LandscapeType.DIRT);
 	}
 
 	private void setObstacles() {
 		ArrayList<Location> mountainLocations = new ArrayList<Location>();
         mountainLocations.add(new Location(8, 10));
-        mountainLocations.add(new Location(4, 7));
+        mountainLocations.add(new Location(9, 7));
         setObstacles(mountainLocations, ObstacleType.MOUNTAINS);
         
-        setObstaclesByRow(11, 13, 14, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(12, 14, 15, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(13, 13, 14, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(14, 12, 13, ObstacleType.MOUNTAINS);
+        setObstaclesByRow(8, 9, 11, ObstacleType.MOUNTAINS);
+        setObstaclesByRow(9, 10, 11, ObstacleType.MOUNTAINS);
+        setObstaclesByRow(10, 11, 11, ObstacleType.MOUNTAINS);
         
 		ArrayList<Location> treeLocations = new ArrayList<Location>();
-        treeLocations.add(new Location(5, 13));
-        treeLocations.add(new Location(2, 1));
+        treeLocations.add(new Location(5, 6));
+        treeLocations.add(new Location(2, 6));
         treeLocations.add(new Location(6, 9));
-        treeLocations.add(new Location(8, 3));
-        treeLocations.add(new Location(3, 13));
-        treeLocations.add(new Location(6, 10));
-        treeLocations.add(new Location(2, 17));
-        treeLocations.add(new Location(1, 13));
-        treeLocations.add(new Location(13, 10));
-        treeLocations.add(new Location(6, 13));
-        treeLocations.add(new Location(4, 10));
         setObstacles(treeLocations, ObstacleType.TREES);
-        
-        
 	}
 
 }
