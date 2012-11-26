@@ -25,6 +25,7 @@ public class LevelEight extends LevelOutline {
         root.setDefaultModel();
         
         initStations();
+        setLandscape();
         setObstacles();
         
         Economy economy = createEconomy();
@@ -71,6 +72,29 @@ public class LevelEight extends LevelOutline {
         return trackLimits;
 	}
 
+	private void setLandscape() {
+		LandscapeType lightSwamp = LandscapeType.LIGHTSWAMP;
+		LandscapeType medSwamp = LandscapeType.MEDSWAMP;
+		LandscapeType darkSwamp = LandscapeType.DARKSWAMP;
+		
+		setLandscapeByRow(0, 1, 12, lightSwamp);
+		setLandscapeByRow(1, 2, 12, lightSwamp);
+		setLandscapeByRow(2, 2, 12, lightSwamp);
+		setLandscapeByRow(3, 4, 11, lightSwamp);
+		setLandscapeByRow(4, 5, 10, lightSwamp);
+		setLandscapeByRow(5, 6, 10, lightSwamp);
+		setLandscapeByRow(6, 8, 9, lightSwamp);
+		
+		setLandscapeByRow(0, 3, 12, medSwamp);
+		setLandscapeByRow(1, 5, 11, medSwamp);
+		setLandscapeByRow(2, 5, 10, medSwamp);
+		setLandscapeByRow(3, 6, 10, medSwamp);
+		setLandscapeByRow(4, 7, 9, medSwamp);
+		
+		setLandscapeByRow(1, 7, 9, darkSwamp);
+		setLandscapeByRow(2, 7, 9, darkSwamp);
+	}
+	
 	private void setObstacles() {
 		ObstacleType trees = ObstacleType.TREES;
 		
@@ -81,7 +105,7 @@ public class LevelEight extends LevelOutline {
 		setObstaclesByColumn(7, 8, 7, trees);
 		setObstaclesByColumn(5, 7, 8, trees);
 		setObstaclesByColumn(2, 4, 9, trees);
-		setObstaclesByColumn(2, 3, 11, trees);
+		setObstaclesByColumn(3, 4, 11, trees);
 		
 		setObstaclesByRow(1, 7, 10, trees);
 		setObstaclesByRow(2, 5, 6, trees);
@@ -90,7 +114,6 @@ public class LevelEight extends LevelOutline {
 		setObstaclesByRow(9, 8, 10, trees);
 		setObstaclesByRow(10, 0, 3, trees);
 		setObstaclesByRow(10, 5, 6, trees);
-        
         
         ArrayList<Location> treesLocations = new ArrayList<Location>();
         treesLocations.add(new Location(0, 1));
