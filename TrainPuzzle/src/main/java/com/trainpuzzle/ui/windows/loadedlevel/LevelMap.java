@@ -173,6 +173,8 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 
+	//For cargo-generating station, display all types of cargos which can generate
+	//and the time interval to generate each type of cargo.
 	private void drawCargoes(JLayeredPane mapTile, Station station){
 		
 		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
