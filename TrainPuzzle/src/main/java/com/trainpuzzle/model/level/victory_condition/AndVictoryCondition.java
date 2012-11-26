@@ -12,22 +12,15 @@ public class AndVictoryCondition extends LogicalVictoryCondition implements java
 		this.setDisplayNode(displayNode);
 	}
 	
-	private void checkChildrenSatisfied() {
-		conditionSatisfied = true;
+	protected boolean checkChildrenSatisfied() {
+		boolean satisfied =true;
 		for(VictoryCondition child : this.getChildren()) {
 			if(!child.isSatisfied()) {
-				conditionSatisfied = false;
+				satisfied = false;
+				break;
 			}
 		}
-		if(conditionSatisfied) {
-			userObject.setLabel(userObject.getLabel() + " Clear!");
-			getTreeModel().nodeChanged(getDisplayNode());
-		}
+		return satisfied;
 	}
-
-	@Override
-	public boolean isSatisfied() {
-		checkChildrenSatisfied();
-		return conditionSatisfied;
-	}	
+	
 }

@@ -11,23 +11,15 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 		this.setDisplayNode(displayNode);
 	}
 	
-	private void checkChildrenSatisfied() {
-		conditionSatisfied = true;
+	protected boolean checkChildrenSatisfied() {
+		boolean satisfied = true;
 		for(VictoryCondition child : this.getChildren()) {
 			if(!child.isSatisfied()) {
-				conditionSatisfied = false;
+				satisfied = false;
+				break;
 			}
 		}
-		if(conditionSatisfied) {
-			//userObject.setLabel(userObject.getLabel() + " Clear!");
-			getTreeModel().nodeChanged(getDisplayNode());
-		}
-	}
-
-	@Override
-	public boolean isSatisfied() {
-		checkChildrenSatisfied();
-		return conditionSatisfied;
+		return satisfied;
 	}
 	
 	@Override
@@ -40,10 +32,5 @@ public class IfThenVictoryCondition extends LogicalVictoryCondition implements j
 		}
 	}
 	
-	public void addChild(VictoryCondition child) {
-		this.getChildren().add(child);
-		this.getDisplayNode().add(child.getDisplayNode());
-		this.checkChildrenSatisfied();
-	}
 	
 }

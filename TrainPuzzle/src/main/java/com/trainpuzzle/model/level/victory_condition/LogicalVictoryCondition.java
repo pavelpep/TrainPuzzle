@@ -5,17 +5,23 @@ import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
-public class LogicalVictoryCondition implements VictoryCondition {
+public abstract class LogicalVictoryCondition implements VictoryCondition {
 	
 	private List<VictoryCondition> childConditions = new ArrayList<VictoryCondition>();
-	protected boolean conditionSatisfied = false;
+	protected boolean conditionSatisfied = true;
 	private DefaultMutableTreeNode displayNode;
 	private DefaultTreeModel treeModel;
 	protected TreeNodeUserObject userObject;
 	
 	@Override
 	public boolean isSatisfied() {
+		boolean satisfied = checkChildrenSatisfied();
+		if(conditionSatisfied != satisfied) {
+			conditionSatisfied = satisfied;
+			treeModel.nodeChanged(getDisplayNode());
+		}
 		return conditionSatisfied;
 	}
 	
@@ -50,6 +56,7 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	public void addChild(VictoryCondition child) {
 		childConditions.add(child);
 		this.displayNode.add(child.getDisplayNode());
+		checkChildrenSatisfied();
 		child.setTreeModel(treeModel);
 	}
 	
@@ -75,5 +82,6 @@ public class LogicalVictoryCondition implements VictoryCondition {
 	public TreeNodeUserObject getUserObject() {
 		return userObject;
 	}
+	protected abstract boolean checkChildrenSatisfied();
 	
 }
