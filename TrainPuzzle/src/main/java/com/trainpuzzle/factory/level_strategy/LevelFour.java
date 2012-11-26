@@ -26,6 +26,7 @@ public class LevelFour extends LevelOutline {
 	public Level createLevel() {
         this.board = new Board(12, 12, LandscapeType.LIGHTDIRT);
 		this.root = new AndVictoryCondition();
+		 root.setDefaultModel();
 
         initStations();
         setLandscape();

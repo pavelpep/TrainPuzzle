@@ -22,6 +22,7 @@ public class LevelSix extends LevelOutline {
 	public Level createLevel() {
 		this.board = new Board(15, 15, LandscapeType.DIRT);
         this.root = new AndVictoryCondition();
+        root.setDefaultModel();
         
         initStations();
         setLandscape();
