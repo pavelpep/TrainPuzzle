@@ -56,12 +56,12 @@ public class LevelEight extends LevelOutline {
 	private HashMap<TrackType, Integer> createTrackLimits() {        
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
         trackLimits.put(TrackType.TRACK, 25);
-        trackLimits.put(TrackType.STRAIGHT, 20);
-        trackLimits.put(TrackType.CURVE, 20);
+        trackLimits.put(TrackType.STRAIGHT, 10);
+        trackLimits.put(TrackType.CURVE, 22);
         trackLimits.put(TrackType.INTERSECTION, 3);
         trackLimits.put(TrackType.SWITCH, 3);
-        trackLimits.put(TrackType.STRAIGHT_TRACK, 12);
-        trackLimits.put(TrackType.DIAGONAL_TRACK, 12);
+        trackLimits.put(TrackType.STRAIGHT_TRACK, 5);
+        trackLimits.put(TrackType.DIAGONAL_TRACK, 5);
         trackLimits.put(TrackType.CURVELEFT_TRACK, 12);
         trackLimits.put(TrackType.CURVERIGHT_TRACK, 12);
         trackLimits.put(TrackType.INTERSECTION_TRACK, 2);
