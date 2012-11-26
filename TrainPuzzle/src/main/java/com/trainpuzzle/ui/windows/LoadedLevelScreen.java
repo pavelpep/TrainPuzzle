@@ -90,7 +90,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		setCargoPanel(cargoPanelPointer);
 		headerPanel.add(cargoPanelPointer, cargoPanelConstraints);
 		
-		GridBagConstraints remainTimeBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 1, 0);
+		GridBagConstraints remainTimeBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 0, 0);
 		remainTimeBoxConstraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(setRemainTimeBox(), remainTimeBoxConstraints);
 		
