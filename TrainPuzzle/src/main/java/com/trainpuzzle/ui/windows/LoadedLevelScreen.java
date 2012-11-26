@@ -109,7 +109,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	private JTextPane messageBox() {
 		messageBox =  new JTextPane();
-		messageBox.setMinimumSize(new Dimension(300,20));
+		messageBox.setPreferredSize(new Dimension(250,20));
 		
 		StyledDocument doc = messageBox.getStyledDocument();
 		SimpleAttributeSet alignment = new SimpleAttributeSet();
