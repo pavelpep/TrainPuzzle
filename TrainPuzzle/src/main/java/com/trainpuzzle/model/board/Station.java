@@ -190,7 +190,16 @@ public class Station implements java.io.Serializable, Observable {
 	
 	public LinkedList<Cargo> getImportCargo() {
 		return importCargo;	
-	}	
+	}
+	
+	public Cargo getFirstExportCargo(){
+		if (!exportCargo.isEmpty()){
+			Cargo firstCargo = exportCargo.getFirst();
+			sendExportCargo(firstCargo);
+			return firstCargo;
+		}
+		return null;
+	}
 	
 	public void sendExportCargo(Cargo cargo) {
 		logger.debug("Train Received Cargo from Station");

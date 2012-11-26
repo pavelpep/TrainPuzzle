@@ -110,9 +110,19 @@ public class Train implements Observable {
 	}
 		
 	public void pickUpAt(Station station) {
-		LinkedList<Cargo> exportCargoesCopy = new LinkedList<Cargo>(station.getExportCargo());
-
-		for(Cargo cargo: exportCargoesCopy) {
+		LinkedList<Cargo> exportCargoes = new LinkedList<Cargo>(station.getExportCargo());
+		if (exportCargoes.size() == 0){
+			return;
+		}
+		if (totalNumofCargos() >= trainCars.size()) {
+			throwAndPickOneCargo(station);
+			this.observerLoadedlevel.notifyChange(this);
+			notifyAllObservers();
+			return;
+		}
+		
+		
+		for(Cargo cargo: exportCargoes) {			
 			for(TrainCar trainCar: trainCars) {
 				if(!trainCar.hasCargo()){
 					station.sendExportCargo(cargo);
@@ -122,8 +132,35 @@ public class Train implements Observable {
 					notifyAllObservers();
 					break;
 				}
-			}	
+			}
 		}
+	}
+	
+	private int totalNumofCargos(){
+		int totalNumOfCargos = 0;
+		for (CargoType cargoType:CargoType.values()){
+			totalNumOfCargos = totalNumOfCargos + this.numOfCargoes.get(cargoType);
+		}
+		return totalNumOfCargos;
+	}
+	
+	private void throwAndPickOneCargo(Station station){
+		for (int i=0;i < trainCars.size();i++){
+			System.out.println("trainCarCargos="+trainCars.get(i).getCargo().getType()+"i="+i);
+		}
+		
+		decrementNumber(trainCars.get(0).getCargo());
+		for(int trainCarNum = 0; trainCarNum < (trainCars.size()-1); trainCarNum++) {
+			TrainCar currentTrainCar = trainCars.get(trainCarNum);
+			TrainCar nextTrainCar = trainCars.get(trainCarNum+1);
+			Cargo nextCargo = nextTrainCar.dropCargo();
+			currentTrainCar.addCargo(nextCargo);
+		}
+		
+		Cargo cargo = station.getFirstExportCargo();
+		System.out.println("firstExportCargo="+cargo.getType());
+		trainCars.get(trainCars.size()-1).addCargo(cargo);
+		incrementNumber(cargo);
 	}
 	
 	private void incrementNumber(Cargo cargo) {
@@ -143,12 +180,10 @@ public class Train implements Observable {
 	}
 	
 	public void resetCargo(){
-			this.numOfCargoes.put(Cargo.CargoType.COTTON, 0);
-			this.numOfCargoes.put(Cargo.CargoType.IRON, 0);
-			this.numOfCargoes.put(Cargo.CargoType.WOOD, 0);
-			//System.out.println("here");
+			for (CargoType cargoType: CargoType.values()){
+			this.numOfCargoes.put(cargoType, 0);
 			this.observerLoadedlevel.notifyChange(this);
-			//System.out.println("you go");
+			}
 	}
 	
 	
