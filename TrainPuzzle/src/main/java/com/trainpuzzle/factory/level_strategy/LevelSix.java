@@ -47,11 +47,11 @@ public class LevelSix extends LevelOutline {
 
 	private void initStations() {
 		ArrayList<Station> stations = new ArrayList<Station>();
-        stations.add(new Station(StationType.GREEN, new Location(8, 3), CompassHeading.WEST));
+        stations.add(new Station(StationType.GREEN, new Location(7, 3), CompassHeading.WEST));
         stations.add(new Station(StationType.RED, new Location(1, 7), CompassHeading.SOUTH));
 
-        stations.add(new Station(StationType.RED, new Location(13, 10), CompassHeading.NORTH));
-        stations.add(new Station(StationType.RED, new Location(8, 14), CompassHeading.NORTH));
+        stations.add(new Station(StationType.RED, new Location(12, 10), CompassHeading.NORTH));
+        stations.add(new Station(StationType.RED, new Location(7, 14), CompassHeading.WEST));
         
         stations.add(new Station(StationType.RED, new Location(0, 13), CompassHeading.SOUTH));
         
@@ -78,12 +78,12 @@ public class LevelSix extends LevelOutline {
 	}
 
 	private void setLandscape() {
-		setLandscapeByColumn(1, 4, 0, LandscapeType.WATER);
-		setLandscapeByColumn(1, 2, 1, LandscapeType.WATER);
-		setLandscapeByColumn(7, 7, 3, LandscapeType.WATER);
-		setLandscapeByColumn(7, 8, 4, LandscapeType.WATER);
-		setLandscapeByColumn(4, 8, 8, LandscapeType.WATER);
-		setLandscapeByColumn(4, 8, 9, LandscapeType.WATER);
+		setLandscapeByColumn(1, 4, 0, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(1, 2, 1, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(7, 7, 3, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(7, 8, 4, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(4, 8, 8, LandscapeType.ROUGHDIRT);
+		setLandscapeByColumn(4, 8, 9, LandscapeType.ROUGHDIRT);
 	}
 
 	private void setObstacles() {
