@@ -14,16 +14,16 @@ public class SwitchController {
 	private Level levelToAddTrack;
 	private Board map;
 	
-	public SwitchController(Level levelToToggleSwitch) {
-		this.levelToAddTrack = levelToToggleSwitch;
+	public SwitchController(Level levelToOperateSwitch) {
+		this.levelToAddTrack = levelToOperateSwitch;
 		this.map = levelToAddTrack.getBoard();
 	}
 	
-	public void toggleSwitch(int row, int column) throws CannotOperateSwitchException {
+	public void operateSwitch(int row, int column) throws CannotOperateSwitchException {
 		Tile tile = map.getTile(row, column);
 		Track track;
 		
-		String errorMessage = getToggleSwitchErrorMessage(tile);
+		String errorMessage = getOperateSwitchErrorMessage(tile);
 		if(hasNoError(errorMessage)) {
 			track = tile.getTrack();
 			((Switch)track).toggle();
@@ -35,7 +35,7 @@ public class SwitchController {
 		}
 	}
 	
-	private String getToggleSwitchErrorMessage(Tile tile) {
+	private String getOperateSwitchErrorMessage(Tile tile) {
 		String errorMessage = "";
 		String commonMessage = "Failed to operate a switch because ";
 		

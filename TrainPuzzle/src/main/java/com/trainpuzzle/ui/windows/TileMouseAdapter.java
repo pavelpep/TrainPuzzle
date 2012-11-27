@@ -20,7 +20,7 @@ import java.awt.event.*;
 
 public class TileMouseAdapter extends MouseAdapter {
 	private TrackPlacer trackPlacer;
-	private SwitchController switchToggler;
+	private SwitchController switchController;
 	private Track track;
 	
 	private Mode mode;
@@ -33,7 +33,7 @@ public class TileMouseAdapter extends MouseAdapter {
 	public TileMouseAdapter(Level level) {
 		super();
 		trackPlacer = new TrackPlacer(level);
-		switchToggler = new SwitchController(level);
+		switchController = new SwitchController(level);
 		track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
 		mode = Mode.PlaceTrack;
 	}
@@ -49,7 +49,7 @@ public class TileMouseAdapter extends MouseAdapter {
 	        	if(mode == Mode.PlaceTrack) { 
 		            placeTrackAt(row, column);
 	        	} else if(mode == Mode.Toggle) {
-					switchToggler.toggleSwitch(row, column);
+					switchController.operateSwitch(row, column);
 	        	}
         	} else if(e.getButton() == MouseEvent.BUTTON3) {
             	trackPlacer.removeTrack(row, column);
