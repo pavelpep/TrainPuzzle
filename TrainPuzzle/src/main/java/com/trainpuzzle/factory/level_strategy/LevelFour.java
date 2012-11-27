@@ -34,7 +34,7 @@ public class LevelFour extends LevelOutline {
         
         Economy economy = createEconomy();
         		        
-    	return new Level(1, this.board, createStartLocation(), this.root, economy);
+    	return new Level(4, this.board, createStartLocation(), this.root, economy);
 	}
 
 	private Economy createEconomy() {
