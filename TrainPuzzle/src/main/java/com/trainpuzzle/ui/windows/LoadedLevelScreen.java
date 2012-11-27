@@ -21,7 +21,6 @@ import javax.swing.text.StyledDocument;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.controller.Simulator;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.infrastructure.Images;
@@ -168,7 +167,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		remainTimeBox.setForeground(Color.BLACK);
 		int remainTime = this.level.getTimeLimit();
-		if(remainTime == Simulator.NOT_IME_LIMIT) {
+		if(remainTime == Simulator.NO_TIME_LIMIT) {
 			remainTimeBox.setText("Remain Time: \u221e" );
 		}
 		else {
@@ -178,7 +177,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 	
 	private void setRemainTime(int remainTime) {
-		if(remainTime == Simulator.NOT_IME_LIMIT) {
+		if(remainTime == Simulator.NO_TIME_LIMIT) {
 			remainTimeBox.setText("Remain Time: \u221e" );
 		}
 		else {

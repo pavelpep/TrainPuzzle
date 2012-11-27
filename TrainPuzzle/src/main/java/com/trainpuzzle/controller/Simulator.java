@@ -30,7 +30,7 @@ import com.trainpuzzle.factory.LevelFactory;
 
 public class Simulator implements Observable {
 	
-	public static final int NOT_IME_LIMIT = -1;
+	public static final int NO_TIME_LIMIT = -1;
 	private static final int TIME_PER_STEP = 1;
 	private int timeLimit;
 	private int time = 0;
@@ -193,11 +193,11 @@ public class Simulator implements Observable {
 	
 	
 	public boolean checkTimeOut() {
-		return !(timeLimit == NOT_IME_LIMIT) && time>= timeLimit;
+		return !(timeLimit == NO_TIME_LIMIT) && time>= timeLimit;
 	}
 	
 	public int getRestTime() {
-		if(timeLimit == NOT_IME_LIMIT) {
+		if(timeLimit == NO_TIME_LIMIT) {
 			return timeLimit;
 		}
 		return timeLimit - time;

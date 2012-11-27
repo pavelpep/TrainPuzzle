@@ -1,10 +1,7 @@
 package com.trainpuzzle.model.level;
 
 import java.util.LinkedList;
-
 import java.util.List;
-
-import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.trainpuzzle.controller.CargoRequestGenerator;
 import com.trainpuzzle.controller.CargoGenerator;
@@ -28,7 +25,7 @@ public class Level implements java.io.Serializable {
 	private VictoryCondition victoryConditions;
 	private Economy economy = new Economy();
 	private List<CargoRequestGenerator> cargorequestors = new LinkedList<CargoRequestGenerator>();
-	private int timeLimit = Simulator.NOT_IME_LIMIT;
+	private int timeLimit = Simulator.NO_TIME_LIMIT;
 
 	private List<CargoGenerator> cargoGenerators = new LinkedList<CargoGenerator>(); 
 	
