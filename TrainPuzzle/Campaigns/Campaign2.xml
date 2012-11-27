@@ -1,5 +1,5 @@
 <com.trainpuzzle.model.level.Campaign>
-  <campaignName>Campaign1</campaignName>
+  <campaignName>Campaign2</campaignName>
   <campaignLevels>
     <com.trainpuzzle.model.level.CampaignLevel>
       <isLocked>false</isLocked>
@@ -38,7 +38,7 @@
       <levelNumber>6</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
     <com.trainpuzzle.model.level.CampaignLevel>
-      <isLocked>false</isLocked>
+      <isLocked>true</isLocked>
       <isCompleted>true</isCompleted>
       <hasUserSave>false</hasUserSave>
       <levelNumber>7</levelNumber>
@@ -55,6 +55,12 @@
       <hasUserSave>false</hasUserSave>
       <levelNumber>9</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
+        <com.trainpuzzle.model.level.CampaignLevel>
+      <isLocked>true</isLocked>
+      <isCompleted>false</isCompleted>
+      <hasUserSave>false</hasUserSave>
+      <levelNumber>10</levelNumber>
+    </com.trainpuzzle.model.level.CampaignLevel>
   </campaignLevels>
-  <currentLevel>5</currentLevel>
+  <currentLevel>2</currentLevel>
 </com.trainpuzzle.model.level.Campaign>
