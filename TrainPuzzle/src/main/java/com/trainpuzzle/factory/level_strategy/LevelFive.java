@@ -54,16 +54,15 @@ public class LevelFive extends LevelOutline{
 
 	private void initStationsAndCargoGenerator() {
 		ArrayList<Station> stations = new ArrayList<Station>();
-        Station stationToAdd = new Station(StationType.GREEN, new Location(7, 9), CompassHeading.SOUTH);
+        Station stationToAdd = new Station(StationType.FACTORY, new Location(7, 9), CompassHeading.SOUTH);
         stations.add(stationToAdd);
-        CargoGenerator ironFactory = new CargoGenerator(stationToAdd,4,CargoType.IRON);
-        cargoGenerators.add(ironFactory);
-        
-        
+        addCargoGenerator(stationToAdd, 4, CargoType.IRON);
+               
         stationToAdd = new Station(StationType.GREEN, new Location(7, 11), CompassHeading.SOUTH);
         stations.add(stationToAdd);
-        CargoRequestGenerator requester = new CargoRequestGenerator(stationToAdd, root, 4, CargoType.IRON);
-        cargoRequestGenerators.add(requester);
+        /*CargoRequestGenerator requester = new CargoRequestGenerator(stationToAdd, root, 4, CargoType.IRON);
+        cargoRequestGenerators.add(requester);*/
+        addCargoRequester(stationToAdd, 4, CargoType.IRON);
         
         setStations(stations);
 	}	
