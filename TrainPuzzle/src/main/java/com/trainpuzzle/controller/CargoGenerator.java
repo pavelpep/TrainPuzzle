@@ -3,12 +3,7 @@ package com.trainpuzzle.controller;
 import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Cargo.CargoType;
-import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
-import com.trainpuzzle.model.level.victory_condition.IfThenVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
 
-import java.util.ArrayList;
 
 public class CargoGenerator {
 	private Station station;
