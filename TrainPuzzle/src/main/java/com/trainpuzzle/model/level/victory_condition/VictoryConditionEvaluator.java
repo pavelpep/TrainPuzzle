@@ -9,7 +9,7 @@ import com.trainpuzzle.observe.*;
 
 public class VictoryConditionEvaluator implements Observable {
 	
-	private Set<Observer> observerList = new HashSet<Observer>();	
+	private transient Set<Observer> observerList = new HashSet<Observer>();	
 	private VictoryCondition root;
 	
 	public VictoryConditionEvaluator(Level level) {

@@ -27,16 +27,18 @@ public class Campaign implements java.io.Serializable {
 	
 	public void completeLevel(int levelNumber) {
 		campaignLevels.get(levelNumber - 1).isCompleted = true;
-		try {
-			unlockLevel(levelNumber);
+		
+		if (levelNumber < numberOfLevels()){
+			unlockNextLevel(levelNumber);
 		}
-		finally {
-			
-		}
+
+	}
+	private void unlockNextLevel(int currentLevelNumber) {
+		unlockLevel(currentLevelNumber + 1);
 	}
 	
 	private void unlockLevel(int levelNumber) {
-		campaignLevels.get(levelNumber).isLocked = false;
+		campaignLevels.get(levelNumber - 1).isLocked = false;
 	}
 	
 	public String getName() {
@@ -54,7 +56,9 @@ public class Campaign implements java.io.Serializable {
     public CampaignLevel getCurrentLevel() {
 		return campaignLevels.get(currentLevel-1);
 	}
-    
+    public int numberOfLevels(){
+    	return campaignLevels.size();
+    }
     public int getCurrentLevelNumber() {
 		return currentLevel;
 	}
@@ -68,5 +72,6 @@ public class Campaign implements java.io.Serializable {
 			campaignLevel.reset();
 		}
 		campaignLevels.get(0).isLocked = false;
+		
 	}
 }
