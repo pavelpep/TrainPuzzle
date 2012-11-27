@@ -12,7 +12,7 @@ public class CampaignManager {
 	private Campaign selectedCampaign;
 	
 	public CampaignManager() {
-        campaigns.add( new Campaign());
+        campaigns.add(FileManager.loadCampaign("Campaign1"));
         campaigns.add(FileManager.loadCampaign("Campaign2"));
 	}
 	
@@ -32,9 +32,13 @@ public class CampaignManager {
 		FileManager.saveCampaign(selectedCampaign, selectedCampaign.getName());
 	}
 	
+	public void saveCampaign(int campaignNumber) {
+		Campaign campaignToSave = campaigns.get(campaignNumber);
+		FileManager.saveCampaign(campaignToSave, campaignToSave.getName());
+	}
+	
 	public void resetCampaign(int campaignNumber) {
 		campaigns.get(campaignNumber).reset();
-		selectCampaign(campaignNumber + 1);
-		saveCampaign();
+		saveCampaign(campaignNumber);
 	}
 }
