@@ -27,6 +27,7 @@ public final class Images {
 	public final static String RED_STATION = "src/main/resources/images/redStation.png";
 	public final static String GREEN_STATION = "src/main/resources/images/greenStation.png";
 	public final static String FACTORY_STATION = "src/main/resources/images/factoryStation.png";
+	public final static String REQUESTER_STATION = "src/main/resources/images/requesterStation.png";
 	
 	// Cargo
 	public final static String IRON = "src/main/resources/images/readSquare.png";
@@ -79,6 +80,8 @@ public final class Images {
 	public final static ImageIcon RED_STATION_IMAGE = new ImageIcon(RED_STATION);
 	public final static ImageIcon GREEN_STATION_IMAGE = new ImageIcon(GREEN_STATION);
 	public final static ImageIcon FACTORY_IMAGE = new ImageIcon(FACTORY_STATION);
+	public final static ImageIcon REQUESTER_IMAGE = new ImageIcon(REQUESTER_STATION);
+	
 	
 	
 	// Tracks
