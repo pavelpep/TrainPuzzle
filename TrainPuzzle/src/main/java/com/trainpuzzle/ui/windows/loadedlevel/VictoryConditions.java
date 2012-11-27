@@ -3,33 +3,19 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 import java.awt.Dimension;
 
 import java.awt.GridLayout;
-import java.net.URL;
-import java.util.Enumeration;
 
 
-import javax.jws.WebParam.Mode;
+
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel;
-
 import com.trainpuzzle.controller.GameController;
-import com.trainpuzzle.infrastructure.Images;
-import com.trainpuzzle.model.board.TrackType;
+
 
 public class VictoryConditions extends JPanel {// implements TreeSelectionListener {
 

@@ -1,18 +1,17 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Component;
-import java.util.Enumeration;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreePath;
-
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
-import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
+
 	
+@SuppressWarnings("serial")
 class CustomIconRenderer extends DefaultTreeCellRenderer {
 	ImageIcon unsatisfisedIcon;
 	ImageIcon satisfisedIcon;

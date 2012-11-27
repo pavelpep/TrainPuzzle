@@ -2,8 +2,6 @@ package com.trainpuzzle.model.level.victory_condition;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.observe.*;
 
