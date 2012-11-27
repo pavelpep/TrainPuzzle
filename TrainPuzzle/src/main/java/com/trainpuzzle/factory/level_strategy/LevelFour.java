@@ -17,7 +17,7 @@ import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
-import com.trainpuzzle.controller.CargoGenerator;
+
 
 public class LevelFour extends LevelOutline {
 	

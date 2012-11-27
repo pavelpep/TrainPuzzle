@@ -19,14 +19,12 @@ import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.TrackType;
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
 import com.trainpuzzle.model.board.Obstacle.ObstacleType;
-import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
 import com.trainpuzzle.model.level.victory_condition.Event;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.VictoryCondition;
+
 
 public abstract class LevelOutline {
 	protected final int NO_ECONOMY_LIMIT = -1;

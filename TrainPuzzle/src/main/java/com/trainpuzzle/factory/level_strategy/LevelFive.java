@@ -1,11 +1,8 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import java.util.HashMap;
 
-import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
@@ -17,8 +14,7 @@ import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
-import com.trainpuzzle.controller.CargoGenerator;
-import com.trainpuzzle.controller.CargoRequestGenerator;
+
 
 public class LevelFive extends LevelOutline{
 

@@ -1,7 +1,6 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import java.util.HashMap;
 
@@ -21,7 +20,6 @@ import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.IfThenVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.OrVictoryCondition;
-import com.trainpuzzle.controller.CargoGenerator;
 
 public class LevelSeven extends LevelOutline {
 	
