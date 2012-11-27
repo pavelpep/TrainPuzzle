@@ -33,6 +33,8 @@ public class LevelFactory {
 			return (new LevelEight()).createLevel();
 		case 9:
 			return (new LevelNine()).createLevel();
+		case 10:
+			return (new LevelTen()).createLevel();
 		default: 
 			return (new LevelOne()).createLevel();
 		}
