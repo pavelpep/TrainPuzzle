@@ -14,6 +14,7 @@ import com.trainpuzzle.model.board.Station.StationType;
 import com.trainpuzzle.model.level.Economy;
 import com.trainpuzzle.model.level.Level;
 import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
+import com.trainpuzzle.model.level.victory_condition.IfThenVictoryCondition;
 
 public class LevelSix extends LevelOutline {
 	
@@ -21,7 +22,7 @@ public class LevelSix extends LevelOutline {
 	@Override
 	public Level createLevel() {
 		this.board = new Board(15, 15, LandscapeType.DIRT);
-        this.root = new AndVictoryCondition();
+        this.root = new IfThenVictoryCondition();
         
         initStations();
         setLandscape();
@@ -50,8 +51,8 @@ public class LevelSix extends LevelOutline {
         stations.add(new Station(StationType.GREEN, new Location(7, 3), CompassHeading.WEST));
         stations.add(new Station(StationType.RED, new Location(1, 7), CompassHeading.SOUTH));
 
-        stations.add(new Station(StationType.RED, new Location(12, 10), CompassHeading.NORTH));
         stations.add(new Station(StationType.RED, new Location(7, 14), CompassHeading.WEST));
+        stations.add(new Station(StationType.RED, new Location(12, 10), CompassHeading.NORTH));
         
         stations.add(new Station(StationType.RED, new Location(0, 13), CompassHeading.SOUTH));
         
@@ -62,7 +63,7 @@ public class LevelSix extends LevelOutline {
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
         trackLimits.put(TrackType.TRACK, 70);
         trackLimits.put(TrackType.STRAIGHT, 30);
-        trackLimits.put(TrackType.CURVE, 40);
+        trackLimits.put(TrackType.CURVE, 38);
         trackLimits.put(TrackType.INTERSECTION, 4);
         trackLimits.put(TrackType.SWITCH, 4);
         trackLimits.put(TrackType.STRAIGHT_TRACK, 20);
