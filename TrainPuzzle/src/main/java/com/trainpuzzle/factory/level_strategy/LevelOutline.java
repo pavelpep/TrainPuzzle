@@ -1,6 +1,7 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import com.trainpuzzle.controller.CargoGenerator;
 import com.trainpuzzle.controller.CargoRequestGenerator;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
+import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Connection;
 import com.trainpuzzle.model.board.Location;
@@ -98,5 +100,27 @@ public abstract class LevelOutline {
 		condiction.addChild(lcondition);
 		
 	}
+	
+	protected void addCargoGenerator(Station station, int interval, CargoType cargoType){
+		int numOfGeneratorAtStation = station.getNumOfCargoGenerator();
+		int numOfRequesterAtStation = station.getNumOfCargoRequestor();
+		if (numOfGeneratorAtStation < 2 && numOfRequesterAtStation==0){
+			CargoGenerator cargoGenrator = new CargoGenerator(station, interval, cargoType);
+			cargoGenerators.add(cargoGenrator);
+			station.setNumOfCargoGenerator(numOfGeneratorAtStation+1);
+		}
+	}
+	
+	protected void addCargoRequester(Station station, int interval, CargoType cargoType){
+		int numOfGeneratorAtStation = station.getNumOfCargoGenerator();
+		int numOfRequesterAtStation = station.getNumOfCargoRequestor();
+		if (numOfGeneratorAtStation == 0 && numOfRequesterAtStation < 2){
+			CargoRequestGenerator cargoRequester = new CargoRequestGenerator(station, root, interval, cargoType);
+			cargoRequestGenerators.add(cargoRequester);
+			station.setNumOfCargoRequestor(numOfRequesterAtStation+1);
+		}
+	}	
+ 	
+
 	
 }

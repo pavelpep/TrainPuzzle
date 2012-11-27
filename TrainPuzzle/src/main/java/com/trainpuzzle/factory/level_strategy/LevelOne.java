@@ -33,9 +33,7 @@ public class LevelOne extends LevelOutline {
         Economy economy = createEconomy();
         
         Level levelOne=new Level(1, this.board, createStartLocation(), this.root, economy);
-        for (CargoGenerator cargoGenerator: cargoGenerators){
-        	levelOne.addCargoGenerator(cargoGenerator);
-        }
+        levelOne.setCargoGenerators(cargoGenerators);
         levelOne.setTimeLimit(60);
         	        
     	return levelOne;
@@ -80,10 +78,8 @@ public class LevelOne extends LevelOutline {
         
         //There can not be more than 2 generators at one station
         //Don't add generator and requestor at one station simultaneously.
-        CargoGenerator ironFactory = new CargoGenerator(stationToAdd,6,CargoType.COAL);
-        cargoGenerators.add(ironFactory);
-        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,8,CargoType.STEEL);
-        cargoGenerators.add(coalFactory);
+        addCargoGenerator(stationToAdd, 6, CargoType.COAL);
+        addCargoGenerator(stationToAdd, 6, CargoType.STEEL);
         
         setStations(stations);
 	}	
