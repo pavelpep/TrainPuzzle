@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -208,6 +209,7 @@ public class LevelMap extends JPanel implements Observer {
 		
 		for (Cargo cargo: importCargoList) {
 			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
+			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 			cargoRow1.add(cargoLabel);
 		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
@@ -221,6 +223,7 @@ public class LevelMap extends JPanel implements Observer {
 	private void displayAllCargoesInStation(JPanel cargoRow, LinkedList<Cargo> exportCargoList){
 		for (Cargo cargo: exportCargoList) {
 			JLabel cargoLabel = new JLabel(getExportCargoIcon(cargo.getType()));
+			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 			cargoRow.add(cargoLabel);
 		}			
 	}
@@ -229,6 +232,7 @@ public class LevelMap extends JPanel implements Observer {
 		for (CargoType cargoType: CargoType.values()){
 			if (cargoTypeExist.get(cargoType)){	
 				JLabel cargoLabel = new JLabel(getExportCargoIcon(cargoType));
+				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 				cargoRow1.add(cargoLabel);
 			}
 		}
