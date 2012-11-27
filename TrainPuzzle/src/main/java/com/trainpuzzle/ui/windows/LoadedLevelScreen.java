@@ -277,7 +277,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		selectedTrackPanel = new SelectedTrack(this);
 		controlPanel.add(selectedTrackPanel);
 		
-		JButton toggleButton = initializeButton("Toggle switches","toggle");
+		JButton toggleButton = initializeButton("Control switches","toggle");
 		initializeComponent(toggleButton, 15);
 		controlPanel.add(toggleButton);
 		

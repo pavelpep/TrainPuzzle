@@ -326,10 +326,10 @@ public class LevelMap extends JPanel implements Observer {
 	private void drawTrack(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		removeComponentsInGUILayer(mapTile,trackLayerIndex);
+		Tile tile = level.getBoard().getTile(row, column);
 		
-		if(level.getBoard().getTile(row, column).hasTrack()) {
-			Track track = level.getBoard().getTile(row, column).getTrack();
-			
+		if(tile.hasTrack()) {
+			Track track = tile.getTrack();
 			
 			if (track.isSwitch()) {
 				((Switch)track).register(this);
