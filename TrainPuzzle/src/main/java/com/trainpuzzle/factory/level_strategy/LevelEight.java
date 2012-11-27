@@ -55,15 +55,15 @@ public class LevelEight extends LevelOutline {
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
-        trackLimits.put(TrackType.TRACK, 25);
+        trackLimits.put(TrackType.TRACK, 26);
         trackLimits.put(TrackType.STRAIGHT, 10);
         trackLimits.put(TrackType.CURVE, 22);
         trackLimits.put(TrackType.INTERSECTION, 3);
         trackLimits.put(TrackType.SWITCH, 3);
-        trackLimits.put(TrackType.STRAIGHT_TRACK, 5);
-        trackLimits.put(TrackType.DIAGONAL_TRACK, 5);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, 12);
-        trackLimits.put(TrackType.CURVERIGHT_TRACK, 12);
+        trackLimits.put(TrackType.STRAIGHT_TRACK, 7);
+        trackLimits.put(TrackType.DIAGONAL_TRACK, 7);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 14);
+        trackLimits.put(TrackType.CURVERIGHT_TRACK, 14);
         trackLimits.put(TrackType.INTERSECTION_TRACK, 2);
         trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
         trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 2);
@@ -86,7 +86,7 @@ public class LevelEight extends LevelOutline {
 		setLandscapeByRow(6, 8, 9, lightSwamp);
 		
 		setLandscapeByRow(0, 3, 12, medSwamp);
-		setLandscapeByRow(1, 5, 11, medSwamp);
+		setLandscapeByRow(1, 4, 11, medSwamp);
 		setLandscapeByRow(2, 5, 10, medSwamp);
 		setLandscapeByRow(3, 6, 10, medSwamp);
 		setLandscapeByRow(4, 7, 9, medSwamp);
