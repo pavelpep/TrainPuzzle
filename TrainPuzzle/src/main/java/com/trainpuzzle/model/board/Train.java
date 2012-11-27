@@ -133,7 +133,7 @@ public class Train implements Observable {
 					break;
 				}
 			}
-		}
+		}	
 	}
 	
 	private int totalNumofCargos(){
@@ -145,9 +145,9 @@ public class Train implements Observable {
 	}
 	
 	private void throwAndPickOneCargo(Station station){
-		for (int i=0;i < trainCars.size();i++){
-			System.out.println("trainCarCargos="+trainCars.get(i).getCargo().getType()+"i="+i);
-		}
+		/*for (int i=0;i < trainCars.size();i++){
+			System.out.println("throwAndPick-trainCarCargos="+trainCars.get(i).getCargo().getType()+"i="+i);
+		}*/
 		
 		decrementNumber(trainCars.get(0).getCargo());
 		for(int trainCarNum = 0; trainCarNum < (trainCars.size()-1); trainCarNum++) {

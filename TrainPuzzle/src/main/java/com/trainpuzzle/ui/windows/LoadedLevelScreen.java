@@ -212,7 +212,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		int numOfCargoOnTrain = 0; 
 		for (CargoType cargoType: CargoType.values()){
 			numOfCargoOnTrain = train.getNumOfCargoes().get(cargoType);
-			cargoPanel.add(cargo(cargoType.toString(), getCargoIcon(cargoType), numOfCargoOnTrain));
+			cargoPanel.add(cargo(cargoType.getName(), getCargoIcon(cargoType), numOfCargoOnTrain));
 		}
 	}
 		
@@ -241,7 +241,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private JPanel cargo(String cargoType, ImageIcon cargoImage, Integer numberOfCargo) {
 		JPanel cargo = new JPanel();
 		cargo.setLayout(new BoxLayout(cargo, BoxLayout.Y_AXIS));
-		cargo.setBorder(new EmptyBorder(0, 10, 0, 10));
+		cargo.setBorder(new EmptyBorder(0, 1, 0, 1));
 		
 		JLabel cargoTypeLabel = new JLabel(cargoType);
 		initializeComponent(cargoTypeLabel, 10);
