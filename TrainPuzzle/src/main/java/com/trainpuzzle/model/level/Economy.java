@@ -36,8 +36,10 @@ public class Economy implements java.io.Serializable, Observable {
 		if(budget != NO_LIMIT) {
 			this.budget = budget + trackType.getPrice();
 		}
+		
 		if(currentNumOfThisTrack != NO_LIMIT) {
 			currentNumOfThisTrack = currentNumOfThisTrack - multiplier;
+			if (currentNumOfThisTrack < 0) return;
 			numberOfAvailableTrack.put(trackType, currentNumOfThisTrack);
 		}
 		if(trackType.getParent() != null) {
@@ -62,13 +64,13 @@ public class Economy implements java.io.Serializable, Observable {
 		notifyAllObservers();
 	}
 	
-	public boolean isAvailable(TrackType trackType) {
+	public boolean isTrackAvailable(TrackType trackType, int multiplier) {
 		boolean isRootOfTrackType = trackType.getParent() == null;
 		
-		boolean isRootAvailable = numberOfAvailableTrack.get(trackType) > 0 || 
+		boolean isRootAvailable = numberOfAvailableTrack.get(trackType) - multiplier >= 0 || 
 				numberOfAvailableTrack.get(trackType) == NO_LIMIT;
 		
-		boolean trackTypeIsAvailable = numberOfAvailableTrack.get(trackType) > 0 || 
+		boolean trackTypeIsAvailable = numberOfAvailableTrack.get(trackType) - multiplier >= 0 || 
 				numberOfAvailableTrack.get(trackType) == NO_LIMIT;
 		
 		if(budget == NO_LIMIT || budget >= trackType.getPrice()) {
@@ -76,7 +78,7 @@ public class Economy implements java.io.Serializable, Observable {
 				return isRootAvailable;
 			}			
 			if(trackTypeIsAvailable) {
-				return isAvailable(trackType.getParent());
+				return isTrackAvailable(trackType.getParent(), multiplier);
 			}
 		}
 		return false;

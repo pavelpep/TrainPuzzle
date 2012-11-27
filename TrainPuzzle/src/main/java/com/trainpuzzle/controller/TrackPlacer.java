@@ -58,7 +58,8 @@ public class TrackPlacer {
 		else if (tile.getLandscapeType() == LandscapeType.WATER) {
 			errorMessage = commonMessage + "there was a water landscape";
 		}
-		else if (!economy.isAvailable(track.getTrackType())) {
+		else if (!economy.isTrackAvailable(track.getTrackType(), 
+				tile.getLandscape().getMultiplier())) {
 			errorMessage = commonMessage + "the track is out of limit";
 		}
 		return errorMessage;
