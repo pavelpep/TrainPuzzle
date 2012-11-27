@@ -60,19 +60,19 @@ public class LevelSix extends LevelOutline {
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
-        trackLimits.put(TrackType.TRACK, 100);
-        trackLimits.put(TrackType.STRAIGHT, 100);
-        trackLimits.put(TrackType.CURVE, 100);
-        trackLimits.put(TrackType.INTERSECTION, 100);
-        trackLimits.put(TrackType.SWITCH, 100);
-        trackLimits.put(TrackType.STRAIGHT_TRACK, 100);
-        trackLimits.put(TrackType.DIAGONAL_TRACK, 100);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, 100);
-        trackLimits.put(TrackType.CURVERIGHT_TRACK, 100);
-        trackLimits.put(TrackType.INTERSECTION_TRACK, 100);
-        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 100);
-        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 100);
-        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 100);
+        trackLimits.put(TrackType.TRACK, 70);
+        trackLimits.put(TrackType.STRAIGHT, 30);
+        trackLimits.put(TrackType.CURVE, 40);
+        trackLimits.put(TrackType.INTERSECTION, 4);
+        trackLimits.put(TrackType.SWITCH, 4);
+        trackLimits.put(TrackType.STRAIGHT_TRACK, 20);
+        trackLimits.put(TrackType.DIAGONAL_TRACK, 10);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 22);
+        trackLimits.put(TrackType.CURVERIGHT_TRACK, 22);
+        trackLimits.put(TrackType.INTERSECTION_TRACK, 2);
+        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
+        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 2);
+        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 2);
         
         return trackLimits;
 	}
