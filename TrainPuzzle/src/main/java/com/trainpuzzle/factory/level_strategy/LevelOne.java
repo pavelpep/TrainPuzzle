@@ -1,7 +1,6 @@
 package com.trainpuzzle.factory.level_strategy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import java.util.HashMap;
 
@@ -79,7 +78,7 @@ public class LevelOne extends LevelOutline {
         //Don't add generator and requestor at one station simultaneously.
         CargoGenerator ironFactory = new CargoGenerator(stationToAdd,6,CargoType.IRON);
         cargoGenerators.add(ironFactory);
-        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,8,CargoType.COAL);
+        CargoGenerator coalFactory = new CargoGenerator(stationToAdd,8,CargoType.STEEL);
         cargoGenerators.add(coalFactory);
         
         setStations(stations);

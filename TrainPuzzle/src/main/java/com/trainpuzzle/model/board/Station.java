@@ -44,7 +44,7 @@ public class Station implements java.io.Serializable, Observable {
 	private LinkedList<Cargo> importCargo = new LinkedList<Cargo>();
 	private int numOfCargoGenerator = 0;
 	private int numOfCargoRequestor = 0;
-	private HashMap<CargoType, Boolean>  cargoTypeExist = new HashMap<CargoType, Boolean>();
+	private HashMap<CargoType, Boolean>  canGeneratCargoTypes = new HashMap<CargoType, Boolean>();
 	
 	
 	public Station(StationType station, Location stationLocation, CompassHeading entranceFacing) {
@@ -57,7 +57,7 @@ public class Station implements java.io.Serializable, Observable {
 		this.track = createTrack();
 		this.stationBuilding=createObstacle(stationType);
 		for (CargoType cargoType: CargoType.values()){
-			this.cargoTypeExist.put(cargoType, false);
+			this.canGeneratCargoTypes.put(cargoType, false);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public HashMap<CargoType, Boolean> getCargoTypeExist() {
-		return cargoTypeExist;
+		return canGeneratCargoTypes;
 	}
 
 	private Track createTrack() {
@@ -135,7 +135,7 @@ public class Station implements java.io.Serializable, Observable {
 	public void setCargo(Station station) {
 		this.exportCargo = station.exportCargo;
 		this.importCargo = station.importCargo;
-		this.cargoTypeExist = station.cargoTypeExist;
+		this.canGeneratCargoTypes = station.canGeneratCargoTypes;
 		notifyAllObservers();
 	}
 	
@@ -207,8 +207,6 @@ public class Station implements java.io.Serializable, Observable {
 			return;
 		}
 		exportCargo.removeFirstOccurrence(cargo);
-		Boolean typeExist = exportCargo.contains(cargo);
-		this.cargoTypeExist.put(cargo.getType(), typeExist);
 		notifyAllObservers();
 	}
 	
@@ -217,7 +215,6 @@ public class Station implements java.io.Serializable, Observable {
 			return;
 		}
 		this.exportCargo.add(cargo);
-		cargoTypeExist.put(cargo.getType(), true);
 		notifyAllObservers();
 	}
 	

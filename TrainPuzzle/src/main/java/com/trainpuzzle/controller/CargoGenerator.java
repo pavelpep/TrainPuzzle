@@ -17,6 +17,7 @@ public class CargoGenerator {
 	
 	public CargoGenerator(Station station, int generatingInterval, CargoType type) {
 		this.station = station;
+		station.getCargoTypeExist().put(type, true);
 		this.generatingInterval = generatingInterval;
 		this.generateType = type;
 	}

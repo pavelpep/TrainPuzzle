@@ -174,7 +174,7 @@ public class LevelMap extends JPanel implements Observer {
 	}
 
 	//For cargo-generating station, display all types of cargos which can generate
-	//and the time interval to generate each type of cargo.
+	//and the time intervals to generate each type of cargo.
 	private void drawCargoes(JLayeredPane mapTile, Station station){
 		
 		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
@@ -224,7 +224,7 @@ public class LevelMap extends JPanel implements Observer {
 			cargoRow.add(cargoLabel);
 		}			
 	}
-	
+
 	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> cargoTypeExist){
 		for (CargoType cargoType: CargoType.values()){
 			if (cargoTypeExist.get(cargoType)){	
@@ -236,9 +236,10 @@ public class LevelMap extends JPanel implements Observer {
 	
 	private void displayGeneratorFrequency(JPanel cargoRow2,Station station,
 			HashMap<CargoType,Boolean> cargoTypeExist){
+		final int ANY_INTERVAL = 10;
 		for (CargoType cargoType: CargoType.values()){
 			if (cargoTypeExist.get(cargoType)){
-				CargoGenerator wantedGenerator = new CargoGenerator(station,10,cargoType);
+				CargoGenerator wantedGenerator = new CargoGenerator(station,ANY_INTERVAL,cargoType);
 				int indexOfCargoGenerator = level.getCargoGenerators().indexOf(wantedGenerator);
 				wantedGenerator = level.getCargoGenerators().get(indexOfCargoGenerator);
 				
