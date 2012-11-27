@@ -2,7 +2,7 @@ package com.trainpuzzle.controller;
 
 import org.apache.log4j.Logger;
 
-import com.trainpuzzle.exception.CannotToggleSwitchException;
+import com.trainpuzzle.exception.CannotOperateSwitchException;
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Switch;
 import com.trainpuzzle.model.board.Tile;
@@ -19,7 +19,7 @@ public class SwitchToggler {
 		this.map = levelToAddTrack.getBoard();
 	}
 	
-	public void toggleSwitch(int row, int column) throws CannotToggleSwitchException {
+	public void toggleSwitch(int row, int column) throws CannotOperateSwitchException {
 		Tile tile = map.getTile(row, column);
 		Track track;
 		
@@ -31,13 +31,13 @@ public class SwitchToggler {
 		}
 		else {
 			logger.warn("CannotRemoveTrackException was thrown");
-			throw new CannotToggleSwitchException(errorMessage);
+			throw new CannotOperateSwitchException(errorMessage);
 		}
 	}
 	
 	private String getToggleSwitchErrorMessage(Tile tile) {
 		String errorMessage = "";
-		String commonMessage = "Failed to toggle a switch because ";
+		String commonMessage = "Failed to operate a switch because ";
 		
 		if (!tile.hasTrack()) {
 			errorMessage = commonMessage + "there was no track";
