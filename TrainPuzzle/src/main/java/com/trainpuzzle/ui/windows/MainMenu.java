@@ -78,6 +78,9 @@ public class MainMenu extends Window implements ActionListener {
 				WindowManager.getManager().setActiveWindow(loadedLevelScreen);
 			}
 	    } 
+		else if (action == "credits") {
+			WindowManager.getManager().setActiveWindow(new Credits()); 
+		}
 		else if (action == "exit") {
 			System.exit(0);
 		}
