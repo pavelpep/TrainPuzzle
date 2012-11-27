@@ -41,7 +41,7 @@ public final class Images {
 	public final static String REQUIRED_COTTON = "src/main/resources/images/whiteFrame.png";
 	public final static String REQUIRED_WOOD = "src/main/resources/images/brownFrame.png";
 	public final static String REQUIRED_COAL = "src/main/resources/images/blackFrame.png";
-	public final static String REQUIRED_STEEL = "src/main/resources/images/steelFrame.png";
+	public final static String REQUIRED_STEEL = "src/main/resources/images/greyFrame.png";
 	
 	// Tracks
 	public final static String PERMANENT_STRAIGHT_TRACK = "src/main/resources/images/permanent_track.png";
