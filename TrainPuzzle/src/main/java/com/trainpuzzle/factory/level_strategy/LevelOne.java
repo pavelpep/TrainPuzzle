@@ -56,9 +56,12 @@ public class LevelOne extends LevelOutline {
 
 	private void initStationsAndCargoGenerator() {
 		ArrayList<Station> stations = new ArrayList<Station>();
+		
+		//There can not be more than 3 cargos or requested cargos in a green or red station;
         Station stationToAdd=new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST);
         stations.add(stationToAdd);
         stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
+        stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
         stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
         
         stationToAdd = new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH);
@@ -70,6 +73,7 @@ public class LevelOne extends LevelOutline {
         stations.add(stationToAdd);
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
+        addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
         
         stationToAdd = new Station(StationType.FACTORY, new Location(8, 15), CompassHeading.WEST);
         stations.add(stationToAdd);

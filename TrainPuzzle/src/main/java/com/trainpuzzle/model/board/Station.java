@@ -211,8 +211,11 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void addExportCargo(Cargo cargo) {
-		if  (exportCargo.size() >= 99) {
-			return;
+		if (stationType==StationType.GREEN || stationType==StationType.RED){
+			if (exportCargo.size()+importCargo.size() >= 3) return;		
+		}
+		else{
+			if  (exportCargo.size() >= 99) 	return;
 		}
 		this.exportCargo.add(cargo);
 		notifyAllObservers();
@@ -226,7 +229,12 @@ public class Station implements java.io.Serializable, Observable {
 	
 		
 	public void addImportCargo(Cargo cargo) {
-		assert importCargo.size() < 2 : "Cargo types can be up to 2";		
+		if (stationType==StationType.GREEN || stationType==StationType.RED){
+			if (exportCargo.size()+importCargo.size() >= 3) return;		
+		}
+		else{
+			if (importCargo.size() >=99) return;			
+		}
 		this.importCargo.add(cargo);
 		notifyAllObservers();
 	}
