@@ -28,7 +28,7 @@ public class LevelSeven extends LevelOutline {
 	
 	@Override
 	public Level createLevel() {
-		this.board = new Board(13, 19);
+		this.board = new Board(13, 19, LandscapeType.LIGHTSWAMP);
         this.root = new AndVictoryCondition();
         root.setDefaultModel();
 
@@ -82,7 +82,7 @@ public class LevelSeven extends LevelOutline {
         //generator
         stationToAdd = new Station(StationType.RED, new Location(5, 3), CompassHeading.SOUTH);
         stations.add(stationToAdd);
-        stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
+        
         stationToAdd.addExportCargo(new Cargo(CargoType.COAL));
 /*        
         CargoGenerator ironFactory = new CargoGenerator(stationToAdd,6,CargoType.IRON);
@@ -92,13 +92,11 @@ public class LevelSeven extends LevelOutline {
 */        
         //first set of stations: need iron & coal cargo
         stationToAdd = new Station(StationType.RED, new Location(2, 6), CompassHeading.WEST);
-        stations.add(stationToAdd);
-        addImportCargo (stationToAdd, pathOne, new Cargo(CargoType.IRON));	
+        stations.add(stationToAdd);	
         addImportCargo (stationToAdd, pathOne, new Cargo(CargoType.COAL));
 
         stationToAdd = new Station(StationType.GREEN, new Location(10, 6), CompassHeading.WEST);
-        stations.add(stationToAdd);
-        addImportCargo (stationToAdd, pathTwo, new Cargo(CargoType.IRON));	
+        stations.add(stationToAdd);	
         addImportCargo (stationToAdd, pathTwo, new Cargo(CargoType.COAL));
         
         //second set of stations: have cotton cargo
@@ -109,14 +107,14 @@ public class LevelSeven extends LevelOutline {
 
         stationToAdd = new Station(StationType.GREEN, new Location(9, 10), CompassHeading.WEST);
         stations.add(stationToAdd);
-        stationToAdd.addExportCargo(new Cargo(CargoType.STEEL));
+        stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
         stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
         
         
         //third set of stations: need cotton cargo
         stationToAdd = new Station(StationType.RED, new Location(2, 14), CompassHeading.WEST);
         stations.add(stationToAdd);
-        addImportCargo (stationToAdd, pathOne, new Cargo(CargoType.STEEL));	
+        addImportCargo (stationToAdd, pathOne, new Cargo(CargoType.IRON));	
 
         stationToAdd = new Station(StationType.GREEN, new Location(10, 14), CompassHeading.WEST);
         stations.add(stationToAdd);
@@ -134,46 +132,74 @@ public class LevelSeven extends LevelOutline {
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
         
         trackLimits.put(TrackType.TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.STRAIGHT, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVE, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.INTERSECTION, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.SWITCH, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.STRAIGHT_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.DIAGONAL_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVERIGHT_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.INTERSECTION_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, NO_ECONOMY_LIMIT);
+        trackLimits.put(TrackType.STRAIGHT, 22);
+        trackLimits.put(TrackType.CURVE, 22);
+        trackLimits.put(TrackType.INTERSECTION, 1);
+        trackLimits.put(TrackType.SWITCH, 0);
+        trackLimits.put(TrackType.STRAIGHT_TRACK, 22);
+        trackLimits.put(TrackType.DIAGONAL_TRACK, 22);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 15);
+        trackLimits.put(TrackType.CURVERIGHT_TRACK, 15);
+        trackLimits.put(TrackType.INTERSECTION_TRACK, 0);
+        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 1);
+        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 0);
+        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 0);
 		return trackLimits;
 	}
 
 	private void setLandscape() {
-/*
-		setLandscapeByRow(4, 9, 10, LandscapeType.WATER);
-        setLandscapeByRow(5, 10, 11, LandscapeType.WATER);
-        setLandscapeByRow(14, 0, 5, LandscapeType.WATER);
-        setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
-        setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
-        setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
-*/        
-        setLandscapeByRow(8, 4, 6, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(9, 3, 5, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(8, 6, 9, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(9, 5, 8, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(8, 9, 11, LandscapeType.LIGHTSWAMP);
-        setLandscapeByRow(9, 8, 10, LandscapeType.LIGHTSWAMP);
+		
+		
+		//////////////other to be removed
         
-        setLandscapeByColumn(4, 7, 17, LandscapeType.LIGHTDIRT);
-        setLandscapeByColumn(0, 2, 18, LandscapeType.DIRT);
-        //setLandscapeByColumn(0, 2, 19, LandscapeType.ROUGHDIRT);
-        //setLandscapeByColumn(8, 12, 18, LandscapeType.DIRT);
+        //start location: non-blocking swamp
+        setLandscapeByColumn(0, 12, 0, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(0, 4, 1, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(5, 8, 1, LandscapeType.MEDSWAMP);
+        setLandscapeByColumn(9, 12, 1, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(0, 3, 2, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(4, 6, 2, LandscapeType.MEDSWAMP);
+        setLandscapeByColumn(8, 10, 2, LandscapeType.MEDSWAMP);
+        setLandscapeByColumn(10, 12, 2, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(0, 2, 3, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(11, 12, 3, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(0, 1, 4, LandscapeType.DARKSWAMP);
+        setLandscapeByColumn(0, 0, 5, LandscapeType.DARKSWAMP);
+        
+        //second red station: non-blocking swamp
+        setLandscapeByRow(0, 8, 12, LandscapeType.DARKSWAMP);
+        setLandscapeByRow(1, 9, 12, LandscapeType.MEDSWAMP);
+        setLandscapeByRow(2, 10, 11, LandscapeType.LIGHTSWAMP);
+        
+        //random blocks
+        setLandscapeByColumn(6, 6, 9, LandscapeType.MEDSWAMP);
+        setLandscapeByColumn(7, 7, 12, LandscapeType.MEDSWAMP);
+        
+        //last station: beach landscape
+        setLandscapeByColumn(0, 0, 13, LandscapeType.ROUGHDIRT);
+        setLandscapeByColumn(12, 12, 13, LandscapeType.ROUGHDIRT);
+        setLandscapeByColumn(0, 0, 14, LandscapeType.DIRT);
+        setLandscapeByColumn(1, 1, 14, LandscapeType.ROUGHDIRT);
+        setLandscapeByColumn(11, 11, 14, LandscapeType.ROUGHDIRT);
+        setLandscapeByColumn(12, 12, 14, LandscapeType.DIRT);
+        setLandscapeByColumn(0, 0, 15, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(1, 1, 15, LandscapeType.DIRT);
+        setLandscapeByColumn(2, 10, 15, LandscapeType.ROUGHDIRT);
+        setLandscapeByColumn(11, 11, 15, LandscapeType.DIRT);
+        setLandscapeByColumn(12, 12, 15, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(1, 1, 16, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(11, 11, 16, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(0, 0, 16, LandscapeType.WATER);
+        setLandscapeByColumn(12, 12, 16, LandscapeType.WATER);
+        setLandscapeByColumn(2, 10, 16, LandscapeType.DIRT);
+        setLandscapeByColumn(2, 10, 17, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(0, 1, 17, LandscapeType.WATER);
+        setLandscapeByColumn(11, 12, 17, LandscapeType.WATER);
+        
+        setLandscapeByColumn(5, 6, 18, LandscapeType.LIGHTDIRT);
+        setLandscapeByColumn(0, 4, 18, LandscapeType.WATER);
+        setLandscapeByColumn(7, 12, 18, LandscapeType.WATER);
         //setLandscapeByColumn(9, 14, 19, LandscapeType.ROUGHDIRT);
-/*        
-        setLandscapeByColumn(4, 7, 18, LandscapeType.WATER);
-        setLandscapeByColumn(3, 8, 19, LandscapeType.WATER);
-*/        
 	}
 
 	private void setObstacles() {
@@ -210,8 +236,8 @@ public class LevelSeven extends LevelOutline {
 		
 		
 		//for third set of stations
-		setObstaclesByColumn(3, 9, 14, ObstacleType.TREES);
-		setObstaclesByColumn(1, 11, 15, ObstacleType.TREES);
+		setObstaclesByColumn(3, 9, 14, ObstacleType.ROCK);
+		setObstaclesByColumn(1, 11, 15, ObstacleType.ROCK);
 		
 /*
         setObstaclesByRow(5, 9, 9, ObstacleType.TREES);
