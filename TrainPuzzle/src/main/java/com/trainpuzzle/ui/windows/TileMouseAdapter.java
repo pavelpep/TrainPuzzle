@@ -5,7 +5,7 @@ import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.exception.CannotOperateSwitchException;
 
-import com.trainpuzzle.controller.SwitchToggler;
+import com.trainpuzzle.controller.SwitchController;
 import com.trainpuzzle.controller.TrackPlacer;
 
 import com.trainpuzzle.model.board.CompassHeading;
@@ -20,7 +20,7 @@ import java.awt.event.*;
 
 public class TileMouseAdapter extends MouseAdapter {
 	private TrackPlacer trackPlacer;
-	private SwitchToggler switchToggler;
+	private SwitchController switchToggler;
 	private Track track;
 	
 	private Mode mode;
@@ -33,7 +33,7 @@ public class TileMouseAdapter extends MouseAdapter {
 	public TileMouseAdapter(Level level) {
 		super();
 		trackPlacer = new TrackPlacer(level);
-		switchToggler = new SwitchToggler(level);
+		switchToggler = new SwitchController(level);
 		track = new Track(new Connection(CompassHeading.EAST, CompassHeading.WEST), TrackType.STRAIGHT_TRACK);
 		mode = Mode.PlaceTrack;
 	}

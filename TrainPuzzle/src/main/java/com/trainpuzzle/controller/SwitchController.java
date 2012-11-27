@@ -9,12 +9,12 @@ import com.trainpuzzle.model.board.Tile;
 import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.level.Level;
 
-public class SwitchToggler {
+public class SwitchController {
 	private Logger logger = Logger.getLogger(TrackPlacer.class);
 	private Level levelToAddTrack;
 	private Board map;
 	
-	public SwitchToggler(Level levelToToggleSwitch) {
+	public SwitchController(Level levelToToggleSwitch) {
 		this.levelToAddTrack = levelToToggleSwitch;
 		this.map = levelToAddTrack.getBoard();
 	}
