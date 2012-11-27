@@ -80,7 +80,8 @@ public class LevelSeven extends LevelOutline {
         //generator
         stationToAdd = new Station(StationType.FACTORY, new Location(5, 3), CompassHeading.SOUTH);
         stations.add(stationToAdd);
-        addCargoGenerator(stationToAdd, 6, CargoType.IRON);
+        addCargoGenerator(stationToAdd, 2, CargoType.COAL);
+        
         
         //stationToAdd.addExportCargo(new Cargo(CargoType.COAL));
 /*        
