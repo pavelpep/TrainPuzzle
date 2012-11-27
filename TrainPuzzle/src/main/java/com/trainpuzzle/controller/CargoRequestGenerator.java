@@ -21,6 +21,7 @@ public class CargoRequestGenerator {
 	
 	public CargoRequestGenerator(Station station, LogicalVictoryCondition condition, int time, CargoType type) {
 		this.station = station;
+		station.getCargoTypeExist().put(type, true);
 		this.time = time;
 		this.parentVictoryCondition =new IfThenVictoryCondition();
 		this.requestType =type;

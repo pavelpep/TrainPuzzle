@@ -202,6 +202,7 @@ public class LevelMap extends JPanel implements Observer {
 				
 		if (stationType==StationType.GREEN || stationType==StationType.RED){
 			displayAllCargoesInStation(cargoRow1, exportCargoList);
+			displayAllRequestsInStation(cargoRow1, importCargoList);
 		}
 		else{
 			displayCargoTypesInStation(cargoRow1, cargoTypeExist);
@@ -211,11 +212,6 @@ public class LevelMap extends JPanel implements Observer {
 		cargoLayer.add(cargoRow1);
 		cargoLayer.add(cargoRow2);		
 		
-		for (Cargo cargo: importCargoList) {
-			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
-			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
-			cargoRow1.add(cargoLabel);
-		}
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
@@ -232,6 +228,14 @@ public class LevelMap extends JPanel implements Observer {
 		}			
 	}
 
+	private void displayAllRequestsInStation(JPanel cargoRow, LinkedList<Cargo> importCargoList){
+		for (Cargo cargo: importCargoList) {
+			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
+			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
+			cargoRow.add(cargoLabel);
+		}			
+	}
+	
 	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> cargoTypeExist){
 		for (CargoType cargoType: CargoType.values()){
 			if (cargoTypeExist.get(cargoType)){	
