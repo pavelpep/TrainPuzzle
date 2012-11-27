@@ -1,6 +1,7 @@
 package com.trainpuzzle.model.level.victory_condition;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class OrVictoryCondition extends LogicalVictoryCondition implements java.io.Serializable {
 	
@@ -10,6 +11,7 @@ public class OrVictoryCondition extends LogicalVictoryCondition implements java.
 		userObject = new TreeNodeUserObject(this,"Choose 1 objective");
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
 		this.setDisplayNode(displayNode);
+		setTreeModel(new DefaultTreeModel(displayNode));
 	}
 	
 	protected boolean checkChildrenSatisfied() {

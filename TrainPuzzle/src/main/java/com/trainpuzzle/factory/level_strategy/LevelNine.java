@@ -24,7 +24,6 @@ public class LevelNine extends LevelOutline {
 	public Level createLevel() {
 		this.board = new Board(9, 15, LandscapeType.MEDSWAMP);
         this.root = new AndVictoryCondition();
-        root.setDefaultModel();
         
         initStations();
         setLandscape();

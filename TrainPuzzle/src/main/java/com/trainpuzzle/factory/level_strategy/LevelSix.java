@@ -22,7 +22,6 @@ public class LevelSix extends LevelOutline {
 	public Level createLevel() {
 		this.board = new Board(15, 15, LandscapeType.DIRT);
         this.root = new AndVictoryCondition();
-        root.setDefaultModel();
         
         initStations();
         setLandscape();
@@ -61,19 +60,19 @@ public class LevelSix extends LevelOutline {
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        
 		HashMap<TrackType, Integer> trackLimits = new HashMap<TrackType,Integer>();
-        trackLimits.put(TrackType.TRACK, 29);
-        trackLimits.put(TrackType.STRAIGHT, 10);
-        trackLimits.put(TrackType.CURVE, 15);
-        trackLimits.put(TrackType.INTERSECTION, 2);
-        trackLimits.put(TrackType.SWITCH, 2);
-        trackLimits.put(TrackType.STRAIGHT_TRACK, 10);
-        trackLimits.put(TrackType.DIAGONAL_TRACK, 10);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, 10);
-        trackLimits.put(TrackType.CURVERIGHT_TRACK, 10);
-        trackLimits.put(TrackType.INTERSECTION_TRACK, 2);
-        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 2);
-        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 2);
-        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 2);
+        trackLimits.put(TrackType.TRACK, 100);
+        trackLimits.put(TrackType.STRAIGHT, 100);
+        trackLimits.put(TrackType.CURVE, 100);
+        trackLimits.put(TrackType.INTERSECTION, 100);
+        trackLimits.put(TrackType.SWITCH, 100);
+        trackLimits.put(TrackType.STRAIGHT_TRACK, 100);
+        trackLimits.put(TrackType.DIAGONAL_TRACK, 100);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 100);
+        trackLimits.put(TrackType.CURVERIGHT_TRACK, 100);
+        trackLimits.put(TrackType.INTERSECTION_TRACK, 100);
+        trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 100);
+        trackLimits.put(TrackType.CURVELEFT_STRAIGHT_SWITCH, 100);
+        trackLimits.put(TrackType.CURVERIGHT_STRAIGHT_SWITCH, 100);
         
         return trackLimits;
 	}

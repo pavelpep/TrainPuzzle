@@ -24,7 +24,6 @@ public class LevelTen extends LevelOutline {
 	@Override
 	public Level createLevel() {
         this.root = new AndVictoryCondition();
-        root.setDefaultModel();
 
         setLandscape();
         initStationsAndCargoGenerator();

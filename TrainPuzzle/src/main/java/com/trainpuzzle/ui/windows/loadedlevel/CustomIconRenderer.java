@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
 
@@ -21,15 +23,18 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
 	}
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-		DefaultMutableTreeNode nodeObj = ((DefaultMutableTreeNode)value);
-		TreeNodeUserObject userObject = (TreeNodeUserObject)(nodeObj.getUserObject());
+
+		DefaultMutableTreeNode node = ((DefaultMutableTreeNode)value);
+		TreeNodeUserObject userObject = (TreeNodeUserObject)(node.getUserObject());
+		
 		if (userObject.getVictoryCondition().isSatisfied()) {
 			setIcon(satisfisedIcon);
 		} else {
 			setIcon(unsatisfisedIcon);
-		} 
+		}
 		
-		setText(userObject.getLabel());
+		setText(userObject.getLabel()); 
+		//setText((String) node.getUserObject());
 		return this;
 	}
 	

@@ -22,7 +22,6 @@ public class LevelEight extends LevelOutline {
 	public Level createLevel() {
 		this.board = new Board(11, 13);
         this.root = new AndVictoryCondition();
-        root.setDefaultModel();
         
         initStations();
         setLandscape();

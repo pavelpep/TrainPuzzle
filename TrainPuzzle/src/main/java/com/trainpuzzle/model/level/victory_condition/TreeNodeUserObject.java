@@ -1,6 +1,8 @@
 package com.trainpuzzle.model.level.victory_condition;
 
-public class TreeNodeUserObject {
+public class TreeNodeUserObject implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private VictoryCondition victoryCondition;
 	private String label;
 	

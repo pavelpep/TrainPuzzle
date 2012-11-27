@@ -28,7 +28,6 @@ public class LevelSeven extends LevelOutline {
 	public Level createLevel() {
 		this.board = new Board(13, 19, LandscapeType.LIGHTSWAMP);
         this.root = new AndVictoryCondition();
-        root.setDefaultModel();
 
         setLandscape();
         initStationsAndCargoGenerator();

@@ -14,6 +14,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 import com.trainpuzzle.controller.GameController;
 
 
@@ -35,10 +37,10 @@ public class VictoryConditions extends JPanel {// implements TreeSelectionListen
 		victoryConditionsTitle.setTitlePosition(TitledBorder.ABOVE_TOP);
 		this.setBorder(victoryConditionsTitle);
 		
-		
-		
-        DefaultMutableTreeNode top = gameController.getLevel().getVictoryConditions().getDisplayNode();
-        tree = new JTree(top);
+        DefaultTreeModel treeModel = gameController.getLevel().getVictoryConditions().getTreeModel();
+        tree = new JTree(treeModel);
+        
+        
         /*tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
         gameController.getLevel().getVictoryConditions().setTreeModel(model);*/
