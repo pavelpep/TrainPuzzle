@@ -62,7 +62,7 @@ public class LevelTwo extends LevelOutline {
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        

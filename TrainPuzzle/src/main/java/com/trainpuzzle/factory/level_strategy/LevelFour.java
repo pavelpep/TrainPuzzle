@@ -67,7 +67,7 @@ public class LevelFour extends LevelOutline {
         addImportCargo (stationToAdd, root, new Cargo(CargoType.STEEL));
         addImportCargo (stationToAdd, root, new Cargo(CargoType.COAL));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        

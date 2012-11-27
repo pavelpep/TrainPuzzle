@@ -59,7 +59,7 @@ public class LevelFive extends LevelOutline{
         cargoRequestGenerators.add(requester);*/
         addCargoRequester(stationToAdd, 4, CargoType.IRON);
         
-        setStations(stations);
+        setPassStations(stations);
 	}	
 	
 

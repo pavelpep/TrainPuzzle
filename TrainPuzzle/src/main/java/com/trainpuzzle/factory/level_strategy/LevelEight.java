@@ -49,7 +49,7 @@ public class LevelEight extends LevelOutline {
 		ArrayList<Station> stations = new ArrayList<Station>();
         stations.add(new Station(StationType.RED, new Location(4, 12), CompassHeading.SOUTH));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        

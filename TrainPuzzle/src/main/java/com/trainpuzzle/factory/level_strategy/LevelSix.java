@@ -55,7 +55,7 @@ public class LevelSix extends LevelOutline {
         
         stations.add(new Station(StationType.RED, new Location(0, 13), CompassHeading.SOUTH));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        

@@ -64,7 +64,7 @@ public class LevelNine extends LevelOutline {
 		stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
 		addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        

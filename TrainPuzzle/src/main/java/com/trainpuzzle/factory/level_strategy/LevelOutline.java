@@ -46,6 +46,13 @@ public abstract class LevelOutline {
 		for (Station station : stations) {
 			board.getTile(station.getStationLocation()).setStationBuilding(station);
 			board.getTile(station.getTrackLocation()).setStationTrack(station);
+			}
+		}
+	
+	protected void setPassStations(ArrayList<Station> stations) {
+		for (Station station : stations) {
+			board.getTile(station.getStationLocation()).setStationBuilding(station);
+			board.getTile(station.getTrackLocation()).setStationTrack(station);
 			
 			// Adds victory condition for station
 			Event event = new Event(100,station); 

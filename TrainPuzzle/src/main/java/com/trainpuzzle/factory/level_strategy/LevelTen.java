@@ -80,7 +80,7 @@ public class LevelTen extends LevelOutline {
         addCargoGenerator(stationToAdd, 6, CargoType.COAL);
         addCargoGenerator(stationToAdd, 6, CargoType.STEEL);
         
-        setStations(stations);
+        setPassStations(stations);
 	}	
 	
 	private HashMap<TrackType, Integer> createTrackLimits() {

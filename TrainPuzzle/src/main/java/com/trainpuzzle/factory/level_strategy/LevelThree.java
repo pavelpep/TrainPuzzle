@@ -50,7 +50,7 @@ public class LevelThree extends LevelOutline {
         stations.add(new Station(StationType.GREEN, new Location(7, 5), CompassHeading.EAST));
         stations.add(new Station(StationType.RED, new Location(1, 8), CompassHeading.SOUTH));
         
-        setStations(stations);
+        setPassStations(stations);
 	}
 
 	private HashMap<TrackType, Integer> createTrackLimits() {        
