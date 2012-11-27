@@ -13,11 +13,11 @@ public class Switch extends Track implements Observable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Iterator<Connection> connectionsIterator;
+	private transient Iterator<Connection> connectionsIterator;
 	private Connection current;
 	private CompassHeading entrance;
 	
-	private Set<Observer> observerList = new HashSet<Observer>();
+	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Switch(Connection connection1, Connection connection2, TrackType trackType) {
 		super(connection1, connection2, trackType);

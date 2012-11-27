@@ -25,10 +25,10 @@ import com.trainpuzzle.observe.Observer;
 
 public class Station implements java.io.Serializable, Observable {
 	
-	private Logger logger = Logger.getLogger(Station.class);
+	
 	private static final long serialVersionUID = 1L;
 	private transient Set<Observer> observerList = new HashSet<Observer>();
-	
+	private transient Logger logger = Logger.getLogger(Station.class);
 	public enum StationType {
 		RED,
 		GREEN,

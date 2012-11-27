@@ -1,7 +1,6 @@
 package com.trainpuzzle.model.board;
 
 import java.util.Set;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.trainpuzzle.model.board.Landscape.LandscapeType;

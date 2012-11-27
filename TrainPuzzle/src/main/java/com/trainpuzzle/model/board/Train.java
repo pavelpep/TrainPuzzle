@@ -15,9 +15,9 @@ public class Train implements Observable {
  
 	private Location location = new Location(0,0); 
 	private CompassHeading heading = CompassHeading.EAST;
-	Set<Observer> observerList = new HashSet<Observer>();
-	Observer observerLoadedlevel;
-	List<TrainCar> trainCars = new ArrayList<TrainCar>();
+	private transient Set<Observer> observerList = new HashSet<Observer>();
+	private transient Observer observerLoadedlevel;
+	private List<TrainCar> trainCars = new ArrayList<TrainCar>();
 	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
 	
 	public Train() {
