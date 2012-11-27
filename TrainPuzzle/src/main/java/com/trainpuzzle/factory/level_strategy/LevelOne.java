@@ -110,14 +110,7 @@ public class LevelOne extends LevelOutline {
         setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
         setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
         setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
-        
-        setLandscapeByRow(9, 5, 6, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(10, 4, 5, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(9, 7, 9, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(10, 6, 8, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(9, 10, 11, LandscapeType.LIGHTSWAMP);
-        setLandscapeByRow(10, 9, 10, LandscapeType.LIGHTSWAMP);
-        
+              
         setLandscapeByColumn(2, 8, 17, LandscapeType.LIGHTDIRT);
         setLandscapeByColumn(1, 3, 18, LandscapeType.DIRT);
         setLandscapeByColumn(0, 2, 19, LandscapeType.ROUGHDIRT);
