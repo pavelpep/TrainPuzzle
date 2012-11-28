@@ -83,8 +83,8 @@ public class LevelEleven extends LevelOutline {
         
         //There can not be more than 3 requesters at one station
         //Don't add generator and requestor at one station simultaneously.
-        addCargoRequester(stationToAdd, 15, CargoType.COAL);
-        addCargoRequester(stationToAdd, 17, CargoType.STEEL);        
+        addCargoRequester(stationToAdd, root, 15, CargoType.COAL);
+        addCargoRequester(stationToAdd,root, 17, CargoType.STEEL);        
         
         setPassStations(stations);
 	}	
