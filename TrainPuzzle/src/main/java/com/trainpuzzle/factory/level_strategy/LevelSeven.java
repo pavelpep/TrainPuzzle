@@ -133,7 +133,7 @@ public class LevelSeven extends LevelOutline {
         trackLimits.put(TrackType.TRACK, NO_ECONOMY_LIMIT);
         trackLimits.put(TrackType.STRAIGHT, 22);
         trackLimits.put(TrackType.CURVE, 22);
-        trackLimits.put(TrackType.INTERSECTION, 1);
+        trackLimits.put(TrackType.INTERSECTION, 0);
         trackLimits.put(TrackType.SWITCH, 0);
         trackLimits.put(TrackType.STRAIGHT_TRACK, 22);
         trackLimits.put(TrackType.DIAGONAL_TRACK, 0);
