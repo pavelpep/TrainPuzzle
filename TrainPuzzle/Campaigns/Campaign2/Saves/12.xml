@@ -11,7 +11,17 @@
             <obstacle>TREES</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -21,7 +31,7 @@
             <obstacle>TREES</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -31,7 +41,7 @@
             <obstacle>TREES</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -41,7 +51,7 @@
             <obstacle>TREES</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -51,109 +61,99 @@
             <obstacle>TREES</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>LIGHTSWAMP</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>MEDSWAMP</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DARKSWAMP</landscapeType>
+            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
@@ -165,132 +165,6 @@
         </com.trainpuzzle.model.board.Tile>
       </com.trainpuzzle.model.board.Tile-array>
       <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
@@ -301,138 +175,138 @@
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
             <landscapeType>ROUGHDIRT</landscapeType>
             <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
       </com.trainpuzzle.model.board.Tile-array>
       <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
@@ -443,6 +317,132 @@
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
             <landscapeType>ROUGHDIRT</landscapeType>
             <multiplier>3</multiplier>
           </landscape>
@@ -452,8 +452,8 @@
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
@@ -574,551 +574,6 @@
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>DIRT</landscapeType>
-            <multiplier>2</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>ROCK</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>MOUNTAINS</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>MOUNTAINS</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
@@ -1127,41 +582,6 @@
           <elevation>0</elevation>
           <landscape>
             <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -1188,6 +608,205 @@
             <trackType>STRAIGHT_TRACK</trackType>
           </track>
           <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>true</isStationTrack>
+            <removable>false</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+          <station>
+            <stationType>GREEN</stationType>
+            <stationLocation>
+              <row>5</row>
+              <column>1</column>
+            </stationLocation>
+            <entranceFacing>NORTH</entranceFacing>
+            <track reference="../../track"/>
+            <stationBuilding>
+              <obstacle>GREEN_STATION</obstacle>
+            </stationBuilding>
+            <exportCargo/>
+            <importCargo/>
+            <numOfCargoGenerator>0</numOfCargoGenerator>
+            <numOfCargoRequestor>0</numOfCargoRequestor>
+            <canGeneratCargoTypes>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+            </canGeneratCargoTypes>
+          </station>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>EAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>SOUTHEAST</compassHeading1>
+                <compassHeading2>WEST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>CURVERIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
@@ -1204,6 +823,208 @@
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle reference="../../../com.trainpuzzle.model.board.Tile-array[5]/com.trainpuzzle.model.board.Tile[2]/station/stationBuilding"/>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+          <station reference="../../../com.trainpuzzle.model.board.Tile-array[5]/com.trainpuzzle.model.board.Tile[2]/station"/>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>NORTHWEST</compassHeading1>
+                <compassHeading2>SOUTHEAST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>DIAGONAL_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
@@ -1223,7 +1044,7 @@
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <obstacle>
-            <obstacle>MOUNTAINS</obstacle>
+            <obstacle>ROCK</obstacle>
           </obstacle>
           <landscape>
             <landscapeType>GRASS</landscapeType>
@@ -1272,12 +1093,951 @@
             <removable>true</removable>
             <connections>
               <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
+                <compassHeading1>NORTHWEST</compassHeading1>
+                <compassHeading2>SOUTHEAST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>DIAGONAL_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>NORTHWEST</compassHeading1>
+                <compassHeading2>SOUTHEAST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>DIAGONAL_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>MOUNTAINS</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>NORTHWEST</compassHeading1>
+                <compassHeading2>SOUTH</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>CURVELEFT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>ROCK</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>MOUNTAINS</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>SOUTH</compassHeading1>
+                <compassHeading2>NORTH</compassHeading2>
               </com.trainpuzzle.model.board.Connection>
             </connections>
             <trackType>STRAIGHT_TRACK</trackType>
           </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>MOUNTAINS</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>SOUTH</compassHeading1>
+                <compassHeading2>NORTH</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>MOUNTAINS</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>true</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>SOUTH</compassHeading1>
+                <compassHeading2>NORTH</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>DIRT</landscapeType>
+            <multiplier>2</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+      </com.trainpuzzle.model.board.Tile-array>
+      <com.trainpuzzle.model.board.Tile-array>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>MOUNTAINS</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1315,169 +2075,52 @@
             <multiplier>1</multiplier>
           </landscape>
           <station>
-            <stationType>FACTORY</stationType>
+            <stationType>RED</stationType>
             <stationLocation>
-              <row>8</row>
-              <column>15</column>
+              <row>12</row>
+              <column>12</column>
             </stationLocation>
             <entranceFacing>WEST</entranceFacing>
             <track reference="../../track"/>
             <stationBuilding>
-              <obstacle>FACTORY_STATION</obstacle>
+              <obstacle>RED_STATION</obstacle>
             </stationBuilding>
             <exportCargo/>
             <importCargo/>
-            <numOfCargoGenerator>2</numOfCargoGenerator>
+            <numOfCargoGenerator>0</numOfCargoGenerator>
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
           </station>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <obstacle reference="../../com.trainpuzzle.model.board.Tile[15]/station/stationBuilding"/>
+          <obstacle reference="../../com.trainpuzzle.model.board.Tile[12]/station/stationBuilding"/>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
-          <station reference="../../com.trainpuzzle.model.board.Tile[15]/station"/>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>ROCK</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>LIGHTDIRT</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>DIRT</landscapeType>
-            <multiplier>2</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
+          <station reference="../../com.trainpuzzle.model.board.Tile[12]/station"/>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
@@ -1528,265 +2171,111 @@
             <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
       </com.trainpuzzle.model.board.Tile-array>
       <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>DIRT</landscapeType>
-            <multiplier>2</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <obstacle>
             <obstacle>MOUNTAINS</obstacle>
           </obstacle>
           <landscape>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
@@ -1833,147 +2322,144 @@
             <multiplier>2</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
       </com.trainpuzzle.model.board.Tile-array>
       <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <obstacle>
             <obstacle>MOUNTAINS</obstacle>
           </obstacle>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>ROUGHDIRT</landscapeType>
+            <multiplier>3</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <obstacle>
+            <obstacle>TREES</obstacle>
+          </obstacle>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
           <landscape>
-            <landscapeType>GRASS</landscapeType>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>WATER</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
@@ -1982,313 +2468,13 @@
           <landscape>
             <landscapeType>DIRT</landscapeType>
             <multiplier>2</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-      </com.trainpuzzle.model.board.Tile-array>
-      <com.trainpuzzle.model.board.Tile-array>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>WATER</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <obstacle>
-            <obstacle>TREES</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>ROUGHDIRT</landscapeType>
-            <multiplier>3</multiplier>
           </landscape>
         </com.trainpuzzle.model.board.Tile>
       </com.trainpuzzle.model.board.Tile-array>
     </tiles>
   </board>
   <startLocation>
-    <row>8</row>
+    <row>4</row>
     <column>0</column>
   </startLocation>
   <victoryConditions class="com.trainpuzzle.model.level.victory_condition.AndVictoryCondition">
@@ -2296,7 +2482,7 @@
       <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
         <condition>
           <time>100</time>
-          <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[15]/station"/>
+          <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[5]/com.trainpuzzle.model.board.Tile[2]/station"/>
         </condition>
         <conditionSatisfied>false</conditionSatisfied>
         <hasTimeLimit>false</hasTimeLimit>
@@ -2311,6 +2497,49 @@
                     <allowsChildren>true</allowsChildren>
                     <children>
                       <javax.swing.tree.DefaultMutableTreeNode reference="../../../../../../.."/>
+                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
+                        <javax.swing.tree.DefaultMutableTreeNode>
+                          <default>
+                            <allowsChildren>true</allowsChildren>
+                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
+                          </default>
+                          <object-array>
+                            <string>userObject</string>
+                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
+                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
+                                <condition>
+                                  <time>100</time>
+                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[12]/station"/>
+                                </condition>
+                                <conditionSatisfied>false</conditionSatisfied>
+                                <hasTimeLimit>false</hasTimeLimit>
+                                <timeLimit>0</timeLimit>
+                                <displayNode reference="../../../../.."/>
+                                <treeModel serialization="custom">
+                                  <javax.swing.tree.DefaultTreeModel>
+                                    <default>
+                                      <asksAllowsChildren>false</asksAllowsChildren>
+                                      <listenerList serialization="custom">
+                                        <javax.swing.event.EventListenerList>
+                                          <default/>
+                                          <null/>
+                                        </javax.swing.event.EventListenerList>
+                                      </listenerList>
+                                      <root class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../../../../../../.."/>
+                                    </default>
+                                    <vector>
+                                      <string>root</string>
+                                      <javax.swing.tree.DefaultMutableTreeNode reference="../../../../../../../../../../../.."/>
+                                    </vector>
+                                  </javax.swing.tree.DefaultTreeModel>
+                                </treeModel>
+                                <userObject reference="../.."/>
+                              </victoryCondition>
+                              <label>pass station at (12,12)</label>
+                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
+                          </object-array>
+                        </javax.swing.tree.DefaultMutableTreeNode>
+                      </javax.swing.tree.DefaultMutableTreeNode>
                     </children>
                   </default>
                   <object-array>
@@ -2327,106 +2556,79 @@
               <string>userObject</string>
               <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
                 <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition" reference="../../../../.."/>
-                <label>pass station at (8,15)</label>
+                <label>pass station at (5,1)</label>
               </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
             </object-array>
           </javax.swing.tree.DefaultMutableTreeNode>
         </displayNode>
-        <treeModel serialization="custom">
-          <javax.swing.tree.DefaultTreeModel>
-            <default>
-              <asksAllowsChildren>false</asksAllowsChildren>
-              <listenerList serialization="custom">
-                <javax.swing.event.EventListenerList>
-                  <default/>
-                  <null/>
-                </javax.swing.event.EventListenerList>
-              </listenerList>
-              <root class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
-            </default>
-            <vector>
-              <string>root</string>
-              <javax.swing.tree.DefaultMutableTreeNode reference="../../../../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
-            </vector>
-          </javax.swing.tree.DefaultTreeModel>
-        </treeModel>
+        <treeModel reference="../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
         <userObject reference="../displayNode/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject"/>
       </com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
+      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
     </childConditions>
     <conditionSatisfied>false</conditionSatisfied>
     <displayNode reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
-    <treeModel reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/treeModel"/>
+    <treeModel reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
     <userObject reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject"/>
   </victoryConditions>
   <economy>
     <budget>-1</budget>
     <numberOfAvailableTrack>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>10</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>DIAGONAL_INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
         <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
+        <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
+        <com.trainpuzzle.model.board.TrackType>DIAGONAL_INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>10</int>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>29</int>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>CURVE</com.trainpuzzle.model.board.TrackType>
-        <int>15</int>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
     </numberOfAvailableTrack>
   </economy>
   <cargorequestors class="linked-list"/>
-  <timeLimit>60</timeLimit>
-  <cargoGenerators class="linked-list">
-    <com.trainpuzzle.controller.CargoGenerator>
-      <station reference="../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[15]/station"/>
-      <generatingInterval>6</generatingInterval>
-      <generateType>COAL</generateType>
-    </com.trainpuzzle.controller.CargoGenerator>
-    <com.trainpuzzle.controller.CargoGenerator>
-      <station reference="../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[15]/station"/>
-      <generatingInterval>6</generatingInterval>
-      <generateType>STEEL</generateType>
-    </com.trainpuzzle.controller.CargoGenerator>
-  </cargoGenerators>
+  <timeLimit>-1</timeLimit>
+  <cargoGenerators class="linked-list"/>
 </com.trainpuzzle.model.level.Level>
