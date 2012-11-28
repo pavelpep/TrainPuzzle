@@ -293,6 +293,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		JTabbedPane tabbedSidePane = new JTabbedPane();
 		tabbedSidePane.setPreferredSize(new Dimension(200, 650));
+		
+		initializeComponent(tabbedSidePane, 10);
+		
 		tabbedSidePane.addTab("Controls", null, controlPanel, null);
 		tabbedSidePane.setMnemonicAt(0, KeyEvent.VK_1);
 		
