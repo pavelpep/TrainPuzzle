@@ -23,6 +23,7 @@ public class MainMenu extends Window implements ActionListener {
 		create();
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void create() {

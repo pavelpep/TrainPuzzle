@@ -23,6 +23,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		create();
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void create() {

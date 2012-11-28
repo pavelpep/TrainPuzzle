@@ -54,6 +54,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		create();
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
 	private void create() {

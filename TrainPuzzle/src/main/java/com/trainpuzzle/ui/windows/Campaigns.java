@@ -25,6 +25,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		create();
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}	
 	
 	public Campaigns(GameController gameController, LevelManager campaignManager) {
