@@ -204,7 +204,6 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void sendExportCargo(Cargo cargo) {
-		System.out.println("returning");
 		if (!exportCargo.contains(cargo)){		
 
 			return;
