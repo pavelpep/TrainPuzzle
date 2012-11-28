@@ -16,21 +16,24 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 
 	private GameController gameController;
 	private int levelSelected = 1;
+	
+	JPanel levelSelectPanel;
 	JList levelList;
 	
 	public LevelSelect(GameController gameController) {
 		this.gameController = gameController;
-		create();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
-	}
-	
-	public void create() {
-		JPanel levelSelectPanel = new JPanel();
+		levelSelectPanel = new JPanel();
 		levelSelectPanel.setLayout(new BoxLayout(levelSelectPanel, BoxLayout.Y_AXIS));
 		levelSelectPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(levelSelectPanel);
+		
+		create();
+
+	}
+	
+	public void create() {
+		
+		levelSelectPanel.removeAll();
 		
 		JLabel titleLabel = new JLabel("Level Select");
 		initializeComponent(titleLabel, 28);
@@ -62,6 +65,11 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		initializeComponent(backButton, 20);
 		backButton.setBackground(Color.LIGHT_GRAY);
 		levelSelectPanel.add(backButton);
+		
+		validate();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent event) {

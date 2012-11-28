@@ -69,6 +69,11 @@ public class GameController {
 		campaignManager.saveCampaign();
 	} 	
 	
+	public void saveCurrentLevelAndCampaign(){
+		getSimulator().reset();
+		getLevelManager().saveCurrentLevel();
+		getCampaignManager().saveCampaign();
+	}
 	public void placeTrack(Track track, int row, int column) {
 		try {
 			trackPlacer.placeTrack(track, row, column);

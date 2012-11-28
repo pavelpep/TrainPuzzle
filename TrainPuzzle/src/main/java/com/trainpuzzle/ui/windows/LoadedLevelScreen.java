@@ -367,13 +367,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
-			gameController.getSimulator().reset();
-			gameController.getLevelManager().saveCurrentLevel();
+			gameController.saveCurrentLevelAndCampaign();
 			WindowManager.getManager().showPreviousWindow();
 		}
 		else if (event.getActionCommand() == "next") {
-			gameController.getSimulator().reset();
-			gameController.getLevelManager().saveCurrentLevel();
+			gameController.saveCurrentLevelAndCampaign();
 			gameController.getLevelManager().selectNextLevel();
 			gameController.startGame();
 			this.create();
