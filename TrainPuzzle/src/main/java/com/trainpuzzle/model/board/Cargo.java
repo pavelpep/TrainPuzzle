@@ -5,11 +5,11 @@ public class Cargo implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 
 	public enum CargoType {
-		COTTON("CTN"),
-		IRON("IRN"),
-		WOOD("WOD"),
-		COAL("CAL"),
-		STEEL("STL");
+		COTTON("Cotton"),
+		IRON("Iron"),
+		WOOD("Wood"),
+		COAL("Coal"),
+		STEEL("Steel");
 				
 		private String name;
 		

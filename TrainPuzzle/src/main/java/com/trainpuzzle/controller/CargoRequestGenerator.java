@@ -45,7 +45,9 @@ public class CargoRequestGenerator {
 
 	private void changeName() {
 		Location location =station.getStationLocation();
-		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +generatingInteval +" game time";
+		String name = requestType.getName() + " cargo required value increases every " + 
+				generatingInteval +" steps" 
+				+ " at station ("+location.getRow() + "," + location.getColumn()+")";
 		
 		
 	}
