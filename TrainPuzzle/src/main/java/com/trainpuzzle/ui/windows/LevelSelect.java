@@ -51,6 +51,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		
 		initializeComponent(levelList, 15);
 		levelSelectPanel.add(levelList);
+		levelList.setSelectedIndex(gameController.getLevelManager().getCurrentLevelNumber());
 		
 		JButton startLevelButton = initializeButton("Start Level","START_LEVEL");
 		initializeComponent(startLevelButton, 20);

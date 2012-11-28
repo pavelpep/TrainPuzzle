@@ -31,9 +31,11 @@ public class GameController {
 		campaignManager.selectCampaign(config.currentCampaign);
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
+	
 	private void loadConfig(){
-		config = (Config)FileManager.loadObject("config.xml");
+			config = (Config)FileManager.loadObject("config.xml");
 	}
+	
 	private void saveConfig(){
 		FileManager.saveObject(config, "config.xml");
 	}
