@@ -46,7 +46,7 @@
     <com.trainpuzzle.model.level.CampaignLevel>
       <isLocked>false</isLocked>
       <isCompleted>true</isCompleted>
-      <hasUserSave>false</hasUserSave>
+      <hasUserSave>true</hasUserSave>
       <levelNumber>8</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
     <com.trainpuzzle.model.level.CampaignLevel>

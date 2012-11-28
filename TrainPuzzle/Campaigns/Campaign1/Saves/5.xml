@@ -192,17 +192,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -210,17 +199,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -330,24 +308,24 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>true</boolean>
               </entry>
             </canGeneratCargoTypes>
           </station>
@@ -419,17 +397,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -472,17 +439,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>EAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -490,17 +446,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -508,17 +453,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -526,17 +460,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -553,17 +476,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -629,17 +541,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHEAST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -675,17 +576,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -738,17 +628,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -814,17 +693,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>SOUTHEAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>DIAGONAL_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -880,15 +748,15 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -896,7 +764,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
@@ -911,17 +779,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -971,17 +828,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1054,17 +900,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>EAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1081,17 +916,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1153,15 +977,15 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1169,7 +993,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
@@ -1219,15 +1043,15 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1235,7 +1059,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
@@ -1250,17 +1074,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>EAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1268,17 +1081,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1414,17 +1216,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1598,24 +1389,24 @@
             <numOfCargoRequestor>1</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>true</boolean>
               </entry>
             </canGeneratCargoTypes>
           </station>
@@ -1769,17 +1560,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1964,15 +1744,15 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1980,7 +1760,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
@@ -3146,27 +2926,27 @@
     <budget>-1</budget>
     <numberOfAvailableTrack>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
         <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
         <com.trainpuzzle.model.board.TrackType>DIAGONAL_INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVE</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
@@ -3178,23 +2958,23 @@
         <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVE</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
     </numberOfAvailableTrack>

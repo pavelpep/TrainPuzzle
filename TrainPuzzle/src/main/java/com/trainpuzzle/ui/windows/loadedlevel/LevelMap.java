@@ -200,13 +200,12 @@ public class LevelMap extends JPanel implements Observer {
 			displayAllCargoesInStation(cargoRow1, exportCargoList);
 			displayAllRequestsInStation(cargoRow1, importCargoList);
 		}
+		displayCargoTypesInStation(cargoRow1, station, cargoTypeExist);
 		if (stationType == StationType.FACTORY){
-			displayCargoTypesInStation(cargoRow1, cargoTypeExist);
 			displayNumOfCargosInStation(cargoRow1, exportCargoList);
 			displayGeneratorFrequency(cargoRow2,station, cargoTypeExist);
 		}
 		if (stationType == StationType.REQUESTER){
-			displayRequestTypesInStation(cargoRow1, cargoTypeExist);
 			displayNumOfCargosInStation(cargoRow1, importCargoList);
 			displayRequesterFrequency(cargoRow2,station, cargoTypeExist);
 		}
@@ -237,25 +236,22 @@ public class LevelMap extends JPanel implements Observer {
 		}			
 	}
 	
-	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> canGenerateCargoTypes){
+	private void displayCargoTypesInStation(JPanel cargoRow1, Station station,
+			HashMap<CargoType,Boolean> canGenerateCargoTypes){
+		JLabel cargoLabel = null;
 		for (CargoType cargoType: CargoType.values()){
-			if (canGenerateCargoTypes.get(cargoType)){	
-				JLabel cargoLabel = new JLabel(getExportCargoIcon(cargoType));
+			if (canGenerateCargoTypes.get(cargoType)){
+				if (station.getType()==StationType.FACTORY) {
+					cargoLabel = new JLabel(getExportCargoIcon(cargoType));
+				}
+				if (station.getType()==StationType.REQUESTER) {
+					cargoLabel = new JLabel(getImportCargoIcon(cargoType));
+				}
 				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 				cargoRow1.add(cargoLabel);
 			}
 		}
-	}
-	
-	private void displayRequestTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> canGenerateCargoTypes){
-		for (CargoType cargoType: CargoType.values()){
-			if (canGenerateCargoTypes.get(cargoType)){	
-				JLabel cargoLabel = new JLabel(getImportCargoIcon(cargoType));
-				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
-				cargoRow1.add(cargoLabel);
-			}
-		}
-	}
+	}	
 	
 	private void displayGeneratorFrequency(JPanel cargoRow2,Station station,
 			HashMap<CargoType,Boolean> cargoTypeExist){
