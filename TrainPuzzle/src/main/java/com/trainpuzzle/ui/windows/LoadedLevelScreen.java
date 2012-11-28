@@ -33,34 +33,39 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private GameControlBox gameControlBox;
 	private LevelMap loadedLevelMap;
 	private SelectedTrack selectedTrackPanel;
-	
-	private JTextPane messageBox =  new JTextPane();
+    
+    private JPanel cargoPanel;
+    
+	private JTextPane messageBox;	
 	private Timer messageBoxDisplayTimer;
 	private final int MESSAGE_BOX_DISPLAY_IN_MILLISECONDS = 3000;
 	
-	private JPanel cargoPanelPointer = new JPanel();
+	private JButton nextLevelButton;
+	
+	private JPanel loadedLevelScreenPanel;
 	
 	private JTextPane remainTimeBox = new JTextPane();
 
 	public LoadedLevelScreen(GameController gameController) {
-		this.gameController = gameController;
-		this.level = this.gameController.getLevel();
-
-		gameController.getSimulator().register(this);
-		gameController.getSimulator().getTrain().registerLoadedLevel(this);
+		this.gameController = gameController;	
 		
 		setBackground(this.getBackground());
 		
+		loadedLevelScreenPanel = new JPanel();
+		loadedLevelScreenPanel.setLayout(new GridBagLayout());
+		this.add(loadedLevelScreenPanel);
+		
 		create();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
+
 	}
 
 	private void create() {
-		JPanel loadedLevelScreenPanel = new JPanel();
-		loadedLevelScreenPanel.setLayout(new GridBagLayout());
-		this.add(loadedLevelScreenPanel);
+		
+		this.level = this.gameController.getLevel();
+		gameController.getSimulator().register(this);
+		gameController.getSimulator().getTrain().registerLoadedLevel(this);
+
+		loadedLevelScreenPanel.removeAll();
 		
 		GridBagConstraints headerPanelConstraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
 		loadedLevelScreenPanel.add(headerPanel(), headerPanelConstraints);
@@ -68,21 +73,13 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		GridBagConstraints bodyPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 1);
 		loadedLevelScreenPanel.add(bodyPanel(), bodyPanelConstraints);
 		
+		validate();
+		
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
-	private JPanel bodyPanel() {
-		JPanel bodyPanel = new JPanel();
-		bodyPanel.setLayout(new GridBagLayout());
-		
-		GridBagConstraints mapPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 1);
-		bodyPanel.add(mapPanel(), mapPanelConstraints);
-		
-		
-		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 1);
-		bodyPanel.add(sidePanel(), sidePanelConstraints);
-		
-		return bodyPanel;
-	}
 
 	private JPanel headerPanel() {
 		JPanel headerPanel = new JPanel();
@@ -98,8 +95,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		GridBagConstraints cargoPanelConstraints = gbConstraints(new Point(2, 0), new Dimension(1, 1), 0, 0);
 		cargoPanelConstraints.insets = new Insets(5,5,5,5);
-		setCargoPanel(cargoPanelPointer);
-		headerPanel.add(cargoPanelPointer, cargoPanelConstraints);
+		cargoPanel = cargoPanel();
+		headerPanel.add(cargoPanel, cargoPanelConstraints);
 		
 		GridBagConstraints remainTimeBoxConstraints = gbConstraints(new Point(3, 0), new Dimension(1, 1), 0, 0);
 		remainTimeBoxConstraints.insets = new Insets(5,5,5,5);
@@ -109,13 +106,80 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		GridBagConstraints messageBoxConstraints = gbConstraints(new Point(4, 0), new Dimension(1, 1), 1, 0);
 		messageBoxConstraints.insets = new Insets(5,5,5,5);
 		headerPanel.add(messageBox(), messageBoxConstraints);
-							
-		GridBagConstraints saveButtonConstraints = gbConstraints(new Point(5, 0), new Dimension(1, 1), 0, 0);
-		saveButtonConstraints.insets = new Insets(5,5,5,5);
-		headerPanel.add(saveButton(), saveButtonConstraints);		
+		
+		GridBagConstraints nextButtonConstraints = gbConstraints(new Point(5, 0), new Dimension(1, 1), 0, 0);
+		nextButtonConstraints.insets = new Insets(5,5,5,5);
+		this.nextLevelButton = nextButton();
+		nextLevelButton.setEnabled(false);
+		headerPanel.add(nextLevelButton, nextButtonConstraints);
 		
 		
 		return headerPanel;
+	}
+	
+	private JPanel bodyPanel() {
+		JPanel bodyPanel = new JPanel();
+		bodyPanel.setLayout(new GridBagLayout());
+		
+		GridBagConstraints mapPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 1);
+		bodyPanel.add(mapPanel(), mapPanelConstraints);
+		
+		
+		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 1);
+		bodyPanel.add(sidePanel(), sidePanelConstraints);
+		
+		return bodyPanel;
+	}
+	
+	private JPanel mapPanel() {
+		JPanel mapPanel = new JPanel();
+		mapPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		((FlowLayout) mapPanel.getLayout()).setVgap(0);
+		((FlowLayout) mapPanel.getLayout()).setVgap(0);
+		loadedLevelMap = new LevelMap(gameController, level.getBoard().getRows(), level.getBoard().getColumns());
+		mapPanel.add(loadedLevelMap);
+		
+		return mapPanel;
+	}
+	
+	private JPanel sidePanel() {
+		JPanel sidePanel = new JPanel();
+		sidePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		((FlowLayout) sidePanel.getLayout()).setVgap(0);
+		
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
+		
+		gameControlBox = new GameControlBox(gameController);
+		controlPanel.add(gameControlBox);
+		
+		JPanel trackPanel = new TrackSelection(gameController, this);
+		controlPanel.add(trackPanel);
+		
+		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
+		controlPanel.add(victoryConditionsPanel);
+		
+		selectedTrackPanel = new SelectedTrack(this);
+		controlPanel.add(selectedTrackPanel);
+		
+		JButton toggleButton = initializeButton("Control switches","toggle");
+		initializeComponent(toggleButton, 15);
+		controlPanel.add(toggleButton);
+		
+		JTabbedPane tabbedSidePane = new JTabbedPane();
+		tabbedSidePane.setPreferredSize(new Dimension(200, 650));
+		
+		initializeComponent(tabbedSidePane, 10);
+		
+		tabbedSidePane.addTab("Controls", null, controlPanel, null);
+		tabbedSidePane.setMnemonicAt(0, KeyEvent.VK_1);
+		
+		tabbedSidePane.addTab("Victory Conditions", null, victoryConditionsPanel, null);
+		tabbedSidePane.setMnemonicAt(1, KeyEvent.VK_2);
+		
+		sidePanel.add(tabbedSidePane);
+		
+		return sidePanel;
 	}
 	
 	private JTextPane messageBox() {
@@ -216,7 +280,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	}
 
 	
-	private void setCargoPanel(JPanel cargoPanel) {
+	private JPanel cargoPanel() {
+		JPanel cargoPanel = new JPanel();
 		cargoPanel.setLayout(new BoxLayout(cargoPanel, BoxLayout.X_AXIS));
 		
 		Train train = this.gameController.getSimulator().getTrain();
@@ -225,6 +290,18 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			numOfCargoOnTrain = train.getNumOfCargoes().get(cargoType);
 			cargoPanel.add(cargo(cargoType.getName(), getCargoIcon(cargoType), numOfCargoOnTrain));
 		}
+		return cargoPanel;
+	}
+	
+	private void refreshCargoPanel(){
+		cargoPanel.removeAll();
+		Train train = this.gameController.getSimulator().getTrain();
+		int numOfCargoOnTrain = 0; 
+		for (CargoType cargoType: CargoType.values()){
+			numOfCargoOnTrain = train.getNumOfCargoes().get(cargoType);
+			cargoPanel.add(cargo(cargoType.getName(), getCargoIcon(cargoType), numOfCargoOnTrain));
+		}
+		cargoPanel.validate();
 	}
 		
 	private ImageIcon getCargoIcon(CargoType cargoType){
@@ -268,64 +345,16 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		return cargo;
 	}
 
-	private JPanel sidePanel() {
-		JPanel sidePanel = new JPanel();
-		sidePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		((FlowLayout) sidePanel.getLayout()).setVgap(0);
-		
-		JPanel controlPanel = new JPanel();
-		controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
-		
-		gameControlBox = new GameControlBox(gameController);
-		controlPanel.add(gameControlBox);
-		
-		JPanel trackPanel = new TrackSelection(gameController, this);
-		controlPanel.add(trackPanel);
-		
-		JPanel victoryConditionsPanel = new VictoryConditions(gameController);
-		controlPanel.add(victoryConditionsPanel);
-		
-		selectedTrackPanel = new SelectedTrack(this);
-		controlPanel.add(selectedTrackPanel);
-		
-		JButton toggleButton = initializeButton("Control switches","toggle");
-		initializeComponent(toggleButton, 15);
-		controlPanel.add(toggleButton);
-		
-		JTabbedPane tabbedSidePane = new JTabbedPane();
-		tabbedSidePane.setPreferredSize(new Dimension(200, 650));
-		
-		initializeComponent(tabbedSidePane, 10);
-		
-		tabbedSidePane.addTab("Controls", null, controlPanel, null);
-		tabbedSidePane.setMnemonicAt(0, KeyEvent.VK_1);
-		
-		tabbedSidePane.addTab("Victory Conditions", null, victoryConditionsPanel, null);
-		tabbedSidePane.setMnemonicAt(1, KeyEvent.VK_2);
-		
-		sidePanel.add(tabbedSidePane);
-		
-		return sidePanel;
-	}
-
-	private JButton saveButton() {
-		JButton saveButton = new JButton("Save Level");
-		saveButton.setActionCommand("save");
-		saveButton.addActionListener(this);
-		return saveButton;
-	}
-
-	private JPanel mapPanel() {
-		JPanel mapPanel = new JPanel();
-		mapPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		((FlowLayout) mapPanel.getLayout()).setVgap(0);
-		((FlowLayout) mapPanel.getLayout()).setVgap(0);
-		loadedLevelMap = new LevelMap(gameController, level.getBoard().getRows(), level.getBoard().getColumns());
-		mapPanel.add(loadedLevelMap);
-		
-		return mapPanel;
-	}
 	
+	
+	private JButton nextButton() {
+		JButton nextButton = new JButton("Next Level");
+		nextButton.setActionCommand("next");
+		nextButton.addActionListener(this);
+		return nextButton;
+	}
+
+
 	public SelectedTrack getSelectedTrackPanel() {
 		return selectedTrackPanel;
 	}
@@ -336,34 +365,21 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "backToLevelSelect") {
+			gameController.getSimulator().reset();
+			gameController.getLevelManager().saveCurrentLevel();
 			WindowManager.getManager().showPreviousWindow();
 		}
-		
-		else if (event.getActionCommand() == "save") {
+		else if (event.getActionCommand() == "next") {
+			gameController.getSimulator().reset();
 			gameController.getLevelManager().saveCurrentLevel();
+			gameController.getLevelManager().selectNextLevel();
+			gameController.startGame();
+			this.create();
+
 		}
 		else if (event.getActionCommand() == "toggle") {
 			loadedLevelMap.getMouseAdapter().setToggleMode();
 		}
-		else if (event.getActionCommand() == "saveToFile") {
-			File saveLevelFile = saveFileDialog();
-			if(saveLevelFile != null){
-				gameController.saveCurrentLevel(saveLevelFile);
-			}
-		}
-	}
-	
-	private File saveFileDialog() {
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Encoded Level", "xml");
-		chooser.setFileFilter(filter);
-		
-		int returnVal = chooser.showSaveDialog(this);
-		
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			return chooser.getSelectedFile();
-		}
-		return null;
 	}
 
 	public void notifyChange(Object object) {
@@ -377,6 +393,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				gameController.levelCompleted();
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 				gameControlBox.setRunButtonVisible();
+				if(gameController.getLevelManager().thereIsANextLevel()){
+					nextLevelButton.setEnabled(true);
+				}	
 			}
 			else if (((Simulator)object).checkTimeOut()) {
 				setMessageBoxMessage("YOU RUN OUT OF TIME!");
@@ -385,9 +404,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 		}
 		else if (object instanceof Train) {
-			cargoPanelPointer.removeAll();
-			setCargoPanel(cargoPanelPointer);
-			cargoPanelPointer.validate();
+			refreshCargoPanel();
+			
 		}
 	}
 }

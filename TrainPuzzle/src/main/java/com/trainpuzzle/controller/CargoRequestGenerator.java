@@ -1,6 +1,5 @@
 package com.trainpuzzle.controller;
 
-import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.trainpuzzle.model.board.Board;
 import com.trainpuzzle.model.board.Cargo;
@@ -11,7 +10,6 @@ import com.trainpuzzle.model.level.victory_condition.IfThenVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition;
 import com.trainpuzzle.model.level.victory_condition.DropCargoEvent;
 import com.trainpuzzle.model.level.victory_condition.LogicalVictoryCondition;
-import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
 
 public class CargoRequestGenerator {
 	private Station station;
@@ -49,9 +47,6 @@ public class CargoRequestGenerator {
 		Location location =station.getStationLocation();
 		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +generatingInteval +" game time";
 		
-		TreeNodeUserObject userObject = new TreeNodeUserObject(parentVictoryCondition,name);
-		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
-		parentVictoryCondition.setDisplayNode(displayNode);
 		
 	}
 	

@@ -21,7 +21,7 @@ public class Train implements Observable {
 	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
 	
 	public Train() {
-		add3Cars();
+		add4Cars();
 		initializeNumCargoes();
 	}
 	
@@ -37,7 +37,8 @@ public class Train implements Observable {
 		}
 	}
 	
-	public void add3Cars() {
+	public void add4Cars() {
+		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));
 		trainCars.add(new TrainCar(location, heading));

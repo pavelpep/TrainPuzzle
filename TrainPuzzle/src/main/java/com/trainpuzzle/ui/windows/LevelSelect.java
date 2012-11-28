@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.IconUIResource;
 
 public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
@@ -45,6 +46,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		for(CampaignLevel campaignLevel: gameController.getLevelManager().getLevels()) {
 			String levelName = "Level " + campaignLevel.levelNumber;
 			String levelState = (campaignLevel.isLocked) ? "locked" : "unlocked";
+			levelState += (campaignLevel.hasUserSave) ? ", saved" : "";
 			listModel.addElement(levelName + " (" + levelState +")");
 		}
 		initializeComponent(levelList, 15);
@@ -67,9 +69,14 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 			WindowManager.getManager().showPreviousWindow();
 		} 
 		else if (action == "START_LEVEL") {
-			gameController.startGame(levelSelected);
-			WindowManager.getManager().setActiveWindow(new LoadedLevelScreen(gameController));
-		}	
+			if(gameController.getLevelManager().getLevels().get(levelSelected-1).isLocked){
+				JOptionPane.showMessageDialog(this,"Cannot start a level that is locked!",
+						"NO!", JOptionPane.ERROR_MESSAGE, null);
+			}else{
+				gameController.startGame(levelSelected);
+				WindowManager.getManager().setActiveWindow(new LoadedLevelScreen(gameController));
+			}	
+		}
 	}
 
 	@Override

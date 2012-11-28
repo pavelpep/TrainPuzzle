@@ -24,8 +24,18 @@ public class LevelManager {
 		campaignLevel = campaign.getCurrentLevel();
 		if(campaignLevel.isLocked) {
 			throw new LevelLockedException("Level " + levelNumber + " is locked.");
+		}else{
+			loadLevel(levelNumber);
 		}
-		loadLevel(levelNumber);
+	}
+	
+	public void selectNextLevel() {
+		int nextLevel = campaign.getCurrentLevelNumber() + 1;
+		try {
+			selectLevel(nextLevel);
+		} catch (LevelLockedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void loadLevel(int levelNumber) {
@@ -42,9 +52,9 @@ public class LevelManager {
 		}
 	}
 
-	public void loadNextLevel() {
-		int nextLevel = campaign.getCurrentLevelNumber() + 1;
-	    loadLevel(nextLevel);
+
+	public boolean thereIsANextLevel() {
+		return campaign.thereIsANextLevel();
 	}
 	
 	public void levelCompleted() {

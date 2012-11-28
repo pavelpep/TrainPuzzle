@@ -35,6 +35,11 @@ public class Campaign implements java.io.Serializable {
 		}
 
 	}
+	
+	public boolean thereIsANextLevel(){
+		return (currentLevel < numberOfLevels());
+	}
+	
 	private void unlockNextLevel(int currentLevelNumber) {
 		unlockLevel(currentLevelNumber + 1);
 	}
@@ -58,9 +63,11 @@ public class Campaign implements java.io.Serializable {
     public CampaignLevel getCurrentLevel() {
 		return campaignLevels.get(currentLevel-1);
 	}
+    
     public int numberOfLevels(){
     	return campaignLevels.size();
     }
+    
     public int getCurrentLevelNumber() {
 		return currentLevel;
 	}
@@ -73,7 +80,7 @@ public class Campaign implements java.io.Serializable {
 		for(CampaignLevel campaignLevel: campaignLevels) {
 			campaignLevel.reset();
 		}
-		campaignLevels.get(0).isLocked = false;
-		
+		unlockLevel(1);
+		selectLevel(1);
 	}
 }

@@ -31,7 +31,7 @@ public class LevelTwelve extends LevelOutline {
         
         Economy economy = createEconomy();
         
-        Level levelEleven=new Level(1, this.board, createStartLocation(), this.root, economy);
+        Level levelEleven=new Level(12, this.board, createStartLocation(), this.root, economy);
         levelEleven.setCargoGenerators(cargoGenerators);
         levelEleven.setTimeLimit(60);
         	        
