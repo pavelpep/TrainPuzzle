@@ -41,9 +41,6 @@ public class VictoryConditions extends JPanel {// implements TreeSelectionListen
         tree = new JTree(treeModel);
         
         
-        /*tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-        gameController.getLevel().getVictoryConditions().setTreeModel(model);*/
         CustomIconRenderer renderer = new CustomIconRenderer();
         tree.setCellRenderer(renderer);
 

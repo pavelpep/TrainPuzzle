@@ -116,11 +116,11 @@ public abstract class LevelOutline {
 		}
 	}
 	
-	protected void addCargoRequester(Station station, int interval, CargoType cargoType){
+	protected void addCargoRequester(Station station, LogicalVictoryCondition parent, int interval, CargoType cargoType){
 		int numOfGeneratorAtStation = station.getNumOfCargoGenerator();
 		int numOfRequesterAtStation = station.getNumOfCargoRequestor();
 		if (numOfGeneratorAtStation == 0 && numOfRequesterAtStation < 2){
-			CargoRequestGenerator cargoRequester = new CargoRequestGenerator(station, root, interval, cargoType);
+			CargoRequestGenerator cargoRequester = new CargoRequestGenerator(station, parent, interval, cargoType);
 			cargoRequestGenerators.add(cargoRequester);
 			station.setNumOfCargoRequestor(numOfRequesterAtStation+1);
 		}

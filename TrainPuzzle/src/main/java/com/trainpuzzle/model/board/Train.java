@@ -95,6 +95,7 @@ public class Train implements Observable {
 						this.observerLoadedlevel.notifyChange(this);
 						notifyAllObservers();
 						cargoDroppedOff.add(cargoDropped);
+						break;
 					}
 				}
 			}
