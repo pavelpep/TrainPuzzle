@@ -58,8 +58,6 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 		initializeComponent(backButton, 20);
 		backButton.setBackground(Color.LIGHT_GRAY);
 		levelSelectPanel.add(backButton);
-
-		this.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent event) {

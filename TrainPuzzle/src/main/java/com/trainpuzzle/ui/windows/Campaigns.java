@@ -32,8 +32,9 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		this.campaignManager = campaignManager;
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		create();
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	public void create() {

@@ -14,8 +14,8 @@ abstract class Window extends JFrame implements ActionListener {
 	protected static final int DEFAULT_HEIGHT = 768;
 	
 	public Window() {
+		setVisible(false);
 		modifyWindowCloseAction();
-		setVisible(true);
 	}
 
 	private void modifyWindowCloseAction() {

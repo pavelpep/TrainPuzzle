@@ -344,10 +344,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		else if (event.getActionCommand() == "toggle") {
 			loadedLevelMap.getMouseAdapter().setToggleMode();
 		}
-		else if (event.getActionCommand() == "objectives") {
-			JFrame vcwindow = new VictoryConditionsWindow(gameController);
-			vcwindow.setVisible(true);
-		}
 		else if (event.getActionCommand() == "saveToFile") {
 			File saveLevelFile = saveFileDialog();
 			if(saveLevelFile != null){

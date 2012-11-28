@@ -21,8 +21,8 @@ public class WindowManager {
 		if(!windowList.isEmpty()) {
 			windowList.peek().setVisible(false);
 		}
-		window.setVisible(true);
 		windowList.add(window);
+		window.setVisible(true);
 	}
 	
 	public Window getActiveWindow() {
