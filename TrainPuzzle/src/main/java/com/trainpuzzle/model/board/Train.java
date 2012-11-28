@@ -15,8 +15,8 @@ public class Train implements Observable {
  
 	private Location location = new Location(0,0); 
 	private CompassHeading heading = CompassHeading.EAST;
-	private transient Set<Observer> observerList = new HashSet<Observer>();
-	private transient Observer observerLoadedlevel;
+	private Set<Observer> observerList = new HashSet<Observer>();
+	private Observer observerLoadedlevel;
 	private List<TrainCar> trainCars = new ArrayList<TrainCar>();
 	private HashMap<Cargo.CargoType, Integer> numOfCargoes = new HashMap<Cargo.CargoType, Integer>();
 	
@@ -26,10 +26,9 @@ public class Train implements Observable {
 	}
 	
 	public Train(Location location, CompassHeading heading) {	
+		this();
 		this.location = location;
-		this.heading = heading;
-		add3Cars();
-		initializeNumCargoes();
+		this.heading = heading;	
 	}
 	
 	public void initializeNumCargoes() {
@@ -45,6 +44,9 @@ public class Train implements Observable {
 	}
 	
 	public void register(Observer observer) {
+	    if(observerList == null) {
+	    	  observerList = new HashSet<Observer>();
+	    }
 		observerList.add(observer);
 	}
 	
