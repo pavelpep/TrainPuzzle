@@ -1,21 +1,14 @@
 package com.trainpuzzle.model.board;
 
-import java.util.Set;
-import java.util.HashSet;
-
 import com.trainpuzzle.model.board.Landscape.LandscapeType;
-import com.trainpuzzle.observe.Observable;
-import com.trainpuzzle.observe.Observer;
 
-public class Board implements Observable, java.io.Serializable {
+public class Board implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private int rows = 15;
 	private int columns = 20;
 	private Tile[][] tiles;
-	
-	private transient Set<Observer> observerList = new HashSet<Observer>();
 	
 	public Board() {
 		tiles = new Tile[getRows()][getColumns()];
@@ -46,19 +39,6 @@ public class Board implements Observable, java.io.Serializable {
 					currentStation.setCargo(newStation);
 				}
 			}
-		}
-	}
-	
-	public void register(Observer observer) {
-		if(observerList == null) {
-			observerList = new HashSet<Observer>();
-		}
-		observerList.add(observer);
-	}
-	
-	public void notifyAllObservers(){
-		for(Observer observer : observerList) {
-			observer.notifyChange(this);
 		}
 	}
 

@@ -36,7 +36,6 @@ public class TrackPlacer {
 			tile.setTrack(track);
 			TrackType trackType = track.getTrackType();
 			economy.useTracks(trackType, multiplier);
-			map.notifyAllObservers();
 		}
 		else {
 			logger.warn("CannotPlaceTrackException was thrown");
@@ -77,7 +76,6 @@ public class TrackPlacer {
 			TrackType trackType=tile.getTrack().getTrackType();
 			tile.removeTrack();
 			economy.returnTracks(trackType, multiplier);
-			map.notifyAllObservers();
 		}
 		else {
 			logger.warn("CannotRemoveTrackException was thrown");
@@ -102,7 +100,6 @@ public class TrackPlacer {
 		
 		if(tile.hasTrack()) {
 			tile.rotateTrack();
-			map.notifyAllObservers();
 		}
 		else {
 			logger.warn("CannotRotateException was thrown");

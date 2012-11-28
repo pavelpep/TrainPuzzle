@@ -27,7 +27,6 @@ public class SwitchController {
 		if(hasNoError(errorMessage)) {
 			track = tile.getTrack();
 			((Switch)track).toggle();
-			map.notifyAllObservers();
 		}
 		else {
 			logger.warn("CannotRemoveTrackException was thrown");
