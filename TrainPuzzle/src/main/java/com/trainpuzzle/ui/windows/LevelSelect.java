@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.IconUIResource;
 
 public class LevelSelect extends Window implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
@@ -49,6 +48,7 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 			levelState += (campaignLevel.hasUserSave) ? ", saved" : "";
 			listModel.addElement(levelName + " (" + levelState +")");
 		}
+		
 		initializeComponent(levelList, 15);
 		levelSelectPanel.add(levelList);
 		

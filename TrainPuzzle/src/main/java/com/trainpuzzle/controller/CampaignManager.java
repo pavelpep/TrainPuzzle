@@ -11,9 +11,10 @@ public class CampaignManager {
 	private List<Campaign> campaigns = new ArrayList<Campaign>();
 	private Campaign selectedCampaign;
 	
-	public CampaignManager() {
-        campaigns.add(FileManager.loadCampaign("Campaign1"));
-        campaigns.add(FileManager.loadCampaign("Campaign2"));
+	public CampaignManager(List<String> campaignsAvailable) {
+        for(String campaignName: campaignsAvailable){
+        	campaigns.add(FileManager.loadCampaign(campaignName));
+        }
 	}
 	
 	public List<Campaign> getCampaigns() {

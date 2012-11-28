@@ -32,7 +32,9 @@ public class WindowManager {
 	public void showPreviousWindow() {
 		windowList.pop().dispose();
 		if(!windowList.isEmpty()) {
+			
 			windowList.peek().setVisible(true);
+			windowList.peek().repaint();
 		}
 	}
 	

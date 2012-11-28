@@ -19,32 +19,38 @@ public class LevelManager {
         this.campaign = campaign;   
 	}
 		
-	public void selectLevel(int levelNumber) throws LevelLockedException {
-		campaign.selectLevel(levelNumber);
-		campaignLevel = campaign.getCurrentLevel();
-		if(campaignLevel.isLocked) {
-			throw new LevelLockedException("Level " + levelNumber + " is locked.");
-		}else{
-			loadLevel(levelNumber);
-		}
-	}
-	
-	public void selectNextLevel() {
-		int nextLevel = campaign.getCurrentLevelNumber() + 1;
+	public void selectLevel(int levelNumber){
 		try {
-			selectLevel(nextLevel);
+			campaign.selectLevel(levelNumber);
 		} catch (LevelLockedException e) {
 			e.printStackTrace();
 		}
+		
+	    loadLevel(campaign.getCurrentLevelNumber());
+
+	}
+	
+	public void selectNextLevel() {
+		try {
+			campaign.selectNextLevel();
+		} catch (LevelLockedException e) {
+			e.printStackTrace();
+		}
+		
+		loadLevel(campaign.getCurrentLevelNumber());
 	}
 	
 	private void loadLevel(int levelNumber) {
-
+		campaignLevel = campaign.getLevel(levelNumber);
+		
 		// if level has been saved, load the saved level
 		if(campaignLevel.hasUserSave) {
-			Level level = FileManager.loadLevel(campaign.getName(), ((Integer)levelNumber).toString());
+			Level level = FileManager.loadLevelSave(campaign.getName(), ((Integer)levelNumber).toString());
 			levelLoaded = level;	
-		}// Otherwise, load the master level
+		}else if(campaign.hasMasterFiles){// Otherwise, load the level from master file
+			Level level = FileManager.loadLevelMaster(campaign.getName(), ((Integer)levelNumber).toString());
+			levelLoaded = level;	
+		}// Otherwise, load the hardcoded level
 		else {
 			LevelFactory levelFactory = new LevelFactory();
 			Level level = levelFactory.createLevel(levelNumber);
@@ -55,6 +61,9 @@ public class LevelManager {
 
 	public boolean thereIsANextLevel() {
 		return campaign.thereIsANextLevel();
+	}
+	public boolean nextLevelIsUnlocked() {
+		return campaign.nextLevelIsUnlocked();
 	}
 	
 	public void levelCompleted() {

@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
 
-import com.trainpuzzle.exception.LevelLockedException;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
 import com.trainpuzzle.exception.CannotRemoveTrackException;
 import com.trainpuzzle.infrastructure.FileManager;
@@ -15,7 +14,7 @@ import com.trainpuzzle.observe.Observer;
 
 public class GameController {
 	
-	private static final int DEFAULT_CAMPAIGN = 1;
+	private Config config;
 	private Logger logger = Logger.getLogger(GameController.class);
 	private Set<Observer> observerList = new HashSet<Observer>();
 	
@@ -27,11 +26,17 @@ public class GameController {
 	private Level level;
 
 	public GameController() {
-		campaignManager = new CampaignManager();
-		campaignManager.selectCampaign(DEFAULT_CAMPAIGN);
+		loadConfig();
+		campaignManager = new CampaignManager(config.campaigns);
+		campaignManager.selectCampaign(config.currentCampaign);
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
-	
+	private void loadConfig(){
+		config = (Config)FileManager.loadObject("config.xml");
+	}
+	private void saveConfig(){
+		FileManager.saveObject(config, "config.xml");
+	}
 	public void startGame() {
 		level = levelManager.getLevel();
 		trackPlacer = new TrackPlacer(level);
@@ -39,11 +44,7 @@ public class GameController {
 	}
 	
 	public void startGame(int levelNumber) {
-		try {
-			levelManager.selectLevel(levelNumber);
-		} catch (LevelLockedException e) {
-			e.printStackTrace();
-		}
+		levelManager.selectLevel(levelNumber);
 		startGame();
 	}
 
@@ -54,7 +55,10 @@ public class GameController {
 	}
 	
 	public void changeCampaign(int campaignNumber) {
+		campaignManager.saveCampaign();
 		campaignManager.selectCampaign(campaignNumber);
+		config.currentCampaign = campaignNumber;
+		saveConfig();
 		levelManager = new LevelManager(campaignManager.getCampaign());
 	}
 

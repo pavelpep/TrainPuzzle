@@ -24,8 +24,13 @@ public class FileManager {
 		return (Level)loadObject(filename);
 	}
 	
-	public static Level loadLevel(String campaignName, String levelNumber) {
+	public static Level loadLevelSave(String campaignName, String levelNumber) {
 		String filename = "Campaigns/" + campaignName + "/Saves/" + levelNumber + ".xml";
+		return loadLevel(filename);
+	}
+	
+	public static Level loadLevelMaster(String campaignName, String levelNumber) {
+		String filename = "Campaigns/" + campaignName + "/Levels/" + levelNumber + ".xml";
 		return loadLevel(filename);
 	}
 	

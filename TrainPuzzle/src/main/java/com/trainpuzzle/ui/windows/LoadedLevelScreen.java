@@ -110,7 +110,9 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		GridBagConstraints nextButtonConstraints = gbConstraints(new Point(5, 0), new Dimension(1, 1), 0, 0);
 		nextButtonConstraints.insets = new Insets(5,5,5,5);
 		this.nextLevelButton = nextButton();
-		nextLevelButton.setEnabled(false);
+		if(!gameController.getLevelManager().nextLevelIsUnlocked()){
+			nextLevelButton.setEnabled(false);
+		}
 		headerPanel.add(nextLevelButton, nextButtonConstraints);
 		
 		
@@ -393,12 +395,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 				gameController.levelCompleted();
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
 				gameControlBox.setRunButtonVisible();
-				if(gameController.getLevelManager().thereIsANextLevel()){
+				if(gameController.getLevelManager().nextLevelIsUnlocked()){
 					nextLevelButton.setEnabled(true);
-				}	
+				}
 			}
 			else if (((Simulator)object).checkTimeOut()) {
-				setMessageBoxMessage("YOU RUN OUT OF TIME!");
+				setMessageBoxMessage("YOU HAVE RUN OUT OF TIME!");
 				gameControlBox.setRunButtonVisible();
 			}
 			

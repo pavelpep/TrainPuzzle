@@ -1,0 +1,7 @@
+<com.trainpuzzle.controller.Config>
+  <campaigns>
+    <string>Campaign1</string>
+    <string>Campaign2</string>
+  </campaigns>
+  <currentCampaign>1</currentCampaign>
+</com.trainpuzzle.controller.Config>
