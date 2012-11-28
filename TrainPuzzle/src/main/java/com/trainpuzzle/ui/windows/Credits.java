@@ -1,9 +1,19 @@
 package com.trainpuzzle.ui.windows;
 
-import java.awt.*;
-import java.awt.event.*;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class Credits extends Window implements ActionListener {
@@ -19,27 +29,26 @@ public class Credits extends Window implements ActionListener {
 	
 	public void create() {	    
 		JPanel creditsPanel = new JPanel();
-		creditsPanel.setLayout(new BorderLayout());
-		creditsPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
-		this.add(creditsPanel);
+		creditsPanel.setLayout(new BoxLayout(creditsPanel, BoxLayout.Y_AXIS));
 		
 		JLabel titleLabel = new JLabel("Train Track Puzzle Game - Team Omega");
 		initializeComponent(titleLabel, 28);
-		creditsPanel.add(titleLabel, BorderLayout.PAGE_START);
+		creditsPanel.add(titleLabel);
 		
-		JLabel creditLabels = new JLabel("<html>");
-		initializeComponent(creditLabels, 20);
-		creditLabels.setText(creditLabels.getText() + "<br>Joey Au-Yeung");
-		creditLabels.setText(creditLabels.getText() + "<br>Jesse Chahal");
-		creditLabels.setText(creditLabels.getText() + "<br>James Deng");
-		creditLabels.setText(creditLabels.getText() + "<br>Frank Guo");
-		creditLabels.setText(creditLabels.getText() + "<br>Newman Lai");
-		creditLabels.setText(creditLabels.getText() + "<br>Pavel Pepeldjiys​ki");
-		creditLabels.setText(creditLabels.getText() + "<br>Ronald Bow");
-		creditLabels.setText(creditLabels.getText() + "<br>JJ");
-		creditLabels.setText(creditLabels.getText() + "<br>Shanna Walters<br>");
-		creditsPanel.add(creditLabels, BorderLayout.CENTER);
+		List<String> list = Arrays.asList("Joey Au-Yeung", "Jesse Chahal", "James Deng", "Frank Guo", "Newman Lai", "Pavel Pepeldjiys​ki", "Ronald Bow", "JJ", "Shanna Walters");    
 
+		for(String name : list){
+			JLabel nameLabel = new JLabel(name);
+			initializeComponent(nameLabel, 16);
+			creditsPanel.add(nameLabel);
+		}
+		
+		JButton backButton = initializeButton("Back","back");
+		initializeComponent(backButton, 20);
+		backButton.setBackground(Color.LIGHT_GRAY);
+		creditsPanel.add(backButton);
+		
+		this.add(creditsPanel);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
