@@ -88,7 +88,7 @@ public class Station implements java.io.Serializable, Observable {
 		this.numOfCargoRequestor = numOfCargoRequestor;
 	}
 	
-	public HashMap<CargoType, Boolean> getCargoTypeExist() {
+	public HashMap<CargoType, Boolean> getCanGenerateCargoTypes() {
 		return canGeneratCargoTypes;
 	}
 

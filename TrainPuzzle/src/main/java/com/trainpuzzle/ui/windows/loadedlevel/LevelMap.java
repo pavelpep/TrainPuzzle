@@ -180,7 +180,7 @@ public class LevelMap extends JPanel implements Observer {
 		
 		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
 		LinkedList<Cargo> importCargoList = station.getImportCargo();
-		HashMap<CargoType, Boolean> cargoTypeExist = station.getCargoTypeExist();
+		HashMap<CargoType, Boolean> cargoTypeExist = station.getCanGenerateCargoTypes();
 		StationType stationType = station.getType();
 			
 		JPanel cargoLayer = new JPanel();
