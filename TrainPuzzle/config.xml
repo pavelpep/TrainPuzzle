@@ -3,5 +3,5 @@
     <string>Campaign1</string>
     <string>Campaign2</string>
   </campaigns>
-  <currentCampaign>1</currentCampaign>
+  <currentCampaign>2</currentCampaign>
 </com.trainpuzzle.controller.Config>
