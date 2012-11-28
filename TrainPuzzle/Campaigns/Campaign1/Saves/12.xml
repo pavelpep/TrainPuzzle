@@ -1,5 +1,5 @@
 <com.trainpuzzle.model.level.Level>
-  <levelNumber>1</levelNumber>
+  <levelNumber>12</levelNumber>
   <board>
     <rows>15</rows>
     <columns>20</columns>
@@ -596,17 +596,6 @@
       <com.trainpuzzle.model.board.Tile-array>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>false</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>WEST</compassHeading1>
-                <compassHeading2>EAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -614,17 +603,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -632,17 +610,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -650,17 +617,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -668,17 +624,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -686,17 +631,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -704,17 +638,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -864,17 +787,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1023,17 +935,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1182,17 +1083,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1242,17 +1132,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1297,6 +1176,17 @@
       <com.trainpuzzle.model.board.Tile-array>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
+          <track>
+            <isStationTrack>false</isStationTrack>
+            <removable>false</removable>
+            <connections>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>WEST</compassHeading1>
+                <compassHeading2>EAST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+            </connections>
+            <trackType>STRAIGHT_TRACK</trackType>
+          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1342,81 +1232,17 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <obstacle>
-            <obstacle>RED_STATION</obstacle>
-          </obstacle>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
-          <station>
-            <stationType>RED</stationType>
-            <stationLocation>
-              <row>8</row>
-              <column>6</column>
-            </stationLocation>
-            <entranceFacing>EAST</entranceFacing>
-            <track>
-              <isStationTrack>true</isStationTrack>
-              <removable>false</removable>
-              <connections>
-                <com.trainpuzzle.model.board.Connection>
-                  <compassHeading1>NORTH</compassHeading1>
-                  <compassHeading2>SOUTH</compassHeading2>
-                </com.trainpuzzle.model.board.Connection>
-              </connections>
-              <trackType>STRAIGHT_TRACK</trackType>
-            </track>
-            <stationBuilding reference="../../obstacle"/>
-            <exportCargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>IRON</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>WOOD</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>WOOD</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-            </exportCargo>
-            <importCargo/>
-            <numOfCargoGenerator>0</numOfCargoGenerator>
-            <numOfCargoRequestor>0</numOfCargoRequestor>
-            <canGeneratCargoTypes>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-            </canGeneratCargoTypes>
-          </station>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track reference="../../com.trainpuzzle.model.board.Tile[7]/station/track"/>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
-          <station reference="../../com.trainpuzzle.model.board.Tile[7]/station"/>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
@@ -1494,24 +1320,24 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>true</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>true</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
               </entry>
             </canGeneratCargoTypes>
           </station>
@@ -1609,17 +1435,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1669,17 +1484,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1785,17 +1589,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1845,17 +1638,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -1948,17 +1730,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2018,17 +1789,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTH</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2121,17 +1881,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHEAST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2149,69 +1898,24 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <obstacle>
-            <obstacle>GREEN_STATION</obstacle>
-          </obstacle>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
-          <station>
-            <stationType>GREEN</stationType>
-            <stationLocation>
-              <row>12</row>
-              <column>8</column>
-            </stationLocation>
-            <entranceFacing>SOUTH</entranceFacing>
-            <track>
-              <isStationTrack>true</isStationTrack>
-              <removable>false</removable>
-              <connections>
-                <com.trainpuzzle.model.board.Connection>
-                  <compassHeading1>EAST</compassHeading1>
-                  <compassHeading2>WEST</compassHeading2>
-                </com.trainpuzzle.model.board.Connection>
-              </connections>
-              <trackType>STRAIGHT_TRACK</trackType>
-            </track>
-            <stationBuilding reference="../../obstacle"/>
-            <exportCargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>COTTON</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-            </exportCargo>
-            <importCargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>IRON</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-            </importCargo>
-            <numOfCargoGenerator>0</numOfCargoGenerator>
-            <numOfCargoRequestor>0</numOfCargoRequestor>
-            <canGeneratCargoTypes>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-            </canGeneratCargoTypes>
-          </station>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
@@ -2236,93 +1940,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <obstacle>
-            <obstacle>GREEN_STATION</obstacle>
-          </obstacle>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-          <station>
-            <stationType>GREEN</stationType>
-            <stationLocation>
-              <row>12</row>
-              <column>12</column>
-            </stationLocation>
-            <entranceFacing>SOUTH</entranceFacing>
-            <track>
-              <isStationTrack>true</isStationTrack>
-              <removable>false</removable>
-              <connections>
-                <com.trainpuzzle.model.board.Connection>
-                  <compassHeading1>EAST</compassHeading1>
-                  <compassHeading2>WEST</compassHeading2>
-                </com.trainpuzzle.model.board.Connection>
-              </connections>
-              <trackType>STRAIGHT_TRACK</trackType>
-            </track>
-            <stationBuilding reference="../../obstacle"/>
-            <exportCargo/>
-            <importCargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>WOOD</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>COTTON</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-              <com.trainpuzzle.model.board.Cargo>
-                <cargoType>WOOD</cargoType>
-                <numberOfCargo>1</numberOfCargo>
-              </com.trainpuzzle.model.board.Cargo>
-            </importCargo>
-            <numOfCargoGenerator>0</numOfCargoGenerator>
-            <numOfCargoRequestor>0</numOfCargoRequestor>
-            <canGeneratCargoTypes>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-            </canGeneratCargoTypes>
-          </station>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>SOUTHWEST</compassHeading1>
-                <compassHeading2>NORTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2422,17 +2039,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHWEST</compassHeading1>
-                <compassHeading2>EAST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVERIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2440,26 +2046,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track reference="../../../com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[9]/station/track"/>
-          <landscape>
-            <landscapeType>GRASS</landscapeType>
-            <multiplier>1</multiplier>
-          </landscape>
-          <station reference="../../../com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[9]/station"/>
-        </com.trainpuzzle.model.board.Tile>
-        <com.trainpuzzle.model.board.Tile>
-          <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2467,17 +2053,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2485,17 +2060,6 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>EAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>STRAIGHT_TRACK</trackType>
-          </track>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2503,26 +2067,20 @@
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track reference="../../../com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station/track"/>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
           </landscape>
-          <station reference="../../../com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
         </com.trainpuzzle.model.board.Tile>
         <com.trainpuzzle.model.board.Tile>
           <elevation>0</elevation>
-          <track>
-            <isStationTrack>false</isStationTrack>
-            <removable>true</removable>
-            <connections>
-              <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTHEAST</compassHeading1>
-                <compassHeading2>WEST</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-            </connections>
-            <trackType>CURVELEFT_TRACK</trackType>
-          </track>
+          <landscape>
+            <landscapeType>GRASS</landscapeType>
+            <multiplier>1</multiplier>
+          </landscape>
+        </com.trainpuzzle.model.board.Tile>
+        <com.trainpuzzle.model.board.Tile>
+          <elevation>0</elevation>
           <landscape>
             <landscapeType>GRASS</landscapeType>
             <multiplier>1</multiplier>
@@ -2719,19 +2277,15 @@
     </tiles>
   </board>
   <startLocation>
-    <row>4</row>
+    <row>8</row>
     <column>0</column>
   </startLocation>
   <victoryConditions class="com.trainpuzzle.model.level.victory_condition.AndVictoryCondition">
     <childConditions>
       <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
-        <condition class="com.trainpuzzle.model.level.victory_condition.DropCargoEvent">
+        <condition>
           <time>100</time>
-          <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[9]/station"/>
-          <cargo>
-            <cargoType>IRON</cargoType>
-            <numberOfCargo>1</numberOfCargo>
-          </cargo>
+          <station reference="../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[15]/station"/>
         </condition>
         <conditionSatisfied>false</conditionSatisfied>
         <hasTimeLimit>false</hasTimeLimit>
@@ -2746,217 +2300,6 @@
                     <allowsChildren>true</allowsChildren>
                     <children>
                       <javax.swing.tree.DefaultMutableTreeNode reference="../../../../../../.."/>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition class="com.trainpuzzle.model.level.victory_condition.DropCargoEvent">
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
-                                  <cargo>
-                                    <cargoType>WOOD</cargoType>
-                                    <numberOfCargo>1</numberOfCargo>
-                                  </cargo>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel serialization="custom">
-                                  <javax.swing.tree.DefaultTreeModel>
-                                    <default>
-                                      <asksAllowsChildren>false</asksAllowsChildren>
-                                      <listenerList serialization="custom">
-                                        <javax.swing.event.EventListenerList>
-                                          <default/>
-                                          <null/>
-                                        </javax.swing.event.EventListenerList>
-                                      </listenerList>
-                                      <root class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../../../../../../.."/>
-                                    </default>
-                                    <vector>
-                                      <string>root</string>
-                                      <javax.swing.tree.DefaultMutableTreeNode reference="../../../../../../../../../../../.."/>
-                                    </vector>
-                                  </javax.swing.tree.DefaultTreeModel>
-                                </treeModel>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>drop WOD at Station ( 12,12)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition class="com.trainpuzzle.model.level.victory_condition.DropCargoEvent">
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
-                                  <cargo>
-                                    <cargoType>COTTON</cargoType>
-                                    <numberOfCargo>1</numberOfCargo>
-                                  </cargo>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>drop CTN at Station ( 12,12)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition class="com.trainpuzzle.model.level.victory_condition.DropCargoEvent">
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
-                                  <cargo>
-                                    <cargoType>WOOD</cargoType>
-                                    <numberOfCargo>1</numberOfCargo>
-                                  </cargo>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>drop WOD at Station ( 12,12)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition>
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[7]/station"/>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>pass station at (8,6)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition>
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[9]/station"/>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>pass station at (12,8)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition>
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[13]/com.trainpuzzle.model.board.Tile[13]/station"/>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>pass station at (12,12)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
-                      <javax.swing.tree.DefaultMutableTreeNode serialization="custom">
-                        <javax.swing.tree.DefaultMutableTreeNode>
-                          <default>
-                            <allowsChildren>true</allowsChildren>
-                            <parent class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../../../.."/>
-                          </default>
-                          <object-array>
-                            <string>userObject</string>
-                            <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                              <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition">
-                                <condition>
-                                  <time>100</time>
-                                  <station reference="../../../../../../../../../../../../../../../../../board/tiles/com.trainpuzzle.model.board.Tile-array[9]/com.trainpuzzle.model.board.Tile[15]/station"/>
-                                </condition>
-                                <conditionSatisfied>false</conditionSatisfied>
-                                <hasTimeLimit>false</hasTimeLimit>
-                                <timeLimit>0</timeLimit>
-                                <displayNode reference="../../../../.."/>
-                                <treeModel reference="../../../../../../javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
-                                <userObject reference="../.."/>
-                              </victoryCondition>
-                              <label>pass station at (8,15)</label>
-                            </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
-                          </object-array>
-                        </javax.swing.tree.DefaultMutableTreeNode>
-                      </javax.swing.tree.DefaultMutableTreeNode>
                     </children>
                   </default>
                   <object-array>
@@ -2973,36 +2316,46 @@
               <string>userObject</string>
               <com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
                 <victoryCondition class="com.trainpuzzle.model.level.victory_condition.LeafVictoryCondition" reference="../../../../.."/>
-                <label>drop IRN at Station ( 12,8)</label>
+                <label>pass station at (8,15)</label>
               </com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject>
             </object-array>
           </javax.swing.tree.DefaultMutableTreeNode>
         </displayNode>
-        <treeModel reference="../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
+        <treeModel serialization="custom">
+          <javax.swing.tree.DefaultTreeModel>
+            <default>
+              <asksAllowsChildren>false</asksAllowsChildren>
+              <listenerList serialization="custom">
+                <javax.swing.event.EventListenerList>
+                  <default/>
+                  <null/>
+                </javax.swing.event.EventListenerList>
+              </listenerList>
+              <root class="javax.swing.tree.DefaultMutableTreeNode" reference="../../../../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
+            </default>
+            <vector>
+              <string>root</string>
+              <javax.swing.tree.DefaultMutableTreeNode reference="../../../../displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
+            </vector>
+          </javax.swing.tree.DefaultTreeModel>
+        </treeModel>
         <userObject reference="../displayNode/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject"/>
       </com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[3]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[4]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[5]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[6]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[7]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
-      <com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition reference="../com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[8]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition"/>
     </childConditions>
     <conditionSatisfied>false</conditionSatisfied>
     <displayNode reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent"/>
-    <treeModel reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/default/children/javax.swing.tree.DefaultMutableTreeNode[2]/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject/victoryCondition/treeModel"/>
+    <treeModel reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/treeModel"/>
     <userObject reference="../childConditions/com.trainpuzzle.model.level.victory__condition.LeafVictoryCondition/displayNode/javax.swing.tree.DefaultMutableTreeNode/default/parent/javax.swing.tree.DefaultMutableTreeNode/object-array/com.trainpuzzle.model.level.victory__condition.TreeNodeUserObject"/>
   </victoryConditions>
   <economy>
     <budget>-1</budget>
     <numberOfAvailableTrack>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
+        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>30</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>5</int>
       </entry>
       <entry>
@@ -3014,23 +2367,19 @@
         <int>5</int>
       </entry>
       <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>10</int>
+      </entry>
+      <entry>
         <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>7</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
+        <int>10</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
@@ -3039,14 +2388,18 @@
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>CURVE</com.trainpuzzle.model.board.TrackType>
-        <int>7</int>
+        <int>15</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>7</int>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>5</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
         <int>5</int>
       </entry>
     </numberOfAvailableTrack>
