@@ -54,10 +54,20 @@ public final class Images {
 	public final static String CURVELEFT_SWITCH = "src/main/resources/images/left_switch.png";
 	public final static String CURVERIGHT_SWITCH = "src/main/resources/images/right_switch.png";
 	
+	
+	//Victory conditions Icons
 	public final static String VC_UNSATISFIED = "src/main/resources/images/blackFrame.png";
 	public final static String VC_SATISFIED = "src/main/resources/images/greenSquare.png";
 	
-	// ImageIcon type
+	//Level selection screen Icons
+	public final static String LS_UNLOCKED = "src/main/resources/images/levelUnlocked.png";
+	public final static String LS_LOCKED = "src/main/resources/images/levelLocked.png";
+	public final static String LS_COMPLETED = "src/main/resources/images/levelCompleted.png";
+	public final static String LS_SAVED = "src/main/resources/images/levelSaved.png";
+	
+	
+	
+	//IMAGEICONS
 	
 	// Train
 	public final static ImageIcon TRAIN_IMAGE = new ImageIcon(TRAIN);
@@ -95,9 +105,15 @@ public final class Images {
 	public final static ImageIcon CURVELEFT_SWITCH_IMAGE = new ImageIcon(CURVELEFT_SWITCH);
 	public final static ImageIcon CURVERIGHT_SWITCH_IMAGE = new ImageIcon(CURVERIGHT_SWITCH);
 	
+	//Victory Conditions
 	public final static ImageIcon VC_UNSATISFIED_IMAGE = new ImageIcon(VC_UNSATISFIED);
 	public final static ImageIcon VC_SATISFIED_IMAGE = new ImageIcon(VC_SATISFIED);
 	
+	//Level Selection
+	public final static ImageIcon LS_UNLOCKED_IMAGE = new ImageIcon(LS_UNLOCKED);
+	public final static ImageIcon LS_LOCKED_IMAGE = new ImageIcon(LS_LOCKED);
+	public final static ImageIcon LS_COMPLETED_IMAGE = new ImageIcon(LS_COMPLETED);
+	public final static ImageIcon LS_SAVED_IMAGE = new ImageIcon(LS_SAVED);
 
 	
 }
