@@ -187,14 +187,9 @@ public class LevelMap extends JPanel implements Observer {
 		initCargoLayer(cargoLayer);
 		
 		JPanel cargoRow1 = new JPanel();
-		cargoRow1.setOpaque(false);
-		cargoRow1.setLayout(new BoxLayout(cargoRow1, BoxLayout.X_AXIS));
-		cargoRow1.setAlignmentX(LEFT_ALIGNMENT);
-		
+		initCargoRow(cargoRow1);		
 		JPanel cargoRow2 = new JPanel();
-		cargoRow2.setOpaque(false);
-		cargoRow2.setLayout(new BoxLayout(cargoRow2, BoxLayout.X_AXIS));
-		cargoRow2.setAlignmentX(LEFT_ALIGNMENT);
+		initCargoRow(cargoRow2);
 				
 		if (stationType==StationType.GREEN || stationType==StationType.RED){
 			displayAllCargoesInStation(cargoRow1, exportCargoList);
@@ -215,11 +210,18 @@ public class LevelMap extends JPanel implements Observer {
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
 	}
-
+	
 	private void initCargoLayer(JPanel cargoLayer){
 		cargoLayer.setOpaque(false);
 		cargoLayer.setLayout(new BoxLayout(cargoLayer, BoxLayout.Y_AXIS));
 	}
+	
+	private void initCargoRow(JPanel oneCargoRow){
+		oneCargoRow.setOpaque(false);
+		oneCargoRow.setLayout(new BoxLayout(oneCargoRow, BoxLayout.X_AXIS));
+		oneCargoRow.setAlignmentX(LEFT_ALIGNMENT);		
+	}
+	
 	private void displayAllCargoesInStation(JPanel cargoRow, LinkedList<Cargo> exportCargoList){
 		for (Cargo cargo: exportCargoList) {
 			JLabel cargoLabel = new JLabel(getExportCargoIcon(cargo.getType()));
