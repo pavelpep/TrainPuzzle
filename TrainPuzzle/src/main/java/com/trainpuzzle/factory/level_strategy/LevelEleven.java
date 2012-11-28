@@ -31,9 +31,10 @@ public class LevelEleven extends LevelOutline {
         
         Economy economy = createEconomy();
         
-        Level levelEleven=new Level(1, this.board, createStartLocation(), this.root, economy);
+        Level levelEleven=new Level(11, this.board, createStartLocation(), this.root, economy);
         levelEleven.setCargoGenerators(cargoGenerators);
-        levelEleven.setTimeLimit(60);
+        levelEleven.setCargorequestors(cargoRequestGenerators);
+        levelEleven.setTimeLimit(35);
         	        
     	return levelEleven;
 	}
@@ -54,32 +55,36 @@ public class LevelEleven extends LevelOutline {
 	private void initStationsAndCargoGenerator() {
 		ArrayList<Station> stations = new ArrayList<Station>();
 		
-		//There can not be more than 3 cargos or requested cargos in a green or red station;
-        /*Station stationToAdd=new Station(StationType.RED, new Location(8, 6), CompassHeading.EAST);
+		//There can not be more than 3 cargos or requested cargos in a green or red station;       
+        Station stationToAdd = new Station(StationType.GREEN, new Location(8, 3), CompassHeading.SOUTH);
         stations.add(stationToAdd);
         stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
         stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
-        stationToAdd.addExportCargo(new Cargo(CargoType.WOOD));
-        
-        stationToAdd = new Station(StationType.GREEN, new Location(12, 8), CompassHeading.SOUTH);
+        stationToAdd.addExportCargo(new Cargo(CargoType.STEEL));	
+
+        stationToAdd = new Station(StationType.GREEN, new Location(11, 13), CompassHeading.EAST);
         stations.add(stationToAdd);
-        addImportCargo (stationToAdd, root, new Cargo(CargoType.IRON));
-        stationToAdd.addExportCargo(new Cargo(CargoType.COTTON));
+        addImportCargo (stationToAdd, root, new Cargo(CargoType.IRON));	
         
-        stationToAdd = new Station(StationType.GREEN, new Location(12, 12), CompassHeading.SOUTH);
+        stationToAdd = new Station(StationType.GREEN, new Location(6, 11), CompassHeading.SOUTH);
         stations.add(stationToAdd);
         addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
-        addImportCargo (stationToAdd, root, new Cargo(CargoType.COTTON));
-        addImportCargo (stationToAdd, root, new Cargo(CargoType.WOOD));	
-        */
+        addImportCargo (stationToAdd, root, new Cargo(CargoType.STEEL));	
         
-        Station stationToAdd = new Station(StationType.FACTORY, new Location(8, 15), CompassHeading.WEST);
-        stations.add(stationToAdd);
-        
+        stationToAdd = new Station(StationType.FACTORY, new Location(9, 8), CompassHeading.SOUTH);
+        stations.add(stationToAdd);       
         //There can not be more than 2 generators at one station
         //Don't add generator and requestor at one station simultaneously.
         addCargoGenerator(stationToAdd, 6, CargoType.COAL);
-        addCargoGenerator(stationToAdd, 6, CargoType.STEEL);
+        addCargoGenerator(stationToAdd, 8, CargoType.STEEL);
+        
+        stationToAdd = new Station(StationType.REQUESTER, new Location(5, 3), CompassHeading.WEST);
+        stations.add(stationToAdd);
+        
+        //There can not be more than 3 requesters at one station
+        //Don't add generator and requestor at one station simultaneously.
+        addCargoRequester(stationToAdd, 15, CargoType.COAL);
+        addCargoRequester(stationToAdd, 17, CargoType.STEEL);        
         
         setPassStations(stations);
 	}	
@@ -89,12 +94,12 @@ public class LevelEleven extends LevelOutline {
         
         trackLimits.put(TrackType.TRACK, 30);
         trackLimits.put(TrackType.STRAIGHT, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVE, 15);
+        trackLimits.put(TrackType.CURVE, 20);
         trackLimits.put(TrackType.INTERSECTION, 5);
         trackLimits.put(TrackType.SWITCH, 5);
         trackLimits.put(TrackType.STRAIGHT_TRACK, NO_ECONOMY_LIMIT);
         trackLimits.put(TrackType.DIAGONAL_TRACK, NO_ECONOMY_LIMIT);
-        trackLimits.put(TrackType.CURVELEFT_TRACK, 10);
+        trackLimits.put(TrackType.CURVELEFT_TRACK, 13);
         trackLimits.put(TrackType.CURVERIGHT_TRACK, 10);
         trackLimits.put(TrackType.INTERSECTION_TRACK, 5);
         trackLimits.put(TrackType.DIAGONAL_INTERSECTION_TRACK, 5);
@@ -141,6 +146,8 @@ public class LevelEleven extends LevelOutline {
         setObstaclesByRow(7, 4, 5, ObstacleType.MOUNTAINS);
         setObstaclesByRow(8, 5, 5, ObstacleType.MOUNTAINS);
         setObstaclesByRow(12, 7, 7, ObstacleType.MOUNTAINS);
+        setObstaclesByRow(8, 6, 6, ObstacleType.MOUNTAINS);
+        setObstaclesByRow(8, 7, 7, ObstacleType.MOUNTAINS);
 	}
 
 }
