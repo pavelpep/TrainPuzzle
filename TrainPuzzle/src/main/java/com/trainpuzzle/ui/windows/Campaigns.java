@@ -23,9 +23,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	public Campaigns(GameController gameController) {
 		this.gameController = gameController;
 		create();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
+		reload();
 	}	
 	
 	public Campaigns(GameController gameController, LevelManager campaignManager) {
@@ -34,11 +32,10 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		create();
-		pack();
-		setLocationRelativeTo(null);
+		reload();
 	}
 	
-	public void create() {
+	protected void create() {
 		JPanel campaignsPanel = new JPanel();
 		campaignsPanel.setLayout(new BoxLayout(campaignsPanel, BoxLayout.Y_AXIS));
 		campaignsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -75,7 +72,7 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 		
 		JButton backButton = initializeButton("Back","back");
 		initializeComponent(backButton, 15);
-		campaignsPanel.add(backButton);		
+		campaignsPanel.add(backButton);	
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -105,5 +102,13 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 	
 	public void valueChanged(ListSelectionEvent arg0) {
 		campaignSelected = 1 + campaignList.getSelectedIndex();		
+	}
+
+	@Override
+	protected void reload() {
+		validate();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}	
 }

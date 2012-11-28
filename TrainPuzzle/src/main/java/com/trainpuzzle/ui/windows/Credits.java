@@ -22,12 +22,10 @@ public class Credits extends Window implements ActionListener {
 	public Credits() {
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		create();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
+		reload();
 	}
 	
-	public void create() {	    
+	protected void create() {	    
 		JPanel creditsPanel = new JPanel();
 		creditsPanel.setLayout(new BoxLayout(creditsPanel, BoxLayout.Y_AXIS));
 		
@@ -48,6 +46,7 @@ public class Credits extends Window implements ActionListener {
 		backButton.setBackground(Color.LIGHT_GRAY);
 		creditsPanel.add(backButton);
 		
+		
 		this.add(creditsPanel);
 	}
 	
@@ -57,5 +56,13 @@ public class Credits extends Window implements ActionListener {
 			WindowManager.getManager().showPreviousWindow();
 		}
 	}
+
+	@Override
+	protected void reload() {
+		validate();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}	
 }
 	

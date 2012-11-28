@@ -54,12 +54,11 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		loadedLevelScreenPanel = new JPanel();
 		loadedLevelScreenPanel.setLayout(new GridBagLayout());
 		this.add(loadedLevelScreenPanel);
-		
 		create();
-
+		reload();
 	}
 
-	private void create() {
+	protected void create() {
 		
 		this.level = this.gameController.getLevel();
 		gameController.getSimulator().register(this);
@@ -72,12 +71,6 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		
 		GridBagConstraints bodyPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 1);
 		loadedLevelScreenPanel.add(bodyPanel(), bodyPanelConstraints);
-		
-		validate();
-		
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
 	}
 
 
@@ -408,4 +401,12 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			
 		}
 	}
+
+	@Override
+	protected void reload() {
+		validate();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}	
 }

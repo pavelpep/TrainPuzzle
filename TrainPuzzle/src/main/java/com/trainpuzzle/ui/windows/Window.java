@@ -17,6 +17,10 @@ abstract class Window extends JFrame implements ActionListener {
 		setVisible(false);
 		modifyWindowCloseAction();
 	}
+	
+	protected abstract void create();
+	
+	protected abstract void reload();
 
 	private void modifyWindowCloseAction() {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

@@ -21,12 +21,10 @@ public class MainMenu extends Window implements ActionListener {
 		this.gameController = gameController;
 		setSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 		create();
-		pack();
-		setLocationRelativeTo(null);
-		setVisible(true);
+		reload();
 	}
 	
-	public void create() {
+	protected void create() {
 		JPanel mainMenuPanel = new JPanel();
 		mainMenuPanel.setLayout(new BoxLayout(mainMenuPanel, BoxLayout.Y_AXIS));
 		mainMenuPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
@@ -59,7 +57,11 @@ public class MainMenu extends Window implements ActionListener {
 		JButton exitButton = initializeButton("Exit","exit");
 		initializeComponent(exitButton, 20);
 		exitButton.setBackground(Color.LIGHT_GRAY);
-		mainMenuPanel.add(exitButton);		
+		mainMenuPanel.add(exitButton);
+		
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
@@ -98,4 +100,12 @@ public class MainMenu extends Window implements ActionListener {
 		}
 		return null;
 	}
+
+	@Override
+	protected void reload() {
+		validate();
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}	
 }
