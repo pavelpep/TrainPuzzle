@@ -4,6 +4,7 @@ import java.awt.Component;
 
 
 
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.HashMap;
 
 import com.trainpuzzle.controller.CargoGenerator;
+import com.trainpuzzle.controller.CargoRequestGenerator;
 import com.trainpuzzle.controller.GameController;
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.board.CompassHeading;
@@ -38,6 +40,7 @@ import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
+import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
@@ -204,10 +207,15 @@ public class LevelMap extends JPanel implements Observer {
 			displayAllCargoesInStation(cargoRow1, exportCargoList);
 			displayAllRequestsInStation(cargoRow1, importCargoList);
 		}
-		else{
+		if (stationType == StationType.FACTORY){
 			displayCargoTypesInStation(cargoRow1, cargoTypeExist);
 			displayNumOfCargosInStation(cargoRow1, exportCargoList);
 			displayGeneratorFrequency(cargoRow2,station, cargoTypeExist);
+		}
+		if (stationType == StationType.REQUESTER){
+			displayCargoTypesInStation(cargoRow1, cargoTypeExist);
+			displayNumOfRequestsInStation(cargoRow1, importCargoList);
+			displayRequesterFrequency(cargoRow2,station, cargoTypeExist);
 		}
 		cargoLayer.add(cargoRow1);
 		cargoLayer.add(cargoRow2);		
@@ -265,12 +273,43 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
+	private void displayRequesterFrequency(JPanel cargoRow2,Station station,
+			HashMap<CargoType,Boolean> cargoTypeExist){
+		for (CargoType cargoType: CargoType.values()){
+			if (cargoTypeExist.get(cargoType)){
+				CargoRequestGenerator wantedRequester = getRequester(level.getCargorequestors(), station, cargoType);
+				
+				Integer generatingInterval = wantedRequester.getGeneratingInteval();
+				JLabel cargoLabel = new JLabel(generatingInterval.toString()+ "T");
+				cargoLabel.setForeground(Color.WHITE);
+				Font font = new Font("Arial", Font.ROMAN_BASELINE, 9);
+				cargoLabel.setFont(font);
+				cargoRow2.add(cargoLabel);
+			}
+		}
+	}
+	
+	private CargoRequestGenerator getRequester(List<CargoRequestGenerator> cargoRequesters, 
+			Station station, CargoType cargoType){
+		for (CargoRequestGenerator requester: cargoRequesters){
+			if (requester.getStation().equals(station) && requester.getRequestType()==cargoType){
+				return requester;
+			}
+		}
+		return null;
+	}
+	
 	private void displayNumOfCargosInStation(JPanel cargoRow1,LinkedList<Cargo> exportCargoList){
 		Integer numCargo = exportCargoList.size();
 		JLabel numCargoLabel = new JLabel(numCargo.toString());
 		cargoRow1.add(numCargoLabel);
 	}
 
+	private void displayNumOfRequestsInStation(JPanel cargoRow1,LinkedList<Cargo> importCargoList){
+		Integer numRequests = importCargoList.size();
+		JLabel numCargoLabel = new JLabel(numRequests.toString());
+		cargoRow1.add(numCargoLabel);
+	}
 	
 	private ImageIcon getExportCargoIcon(CargoType cargoType){
 		ImageIcon cargoIcon = new ImageIcon(Images.IRON);

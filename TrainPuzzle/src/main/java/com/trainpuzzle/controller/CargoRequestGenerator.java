@@ -16,13 +16,13 @@ import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
 public class CargoRequestGenerator {
 	private Station station;
 	private IfThenVictoryCondition parentVictoryCondition;
-	private int time; 
+	private int generatingInteval; 
 	private CargoType requestType;
 	
 	public CargoRequestGenerator(Station station, LogicalVictoryCondition condition, int time, CargoType type) {
 		this.station = station;
 		station.getCargoTypeExist().put(type, true);
-		this.time = time;
+		this.generatingInteval = time;
 		this.parentVictoryCondition =new IfThenVictoryCondition();
 		this.requestType =type;
 		changeName();
@@ -40,11 +40,14 @@ public class CargoRequestGenerator {
 		return requestType;
 	}
 
+	public int getGeneratingInteval() {
+		return generatingInteval;
+	}
 
 
 	private void changeName() {
 		Location location =station.getStationLocation();
-		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +time +" game time";
+		String name = "It generarate requesting cargo " + requestType.getName() +" station at ("+location.getRow()+","+location.getColumn()+")" + " every " +generatingInteval +" game time";
 		
 		TreeNodeUserObject userObject = new TreeNodeUserObject(parentVictoryCondition,name);
 		DefaultMutableTreeNode displayNode = new DefaultMutableTreeNode(userObject);
@@ -53,7 +56,7 @@ public class CargoRequestGenerator {
 	}
 	
 	public void generateRequest (int time) {
-		if (time % (this.time) == 0) {
+		if (time % (this.generatingInteval) == 0) {
 			Cargo cargo = new Cargo(requestType);
 			station.addImportCargo(cargo);
 			DropCargoEvent event = new DropCargoEvent(station,cargo);
