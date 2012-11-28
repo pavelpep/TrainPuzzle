@@ -3,6 +3,7 @@ package com.trainpuzzle.factory.level_strategy;
 import java.util.ArrayList;
 
 
+import com.trainpuzzle.model.board.Cargo;
 import com.trainpuzzle.model.board.CompassHeading;
 import com.trainpuzzle.model.board.Location;
 import com.trainpuzzle.model.board.Station;
@@ -42,72 +43,47 @@ public class LevelFive extends LevelOutline{
 	}
 
 	private Location createStartLocation() {
-		Location startLocation = new Location(1,0);
+		Location startLocation = new Location(1,1);
         setStartLocation(startLocation, CompassHeading.WEST, CompassHeading.EAST, TrackType.STRAIGHT_TRACK);
 		return startLocation;
 	}
 
 	private void initStationsAndCargoGenerator() {
 		ArrayList<Station> stations = new ArrayList<Station>();
-        Station stationToAdd = new Station(StationType.FACTORY, new Location(7, 9), CompassHeading.SOUTH);
+        Station stationToAdd = new Station(StationType.FACTORY, new Location(1, 14), CompassHeading.SOUTH);
         stations.add(stationToAdd);
-        addCargoGenerator(stationToAdd, 4, CargoType.IRON);
+        addCargoGenerator(stationToAdd, 16, CargoType.IRON);
                
-        stationToAdd = new Station(StationType.REQUESTER, new Location(7, 11), CompassHeading.SOUTH);
+        stationToAdd = new Station(StationType.REQUESTER, new Location(7,12), CompassHeading.EAST);
         stations.add(stationToAdd);
         /*CargoRequestGenerator requester = new CargoRequestGenerator(stationToAdd, root, 4, CargoType.IRON);
         cargoRequestGenerators.add(requester);*/
-        addCargoRequester(stationToAdd, 4, CargoType.IRON);
+        addCargoRequester(stationToAdd, 16, CargoType.IRON);
+        
+        stationToAdd = new Station(StationType.GREEN, new Location(4, 7), CompassHeading.SOUTH);
+        stations.add(stationToAdd);
+        stationToAdd.addExportCargo(new Cargo(CargoType.IRON));
+        
+        stationToAdd = new Station(StationType.RED, new Location(5, 11), CompassHeading.SOUTH);
+        stations.add(stationToAdd);
+        
+        stationToAdd = new Station(StationType.GREEN, new Location(5, 12), CompassHeading.SOUTH);
+        stations.add(stationToAdd);
+        
+        stationToAdd = new Station(StationType.RED, new Location(9, 12), CompassHeading.SOUTH);
+        stations.add(stationToAdd);
         
         setPassStations(stations);
 	}	
 	
 
 	private void setLandscape() {
-		setLandscapeByRow(4, 9, 10, LandscapeType.WATER);
-        setLandscapeByRow(5, 10, 11, LandscapeType.WATER);
-        setLandscapeByRow(14, 0, 5, LandscapeType.WATER);
-        setLandscapeByRow(13, 0, 4, LandscapeType.WATER);
-        setLandscapeByRow(12, 0, 3, LandscapeType.WATER);
-        setLandscapeByRow(11, 0, 2, LandscapeType.WATER);
-        
-        setLandscapeByRow(9, 5, 6, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(10, 4, 5, LandscapeType.DARKSWAMP);
-        setLandscapeByRow(9, 7, 9, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(10, 6, 8, LandscapeType.MEDSWAMP);
-        setLandscapeByRow(9, 10, 11, LandscapeType.LIGHTSWAMP);
-        setLandscapeByRow(10, 9, 10, LandscapeType.LIGHTSWAMP);
-        
-        setLandscapeByColumn(2, 8, 17, LandscapeType.LIGHTDIRT);
-        setLandscapeByColumn(1, 3, 18, LandscapeType.DIRT);
-        setLandscapeByColumn(0, 2, 19, LandscapeType.ROUGHDIRT);
-        setLandscapeByColumn(8, 12, 18, LandscapeType.DIRT);
-        setLandscapeByColumn(9, 14, 19, LandscapeType.ROUGHDIRT);
-        
-        setLandscapeByColumn(4, 7, 18, LandscapeType.WATER);
-        setLandscapeByColumn(3, 8, 19, LandscapeType.WATER);
+		
         
 	}
 
 	private void setObstacles() {
-		ArrayList<Location> rockLocations = new ArrayList<Location>();
-        rockLocations.add(new Location(6, 3));
-        rockLocations.add(new Location(3, 15));
-        rockLocations.add(new Location(8, 17));
-        setObstacles(rockLocations, ObstacleType.ROCK);
-        
-        setObstaclesByRow(0, 0, 5, ObstacleType.TREES);
-        setObstaclesByRow(5, 9, 9, ObstacleType.TREES);
-        setObstaclesByRow(10, 0, 3, ObstacleType.TREES);
-        setObstaclesByRow(11, 3, 4, ObstacleType.TREES);
-        setObstaclesByRow(12, 4, 5, ObstacleType.TREES);
-        setObstaclesByRow(13, 5, 6, ObstacleType.TREES);
-        setObstaclesByRow(14, 6, 6, ObstacleType.TREES);
-        
-        setObstaclesByRow(11, 12, 12, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(7, 4, 5, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(8, 5, 5, ObstacleType.MOUNTAINS);
-        setObstaclesByRow(12, 7, 7, ObstacleType.MOUNTAINS);
+		
 	}
 
 
