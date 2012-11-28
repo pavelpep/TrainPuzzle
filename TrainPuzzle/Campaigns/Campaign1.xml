@@ -74,5 +74,5 @@
       <levelNumber>12</levelNumber>
     </com.trainpuzzle.model.level.CampaignLevel>
   </campaignLevels>
-  <currentLevel>11</currentLevel>
+  <currentLevel>1</currentLevel>
 </com.trainpuzzle.model.level.Campaign>
