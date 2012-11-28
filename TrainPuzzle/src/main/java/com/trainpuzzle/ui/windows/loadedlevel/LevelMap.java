@@ -237,9 +237,9 @@ public class LevelMap extends JPanel implements Observer {
 		}			
 	}
 	
-	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> cargoTypeExist){
+	private void displayCargoTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> canGenerateCargoTypes){
 		for (CargoType cargoType: CargoType.values()){
-			if (cargoTypeExist.get(cargoType)){	
+			if (canGenerateCargoTypes.get(cargoType)){	
 				JLabel cargoLabel = new JLabel(getExportCargoIcon(cargoType));
 				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 				cargoRow1.add(cargoLabel);
@@ -247,9 +247,9 @@ public class LevelMap extends JPanel implements Observer {
 		}
 	}
 	
-	private void displayRequestTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> cargoTypeExist){
+	private void displayRequestTypesInStation(JPanel cargoRow1, HashMap<CargoType,Boolean> canGenerateCargoTypes){
 		for (CargoType cargoType: CargoType.values()){
-			if (cargoTypeExist.get(cargoType)){	
+			if (canGenerateCargoTypes.get(cargoType)){	
 				JLabel cargoLabel = new JLabel(getImportCargoIcon(cargoType));
 				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
 				cargoRow1.add(cargoLabel);
