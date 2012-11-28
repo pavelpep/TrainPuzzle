@@ -2,8 +2,6 @@ package com.trainpuzzle.ui.windows;
 
 import com.trainpuzzle.exception.CannotOperateTrackException;
 import com.trainpuzzle.exception.CannotPlaceTrackException;
-import com.trainpuzzle.exception.CannotRemoveTrackException;
-import com.trainpuzzle.exception.CannotOperateSwitchException;
 
 import com.trainpuzzle.controller.SwitchController;
 import com.trainpuzzle.controller.TrackPlacer;

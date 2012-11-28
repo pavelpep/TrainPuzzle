@@ -2,14 +2,9 @@ package com.trainpuzzle.ui.windows;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import com.trainpuzzle.controller.LevelManager;
-import com.trainpuzzle.controller.GameController;
 
 public class Credits extends Window implements ActionListener {
 	private static final long serialVersionUID = 1L;

@@ -91,7 +91,6 @@ class Campaigns extends Window implements ActionListener, ListSelectionListener 
 					"Reset Campaign", JOptionPane.YES_NO_OPTION);
 			
 			if (resetOptionPane == JOptionPane.YES_OPTION) {
-				// TODO: Need to change Campaign XML file itself in order to reset!
 				gameController.resetCampaign(campaignList.getSelectedIndex());
 				JOptionPane.showMessageDialog(null, "Campaign reset successful");
 			} 
