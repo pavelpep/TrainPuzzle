@@ -15,7 +15,7 @@ import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
 @SuppressWarnings("serial")
 class CustomIconRenderer extends DefaultTreeCellRenderer {
 	private static final ImageIcon UNSATISFIED = Images.VC_UNSATISFIED_IMAGE;
-	private static final ImageIcon SATISFIED = Images.VC_UNSATISFIED_IMAGE;
+	private static final ImageIcon SATISFIED = Images.VC_SATISFIED_IMAGE;
 	public CustomIconRenderer() {
 	}
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
