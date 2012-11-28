@@ -207,7 +207,7 @@ public class LevelMap extends JPanel implements Observer {
 		}
 		if (stationType == StationType.REQUESTER){
 			displayRequestTypesInStation(cargoRow1, cargoTypeExist);
-			displayNumOfRequestsInStation(cargoRow1, importCargoList);
+			displayNumOfCargosInStation(cargoRow1, importCargoList);
 			displayRequesterFrequency(cargoRow2,station, cargoTypeExist);
 		}
 		cargoLayer.add(cargoRow1);
@@ -302,18 +302,12 @@ public class LevelMap extends JPanel implements Observer {
 		return null;
 	}
 	
-	private void displayNumOfCargosInStation(JPanel cargoRow1,LinkedList<Cargo> exportCargoList){
-		Integer numCargo = exportCargoList.size();
+	private void displayNumOfCargosInStation(JPanel cargoRow1,LinkedList<Cargo> CargoList){
+		Integer numCargo = CargoList.size();
 		JLabel numCargoLabel = new JLabel(numCargo.toString());
 		cargoRow1.add(numCargoLabel);
 	}
 
-	private void displayNumOfRequestsInStation(JPanel cargoRow1,LinkedList<Cargo> importCargoList){
-		Integer numRequests = importCargoList.size();
-		JLabel numCargoLabel = new JLabel(numRequests.toString());
-		cargoRow1.add(numCargoLabel);
-	}
-	
 	private ImageIcon getExportCargoIcon(CargoType cargoType){
 		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
 		switch(cargoType){
