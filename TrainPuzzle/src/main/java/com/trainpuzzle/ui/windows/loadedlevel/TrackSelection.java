@@ -40,8 +40,6 @@ public class TrackSelection extends JPanel implements ActionListener, Observer{
 		this.loadedLevelScreen = loadedLevelScreen;
 		economy = this.gameController.getLevel().getEconomy();
 		economy.register(this);
-		
-		this.setPreferredSize(new Dimension(200, 350));
 		this.setLayout(new GridLayout(0,1));
 		
 		setTrackSelectionBorder();

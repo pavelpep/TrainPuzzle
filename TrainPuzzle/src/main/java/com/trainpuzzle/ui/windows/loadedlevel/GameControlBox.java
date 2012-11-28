@@ -27,7 +27,6 @@ public class GameControlBox extends JPanel implements ActionListener{
 	
 	public GameControlBox(GameController gameController) {
 		this.gameController = gameController;
-		//this.setPreferredSize(new Dimension(200, 150));
 		
 		Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder gameControlBoxTitle;

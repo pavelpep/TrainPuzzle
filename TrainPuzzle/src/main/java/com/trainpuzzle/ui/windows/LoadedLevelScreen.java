@@ -59,17 +59,28 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 	private void create() {
 		JPanel loadedLevelScreenPanel = new JPanel();
 		loadedLevelScreenPanel.setLayout(new GridBagLayout());
-		//loadedLevelScreenPanel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 		this.add(loadedLevelScreenPanel);
 		
-		GridBagConstraints headerPanelConstraints = gbConstraints(new Point(0, 0), new Dimension(2, 1), 0, 0);
+		GridBagConstraints headerPanelConstraints = gbConstraints(new Point(0, 0), new Dimension(1, 1), 0, 0);
 		loadedLevelScreenPanel.add(headerPanel(), headerPanelConstraints);
 		
-		GridBagConstraints mapPanelContsraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 1);
-		loadedLevelScreenPanel.add(mapPanel(), mapPanelContsraints);
+		GridBagConstraints bodyPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 1, 1);
+		loadedLevelScreenPanel.add(bodyPanel(), bodyPanelConstraints);
+		
+	}
+
+	private JPanel bodyPanel() {
+		JPanel bodyPanel = new JPanel();
+		bodyPanel.setLayout(new GridBagLayout());
+		
+		GridBagConstraints mapPanelConstraints = gbConstraints(new Point(0, 1), new Dimension(1, 1), 0, 1);
+		bodyPanel.add(mapPanel(), mapPanelConstraints);
+		
 		
 		GridBagConstraints sidePanelConstraints = gbConstraints(new Point(1, 1), new Dimension(1, 1), 0, 1);
-		loadedLevelScreenPanel.add(sidePanel(), sidePanelConstraints);
+		bodyPanel.add(sidePanel(), sidePanelConstraints);
+		
+		return bodyPanel;
 	}
 
 	private JPanel headerPanel() {
@@ -258,11 +269,10 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private JPanel sidePanel() {
 		JPanel sidePanel = new JPanel();
-		sidePanel.setPreferredSize(new Dimension(200, 600));
-		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+		sidePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		((FlowLayout) sidePanel.getLayout()).setVgap(0);
 		
 		JPanel controlPanel = new JPanel();
-		controlPanel.setPreferredSize(new Dimension(200, 600));
 		controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
 		
 		gameControlBox = new GameControlBox(gameController);
@@ -282,6 +292,7 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 		controlPanel.add(toggleButton);
 		
 		JTabbedPane tabbedSidePane = new JTabbedPane();
+		tabbedSidePane.setPreferredSize(new Dimension(200, 650));
 		tabbedSidePane.addTab("Controls", null, controlPanel, null);
 		tabbedSidePane.setMnemonicAt(0, KeyEvent.VK_1);
 		
@@ -302,6 +313,8 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 
 	private JPanel mapPanel() {
 		JPanel mapPanel = new JPanel();
+		mapPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		((FlowLayout) mapPanel.getLayout()).setVgap(0);
 		loadedLevelMap = new LevelMap(gameController, level.getBoard().getRows(), level.getBoard().getColumns());
 		mapPanel.add(loadedLevelMap);
@@ -358,15 +371,18 @@ public class LoadedLevelScreen extends Window implements ActionListener, Observe
 			setRemainTime(((Simulator) object).getRestTime());
 			if(((Simulator) object).isTrainCrashed()) {
 				setMessageBoxMessage("TRAIN CRASHED");
+				gameControlBox.setRunButtonVisible();
 			}
 			else if(((Simulator) object).isVictoryConditionsSatisfied()) {
 				gameController.levelCompleted();
 				setMessageBoxMessage("YOU COMPLETED THE LEVEL!");
+				gameControlBox.setRunButtonVisible();
 			}
 			else if (((Simulator)object).checkTimeOut()) {
 				setMessageBoxMessage("YOU RUN OUT OF TIME!");
+				gameControlBox.setRunButtonVisible();
 			}
-			//gameControlBox.setRunButtonVisible();
+			
 		}
 		else if (object instanceof Train) {
 			cargoPanelPointer.removeAll();
