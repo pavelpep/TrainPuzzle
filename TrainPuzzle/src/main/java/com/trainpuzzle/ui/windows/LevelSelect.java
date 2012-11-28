@@ -75,6 +75,5 @@ public class LevelSelect extends Window implements ActionListener, ListSelection
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		levelSelected = 1 + levelList.getSelectedIndex();
-		System.out.println("level selected: " + levelSelected);
 	}
 }
