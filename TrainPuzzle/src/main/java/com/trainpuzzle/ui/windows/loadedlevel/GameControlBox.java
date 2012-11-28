@@ -146,10 +146,6 @@ public class GameControlBox extends JPanel implements ActionListener{
 				gameController.getSimulator().reset();
 				JOptionPane.showMessageDialog(null, "All placed tracks removed and position reset!");				
 			} 
-			else {
-				// do nothing
-			}
-
 
 		}
 	}

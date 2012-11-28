@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
 
 import com.trainpuzzle.infrastructure.Images;
 import com.trainpuzzle.model.level.victory_condition.TreeNodeUserObject;
@@ -34,7 +33,6 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
 		}
 		
 		setText(userObject.getLabel()); 
-		//setText((String) node.getUserObject());
 		return this;
 	}
 	

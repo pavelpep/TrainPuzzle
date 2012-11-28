@@ -1,16 +1,10 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Component;
-
-
-
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Color;
-
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -40,7 +34,6 @@ import com.trainpuzzle.model.board.Track;
 import com.trainpuzzle.model.board.Train;
 import com.trainpuzzle.model.board.TrainCar;
 import com.trainpuzzle.model.level.Level;
-import com.trainpuzzle.model.level.victory_condition.AndVictoryCondition;
 import com.trainpuzzle.observe.Observer;
 import com.trainpuzzle.ui.windows.RotatedImageIcon;
 import com.trainpuzzle.ui.windows.TileMouseAdapter;
@@ -536,7 +529,6 @@ public class LevelMap extends JPanel implements Observer {
 				mapTile.remove(component);
 			}
 		} catch(Exception e) {
-			//logger.error(e.getMessage(), e.fillInStackTrace());
 		}
 	}
 	

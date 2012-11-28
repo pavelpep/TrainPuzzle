@@ -1,6 +1,5 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
