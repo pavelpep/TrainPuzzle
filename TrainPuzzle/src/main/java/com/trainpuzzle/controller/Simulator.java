@@ -282,6 +282,7 @@ public class Simulator implements Observable {
 	}
 	
 	private void passStation(Station station) {
+		
 		Event event = new Event(time, station);
 		this.victoryConditionEvaluator.processEvent(event);
 		dropCargo(station);
