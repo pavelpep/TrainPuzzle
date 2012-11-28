@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
-import org.apache.log4j.Logger;
 
 import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.observe.Observable;
@@ -28,7 +27,6 @@ public class Station implements java.io.Serializable, Observable {
 	
 	private static final long serialVersionUID = 1L;
 	private transient Set<Observer> observerList = new HashSet<Observer>();
-	private transient Logger logger = Logger.getLogger(Station.class);
 	public enum StationType {
 		RED,
 		GREEN,
@@ -206,8 +204,9 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void sendExportCargo(Cargo cargo) {
-		logger.debug("Train Received Cargo from Station");
+		System.out.println("returning");
 		if (!exportCargo.contains(cargo)){		
+
 			return;
 		}
 		exportCargo.removeFirstOccurrence(cargo);
@@ -226,7 +225,6 @@ public class Station implements java.io.Serializable, Observable {
 	}
 	
 	public void receiveImportCargo(Cargo cargo) {
-		logger.debug("Station Received Cargo from Train");
 		importCargo.removeFirstOccurrence(cargo);
 		notifyAllObservers();
 	}
