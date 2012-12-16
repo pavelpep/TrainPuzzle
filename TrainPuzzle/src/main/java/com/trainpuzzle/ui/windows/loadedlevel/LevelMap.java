@@ -1,6 +1,7 @@
 package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.awt.Component;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -64,6 +65,12 @@ public class LevelMap extends JPanel implements Observer {
 	
 	Location previousTrainLocation = new Location(0,0);
 	
+	
+	
+	public Level getLevel() {
+		return level;
+	}
+
 	public LevelMap(GameController gameController, int numberOfRows, int numberOfColumns) {
 		this.gameController = gameController;
 		this.level = this.gameController.getLevel();
@@ -176,180 +183,23 @@ public class LevelMap extends JPanel implements Observer {
 
 	//For cargo-generating station, display all types of cargos which can generate
 	//and the time intervals to generate each type of cargo.
-	private void drawCargoes(JLayeredPane mapTile, Station station){
-		
-		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
-		LinkedList<Cargo> importCargoList = station.getImportCargo();
-		HashMap<CargoType, Boolean> cargoTypeExist = station.getCanGenerateCargoTypes();
-		StationType stationType = station.getType();
-			
+	private void drawCargoes(JLayeredPane mapTile, Station station){			
 		JPanel cargoLayer = new JPanel();
 		initCargoLayer(cargoLayer);
 		
-		JPanel cargoRow1 = new JPanel();
-		initCargoRow(cargoRow1);		
-		JPanel cargoRow2 = new JPanel();
-		initCargoRow(cargoRow2);
-				
-		if (stationType==StationType.GREEN || stationType==StationType.RED){
-			displayAllCargoesInStation(cargoRow1, exportCargoList);
-			displayAllRequestsInStation(cargoRow1, importCargoList);
-		}
-		displayCargoTypesInStation(cargoRow1, station, cargoTypeExist);
-		if (stationType == StationType.FACTORY){
-			displayNumOfCargosInStation(cargoRow1, exportCargoList);
-			displayGeneratorFrequency(cargoRow2,station, cargoTypeExist);
-		}
-		if (stationType == StationType.REQUESTER){
-			displayNumOfCargosInStation(cargoRow1, importCargoList);
-			displayRequesterFrequency(cargoRow2,station, cargoTypeExist);
-		}
-		cargoLayer.add(cargoRow1);
-		cargoLayer.add(cargoRow2);		
+		CargoLayerDrawerType cargoLayerDrawer = CargoLayerDrawerType.createNewType(station);
+		cargoLayerDrawer.displayCargoLayer(station,cargoLayer,level);	
 		
 		cargoLayer.setBounds(0, 0, tileSizeInPixels, tileSizeInPixels);
 		mapTile.add(cargoLayer, new Integer(cargoLayerIndex));
-	}
+	}	
 	
 	private void initCargoLayer(JPanel cargoLayer){
 		cargoLayer.setOpaque(false);
 		cargoLayer.setLayout(new BoxLayout(cargoLayer, BoxLayout.Y_AXIS));
 	}
 	
-	private void initCargoRow(JPanel oneCargoRow){
-		oneCargoRow.setOpaque(false);
-		oneCargoRow.setLayout(new BoxLayout(oneCargoRow, BoxLayout.X_AXIS));
-		oneCargoRow.setAlignmentX(LEFT_ALIGNMENT);		
-	}
-	
-	private void displayAllCargoesInStation(JPanel cargoRow, LinkedList<Cargo> exportCargoList){
-		for (Cargo cargo: exportCargoList) {
-			JLabel cargoLabel = new JLabel(getExportCargoIcon(cargo.getType()));
-			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
-			cargoRow.add(cargoLabel);
-		}			
-	}
-
-	private void displayAllRequestsInStation(JPanel cargoRow, LinkedList<Cargo> importCargoList){
-		for (Cargo cargo: importCargoList) {
-			JLabel cargoLabel = new JLabel(getImportCargoIcon(cargo.getType()));
-			cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
-			cargoRow.add(cargoLabel);
-		}			
-	}
-	
-	private void displayCargoTypesInStation(JPanel cargoRow1, Station station,
-			HashMap<CargoType,Boolean> canGenerateCargoTypes){
-		JLabel cargoLabel = null;
-		for (CargoType cargoType: CargoType.values()){
-			if (canGenerateCargoTypes.get(cargoType)){
-				if (station.getType()==StationType.FACTORY) {
-					cargoLabel = new JLabel(getExportCargoIcon(cargoType));
-				}
-				if (station.getType()==StationType.REQUESTER) {
-					cargoLabel = new JLabel(getImportCargoIcon(cargoType));
-				}
-				cargoLabel.setBorder(new EmptyBorder(0, 1, 0, 1));
-				cargoRow1.add(cargoLabel);
-			}
-		}
-	}	
-	
-	private void displayGeneratorFrequency(JPanel cargoRow2,Station station,
-			HashMap<CargoType,Boolean> cargoTypeExist){
-		final int ANY_INTERVAL = 10;
-		for (CargoType cargoType: CargoType.values()){
-			if (cargoTypeExist.get(cargoType)){
-				CargoGenerator wantedGenerator = new CargoGenerator(station,ANY_INTERVAL,cargoType);
-				int indexOfCargoGenerator = level.getCargoGenerators().indexOf(wantedGenerator);
-				wantedGenerator = level.getCargoGenerators().get(indexOfCargoGenerator);
-				
-				Integer generatingInterval = wantedGenerator.getGeneratingInterval();
-				JLabel cargoLabel = new JLabel(generatingInterval.toString()+ "T");
-				cargoLabel.setForeground(Color.WHITE);
-				Font font = new Font("Arial", Font.ROMAN_BASELINE, 9);
-				cargoLabel.setFont(font);
-				cargoRow2.add(cargoLabel);
-			}
-		}
-	}
-	
-	private void displayRequesterFrequency(JPanel cargoRow2,Station station,
-			HashMap<CargoType,Boolean> cargoTypeExist){
-		for (CargoType cargoType: CargoType.values()){
-			if (cargoTypeExist.get(cargoType)){
-				CargoRequestGenerator wantedRequester = getRequester(level.getCargorequestors(), station, cargoType);
-				
-				Integer generatingInterval = wantedRequester.getGeneratingInteval();
-				JLabel cargoLabel = new JLabel(generatingInterval.toString()+ "T");
-				cargoLabel.setForeground(Color.WHITE);
-				Font font = new Font("Arial", Font.ROMAN_BASELINE, 9);
-				cargoLabel.setFont(font);
-				cargoRow2.add(cargoLabel);
-			}
-		}
-	}
-	
-	private CargoRequestGenerator getRequester(List<CargoRequestGenerator> cargoRequesters, 
-			Station station, CargoType cargoType){
-		for (CargoRequestGenerator requester: cargoRequesters){
-			if (requester.getStation().equals(station) && requester.getRequestType()==cargoType){
-				return requester;
-			}
-		}
-		return null;
-	}
-	
-	private void displayNumOfCargosInStation(JPanel cargoRow1,LinkedList<Cargo> CargoList){
-		Integer numCargo = CargoList.size();
-		JLabel numCargoLabel = new JLabel(numCargo.toString());
-		cargoRow1.add(numCargoLabel);
-	}
-
-	private ImageIcon getExportCargoIcon(CargoType cargoType){
-		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
-		switch(cargoType){
-		case IRON:
-			cargoIcon = new ImageIcon(Images.IRON);
-			break;
-		case COTTON:
-			cargoIcon = new ImageIcon(Images.COTTON);
-			break;
-		case WOOD:
-			cargoIcon = new ImageIcon(Images.WOOD);
-			break;
-		case COAL:
-			cargoIcon = new ImageIcon(Images.COAL);
-			break;
-		case STEEL:
-			cargoIcon = new ImageIcon(Images.STEEL);
-			break;			
-		}
-		return cargoIcon;
-	}	
-	
-	private ImageIcon getImportCargoIcon(CargoType cargoType){
-		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
-		switch(cargoType){
-		case IRON:
-			cargoIcon = new ImageIcon(Images.REQUIRED_IRON);
-			break;
-		case COTTON:
-			cargoIcon = new ImageIcon(Images.REQUIRED_COTTON);
-			break;
-		case WOOD:
-			cargoIcon = new ImageIcon(Images.REQUIRED_WOOD);
-			break;
-		case COAL:
-			cargoIcon = new ImageIcon(Images.REQUIRED_COAL);
-			break;
-		case STEEL:
-			cargoIcon = new ImageIcon(Images.REQUIRED_STEEL);
-			break;			
-		}
-		return cargoIcon;
-	}		
-	
+		
 	private void drawCargoesAtStation(int row, int column) {
 		JLayeredPane mapTile = mapTiles[row][column];
 		
@@ -513,6 +363,28 @@ public class LevelMap extends JPanel implements Observer {
 			this.repaint();
 		}
 	}
+
+	private ImageIcon getExportCargoIcon(CargoType cargoType){
+		ImageIcon cargoIcon = new ImageIcon(Images.IRON);
+		switch(cargoType){
+		case IRON:
+			cargoIcon = new ImageIcon(Images.IRON);
+			break;
+		case COTTON:
+			cargoIcon = new ImageIcon(Images.COTTON);
+			break;
+		case WOOD:
+			cargoIcon = new ImageIcon(Images.WOOD);
+			break;
+		case COAL:
+			cargoIcon = new ImageIcon(Images.COAL);
+			break;
+		case STEEL:
+			cargoIcon = new ImageIcon(Images.STEEL);
+			break;			
+		}
+		return cargoIcon;
+	}	
 	
 	private void removeComponentsInGUILayer(JLayeredPane mapTile, int layerIndex) {
 		try {
