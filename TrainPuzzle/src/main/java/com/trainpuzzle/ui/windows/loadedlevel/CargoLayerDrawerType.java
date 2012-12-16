@@ -3,6 +3,8 @@ package com.trainpuzzle.ui.windows.loadedlevel;
 
 import java.util.LinkedList;
 
+
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +17,8 @@ import com.trainpuzzle.model.level.Level;
 
 
 public abstract class CargoLayerDrawerType {
+    public static final float LEFT_ALIGNMENT = 0.0f;
+    
 	abstract void displayCargoLayer(Station station, JPanel cargoLayer, Level level);
 	
 	static CargoLayerDrawerType createNewType(Station station){
@@ -26,6 +30,12 @@ public abstract class CargoLayerDrawerType {
 		default:
 			return new CargosDrawer();
 		}
+	}
+	
+	protected void initCargoRow(JPanel oneCargoRow){
+		oneCargoRow.setOpaque(false);
+		oneCargoRow.setLayout(new BoxLayout(oneCargoRow, BoxLayout.X_AXIS));
+		oneCargoRow.setAlignmentX(LEFT_ALIGNMENT);		
 	}
 	
 	protected ImageIcon getExportCargoIcon(CargoType cargoType){

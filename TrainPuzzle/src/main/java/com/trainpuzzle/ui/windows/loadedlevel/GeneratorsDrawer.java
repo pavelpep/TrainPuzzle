@@ -20,7 +20,6 @@ import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.level.Level;
 
 public class GeneratorsDrawer extends CargoLayerDrawerType{
-    public static final float LEFT_ALIGNMENT = 0.0f;
     
 	public void displayCargoLayer(Station station, JPanel cargoLayer, Level level){
 		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
@@ -38,14 +37,7 @@ public class GeneratorsDrawer extends CargoLayerDrawerType{
 		cargoLayer.add(cargoRow1);
 		cargoLayer.add(cargoRow2);	
 	}
-	
-	
-	private void initCargoRow(JPanel oneCargoRow){
-		oneCargoRow.setOpaque(false);
-		oneCargoRow.setLayout(new BoxLayout(oneCargoRow, BoxLayout.X_AXIS));
-		oneCargoRow.setAlignmentX(LEFT_ALIGNMENT);		
-	}
-	
+			
 	private void displayCargoTypesInStation(JPanel cargoRow1, Station station,
 			HashMap<CargoType,Boolean> canGenerateCargoTypes){
 		JLabel cargoLabel = null;

@@ -784,20 +784,20 @@
             <numOfCargoRequestor>2</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>true</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>true</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
@@ -1066,7 +1066,11 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1074,11 +1078,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1419,7 +1419,11 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1427,11 +1431,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -1659,12 +1659,12 @@
             <removable>true</removable>
             <connections>
               <com.trainpuzzle.model.board.Connection>
-                <compassHeading1>NORTH</compassHeading1>
-                <compassHeading2>SOUTH</compassHeading2>
-              </com.trainpuzzle.model.board.Connection>
-              <com.trainpuzzle.model.board.Connection>
                 <compassHeading1>WEST</compassHeading1>
                 <compassHeading2>EAST</compassHeading2>
+              </com.trainpuzzle.model.board.Connection>
+              <com.trainpuzzle.model.board.Connection>
+                <compassHeading1>NORTH</compassHeading1>
+                <compassHeading2>SOUTH</compassHeading2>
               </com.trainpuzzle.model.board.Connection>
             </connections>
             <trackType>INTERSECTION_TRACK</trackType>
@@ -1762,20 +1762,20 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>true</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>STEEL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>true</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
               </entry>
               <entry>
                 <com.trainpuzzle.model.board.Cargo_-CargoType>WOOD</com.trainpuzzle.model.board.Cargo_-CargoType>
@@ -2246,7 +2246,11 @@
             <numOfCargoRequestor>0</numOfCargoRequestor>
             <canGeneratCargoTypes>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -2254,11 +2258,7 @@
                 <boolean>false</boolean>
               </entry>
               <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>IRON</com.trainpuzzle.model.board.Cargo_-CargoType>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <com.trainpuzzle.model.board.Cargo_-CargoType>COAL</com.trainpuzzle.model.board.Cargo_-CargoType>
+                <com.trainpuzzle.model.board.Cargo_-CargoType>COTTON</com.trainpuzzle.model.board.Cargo_-CargoType>
                 <boolean>false</boolean>
               </entry>
               <entry>
@@ -3125,27 +3125,19 @@
     <budget>-1</budget>
     <numberOfAvailableTrack>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>3</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
-        <int>4</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>-1</int>
-      </entry>
-      <entry>
         <com.trainpuzzle.model.board.TrackType>SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>5</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>DIAGONAL_INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>5</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
         <int>5</int>
       </entry>
       <entry>
@@ -3153,15 +3145,27 @@
         <int>2</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>INTERSECTION</com.trainpuzzle.model.board.TrackType>
         <int>4</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>-1</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>CURVELEFT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
+        <int>5</int>
       </entry>
       <entry>
         <com.trainpuzzle.model.board.TrackType>CURVELEFT_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>2</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>STRAIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <com.trainpuzzle.model.board.TrackType>TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>4</int>
+      </entry>
+      <entry>
+        <com.trainpuzzle.model.board.TrackType>DIAGONAL_TRACK</com.trainpuzzle.model.board.TrackType>
         <int>-1</int>
       </entry>
       <entry>
@@ -3169,12 +3173,8 @@
         <int>4</int>
       </entry>
       <entry>
-        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_STRAIGHT_SWITCH</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
-      </entry>
-      <entry>
-        <com.trainpuzzle.model.board.TrackType>DIAGONAL_INTERSECTION_TRACK</com.trainpuzzle.model.board.TrackType>
-        <int>5</int>
+        <com.trainpuzzle.model.board.TrackType>CURVERIGHT_TRACK</com.trainpuzzle.model.board.TrackType>
+        <int>3</int>
       </entry>
     </numberOfAvailableTrack>
   </economy>

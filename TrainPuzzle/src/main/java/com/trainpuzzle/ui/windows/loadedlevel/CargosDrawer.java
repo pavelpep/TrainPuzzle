@@ -14,30 +14,18 @@ import com.trainpuzzle.model.board.Station;
 import com.trainpuzzle.model.board.Cargo.CargoType;
 import com.trainpuzzle.model.level.Level;
 
-public class CargosDrawer extends CargoLayerDrawerType{
-    public static final float LEFT_ALIGNMENT = 0.0f;
-    
+public class CargosDrawer extends CargoLayerDrawerType{   
 	public void displayCargoLayer(Station station, JPanel cargoLayer, Level level){
 		LinkedList<Cargo> exportCargoList = station.getExportCargo(); 
 		LinkedList<Cargo> importCargoList = station.getImportCargo();
 		
 		JPanel cargoRow1 = new JPanel();
 		initCargoRow(cargoRow1);		
-		JPanel cargoRow2 = new JPanel();
-		initCargoRow(cargoRow2);
 		
 		displayAllCargoesInStation(cargoRow1, exportCargoList);
 		displayAllRequestsInStation(cargoRow1, importCargoList);
 		
 		cargoLayer.add(cargoRow1);
-		cargoLayer.add(cargoRow2);	
-	}
-	
-	
-	private void initCargoRow(JPanel oneCargoRow){
-		oneCargoRow.setOpaque(false);
-		oneCargoRow.setLayout(new BoxLayout(oneCargoRow, BoxLayout.X_AXIS));
-		oneCargoRow.setAlignmentX(LEFT_ALIGNMENT);		
 	}
 	
 	private void displayAllCargoesInStation(JPanel cargoRow, LinkedList<Cargo> exportCargoList){
